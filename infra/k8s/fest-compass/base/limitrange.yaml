@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: fest-compass-defaults
+  labels:
+    app.kubernetes.io/name: fest-compass
+    app.kubernetes.io/part-of: fest-compass
+spec:
+  limits:
+    - type: Container
+      defaultRequest:
+        cpu: 50m
+        memory: 128Mi
+      default:
+        cpu: 500m
+        memory: 512Mi

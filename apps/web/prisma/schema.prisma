@@ -1,0 +1,200 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Festival {
+  id            String   @id
+  name          String
+  organization  String?
+  place         String?
+  program       String?
+  startDate     String?
+  endDate       String?
+  areaCode      String?
+  sigunguCode   String?
+  ldongRegnCd   String?
+  ldongSignguCd String?
+  mapX          String?
+  mapY          String?
+  contentId     String?
+  provenance    String   @default("manual")
+  labelLevel    String   @default("L0")
+  isDemo        Boolean  @default(false)
+  isExample     Boolean  @default(true)
+  clonedFromId  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  snapshots     EvidenceSnapshot[]
+  assumptions   Assumption[]
+  capacityRules CapacityRule[]
+  scenarios     Scenario[]
+  decisions     Decision[]
+  triggers      OperationTrigger[]
+  fieldActions  FieldAction[]
+  outcomes      Outcome[]
+  quality       DataQuality[]
+
+  @@index([isDemo, createdAt])
+}
+
+model EvidenceSnapshot {
+  id             String   @id @default(cuid())
+  festivalId     String
+  festival       Festival @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  apiName        String
+  sourceUrl      String?
+  baseDate       String?
+  fetchedAt      DateTime
+  aggregation    String?
+  kind           String
+  valueJson      String
+  rawSummary     String?
+  status         String
+  stale          Boolean  @default(false)
+  interpretation String?
+  prohibition    String?
+
+  @@index([festivalId, fetchedAt])
+}
+
+model Assumption {
+  id         String   @id @default(cuid())
+  festivalId String
+  festival   Festival @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  item       String
+  minValue   Float?
+  baseValue  Float?
+  maxValue   Float?
+  unit       String?
+  rationale  String?
+  author     String?
+  version    Int      @default(1)
+  createdAt  DateTime @default(now())
+
+  @@index([festivalId, version, createdAt])
+}
+
+model CapacityRule {
+  id               String   @id @default(cuid())
+  festivalId       String
+  festival         Festival @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  zone             String
+  approvedCapacity Float?
+  dwellHours       Float?
+  documentRef      String?
+  approver         String?
+
+  @@index([festivalId])
+}
+
+model Scenario {
+  id           String     @id @default(cuid())
+  festivalId   String
+  festival     Festival   @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  kind         String
+  name         String
+  sessions     Int?
+  staffParking Int?
+  shuttles     Int?
+  zone         String?
+  routeNote    String?
+  resultJson   String?
+  formulaJson  String?
+  decisions    Decision[]
+
+  @@index([festivalId])
+}
+
+model Decision {
+  id            String    @id @default(cuid())
+  festivalId    String
+  festival      Festival  @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  scenarioId    String?
+  scenario      Scenario? @relation(fields: [scenarioId], references: [id])
+  changeSummary String
+  reason        String
+  approver      String
+  decidedAt     DateTime
+
+  @@index([festivalId, decidedAt])
+  @@index([scenarioId])
+}
+
+model OperationTrigger {
+  id            String        @id @default(cuid())
+  festivalId    String
+  festival      Festival      @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  condition     String
+  plannedAction String
+  owner         String
+  createdAt     DateTime      @default(now())
+  fieldActions  FieldAction[]
+
+  @@index([festivalId])
+}
+
+model FieldAction {
+  id               String            @id @default(cuid())
+  festivalId       String
+  festival         Festival          @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  triggerId        String?
+  operationTrigger OperationTrigger? @relation(fields: [triggerId], references: [id], onDelete: SetNull)
+  trigger          String
+  occurredAt       String
+  action           String
+  actor            String?
+
+  @@index([festivalId])
+  @@index([triggerId])
+}
+
+model Outcome {
+  id            String   @id @default(cuid())
+  festivalId    String
+  festival      Festival @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  metric        String
+  plannedValue  Float?
+  actualValue   Float?
+  unit          String?
+  source        String?
+  measureMethod String?
+  missingRate   Float?
+  confirmed     Boolean  @default(false)
+  kind          String
+  granularity   String   @default("total")
+  bucketLabel   String?
+
+  @@index([festivalId])
+}
+
+model ApiCallLog {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  operation  String
+  urlMasked  String
+  status     Int?
+  ok         Boolean
+  durationMs Int
+  resultKind String
+  summary    String?
+
+  @@index([createdAt])
+}
+
+model DataQuality {
+  id         String   @id @default(cuid())
+  festivalId String
+  festival   Festival @relation(fields: [festivalId], references: [id], onDelete: Cascade)
+  issue      String
+  status     String
+  note       String?
+
+  @@index([festivalId])
+}

@@ -1,0 +1,51 @@
+# 기계판독 컴플라이언스 스펙 — 향후 pre-commit/CI 게이트가 읽는다.
+# 원칙: 구조적 사실만 검사(파일 존재/패턴/enum). 산문 품질은 검사하지 않는다.
+# v0.1 severity=warn (green baseline). 정착 후 항목별로 error 래칫.
+version: "0.1.0"
+severity: warn            # warn | error
+
+# 리포 루트에 반드시 존재해야 하는 진입점
+required_paths:
+  - path: "AGENTS.md"
+    reason: "에이전트 진입점"
+  - path: "README.md"
+    reason: "사람 진입점"
+  - path: "docs/README.md"
+    reason: "사람 문서 지도"
+  - path: "docs/product/non-goals.md"
+    reason: "범위 울타리(안 만들 것)"
+  - path: "docs/product/vision-scope.md"
+    reason: "목표·범위"
+  - path: "docs/decisions/"
+    reason: "단일 결정 로그(디렉토리)"
+  - path: ".dev-standard-version"
+    reason: "따르는 표준 버전 핀"
+
+# Current/SSOT 문서가 가져야 하는 front-matter 필드
+required_frontmatter:
+  applies_to_glob: "docs/**/*.md"
+  when_class_in: ["SSOT (Core)", "Current"]
+  fields: ["class", "owner", "last_verified"]
+
+# 결정 기록 규칙 (decision-records.md의 기계검사 부분)
+decision_records:
+  dir: "docs/decisions/"
+  id_pattern: "^(ADR|CIR)-[0-9]{4}$"
+  filename_pattern: "^[0-9]{4}-[a-z0-9-]+[.]md$"
+  status_enum: ["Proposed", "Accepted", "Rejected", "Deprecated", "Superseded"]
+  unique_by: ["type", "number"]     # 같은 (타입,번호) 중복 = 위반
+  index: "docs/decisions/README.md"
+  never_delete: true                # status만 Superseded/Deprecated로
+
+# 현재성 순위(문서화용; 게이트는 강제하지 않고 표시만)
+currency_ranking:
+  - "code / build / migrations / tests"
+  - "contract (openapi.json 등)"
+  - "SSOT docs"
+  - "decision records (ADR/CIR)"
+  - "reference / historical"
+
+# 게이트가 검사하지 않는 것(명시)
+non_gated:
+  - "산문 품질/문체 (지식 층 소관)"
+  - "요구사항 커버리지 비율 (리포별 판단; 별도 리포트)"

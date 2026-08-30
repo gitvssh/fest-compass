@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: fest-compass
+  labels:
+    app.kubernetes.io/name: fest-compass
+    app.kubernetes.io/part-of: fest-compass
+    gateway.homelab.damecasol.com/allowed: "true"
+  annotations:
+    gitops.damecasol.com/source-repository: gitvssh/fest-compass
+    delivery.damecasol.com/arc-runner: homelab-fest-compass

@@ -1,0 +1,9 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: vault-homelab
+  labels:
+    app.kubernetes.io/name: fest-compass
+    app.kubernetes.io/part-of: fest-compass
+spec:
+  address: https://vault.homelab.damecasol.com

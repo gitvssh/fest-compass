@@ -1,0 +1,190 @@
+name: publish-image
+
+# This job publishes one immutable commit image, verifies its remote evidence,
+# advances only Harbor retention markers, and reports the verified digest. It
+# has no kubeconfig, Argo CD credential, repository write permission, or sync.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fest-compass-image-publication
+  cancel-in-progress: false
+
+jobs:
+  image:
+    if: >-
+      github.repository == 'gitvssh/fest-compass' &&
+      github.ref == 'refs/heads/main' &&
+      github.actor == 'gitvssh' &&
+      github.triggering_actor == 'gitvssh'
+    runs-on: homelab-fest-compass
+    timeout-minutes: 60
+    steps:
+      - name: Check out trusted main
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Set up Node without Actions cache
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: "24"
+
+      - name: Set up kubectl for offline Kustomize rendering
+        uses: azure/setup-kubectl@829323503d1be3d00ca8346e5391ca0b07a9ab0d # v5.1.0
+
+      - name: Validate the exact commit before publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+          npm --prefix apps/web ci
+          npm --prefix apps/web audit --omit=dev --omit=optional --audit-level=high
+          npm --prefix apps/web test
+          npm --prefix apps/web run typecheck
+          npm --prefix apps/web run build
+          python3 -m unittest discover -s infra/scripts -p 'test_*.py' -v
+          python3 infra/scripts/validate_argocd_registration.py
+
+      - name: Configure scoped Harbor credentials
+        shell: bash
+        env:
+          HARBOR_USERNAME: ${{ secrets.HARBOR_USERNAME }}
+          HARBOR_TOKEN: ${{ secrets.HARBOR_TOKEN }}
+        run: |
+          set -euo pipefail
+          : "${RUNNER_TEMP:?}"
+          auth_dir="${RUNNER_TEMP%/}/fest-compass-harbor-auth"
+          test -n "${HARBOR_USERNAME}"
+          test -n "${HARBOR_TOKEN}"
+          install -d -m 0700 "${auth_dir}/docker"
+          auth="$(printf '%s:%s' "${HARBOR_USERNAME}" "${HARBOR_TOKEN}" | base64 | tr -d '\n')"
+          printf '{"auths":{"registry.damecasol.com":{"auth":"%s"}}}\n' "${auth}" \
+            > "${auth_dir}/docker/config.json"
+          printf 'machine registry.damecasol.com login %s password %s\n' \
+            "${HARBOR_USERNAME}" "${HARBOR_TOKEN}" > "${auth_dir}/netrc"
+          chmod 0600 "${auth_dir}/docker/config.json" "${auth_dir}/netrc"
+          unset auth
+
+      - name: Resolve existing immutable commit tag
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 infra/scripts/harbor_release.py \
+            --auth-file "${RUNNER_TEMP}/fest-compass-harbor-auth/netrc" \
+            --temp-root "${RUNNER_TEMP}" \
+            --github-output "${GITHUB_OUTPUT}" \
+            resolve \
+            --sha "${GITHUB_SHA}"
+
+      - name: Build and push immutable image once
+        id: image_build
+        if: steps.resolve.outputs.mode == 'build'
+        shell: bash
+        env:
+          IMAGE_REPOSITORY: registry.damecasol.com/fest-compass/web
+        run: |
+          set -euo pipefail
+          export DOCKER_CONFIG="${RUNNER_TEMP}/fest-compass-harbor-auth/docker"
+          metadata="${RUNNER_TEMP}/fest-compass-image-metadata.json"
+          source_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
+
+          buildctl debug workers
+          buildctl build \
+            --frontend dockerfile.v0 \
+            --local context=apps/web \
+            --local dockerfile=apps/web \
+            --opt filename=Dockerfile \
+            --opt platform=linux/amd64 \
+            --opt "label:org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --opt "label:org.opencontainers.image.source=${source_url}" \
+            --opt "attest:sbom=" \
+            --output "type=image,name=${IMAGE_REPOSITORY}:${GITHUB_SHA},push=true" \
+            --metadata-file "${metadata}"
+
+          digest="$(node -e '
+            const fs = require("node:fs");
+            const metadata = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+            process.stdout.write(metadata["containerimage.digest"] ?? "");
+          ' "${metadata}")"
+          printf '%s\n' "${digest}" | grep -Eq '^sha256:[0-9a-f]{64}$'
+          printf 'digest=%s\n' "${digest}" >> "${GITHUB_OUTPUT}"
+
+      - name: Remotely verify selected immutable image
+        id: image
+        shell: bash
+        env:
+          RESOLUTION_MODE: ${{ steps.resolve.outputs.mode }}
+          RESOLVED_DIGEST: ${{ steps.resolve.outputs.digest }}
+          BUILT_DIGEST: ${{ steps.image_build.outputs.digest }}
+        run: |
+          set -euo pipefail
+          case "${RESOLUTION_MODE}" in
+            reuse)
+              test -n "${RESOLVED_DIGEST}"
+              test -z "${BUILT_DIGEST}"
+              selected_digest="${RESOLVED_DIGEST}"
+              ;;
+            build)
+              test -z "${RESOLVED_DIGEST}"
+              test -n "${BUILT_DIGEST}"
+              selected_digest="${BUILT_DIGEST}"
+              ;;
+            *)
+              echo 'immutable image resolution returned an invalid mode' >&2
+              exit 1
+              ;;
+          esac
+          python3 infra/scripts/harbor_release.py \
+            --auth-file "${RUNNER_TEMP}/fest-compass-harbor-auth/netrc" \
+            --temp-root "${RUNNER_TEMP}" \
+            --github-output "${GITHUB_OUTPUT}" \
+            verify \
+            --sha "${GITHUB_SHA}" \
+            --expected-digest "${selected_digest}"
+
+      - name: Promote and verify Harbor retention markers
+        id: markers
+        shell: bash
+        env:
+          NEW_DIGEST: ${{ steps.image.outputs.digest }}
+        run: |
+          set -euo pipefail
+          python3 infra/scripts/harbor_release.py \
+            --auth-file "${RUNNER_TEMP}/fest-compass-harbor-auth/netrc" \
+            --temp-root "${RUNNER_TEMP}" \
+            --github-output "${GITHUB_OUTPUT}" \
+            promote \
+            --new-digest "${NEW_DIGEST}"
+
+      - name: Report verified immutable digest
+        shell: bash
+        env:
+          IMAGE: ${{ steps.image.outputs.image }}
+          DIGEST: ${{ steps.image.outputs.digest }}
+        run: |
+          set -euo pipefail
+          {
+            echo '## FEST Compass image verified'
+            echo
+            printf -- '- Immutable image: `%s`\n' "${IMAGE}"
+            printf -- '- Verified digest for reviewed GitOps pin: `%s`\n' "${DIGEST}"
+            echo '- Harbor retention markers were advanced and remotely verified.'
+            echo '- No manifest edit, Kubernetes deployment, GitOps write, or Argo CD sync was performed.'
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Remove credential files
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${RUNNER_TEMP:?}"
+          auth_dir="${RUNNER_TEMP%/}/fest-compass-harbor-auth"
+          test "${auth_dir}" = "${RUNNER_TEMP%/}/fest-compass-harbor-auth"
+          rm -rf -- "${auth_dir}"
+          test ! -e "${auth_dir}"

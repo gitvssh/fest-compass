@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fest-compass-config
+  labels:
+    app.kubernetes.io/name: fest-compass
+    app.kubernetes.io/component: web
+    app.kubernetes.io/part-of: fest-compass
+data:
+  APP_MODE: public-readonly
+  DATABASE_URL: file:/data/fest-compass.db

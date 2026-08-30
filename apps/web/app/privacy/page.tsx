@@ -1,0 +1,74 @@
+import type { Metadata } from "next";
+import { analyticsConsentBoundary, analyticsEventDictionary } from "@/lib/analytics-events";
+import { canonicalUrl, siteConfig } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "개인정보·분석 안내",
+  description: `${siteConfig.name}의 저장 정보와 선택 분석 동의 경계를 안내합니다.`,
+  alternates: { canonical: canonicalUrl("/privacy") },
+};
+
+export default function PrivacyPage() {
+  return (
+    <article className="mx-auto max-w-3xl space-y-6 rounded-3xl bg-white p-6 shadow-card md:p-9">
+      <header>
+        <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-blue">Privacy & analytics</p>
+        <h1 className="mt-2 text-3xl font-extrabold">개인정보·분석 안내</h1>
+        <p className="mt-3 text-sm text-muted">
+          {siteConfig.name}은 축제 운영 근거를 기록하는 서비스입니다. 공개 읽기 전용 화면은 데이터를 변경하지 않습니다.
+        </p>
+      </header>
+
+      <section>
+        <h2 className="text-xl font-extrabold">서비스에 저장되는 정보</h2>
+        <p className="mt-2 text-sm leading-7 text-muted">
+          편집 모드에서 입력한 축제명, 일정, 장소, 가정, 승인자·작성자·담당자 표기, 결정과 실측값은 운영 데이터베이스에 저장됩니다.
+          자유 입력란에는 불필요한 개인정보를 입력하지 마세요. 공개 읽기 전용 배포에서는 이러한 입력 기능이 서버에서 차단됩니다.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-extrabold">공공데이터 호출</h2>
+        <p className="mt-2 text-sm leading-7 text-muted">
+          인증된 편집 모드의 KTO 새로고침은 축제 일정·지역·콘텐츠 식별자를 공공데이터포털 API에 전송할 수 있습니다.
+          서비스키는 서버 Secret으로만 사용하며 화면이나 분석 이벤트 속성에 포함하지 않습니다.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-extrabold">선택 분석과 동의 경계</h2>
+        <p className="mt-2 text-sm leading-7 text-muted">
+          선택 분석을 도입할 경우 동의·거부·철회는 {analyticsConsentBoundary.owner}가 관리해야 합니다. 앱에는 분석 사업자 측정 ID나
+          Cloudflare purpose ID를 넣지 않으며, 콘솔에서 실제로 설정된 목적을 추측하지 않습니다. 선택 분석은 동의 전에 실행되어서는 안 되고
+          거부·철회 후에도 실행되어서는 안 됩니다. 보안·전송을 위한 Cloudflare의 필수 처리와 선택 분석은 별도 경계로 취급합니다.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-extrabold">허용 이벤트 사전</h2>
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="text-muted">
+              <tr><th className="pb-2">이벤트</th><th className="pb-2">트리거</th><th className="pb-2">허용 속성</th></tr>
+            </thead>
+            <tbody>
+              {analyticsEventDictionary.map((event) => (
+                <tr key={event.name} className="border-t border-ink/5 align-top">
+                  <td className="py-3 pr-3 font-mono text-xs">{event.name}</td>
+                  <td className="py-3 pr-3">{event.trigger}</td>
+                  <td className="py-3 text-muted">{event.allowedProperties.join(", ")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-3 text-xs leading-6 text-coral">
+          금지 속성: {analyticsConsentBoundary.forbiddenProperties.join(", ")}. 자유 입력 내용과 개인·축제 식별자는 분석으로 보내지 않습니다.
+        </p>
+        <p className="mt-2 text-xs leading-6 text-muted">
+          현재 앱은 이 이벤트를 직접 전송하지 않습니다. 사전은 Cloudflare Tag Management에서 동의 후 설정할 수 있는 이름과 최소 속성만 제한합니다.
+        </p>
+      </section>
+    </article>
+  );
+}

@@ -1,0 +1,49 @@
+{
+  "name": "fest-compass",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@10.7.0",
+  "engines": {
+    "node": ">=24.19.0 <25",
+    "npm": ">=10.7.0 <12"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build && npm run build:seed && node scripts/sanitize-standalone.mjs",
+    "build:seed": "esbuild prisma/seed.ts --bundle --platform=node --format=cjs --outfile=.next/seed.cjs --external:@prisma/client",
+    "start": "next start",
+    "start:standalone": "node .next/standalone/server.js",
+    "postinstall": "prisma generate",
+    "typecheck": "tsc --noEmit",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:status": "prisma migrate status",
+    "db:migrate:baseline": "prisma migrate resolve --applied 20260830000000_baseline",
+    "db:push": "prisma db push",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:reset": "prisma db push --force-reset && tsx prisma/seed.ts",
+    "test": "tsx --tsconfig tsconfig.test.json --test lib/app-mode.test.ts lib/health.test.ts lib/calc/capacity.test.ts lib/domain.test.ts lib/actions.validation.test.ts lib/kto/areacode.test.ts lib/kto/client.test.ts lib/kto/refresh.test.ts lib/kto/security.test.ts lib/kto/wire.test.ts lib/kto/windows.test.ts && node --test scripts/migrate-sqlite.test.mjs",
+    "test:e2e": "node scripts/run-demo-e2e.mjs"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.3",
+    "next": "16.3.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "server-only": "0.0.1"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "0.28.2",
+    "postcss": "^8.5.6",
+    "prisma": "6.19.3",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

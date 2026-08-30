@@ -1,0 +1,12 @@
+node_modules
+.next
+.env*
+!.env.example
+.playwright-cli
+*.db
+*.db-journal
+prisma/dev.db
+prisma/dev.db-journal
+tmp-e2e
+output/playwright/*.db
+output/playwright/*.db-journal

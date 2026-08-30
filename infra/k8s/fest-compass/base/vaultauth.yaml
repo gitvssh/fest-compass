@@ -1,0 +1,17 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: fest-compass
+  labels:
+    app.kubernetes.io/name: fest-compass
+    app.kubernetes.io/part-of: fest-compass
+spec:
+  vaultConnectionRef: vault-homelab
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: fest-compass
+    serviceAccount: fest-compass
+    tokenExpirationSeconds: 600
+    audiences:
+      - vault

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "name": "fest-compass-prod",
+  "environment": "prod",
+  "targetRevision": "main",
+  "sourcePath": "infra/k8s/fest-compass/overlays/prod",
+  "namespace": "fest-compass",
+  "syncClass": "manual"
+}

@@ -1,0 +1,12 @@
+# (선택) pre-commit 프레임워크를 쓸 경우. repo:local이라 폐쇄망에서 github 훅을 받지 않는다.
+# 프레임워크를 안 쓰면 이 파일은 무시해도 된다 — new_project.py가 core.hooksPath로
+# .dev-standard/hooks/pre-commit을 이미 연결하므로 게이트는 그것만으로 동작한다.
+repos:
+  - repo: local
+    hooks:
+      - id: dev-standard-compliance
+        name: dev-standard compliance
+        entry: .dev-standard/hooks/pre-commit
+        language: system
+        pass_filenames: false
+        always_run: true
