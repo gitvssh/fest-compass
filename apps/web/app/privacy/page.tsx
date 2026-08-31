@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { AnalyticsView } from "@/components/AnalyticsView";
 import { analyticsConsentBoundary, analyticsEventDictionary } from "@/lib/analytics-events";
+import { isPublicReadonly } from "@/lib/app-mode";
 import { canonicalUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,6 +13,10 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <article className="mx-auto max-w-3xl space-y-6 rounded-3xl bg-white p-6 shadow-card md:p-9">
+      <AnalyticsView
+        event="privacy_view"
+        properties={{ app_mode: isPublicReadonly() ? "public-readonly" : "editor" }}
+      />
       <header>
         <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-blue">Privacy & analytics</p>
         <h1 className="mt-2 text-3xl font-extrabold">개인정보·분석 안내</h1>
@@ -66,7 +72,9 @@ export default function PrivacyPage() {
           금지 속성: {analyticsConsentBoundary.forbiddenProperties.join(", ")}. 자유 입력 내용과 개인·축제 식별자는 분석으로 보내지 않습니다.
         </p>
         <p className="mt-2 text-xs leading-6 text-muted">
-          현재 앱은 이 이벤트를 직접 전송하지 않습니다. 사전은 Cloudflare Tag Management에서 동의 후 설정할 수 있는 이름과 최소 속성만 제한합니다.
+          앱은 위 표의 이벤트만, 표에 적힌 속성만 전송합니다. 속성값은 모두 고정된 목록(탭 이름과 앱 모드)이며 축제명·식별자·주소·자유 입력은
+          전송 직전에 제거됩니다. 전송은 {analyticsConsentBoundary.owner}가 동의를 확인한 뒤에만 동작하고, 거부·철회 상태에서는 아무것도
+          보내지 않습니다. 앱에는 분석 사업자 측정 ID나 목적 ID가 들어 있지 않습니다.
         </p>
       </section>
     </article>

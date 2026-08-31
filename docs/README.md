@@ -19,6 +19,10 @@ last_verified: 2026-08-30
 - [Design index](design/00_INDEX.md) — canonical entry point for use cases, flows, screens, calculations, and API contracts
 - [MVP review](2026-08-30_기획_데이터_MVP_점검리포트.md) — dated review evidence, not a replacement for current design
 
+## Operations
+
+- [Analytics and search connection runbook](ops/seo-analytics-connection.md) — the console steps that remain after deployment; the app carries no measurement or consent-purpose ID
+
 ## Decisions
 
 - [Decision index](decisions/README.md)

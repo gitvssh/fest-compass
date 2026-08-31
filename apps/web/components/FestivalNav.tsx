@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { FestivalDetail } from "@/lib/queries";
 import { labelLevelName } from "@/lib/format";
+import { isPublicReadonly } from "@/lib/app-mode";
+import { AnalyticsView } from "@/components/AnalyticsView";
 
 const TABS = [
   ["evidence", "근거·가정"],
@@ -18,6 +20,14 @@ export function FestivalNav({
 }) {
   return (
     <div className="mb-8">
+      {/* Every workspace tab renders this nav, so measuring here keeps the
+          reported tab identical to the one actually shown. The festival itself
+          is never sent — festival_id and festival_name are forbidden
+          properties. */}
+      <AnalyticsView
+        event="festival_workspace_view"
+        properties={{ tab: current, app_mode: isPublicReadonly() ? "public-readonly" : "editor" }}
+      />
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="mb-1 text-xs font-extrabold uppercase tracking-[0.16em] text-blue">

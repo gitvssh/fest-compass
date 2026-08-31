@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AnalyticsView } from "@/components/AnalyticsView";
 import { EditorOnly } from "@/components/EditorOnly";
+import { isPublicReadonly } from "@/lib/app-mode";
 import { listFestivals } from "@/lib/queries";
 import { canonicalUrl } from "@/lib/site";
 import { siteConfig } from "@/lib/site";
@@ -26,6 +28,10 @@ export default async function HomePage() {
 
   return (
     <div>
+      <AnalyticsView
+        event="festival_list_view"
+        properties={{ app_mode: isPublicReadonly() ? "public-readonly" : "editor" }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c") }}
