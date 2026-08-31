@@ -416,11 +416,14 @@ def validate_vault(resources: dict[tuple[str, str], str]) -> None:
         (r"^  vaultAuthRef:\s*fest-compass$", "runtime VSS auth"),
         (r"^  mount:\s*kv$", "runtime VSS mount"),
         (r"^  type:\s*kv-v2$", "runtime VSS type"),
-        (r"^  path:\s*projects/fest-compass/runtime$", "runtime VSS path"),
+        # The provider key is canonical at one shared document; this consumer
+        # reads that exact path and never a private copy or a wildcard.
+        (r"^  path:\s*projects/external-api/data-go-kr$", "runtime VSS path"),
         (r"^    name:\s*fest-compass-runtime$", "runtime Secret destination"),
         (r"^      excludeRaw:\s*true$", "runtime raw-field exclusion"),
+        (r"^      - \.\*$", "runtime source-field exclusion"),
         (r"^        TOUR_API_KEY:$", "TOUR_API_KEY projection"),
-        (r"^          text:\s*['\"]?\{\{- get \.Secrets \\?\"TOUR_API_KEY\\?\" -\}\}['\"]?$", "TOUR_API_KEY explicit template"),
+        (r"^          text:\s*['\"]?\{\{- get \.Secrets \\?\"service_key\\?\" -\}\}['\"]?$", "TOUR_API_KEY explicit template"),
         (r"^  - kind:\s*Deployment$", "runtime rollout target kind"),
         (r"^    name:\s*fest-compass$", "runtime rollout target name"),
     ):

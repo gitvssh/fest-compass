@@ -141,15 +141,23 @@ metadata:
 
     def test_vault_paths_and_explicit_runtime_projection_are_required(self) -> None:
         mutations = (
+            # The provider key is canonical at one shared document. Widening the
+            # read to a sibling document or the whole external-api prefix must
+            # fail closed, because the workload policy grants only this path.
             (
-                "path: projects/fest-compass/runtime",
-                "path: projects/other/runtime",
+                "path: projects/external-api/data-go-kr",
+                "path: projects/external-api/opendart",
                 "runtime VSS path",
             ),
             (
-                'get .Secrets "TOUR_API_KEY"',
+                'get .Secrets "service_key"',
                 'get .Secrets "OTHER_KEY"',
                 "TOUR_API_KEY explicit template",
+            ),
+            (
+                "excludes:\n      - .*",
+                "excludes:\n      - unrelated",
+                "runtime source-field exclusion",
             ),
             (
                 "path: projects/fest-compass/harbor-pull",
