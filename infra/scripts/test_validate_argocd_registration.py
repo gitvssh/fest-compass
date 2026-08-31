@@ -38,28 +38,34 @@ class RenderedManifestContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.rendered = validator.render_prod_overlay()
+        # The overlay pin is the digest currently deployed, so it changes with
+        # every release and the promotion helper reads it as the rollback
+        # candidate. These tests substitute whatever is pinned rather than
+        # assuming the pre-first-release zero sentinel.
+        cls.pinned = validator.validate_rendered(cls.rendered)
 
     def assert_contract_rejects(self, rendered: str, message: str, *, release: bool = False) -> None:
         with self.assertRaisesRegex(validator.ContractError, message):
             validator.validate_rendered(rendered, release=release)
 
-    def test_prepare_manifest_passes_with_zero_sentinel(self) -> None:
-        digest = validator.validate_rendered(self.rendered)
-        self.assertEqual(digest, validator.ZERO_DIGEST)
+    def test_prepare_mode_accepts_the_current_overlay_pin(self) -> None:
+        self.assertRegex(self.pinned, r"^sha256:[0-9a-f]{64}$")
 
     def test_release_rejects_zero_sentinel(self) -> None:
-        self.assert_contract_rejects(self.rendered, "zero image digest sentinel", release=True)
+        zeroed = self.rendered.replace(self.pinned, validator.ZERO_DIGEST)
+        self.assert_contract_rejects(zeroed, "zero image digest sentinel", release=True)
 
     def test_release_accepts_matching_nonzero_digest(self) -> None:
         digest = "sha256:" + ("a" * 64)
-        released = self.rendered.replace(validator.ZERO_DIGEST, digest)
+        released = self.rendered.replace(self.pinned, digest)
         self.assertEqual(validator.validate_rendered(released, release=True), digest)
 
     def test_service_version_must_match_image(self) -> None:
-        annotation = (
-            "observability.damecasol.com/service-version: " + validator.ZERO_DIGEST
+        annotation = "observability.damecasol.com/service-version: "
+        mutated = self.rendered.replace(
+            annotation + self.pinned, annotation + "sha256:" + ("b" * 64)
         )
-        mutated = self.rendered.replace(annotation, annotation.split(": sha256:")[0] + ": sha256:" + ("b" * 64))
+        self.assertNotEqual(mutated, self.rendered, "test fixture did not contain the pinned annotation")
         self.assert_contract_rejects(mutated, "does not match image digest")
 
     def test_exact_inventory_rejects_an_extra_secret(self) -> None:

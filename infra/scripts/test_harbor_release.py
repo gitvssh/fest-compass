@@ -291,8 +291,13 @@ class LocalContractTests(unittest.TestCase):
             "https://github.com/gitvssh/fest-compass",
         )
 
-    def test_prod_overlay_contains_one_zero_prepare_digest(self) -> None:
-        self.assertEqual(RELEASE.overlay_digest(RELEASE.PROD_OVERLAY), RELEASE.SENTINEL_DIGEST)
+    def test_prod_overlay_pins_exactly_one_immutable_digest(self) -> None:
+        # Before the first release this is the zero sentinel; afterwards it is
+        # the deployed digest, which promotion reads as the rollback candidate.
+        # Either way the overlay must carry exactly one immutable digest.
+        self.assertRegex(
+            RELEASE.overlay_digest(RELEASE.PROD_OVERLAY), r"^sha256:[0-9a-f]{64}$"
+        )
 
 
 if __name__ == "__main__":
