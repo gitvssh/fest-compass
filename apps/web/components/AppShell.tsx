@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ConsentBanner } from "@/components/ConsentBanner";
 import { isPublicReadonly, READ_ONLY_MESSAGE } from "@/lib/app-mode";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -39,6 +40,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </aside>
       ) : null}
       <main className="mx-auto w-full max-w-6xl px-5 py-8">{children}</main>
+      <ConsentBanner />
     </div>
   );
 }

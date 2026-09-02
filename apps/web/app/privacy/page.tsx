@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AnalyticsView } from "@/components/AnalyticsView";
+import { ConsentPreference } from "@/components/ConsentPreference";
 import { analyticsConsentBoundary, analyticsEventDictionary } from "@/lib/analytics-events";
 import { isPublicReadonly } from "@/lib/app-mode";
 import { canonicalUrl, siteConfig } from "@/lib/site";
@@ -44,10 +45,12 @@ export default function PrivacyPage() {
       <section>
         <h2 className="text-xl font-extrabold">선택 분석과 동의 경계</h2>
         <p className="mt-2 text-sm leading-7 text-muted">
-          선택 분석을 도입할 경우 동의·거부·철회는 {analyticsConsentBoundary.owner}가 관리해야 합니다. 앱에는 분석 사업자 측정 ID나
-          Cloudflare purpose ID를 넣지 않으며, 콘솔에서 실제로 설정된 목적을 추측하지 않습니다. 선택 분석은 동의 전에 실행되어서는 안 되고
-          거부·철회 후에도 실행되어서는 안 됩니다. 보안·전송을 위한 Cloudflare의 필수 처리와 선택 분석은 별도 경계로 취급합니다.
+          선택 분석은 <strong className="font-bold text-ink">동의하신 경우에만</strong> 실행됩니다. 선택하기 전과 거부·철회 후에는
+          아무것도 전송되지 않으며, 실행 여부는 {analyticsConsentBoundary.owner}가 판단합니다. 아래에서 언제든 바꾸실 수 있습니다.
+          앱에는 분석 사업자 측정 ID나 Cloudflare purpose ID를 넣지 않습니다 — 동의 여부만 전달하고, 콘솔에 실제로 어떤 목적이
+          설정돼 있는지는 앱이 알지 못합니다. 보안·전송을 위한 Cloudflare의 필수 처리와 선택 분석은 별도 경계로 취급합니다.
         </p>
+        <ConsentPreference />
       </section>
 
       <section>
