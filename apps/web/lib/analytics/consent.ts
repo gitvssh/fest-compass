@@ -1,76 +1,39 @@
-// Consent state for optional analytics.
+// Consent for optional analytics is owned by the tag manager, not by this app.
 //
-// The app owns the banner but not the consent vocabulary. Cloudflare's
-// `setAll` grants or refuses every configured purpose at once, so no CMP
-// purpose identifier is written into this repository — the same boundary the
-// published dictionary declares with appDefinesCmpPurposeId: false.
+// The zone shows one Cloudflare consent modal for every published site, so the
+// vocabulary of purposes, the wording, and the stored decision all live there.
+// This module only asks the tag manager to reopen that modal, which is the one
+// thing a visitor cannot do for themselves once the banner is dismissed.
 //
-// Analytics is refused until the visitor chooses. An unanswered visitor, a
-// visitor who refused, and a visitor whose browser blocks storage all end in
-// the same place: nothing is sent.
-export const CONSENT_STORAGE_KEY = "fest-compass-analytics-consent";
-
-export type ConsentChoice = "granted" | "denied";
-
-interface ZarazConsentClient {
-  setAll?: (granted: boolean) => void;
-}
-
+// Deliberately absent: any CMP purpose identifier, any measurement id, and any
+// copy of the decision. The published dictionary declares
+// appDefinesCmpPurposeId: false, and the only way to keep that true across a
+// growing number of sites is to never learn the purposes at all.
 interface ZarazConsentHost {
-  consent?: ZarazConsentClient;
   showConsentModal?: () => void;
 }
 
-function zarazConsent(): ZarazConsentHost | null {
+function zaraz(): ZarazConsentHost | null {
   if (typeof window === "undefined") {
     return null;
   }
   return (window as unknown as { zaraz?: ZarazConsentHost }).zaraz ?? null;
 }
 
-export function isConsentChoice(value: unknown): value is ConsentChoice {
-  return value === "granted" || value === "denied";
+/** True once the tag manager is present and able to reopen its modal. */
+export function canManageConsent(): boolean {
+  return typeof zaraz()?.showConsentModal === "function";
 }
 
-export function readStoredConsent(): ConsentChoice | null {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  try {
-    const stored = window.localStorage.getItem(CONSENT_STORAGE_KEY);
-    return isConsentChoice(stored) ? stored : null;
-  } catch {
-    // A browser that refuses storage is treated as undecided, which means
-    // analytics stays off.
-    return null;
-  }
-}
-
-export function storeConsent(choice: ConsentChoice): void {
-  if (typeof window === "undefined") {
+/** Reopen the tag manager's consent modal so a decision can be changed. */
+export function openConsentSettings(): void {
+  const client = zaraz();
+  if (typeof client?.showConsentModal !== "function") {
     return;
   }
   try {
-    window.localStorage.setItem(CONSENT_STORAGE_KEY, choice);
-  } catch {
-    // The choice still applies to this page view even if it cannot persist.
-  }
-}
-
-/** Tell Zaraz about a decision. Refusal and withdrawal both call through. */
-export function applyConsent(choice: ConsentChoice): void {
-  const consent = zarazConsent()?.consent;
-  if (typeof consent?.setAll !== "function") {
-    return;
-  }
-  try {
-    consent.setAll(choice === "granted");
+    client.showConsentModal();
   } catch {
     // Consent plumbing must never break the page.
   }
-}
-
-export function recordConsent(choice: ConsentChoice): void {
-  storeConsent(choice);
-  applyConsent(choice);
 }

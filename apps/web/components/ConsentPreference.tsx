@@ -1,60 +1,41 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  readStoredConsent,
-  recordConsent,
-  type ConsentChoice,
-} from "@/lib/analytics/consent";
+import { canManageConsent, openConsentSettings } from "@/lib/analytics/consent";
 
-const LABEL: Record<ConsentChoice, string> = {
-  granted: "허용함",
-  denied: "거부함",
-};
-
-/** Lets a visitor change or withdraw the decision after the banner is gone. */
+/**
+ * Reopens the tag manager's consent modal. Rendering waits for hydration
+ * because the button is useless before the tag manager has loaded, and a
+ * visitor who refused analytics never loads it at all — showing a dead control
+ * to exactly the people who opted out would be worse than showing nothing.
+ */
 export function ConsentPreference() {
-  const [choice, setChoice] = useState<ConsentChoice | null | "unknown">("unknown");
+  const [available, setAvailable] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setChoice(readStoredConsent());
+    setAvailable(canManageConsent());
   }, []);
 
-  if (choice === "unknown") {
+  if (available === null) {
     return null;
-  }
-
-  function decide(next: ConsentChoice) {
-    recordConsent(next);
-    setChoice(next);
   }
 
   return (
     <div className="mt-3 rounded-2xl bg-paper p-4">
-      <p className="text-sm">
-        현재 상태:{" "}
-        <strong className="font-extrabold">
-          {choice === null ? "아직 선택하지 않음 (분석 꺼짐)" : LABEL[choice]}
-        </strong>
-      </p>
-      <div className="mt-3 flex flex-wrap gap-2">
+      {available ? (
         <button
           type="button"
-          onClick={() => decide("granted")}
-          disabled={choice === "granted"}
-          className="rounded-full bg-navy px-4 py-2 text-sm font-bold text-white disabled:opacity-40"
+          onClick={openConsentSettings}
+          className="rounded-full bg-navy px-4 py-2 text-sm font-bold text-white"
         >
-          분석 허용
+          분석 동의 설정 열기
         </button>
-        <button
-          type="button"
-          onClick={() => decide("denied")}
-          disabled={choice === "denied"}
-          className="rounded-full bg-white px-4 py-2 text-sm font-bold text-ink shadow-card disabled:opacity-40"
-        >
-          거부·철회
-        </button>
-      </div>
+      ) : (
+        <p className="text-sm text-muted">
+          분석 동의 창을 열 수 없습니다. 분석을 거부하셨거나 브라우저가 태그 관리자를 차단한 상태이며,
+          어느 쪽이든 <strong className="font-bold text-ink">아무것도 전송되지 않습니다</strong>.
+        </p>
+      )}
     </div>
   );
 }
