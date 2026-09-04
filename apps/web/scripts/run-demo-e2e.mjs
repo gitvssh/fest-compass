@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, rmSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { once } from "node:events";
@@ -76,10 +76,11 @@ async function removeWithRetries(path) {
   }
 }
 
-// On this Windows workspace the Prisma engine can reset an existing SQLite
-// file but cannot create a second file under the Korean path. Copy the synced
-// schema-bearing DB first, then reset only the isolated copy.
-copyFileSync(developmentDb, e2eDb);
+// On this Windows workspace the Prisma engine can reset an existing SQLite file
+// but cannot create a second file under the Korean path, so seed the isolated
+// copy from the synced development DB before resetting it. A fresh clone has no
+// development DB — and no Korean path — so let Prisma create the file itself.
+if (existsSync(developmentDb)) copyFileSync(developmentDb, e2eDb);
 runNode(prismaCli, ["db", "push", "--force-reset", "--skip-generate", "--schema", "prisma/schema.prisma"]);
 runNode(tsxCli, ["prisma/seed.ts"]);
 runNode(nextCli, ["build"]);

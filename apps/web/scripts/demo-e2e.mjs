@@ -1,16 +1,16 @@
-import { createRequire } from "node:module";
 import { mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-
-const require = createRequire(import.meta.url);
-const { chromium } = require("C:/dev/2026공모전/tmp/html_fest_compass_gemini/node_modules/playwright");
+import { chromium } from "playwright";
 
 const baseUrl = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 const outputDir = join(dirname(fileURLToPath(import.meta.url)), "..", "output", "playwright");
 mkdirSync(outputDir, { recursive: true });
 
-const browser = await chromium.launch({ headless: true, channel: "msedge" });
+// Playwright's bundled Chromium, not a system channel such as `msedge`, so the
+// suite runs the same way on every platform a clone lands on. `pretest:e2e`
+// downloads it on demand and is a no-op once it is present.
+const browser = await chromium.launch({ headless: true });
 const browserErrors = [];
 
 function attachDiagnostics(page, label) {

@@ -26,6 +26,13 @@ npm run build
 npm run test:e2e
 ```
 
+`npm run test:e2e` builds the app, serves it on a free loopback port, and drives
+it with Playwright's bundled Chromium against an isolated SQLite database that is
+deleted afterwards. The browser is downloaded on first run and reused after that,
+so a clean clone needs no manual setup beyond `npm ci`. On a bare Linux host the
+download may still need shared libraries, which `npx playwright install-deps
+chromium` installs.
+
 App-owned Kubernetes and Argo descriptor checks are run from the repository root:
 
 ```powershell
@@ -33,3 +40,8 @@ python infra/scripts/validate_argocd_registration.py
 ```
 
 Deployment is not complete until the immutable image, Vault/VSO resources, Argo application, exact-host certificate and route, origin HTTPS, Cloudflare Tunnel/DNS, and public SEO/privacy checks all pass.
+
+## License
+
+Released under the [MIT License](LICENSE). Tourism data served through the app
+remains subject to the terms of its own providers.
