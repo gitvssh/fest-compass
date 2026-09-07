@@ -11,6 +11,13 @@ last_verified: 2026-08-30
 
 ## Product
 
+- [실데이터 기반 고도화 계획](validation/00-plan.md) — 2026-09-07 사용자 승인 범위와 단계별 완료 기준
+- [착수 시점 점검](validation/01-baseline.md) — 현재 구현과 검증할 가설
+- [관광데이터 조사 도구](validation/02-data-profiling.md)
+- [첫 실제 데이터 조사](validation/03-first-data-review.md) — 후보 3곳·28회 조회 결과와 한계
+- [WSL 이전 검증](validation/04-wsl-validation.md)
+- [프로젝트 실행 상태](../.ai/projects/fest-compass-evolution/STATE.md)
+
 - [Vision and scope](product/vision-scope.md)
 - [Non-goals](product/non-goals.md)
 
@@ -20,6 +27,8 @@ last_verified: 2026-08-30
 - [MVP review](2026-08-30_기획_데이터_MVP_점검리포트.md) — dated review evidence, not a replacement for current design
 
 ## Operations
+
+- [WSL 개발환경](ops/wsl-development.md)
 
 - [Analytics and search connection runbook](ops/seo-analytics-connection.md) — the console steps that remain after deployment; the app carries no measurement or consent-purpose ID
 

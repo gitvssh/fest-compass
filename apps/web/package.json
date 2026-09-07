@@ -21,7 +21,8 @@
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:reset": "prisma db push --force-reset && tsx prisma/seed.ts",
-    "test": "tsx --tsconfig tsconfig.test.json --test lib/analytics/consent.test.ts lib/analytics/events.test.ts lib/analytics/transport.test.ts lib/app-mode.test.ts lib/health.test.ts lib/calc/capacity.test.ts lib/domain.test.ts lib/actions.validation.test.ts lib/kto/areacode.test.ts lib/kto/client.test.ts lib/kto/refresh.test.ts lib/kto/security.test.ts lib/kto/wire.test.ts lib/kto/windows.test.ts && node --test scripts/migrate-sqlite.test.mjs",
+    "test": "tsx --tsconfig tsconfig.test.json --test lib/analytics/consent.test.ts lib/analytics/events.test.ts lib/analytics/transport.test.ts lib/app-mode.test.ts lib/health.test.ts lib/calc/capacity.test.ts lib/domain.test.ts lib/actions.validation.test.ts lib/kto/areacode.test.ts lib/kto/client.test.ts lib/kto/refresh.test.ts lib/kto/security.test.ts lib/kto/wire.test.ts lib/kto/windows.test.ts lib/kto/probe.test.ts && node --test scripts/migrate-sqlite.test.mjs",
+    "data:profile": "node --env-file-if-exists=.env --import tsx scripts/profile-kto.ts",
     "pretest:e2e": "playwright install chromium",
     "test:e2e": "node scripts/run-demo-e2e.mjs"
   },

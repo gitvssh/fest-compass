@@ -1,0 +1,2253 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-07T07:42:09.532Z",
+  "purpose": "candidate-and-data-sampling",
+  "scope": {
+    "keywords": [
+      "치즈",
+      "백제문화제",
+      "논산딸기"
+    ],
+    "month": "202604",
+    "visitorStart": "20260401",
+    "visitorEnd": "20260403",
+    "maximumCalls": 32
+  },
+  "stoppedForAccessOrQuota": false,
+  "limitations": [
+    "페이지 표본의 결측률·기간은 전체 데이터 범위를 보증하지 않는다.",
+    "현재 축제 상세로 과거 개최회차를 확보했다고 판단하지 않는다.",
+    "관광지 집중률은 공급자의 향후 30일 예측이며 축제 입장객 실측이 아니다.",
+    "API 기술 응답 성공은 고객 가치·예측 성능·현장 검증 완료가 아니다."
+  ],
+  "candidates": [
+    {
+      "keyword": "치즈",
+      "contentId": "2031318",
+      "title": "임실N치즈축제",
+      "startDate": "2026-10-08",
+      "endDate": "2026-10-11",
+      "address": "전북특별자치도 임실군 성수면 도인2길 50",
+      "adminCodes": {
+        "areaCd": "52",
+        "signguCd": "52750"
+      },
+      "metadataVerified": true,
+      "selection": "candidate-only",
+      "searchTotalCount": 1,
+      "note": "검색 첫 결과를 후보로 조사. 최종 선정·과거 회차 확보·현장 검증은 별도 필요."
+    },
+    {
+      "keyword": "백제문화제",
+      "contentId": "952988",
+      "title": "백제문화제",
+      "startDate": "2026-10-03",
+      "endDate": "2026-10-11",
+      "address": "충청남도 부여군 부여읍 정림로 83",
+      "adminCodes": {
+        "areaCd": "44",
+        "signguCd": "44760"
+      },
+      "metadataVerified": true,
+      "selection": "candidate-only",
+      "searchTotalCount": 1,
+      "note": "검색 첫 결과를 후보로 조사. 최종 선정·과거 회차 확보·현장 검증은 별도 필요."
+    },
+    {
+      "keyword": "논산딸기",
+      "contentId": "525292",
+      "title": "논산딸기축제",
+      "startDate": "2026-03-26",
+      "endDate": "2026-03-29",
+      "address": "충청남도 논산시 관촉동",
+      "adminCodes": {
+        "areaCd": "44",
+        "signguCd": "44230"
+      },
+      "metadataVerified": true,
+      "selection": "candidate-only",
+      "searchTotalCount": 1,
+      "note": "검색 첫 결과를 후보로 조사. 최종 선정·과거 회차 확보·현장 검증은 별도 필요."
+    }
+  ],
+  "probes": [
+    {
+      "label": "축제 검색 치즈",
+      "service": "KorService2",
+      "operation": "searchKeyword2",
+      "params": {
+        "numOfRows": 5,
+        "pageNo": 1,
+        "keyword": "치즈",
+        "contentTypeId": 15
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:07.013Z",
+      "durationMs": 151,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "addr1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "addr2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "areacode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat1": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat3": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cpyrhtDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "createdtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm3": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapx": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapy": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mlevel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "modifiedtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sigungucode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "title": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "zipcode": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "치즈 공통 상세",
+      "service": "KorService2",
+      "operation": "detailCommon2",
+      "params": {
+        "numOfRows": 1,
+        "pageNo": 1,
+        "contentId": "2031318"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:07.164Z",
+      "durationMs": 75,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "addr1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "addr2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "areacode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat1": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat3": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cpyrhtDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "createdtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "homepage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm3": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapx": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapy": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mlevel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "modifiedtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "overview": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sigungucode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "telname": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "title": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "zipcode": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "치즈 축제 일정",
+      "service": "KorService2",
+      "operation": "detailIntro2",
+      "params": {
+        "numOfRows": 1,
+        "pageNo": 1,
+        "contentId": "2031318",
+        "contentTypeId": 15
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:07.239Z",
+      "durationMs": 92,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "agelimit": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "bookingplace": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "discountinfofestival": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "eventenddate": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "eventhomepage": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "eventplace": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "eventstartdate": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "festivalgrade": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "festivaltype": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "placeinfo": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "playtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "program": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "progresstype": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "spendtimefestival": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "sponsor1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor1tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "sponsor2tel": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "subevent": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "usetimefestival": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "치즈 소비 강도 시도 지정",
+      "service": "AreaTarDemDsService",
+      "operation": "areaTarExpDsList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "52"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15151868/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:07.332Z",
+      "durationMs": 74,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "치즈 소비 강도 시군구 지정",
+      "service": "AreaTarDemDsService",
+      "operation": "areaTarExpDsList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "52",
+        "signguCd": "52750"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15151868/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:07.406Z",
+      "durationMs": 78,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "치즈 자원 수요 시도 지정",
+      "service": "AreaTarResDemService",
+      "operation": "areaTarSvcDemList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "52"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15152138/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:07.484Z",
+      "durationMs": 74,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "치즈 자원 수요 시군구 지정",
+      "service": "AreaTarResDemService",
+      "operation": "areaTarSvcDemList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "52",
+        "signguCd": "52750"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15152138/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:07.558Z",
+      "durationMs": 75,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "치즈 주변 관광지 집중률",
+      "service": "TatsCnctrRateService",
+      "operation": "tatsCnctrRatedList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "areaCd": "52",
+        "signguCd": "52750"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15128555/openapi.do",
+      "meaning": "provider-forecast",
+      "fetchedAt": "2026-09-07T07:42:07.633Z",
+      "durationMs": 79,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 960,
+      "sampledRows": 50,
+      "collection": "sample-only",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areaNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYmd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cnctrRate": {
+          "missing": 0,
+          "invalidNumeric": 0
+        },
+        "signguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": {
+        "min": "2026-09-07",
+        "max": "2026-10-06"
+      }
+    },
+    {
+      "label": "치즈 연관 관광지",
+      "service": "TarRlteTarService1",
+      "operation": "areaBasedList1",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "areaCd": "52",
+        "signguCd": "52750",
+        "baseYm": "202604"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15128560/openapi.do",
+      "meaning": "related-ranking",
+      "fetchedAt": "2026-09-07T07:42:07.712Z",
+      "durationMs": 104,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 74,
+      "sampledRows": 50,
+      "collection": "sample-only",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areaNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgryLclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgryMclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgrySclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteRank": {
+          "missing": 0,
+          "invalidNumeric": 0
+        },
+        "rlteRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteRegnNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteSignguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteTatsCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteTatsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "축제 검색 백제문화제",
+      "service": "KorService2",
+      "operation": "searchKeyword2",
+      "params": {
+        "numOfRows": 5,
+        "pageNo": 1,
+        "keyword": "백제문화제",
+        "contentTypeId": 15
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:07.816Z",
+      "durationMs": 95,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "addr1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "addr2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areacode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat1": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat3": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cpyrhtDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "createdtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm3": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapx": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapy": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mlevel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "modifiedtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sigungucode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "title": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "zipcode": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "백제문화제 공통 상세",
+      "service": "KorService2",
+      "operation": "detailCommon2",
+      "params": {
+        "numOfRows": 1,
+        "pageNo": 1,
+        "contentId": "952988"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:07.911Z",
+      "durationMs": 69,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "addr1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "addr2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areacode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat1": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat3": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cpyrhtDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "createdtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "homepage": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "lDongRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm3": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapx": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapy": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mlevel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "modifiedtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "overview": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sigungucode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "telname": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "title": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "zipcode": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "백제문화제 축제 일정",
+      "service": "KorService2",
+      "operation": "detailIntro2",
+      "params": {
+        "numOfRows": 1,
+        "pageNo": 1,
+        "contentId": "952988",
+        "contentTypeId": 15
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:07.980Z",
+      "durationMs": 100,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "agelimit": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "bookingplace": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "discountinfofestival": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "eventenddate": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "eventhomepage": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "eventplace": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "eventstartdate": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "festivalgrade": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "festivaltype": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "placeinfo": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "playtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "program": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "progresstype": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "spendtimefestival": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "sponsor1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor1tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor2tel": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "subevent": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "usetimefestival": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "백제문화제 소비 강도 시도 지정",
+      "service": "AreaTarDemDsService",
+      "operation": "areaTarExpDsList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15151868/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:08.080Z",
+      "durationMs": 74,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "백제문화제 소비 강도 시군구 지정",
+      "service": "AreaTarDemDsService",
+      "operation": "areaTarExpDsList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44",
+        "signguCd": "44760"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15151868/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:08.154Z",
+      "durationMs": 75,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "백제문화제 자원 수요 시도 지정",
+      "service": "AreaTarResDemService",
+      "operation": "areaTarSvcDemList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15152138/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:08.229Z",
+      "durationMs": 71,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "백제문화제 자원 수요 시군구 지정",
+      "service": "AreaTarResDemService",
+      "operation": "areaTarSvcDemList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44",
+        "signguCd": "44760"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15152138/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:08.300Z",
+      "durationMs": 73,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "백제문화제 주변 관광지 집중률",
+      "service": "TatsCnctrRateService",
+      "operation": "tatsCnctrRatedList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "areaCd": "44",
+        "signguCd": "44760"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15128555/openapi.do",
+      "meaning": "provider-forecast",
+      "fetchedAt": "2026-09-07T07:42:08.373Z",
+      "durationMs": 77,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1530,
+      "sampledRows": 50,
+      "collection": "sample-only",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areaNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYmd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cnctrRate": {
+          "missing": 0,
+          "invalidNumeric": 0
+        },
+        "signguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": {
+        "min": "2026-09-07",
+        "max": "2026-10-06"
+      }
+    },
+    {
+      "label": "백제문화제 연관 관광지",
+      "service": "TarRlteTarService1",
+      "operation": "areaBasedList1",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "areaCd": "44",
+        "signguCd": "44760",
+        "baseYm": "202604"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15128560/openapi.do",
+      "meaning": "related-ranking",
+      "fetchedAt": "2026-09-07T07:42:08.450Z",
+      "durationMs": 107,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 622,
+      "sampledRows": 50,
+      "collection": "sample-only",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areaNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgryLclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgryMclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgrySclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteRank": {
+          "missing": 0,
+          "invalidNumeric": 0
+        },
+        "rlteRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteRegnNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteSignguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteTatsCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteTatsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "축제 검색 논산딸기",
+      "service": "KorService2",
+      "operation": "searchKeyword2",
+      "params": {
+        "numOfRows": 5,
+        "pageNo": 1,
+        "keyword": "논산딸기",
+        "contentTypeId": 15
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:08.557Z",
+      "durationMs": 92,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "addr1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "addr2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areacode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat1": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat3": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cpyrhtDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "createdtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm3": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapx": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapy": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mlevel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "modifiedtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sigungucode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "title": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "zipcode": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "논산딸기 공통 상세",
+      "service": "KorService2",
+      "operation": "detailCommon2",
+      "params": {
+        "numOfRows": 1,
+        "pageNo": 1,
+        "contentId": "525292"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:08.649Z",
+      "durationMs": 89,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "addr1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "addr2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areacode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat1": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat2": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "cat3": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cpyrhtDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "createdtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "firstimage2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "homepage": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lDongSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "lclsSystm3": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapx": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mapy": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "mlevel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "modifiedtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "overview": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sigungucode": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "telname": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "title": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "zipcode": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "논산딸기 축제 일정",
+      "service": "KorService2",
+      "operation": "detailIntro2",
+      "params": {
+        "numOfRows": 1,
+        "pageNo": 1,
+        "contentId": "525292",
+        "contentTypeId": 15
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do",
+      "meaning": "metadata",
+      "fetchedAt": "2026-09-07T07:42:08.739Z",
+      "durationMs": 84,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1,
+      "sampledRows": 1,
+      "collection": "complete-response",
+      "fields": {
+        "agelimit": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "bookingplace": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "contentid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "contenttypeid": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "discountinfofestival": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "eventenddate": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "eventhomepage": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "eventplace": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "eventstartdate": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "festivalgrade": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "festivaltype": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "placeinfo": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "playtime": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "program": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "progresstype": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "spendtimefestival": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "sponsor1": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor1tel": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor2": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "sponsor2tel": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "subevent": {
+          "missing": 1,
+          "invalidNumeric": null
+        },
+        "usetimefestival": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "논산딸기 소비 강도 시도 지정",
+      "service": "AreaTarDemDsService",
+      "operation": "areaTarExpDsList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15151868/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:08.823Z",
+      "durationMs": 74,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "논산딸기 소비 강도 시군구 지정",
+      "service": "AreaTarDemDsService",
+      "operation": "areaTarExpDsList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44",
+        "signguCd": "44230"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15151868/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:08.897Z",
+      "durationMs": 72,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarExpDsIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "논산딸기 자원 수요 시도 지정",
+      "service": "AreaTarResDemService",
+      "operation": "areaTarSvcDemList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15152138/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:08.969Z",
+      "durationMs": 85,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "논산딸기 자원 수요 시군구 지정",
+      "service": "AreaTarResDemService",
+      "operation": "areaTarSvcDemList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "baseYm": "202604",
+        "areaCd": "44",
+        "signguCd": "44230"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15152138/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:09.054Z",
+      "durationMs": 79,
+      "status": "empty",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 0,
+      "sampledRows": 0,
+      "collection": "complete-response",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tarSvcDemIxVal": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "논산딸기 주변 관광지 집중률",
+      "service": "TatsCnctrRateService",
+      "operation": "tatsCnctrRatedList",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "areaCd": "44",
+        "signguCd": "44230"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15128555/openapi.do",
+      "meaning": "provider-forecast",
+      "fetchedAt": "2026-09-07T07:42:09.134Z",
+      "durationMs": 82,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 1470,
+      "sampledRows": 50,
+      "collection": "sample-only",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areaNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYmd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "cnctrRate": {
+          "missing": 0,
+          "invalidNumeric": 0
+        },
+        "signguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": {
+        "min": "2026-09-07",
+        "max": "2026-10-06"
+      }
+    },
+    {
+      "label": "논산딸기 연관 관광지",
+      "service": "TarRlteTarService1",
+      "operation": "areaBasedList1",
+      "params": {
+        "numOfRows": 50,
+        "pageNo": 1,
+        "areaCd": "44",
+        "signguCd": "44230",
+        "baseYm": "202604"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15128560/openapi.do",
+      "meaning": "related-ranking",
+      "fetchedAt": "2026-09-07T07:42:09.217Z",
+      "durationMs": 118,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 771,
+      "sampledRows": 50,
+      "collection": "sample-only",
+      "fields": {
+        "areaCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areaNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgryLclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgryMclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteCtgrySclsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteRank": {
+          "missing": 0,
+          "invalidNumeric": 0
+        },
+        "rlteRegnCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteRegnNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteSignguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteSignguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteTatsCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "rlteTatsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "signguNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "tAtsNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        }
+      },
+      "sampleDateRange": null
+    },
+    {
+      "label": "광역 방문자 전국 표본",
+      "service": "DataLabService",
+      "operation": "metcoRegnVisitrDDList",
+      "params": {
+        "numOfRows": 1000,
+        "pageNo": 1,
+        "startYmd": "20260401",
+        "endYmd": "20260403"
+      },
+      "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+      "meaning": "regional-statistic",
+      "fetchedAt": "2026-09-07T07:42:09.335Z",
+      "durationMs": 197,
+      "status": "success",
+      "httpStatus": 200,
+      "resultCode": "0000",
+      "reason": null,
+      "totalCount": 153,
+      "sampledRows": 153,
+      "collection": "complete-response",
+      "fields": {
+        "areaCode": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "areaNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "baseYmd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "daywkDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "daywkDivNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "touDivCd": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "touDivNm": {
+          "missing": 0,
+          "invalidNumeric": null
+        },
+        "touNum": {
+          "missing": 0,
+          "invalidNumeric": 0
+        }
+      },
+      "sampleDateRange": {
+        "min": "2026-04-01",
+        "max": "2026-04-03"
+      }
+    }
+  ]
+}
