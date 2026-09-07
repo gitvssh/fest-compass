@@ -58,6 +58,7 @@ export default async function ForecastPage({ searchParams }: { searchParams: Pro
     <div className="space-y-6">
       <div>
         <Link href="/" className="text-sm font-bold text-blue">← 축제 목록</Link>
+        <Link href="/forecast/records" className="ml-5 inline-block text-sm font-bold text-blue underline">수집 자료와 사전 예측 기록 →</Link>
         <p className="mt-5 text-xs font-extrabold tracking-wider text-blue">2025년 사례 · 과거 자료 실험</p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">논산딸기축제 방문 추세 예측</h1>
         <p className="mt-3 max-w-3xl text-muted">논산시의 2023~2025년 일별 이력으로 모델을 학습하고, 2025년의 선택된 날짜에서 예측과 관측을 비교했습니다. 대상은 논산시 전체 외지인 방문 추정치입니다.</p>

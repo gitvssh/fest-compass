@@ -2,6 +2,7 @@ import { mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import prospectiveSummary from "../data/nonsan-prospective-summary.json" with { type: "json" };
 
 const baseUrl = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 const outputDir = join(dirname(fileURLToPath(import.meta.url)), "..", "output", "playwright");
@@ -55,6 +56,20 @@ try {
   await expectVisible(page.getByText(/마지막 입력 관측일 2025-02-13/), "forecast horizon did not change inputs");
   await expectVisible(page.getByRole("img", { name: /지역 방문 추세/ }), "forecast comparison chart missing");
   await shot(page, "08-forecast-desktop");
+  await page.getByRole("link", { name: "수집 자료와 사전 예측 기록 →" }).click();
+  await page.waitForURL("**/forecast/records");
+  await expectVisible(page.getByRole("heading", { name: "수집 자료와 사전 예측 기록", exact: true }), "prospective records missing");
+  const { coverage } = prospectiveSummary.monitor;
+  await expectVisible(page.getByText(coverage.latestObservation, { exact: true }), "latest actual data date missing");
+  await expectVisible(page.getByText(`${coverage.missingDates.length}일`, { exact: true }), "missing dates disguised as zero");
+  if (prospectiveSummary.records.some((r) => r.assessment?.rows.some((row) => row.status === "not-yet-occurred"))) {
+    await expectVisible(page.getByText("대상일 전", { exact: true }), "future targets presented as scored outcomes");
+  }
+  await page.getByText("누락 날짜와 수집 시각", { exact: true }).click();
+  await expectVisible(page.getByText(`누락: ${coverage.missingDates.length ? coverage.missingDates.join(", ") : "없음"}`, { exact: true }), "missing-date details inaccessible");
+  await page.getByText("발행 당시 자료·모델 확인", { exact: true }).first().click();
+  await expectVisible(page.getByText(/모델: nonsan-direct-ridge-v1/), "immutable model reference missing");
+  await shot(page, "10-prospective-desktop");
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
 
   await page.getByRole("link", { name: "○○군 봄꽃축제" }).click();
@@ -158,6 +173,7 @@ try {
     ["report", `${originalFestivalPath}/report`],
     ["logs", "/logs"],
     ["forecast", "/forecast"],
+    ["prospective", "/forecast/records"],
   ]) {
     await mobile.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
     const dimensions = await mobile.evaluate(() => ({
@@ -172,6 +188,8 @@ try {
   await shot(mobile, "07-report-mobile");
   await mobile.goto(`${baseUrl}/forecast`, { waitUntil: "networkidle" });
   await shot(mobile, "09-forecast-mobile");
+  await mobile.goto(`${baseUrl}/forecast/records`, { waitUntil: "networkidle" });
+  await shot(mobile, "11-prospective-mobile");
   await mobile.close();
 
   if (browserErrors.length) throw new Error(`browser diagnostics failed:\n${browserErrors.join("\n")}`);

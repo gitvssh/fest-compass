@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 4
+revision: 5
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-07T09:17:59.427Z"
+updated_at: "2026-09-07T09:54:50.693Z"
 ---
 
 # Current state
 
 ## Summary
 
-논산시 2023~2025 연속 자료 1,096일과 실제 학습 회귀 모델·시간순 평가·/forecast 비교 화면 구현 완료. 지역 추세 전체 오차는 개선됐지만 축제 급증·예측 범위는 미흡하다. 다음은 2026년/지속 수집과 공개 시점·개정 이력 보존, 축제 효과 자료 확보·새 평가 구간 설계, 향후 회차 사전 예측 발행이다. 운영 적용·현장 검증·7단계 전체는 진행 중이다.
+논산시 2023~2026-08-08의 1,316일을 확보했다. 기존 학습·평가 화면에 시점별 자료 보존·실제 사전 발행·사후 비교와 /forecast/records를 추가했다. 일반 날짜 2개 창의 예측은 저장됐으나 결과는 아직 없다. 다음은 예약 수집·결과 확인 연결, 축제/공휴일 효과 자료와 새 평가 계획, 다음 축제 회차 사전 발행이다. 현장 운영 적용과 7단계 전체는 진행 중이다.
 
 ## Accepted decisions
 
@@ -22,15 +22,16 @@ updated_at: "2026-09-07T09:17:59.427Z"
 - 승인된 7단계 계획에 따라 개발·필수 검증·일반 Git 게시를 진행한다(사용자 개발 착수 요청 및 저장소 게시 규약).
 - 2026-09-07 사용자의 후보 비교·샘플 및 지표 선정 요청 범위에서 논산딸기축제를 개발 샘플로 선정한다. 2025 사례·2023~2024 비교를 사용하고 1차 예측 대상은 논산시 일별 외지인 방문 추세다(docs/validation/05~06). 축제 입장객·시간대별 혼잡과 구분한다.
 - 2026-09-07 사용자가 과거 이력 기반 예측 모델 개발을 확인하고 후속 진행을 요청했다. 연속 자료 수집·실제 모델 학습·기준 비교·읽기 전용 실험 화면을 구현했다(docs/validation/08~09).
+- 2026-09-07 추가 후속 진행 요청의 개발 범위에서 2026년 수집본·시점별 보존·일반 날짜 사전 예측 발행·사후 비교 기능을 구현했다(docs/validation/10).
 
 ## Open questions
 
-- 팀의 정확한 제출일·가용시간과 실무 자료 제공 가능 범위는 확인 필요. 실무자 연결은 미확인이다.
-- 2023~2025 연속 수집은 완료했지만 당시 공개시각·개정 전 자료가 없다. 2026년 및 지속 수집으로 지연·개정 차이를 관찰하고 향후 회차 전에 예측을 저장해야 한다.
-- 현재 모델은 축제 주말의 급증을 과소예측하고 명목 80% 구간의 시험 포함률도 부족하다. 일정의 당시 공개 증거·축제/공휴일 효과 자료·새 평가 구간이 필요하다. 열람한 2025년을 다음 모델의 새 미열람 시험으로 사용하지 않는다.
-- 2026-08-01은 정상, 08-15·08-31·09-01·09-03은 empty다. 데이터랩의 갱신 안내와 API 제공 시점 차이의 원인은 미확정이다.
-- 소비 강도·자원 수요의 기존 다월 empty 원인·제공 범위는 미확정이다. 첫 모델 필수 입력에서는 제외한다.
-- 일별 축제 계수 정의·시간별 현장 자료·셔틀 119대의 집계 단위와 실제 운행/대기/비용은 미확보이며 운영 효과 검증에 필요하다.
+- 수집·발행·사후 비교 명령은 사용 가능하지만 예약 실행 환경은 미연결이다. 공개 화면은 보존된 요약이며 자동 갱신되지 않는다.
+- 2026-08-09~09-06 29일이 정상 조회에서 누락됐다. 같은 날 겹친 31일은 변경 0건이며 공개 시각·장기 개정 이력·제공 전환은 계속 관찰해야 한다.
+- 첫 모델의 축제 급증 과소예측·구간 포함률 부족은 남아 있다. 축제/공휴일 일정 근거와 새 평가 구간이 필요하다. 이미 열람한 2025년 및 2026년 수집·재학습 구간을 새 미열람 시험으로 주장하지 않는다.
+- 9월 14~17일 D-7과 10월 5~8일 D-28은 일반 날짜 사전 검증이다. 10월 창의 D-7 발행일은 9월 28일이며 실제 날짜에 새 ID로 발행해야 한다. 다음 논산딸기축제 일정 근거와 해당 회차 발행 등록은 미확보다.
+- 소비 강도·자원 수요의 기존 다월 empty 원인·제공 범위는 미확정이며 첫 모델 필수 입력에서 제외한다.
+- 제출일·가용시간·실무자 연결, 행사장 일별/시간별 계수·셔틀 119대 집계 단위·운행/대기/비용 자료는 미확보이며 운영 효과 검증에 필요하다.
 
 ## Artifacts and durable documents
 
@@ -44,11 +45,12 @@ updated_at: "2026-09-07T09:17:59.427Z"
 - docs/validation/07-selection-validation.md
 - docs/validation/08-model-experiment.md
 - docs/validation/09-model-validation.md
-- docs/validation/evidence/2026-09-07-kto-profile.json
-- docs/validation/evidence/2026-09-07-kto-history-days.json
-- docs/validation/evidence/2026-09-07-kto-history-availability.json
-- docs/validation/evidence/2026-09-07-source-checks.json
+- docs/validation/10-prospective-records.md
 - docs/validation/evidence/2026-09-07-nonsan-history.json
+- docs/validation/evidence/2026-09-07-nonsan-current-history.json
 - docs/validation/evidence/2026-09-07-nonsan-forecast.json.gz
+- docs/validation/evidence/prospective/
+- docs/validation/evidence/targets/
 - apps/web/data/nonsan-forecast-summary.json
+- apps/web/data/nonsan-prospective-summary.json
 - docs/ops/wsl-development.md

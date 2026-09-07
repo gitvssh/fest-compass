@@ -4,6 +4,9 @@ FEST Compass is a Korean tourism-data decision workspace for festival planners. 
 
 The web application lives in `apps/web`. Start with [the design index](docs/design/00_INDEX.md) for product behavior and [the documentation map](docs/README.md) for repository authority.
 
+The Nonsan sample includes a historical model comparison at `/forecast` and preserved prospective regional forecasts at `/forecast/records`.
+See [collection, issuance, and outcome checks](docs/validation/10-prospective-records.md) for reproducible commands and current limitations.
+
 ## Local development
 
 ```powershell

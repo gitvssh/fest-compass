@@ -1,0 +1,7 @@
+{
+  "kind": "regional-check",
+  "label": "논산시 10월 일반 날짜 예측 검증",
+  "start": "2026-10-05",
+  "end": "2026-10-08",
+  "schedule": null
+}

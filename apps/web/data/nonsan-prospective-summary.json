@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-07T09:43:18.325Z",
+  "monitor": {
+    "schemaVersion": 1,
+    "asOf": "2026-09-07T09:43:18.325Z",
+    "source": "https://www.data.go.kr/data/15101972/openapi.do",
+    "snapshots": [
+      {
+        "snapshotId": "7a01f2473f537abbaaff47a436f944242fb7981ef2053b897fa658741a28eb72",
+        "generatedAt": "2026-09-07T09:27:51.234Z",
+        "range": {
+          "start": "2025-12-01",
+          "end": "2026-09-06"
+        },
+        "quality": {
+          "expectedDays": 280,
+          "completeDays": 251,
+          "missingDates": [
+            "2026-08-09",
+            "2026-08-10",
+            "2026-08-11",
+            "2026-08-12",
+            "2026-08-13",
+            "2026-08-14",
+            "2026-08-15",
+            "2026-08-16",
+            "2026-08-17",
+            "2026-08-18",
+            "2026-08-19",
+            "2026-08-20",
+            "2026-08-21",
+            "2026-08-22",
+            "2026-08-23",
+            "2026-08-24",
+            "2026-08-25",
+            "2026-08-26",
+            "2026-08-27",
+            "2026-08-28",
+            "2026-08-29",
+            "2026-08-30",
+            "2026-08-31",
+            "2026-09-01",
+            "2026-09-02",
+            "2026-09-03",
+            "2026-09-04",
+            "2026-09-05",
+            "2026-09-06"
+          ],
+          "invalidDates": []
+        }
+      },
+      {
+        "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170",
+        "generatedAt": "2026-09-07T08:58:14.039Z",
+        "range": {
+          "start": "2023-01-01",
+          "end": "2025-12-31"
+        },
+        "quality": {
+          "expectedDays": 1096,
+          "completeDays": 1096,
+          "missingDates": [],
+          "invalidDates": []
+        }
+      }
+    ],
+    "coverage": {
+      "start": "2023-01-01",
+      "end": "2026-09-06",
+      "queriedDays": 1345,
+      "availableDays": 1316,
+      "latestObservation": "2026-08-08",
+      "observationAgeDays": 30,
+      "latestCollectionAt": "2026-09-07T09:27:50.943Z",
+      "missingDates": [
+        "2026-08-09",
+        "2026-08-10",
+        "2026-08-11",
+        "2026-08-12",
+        "2026-08-13",
+        "2026-08-14",
+        "2026-08-15",
+        "2026-08-16",
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-22",
+        "2026-08-23",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-29",
+        "2026-08-30",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-05",
+        "2026-09-06"
+      ],
+      "invalidDates": [],
+      "interiorMissing": [],
+      "trailingMissing": [
+        "2026-08-09",
+        "2026-08-10",
+        "2026-08-11",
+        "2026-08-12",
+        "2026-08-13",
+        "2026-08-14",
+        "2026-08-15",
+        "2026-08-16",
+        "2026-08-17",
+        "2026-08-18",
+        "2026-08-19",
+        "2026-08-20",
+        "2026-08-21",
+        "2026-08-22",
+        "2026-08-23",
+        "2026-08-24",
+        "2026-08-25",
+        "2026-08-26",
+        "2026-08-27",
+        "2026-08-28",
+        "2026-08-29",
+        "2026-08-30",
+        "2026-08-31",
+        "2026-09-01",
+        "2026-09-02",
+        "2026-09-03",
+        "2026-09-04",
+        "2026-09-05",
+        "2026-09-06"
+      ]
+    },
+    "comparison": {
+      "repeatedDays": 31,
+      "changes": [],
+      "availabilityTransitions": []
+    },
+    "releaseTiming": {
+      "sourcePublishedAt": null,
+      "status": "unknown",
+      "explanation": "자료 기준일의 나이와 최초 관측 시각은 실제 공개 지연이 아니다. 정상 빈 응답에서 값으로 바뀐 관측 구간만 별도로 기록한다."
+    }
+  },
+  "records": [
+    {
+      "id": "be236b26ec7a94af322994e96382d9a28b9085afa1dadd97c261e449b843a0f9",
+      "request": {
+        "requestId": "nonsan-20260914-d7-v1",
+        "horizonDays": 7,
+        "target": {
+          "kind": "regional-check",
+          "label": "논산시 9월 일반 날짜 예측 검증",
+          "start": "2026-09-14",
+          "end": "2026-09-17",
+          "schedule": null
+        }
+      },
+      "issuedAt": "2026-09-07T09:42:43.682Z",
+      "scheduledIssuedAt": "2026-09-07T09:00:00+09:00",
+      "latenessSeconds": 34964,
+      "status": "issued",
+      "inputCutoff": "2026-08-03",
+      "lastInputDate": "2026-08-03",
+      "policy": {
+        "version": "nonsan-prospective-v1",
+        "modelVersion": "nonsan-direct-ridge-v1",
+        "lambda": 100,
+        "inputLagDays": 35,
+        "maxObservationAgeDays": 60,
+        "maxCollectionAgeDays": 7
+      },
+      "snapshots": [
+        {
+          "archiveId": "8061e851e372daeca750795a35461141a7b250c465008218e2c43fb0092ef289",
+          "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170"
+        },
+        {
+          "archiveId": "89874b53de43d823f72bebb9e70dabb356265febef28d9857788aff561558d75",
+          "snapshotId": "7a01f2473f537abbaaff47a436f944242fb7981ef2053b897fa658741a28eb72"
+        }
+      ],
+      "trainingSamples": 1221,
+      "interval": {
+        "status": "withheld",
+        "reason": "v1-held-out-coverage-below-nominal"
+      },
+      "predictions": [
+        {
+          "date": "2026-09-14",
+          "predictions": {
+            "ridge": {
+              "value": 48917.731735084926,
+              "index": 112.3151300341758,
+              "reason": null
+            },
+            "B1": {
+              "value": 43554,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 41496,
+              "index": 95.274831243973,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-09-15",
+          "predictions": {
+            "ridge": {
+              "value": 48665.9454552972,
+              "index": 114.67202048880978,
+              "reason": null
+            },
+            "B1": {
+              "value": 42439.25,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 40698,
+              "index": 95.89707640922023,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-09-16",
+          "predictions": {
+            "ridge": {
+              "value": 43555.79034007474,
+              "index": 121.74243323944081,
+              "reason": null
+            },
+            "B1": {
+              "value": 35777,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 37824.5,
+              "index": 105.7229504989239,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-09-17",
+          "predictions": {
+            "ridge": {
+              "value": 46585.829073968045,
+              "index": 112.5506247106087,
+              "reason": null
+            },
+            "B1": {
+              "value": 41391,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 40442.5,
+              "index": 97.70843903263994,
+              "reason": null
+            }
+          }
+        }
+      ],
+      "assessment": {
+        "id": "8e2545014a0827d6e1c9ba8cb7e54bec0594ca16dff9bd9eeee796c5781f343e",
+        "assessedAt": "2026-09-07T09:43:11.784Z",
+        "observedDays": 0,
+        "comparableDays": 0,
+        "metrics": {
+          "ridge": {
+            "n": 0,
+            "mae": null,
+            "wape": null,
+            "bias": null,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "B1": {
+            "n": 0,
+            "mae": null,
+            "wape": null,
+            "bias": null,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "B2": {
+            "n": 0,
+            "mae": null,
+            "wape": null,
+            "bias": null,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          }
+        },
+        "rows": [
+          {
+            "date": "2026-09-14",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          },
+          {
+            "date": "2026-09-15",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          },
+          {
+            "date": "2026-09-16",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          },
+          {
+            "date": "2026-09-17",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "4a2da381d7eff96fad07055f419e94a52fa43f819c9603352c2946a564b7cc6d",
+      "request": {
+        "requestId": "nonsan-20261005-d28-v1",
+        "horizonDays": 28,
+        "target": {
+          "kind": "regional-check",
+          "label": "논산시 10월 일반 날짜 예측 검증",
+          "start": "2026-10-05",
+          "end": "2026-10-08",
+          "schedule": null
+        }
+      },
+      "issuedAt": "2026-09-07T09:42:49.204Z",
+      "scheduledIssuedAt": "2026-09-07T09:00:00+09:00",
+      "latenessSeconds": 34969,
+      "status": "issued",
+      "inputCutoff": "2026-08-03",
+      "lastInputDate": "2026-08-03",
+      "policy": {
+        "version": "nonsan-prospective-v1",
+        "modelVersion": "nonsan-direct-ridge-v1",
+        "lambda": 100,
+        "inputLagDays": 35,
+        "maxObservationAgeDays": 60,
+        "maxCollectionAgeDays": 7
+      },
+      "snapshots": [
+        {
+          "archiveId": "8061e851e372daeca750795a35461141a7b250c465008218e2c43fb0092ef289",
+          "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170"
+        },
+        {
+          "archiveId": "89874b53de43d823f72bebb9e70dabb356265febef28d9857788aff561558d75",
+          "snapshotId": "7a01f2473f537abbaaff47a436f944242fb7981ef2053b897fa658741a28eb72"
+        }
+      ],
+      "trainingSamples": 1200,
+      "interval": {
+        "status": "withheld",
+        "reason": "v1-held-out-coverage-below-nominal"
+      },
+      "predictions": [
+        {
+          "date": "2026-10-05",
+          "predictions": {
+            "ridge": {
+              "value": 48192.752930674986,
+              "index": 110.6505784329223,
+              "reason": null
+            },
+            "B1": {
+              "value": 43554,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 141991.5,
+              "index": 326.0125361620058,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-10-06",
+          "predictions": {
+            "ridge": {
+              "value": 47986.28988990482,
+              "index": 113.07054175063136,
+              "reason": null
+            },
+            "B1": {
+              "value": 42439.25,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 99326.5,
+              "index": 234.04395695022885,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-10-07",
+          "predictions": {
+            "ridge": {
+              "value": 43057.39806457533,
+              "index": 120.34938106765614,
+              "reason": null
+            },
+            "B1": {
+              "value": 35777,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 73923.5,
+              "index": 206.62297006456663,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-10-08",
+          "predictions": {
+            "ridge": {
+              "value": 45651.391735260724,
+              "index": 110.29303891005468,
+              "reason": null
+            },
+            "B1": {
+              "value": 41391,
+              "index": 100,
+              "reason": null
+            },
+            "B2": {
+              "value": 55594,
+              "index": 134.31422289869778,
+              "reason": null
+            }
+          }
+        }
+      ],
+      "assessment": {
+        "id": "66c7fbe516b50efa1aeeea7a48bde353c214b258068e9312d924fa1ffd9e83e4",
+        "assessedAt": "2026-09-07T09:43:12.867Z",
+        "observedDays": 0,
+        "comparableDays": 0,
+        "metrics": {
+          "ridge": {
+            "n": 0,
+            "mae": null,
+            "wape": null,
+            "bias": null,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "B1": {
+            "n": 0,
+            "mae": null,
+            "wape": null,
+            "bias": null,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "B2": {
+            "n": 0,
+            "mae": null,
+            "wape": null,
+            "bias": null,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          }
+        },
+        "rows": [
+          {
+            "date": "2026-10-05",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          },
+          {
+            "date": "2026-10-06",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          },
+          {
+            "date": "2026-10-07",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          },
+          {
+            "date": "2026-10-08",
+            "status": "not-yet-occurred",
+            "actual": null,
+            "vintageId": null
+          }
+        ]
+      }
+    }
+  ]
+}

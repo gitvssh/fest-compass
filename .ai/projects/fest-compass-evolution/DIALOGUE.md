@@ -79,3 +79,25 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-005 · Codex · implementer
+
+- Position: 2026년 자료를 확보하고 조회 시점별 개정·누락 보존, 실제 사전 예측 발행·재현·사후 비교와 읽기 전용 화면을 구현했다. 일반 날짜의 예측 2건을 실제 발행 시각에 저장했으며 아직 결과는 없다. API 공개 지연·다음 축제 회차·자동 예약 실행·축제 효과와 운영 적용은 미확정이다.
+- Evidence:
+  - docs/validation/evidence/2026-09-07-nonsan-current-history.json: 26회 호출, 2025-12-01~2026-09-06 280일 중 251일 확보·29일 누락·오류 0. 최신 관측 2026-08-08.
+  - 이전 수집과 겹친 2025년 12월 31일분의 외지인 값·품질 변경 0건. 합친 1,345일 중 1,316일 확보. 동일 날짜 재조회는 같은 날의 두 수집본 비교이며 실제 공개 지연의 증거가 아니다.
+  - docs/validation/evidence/prospective/: 9월 14~17일 D-7과 10월 5~8일 D-28 일반 날짜 예측, 2026-09-07 18:42 한국시각 실제 발행. 입력 마지막 날짜 2026-08-03, 모델·계수·자료 보관본 고정.
+  - docs/validation/10-prospective-records.md: 발행·자료 선택·누락·개정·구간 보류·재수집·사후 비교 규칙과 검증. 당시 공개시각은 null, 새 사전 예측의 결과 관측 0일.
+- Changes:
+  - lib/forecast/vintages.ts: 수집본 검증·시점별 값 선택·개정/철회/제공 전환 관찰. 같은 캐시 재조립은 새 관측으로 세지 않음.
+  - lib/forecast/prospective.ts, store.ts, summary.ts와 forecast-records CLI: 실제 시각 발행·동시 실행/덮어쓰기 방지·원본 재현·별도 사후 기록·화면 요약 검증.
+  - 홈 및 /forecast에서 /forecast/records 연결. 최신 관측일·누락·발행 입력·일별 예측·결과 대기를 표시. 사이트맵 반영.
+  - 2024년에 선정된 v1 설정을 고정하고 실제 확보한 2026년 과거까지 계수 재학습. 기존 실험의 구간 포함률 부족으로 사전 발행의 범위는 보류. 계획·계약·문서 지도·프로젝트 상태 갱신.
+- Validation:
+  - Node 24.20.0 / npm 11.19.0 WSL, e8afe23 기반 전용 feat/forecast-vintages: npm test 102개·typecheck·production build 통과. 요약 검증 CLI 분리 후 관련 4개 테스트·타입 검사 재통과.
+  - forecast:records verify: 실제 발행 2건·사후 기록 2건을 보관본으로 재학습·재계산하여 일치. 화면 요약도 일치. 미래 입력·오래된 입력·0/누락·동시 요청·충돌·변조·개정 보존 테스트 통과.
+  - 최종 E2E 기존 결정·성과·복제 흐름 및 신규 화면·상세 펼치기·390px 문서 넘침 검사 통과. 공개 읽기 전용 화면에서 편집 링크 없음·콘솔 오류/경고 0 확인.
+  - 배포 계약 17개 리소스·28개 검증기 테스트·dev-standard 통과. 공개 운영 배포·예약 수집 설치·실무자 관찰은 미실시.
+- Questions:
+  - No open question
+- Handoff: Codex

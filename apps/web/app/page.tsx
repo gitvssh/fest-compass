@@ -57,6 +57,12 @@ export default async function HomePage() {
         <p className="mt-2 text-sm text-muted">3년의 지역 방문 이력으로 만든 모델과 단순 기준의 오차를 확인하세요. 2025년 사례이며 운영 적용은 검증이 필요합니다.</p>
       </Link>
 
+      <Link href="/forecast/records" className="mb-6 block rounded-3xl border border-ink/10 bg-white p-6 shadow-card">
+        <p className="text-xs font-extrabold text-blue">발행 당시 입력과 모델 보존</p>
+        <h2 className="mt-2 text-xl font-extrabold">논산 수집 자료와 사전 예측 기록 →</h2>
+        <p className="mt-2 text-sm text-muted">확보한 자료의 기준일·누락과 일반 날짜의 사전 예측을 확인하세요. 자동 갱신 연결과 축제 회차 등록은 남아 있습니다.</p>
+      </Link>
+
       <div className="grid gap-4">
         {festivals.map((festival) => (
           <Link

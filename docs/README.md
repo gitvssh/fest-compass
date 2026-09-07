@@ -21,6 +21,7 @@ last_verified: 2026-09-07
 - [샘플 선정 변경 검증](validation/07-selection-validation.md)
 - [첫 예측 모델 실험 설계](validation/08-model-experiment.md) — 학습 입력·시간 분리·선정 규칙
 - [첫 모델 결과·검증](validation/09-model-validation.md) — 1,096일 수집, 실제 오차와 한계, 재현 명령
+- [최신 자료·사전 예측 기록](validation/10-prospective-records.md) — 2026년 누락, 시점별 보존·발행·사후 비교·재수집 절차
 - [프로젝트 실행 상태](../.ai/projects/fest-compass-evolution/STATE.md)
 
 - [Vision and scope](product/vision-scope.md)
