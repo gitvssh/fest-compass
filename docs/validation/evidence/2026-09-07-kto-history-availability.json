@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-07T08:10:27.786Z",
+  "purpose": "candidate-historical-day-sampling",
+  "scope": {
+    "dates": [
+      "2026-08-15",
+      "2026-08-31"
+    ],
+    "maximumCalls": 16,
+    "maximumRowsPerCall": 1000
+  },
+  "stoppedForAccessOrQuota": false,
+  "limitations": [
+    "선택일 표본이며 연속 다년 자료 확보가 아니다.",
+    "전국 하루 응답이 1000행을 넘으면 지역 값도 사용 불가로 표시한다.",
+    "현재 조회된 통신 기반 지역 추정치이며 당시 공개본이나 축제 입장객 실측이 아니다.",
+    "현지인·외지인·외국인을 합산하지 않는다."
+  ],
+  "observations": [
+    {
+      "summary": {
+        "label": "기초지자체 2026-08-15",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20260815",
+          "endYmd": "20260815"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:10:27.588Z",
+        "durationMs": 121,
+        "status": "empty",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 0,
+        "sampledRows": 0,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": null
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "gongju",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "buyeo",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "nonsan",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2026-08-31",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20260831",
+          "endYmd": "20260831"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:10:27.709Z",
+        "durationMs": 77,
+        "status": "empty",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 0,
+        "sampledRows": 0,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": null
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "gongju",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "buyeo",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "nonsan",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        }
+      ]
+    }
+  ]
+}

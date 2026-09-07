@@ -1,0 +1,276 @@
+{
+  "checkedOn": "2026-09-07",
+  "purpose": "public-source-address-and-version-check",
+  "limitations": [
+    "HTTP 성공과 내용 해석의 타당성은 별개다. 해석·출처 등급은 선정 보고서에 기록한다.",
+    "동적 홈페이지의 현재 바이트 해시는 당시 공개본의 존재를 증명하지 않는다.",
+    "원문 전체·사진은 포함하지 않는다."
+  ],
+  "sources": [
+    {
+      "id": "I1",
+      "title": "제전위원회 2023 홈페이지",
+      "url": "https://www.imsilfestival.com/?r=2023",
+      "checkedAt": "2026-09-07T08:17:46.864270+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=utf-8",
+      "sha256": "dd6118aaef5c65ac6828cf647dfe0991604c137c0c778dba066c4995fb08b461",
+      "bytes": 61143,
+      "pageTitle": "임실N치즈축제"
+    },
+    {
+      "id": "I2",
+      "title": "제전위원회 2024 홈페이지",
+      "url": "https://www.imsilfestival.com/?r=2024",
+      "checkedAt": "2026-09-07T08:17:46.864566+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=utf-8",
+      "sha256": "a911cda238d9269606ffcfd77aabaa268774e4a4f781e0dad19377829600cdbe",
+      "bytes": 74007,
+      "pageTitle": "임실N치즈축제"
+    },
+    {
+      "id": "I3",
+      "title": "제전위원회 2025 홈페이지",
+      "url": "https://www.imsilfestival.com/?r=2025N",
+      "checkedAt": "2026-09-07T08:17:46.864987+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=utf-8",
+      "sha256": "bd62e93e50597b4fc804a3d5df27e2d5f378ddfadcce228f868c95487ad179c2",
+      "bytes": 67690,
+      "pageTitle": "임실N치즈 축제"
+    },
+    {
+      "id": "I4",
+      "title": "전북일보 2024-02-21",
+      "url": "https://www.jjan.kr/article/20240221580043",
+      "checkedAt": "2026-09-07T08:17:46.865497+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "sha256": "254460f8390c558f976bcbf4766549ad713262c38b0f9b137b7f4f3c54ff1379",
+      "bytes": 55314,
+      "pageTitle": "임실군, 임실N치즈축제 10주년 성공적 추진 정기총회"
+    },
+    {
+      "id": "I5",
+      "title": "뉴스핌 2024-10-07",
+      "url": "https://www.newspim.com/news/view/20241007000645",
+      "checkedAt": "2026-09-07T08:17:46.867524+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "b8e7125aad6a0733336151f2aa71f0d3f9577a263de4e47cb7d3c6431a330e6a",
+      "bytes": 152347,
+      "pageTitle": "임실N치즈축제 관광객 58만명...역대 최대 기록"
+    },
+    {
+      "id": "I6",
+      "title": "프레시안 2025-10-14",
+      "url": "https://v.daum.net/v/tfrqOYDxtQ",
+      "checkedAt": "2026-09-07T08:17:46.868032+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "sha256": "948d6c113fd108e6657ab591aeddedc0711dbf7581e313a0d1d188b61ff3f6a1",
+      "bytes": 91648,
+      "pageTitle": "\"임실N치즈축제, 임실 인구 24배 모여\"…61만 명 방문·매출 30억 돌파"
+    },
+    {
+      "id": "I7",
+      "title": "제전위원회 2025 축제자료",
+      "url": "https://www.imsilfestival.com/?r=2025N&c=566/571",
+      "checkedAt": "2026-09-07T08:17:47.064503+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=utf-8",
+      "sha256": "53145ed93b95560fc23b1a03ca19593e5130a0d3e0c22027f02df1e45a006ef5",
+      "bytes": 54173,
+      "pageTitle": "임실N치즈 축제"
+    },
+    {
+      "id": "B1",
+      "title": "백제문화제재단 2023 대백제전 안내",
+      "url": "https://www.baekje.org/kor/html/sub05/0501.html?mode=V&no=f7f3a3144a3de1fc70c6cb8f2a2c482e",
+      "checkedAt": "2026-09-07T08:17:47.126384+00:00",
+      "fetchError": "URLError"
+    },
+    {
+      "id": "B2",
+      "title": "공주시 소식지 2024년 7월호",
+      "url": "https://www.gongju.go.kr/thumbnail/eBook/BOK_202406210916198590.pdf#page=6",
+      "checkedAt": "2026-09-07T08:17:47.217521+00:00",
+      "httpStatus": 200,
+      "contentType": "application/pdf;charset=UTF-8",
+      "sha256": "0e55a52641fc92bf60f72b5628ac3b53d0ee5b22357d880e74ed1b46a6f7aed7",
+      "bytes": 36723932
+    },
+    {
+      "id": "B3",
+      "title": "공주시 2025년 8월 결산 재정공시",
+      "url": "https://www.gongju.go.kr/thumbnail/fileInfo/FI_202509011049166440.pdf#page=97",
+      "checkedAt": "2026-09-07T08:17:47.227748+00:00",
+      "httpStatus": 200,
+      "contentType": "application/pdf;charset=UTF-8",
+      "sha256": "605f6a7471cc504a0469ce7d6ae00c179d7a63026ee2ea843b85a5beab3eb45e",
+      "bytes": 9360403
+    },
+    {
+      "id": "B4",
+      "title": "충남관광의 제71회 부여 백제문화제 안내",
+      "url": "https://tour.chungnam.go.kr/prog/fstvl/kor/sub02_02_02/view.do?fstvlNo=31",
+      "checkedAt": "2026-09-07T08:17:47.239767+00:00",
+      "fetchError": "RemoteDisconnected"
+    },
+    {
+      "id": "B5",
+      "title": "중도일보 2025-10-12 공주 폐막 보도",
+      "url": "https://m.joongdo.co.kr/view.php?key=20251012010002082",
+      "checkedAt": "2026-09-07T08:17:47.252136+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "66e367d539353a844a86435c1fdebeb197be592e64c2d80be33d3a18990d26fc",
+      "bytes": 84488,
+      "pageTitle": "중도일보 - 공주시, 제71회 백제문화제 성료…'세계 속 백제' 향한 도약"
+    },
+    {
+      "id": "B6",
+      "title": "중도일보 2025-10-13 부여 폐막 보도",
+      "url": "https://m.joongdo.co.kr/view.php?key=20251013010002303",
+      "checkedAt": "2026-09-07T08:17:47.287182+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "0da3edb086c08795c4fa1b733866c7a7e950a5b34d66d843475b4232fc0af390",
+      "bytes": 81797,
+      "pageTitle": "중도일보 - 제71회 백제문화제, 95만 관람객의 열기 속에 성황리 폐막… ‘아름다운 백제, 빛나는 사비’의 감동 남겨"
+    },
+    {
+      "id": "B7",
+      "title": "부여 축제 주차 안내 2025-09-26",
+      "url": "https://www.baekjeculturalfestival.kr/bbs/board.php?bo_table=news&wr_id=12",
+      "checkedAt": "2026-09-07T08:17:47.287306+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "cc76dcee7b3330e0a4beffbbd45d6ebf9c95a9b8c7321f2fdc663d9d4e131385",
+      "bytes": 18997,
+      "pageTitle": "제72회 백제문화제"
+    },
+    {
+      "id": "B8",
+      "title": "부여 우천 운영 안내 2025-10-02",
+      "url": "https://baekjeculturalfestival.kr/bbs/board.php?bo_table=news&wr_id=13",
+      "checkedAt": "2026-09-07T08:17:47.344314+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "sha256": "95e93b8a3fb8af8d7244798a4a59e4bf09cb238aeed6e72b043b696d273d5c15",
+      "bytes": 26391,
+      "pageTitle": "제72회 백제문화제"
+    },
+    {
+      "id": "N1",
+      "title": "논산시 2023-03-13 사후 발표",
+      "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=fa907dd5f01f2c66bf04db78c5072248",
+      "checkedAt": "2026-09-07T08:17:47.382082+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "4bead5c32fda55556af2f638929e6d612ae581419d7971b06a92c92fe70b9dd1",
+      "bytes": 62654,
+      "pageTitle": "보기 > 보도자료 > 알림마당 >  논산딸기축제"
+    },
+    {
+      "id": "N2",
+      "title": "논산시 2024-03-25 사후 발표",
+      "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=a88d5d363b97bc030372ceadfe7bd16a",
+      "checkedAt": "2026-09-07T08:17:47.387435+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "c99e3bbb3979fcf6670b59f8a723ce825a6adcbb3ea93f2b8b93c93b8e658db6",
+      "bytes": 38576,
+      "pageTitle": "보기 > 보도자료 > 알림마당 >  논산딸기축제"
+    },
+    {
+      "id": "N3",
+      "title": "공식 축제 홈페이지 2025-04-07 사후 기사 재게시",
+      "url": "https://yangchon.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=e626118e154dd0aa509d0d368c942448",
+      "checkedAt": "2026-09-07T08:17:50.510114+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "c2a4378ce69e505c1a611f7aaf3d4cedcdf7ab654fb2c793afc63e3fc81f15d8",
+      "bytes": 24846,
+      "pageTitle": "보기 > 보도자료 > 알림마당 >  논산딸기축제"
+    },
+    {
+      "id": "N4",
+      "title": "논산시 2025-03-25 주차·셔틀 계획",
+      "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=ffe0840b488ca996fbc0f6ad53bf0690",
+      "checkedAt": "2026-09-07T08:17:50.787806+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "402d7258d948f9c113255fd7a6db3a6685ba0a421028460c9e0dee6dbef39fc5",
+      "bytes": 35221,
+      "pageTitle": "보기 > 보도자료 > 알림마당 >  논산딸기축제"
+    },
+    {
+      "id": "N5",
+      "title": "논산시 2023-03-13 주차·순환버스 안내",
+      "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=1c495b511027345e3d52461c26b294c6",
+      "checkedAt": "2026-09-07T08:17:50.973799+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "001b9407fbf6c3608d994f407095012dc2f7259219aeaa8a64f3bf278004957a",
+      "bytes": 49002,
+      "pageTitle": "보기 > 보도자료 > 알림마당 >  논산딸기축제"
+    },
+    {
+      "id": "N6",
+      "title": "논산시 2025-03-27 혼잡도 서비스 도입",
+      "url": "https://yangchon.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=e3c8a6dcd57282d7142a03e5892334ae",
+      "checkedAt": "2026-09-07T08:17:50.982949+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "sha256": "df6ecd5be855eb8857b2004b4dfa3f977f30c32cab0bfc3c21079bae0de6e71d",
+      "bytes": 36089,
+      "pageTitle": "보기 > 보도자료 > 알림마당 >  논산딸기축제"
+    },
+    {
+      "id": "K1",
+      "title": "한국관광공사 지역별 방문자 API",
+      "url": "https://www.data.go.kr/data/15101972/openapi.do",
+      "checkedAt": "2026-09-07T08:17:51.249150+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "sha256": "20b193cee217939ac49147cd729ff8e1c72077e045568db0194e38ba1052be62",
+      "bytes": 213562,
+      "pageTitle": "한국관광공사_빅데이터_지역별 방문자수_GW | 공공데이터포털"
+    },
+    {
+      "id": "K2",
+      "title": "한국관광 데이터랩 데이터 설명·갱신 안내",
+      "url": "https://datalab.visitkorea.or.kr/datalab/portal/getMetaInfoList.do",
+      "checkedAt": "2026-09-07T08:17:51.268010+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "sha256": "48fc624f9d1fc4377310d1c950321b270db295faaab2b3969d82c586f67fd5ee",
+      "bytes": 728021,
+      "pageTitle": "한국관광 데이터랩"
+    },
+    {
+      "id": "K3",
+      "title": "관광 수요 강도 API",
+      "url": "https://www.data.go.kr/data/15151868/openapi.do",
+      "checkedAt": "2026-09-07T08:17:51.503612+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "sha256": "77bd98340d9d299f24a34a0a20f6cefb693df122d956840555d262dc3fd1594e",
+      "bytes": 216570,
+      "pageTitle": "한국관광공사_지역별 관광 수요 강도 | 공공데이터포털"
+    },
+    {
+      "id": "K4",
+      "title": "관광 자원 수요 API",
+      "url": "https://www.data.go.kr/data/15152138/openapi.do",
+      "checkedAt": "2026-09-07T08:17:51.524510+00:00",
+      "httpStatus": 200,
+      "contentType": "text/html;charset=UTF-8",
+      "sha256": "1394103ef7f2b81d53c33074150014eeb51516cf6c9d1136d9cd478fe049161b",
+      "bytes": 216714,
+      "pageTitle": "한국관광공사_지역별 관광 자원 수요 | 공공데이터포털"
+    }
+  ]
+}

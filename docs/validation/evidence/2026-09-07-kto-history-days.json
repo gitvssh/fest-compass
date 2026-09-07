@@ -1,0 +1,2090 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-07T08:09:06.345Z",
+  "purpose": "candidate-historical-day-sampling",
+  "scope": {
+    "dates": [
+      "2023-03-08",
+      "2023-09-23",
+      "2023-10-06",
+      "2024-03-21",
+      "2024-09-28",
+      "2024-10-03",
+      "2025-03-27",
+      "2025-10-03",
+      "2025-10-08",
+      "2026-08-01",
+      "2026-09-01",
+      "2026-09-03"
+    ],
+    "maximumCalls": 16,
+    "maximumRowsPerCall": 1000
+  },
+  "stoppedForAccessOrQuota": false,
+  "limitations": [
+    "선택일 표본이며 연속 다년 자료 확보가 아니다.",
+    "전국 하루 응답이 1000행을 넘으면 지역 값도 사용 불가로 표시한다.",
+    "현재 조회된 통신 기반 지역 추정치이며 당시 공개본이나 축제 입장객 실측이 아니다.",
+    "현지인·외지인·외국인을 합산하지 않는다."
+  ],
+  "observations": [
+    {
+      "summary": {
+        "label": "기초지자체 2023-03-08",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20230308",
+          "endYmd": "20230308"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:04.444Z",
+        "durationMs": 216,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 783,
+        "sampledRows": 783,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2023-03-08",
+          "max": "2023-03-08"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 11410
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 16411.5
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 28.679999999999996
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 54127.5
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 58464
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 188.03000000000003
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 54232.5
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 19509
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 101.4
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 81035.5
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 48296.5
+            },
+            {
+              "date": "2023-03-08",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 255.56
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2023-09-23",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20230923",
+          "endYmd": "20230923"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:04.661Z",
+        "durationMs": 175,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 783,
+        "sampledRows": 783,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2023-09-23",
+          "max": "2023-09-23"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 6317.5
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 25088
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 56.74999999999999
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 32655
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 93936.5
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 1043.6299999999999
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 31657.5
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 33138
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 380.7599999999999
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 43834
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 42427
+            },
+            {
+              "date": "2023-09-23",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 431.94
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2023-10-06",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20231006",
+          "endYmd": "20231006"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:04.836Z",
+        "durationMs": 172,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 783,
+        "sampledRows": 783,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2023-10-06",
+          "max": "2023-10-06"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 13580
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 27762
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 116.75
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 55933.5
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 61943
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 940.5800000000003
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 51744
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 27356
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 298.74000000000007
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 74728.5
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 36214.5
+            },
+            {
+              "date": "2023-10-06",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 445.50000000000006
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2024-03-21",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20240321",
+          "endYmd": "20240321"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:05.009Z",
+        "durationMs": 167,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 792,
+        "sampledRows": 792,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2024-03-21",
+          "max": "2024-03-21"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 11872
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 19428.5
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 83.06
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 52612
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 62146
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 612.32
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 52699.5
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 21409.5
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 220.9
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 71816.5
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 56252
+            },
+            {
+              "date": "2024-03-21",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 548.1600000000001
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2024-09-28",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20240928",
+          "endYmd": "20240928"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:05.176Z",
+        "durationMs": 172,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 792,
+        "sampledRows": 792,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2024-09-28",
+          "max": "2024-09-28"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 9950.5
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 32711
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 96.85000000000001
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 52059
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 130382
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 961.7
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 48513.5
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 54092.5
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 417.5300000000001
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 66426.5
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 60074
+            },
+            {
+              "date": "2024-09-28",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 533.88
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2024-10-03",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20241003",
+          "endYmd": "20241003"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:05.349Z",
+        "durationMs": 164,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 792,
+        "sampledRows": 792,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2024-10-03",
+          "max": "2024-10-03"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 10902.5
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 50526
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 166.70999999999998
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 49598.5
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 101864
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 1258.2000000000003
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 46739
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 46942
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 311.97999999999996
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 63640.5
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 45349.5
+            },
+            {
+              "date": "2024-10-03",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 617.12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2025-03-27",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20250327",
+          "endYmd": "20250327"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:05.513Z",
+        "durationMs": 178,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 792,
+        "sampledRows": 792,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2025-03-27",
+          "max": "2025-03-27"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 11399.5
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 18042.5
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 91.06
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 50382.5
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 58128
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 771.91
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 46844
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 22753.5
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 385.11
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 63528.5
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 52671.5
+            },
+            {
+              "date": "2025-03-27",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 642.2899999999998
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2025-10-03",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20251003",
+          "endYmd": "20251003"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:05.691Z",
+        "durationMs": 171,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 792,
+        "sampledRows": 792,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2025-10-03",
+          "max": "2025-10-03"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 9957.5
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 42784
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 73.21
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 52052
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 114702
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 1078.7199999999998
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 43561
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 60074
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 356.4599999999999
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 65709
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 59283
+            },
+            {
+              "date": "2025-10-03",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 766.8200000000002
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2025-10-08",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20251008",
+          "endYmd": "20251008"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:05.862Z",
+        "durationMs": 177,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 792,
+        "sampledRows": 792,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2025-10-08",
+          "max": "2025-10-08"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 11427.5
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 109833.5
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 178.73999999999998
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 49332.5
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 154098
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 1025.1499999999999
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 41734
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 90037.5
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 428.2299999999999
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 60634
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 73923.5
+            },
+            {
+              "date": "2025-10-08",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 802.5099999999999
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2026-08-01",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20260801",
+          "endYmd": "20260801"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:06.039Z",
+        "durationMs": 161,
+        "status": "success",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 807,
+        "sampledRows": 807,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "daywkDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": {
+          "min": "2026-08-01",
+          "max": "2026-08-01"
+        }
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 10850
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 38510.5
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "52750",
+              "regionName": "임실군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 122.4
+            }
+          ]
+        },
+        {
+          "regionId": "gongju",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 52878
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 125195
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44150",
+              "regionName": "공주시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 1157.8899999999999
+            }
+          ]
+        },
+        {
+          "regionId": "buyeo",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 46886
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 45612
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44760",
+              "regionName": "부여군",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 317.65000000000003
+            }
+          ]
+        },
+        {
+          "regionId": "nonsan",
+          "status": "complete-day",
+          "issues": [],
+          "points": [
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "1",
+              "visitorTypeName": "현지인(a)",
+              "value": 71046.5
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "2",
+              "visitorTypeName": "외지인(b)",
+              "value": 67903.5
+            },
+            {
+              "date": "2026-08-01",
+              "sourceRegionCode": "44230",
+              "regionName": "논산시",
+              "visitorTypeCode": "3",
+              "visitorTypeName": "외국인(c)",
+              "value": 842.8499999999999
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2026-09-01",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20260901",
+          "endYmd": "20260901"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:06.200Z",
+        "durationMs": 72,
+        "status": "empty",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 0,
+        "sampledRows": 0,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": null
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "gongju",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "buyeo",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "nonsan",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        }
+      ]
+    },
+    {
+      "summary": {
+        "label": "기초지자체 2026-09-03",
+        "service": "DataLabService",
+        "operation": "locgoRegnVisitrDDList",
+        "params": {
+          "numOfRows": 1000,
+          "pageNo": 1,
+          "startYmd": "20260903",
+          "endYmd": "20260903"
+        },
+        "sourceUrl": "https://www.data.go.kr/data/15101972/openapi.do",
+        "meaning": "regional-statistic",
+        "fetchedAt": "2026-09-07T08:09:06.272Z",
+        "durationMs": 73,
+        "status": "empty",
+        "httpStatus": 200,
+        "resultCode": "0000",
+        "reason": null,
+        "totalCount": 0,
+        "sampledRows": 0,
+        "collection": "complete-response",
+        "fields": {
+          "baseYmd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguCode": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "signguNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivCd": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touDivNm": {
+            "missing": 0,
+            "invalidNumeric": null
+          },
+          "touNum": {
+            "missing": 0,
+            "invalidNumeric": 0
+          }
+        },
+        "sampleDateRange": null
+      },
+      "regions": [
+        {
+          "regionId": "imsil",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "gongju",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "buyeo",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        },
+        {
+          "regionId": "nonsan",
+          "status": "unusable",
+          "issues": [
+            "incomplete-response",
+            "missing-visitor-type"
+          ],
+          "points": []
+        }
+      ]
+    }
+  ]
+}

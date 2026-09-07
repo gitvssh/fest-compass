@@ -4,7 +4,7 @@ doc_class: current
 doc_kind: map
 authority: canonical
 owner: fest-compass
-last_verified: 2026-08-30
+last_verified: 2026-09-07
 ---
 
 # Documentation map
@@ -16,6 +16,9 @@ last_verified: 2026-08-30
 - [관광데이터 조사 도구](validation/02-data-profiling.md)
 - [첫 실제 데이터 조사](validation/03-first-data-review.md) — 후보 3곳·28회 조회 결과와 한계
 - [WSL 이전 검증](validation/04-wsl-validation.md)
+- [샘플 축제 선정](validation/05-festival-selection.md) — 후보 3곳의 2023~2025 자료 비교, 논산 선정
+- [예측 지표·평가 계약](validation/06-forecast-contract.md) — 일별 외지인 추세, 발행시점·정답·검증 범위
+- [샘플 선정 변경 검증](validation/07-selection-validation.md)
 - [프로젝트 실행 상태](../.ai/projects/fest-compass-evolution/STATE.md)
 
 - [Vision and scope](product/vision-scope.md)

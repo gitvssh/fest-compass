@@ -3,7 +3,7 @@ import { scrubSecret } from "./security";
 
 const OPERATIONS = {
   KorService2: ["searchKeyword2", "detailCommon2", "detailIntro2"],
-  DataLabService: ["metcoRegnVisitrDDList"],
+  DataLabService: ["metcoRegnVisitrDDList", "locgoRegnVisitrDDList"],
   AreaTarDemDsService: ["areaTarExpDsList"],
   AreaTarResDemService: ["areaTarSvcDemList"],
   TatsCnctrRateService: ["tatsCnctrRatedList"],
