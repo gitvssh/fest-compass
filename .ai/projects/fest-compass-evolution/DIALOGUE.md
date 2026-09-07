@@ -101,3 +101,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-006 · Codex · implementer
+
+- Position: 매일 한국시각 09시 수집·사전 발행·결과 확인을 운영 서비스에 연결하고 첫 실제 처리와 공개 화면을 확인했다. 기존 예측 2건은 보존됐으며 관측 결과는 아직 없다. 공휴일·축제의 공식 근거와 향후 평가 계획을 정리했고 다음 모델은 개발 필요 상태다.
+- Evidence:
+  - docs/validation/11-daily-automation.md: 소스 3eb86e1, 이미지 발행 실행 34115679879 성공, 검증 digest 32db6593…10ba9c4d, 선언 c8bbbac의 기존 앱 sync Succeeded·Synced·Healthy.
+  - docs/validation/evidence/2026-09-07-nonsan-daily-production.json 및 daily-production-result.json: 운영에서 20:20 한국시각 7회 호출, 최근 90일 중 61일 확보·29일 누락·오류 0. 기존 합계 1,316일과 예측 ID 2건 유지.
+  - docs/validation/12-calendar-model-plan.md: 우주항공청 월력·논산 공식 자료. 2027년 엑스포 2/26~3/21 24일 계획은 기존 4일 축제와 다르고 이전 공식 계획에서 일정도 변경됐다.
+- Changes:
+  - apps/web/lib/forecast/daily.ts, runtime.ts, worker 실행 번들·잠금 진입점·보존 초기 자료·일정 파일. 원자적 요약 교체와 heartbeat, 당일 호출 상한·실패 보존·소급 금지.
+  - 기존 Deployment/PVC/Secret 범위 안에서 worker 연결. 예측 하위 디렉터리만 마운트하고 SQLite 접근 분리. 새 클러스터 권한·자격 발급 없음.
+  - 공개 /forecast/records에서 자동 상태·최신 자료·사후 대기·발행 일정을 읽고 새로고침으로 갱신. 9/28의 10월 D-7 등록.
+  - 계획·검증 보고서·운영 문서·문서 지도 갱신. 11/5~1/31 목~일 13개 창·52일 향후 시험 계획, 최초 D-28 10/8. 모델 v2 구현·시험 발행은 아직 없음.
+- Validation:
+  - WSL Node 24.20.0/npm 11.19.0: 앱 109개·타입·빌드·격리 DB E2E 통과. exact source CI도 109개·타입·빌드·운영 audit·infra 39개 통과. 활성 manifest 추가 후 infra 40개·release 계약 17개 리소스 통과.
+  - 실제 로컬 및 운영 조회 각 7회. 운영 수집본 전체 해시·필드·페이지 근거 검사 통과. 기존 예측 2건 ID·DB 행 개수 유지, worker에서 SQLite 경로 없음.
+  - 운영 web/worker 2/2·재시작 0, 실제 imageID 일치, heartbeat·liveness 정상. 원본 서버 health/기록 경로 200.
+  - 공개 브라우저에서 처리 전 보관본→처리 후 실제 요약 갱신 확인, 2개 표·다음 발행 표시·편집 없음. 1440/390px 넘침 없음, 콘솔 오류/경고 0. 미래 실행·정답 도착·현장 적용은 미검증.
+- Questions:
+  - No open question
+- Handoff: Codex

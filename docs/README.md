@@ -22,6 +22,9 @@ last_verified: 2026-09-07
 - [첫 예측 모델 실험 설계](validation/08-model-experiment.md) — 학습 입력·시간 분리·선정 규칙
 - [첫 모델 결과·검증](validation/09-model-validation.md) — 1,096일 수집, 실제 오차와 한계, 재현 명령
 - [최신 자료·사전 예측 기록](validation/10-prospective-records.md) — 2026년 누락, 시점별 보존·발행·사후 비교·재수집 절차
+- [매일 수집·결과 확인 연결](validation/11-daily-automation.md) — 운영 배포·첫 실제 실행·공개 화면 검증
+- [축제·공휴일 모델 평가 계획](validation/12-calendar-model-plan.md) — 공식 일정 근거·향후 시험·개발할 입력
+- [자동 처리 운영 절차](ops/forecast-automation.md) — 일정·호출 상한·중복 방지·실패·저장공간 점검
 - [프로젝트 실행 상태](../.ai/projects/fest-compass-evolution/STATE.md)
 
 - [Vision and scope](product/vision-scope.md)
