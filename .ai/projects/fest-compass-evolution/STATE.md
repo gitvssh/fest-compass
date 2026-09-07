@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 7
+revision: 8
 status: active
 next_actor: codex
 last_actor: codex
-current_question: "No open question recorded"
-updated_at: "2026-09-07T12:24:14.059Z"
+current_question: "현재/직전 복구 이미지를 보존하고 docs/ops/forecast-history-release.md의 미사용 이미지 4개 정리와 기존 매일 자동 정리 정책 연결을 승인할지 사용자 답변이 필요하다."
+updated_at: "2026-09-07T13:37:39.042Z"
 ---
 
 # Current state
 
 ## Summary
 
-공식 달력을 검증하고 네 예측 후보를 실제 학습했다. 공휴일 모델은 개발 540일에서 v1보다 MAE 10.6~11.6% 감소했고 겨울 사전 시험 26건을 운영 등록했다. /forecast/calendar 사용 가능, 기존 1,316일·누락 29일·예측 2건·API 7회는 보존됐다. 첫 겨울 발행은 10/8이며 실제 향후 결과는 없다. 다음은 축제 학습에서 빠진 선행 이력의 제공 범위 확인과 회차 표본 보강이다. 현장 운영 검증·7단계 전체는 진행 중이다.
+2022년 방문 이력 365일을 확보해 총 1,681일로 보강했고, 2023년 축제 정답 5일까지 학습했다. 기존 결합 모델 대비 공통 날짜 MAE는 3.7~5.7% 감소했지만 2025·2026년 축제일은 악화됐다. /forecast/history 구현·전체 재계산·120개 테스트·E2E와 main 게시 완료. Harbor 1GiB 한도 초과로 이미지 push가 실패해 새 화면은 운영 반영 대기다. 현재/복구본을 보존한 구 이미지 4개 정리·선언된 자동 정리 연결 승인을 요청했다. 기존 겨울 시험·운영 예측은 정상이며 7단계 전체는 진행 중이다.
 
 ## Accepted decisions
 
@@ -25,11 +25,13 @@ updated_at: "2026-09-07T12:24:14.059Z"
 - 2026-09-07 추가 후속 진행 요청의 개발 범위에서 2026년 수집본·시점별 보존·일반 날짜 사전 예측 발행·사후 비교 기능을 구현했다(docs/validation/10).
 - 2026-09-07 사용자의 다음 단계 개발 요청과 일반 게시·등록 앱 sync 위임 범위에서 매일 수집·발행·결과 확인을 기존 운영 서비스에 연결했다. 공휴일/축제 자료와 향후 평가 계획을 정리하되 v1 설정·기존 예측은 유지한다(docs/validation/11~12).
 - 2026-09-07 사용자의 후속 진행 요청과 개발·일반 게시 위임 범위에서 공식 달력 15개 근거를 검증하고 네 후보를 학습했다. 공휴일 모델을 겨울 사전 시험 후보, v1을 비교 기준으로 선정해 26건을 운영 등록했다. 개발 성능을 향후 검증으로 간주하거나 기존 v1 발행을 바꾸지 않는다(docs/validation/13).
+- 2026-09-07 사용자의 계속 개발 요청 범위에서 2022년 선행 이력 수집·2023년 회차 학습·동일 날짜 및 2023년 제외 비교를 구현했다. 2022년 비대면 중심 행사를 현장 축제 정답으로 합치지 않으며 기존 겨울 시험·운영 입력은 유지한다(docs/validation/14). 이미지 삭제·정리 스케줄 활성화는 아직 승인받지 않았다.
 
 ## Open questions
 
+- 운영 배포만 이미지 정리 승인 대기다. main 소스 6dce3c6의 CI 34126770861은 검증 통과 후 Harbor 1GiB quota 초과로 push 실패했다. 실제 retention ID null이며 docs/ops/forecast-history-release.md의 current/rollback 2개 보존·구 artifact 4개 정리·선언된 매일 정책 연결을 사용자에게 요청했다. 응답 전 삭제·스케줄 활성화·quota 증액을 실행하지 않는다. 승인 시 exact 목록 재확인→scoped plan/apply/dry-run/execute→동일 CI 재실행→검증 digest 게시/sync/공개 확인까지 재개한다.
 - 겨울 시험은 2026-11-05~2027-01-31 목~일 13개 창, D-28/D-7 26건이 등록됐다. 첫 발행 10/8, 첫 60일 결과 2027-01-04, 마지막 60일/90일 결과 4/1·5/1이다. 실제 발행·결과 도착을 확인해야 하며 고정 계획을 뒤늦게 바꾸지 않는다.
-- 축제 모델 보강이 필요하다. 2023년 행사는 선행 방문 이력 부족으로 학습에서 빠졌고 2024년 첫 축제 발행의 학습 가능한 행사 정답은 0일이었다. 다음 독립 작업은 2022년 등 앞선 연속 자료의 제공 범위를 확인하고 더 많은 회차로 민감도를 점검하는 것이다. 현재 12일 개발 비교의 개선을 새 축제 회차 성능으로 주장하지 않는다.
+- 2023년 축제 누락은 2022년 선행 자료로 보완했다. 평균 개선은 2024년에 집중됐고 2025·2026년 축제일 MAE는 악화됐다. 다음 독립 작업은 회차별 기간·요일·발표 시점·방문 형태에 따른 오차 원인과 비교 가능한 축제 표본의 제공 범위를 검토하는 것이다. 새 회차 예측력·현장 효과는 미검증이다.
 - 매일 09시 실제 제공 전환·개정·장기 저장량을 계속 확인한다. 최신 관측은 2026-08-08, 이후 29일 누락이며 실제 공개 지연은 미확정이다.
 - 기존 9월·10월 예측 2건은 사후 관측 0일이다. 9/28의 10월 D-7은 미래 발행이다. 80% 구간 보정·포함률 검증은 별도의 뒤쪽 기간이 필요하다.
 - 2027년 딸기산업엑스포의 24일 일정은 공식 본문으로 확인했지만 기존 4일 축제와 다른 대상이다. 최신 변경·행사 동일성·별도 발행 및 평가 계약을 정하기 전 자동 등록하지 않는다.
@@ -69,3 +71,10 @@ updated_at: "2026-09-07T12:24:14.059Z"
 - apps/web/data/nonsan-calendar.json
 - apps/web/data/nonsan-calendar-summary.json
 - apps/web/data/calendar-trial-plan.json
+- docs/validation/14-festival-history.md
+- docs/validation/evidence/2026-09-07-nonsan-2022-history.json
+- docs/validation/evidence/2026-09-07-nonsan-festival-history.json.gz
+- apps/web/data/nonsan-festival-history-summary.json
+- apps/web/data/nonsan-history-sources.json
+- docs/ops/forecast-history-release.md
+- docs/validation/evidence/2026-09-07-festival-history-release.json

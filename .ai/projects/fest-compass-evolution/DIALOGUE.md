@@ -143,3 +143,23 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-008 · Codex · implementer
+
+- Position: 2022년 선행 이력과 2023년 축제 학습 비교를 구현·검증·게시했다. 평균 개선과 최근 회차 악화를 함께 공개하는 화면이 준비됐다. Harbor 보관 한도 초과로 새 화면 배포만 구 이미지 정리 승인 대기다.
+- Evidence:
+  - docs/validation/14-festival-history.md: 365/365일, 공통 436/472일 비교, 학습 축제 정답 0/4/8→5/9/13일, 최근 두 회차 악화
+  - docs/validation/evidence/2026-09-07-nonsan-festival-history.json.gz: 540개 모델·모든 예측·입력·계수와 재현 해시
+  - docs/validation/evidence/2026-09-07-festival-history-release.json: CI 검증 통과·이미지 push quota 실패, 실제 보관소 6개/보호 2개/정리 후보 4개
+- Changes:
+  - 2022년 자료·네 방법 비교·2023년 제외 민감도·/forecast/history·사이트맵·E2E·후속 문서 추가
+  - 소스 6dce3c6cb29a9dab4f2cb5d27bb728bb0dd47200 main 게시
+  - 기존 달력·겨울 계획·고정 코드 14개·운영 이미지와 저장 자료 유지
+- Validation:
+  - 전체 재계산 일치, 로컬 앱 테스트 120건·타입 검사·빌드·E2E·배포 계약 40건 통과, 운영 의존성 취약점 0
+  - 기존 예측 2건·사후 기록 2건 재현, 겨울 시험 코드 14개 해시 일치
+  - CI 34126770861: 전용 ARC에서 검증 단계 success, 이미지 push quota 초과로 전체 failure; 원격 이미지 검증과 배포는 미완료
+  - 읽기 전용 운영 확인: 기존 이미지·겨울 등록 26건·예측 2건·매일 API 7회·확보 1,316일·누락 29일 유지; 새 화면 공개 검증 미실시
+- Questions:
+  - 현재/직전 복구 이미지를 보존하고 docs/ops/forecast-history-release.md의 미사용 이미지 4개 정리와 기존 매일 자동 정리 정책 연결을 승인할지 사용자 답변이 필요하다.
+- Handoff: Codex

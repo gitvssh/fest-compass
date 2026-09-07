@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-07T13:32:26.715161+00:00",
+  "sourceCommit": "6dce3c6cb29a9dab4f2cb5d27bb728bb0dd47200",
+  "development": {
+    "observations": 1681,
+    "addedDays": 365,
+    "modelCount": 540,
+    "reportHash": "771dc7b4977b4dcdcf03550109ff18afd810681733d8c08cc9408fb26891cf15",
+    "replay": "passed",
+    "appTests": 120,
+    "typecheck": "passed",
+    "build": "passed",
+    "e2e": "passed",
+    "infraTests": 40,
+    "trialCodeHashes": 14,
+    "oldForecastsVerified": 2,
+    "oldAssessmentsVerified": 2
+  },
+  "ci": {
+    "runId": 34126770861,
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/34126770861",
+    "conclusion": "failure",
+    "validationStep": "success",
+    "failedStep": "Build and push immutable image once",
+    "runnerLabel": "homelab-fest-compass",
+    "runnerName": "homelab-fest-compass-k8d69-runner-sstk2",
+    "cause": "harbor-project-quota-exceeded",
+    "usedBytes": 1024459632,
+    "limitBytes": 1073741824,
+    "rejectedAdditionalMiB": 86.7
+  },
+  "registry": {
+    "checkedAt": "2026-09-07T13:32:26.715161+00:00",
+    "project": "fest-compass",
+    "retentionId": null,
+    "protected": [
+      {
+        "digest": "sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd",
+        "tags": [
+          "2770229d93e298a1d0b19a3d56b913d8a9e2f52f",
+          "deploy-current"
+        ],
+        "size": 237022214,
+        "pushTime": "2026-09-07T12:14:30.924Z"
+      },
+      {
+        "digest": "sha256:32db6593000e16a2f7b4fce6817417be6d49d3279909130a211db74f10ba9c4d",
+        "tags": [
+          "3eb86e1bb6c843f0fdec962c314cd7938a63f229",
+          "deploy-rollback"
+        ],
+        "size": 236980544,
+        "pushTime": "2026-09-07T11:18:04.653Z"
+      }
+    ],
+    "candidates": [
+      {
+        "digest": "sha256:cd0297029f0b2b164c4ad068f12bed6ef3f344773096dbdc8143784f0487ba2b",
+        "tags": [
+          "bda722f256bf482fc5b4d2fe5318035350cf6e08"
+        ],
+        "size": 236898502,
+        "pushTime": "2026-09-03T09:28:52.466Z"
+      },
+      {
+        "digest": "sha256:616e0656897f29ed1ff0bfa315b3596814feb74aa9b225ffd684c4835dfc6109",
+        "tags": [
+          "ac29f9913a87f369496876eca9a3877b406f0f76"
+        ],
+        "size": 236896173,
+        "pushTime": "2026-09-02T02:27:33.041Z"
+      },
+      {
+        "digest": "sha256:086c02bc8cef999b9dd35a80848dd52e261d5c8abd98f77ffb3be8bbfe8ffd76",
+        "tags": [
+          "bd286391d840d546fe9aa52d5f03d1593fc4480f"
+        ],
+        "size": 236895732,
+        "pushTime": "2026-08-31T13:53:28.484Z"
+      },
+      {
+        "digest": "sha256:3ef211be2bee1ec1f6496dbe8af1a49a7efc193db8302052c9ef81d98d4a9ad0",
+        "tags": [
+          "2611ad86acc2370fd50d2ea564a87385aae9dad4"
+        ],
+        "size": 236894704,
+        "pushTime": "2026-08-31T13:33:09.129Z"
+      }
+    ]
+  },
+  "releaseStatus": "awaiting-image-cleanup-approval",
+  "productionImageUnchanged": "sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd",
+  "retentionExecuted": false,
+  "retentionScheduleActivated": false
+}
