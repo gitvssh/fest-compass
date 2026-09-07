@@ -122,3 +122,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-007 · Codex · implementer
+
+- Position: 공식 달력과 과거 이력으로 네 후보를 학습하고 공휴일 모델의 겨울 사전 시험 26건을 운영 등록했다. 개발 540일에서 v1 대비 MAE 10.6~11.6% 감소를 확인했다. 축제 입력 후보는 제공일·학습 회차가 부족하고 축제일 과소예측도 남아 있다. 공개 비교 화면은 사용 가능하며 실제 향후 결과는 아직 없다.
+- Evidence:
+  - docs/validation/13-calendar-experiment.md: 공식 출처 15개, 2023~2026 공휴일 18/19/19/22일·축제 4회, 1,316일 개발 관측·135개 창·선행기간별 540일·모델 1,104개.
+  - apps/web/data/calendar-trial-plan.json: 411d2207f62d531413671b6c16e3193e225db74ecab95b97cce23a5b481ef351. 2026-10-08 최초 발행, 달력·보고서·코드 14개 고정. 60/90일 결과·누락·미실행 별도 보존.
+  - docs/validation/evidence/2026-09-07-calendar-production.json: 실제 2026-09-07 21:17 한국시각 등록, 예정 26·발행 0·결과 0. 기존 예측 2건·수집 결과 파일 해시 일치, API 7회 유지.
+  - 소스 2770229, CI 34120484088 전용 homelab-fest-compass 성공, 이미지 sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd, 활성화 1998d98 Succeeded/Synced/Healthy.
+- Changes:
+  - 공휴일 추가 공표 시점·미확인 일정 보류, 실제 회귀 학습·시간순 비교·연도 제외 민감도·재현 CLI 추가.
+  - 겨울 시험의 등록·발행·60/90일 결과 보존과 재현을 기존 매일 처리에 연결. 수집 재조회 없이 등록하며 기존 v1 자료·설정 유지.
+  - /forecast/calendar에 선행기간별 비교·제공률·실제 시험 상태·일정 근거·한계를 표시. 계획·운영 절차·검증 문서 갱신.
+- Validation:
+  - CI의 최종 소스에서 앱 118건·타입 검사·빌드·운영 의존성 감사·배포 계약 40건·원격 이미지 검증 통과.
+  - 개발 보고서 전체 재계산(모든 모델·예측·민감도·요약) 일치. 기존 v1 예측 2건·사후 기록 2건 재현 일치.
+  - 격리 SQLite E2E와 실제 공개 브라우저에서 D-28/D-7 전환·등록 완료·미래 미발행·읽기 전용·390px 넘침 없음·오류/경고 0 확인.
+  - 운영 웹·worker 2/2 Ready·재시작 0, worker health 통과, worker에서 SQLite 파일 비노출 확인.
+- Questions:
+  - No open question
+- Handoff: Codex

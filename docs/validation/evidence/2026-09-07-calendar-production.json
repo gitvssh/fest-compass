@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-07T12:25:19Z",
+  "sourceCommit": "2770229d93e298a1d0b19a3d56b913d8a9e2f52f",
+  "activationCommit": "1998d981900a28e4163d8b66dd83784b2a69bffd",
+  "ci": {
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/34120484088",
+    "status": "success",
+    "runnerLabel": "homelab-fest-compass",
+    "runnerName": "homelab-fest-compass-k8d69-runner-wzp87",
+    "appTests": 118,
+    "infraTests": 40
+  },
+  "image": "registry.damecasol.com/fest-compass/web@sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd",
+  "argo": {
+    "application": "fest-compass-prod",
+    "operation": "Succeeded",
+    "sync": "Synced",
+    "health": "Healthy",
+    "revision": "1998d981900a28e4163d8b66dd83784b2a69bffd"
+  },
+  "pod": {
+    "name": "fest-compass-55b9c5c97b-m4dhz",
+    "readyContainers": 2,
+    "totalContainers": 2,
+    "restarts": 0,
+    "workerHealth": "passed",
+    "sqliteVisibleToWorker": false
+  },
+  "trial": {
+    "planId": "411d2207f62d531413671b6c16e3193e225db74ecab95b97cce23a5b481ef351",
+    "registeredAt": "2026-09-07T12:17:08.395Z",
+    "firstIssueAt": "2026-10-08T09:00:00+09:00",
+    "requests": 26,
+    "issued": 0,
+    "outcomes": 0,
+    "processingError": null
+  },
+  "preservation": {
+    "beforeAt": "2026-09-07T12:11:36.830Z",
+    "afterAt": "2026-09-07T12:18:36.301Z",
+    "dailyResultFileHashBefore": "08b19fb496d33071229e89d274d6bac6960775117efee7293d9c5e2c052e58e6",
+    "dailyResultFileHashAfter": "08b19fb496d33071229e89d274d6bac6960775117efee7293d9c5e2c052e58e6",
+    "dailyCallsBefore": 7,
+    "dailyCallsAfter": 7,
+    "forecastFilesBefore": [
+      {
+        "file": "nonsan-20260914-d7-v1.json",
+        "hash": "d641899c08067326e0184416dfa2805087a64557b9a8c9e97eb26f182ad10955"
+      },
+      {
+        "file": "nonsan-20261005-d28-v1.json",
+        "hash": "92972bdb39d6ad99babe6bb81d2ab4050989c6c4232f494bba9bcd82ddb01b6d"
+      }
+    ],
+    "forecastFilesAfter": [
+      {
+        "file": "nonsan-20260914-d7-v1.json",
+        "hash": "d641899c08067326e0184416dfa2805087a64557b9a8c9e97eb26f182ad10955"
+      },
+      {
+        "file": "nonsan-20261005-d28-v1.json",
+        "hash": "92972bdb39d6ad99babe6bb81d2ab4050989c6c4232f494bba9bcd82ddb01b6d"
+      }
+    ],
+    "availableDays": 1316,
+    "missingDays": 29,
+    "latestObservation": "2026-08-08"
+  },
+  "public": {
+    "url": "https://kto.damecasol.com/forecast/calendar",
+    "summaryAt": "2026-09-07T12:17:08.395Z",
+    "registrationVisible": true,
+    "d28ImprovementPercent": 11.6,
+    "d7ImprovementPercent": 10.6,
+    "futureUnissuedVisible": true,
+    "editorLinkPresent": false,
+    "mobileViewport": 390,
+    "mobileDocumentWidth": 375,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "sitemap": {
+      "calendarEntry": true,
+      "contentType": "application/xml",
+      "unrelatedFaviconStatus": 404
+    }
+  }
+}
