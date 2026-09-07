@@ -60,7 +60,7 @@ export default async function HomePage() {
       <Link href="/forecast/records" className="mb-6 block rounded-3xl border border-ink/10 bg-white p-6 shadow-card">
         <p className="text-xs font-extrabold text-blue">발행 당시 입력과 모델 보존</p>
         <h2 className="mt-2 text-xl font-extrabold">논산 수집 자료와 사전 예측 기록 →</h2>
-        <p className="mt-2 text-sm text-muted">확보한 자료의 기준일·누락과 일반 날짜의 사전 예측을 확인하세요. 자동 갱신 연결과 축제 회차 등록은 남아 있습니다.</p>
+        <p className="mt-2 text-sm text-muted">수집 상태와 자료의 기준일·누락을 확인하고, 일반 날짜의 사전 예측을 이후 관측과 비교하세요.</p>
       </Link>
 
       <div className="grid gap-4">

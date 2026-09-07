@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "requests": [
+    {"requestId":"nonsan-20260914-d7-v1","horizonDays":7,"target":{"kind":"regional-check","label":"논산시 9월 일반 날짜 예측 검증","start":"2026-09-14","end":"2026-09-17","schedule":null}},
+    {"requestId":"nonsan-20261005-d28-v1","horizonDays":28,"target":{"kind":"regional-check","label":"논산시 10월 일반 날짜 예측 검증","start":"2026-10-05","end":"2026-10-08","schedule":null}},
+    {"requestId":"nonsan-20261005-d7-v1","horizonDays":7,"target":{"kind":"regional-check","label":"논산시 10월 일반 날짜 예측 검증","start":"2026-10-05","end":"2026-10-08","schedule":null}}
+  ]
+}

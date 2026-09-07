@@ -42,11 +42,14 @@ COPY --from=production-deps --chown=node:node /app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 COPY --from=builder --chown=node:node /app/.next/seed.cjs ./prisma/seed.cjs
+COPY --from=builder --chown=node:node /app/.next/forecast-worker.cjs ./forecast-worker.cjs
+COPY --chown=node:node data/forecast-seed.json.gz data/forecast-plan.json ./data/
+COPY --chmod=0555 --chown=node:node docker/forecast-worker.sh ./scripts/forecast-worker.sh
 COPY --from=builder --chown=node:node /app/prisma/schema.prisma ./prisma/schema.prisma
 COPY --from=builder --chown=node:node /app/prisma/migrations ./prisma/migrations
 COPY --chown=node:node scripts/migrate-sqlite.mjs ./scripts/migrate-sqlite.mjs
 COPY --chmod=0555 --chown=node:node docker/entrypoint.sh /usr/local/bin/fest-compass-entrypoint
-RUN sed -i 's/\r$//' /usr/local/bin/fest-compass-entrypoint
+RUN sed -i 's/\r$//' /usr/local/bin/fest-compass-entrypoint /app/scripts/forecast-worker.sh && command -v flock
 
 USER node
 

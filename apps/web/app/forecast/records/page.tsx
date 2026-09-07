@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import summary from "@/data/nonsan-prospective-summary.json";
+import { loadRuntimeSummary } from "@/lib/forecast/runtime";
 import { canonicalUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -15,8 +15,14 @@ const reasonLabels: Record<string, string> = { "no-observations": "방문 자료
   "collection-too-old": "최근 수집 필요", "insufficient-training-history": "학습 이력 부족", "recent-history-unavailable": "최근 입력 기간 누락",
   "four-weekdays-unavailable": "같은 요일 자료 부족", "previous-year-unavailable": "전년 자료 없음", "nonfinite-model-result": "계산 불가" };
 
-export default function ForecastRecordsPage() {
+export default async function ForecastRecordsPage() {
+  const { summary, source, workerAlive } = await loadRuntimeSummary();
   const { monitor } = summary, { coverage, comparison } = monitor;
+  const automatic = summary.automation;
+  const automationTitle = source === "bundled" ? "보관 기록 사용 가능 · 자동 수집 연결 필요"
+    : source === "unavailable" ? "최신 수집 기록 확인 필요"
+    : !workerAlive ? "자동 수집 연결 확인 필요"
+    : automatic?.status === "failed" ? "오늘 자동 처리 확인 필요" : "매일 09시 자동 수집 · 예측 결과 확인";
   return <div className="space-y-6">
     <div>
       <Link href="/forecast" className="text-sm font-bold text-blue">← 2025년 축제 예측 실험</Link>
@@ -25,8 +31,10 @@ export default function ForecastRecordsPage() {
       <p className="mt-3 max-w-3xl text-muted">자료가 어디까지 제공됐는지 확인하고, 대상일 전에 발행한 예측을 나중에 들어오는 지역 관측과 비교합니다. 축제장 입장객과 시간별 혼잡은 별도 자료가 필요합니다.</p>
     </div>
     <section className="rounded-3xl border border-blue/20 bg-blue-soft p-5">
-      <h2 className="font-extrabold">예측 기록 사용 가능 · 예약 실행은 연결 필요</h2>
-      <p className="mt-2 text-sm leading-relaxed">이 화면은 {time(summary.generatedAt)} 한국시각에 만든 기록입니다. 자동으로 갱신되지 않습니다. 다음 논산딸기축제의 일정 근거를 확보한 뒤 해당 회차의 발행 일정을 등록해야 합니다.</p>
+      <h2 className="font-extrabold">{automationTitle}</h2>
+      <p className="mt-2 text-sm leading-relaxed">이 화면의 자료 확인 시각은 {time(summary.generatedAt)} 한국시각입니다. {source === "live" ? "서버에 저장된 최신 기록을 읽습니다. 새로고침하면 이후 수집 결과를 확인할 수 있습니다." : source === "unavailable" ? "최신 기록을 읽을 수 없어 보관된 사례를 표시합니다. 수집 상태 확인이 필요합니다." : "현재는 보관된 사례를 표시합니다."} 다음 논산딸기축제 회차는 일정 근거를 확보한 뒤 등록합니다.</p>
+      {automatic && <p className="mt-2 text-sm">마지막 자동 처리: {time(automatic.completedAt)} · API 요청 {automatic.calls}회 · {automatic.status === "failed" ? "처리 실패" : automatic.status === "partial" ? "수집 완료, 누락 자료 있음" : "수집 완료"} · 다음 예정 {time(automatic.nextRunAt)} 한국시각</p>}
+      {automatic?.error && <p className="mt-2 text-sm text-coral">{automatic.error === "daily-storage-limit" ? "자료 보관 공간 점검이 필요합니다." : automatic.error === "history-access-or-quota-stop" ? "데이터 제공처의 접근 허용 또는 호출 한도를 확인해야 합니다." : "오늘 처리를 끝내지 못했습니다. 저장된 자료와 실패 기록을 확인해야 합니다."} 누락을 0으로 대체하거나 지난 시각의 예측을 새로 만들지 않습니다.</p>}
     </section>
     <div className="grid gap-4 sm:grid-cols-3">
       <div className="rounded-2xl bg-white p-5 shadow-card"><p className="text-sm text-muted">확보한 마지막 자료 기준일</p><p className="mt-2 text-2xl font-extrabold">{coverage.latestObservation ?? "없음"}</p><p className="mt-2 text-xs text-muted">조회 당시 {coverage.observationAgeDays}일 전 자료 · 실시간 현황 아님</p></div>
@@ -73,6 +81,9 @@ export default function ForecastRecordsPage() {
           {record.snapshots.map((s) => <p key={s.archiveId} className="mt-2 break-all">자료 버전: {s.snapshotId}</p>)}
         </details>
       </article>)}
+      {automatic && <div className="rounded-3xl bg-white p-5 shadow-card"><h3 className="text-lg font-extrabold">등록된 사전 발행 일정</h3>
+        <ul className="mt-3 space-y-2 text-sm">{automatic.schedule.map((entry) => <li key={entry.requestId}>{entry.start} 시작 · {entry.horizonDays}일 전인 {entry.dueDate} 발행 · {entry.status === "recorded" ? "기록 보존됨" : entry.status === "missed" ? "발행일 지남, 소급 발행하지 않음" : "발행 예정"}</li>)}</ul>
+      </div>}
     </section>
   </div>;
 }

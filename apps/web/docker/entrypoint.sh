@@ -29,6 +29,10 @@ if [ ! -d /data ] || [ ! -w /data ]; then
   exit 78
 fi
 
+if [ "${FORECAST_DATA_DIR:-}" = /data/forecast ]; then
+  mkdir -p /data/forecast
+fi
+
 database_path="${DATABASE_URL#file:}"
 database_path="${database_path%%\?*}"
 if [ -e "$database_path" ] && [ ! -w "$database_path" ]; then
