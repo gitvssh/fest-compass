@@ -33,6 +33,7 @@ export default async function CalendarForecastPage({ searchParams }: { searchPar
       <p className="mt-5 text-xs font-extrabold text-blue">논산시 일별 외지인 추정치 · 개발 자료 비교</p>
       <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">공휴일과 축제를 반영하면 예측이 나아질까?</h1>
       <p className="mt-3 max-w-3xl leading-relaxed text-muted">공식 일정과 과거 방문 이력으로 네 모델을 학습했습니다. 이미 확인한 과거 자료에서는 오차가 줄었으며, 앞으로 발행하는 겨울 예측에서 다시 확인합니다. 축제장 입장객이나 시간별 혼잡을 예측한 결과는 아닙니다.</p>
+      <Link href="/forecast/history" className="mt-4 inline-block text-sm font-bold text-blue underline">2022년 이력을 보강한 축제 예측 비교 →</Link>
     </div>
     <nav aria-label="예측 선행기간" className="flex flex-wrap gap-2">
       {[28, 7].map((h) => <Link key={h} href={`/forecast/calendar?horizon=${h}`} aria-current={horizon === h ? "page" : undefined}

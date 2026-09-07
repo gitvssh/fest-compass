@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import prospectiveSummary from "../data/nonsan-prospective-summary.json" with { type: "json" };
 import calendarSummary from "../data/nonsan-calendar-summary.json" with { type: "json" };
+import historySummary from "../data/nonsan-festival-history-summary.json" with { type: "json" };
 
 const baseUrl = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 const outputDir = join(dirname(fileURLToPath(import.meta.url)), "..", "output", "playwright");
@@ -83,6 +84,19 @@ try {
   await page.getByText("7일 전 발행 일정과 저장 결과", { exact: true }).click();
   await expectVisible(page.getByText("2026-11-05 시작 · 2026-10-29 발행 · 발행 예정", { exact: true }), "future issuance dates missing");
   await shot(page, "12-calendar-desktop");
+  await page.getByRole("link", { name: "2022년 이력을 보강한 축제 예측 비교 →" }).click();
+  await page.waitForURL("**/forecast/history");
+  await expectVisible(page.getByRole("heading", { name: "축제 이력을 보강한 예측 비교", exact: true }), "history study missing");
+  const historyImprovement = (h) => { const m = historySummary.runs.find((r) => r.horizonDays === h).comparison.methods;
+    return `${((1 - m.extended.mae / m.original.mae) * 100).toFixed(1)}%`; };
+  await expectVisible(page.getByText(historyImprovement(28), { exact: true }), "D-28 history comparison differs from evidence");
+  await page.getByRole("link", { name: "시작 7일 전 예측", exact: true }).click();
+  await page.waitForURL("**/forecast/history?horizon=7");
+  await expectVisible(page.getByText(historyImprovement(7), { exact: true }), "D-7 history comparison did not change");
+  await expectVisible(page.getByText("2024년 개선, 2025·2026년 축제일 악화", { exact: true }), "later festival degradation hidden");
+  await expectVisible(page.getByRole("cell", { name: "13일", exact: true }), "added festival training labels missing");
+  if (await page.getByRole("cell", { name: "오차 증가", exact: true }).count() !== 2) throw new Error("history study must show both degraded editions");
+  await shot(page, "14-history-desktop");
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
 
   await page.getByRole("link", { name: "○○군 봄꽃축제" }).click();
@@ -188,6 +202,7 @@ try {
     ["forecast", "/forecast"],
     ["prospective", "/forecast/records"],
     ["calendar", "/forecast/calendar"],
+    ["history", "/forecast/history"],
   ]) {
     await mobile.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
     const dimensions = await mobile.evaluate(() => ({
@@ -206,6 +221,8 @@ try {
   await shot(mobile, "11-prospective-mobile");
   await mobile.goto(`${baseUrl}/forecast/calendar?horizon=7`, { waitUntil: "networkidle" });
   await shot(mobile, "13-calendar-mobile");
+  await mobile.goto(`${baseUrl}/forecast/history?horizon=7`, { waitUntil: "networkidle" });
+  await shot(mobile, "15-history-mobile");
   await mobile.close();
 
   if (browserErrors.length) throw new Error(`browser diagnostics failed:\n${browserErrors.join("\n")}`);

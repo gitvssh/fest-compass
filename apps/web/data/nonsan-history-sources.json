@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "excludedEdition": {
+    "year": 2022,
+    "start": "2022-02-23",
+    "end": "2022-02-27",
+    "format": "online-centered",
+    "reason": "비대면 중심 행사로 안내됐으며 현장 판매·체험도 언급된다. 기존 현장 축제의 학습 정답으로 합치지 않는다.",
+    "source": {
+      "publisher": "서울시 지역상생교류사업단",
+      "url": "https://sangsaeng.seoul.go.kr/boardType1/mobile.new_pages.information.area_view/updateView.do?grpId=MYAREA_BASIC&selectedId=4469&userView=Y",
+      "publishedDate": "2022-02-17",
+      "collectedAt": "2026-09-07T13:08:46.908Z",
+      "contentHash": "1e0e74aeb50855773fb3f32ca722662a97a48fb77f37e01e956cc613506203f3",
+      "bytes": 28810
+    }
+  }
+}
