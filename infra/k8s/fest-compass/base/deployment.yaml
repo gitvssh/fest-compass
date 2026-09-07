@@ -68,6 +68,40 @@ spec:
             - name: tmp
               mountPath: /tmp
       containers:
+        - name: forecast-worker
+          image: registry.damecasol.com/fest-compass/web:prepare
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "/app/scripts/forecast-worker.sh"]
+          env:
+            - name: FORECAST_DATA_DIR
+              value: /data/forecast
+          envFrom:
+            - secretRef:
+                name: fest-compass-runtime
+          livenessProbe:
+            exec:
+              command: ["node", "/app/forecast-worker.cjs", "--health"]
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            failureThreshold: 3
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          resources:
+            requests:
+              cpu: 25m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 384Mi
+          volumeMounts:
+            - name: data
+              mountPath: /data/forecast
+              subPath: forecast
         - name: web
           image: registry.damecasol.com/fest-compass/web:prepare
           imagePullPolicy: IfNotPresent

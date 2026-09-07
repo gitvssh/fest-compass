@@ -265,7 +265,7 @@ def validate_config_and_limits(resources: dict[tuple[str, str], str]) -> None:
     require(data, r"^  APP_MODE:\s*public-readonly$", "public read-only app mode")
     require(data, r"^  DATABASE_URL:\s*file:/data/fest-compass\.db$", "SQLite database URL")
     keys = set(re.findall(r"(?m)^  ([A-Za-z_][A-Za-z0-9_]*):", data))
-    if keys != {"APP_MODE", "DATABASE_URL"}:
+    if keys != {"APP_MODE", "DATABASE_URL", "FORECAST_DATA_DIR"}:
         fail(f"ConfigMap data keys must be exact; got {sorted(keys)}")
 
     service_account = resources[("ServiceAccount", "fest-compass")]
@@ -337,8 +337,8 @@ def validate_sqlite_and_deployment(resources: dict[tuple[str, str], str], *, rel
     require(deployment, r"^          claimName:\s*fest-compass-data$", "SQLite PVC mount")
 
     images = re.findall(r"(?m)^        image:\s*([^\s#]+)\s*$", deployment)
-    if len(images) != 2 or len(set(images)) != 1:
-        fail(f"init and web containers must use one identical immutable image; got {images}")
+    if len(images) != 3 or len(set(images)) != 1:
+        fail(f"init, web and forecast containers must use one identical immutable image; got {images}")
     image = images[0]
     repository, separator, digest = image.partition("@")
     if separator != "@" or repository != IMAGE_REPOSITORY or not IMMUTABLE_DIGEST.fullmatch(digest):
@@ -359,9 +359,9 @@ def validate_sqlite_and_deployment(resources: dict[tuple[str, str], str], *, rel
     require(deployment, r"^      - name:\s*harbor-pull$", "Harbor image pull secret")
     require(deployment, r"^        runAsNonRoot:\s*true$", "non-root pod security")
     require(deployment, r"^          type:\s*RuntimeDefault$", "seccomp profile")
-    require_count(deployment, r"^          readOnlyRootFilesystem:\s*true$", 2, "read-only root filesystems")
-    require_count(deployment, r"^          allowPrivilegeEscalation:\s*false$", 2, "privilege escalation hardening")
-    require_count(deployment, r"^            - ALL$", 2, "Linux capability drops")
+    require_count(deployment, r"^          readOnlyRootFilesystem:\s*true$", 3, "read-only root filesystems")
+    require_count(deployment, r"^          allowPrivilegeEscalation:\s*false$", 3, "privilege escalation hardening")
+    require_count(deployment, r"^            - ALL$", 3, "Linux capability drops")
     require_count(deployment, r"^        - mountPath:\s*/data$", 2, "/data mounts")
     require_count(deployment, r"^        - mountPath:\s*/tmp$", 2, "/tmp mounts")
     require(deployment, r"^        - mountPath:\s*/app/\.next/cache$", "writable Next.js cache mount")
@@ -380,6 +380,12 @@ def validate_sqlite_and_deployment(resources: dict[tuple[str, str], str], *, rel
     require_count(deployment, r"^            path:\s*/health/livez$", 2, "live/startup probes")
     require_count(deployment, r"^            path:\s*/health/readyz$", 1, "readiness probe")
     require_count(deployment, r"^            port:\s*http$", 3, "HTTP probe port")
+    require(deployment, r"^        name:\s*forecast-worker$", "daily forecast worker")
+    require(deployment, r"^        - /app/scripts/forecast-worker\.sh$", "kernel-locked worker entry point")
+    require(deployment, r"^            - /app/forecast-worker\.cjs$", "worker heartbeat probe")
+    require_count(deployment, r"^        - mountPath:\s*/data/forecast$", 1, "forecast-only worker volume")
+    require(deployment, r"^          subPath:\s*forecast$", "forecast-only PVC subdirectory")
+    require(resources[("ConfigMap", "fest-compass-config")], r"^  FORECAST_DATA_DIR:\s*/data/forecast$", "runtime forecast directory")
     return digest
 
 

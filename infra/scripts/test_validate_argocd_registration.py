@@ -187,6 +187,15 @@ metadata:
             with self.subTest(old=old):
                 self.assert_contract_rejects(self.rendered.replace(old, new), message)
 
+    def test_forecast_worker_cannot_mount_the_sqlite_root_or_skip_its_lock(self) -> None:
+        for old, new, message in (
+            ("subPath: forecast", "subPath: other", "forecast-only PVC subdirectory"),
+            ("/app/scripts/forecast-worker.sh", "/app/forecast-worker.cjs", "kernel-locked worker entry point"),
+            ("FORECAST_DATA_DIR: /data/forecast", "FORECAST_DATA_DIR: /tmp/forecast", "runtime forecast directory"),
+        ):
+            with self.subTest(old=old):
+                self.assert_contract_rejects(self.rendered.replace(old, new), message)
+
     def test_namespace_repo_runner_and_gateway_contract_is_required(self) -> None:
         mutations = (
             ("gitvssh/fest-compass", "gitvssh/other", "source repository annotation"),

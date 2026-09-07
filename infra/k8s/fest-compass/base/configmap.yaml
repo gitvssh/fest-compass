@@ -9,3 +9,4 @@ metadata:
 data:
   APP_MODE: public-readonly
   DATABASE_URL: file:/data/fest-compass.db
+  FORECAST_DATA_DIR: /data/forecast
