@@ -43,7 +43,7 @@ COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 COPY --from=builder --chown=node:node /app/.next/seed.cjs ./prisma/seed.cjs
 COPY --from=builder --chown=node:node /app/.next/forecast-worker.cjs ./forecast-worker.cjs
-COPY --chown=node:node data/forecast-seed.json.gz data/forecast-plan.json ./data/
+COPY --chown=node:node data/forecast-seed.json.gz data/forecast-plan.json data/calendar-trial-plan.json ./data/
 COPY --chmod=0555 --chown=node:node docker/forecast-worker.sh ./scripts/forecast-worker.sh
 COPY --from=builder --chown=node:node /app/prisma/schema.prisma ./prisma/schema.prisma
 COPY --from=builder --chown=node:node /app/prisma/migrations ./prisma/migrations

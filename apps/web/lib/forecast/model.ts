@@ -48,9 +48,9 @@ export function baseline(rows: Observation[], target: string, kind: "B1" | "B2")
 }
 export const relativeIndex = (value: number | null, base: number | null) => value === null || base === null || base <= 0 ? null : 100 * value / base;
 
-const FEATURE_NAMES = ["intercept", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday",
+export const FEATURE_NAMES = ["intercept", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday",
   "year-sin", "year-cos", "half-year-sin", "half-year-cos", "trend-years", "recent-weekday-median", "recent-28-day-mean", "28-day-change"];
-function features(rows: Observation[], target: string, cutoff: string): { x: number[]; inputIds: string[] } | null {
+export function features(rows: Observation[], target: string, cutoff: string): { x: number[]; inputIds: string[] } | null {
   const b = baseline(rows, target, "B1"), last = rows.filter((r) => r.date >= shiftDay(cutoff, -27) && r.date <= cutoff);
   const previous = rows.filter((r) => r.date >= shiftDay(cutoff, -55) && r.date <= shiftDay(cutoff, -28));
   if (b.value === null || last.length < 21 || previous.length < 21) return null;

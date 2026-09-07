@@ -71,6 +71,7 @@ export FORECAST_DATA_DIR="$PWD/output/forecast-local"
 export FORECAST_WORKER_PATH="$PWD/.next/forecast-worker.cjs"
 export FORECAST_PLAN_PATH="$PWD/data/forecast-plan.json"
 export FORECAST_SEED_PATH="$PWD/data/forecast-seed.json.gz"
+export FORECAST_TRIAL_PATH="$PWD/data/calendar-trial-plan.json"
 # 기존 비공개 환경으로 TOUR_API_KEY를 전달한 상태에서 실행
 sh docker/forecast-worker.sh --once
 ```
@@ -78,3 +79,20 @@ sh docker/forecast-worker.sh --once
 코드 게시 → 기존 ARC의 `publish-image` 수동 실행 → 원격 이미지 검증 → 동일 digest로 manifest 변경 →
 등록된 `fest-compass-prod`의 exact revision sync → live 이미지·첫 실행·공개 화면 확인 순서로 배포한다.
 초기 자료를 다시 만드는 명령은 `npm run forecast:seed`이며 기존 gzip을 덮어쓰지 않는다.
+
+## 공휴일 모델 겨울 시험
+
+`data/calendar-trial-plan.json`은 2026-11-05~2027-01-31의 13개 목~일 창을 28일/7일 전에
+비교하는 26건의 고정 목록이다. 기존 v1의 최대 20개 목록과 별도로 관리한다.
+설계·선택 결과·달력 출처는 [모델 개발과 시험 기록](../validation/13-calendar-experiment.md)에 있다.
+
+- `calendar-trial/active-plan.json`과 `<계획 해시>/registration.json`이 실제 운영 등록을 보존한다.
+  다른 계획으로 교체하거나 10/8 이후에 처음 등록하려 하면 실패한다. 수정을 통해 소급 등록하지 않는다.
+- `<계획 해시>/forecasts/`에는 v1·B1·B2와 공휴일 후보의 실제 발행 시각·입력·학습 계수를 보존한다.
+  예정일을 놓친 발행은 `missed`다. 수집 실패일에는 발행하지 않는다.
+- `<계획 해시>/outcomes/`에 대상일의 60일/90일 후 첫 정기 확인 결과를 별도로 보존한다.
+  당일 미실행과 값 미확보는 구분하고 나중에 들어온 값으로 덮어쓰지 않는다.
+- `/forecast/calendar`에서 모델 비교, 실제 등록·발행 상태와 결과 대기를 확인한다.
+  재시작 시 기존 당일 수집 결과를 재사용하며, 시험 처리 오류만 30초마다 재시도한다. API를 추가 호출하지 않는다.
+- `npm run forecast:trial:verify`와 앱 빌드는 고정한 계산 코드·달력·개발 결과 해시를 검사한다.
+  등록 이후 모델 수정은 기존 시험을 덮어쓰는 방식으로 하지 않으며 별도 시험의 근거·규칙을 먼저 기록한다.

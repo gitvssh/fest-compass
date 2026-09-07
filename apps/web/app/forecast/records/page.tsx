@@ -26,6 +26,7 @@ export default async function ForecastRecordsPage() {
   return <div className="space-y-6">
     <div>
       <Link href="/forecast" className="text-sm font-bold text-blue">← 2025년 축제 예측 실험</Link>
+      <Link href="/forecast/calendar" className="ml-5 inline-block text-sm font-bold text-blue underline">공휴일·축제 모델 비교와 겨울 시험 →</Link>
       <p className="mt-5 text-xs font-extrabold text-blue">{summary.generatedAt.slice(0, 10)} 조회 기록 · 논산시 외지인 방문 추세</p>
       <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">수집 자료와 사전 예측 기록</h1>
       <p className="mt-3 max-w-3xl text-muted">자료가 어디까지 제공됐는지 확인하고, 대상일 전에 발행한 예측을 나중에 들어오는 지역 관측과 비교합니다. 축제장 입장객과 시간별 혼잡은 별도 자료가 필요합니다.</p>

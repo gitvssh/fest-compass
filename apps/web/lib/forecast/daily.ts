@@ -9,6 +9,7 @@ import { koreanDay, validateHistoryDataset } from "./vintages";
 import { requestHash, type Request, type SnapshotRef } from "./prospective";
 import { archiveSnapshots, assessForecast, createImmutable, issueForecast, loadSnapshots, verifyStore } from "./store";
 import { publicSummary } from "./summary";
+import { runCalendarTrial, type TrialPlan } from "./calendar-trial";
 
 export const DAILY = { version: "nonsan-daily-v1", lookbackDays: 90, maxCalls: 20, maxStoredBytes: 256 * 1024 * 1024, minFreeBytes: 128 * 1024 * 1024 } as const;
 export type DailyResult = { schemaVersion: 1; date: string; startedAt: string; completedAt: string; status: "success" | "partial" | "failed";
@@ -107,24 +108,30 @@ export async function collectDaily(store: string, date: string, key: string, clo
   return { dataset, calls: attempts.length };
 }
 
-export async function publishDailySummary(store: string, requests: Request[], result: DailyResult, now: string) {
-  const { datasets } = await catalogue(store), verified = await verifyStore(store);
+export async function publishDailySummary(store: string, requests: Request[], result: DailyResult, now: string, trialPlan?: TrialPlan) {
+  const { datasets, refs } = await catalogue(store), verified = await verifyStore(store);
   const schedule = requests.map((r) => ({ requestId: r.requestId, start: r.target.start, horizonDays: r.horizonDays,
     dueDate: shiftDay(r.target.start, -r.horizonDays), status: verified.receipts.some((f) => f.request.requestId === r.requestId) ? "recorded"
       : shiftDay(r.target.start, -r.horizonDays) < koreanDay(now) ? "missed" : "upcoming" }));
-  const payload = { ...publicSummary(verified, datasets, now), automation: { ...result, mode: "daily" as const, schedule } };
+  let calendarTrial: Awaited<ReturnType<typeof runCalendarTrial>> | null = null, calendarTrialError: string | null = null;
+  if (trialPlan) {
+    try { await checkStorage(store); calendarTrial = await runCalendarTrial(store, trialPlan, datasets, refs, now, result.status !== "failed"); }
+    catch { calendarTrialError = "calendar-trial-processing-failed"; }
+  }
+  const payload = { ...publicSummary(verified, datasets, now), automation: { ...result, mode: "daily" as const, schedule },
+    ...(trialPlan ? { calendarTrial, calendarTrialError } : {}) };
   await atomicJson(join(store, "public-summary.json"), { schemaVersion: 1, checksum: hash(JSON.stringify(payload)), payload });
   return payload;
 }
 
-export async function runDaily(store: string, requests: Request[], key: string, clock: () => string = () => new Date().toISOString(), loader?: PageLoader) {
+export async function runDaily(store: string, requests: Request[], key: string, clock: () => string = () => new Date().toISOString(), loader?: PageLoader, trialPlan?: TrialPlan) {
   validatePlan(requests);
   const startedAt = clock(), date = dueDay(startedAt);
   if (!date) return null;
   const directory = join(store, "runs", date), resultPath = join(directory, "result.json");
   await mkdir(directory, { recursive: true, mode: 0o700 });
   const existing = await jsonOrNull<DailyResult>(resultPath);
-  if (existing) { await publishDailySummary(store, requests, existing, clock()); return existing; }
+  if (existing) { await publishDailySummary(store, requests, existing, clock(), trialPlan); return existing; }
   let error: string | null = null, snapshot: SnapshotRef | null = null, calls = 0, partial = false;
   try {
     await checkStorage(store);
@@ -156,6 +163,6 @@ export async function runDaily(store: string, requests: Request[], key: string, 
   await atomicJson(resultPath, result);
   // Only this completed run's temporary national identifiers are removed. Regional evidence and attempts remain.
   await rm(join(directory, "pages"), { recursive: true, force: true });
-  await publishDailySummary(store, requests, result, clock());
+  await publishDailySummary(store, requests, result, clock(), trialPlan);
   return result;
 }

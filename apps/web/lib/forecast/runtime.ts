@@ -5,8 +5,10 @@ import bundled from "../../data/nonsan-prospective-summary.json";
 import { hash } from "../kto/history";
 import type { publicSummary } from "./summary";
 import type { DailyResult } from "./daily";
+import type { TrialSummary } from "./calendar-trial";
 
-export type RuntimeSummary = ReturnType<typeof publicSummary> & { automation?: DailyResult & { mode: "daily"; schedule: { requestId: string; start: string; horizonDays: number; dueDate: string; status: string }[] } };
+export type RuntimeSummary = ReturnType<typeof publicSummary> & { calendarTrial?: TrialSummary | null; calendarTrialError?: string | null;
+  automation?: DailyResult & { mode: "daily"; schedule: { requestId: string; start: string; horizonDays: number; dueDate: string; status: string }[] } };
 export async function loadRuntimeSummary(directory = process.env.FORECAST_DATA_DIR, now = Date.now()): Promise<{ summary: RuntimeSummary; source: "bundled" | "live" | "unavailable"; workerAlive: boolean }> {
   if (!directory) return { summary: bundled as RuntimeSummary, source: "bundled", workerAlive: false };
   let workerAlive = false;

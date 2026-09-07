@@ -3,6 +3,7 @@ import { join, isAbsolute } from "node:path";
 import { setTimeout as sleep } from "node:timers/promises";
 import { atomicJson, bootstrap, dueDay, nextRunAt, runDaily, validatePlan } from "../lib/forecast/daily";
 import type { Request } from "../lib/forecast/prospective";
+import { validateTrialPlan, type TrialPlan } from "../lib/forecast/calendar-trial";
 
 async function main() {
   const store = process.env.FORECAST_DATA_DIR;
@@ -19,6 +20,8 @@ async function main() {
   const plan = JSON.parse(await readFile(process.env.FORECAST_PLAN_PATH ?? "/app/data/forecast-plan.json", "utf8"));
   if (plan.schemaVersion !== 1) throw new Error("invalid-daily-plan");
   const requests = plan.requests as Request[]; validatePlan(requests);
+  const trial = JSON.parse(await readFile(process.env.FORECAST_TRIAL_PATH ?? "/app/data/calendar-trial-plan.json", "utf8")) as TrialPlan;
+  validateTrialPlan(trial);
   await bootstrap(store, await readFile(process.env.FORECAST_SEED_PATH ?? "/app/data/forecast-seed.json.gz"));
   const controller = new AbortController();
   process.on("SIGTERM", () => controller.abort()); process.on("SIGINT", () => controller.abort());
@@ -30,10 +33,17 @@ async function main() {
     do {
       const date = dueDay(new Date().toISOString());
       if (date && date !== lastDate) {
-        const result = await runDaily(store, requests, process.env.TOUR_API_KEY ?? "");
+        const result = await runDaily(store, requests, process.env.TOUR_API_KEY ?? "", undefined, undefined, trial);
         if (result) {
           console.log(JSON.stringify({ event: "daily-forecast", date: result.date, status: result.status, calls: result.calls, error: result.error })); lastDate = result.date;
           if (process.argv.includes("--once") && result.status === "failed") process.exitCode = 1;
+          const summary = JSON.parse(await readFile(join(store, "public-summary.json"), "utf8"));
+          if (summary.payload.calendarTrialError) {
+            console.error("calendar-trial-processing-failed; preserved records require inspection");
+            // Retry preserved processing after 30s without repeating the day's API collection.
+            lastDate = null;
+            if (process.argv.includes("--once")) process.exitCode = 1;
+          }
         }
       }
       if (process.argv.includes("--once")) break;

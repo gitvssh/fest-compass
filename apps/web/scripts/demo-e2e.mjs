@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import prospectiveSummary from "../data/nonsan-prospective-summary.json" with { type: "json" };
+import calendarSummary from "../data/nonsan-calendar-summary.json" with { type: "json" };
 
 const baseUrl = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 const outputDir = join(dirname(fileURLToPath(import.meta.url)), "..", "output", "playwright");
@@ -70,6 +71,18 @@ try {
   await page.getByText("발행 당시 자료·모델 확인", { exact: true }).first().click();
   await expectVisible(page.getByText(/모델: nonsan-direct-ridge-v1/), "immutable model reference missing");
   await shot(page, "10-prospective-desktop");
+  await page.getByRole("link", { name: "공휴일·축제 모델 비교와 겨울 시험 →" }).click();
+  await page.waitForURL("**/forecast/calendar");
+  await expectVisible(page.getByRole("heading", { name: "공휴일과 축제를 반영하면 예측이 나아질까?" }), "calendar model comparison missing");
+  const improvement = (h) => `${(calendarSummary.runs.find((r) => r.horizonDays === h).selection.relativeMAEImprovement * 100).toFixed(1)}%`;
+  await expectVisible(page.getByText(improvement(28), { exact: true }), "D-28 calendar improvement differs from evidence");
+  await page.getByRole("link", { name: "시작 7일 전 예측", exact: true }).click();
+  await page.waitForURL("**/forecast/calendar?horizon=7");
+  await expectVisible(page.getByText(improvement(7), { exact: true }), "D-7 calendar comparison did not change");
+  await expectVisible(page.getByText(/발행 0\/26건/), "future trial falsely presented as issued");
+  await page.getByText("7일 전 발행 일정과 저장 결과", { exact: true }).click();
+  await expectVisible(page.getByText("2026-11-05 시작 · 2026-10-29 발행 · 발행 예정", { exact: true }), "future issuance dates missing");
+  await shot(page, "12-calendar-desktop");
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
 
   await page.getByRole("link", { name: "○○군 봄꽃축제" }).click();
@@ -174,6 +187,7 @@ try {
     ["logs", "/logs"],
     ["forecast", "/forecast"],
     ["prospective", "/forecast/records"],
+    ["calendar", "/forecast/calendar"],
   ]) {
     await mobile.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
     const dimensions = await mobile.evaluate(() => ({
@@ -190,6 +204,8 @@ try {
   await shot(mobile, "09-forecast-mobile");
   await mobile.goto(`${baseUrl}/forecast/records`, { waitUntil: "networkidle" });
   await shot(mobile, "11-prospective-mobile");
+  await mobile.goto(`${baseUrl}/forecast/calendar?horizon=7`, { waitUntil: "networkidle" });
+  await shot(mobile, "13-calendar-mobile");
   await mobile.close();
 
   if (browserErrors.length) throw new Error(`browser diagnostics failed:\n${browserErrors.join("\n")}`);

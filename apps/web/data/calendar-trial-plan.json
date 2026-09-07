@@ -1,0 +1,1031 @@
+{
+  "schemaVersion": 1,
+  "frozenAt": "2026-09-07T12:05:18.488Z",
+  "firstIssueAt": "2026-10-08T09:00:00+09:00",
+  "policy": {
+    "version": "nonsan-winter-calendar-trial-v1",
+    "model": {
+      "version": "nonsan-calendar-ridge-v1",
+      "lambda": 100,
+      "inputLagDays": 35
+    },
+    "primaryMaturityDays": 60,
+    "sensitivityMaturityDays": 90,
+    "minMAEImprovement": 0.1,
+    "missingCheck": "no-backfill",
+    "interval": "withheld",
+    "calendarUpdates": "fixed-registration-snapshot",
+    "target": "nonsan-daily-nonresident-estimate"
+  },
+  "calendar": {
+    "schemaVersion": 1,
+    "version": "nonsan-calendar-20260907-v1",
+    "sources": [
+      {
+        "id": "annual-2023",
+        "url": "https://www.kasi.re.kr/publication/post/newsMaterial/29168",
+        "publishedDate": "2022-06-13",
+        "precision": "day",
+        "contentUrl": "https://www.kasi.re.kr/file/1655084187891_1.hwp",
+        "collectedAt": "2026-09-07T11:47:40.321Z",
+        "contentHash": "619e6dab8efb4628b1d36ea81bae0df749b04de3b40344b090dcc27a7a9a0166",
+        "bytes": 278919
+      },
+      {
+        "id": "annual-2024",
+        "url": "https://www.kasi.re.kr/publication/post/newsMaterial/29633",
+        "publishedDate": "2023-06-22",
+        "precision": "day",
+        "contentUrl": "https://www.kasi.re.kr/file/1687408104839_1.hwp",
+        "collectedAt": "2026-09-07T11:47:40.168Z",
+        "contentHash": "db7e179369e266f2fd157dd4c377f5aa7cf32eafceadc4352931f577bf33098e",
+        "bytes": 101888
+      },
+      {
+        "id": "annual-2025",
+        "url": "https://www.kasi.re.kr/publication/post/newsMaterial/30071",
+        "publishedDate": "2024-06-20",
+        "precision": "day",
+        "contentUrl": "https://www.kasi.re.kr/file/1719809188552_1.hwp",
+        "collectedAt": "2026-09-07T11:47:40.173Z",
+        "contentHash": "2b3618f9f0a309c40af8977d87aea8af7889314c2a4986d59472eae96650bcc2",
+        "bytes": 212992
+      },
+      {
+        "id": "annual-2026",
+        "url": "https://www.kasi.re.kr/kor/post/newsMaterial/32031",
+        "publishedDate": "2025-06-30",
+        "precision": "day",
+        "contentUrl": "https://www.kasi.re.kr/file/1751247862077_1.hwp",
+        "collectedAt": "2026-09-07T11:47:40.206Z",
+        "contentHash": "573a7436c32026e04b648cae9ecdcf023126b23124f6c18a3e811ae56ab5542c",
+        "bytes": 207872
+      },
+      {
+        "id": "annual-2027-january",
+        "url": "https://www.kasa.go.kr/prog/plcyBrf/brief/kor/sub01_01_04/view.do?plcyBrfNo=431",
+        "publishedDate": "2026-06-29",
+        "precision": "day",
+        "contentUrl": "https://www.kasa.go.kr/prog/plcyBrf/brief/kor/sub01_01_04/view.do?plcyBrfNo=431",
+        "collectedAt": "2026-09-07T11:47:40.268Z",
+        "contentHash": "5bdaf5a069038fe0d3dbc2b97ecad5b6eae3a8a33b9294c82415b624b052160b",
+        "bytes": 944775
+      },
+      {
+        "id": "buddha-2023",
+        "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148914528",
+        "publishedDate": "2023-05-02",
+        "precision": "day",
+        "contentUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148914528",
+        "collectedAt": "2026-09-07T11:47:40.605Z",
+        "contentHash": "e72a6b9cca65f885045fca64f9e143cc434cf80f48c9941f10a9e4e942164b67",
+        "bytes": 157617
+      },
+      {
+        "id": "temporary-2023",
+        "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148919605",
+        "publishedDate": "2023-08-31",
+        "precision": "day",
+        "contentUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148919605",
+        "collectedAt": "2026-09-07T11:47:40.671Z",
+        "contentHash": "cab81405839d45084f8670ae0444176b388add88fa74cb3e2ad95442b1c2200b",
+        "bytes": 174495
+      },
+      {
+        "id": "temporary-2024",
+        "url": "https://www.mpm.go.kr/mpm/comm/noti/mpmNotice/index.jsp?boardId=bbs_0000000000000205&category=&cntId=834&mode=view&pageIdx=15",
+        "publishedDate": "2024-09-04",
+        "precision": "day",
+        "contentUrl": "https://www.mpm.go.kr/mpm/comm/noti/mpmNotice/index.jsp?boardId=bbs_0000000000000205&category=&cntId=834&mode=view&pageIdx=15",
+        "collectedAt": "2026-09-07T11:47:41.049Z",
+        "contentHash": "343620a08775f611b55afe40cabbc6714bb9a5983d97adf3c592d5fd28a8c997",
+        "bytes": 126859
+      },
+      {
+        "id": "temporary-2025",
+        "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148938602",
+        "publishedDate": "2025-01-15",
+        "precision": "day",
+        "contentUrl": "https://www.korea.kr/news/policyNewsView.do?newsId=148938602",
+        "collectedAt": "2026-09-07T11:47:40.691Z",
+        "contentHash": "14bdfcb782205d2f0cb5138fa78b6198f7b6422a62be09ba57c9022a6b5b0151",
+        "bytes": 156096
+      },
+      {
+        "id": "election-2025",
+        "url": "https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=116942",
+        "publishedDate": "2025-04-08",
+        "precision": "day",
+        "contentUrl": "https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=116942",
+        "collectedAt": "2026-09-07T11:47:40.632Z",
+        "contentHash": "152be0ef8cf7b2b54118c9da99f0bae47f119603e373a1fe73244ec1835653f0",
+        "bytes": 165058
+      },
+      {
+        "id": "additional-2026",
+        "url": "https://www.mpm.go.kr/mpm/comm/newsPress/newsPressRelease/?boardId=bbs_0000000000000029&category=&cntId=4250&mode=view&pageIdx=1",
+        "publishedDate": "2026-04-29",
+        "precision": "day",
+        "contentUrl": "https://www.mpm.go.kr/mpm/comm/newsPress/newsPressRelease/?boardId=bbs_0000000000000029&category=&cntId=4250&mode=view&pageIdx=1",
+        "collectedAt": "2026-09-07T11:47:41.921Z",
+        "contentHash": "a6aa2de0bd6c47bf555ef9f3fdf66e9bb990f96679a684fa847342b312b39760",
+        "bytes": 133093
+      },
+      {
+        "id": "festival-2023",
+        "url": "https://www.nonsan.go.kr/kor/html/sub03/030106.html?mode=V&no=73d791f11d610a1ef16e9cc630e93566",
+        "publishedDate": "2023-01-30",
+        "precision": "day",
+        "contentUrl": "https://www.nonsan.go.kr/kor/html/sub03/030106.html?mode=V&no=73d791f11d610a1ef16e9cc630e93566",
+        "collectedAt": "2026-09-07T11:47:41.494Z",
+        "contentHash": "799ea1ffb63c87e6a289b30383192c70b3e3925b2358df6136617cf96fbc21f1",
+        "bytes": 87617
+      },
+      {
+        "id": "festival-2024",
+        "url": "https://seongdong.nonsan.go.kr/nongup/html/sub04/0403.html?mode=V&no=59d00e6ba8af3a10bd2f9a8b49b28d54",
+        "publishedDate": "2024-02-06",
+        "precision": "day",
+        "contentUrl": "https://seongdong.nonsan.go.kr/nongup/html/sub04/0403.html?mode=V&no=59d00e6ba8af3a10bd2f9a8b49b28d54",
+        "collectedAt": "2026-09-07T11:47:42.608Z",
+        "contentHash": "37a847d0d5a0fbd559aec06ddb78069b940a8b1cbc35978453dcb568916666c1",
+        "bytes": 1396182
+      },
+      {
+        "id": "festival-2025",
+        "url": "https://www.nonsan.go.kr/kor/html/sub03/030106.html?mode=V&no=0798e36ec095d2d489ceeabf418dc89f",
+        "publishedDate": "2025-01-22",
+        "precision": "day",
+        "contentUrl": "https://www.nonsan.go.kr/kor/html/sub03/030106.html?mode=V&no=0798e36ec095d2d489ceeabf418dc89f",
+        "collectedAt": "2026-09-07T11:47:41.493Z",
+        "contentHash": "2f513267d93aef87f2b05da1053bd9159a360607219ec7c550ae351441b905d6",
+        "bytes": 90263
+      },
+      {
+        "id": "festival-2026",
+        "url": "https://www.nonsan.go.kr/cntf/html/sub05/0505.html?mode=V&no=5fd6a8d12333f192c2cfe1d9c6da6be7",
+        "publishedDate": "2026-02-06",
+        "precision": "day",
+        "contentUrl": "https://www.nonsan.go.kr/cntf/html/sub05/0505.html?mode=V&no=5fd6a8d12333f192c2cfe1d9c6da6be7",
+        "collectedAt": "2026-09-07T11:47:41.588Z",
+        "contentHash": "295de6bc682efdcc2a4e3b9cd96432a7d50f26b1fd638c910207020075891ccd",
+        "bytes": 34391
+      }
+    ],
+    "holidayCoverage": [
+      {
+        "sourceId": "annual-2023",
+        "start": "2023-01-01",
+        "end": "2023-12-31"
+      },
+      {
+        "sourceId": "annual-2024",
+        "start": "2024-01-01",
+        "end": "2024-12-31"
+      },
+      {
+        "sourceId": "annual-2025",
+        "start": "2025-01-01",
+        "end": "2025-12-31"
+      },
+      {
+        "sourceId": "annual-2026",
+        "start": "2026-01-01",
+        "end": "2026-12-31"
+      },
+      {
+        "sourceId": "annual-2027-january",
+        "start": "2027-01-01",
+        "end": "2027-02-01"
+      }
+    ],
+    "holidays": [
+      {
+        "date": "2023-01-01",
+        "label": "신정",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-01-21",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-01-22",
+        "label": "설날",
+        "category": "lunar",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-01-23",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-01-24",
+        "label": "설 대체공휴일",
+        "category": "lunar",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-03-01",
+        "label": "삼일절",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-05-05",
+        "label": "어린이날",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-05-27",
+        "label": "부처님오신날",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-05-29",
+        "label": "부처님오신날 대체공휴일",
+        "category": "public",
+        "sourceId": "buddha-2023"
+      },
+      {
+        "date": "2023-06-06",
+        "label": "현충일",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-08-15",
+        "label": "광복절",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-09-28",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-09-29",
+        "label": "추석",
+        "category": "lunar",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-09-30",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-10-02",
+        "label": "임시공휴일",
+        "category": "public",
+        "sourceId": "temporary-2023"
+      },
+      {
+        "date": "2023-10-03",
+        "label": "개천절",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-10-09",
+        "label": "한글날",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2023-12-25",
+        "label": "성탄절",
+        "category": "public",
+        "sourceId": "annual-2023"
+      },
+      {
+        "date": "2024-01-01",
+        "label": "신정",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-02-09",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-02-10",
+        "label": "설날",
+        "category": "lunar",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-02-11",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-02-12",
+        "label": "설 대체공휴일",
+        "category": "lunar",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-03-01",
+        "label": "삼일절",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-04-10",
+        "label": "국회의원 선거",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-05-05",
+        "label": "어린이날",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-05-06",
+        "label": "어린이날 대체공휴일",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-05-15",
+        "label": "부처님오신날",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-06-06",
+        "label": "현충일",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-08-15",
+        "label": "광복절",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-09-16",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-09-17",
+        "label": "추석",
+        "category": "lunar",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-09-18",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-10-01",
+        "label": "임시공휴일",
+        "category": "public",
+        "sourceId": "temporary-2024"
+      },
+      {
+        "date": "2024-10-03",
+        "label": "개천절",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-10-09",
+        "label": "한글날",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2024-12-25",
+        "label": "성탄절",
+        "category": "public",
+        "sourceId": "annual-2024"
+      },
+      {
+        "date": "2025-01-01",
+        "label": "신정",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-01-27",
+        "label": "임시공휴일",
+        "category": "public",
+        "sourceId": "temporary-2025"
+      },
+      {
+        "date": "2025-01-28",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-01-29",
+        "label": "설날",
+        "category": "lunar",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-01-30",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-03-01",
+        "label": "삼일절",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-03-03",
+        "label": "삼일절 대체공휴일",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-05-05",
+        "label": "어린이날·부처님오신날",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-05-06",
+        "label": "대체공휴일",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-06-03",
+        "label": "대통령 선거",
+        "category": "public",
+        "sourceId": "election-2025"
+      },
+      {
+        "date": "2025-06-06",
+        "label": "현충일",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-08-15",
+        "label": "광복절",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-10-03",
+        "label": "개천절",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-10-05",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-10-06",
+        "label": "추석",
+        "category": "lunar",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-10-07",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-10-08",
+        "label": "추석 대체공휴일",
+        "category": "lunar",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-10-09",
+        "label": "한글날",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2025-12-25",
+        "label": "성탄절",
+        "category": "public",
+        "sourceId": "annual-2025"
+      },
+      {
+        "date": "2026-01-01",
+        "label": "신정",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-02-16",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-02-17",
+        "label": "설날",
+        "category": "lunar",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-02-18",
+        "label": "설 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-03-01",
+        "label": "삼일절",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-03-02",
+        "label": "삼일절 대체공휴일",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-05-01",
+        "label": "노동절",
+        "category": "public",
+        "sourceId": "additional-2026"
+      },
+      {
+        "date": "2026-05-05",
+        "label": "어린이날",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-05-24",
+        "label": "부처님오신날",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-05-25",
+        "label": "부처님오신날 대체공휴일",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-06-03",
+        "label": "지방선거",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-06-06",
+        "label": "현충일",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-07-17",
+        "label": "제헌절",
+        "category": "public",
+        "sourceId": "additional-2026"
+      },
+      {
+        "date": "2026-08-15",
+        "label": "광복절",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-08-17",
+        "label": "광복절 대체공휴일",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-09-24",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-09-25",
+        "label": "추석",
+        "category": "lunar",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-09-26",
+        "label": "추석 연휴",
+        "category": "lunar",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-10-03",
+        "label": "개천절",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-10-05",
+        "label": "개천절 대체공휴일",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-10-09",
+        "label": "한글날",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2026-12-25",
+        "label": "성탄절",
+        "category": "public",
+        "sourceId": "annual-2026"
+      },
+      {
+        "date": "2027-01-01",
+        "label": "신정",
+        "category": "public",
+        "sourceId": "annual-2027-january"
+      }
+    ],
+    "festivals": [
+      {
+        "year": 2023,
+        "sourceId": "festival-2023",
+        "start": "2023-03-08",
+        "end": "2023-03-12"
+      },
+      {
+        "year": 2024,
+        "sourceId": "festival-2024",
+        "start": "2024-03-21",
+        "end": "2024-03-24"
+      },
+      {
+        "year": 2025,
+        "sourceId": "festival-2025",
+        "start": "2025-03-27",
+        "end": "2025-03-30"
+      },
+      {
+        "year": 2026,
+        "sourceId": "festival-2026",
+        "start": "2026-03-26",
+        "end": "2026-03-29"
+      }
+    ],
+    "limitations": [
+      "현재 확보한 공식 게시물의 게시일로 재구성했으며 과거 원본 수집본은 아님",
+      "추가 공휴일은 확인한 게시물 다음 날부터 사용하며 최초 공표 시각이라고 단정하지 않음",
+      "2027년 공휴일 범위는 1월 1일~2월 1일만 확인함",
+      "2027년 24일 엑스포는 기존 논산딸기축제로 변환하지 않음",
+      "이 고정 버전 이후 일정 변경은 자동 반영되지 않음"
+    ]
+  },
+  "calendarHash": "845ecaba7b86bb0dc1fc6f3fcea34ebaf476accb23c276614c668e18f67cbc58",
+  "developmentReportHash": "abbeddc425884c6cea20c593bfd97be8a3cd588923d17c24963058d4830b727e",
+  "codeHashes": {
+    "lib/forecast/calendar.ts": "4d5aa536d6bf0177f31781de8b64887bd779f76c40de5537f00c1bef19849fe1",
+    "lib/forecast/calendar-model.ts": "0a75094a6b8d937733c1a06dc0616c838235e227b854914e7838bf1adf7e00c7",
+    "lib/forecast/calendar-evaluation.ts": "45ac9937143eb95d51ca94d531ade269e926b35d10ae13ea12d04892ea5cadee",
+    "lib/forecast/calendar-trial.ts": "4d717e5a34e396204d50bff127b105f07587b7690d8a459f51bd2c50c1994724",
+    "lib/forecast/model.ts": "f69db8cf1a918887633853ec1e32343f1cb30cfecc03a1b03a9c7662e34e77dd",
+    "lib/forecast/prospective.ts": "e18cf85f2d7b933e3d5abf2a76b3b653bde37e7a17a454a60abee8134800afb5",
+    "lib/forecast/vintages.ts": "47eaf65341fc57931407e20564c9dee253a896bcb564be942087a9fc61bc2280",
+    "lib/forecast/store.ts": "bab4b594cbc8f1fe74d1a3652a79720380835255a92ea963297aecf95ff03472",
+    "lib/forecast/daily.ts": "2c68528d3e269a42a6185ba11151a2d4312b6af14c5e9e7828f65a3dedb2f3f3",
+    "lib/kto/history.ts": "1cc2911fa07f24b8714e713dee5b8c3059b82828f07670bb4fddb78dac323cc2",
+    "lib/kto/wire.ts": "f755502671d43200fc0c7f181092be9dd1834c57dfd0daf28be59fb6514ec4d9",
+    "lib/kto/security.ts": "67befd75e6d72cc37b555f6bfe6dfc3fa6e15119c73df300d07829cc6cfe3dcd",
+    "scripts/forecast-worker.ts": "c14d57ed80225b2126713c101335b6f93209c6f676634986b67ceda060f54cd4",
+    "scripts/register-calendar-trial.ts": "169cca1a2016f28cd6cb7de3b9a783e1a3d0a00c19607e5d31b6395f01ade742"
+  },
+  "requests": [
+    {
+      "requestId": "winter-20261105-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-05",
+        "end": "2026-11-08",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261105-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-05",
+        "end": "2026-11-08",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261112-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-12",
+        "end": "2026-11-15",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261112-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-12",
+        "end": "2026-11-15",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261119-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-19",
+        "end": "2026-11-22",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261119-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-19",
+        "end": "2026-11-22",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261126-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-26",
+        "end": "2026-11-29",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261126-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-11-26",
+        "end": "2026-11-29",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261203-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-03",
+        "end": "2026-12-06",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261203-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-03",
+        "end": "2026-12-06",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261210-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-10",
+        "end": "2026-12-13",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261210-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-10",
+        "end": "2026-12-13",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261217-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-17",
+        "end": "2026-12-20",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261217-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-17",
+        "end": "2026-12-20",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261224-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-24",
+        "end": "2026-12-27",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261224-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-24",
+        "end": "2026-12-27",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261231-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-31",
+        "end": "2027-01-03",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20261231-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2026-12-31",
+        "end": "2027-01-03",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270107-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-07",
+        "end": "2027-01-10",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270107-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-07",
+        "end": "2027-01-10",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270114-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-14",
+        "end": "2027-01-17",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270114-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-14",
+        "end": "2027-01-17",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270121-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-21",
+        "end": "2027-01-24",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270121-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-21",
+        "end": "2027-01-24",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270128-d28",
+      "horizonDays": 28,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-28",
+        "end": "2027-01-31",
+        "schedule": null
+      }
+    },
+    {
+      "requestId": "winter-20270128-d7",
+      "horizonDays": 7,
+      "target": {
+        "kind": "regional-check",
+        "label": "겨울 공휴일 지역 예측 비교",
+        "start": "2027-01-28",
+        "end": "2027-01-31",
+        "schedule": null
+      }
+    }
+  ],
+  "choices": [
+    {
+      "horizonDays": 28,
+      "candidate": "holiday",
+      "reference": "ridge"
+    },
+    {
+      "horizonDays": 7,
+      "candidate": "holiday",
+      "reference": "ridge"
+    }
+  ],
+  "id": "411d2207f62d531413671b6c16e3193e225db74ecab95b97cce23a5b481ef351"
+}

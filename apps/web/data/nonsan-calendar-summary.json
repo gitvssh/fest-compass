@@ -1,0 +1,2822 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-07T11:54:21.325Z",
+  "mode": "dated-calendar-revised-series-development",
+  "policy": {
+    "version": "nonsan-calendar-development-v1",
+    "lambda": 100,
+    "inputLagDays": 35,
+    "mode": "revised-series-experiment",
+    "evaluationStart": "2024-01-01",
+    "evaluationEnd": "2026-08-08",
+    "initialTrainingYear": 2023,
+    "window": "Thursday-Sunday",
+    "horizons": [
+      28,
+      7
+    ],
+    "minimumRelativeMAEImprovement": 0.1
+  },
+  "calendarHash": "845ecaba7b86bb0dc1fc6f3fcea34ebaf476accb23c276614c668e18f67cbc58",
+  "snapshots": [
+    {
+      "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170",
+      "generatedAt": "2026-09-07T08:58:14.039Z"
+    },
+    {
+      "snapshotId": "7a01f2473f537abbaaff47a436f944242fb7981ef2053b897fa658741a28eb72",
+      "generatedAt": "2026-09-07T09:27:51.234Z"
+    }
+  ],
+  "observations": 1316,
+  "range": {
+    "start": "2023-01-01",
+    "end": "2026-08-08"
+  },
+  "runs": [
+    {
+      "horizonDays": 28,
+      "comparison": {
+        "expected": 540,
+        "observed": 540,
+        "common": 436,
+        "methods": {
+          "B1": {
+            "available": 540,
+            "unavailable": {},
+            "n": 436,
+            "mae": 8791.33371559633,
+            "wape": 0.16697846987416873,
+            "bias": -3440.483944954128,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "B2": {
+            "available": 540,
+            "unavailable": {},
+            "n": 436,
+            "mae": 7125.036697247707,
+            "wape": 0.13532960572217587,
+            "bias": -640.933486238532,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "ridge": {
+            "available": 540,
+            "unavailable": {},
+            "n": 436,
+            "mae": 6896.249423691791,
+            "wape": 0.1309841275386693,
+            "bias": -1534.7872836463966,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "holiday": {
+            "available": 540,
+            "unavailable": {},
+            "n": 436,
+            "mae": 6457.300259004554,
+            "wape": 0.12264693295100512,
+            "bias": -2366.1842016008977,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "festival": {
+            "available": 436,
+            "unavailable": {
+              "festival-calendar-unknown": 104
+            },
+            "n": 436,
+            "mae": 6234.777147268265,
+            "wape": 0.11842043331950482,
+            "bias": -1267.9287308109542,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "combined": {
+            "available": 436,
+            "unavailable": {
+              "festival-calendar-unknown": 104
+            },
+            "n": 436,
+            "mae": 5869.989796399696,
+            "wape": 0.11149183344512802,
+            "bias": -1784.516759515964,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          }
+        }
+      },
+      "folds": [
+        {
+          "year": 2024,
+          "expected": 208,
+          "observed": 208,
+          "common": 172,
+          "methods": {
+            "B1": {
+              "available": 208,
+              "unavailable": {},
+              "n": 172,
+              "mae": 9032.706395348838,
+              "wape": 0.1758883711346742,
+              "bias": -2207.7267441860463,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 208,
+              "unavailable": {},
+              "n": 172,
+              "mae": 8095.459302325581,
+              "wape": 0.15763793130775205,
+              "bias": 264.86046511627904,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 208,
+              "unavailable": {},
+              "n": 172,
+              "mae": 7272.137017618135,
+              "wape": 0.14160587964595567,
+              "bias": -813.3038840250479,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 208,
+              "unavailable": {},
+              "n": 172,
+              "mae": 6947.032240186848,
+              "wape": 0.13527531300870346,
+              "bias": -2746.174168945512,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 172,
+              "unavailable": {
+                "festival-calendar-unknown": 36
+              },
+              "n": 172,
+              "mae": 7248.225136136999,
+              "wape": 0.14114025819205253,
+              "bias": -1330.7536082723761,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 172,
+              "unavailable": {
+                "festival-calendar-unknown": 36
+              },
+              "n": 172,
+              "mae": 7073.713676089142,
+              "wape": 0.13774210318637709,
+              "bias": -2829.47847230193,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        {
+          "year": 2025,
+          "expected": 208,
+          "observed": 208,
+          "common": 180,
+          "methods": {
+            "B1": {
+              "available": 208,
+              "unavailable": {},
+              "n": 180,
+              "mae": 8434.708333333334,
+              "wape": 0.15876690433725335,
+              "bias": -3576.6694444444443,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 208,
+              "unavailable": {},
+              "n": 180,
+              "mae": 6954.422222222222,
+              "wape": 0.13090341053204857,
+              "bias": -1966.9611111111112,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 208,
+              "unavailable": {},
+              "n": 180,
+              "mae": 6273.4160929391965,
+              "wape": 0.11808480072266436,
+              "bias": -2300.2306771194344,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 208,
+              "unavailable": {},
+              "n": 180,
+              "mae": 5683.502863760333,
+              "wape": 0.10698083677714312,
+              "bias": -2597.823947638625,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 180,
+              "unavailable": {
+                "festival-calendar-unknown": 28
+              },
+              "n": 180,
+              "mae": 5523.730867901185,
+              "wape": 0.10397344112339006,
+              "bias": -1654.456429372127,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 180,
+              "unavailable": {
+                "festival-calendar-unknown": 28
+              },
+              "n": 180,
+              "mae": 4929.476932965122,
+              "wape": 0.0927877718730172,
+              "bias": -1605.5927856610163,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        {
+          "year": 2026,
+          "expected": 124,
+          "observed": 124,
+          "common": 84,
+          "methods": {
+            "B1": {
+              "available": 124,
+              "unavailable": {},
+              "n": 84,
+              "mae": 9061.291666666666,
+              "wape": 0.16693981918966203,
+              "bias": -5672.875,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 124,
+              "unavailable": {},
+              "n": 84,
+              "mae": 5503.583333333333,
+              "wape": 0.1013947282970405,
+              "bias": 345.8333333333333,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 124,
+              "unavailable": {},
+              "n": 84,
+              "mae": 7461.2176782171955,
+              "wape": 0.1374610128397392,
+              "bias": -1371.8745920955075,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 124,
+              "unavailable": {},
+              "n": 84,
+              "mae": 7112.653001630855,
+              "wape": 0.1310392656732414,
+              "bias": -1091.7386221953627,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 84,
+              "unavailable": {
+                "festival-calendar-unknown": 40
+              },
+              "n": 84,
+              "mae": 5683.29234013317,
+              "wape": 0.10470557957581351,
+              "bias": -311.01367528266957,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 84,
+              "unavailable": {
+                "festival-calendar-unknown": 40
+              },
+              "n": 84,
+              "mae": 5420.606559633499,
+              "wape": 0.09986601383689914,
+              "bias": -28.241767786248687,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        }
+      ],
+      "groups": {
+        "festival": {
+          "expected": 12,
+          "observed": 12,
+          "common": 12,
+          "methods": {
+            "B1": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 49149.916666666664,
+              "wape": 0.5487696856804178,
+              "bias": -49149.916666666664,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 24084.375,
+              "wape": 0.2689073714650445,
+              "bias": -24084.375,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 36913.66295979647,
+              "wape": 0.4121492078439006,
+              "bias": -36913.66295979647,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 39681.03258583295,
+              "wape": 0.4430475015305615,
+              "bias": -39681.03258583295,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 16511.76368733186,
+              "wape": 0.18435749200103307,
+              "bias": -14165.841013078505,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 17678.283103101585,
+              "wape": 0.19738193917300978,
+              "bias": -15681.221541974146,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        "holiday-window": {
+          "expected": 76,
+          "observed": 76,
+          "common": 56,
+          "methods": {
+            "B1": {
+              "available": 76,
+              "unavailable": {},
+              "n": 56,
+              "mae": 10654.1875,
+              "wape": 0.19020176447682158,
+              "bias": -5974.25,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 76,
+              "unavailable": {},
+              "n": 56,
+              "mae": 11193.125,
+              "wape": 0.19982303906418236,
+              "bias": -4120.125,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 76,
+              "unavailable": {},
+              "n": 56,
+              "mae": 9156.430311633396,
+              "wape": 0.16346335199955184,
+              "bias": -4618.9154785207775,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 76,
+              "unavailable": {},
+              "n": 56,
+              "mae": 6663.434774755728,
+              "wape": 0.11895764474153957,
+              "bias": -27.689498105771754,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 56,
+              "unavailable": {
+                "festival-calendar-unknown": 20
+              },
+              "n": 56,
+              "mae": 9325.727764375613,
+              "wape": 0.16648570112124705,
+              "bias": -5141.389677143905,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 56,
+              "unavailable": {
+                "festival-calendar-unknown": 20
+              },
+              "n": 56,
+              "mae": 6799.278075685137,
+              "wape": 0.12138276026809938,
+              "bias": -405.5952317758179,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        "other": {
+          "expected": 452,
+          "observed": 452,
+          "common": 368,
+          "methods": {
+            "B1": {
+              "available": 452,
+              "unavailable": {},
+              "n": 368,
+              "mae": 7191.815217391304,
+              "wape": 0.14119980094504422,
+              "bias": -1564.3858695652175,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 452,
+              "unavailable": {},
+              "n": 368,
+              "mae": 5952.957880434783,
+              "wape": 0.11687681653986094,
+              "bias": 652.96875,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 452,
+              "unavailable": {},
+              "n": 368,
+              "mae": 5573.480151523345,
+              "wape": 0.10942637764985726,
+              "bias": 88.19556153503315,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 452,
+              "unavailable": {},
+              "n": 368,
+              "mae": 5342.549387254551,
+              "wape": 0.1048924210671034,
+              "bias": -1505.2535569947634,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 368,
+              "unavailable": {
+                "festival-calendar-unknown": 84
+              },
+              "n": 368,
+              "mae": 5429.295970532466,
+              "wape": 0.10659555162889602,
+              "bias": -257.90492542547497,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 368,
+              "unavailable": {
+                "festival-calendar-unknown": 84
+              },
+              "n": 368,
+              "mae": 5343.523319985546,
+              "wape": 0.10491154268015845,
+              "bias": -1541.1992273527817,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        }
+      },
+      "selection": {
+        "eligible": [
+          "holiday"
+        ],
+        "candidate": "holiday",
+        "reference": "ridge",
+        "comparison": {
+          "expected": 540,
+          "observed": 540,
+          "common": 540,
+          "methods": {
+            "B1": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 9355.610185185185,
+              "wape": 0.18226832507986504,
+              "bias": -1799.6805555555557,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 7884.177777777778,
+              "wape": 0.1536015128615583,
+              "bias": -531.6111111111111,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 7404.7151996442035,
+              "wape": 0.14426050363553625,
+              "bias": -516.4669333048524,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 6546.1096102816,
+              "wape": 0.12753293594303577,
+              "bias": -966.1618879678003,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        "relativeMAEImprovement": 0.11595389778176202,
+        "status": "development-selection-only"
+      },
+      "stability": [
+        {
+          "year": 2024,
+          "candidate": "holiday",
+          "trainedThrough": "2024-10-24",
+          "samples": 552,
+          "skippedCalendarRows": 0,
+          "coefficients": {
+            "public-holiday": 10580.041679609043,
+            "lunar-holiday": 37792.32944764876,
+            "after-public-holiday": -18.07104508682089,
+            "before-public-holiday": 10373.481916912995
+          }
+        },
+        {
+          "year": 2024,
+          "candidate": "festival",
+          "trainedThrough": "2024-10-24",
+          "samples": 487,
+          "skippedCalendarRows": 65,
+          "coefficients": {
+            "strawberry-festival": 7749.114095066147,
+            "festival-progress": 20252.169757436637,
+            "festival-weekend": 31106.0163338174
+          }
+        },
+        {
+          "year": 2024,
+          "candidate": "combined",
+          "trainedThrough": "2024-10-24",
+          "samples": 487,
+          "skippedCalendarRows": 65,
+          "coefficients": {
+            "public-holiday": 10307.390291193251,
+            "lunar-holiday": 43339.41773528113,
+            "after-public-holiday": 1051.0689940074226,
+            "before-public-holiday": 9611.235917308495,
+            "strawberry-festival": 8577.559728320362,
+            "festival-progress": 20761.580715823802,
+            "festival-weekend": 31037.830533991855
+          }
+        },
+        {
+          "year": 2025,
+          "candidate": "holiday",
+          "trainedThrough": "2025-10-23",
+          "samples": 916,
+          "skippedCalendarRows": 0,
+          "coefficients": {
+            "public-holiday": 11660.013410182975,
+            "lunar-holiday": 34578.49097556939,
+            "after-public-holiday": 527.0128264753969,
+            "before-public-holiday": 11664.016364074114
+          }
+        },
+        {
+          "year": 2025,
+          "candidate": "festival",
+          "trainedThrough": "2025-10-23",
+          "samples": 801,
+          "skippedCalendarRows": 115,
+          "coefficients": {
+            "strawberry-festival": 7185.648828332608,
+            "festival-progress": 19956.789052991247,
+            "festival-weekend": 29503.93178034923
+          }
+        },
+        {
+          "year": 2025,
+          "candidate": "combined",
+          "trainedThrough": "2025-10-23",
+          "samples": 801,
+          "skippedCalendarRows": 115,
+          "coefficients": {
+            "public-holiday": 11829.07414802244,
+            "lunar-holiday": 40011.95961790906,
+            "after-public-holiday": 1118.3380842398117,
+            "before-public-holiday": 10050.287149870595,
+            "strawberry-festival": 8022.836284336289,
+            "festival-progress": 20592.132193559108,
+            "festival-weekend": 29328.24231758002
+          }
+        },
+        {
+          "year": 2026,
+          "candidate": "holiday",
+          "trainedThrough": "2026-05-28",
+          "samples": 1133,
+          "skippedCalendarRows": 0,
+          "coefficients": {
+            "public-holiday": 10979.078236744721,
+            "lunar-holiday": 36792.32521251557,
+            "after-public-holiday": 203.1271800437719,
+            "before-public-holiday": 12178.49592842999
+          }
+        },
+        {
+          "year": 2026,
+          "candidate": "festival",
+          "trainedThrough": "2026-05-28",
+          "samples": 953,
+          "skippedCalendarRows": 180,
+          "coefficients": {
+            "strawberry-festival": 9470.532438796274,
+            "festival-progress": 19969.076873199083,
+            "festival-weekend": 29563.703053328205
+          }
+        },
+        {
+          "year": 2026,
+          "candidate": "combined",
+          "trainedThrough": "2026-05-28",
+          "samples": 953,
+          "skippedCalendarRows": 180,
+          "coefficients": {
+            "public-holiday": 12082.502490780353,
+            "lunar-holiday": 40540.94092147713,
+            "after-public-holiday": 967.3856572879379,
+            "before-public-holiday": 10057.550885582941,
+            "strawberry-festival": 10149.84058434923,
+            "festival-progress": 20495.771699520825,
+            "festival-weekend": 29437.92416559989
+          }
+        }
+      ],
+      "sensitivity": [
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2023,
+          "modelId": "90799338dbe610c828b860f444cdec70e239f243a94f82e9c304a0b0ab1238d1",
+          "coefficients": {
+            "public-holiday": 10979.078236744721,
+            "lunar-holiday": 36792.32521251557,
+            "after-public-holiday": 203.1271800437719,
+            "before-public-holiday": 12178.49592842999
+          },
+          "trainingSamples": 1133
+        },
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2024,
+          "modelId": "a47322a9bc23d4ed95bec896259b8848e62e6c944171ddbe03b05a9633e1c12e",
+          "coefficients": {
+            "public-holiday": 11057.403056923768,
+            "lunar-holiday": 36736.83924374014,
+            "after-public-holiday": 328.0147494315304,
+            "before-public-holiday": 12324.643246893786
+          },
+          "trainingSamples": 1129
+        },
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2025,
+          "modelId": "245387b7181e04928b87161a1044ed6db87addbf33db1f0caa8dc01083cd91c3",
+          "coefficients": {
+            "public-holiday": 11047.539429105955,
+            "lunar-holiday": 36738.27472998132,
+            "after-public-holiday": 296.3121867210894,
+            "before-public-holiday": 12295.261132028003
+          },
+          "trainingSamples": 1129
+        },
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2026,
+          "modelId": "2ad1893e8eeb0b2c35e558705abffa2eccd4d4548d1b6ef8f558a344b8739f5c",
+          "coefficients": {
+            "public-holiday": 11071.76623225765,
+            "lunar-holiday": 36714.10863227906,
+            "after-public-holiday": 331.9382560171728,
+            "before-public-holiday": 12330.628392396266
+          },
+          "trainingSamples": 1129
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2023,
+          "modelId": "64b6dc2f93809f479c551aa319cfc3656a8ca1b8a009dc237c81a6b1883350e1",
+          "coefficients": {
+            "strawberry-festival": 9470.532438796274,
+            "festival-progress": 19969.076873199083,
+            "festival-weekend": 29563.703053328205
+          },
+          "trainingSamples": 953
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2024,
+          "modelId": "bffd87db69faa56b760e48f25df17cd97070dc5fe05101826de0a479f2d2f60c",
+          "coefficients": {
+            "strawberry-festival": 9743.473659627956,
+            "festival-progress": 20210.970213613466,
+            "festival-weekend": 27315.143273924026
+          },
+          "trainingSamples": 949
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2025,
+          "modelId": "6efa885938f72bf86640dc3f73ec0952f6873c46b09e819ca7ea97031c132cea",
+          "coefficients": {
+            "strawberry-festival": 10720.609964721552,
+            "festival-progress": 19586.612522986772,
+            "festival-weekend": 31445.473641679688
+          },
+          "trainingSamples": 949
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2026,
+          "modelId": "c0a410985081255b193670c1ae174fb349653b363f2444b98de2417eda56c98b",
+          "coefficients": {
+            "strawberry-festival": 7967.760242929004,
+            "festival-progress": 20098.595161971487,
+            "festival-weekend": 29948.575263413284
+          },
+          "trainingSamples": 949
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2023,
+          "modelId": "66875f37319fa318d012fa6f6086927638f87e459720d4e3a3bf1191587a9fa1",
+          "coefficients": {
+            "public-holiday": 12082.502490780353,
+            "lunar-holiday": 40540.94092147713,
+            "after-public-holiday": 967.3856572879379,
+            "before-public-holiday": 10057.550885582941,
+            "strawberry-festival": 10149.84058434923,
+            "festival-progress": 20495.771699520825,
+            "festival-weekend": 29437.92416559989
+          },
+          "trainingSamples": 953
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2024,
+          "modelId": "7c6aac6d703db178f15d68e7e98608024ce5d89c341f9295f4b130d8468e5505",
+          "coefficients": {
+            "public-holiday": 12081.263634560903,
+            "lunar-holiday": 40519.7032565998,
+            "after-public-holiday": 971.6576384822241,
+            "before-public-holiday": 10059.148027689076,
+            "strawberry-festival": 10491.915318965583,
+            "festival-progress": 20772.65331454095,
+            "festival-weekend": 27181.49461321465
+          },
+          "trainingSamples": 949
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2025,
+          "modelId": "c963198685377d33d41acd886ab211a2b94104a2c8dad0859622f484fbabf9a3",
+          "coefficients": {
+            "public-holiday": 12081.246130839305,
+            "lunar-holiday": 40518.16901359681,
+            "after-public-holiday": 971.4137385044503,
+            "before-public-holiday": 10061.958012891298,
+            "strawberry-festival": 11380.504814201031,
+            "festival-progress": 20107.40636240133,
+            "festival-weekend": 31327.762876132743
+          },
+          "trainingSamples": 949
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2026,
+          "modelId": "62765bf8fbd50fd4a28b99a636bb234648292770b5167e4816609276ae3a54f4",
+          "coefficients": {
+            "public-holiday": 12083.619261361382,
+            "lunar-holiday": 40522.60931556789,
+            "after-public-holiday": 974.0300029762599,
+            "before-public-holiday": 10059.697676798258,
+            "strawberry-festival": 8599.785045966586,
+            "festival-progress": 20598.58741187131,
+            "festival-weekend": 29822.5069496985
+          },
+          "trainingSamples": 949
+        }
+      ],
+      "weeklyWindows": 135,
+      "festivalRows": [
+        {
+          "date": "2024-03-21",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-02-22T09:00:00+09:00",
+          "cutoff": "2024-01-18",
+          "actual": 56252,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "889aef664ca9ab448bfa9810fb53fd921a2e3ffb8dc3a7547779514abd98db6e",
+            "holiday": "6897846b2607cc7b675f92c11418084378d4f13c32dc497a4666830bd69de866",
+            "festival": "25d1f8af6d7149d92ebbcb9999eb29e992246628a115b9d8e03666e17cb8fe6f",
+            "combined": "1143e5d4a9a1b25e8f9742f52f912cd35f2b05499d281279cd4d9890b5fbd3d1"
+          },
+          "predictions": {
+            "B1": {
+              "value": 34550.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 42546,
+              "reason": null
+            },
+            "ridge": {
+              "value": 40854.64264730493,
+              "reason": null
+            },
+            "holiday": {
+              "value": 37627.856885269364,
+              "reason": null
+            },
+            "festival": {
+              "value": 42275.37032587585,
+              "reason": null
+            },
+            "combined": {
+              "value": 38609.90066933716,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2024-03-22",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-02-22T09:00:00+09:00",
+          "cutoff": "2024-01-18",
+          "actual": 60280.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "889aef664ca9ab448bfa9810fb53fd921a2e3ffb8dc3a7547779514abd98db6e",
+            "holiday": "6897846b2607cc7b675f92c11418084378d4f13c32dc497a4666830bd69de866",
+            "festival": "25d1f8af6d7149d92ebbcb9999eb29e992246628a115b9d8e03666e17cb8fe6f",
+            "combined": "1143e5d4a9a1b25e8f9742f52f912cd35f2b05499d281279cd4d9890b5fbd3d1"
+          },
+          "predictions": {
+            "B1": {
+              "value": 34501.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 46697,
+              "reason": null
+            },
+            "ridge": {
+              "value": 42810.851990924486,
+              "reason": null
+            },
+            "holiday": {
+              "value": 39307.25404144195,
+              "reason": null
+            },
+            "festival": {
+              "value": 44264.844002719605,
+              "reason": null
+            },
+            "combined": {
+              "value": 40336.20912625882,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2024-03-23",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-02-22T09:00:00+09:00",
+          "cutoff": "2024-01-18",
+          "actual": 126164.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "889aef664ca9ab448bfa9810fb53fd921a2e3ffb8dc3a7547779514abd98db6e",
+            "holiday": "6897846b2607cc7b675f92c11418084378d4f13c32dc497a4666830bd69de866",
+            "festival": "25d1f8af6d7149d92ebbcb9999eb29e992246628a115b9d8e03666e17cb8fe6f",
+            "combined": "1143e5d4a9a1b25e8f9742f52f912cd35f2b05499d281279cd4d9890b5fbd3d1"
+          },
+          "predictions": {
+            "B1": {
+              "value": 50818.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 61806.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 57193.019553279315,
+              "reason": null
+            },
+            "holiday": {
+              "value": 53975.42333433174,
+              "reason": null
+            },
+            "festival": {
+              "value": 58767.30915206338,
+              "reason": null
+            },
+            "combined": {
+              "value": 55107.06088141884,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2024-03-24",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-02-22T09:00:00+09:00",
+          "cutoff": "2024-01-18",
+          "actual": 118954.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "889aef664ca9ab448bfa9810fb53fd921a2e3ffb8dc3a7547779514abd98db6e",
+            "holiday": "6897846b2607cc7b675f92c11418084378d4f13c32dc497a4666830bd69de866",
+            "festival": "25d1f8af6d7149d92ebbcb9999eb29e992246628a115b9d8e03666e17cb8fe6f",
+            "combined": "1143e5d4a9a1b25e8f9742f52f912cd35f2b05499d281279cd4d9890b5fbd3d1"
+          },
+          "predictions": {
+            "B1": {
+              "value": 46196.5,
+              "reason": null
+            },
+            "B2": {
+              "value": 60511.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 49389.79352742309,
+              "reason": null
+            },
+            "holiday": {
+              "value": 46428.23796952502,
+              "reason": null
+            },
+            "festival": {
+              "value": 50964.646390340495,
+              "reason": null
+            },
+            "combined": {
+              "value": 47578.56618594844,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-27",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-02-27T09:00:00+09:00",
+          "cutoff": "2025-01-23",
+          "actual": 52671.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "b6ad458e2474814a30b44a1e545776497fe0382a5b8fe39f5c2d22d3b61239f5",
+            "holiday": "e8f6adf043cce9dd4541b61566e906bbdd92ef51fe25a89dc3fed9db1d85f513",
+            "festival": "059016276abdd8ae6b447cec01e1638feef4282413a185feb24086285cdd542b",
+            "combined": "4de4e869d961941b60ba6500941c8c5bbf706b3ffad7a1ac700b3138d6d5e49a"
+          },
+          "predictions": {
+            "B1": {
+              "value": 31052,
+              "reason": null
+            },
+            "B2": {
+              "value": 45115,
+              "reason": null
+            },
+            "ridge": {
+              "value": 46231.00282073285,
+              "reason": null
+            },
+            "holiday": {
+              "value": 43589.99535805966,
+              "reason": null
+            },
+            "festival": {
+              "value": 57372.5204480818,
+              "reason": null
+            },
+            "combined": {
+              "value": 56524.90916429165,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-28",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-02-27T09:00:00+09:00",
+          "cutoff": "2025-01-23",
+          "actual": 62702.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "b6ad458e2474814a30b44a1e545776497fe0382a5b8fe39f5c2d22d3b61239f5",
+            "holiday": "e8f6adf043cce9dd4541b61566e906bbdd92ef51fe25a89dc3fed9db1d85f513",
+            "festival": "059016276abdd8ae6b447cec01e1638feef4282413a185feb24086285cdd542b",
+            "combined": "4de4e869d961941b60ba6500941c8c5bbf706b3ffad7a1ac700b3138d6d5e49a"
+          },
+          "predictions": {
+            "B1": {
+              "value": 33524.75,
+              "reason": null
+            },
+            "B2": {
+              "value": 46756.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 49130.28934833482,
+              "reason": null
+            },
+            "holiday": {
+              "value": 46187.66623305055,
+              "reason": null
+            },
+            "festival": {
+              "value": 64795.04590995188,
+              "reason": null
+            },
+            "combined": {
+              "value": 64294.51850191444,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-29",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-02-27T09:00:00+09:00",
+          "cutoff": "2025-01-23",
+          "actual": 113466.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "b6ad458e2474814a30b44a1e545776497fe0382a5b8fe39f5c2d22d3b61239f5",
+            "holiday": "e8f6adf043cce9dd4541b61566e906bbdd92ef51fe25a89dc3fed9db1d85f513",
+            "festival": "059016276abdd8ae6b447cec01e1638feef4282413a185feb24086285cdd542b",
+            "combined": "4de4e869d961941b60ba6500941c8c5bbf706b3ffad7a1ac700b3138d6d5e49a"
+          },
+          "predictions": {
+            "B1": {
+              "value": 45925.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 71767.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 65155.11192308852,
+              "reason": null
+            },
+            "holiday": {
+              "value": 62561.82909091336,
+              "reason": null
+            },
+            "festival": {
+              "value": 117597.80947533924,
+              "reason": null
+            },
+            "combined": {
+              "value": 117210.36625638913,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-30",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-02-27T09:00:00+09:00",
+          "cutoff": "2025-01-23",
+          "actual": 112010.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "b6ad458e2474814a30b44a1e545776497fe0382a5b8fe39f5c2d22d3b61239f5",
+            "holiday": "e8f6adf043cce9dd4541b61566e906bbdd92ef51fe25a89dc3fed9db1d85f513",
+            "festival": "059016276abdd8ae6b447cec01e1638feef4282413a185feb24086285cdd542b",
+            "combined": "4de4e869d961941b60ba6500941c8c5bbf706b3ffad7a1ac700b3138d6d5e49a"
+          },
+          "predictions": {
+            "B1": {
+              "value": 42360.5,
+              "reason": null
+            },
+            "B2": {
+              "value": 69702.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 57317.08851141214,
+              "reason": null
+            },
+            "holiday": {
+              "value": 54563.64517365714,
+              "reason": null
+            },
+            "festival": {
+              "value": 115161.1602121472,
+              "reason": null
+            },
+            "combined": {
+              "value": 114803.57544416939,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-26",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-02-26T09:00:00+09:00",
+          "cutoff": "2026-01-22",
+          "actual": 61204.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "5c90c2919884226fb015b836a6aa8d36a71e06d55129760fba4df964aa7b3e6a",
+            "holiday": "2740024b354fa300872c7e8448a734a19da5967e5b11fe5f73040d411c02f7ec",
+            "festival": "b04953099bf9e45f35ffc2e2f7584200dda9db697f5792605ffbdf8a3844f959",
+            "combined": "0362b4dc28bb5e2ba2ff530aee151fbc562e13724b252f745bf0ba044d2e7353"
+          },
+          "predictions": {
+            "B1": {
+              "value": 34744.5,
+              "reason": null
+            },
+            "B2": {
+              "value": 52671.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 47373.004549157034,
+              "reason": null
+            },
+            "holiday": {
+              "value": 44709.13696503605,
+              "reason": null
+            },
+            "festival": {
+              "value": 57502.820846521005,
+              "reason": null
+            },
+            "combined": {
+              "value": 56840.166080913565,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-27",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-02-26T09:00:00+09:00",
+          "cutoff": "2026-01-22",
+          "actual": 67553.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "5c90c2919884226fb015b836a6aa8d36a71e06d55129760fba4df964aa7b3e6a",
+            "holiday": "2740024b354fa300872c7e8448a734a19da5967e5b11fe5f73040d411c02f7ec",
+            "festival": "b04953099bf9e45f35ffc2e2f7584200dda9db697f5792605ffbdf8a3844f959",
+            "combined": "0362b4dc28bb5e2ba2ff530aee151fbc562e13724b252f745bf0ba044d2e7353"
+          },
+          "predictions": {
+            "B1": {
+              "value": 35341.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 62702.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 49652.714236134234,
+              "reason": null
+            },
+            "holiday": {
+              "value": 47326.50683902478,
+              "reason": null
+            },
+            "festival": {
+              "value": 64654.19321326359,
+              "reason": null
+            },
+            "combined": {
+              "value": 64364.59559329214,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-02-26T09:00:00+09:00",
+          "cutoff": "2026-01-22",
+          "actual": 126794.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "5c90c2919884226fb015b836a6aa8d36a71e06d55129760fba4df964aa7b3e6a",
+            "holiday": "2740024b354fa300872c7e8448a734a19da5967e5b11fe5f73040d411c02f7ec",
+            "festival": "b04953099bf9e45f35ffc2e2f7584200dda9db697f5792605ffbdf8a3844f959",
+            "combined": "0362b4dc28bb5e2ba2ff530aee151fbc562e13724b252f745bf0ba044d2e7353"
+          },
+          "predictions": {
+            "B1": {
+              "value": 50470,
+              "reason": null
+            },
+            "B2": {
+              "value": 113466.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 67033.40309754098,
+              "reason": null
+            },
+            "holiday": {
+              "value": 65117.210677354444,
+              "reason": null
+            },
+            "festival": {
+              "value": 116858.34314200934,
+              "reason": null
+            },
+            "combined": {
+              "value": 116793.04992800723,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-29",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-02-26T09:00:00+09:00",
+          "cutoff": "2026-01-22",
+          "actual": 116711,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "5c90c2919884226fb015b836a6aa8d36a71e06d55129760fba4df964aa7b3e6a",
+            "holiday": "2740024b354fa300872c7e8448a734a19da5967e5b11fe5f73040d411c02f7ec",
+            "festival": "b04953099bf9e45f35ffc2e2f7584200dda9db697f5792605ffbdf8a3844f959",
+            "combined": "0362b4dc28bb5e2ba2ff530aee151fbc562e13724b252f745bf0ba044d2e7353"
+          },
+          "predictions": {
+            "B1": {
+              "value": 45482.5,
+              "reason": null
+            },
+            "B2": {
+              "value": 112010.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 59661.122277109935,
+              "reason": null
+            },
+            "holiday": {
+              "value": 57198.84640234049,
+              "reason": null
+            },
+            "festival": {
+              "value": 114561.84472474451,
+              "reason": null
+            },
+            "combined": {
+              "value": 114128.42366436939,
+              "reason": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "horizonDays": 7,
+      "comparison": {
+        "expected": 540,
+        "observed": 540,
+        "common": 472,
+        "methods": {
+          "B1": {
+            "available": 540,
+            "unavailable": {},
+            "n": 472,
+            "mae": 8306.656779661016,
+            "wape": 0.1594027625816482,
+            "bias": -2565.7966101694915,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "B2": {
+            "available": 540,
+            "unavailable": {},
+            "n": 472,
+            "mae": 7493.425847457627,
+            "wape": 0.14379705493672978,
+            "bias": -144.07838983050848,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "ridge": {
+            "available": 540,
+            "unavailable": {},
+            "n": 472,
+            "mae": 6943.618871589497,
+            "wape": 0.13324639019100065,
+            "bias": -347.7298637514614,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "holiday": {
+            "available": 540,
+            "unavailable": {},
+            "n": 472,
+            "mae": 6540.28586102339,
+            "wape": 0.12550652590745018,
+            "bias": -1220.5513366846035,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "festival": {
+            "available": 472,
+            "unavailable": {
+              "festival-calendar-unknown": 68
+            },
+            "n": 472,
+            "mae": 6188.093650621215,
+            "wape": 0.11874804138268873,
+            "bias": -634.2811564664867,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          },
+          "combined": {
+            "available": 472,
+            "unavailable": {
+              "festival-calendar-unknown": 68
+            },
+            "n": 472,
+            "mae": 5919.503613579661,
+            "wape": 0.11359386262678278,
+            "bias": -1098.3906836433043,
+            "intervalN": 0,
+            "coverage": null,
+            "meanWidth": null
+          }
+        }
+      },
+      "folds": [
+        {
+          "year": 2024,
+          "expected": 208,
+          "observed": 208,
+          "common": 184,
+          "methods": {
+            "B1": {
+              "available": 208,
+              "unavailable": {},
+              "n": 184,
+              "mae": 8464.017663043478,
+              "wape": 0.16595598431463815,
+              "bias": -1503.03125,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 208,
+              "unavailable": {},
+              "n": 184,
+              "mae": 7837.470108695652,
+              "wape": 0.1536711191074531,
+              "bias": 144.96467391304347,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 208,
+              "unavailable": {},
+              "n": 184,
+              "mae": 7482.126450997014,
+              "wape": 0.14670381246526248,
+              "bias": 604.441069414918,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 208,
+              "unavailable": {},
+              "n": 184,
+              "mae": 7163.806074817336,
+              "wape": 0.14046243000844602,
+              "bias": -1382.7531870119872,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 184,
+              "unavailable": {
+                "festival-calendar-unknown": 24
+              },
+              "n": 184,
+              "mae": 7148.417341691273,
+              "wape": 0.1401606994999616,
+              "bias": -702.0264697543082,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 184,
+              "unavailable": {
+                "festival-calendar-unknown": 24
+              },
+              "n": 184,
+              "mae": 7124.320243285858,
+              "wape": 0.13968822202600045,
+              "bias": -1968.6306392353085,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        {
+          "year": 2025,
+          "expected": 208,
+          "observed": 208,
+          "common": 192,
+          "methods": {
+            "B1": {
+              "available": 208,
+              "unavailable": {},
+              "n": 192,
+              "mae": 8192.98046875,
+              "wape": 0.15601186325186256,
+              "bias": -2700.9700520833335,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 208,
+              "unavailable": {},
+              "n": 192,
+              "mae": 8240.458333333334,
+              "wape": 0.1569159432927119,
+              "bias": -810.6510416666666,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 208,
+              "unavailable": {},
+              "n": 192,
+              "mae": 6292.834249160894,
+              "wape": 0.11982901705812475,
+              "bias": -1112.7064481168716,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 208,
+              "unavailable": {},
+              "n": 192,
+              "mae": 5770.1521100211685,
+              "wape": 0.10987603172797675,
+              "bias": -1453.6944424088927,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 192,
+              "unavailable": {
+                "festival-calendar-unknown": 16
+              },
+              "n": 192,
+              "mae": 5674.91512049872,
+              "wape": 0.10806251584781962,
+              "bias": -1032.4316655523871,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 192,
+              "unavailable": {
+                "festival-calendar-unknown": 16
+              },
+              "n": 192,
+              "mae": 5123.660601308494,
+              "wape": 0.09756545131887193,
+              "bias": -1009.3800103386293,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        {
+          "year": 2026,
+          "expected": 124,
+          "observed": 124,
+          "common": 96,
+          "methods": {
+            "B1": {
+              "available": 124,
+              "unavailable": {},
+              "n": 96,
+              "mae": 8232.401041666666,
+              "wape": 0.154078943597484,
+              "bias": -4332.416666666667,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 124,
+              "unavailable": {},
+              "n": 96,
+              "mae": 5339.942708333333,
+              "wape": 0.09994322764486162,
+              "bias": 635.0677083333334,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 124,
+              "unavailable": {},
+              "n": 96,
+              "mae": 7213.048589248931,
+              "wape": 0.1350005789469893,
+              "bias": -642.7709835895377,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 124,
+              "unavailable": {},
+              "n": 96,
+              "mae": 6885.472953256143,
+              "wape": 0.12886962059272714,
+              "bias": -443.37824544187174,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 96,
+              "unavailable": {
+                "festival-calendar-unknown": 28
+              },
+              "n": 96,
+              "mae": 5373.83030298193,
+              "wape": 0.100577473323381,
+              "bias": 291.86504550697333,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 96,
+              "unavailable": {
+                "festival-calendar-unknown": 28
+              },
+              "n": 96,
+              "mae": 5201.95776451845,
+              "wape": 0.09736067921606797,
+              "bias": 391.54788463201936,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        }
+      ],
+      "groups": {
+        "festival": {
+          "expected": 12,
+          "observed": 12,
+          "common": 12,
+          "methods": {
+            "B1": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 47102.416666666664,
+              "wape": 0.525908895517722,
+              "bias": -47102.416666666664,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 24084.375,
+              "wape": 0.2689073714650445,
+              "bias": -24084.375,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 37530.14537174602,
+              "wape": 0.4190323702656692,
+              "bias": -37530.14537174602,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 40296.714849343094,
+              "wape": 0.44992173011810677,
+              "bias": -40296.714849343094,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 17288.325244188698,
+              "wape": 0.19302797346609807,
+              "bias": -15368.62994356726,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 12,
+              "unavailable": {},
+              "n": 12,
+              "mae": 17871.899148543478,
+              "wape": 0.1995437051251358,
+              "bias": -16325.71675938897,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        "holiday-window": {
+          "expected": 76,
+          "observed": 76,
+          "common": 68,
+          "methods": {
+            "B1": {
+              "available": 76,
+              "unavailable": {},
+              "n": 68,
+              "mae": 10644.966911764706,
+              "wape": 0.19454737010436804,
+              "bias": -5363.878676470588,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 76,
+              "unavailable": {},
+              "n": 68,
+              "mae": 10807.176470588236,
+              "wape": 0.19751191131304294,
+              "bias": -3892.205882352941,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 76,
+              "unavailable": {},
+              "n": 68,
+              "mae": 8985.163240646818,
+              "wape": 0.1642128052548819,
+              "bias": -3294.620993720478,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 76,
+              "unavailable": {},
+              "n": 68,
+              "mae": 6665.488346994188,
+              "wape": 0.12181843674270819,
+              "bias": 1578.466928310266,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 68,
+              "unavailable": {
+                "festival-calendar-unknown": 8
+              },
+              "n": 68,
+              "mae": 8985.348886937367,
+              "wape": 0.16421619812570012,
+              "bias": -4017.5237474420087,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 68,
+              "unavailable": {
+                "festival-calendar-unknown": 8
+              },
+              "n": 68,
+              "mae": 6660.588305340935,
+              "wape": 0.12172888360224811,
+              "bias": 1089.593342045343,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        "other": {
+          "expected": 452,
+          "observed": 452,
+          "common": 392,
+          "methods": {
+            "B1": {
+              "available": 452,
+              "unavailable": {},
+              "n": 392,
+              "mae": 6713.40625,
+              "wape": 0.13290546426142252,
+              "bias": -717.0491071428571,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 452,
+              "unavailable": {},
+              "n": 392,
+              "mae": 6410.705357142857,
+              "wape": 0.1269128874383641,
+              "bias": 1238.9732142857142,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 452,
+              "unavailable": {},
+              "n": 392,
+              "mae": 5653.15118001353,
+              "wape": 0.11191556925662094,
+              "bias": 1301.7027457736087,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 452,
+              "unavailable": {},
+              "n": 392,
+              "mae": 5485.206991365615,
+              "wape": 0.10859077413309344,
+              "bias": -509.8862343064128,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "festival": {
+              "available": 392,
+              "unavailable": {
+                "festival-calendar-unknown": 60
+              },
+              "n": 392,
+              "mae": 5363.052489416346,
+              "wape": 0.10617247853342068,
+              "bias": 403.659357899699,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "combined": {
+              "available": 392,
+              "unavailable": {
+                "festival-calendar-unknown": 60
+              },
+              "n": 392,
+              "mae": 5425.058446591567,
+              "wape": 0.10740001195214484,
+              "bias": -1011.7962980256505,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        }
+      },
+      "selection": {
+        "eligible": [
+          "holiday"
+        ],
+        "candidate": "holiday",
+        "reference": "ridge",
+        "comparison": {
+          "expected": 540,
+          "observed": 540,
+          "common": 540,
+          "methods": {
+            "B1": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 8807.694907407407,
+              "wape": 0.17159370332997992,
+              "bias": -1827.2884259259258,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "B2": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 7884.177777777778,
+              "wape": 0.1536015128615583,
+              "bias": -531.6111111111111,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "ridge": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 7335.572300180004,
+              "wape": 0.14291344446707482,
+              "bias": -162.1840455222372,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            },
+            "holiday": {
+              "available": 540,
+              "unavailable": {},
+              "n": 540,
+              "mae": 6560.00974159269,
+              "wape": 0.1278037417592587,
+              "bias": -567.0340121719107,
+              "intervalN": 0,
+              "coverage": null,
+              "meanWidth": null
+            }
+          }
+        },
+        "relativeMAEImprovement": 0.10572625104769029,
+        "status": "development-selection-only"
+      },
+      "stability": [
+        {
+          "year": 2024,
+          "candidate": "holiday",
+          "trainedThrough": "2024-11-14",
+          "samples": 594,
+          "skippedCalendarRows": 0,
+          "coefficients": {
+            "public-holiday": 9815.083040410043,
+            "lunar-holiday": 39152.54510841156,
+            "after-public-holiday": -659.5803220574234,
+            "before-public-holiday": 9946.479890663506
+          }
+        },
+        {
+          "year": 2024,
+          "candidate": "festival",
+          "trainedThrough": "2024-11-14",
+          "samples": 550,
+          "skippedCalendarRows": 44,
+          "coefficients": {
+            "strawberry-festival": 8527.181839217148,
+            "festival-progress": 20754.930842383805,
+            "festival-weekend": 31780.120529994354
+          }
+        },
+        {
+          "year": 2024,
+          "candidate": "combined",
+          "trainedThrough": "2024-11-14",
+          "samples": 550,
+          "skippedCalendarRows": 44,
+          "coefficients": {
+            "public-holiday": 9340.167372278134,
+            "lunar-holiday": 45456.24419040976,
+            "after-public-holiday": -83.7181789239855,
+            "before-public-holiday": 8813.177872760461,
+            "strawberry-festival": 9263.093674318958,
+            "festival-progress": 21528.950851715454,
+            "festival-weekend": 32003.38449958576
+          }
+        },
+        {
+          "year": 2025,
+          "candidate": "holiday",
+          "trainedThrough": "2025-11-13",
+          "samples": 958,
+          "skippedCalendarRows": 0,
+          "coefficients": {
+            "public-holiday": 11501.159934766247,
+            "lunar-holiday": 35544.58228137522,
+            "after-public-holiday": -239.02956230744235,
+            "before-public-holiday": 11269.871306219973
+          }
+        },
+        {
+          "year": 2025,
+          "candidate": "festival",
+          "trainedThrough": "2025-11-13",
+          "samples": 885,
+          "skippedCalendarRows": 73,
+          "coefficients": {
+            "strawberry-festival": 6849.504979853599,
+            "festival-progress": 20027.95598380669,
+            "festival-weekend": 30748.893176430807
+          }
+        },
+        {
+          "year": 2025,
+          "candidate": "combined",
+          "trainedThrough": "2025-11-13",
+          "samples": 885,
+          "skippedCalendarRows": 73,
+          "coefficients": {
+            "public-holiday": 11223.362368165952,
+            "lunar-holiday": 38587.2757842938,
+            "after-public-holiday": 408.9912025502714,
+            "before-public-holiday": 10131.526365098367,
+            "strawberry-festival": 8236.197513109235,
+            "festival-progress": 21013.240766401246,
+            "festival-weekend": 30614.38424595621
+          }
+        },
+        {
+          "year": 2026,
+          "candidate": "holiday",
+          "trainedThrough": "2026-06-18",
+          "samples": 1175,
+          "skippedCalendarRows": 0,
+          "coefficients": {
+            "public-holiday": 10572.003242311035,
+            "lunar-holiday": 38100.95913396909,
+            "after-public-holiday": -491.73976765838864,
+            "before-public-holiday": 11400.280247861101
+          }
+        },
+        {
+          "year": 2026,
+          "candidate": "festival",
+          "trainedThrough": "2026-06-18",
+          "samples": 1058,
+          "skippedCalendarRows": 117,
+          "coefficients": {
+            "strawberry-festival": 8571.036007314944,
+            "festival-progress": 19890.12241215173,
+            "festival-weekend": 30577.61050604869
+          }
+        },
+        {
+          "year": 2026,
+          "candidate": "combined",
+          "trainedThrough": "2026-06-18",
+          "samples": 1058,
+          "skippedCalendarRows": 117,
+          "coefficients": {
+            "public-holiday": 10402.169360456244,
+            "lunar-holiday": 40743.536384120394,
+            "after-public-holiday": 179.2696248816428,
+            "before-public-holiday": 10602.854741665837,
+            "strawberry-festival": 9971.407730641822,
+            "festival-progress": 20808.28385179365,
+            "festival-weekend": 30360.403651274803
+          }
+        }
+      ],
+      "sensitivity": [
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2023,
+          "modelId": "a575b520f91294ad9f23cf8184a56069f3f56d0ccd6501eab0bba8a1317137a1",
+          "coefficients": {
+            "public-holiday": 10572.003242311035,
+            "lunar-holiday": 38100.95913396909,
+            "after-public-holiday": -491.73976765838864,
+            "before-public-holiday": 11400.280247861101
+          },
+          "trainingSamples": 1175
+        },
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2024,
+          "modelId": "5eea89c3793f500a41471caa846e0a484bf0027179fb4b0b65e34e05c56576a4",
+          "coefficients": {
+            "public-holiday": 10623.484577364343,
+            "lunar-holiday": 38129.81953408888,
+            "after-public-holiday": -409.71897743071924,
+            "before-public-holiday": 11525.252900666976
+          },
+          "trainingSamples": 1171
+        },
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2025,
+          "modelId": "778ee3087f515d3513cb15b9c5b31e15e23b8ae8255ef75e368fd08df146ba3a",
+          "coefficients": {
+            "public-holiday": 10642.992824208895,
+            "lunar-holiday": 38058.55015638051,
+            "after-public-holiday": -401.4134011368762,
+            "before-public-holiday": 11517.914260065063
+          },
+          "trainingSamples": 1171
+        },
+        {
+          "candidate": "holiday",
+          "omittedFestivalYear": 2026,
+          "modelId": "09e9ba31f65ed357b07a837ff2c272c32ebeea1eb5d6e63540d7491769e89a9a",
+          "coefficients": {
+            "public-holiday": 10670.243923065807,
+            "lunar-holiday": 37991.51810695594,
+            "after-public-holiday": -348.1921757183907,
+            "before-public-holiday": 11555.507983731151
+          },
+          "trainingSamples": 1171
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2023,
+          "modelId": "c32e130e198d369fce7c3fe4309dbf3e80067f00cb417779a5c39b6a7d935367",
+          "coefficients": {
+            "strawberry-festival": 8571.036007314944,
+            "festival-progress": 19890.12241215173,
+            "festival-weekend": 30577.61050604869
+          },
+          "trainingSamples": 1058
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2024,
+          "modelId": "4b8f1135301a999f5b66de051001370cb6a5d2e69da6f101b61a844adefc0362",
+          "coefficients": {
+            "strawberry-festival": 8584.23199459691,
+            "festival-progress": 20097.632744649036,
+            "festival-weekend": 28311.86246605301
+          },
+          "trainingSamples": 1054
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2025,
+          "modelId": "90daeff04c9b96fe10397620cc91878e0e5c152a88f50c4c099e54114a542cef",
+          "coefficients": {
+            "strawberry-festival": 9960.148540657834,
+            "festival-progress": 19530.55839536382,
+            "festival-weekend": 31959.511657057534
+          },
+          "trainingSamples": 1054
+        },
+        {
+          "candidate": "festival",
+          "omittedFestivalYear": 2026,
+          "modelId": "dbc76b425a404dffc66d55388646d2d165c19ce029406c84ca130b08fd351336",
+          "coefficients": {
+            "strawberry-festival": 7178.6049599366925,
+            "festival-progress": 20020.12596891035,
+            "festival-weekend": 31470.601061898986
+          },
+          "trainingSamples": 1054
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2023,
+          "modelId": "5a10487bf4bd182ba4616cfe720e2eaa41d01acd5b691b65db59668227bce9e6",
+          "coefficients": {
+            "public-holiday": 10402.169360456244,
+            "lunar-holiday": 40743.536384120394,
+            "after-public-holiday": 179.2696248816428,
+            "before-public-holiday": 10602.854741665837,
+            "strawberry-festival": 9971.407730641822,
+            "festival-progress": 20808.28385179365,
+            "festival-weekend": 30360.403651274803
+          },
+          "trainingSamples": 1058
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2024,
+          "modelId": "239c1fe0db2d0d6a8977b36db15960a4a6155e357362737af19c8b9c164aa427",
+          "coefficients": {
+            "public-holiday": 10400.020776570527,
+            "lunar-holiday": 40735.92113730886,
+            "after-public-holiday": 180.25522656726753,
+            "before-public-holiday": 10602.842722267163,
+            "strawberry-festival": 10108.665020827259,
+            "festival-progress": 21026.17270159863,
+            "festival-weekend": 28033.172170701142
+          },
+          "trainingSamples": 1054
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2025,
+          "modelId": "121cbe408f028265b74557a31bed7b260df5a54dea946db5657626e9827109f5",
+          "coefficients": {
+            "public-holiday": 10402.363753948155,
+            "lunar-holiday": 40724.624515506766,
+            "after-public-holiday": 183.25924963504897,
+            "before-public-holiday": 10605.189308671883,
+            "strawberry-festival": 11267.112155760182,
+            "festival-progress": 20426.132718279176,
+            "festival-weekend": 31832.69517309747
+          },
+          "trainingSamples": 1054
+        },
+        {
+          "candidate": "combined",
+          "omittedFestivalYear": 2026,
+          "modelId": "2f40c887f0c1731f2a3d986a009870a41251db06090534fe801449e5801d75f4",
+          "coefficients": {
+            "public-holiday": 10406.46594574852,
+            "lunar-holiday": 40721.52437430731,
+            "after-public-holiday": 189.1902945054407,
+            "before-public-holiday": 10606.350285678009,
+            "strawberry-festival": 8551.312489559721,
+            "festival-progress": 20954.20853250864,
+            "festival-weekend": 31223.76924625309
+          },
+          "trainingSamples": 1054
+        }
+      ],
+      "weeklyWindows": 135,
+      "festivalRows": [
+        {
+          "date": "2024-03-21",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-03-14T09:00:00+09:00",
+          "cutoff": "2024-02-08",
+          "actual": 56252,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "0c530c36228f4e13661337cb1dfb850f435a8cb51ddc8e29d909f96ec82168a8",
+            "holiday": "ba723e515cdf61be65b34862581a7003f6576744f08c0e22d66fa31cf85efea4",
+            "festival": "646d23ed9aa6f06fd8ae953336efa755c1fd2ad56ea1e176a5da8bf93614c34a",
+            "combined": "19acf79e5e4bca2b9d186b1bed19816d926a725a2656e8b462c2f879bab028e7"
+          },
+          "predictions": {
+            "B1": {
+              "value": 38267.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 42546,
+              "reason": null
+            },
+            "ridge": {
+              "value": 42013.292846675795,
+              "reason": null
+            },
+            "holiday": {
+              "value": 38989.45060189471,
+              "reason": null
+            },
+            "festival": {
+              "value": 40521.68401916282,
+              "reason": null
+            },
+            "combined": {
+              "value": 37761.88312027516,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2024-03-22",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-03-14T09:00:00+09:00",
+          "cutoff": "2024-02-08",
+          "actual": 60280.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "0c530c36228f4e13661337cb1dfb850f435a8cb51ddc8e29d909f96ec82168a8",
+            "holiday": "ba723e515cdf61be65b34862581a7003f6576744f08c0e22d66fa31cf85efea4",
+            "festival": "646d23ed9aa6f06fd8ae953336efa755c1fd2ad56ea1e176a5da8bf93614c34a",
+            "combined": "19acf79e5e4bca2b9d186b1bed19816d926a725a2656e8b462c2f879bab028e7"
+          },
+          "predictions": {
+            "B1": {
+              "value": 36524.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 46697,
+              "reason": null
+            },
+            "ridge": {
+              "value": 42940.89061122234,
+              "reason": null
+            },
+            "holiday": {
+              "value": 39884.912627263206,
+              "reason": null
+            },
+            "festival": {
+              "value": 41791.18194037598,
+              "reason": null
+            },
+            "combined": {
+              "value": 38839.86864562119,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2024-03-23",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-03-14T09:00:00+09:00",
+          "cutoff": "2024-02-08",
+          "actual": 126164.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "0c530c36228f4e13661337cb1dfb850f435a8cb51ddc8e29d909f96ec82168a8",
+            "holiday": "ba723e515cdf61be65b34862581a7003f6576744f08c0e22d66fa31cf85efea4",
+            "festival": "646d23ed9aa6f06fd8ae953336efa755c1fd2ad56ea1e176a5da8bf93614c34a",
+            "combined": "19acf79e5e4bca2b9d186b1bed19816d926a725a2656e8b462c2f879bab028e7"
+          },
+          "predictions": {
+            "B1": {
+              "value": 49960.75,
+              "reason": null
+            },
+            "B2": {
+              "value": 61806.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 56199.39881876629,
+              "reason": null
+            },
+            "holiday": {
+              "value": 53462.79322874098,
+              "reason": null
+            },
+            "festival": {
+              "value": 55121.322402853526,
+              "reason": null
+            },
+            "combined": {
+              "value": 52489.9063237387,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2024-03-24",
+          "windowStart": "2024-03-21",
+          "year": 2024,
+          "issuedAt": "2024-03-14T09:00:00+09:00",
+          "cutoff": "2024-02-08",
+          "actual": 118954.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "0c530c36228f4e13661337cb1dfb850f435a8cb51ddc8e29d909f96ec82168a8",
+            "holiday": "ba723e515cdf61be65b34862581a7003f6576744f08c0e22d66fa31cf85efea4",
+            "festival": "646d23ed9aa6f06fd8ae953336efa755c1fd2ad56ea1e176a5da8bf93614c34a",
+            "combined": "19acf79e5e4bca2b9d186b1bed19816d926a725a2656e8b462c2f879bab028e7"
+          },
+          "predictions": {
+            "B1": {
+              "value": 46277,
+              "reason": null
+            },
+            "B2": {
+              "value": 60511.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 48995.686758173964,
+              "reason": null
+            },
+            "holiday": {
+              "value": 46430.104406839986,
+              "reason": null
+            },
+            "festival": {
+              "value": 47753.03907260659,
+              "reason": null
+            },
+            "combined": {
+              "value": 45311.24242372068,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-27",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-03-20T09:00:00+09:00",
+          "cutoff": "2025-02-13",
+          "actual": 52671.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "9f72f863208b6bd75864863a2d2718ba9a7742584a813f1b569f5ed8e46e265b",
+            "holiday": "0756e0592eec88fc41f6cf880f6d6c5ff7f7faac41f251fe56fd01e46423fc82",
+            "festival": "4e0e56b7ffbd62a04ee8751a77d74a2964cf8ee7a7d9cdd4cc0283ae9924b4b2",
+            "combined": "d38bf8ff949dc3a69dd4484dc6d3736b2f51b8bfda18950493b169067f3d687e"
+          },
+          "predictions": {
+            "B1": {
+              "value": 39133.5,
+              "reason": null
+            },
+            "B2": {
+              "value": 45115,
+              "reason": null
+            },
+            "ridge": {
+              "value": 47710.79196933208,
+              "reason": null
+            },
+            "holiday": {
+              "value": 43905.94164736443,
+              "reason": null
+            },
+            "festival": {
+              "value": 58909.13279928168,
+              "reason": null
+            },
+            "combined": {
+              "value": 57416.4836324048,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-28",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-03-20T09:00:00+09:00",
+          "cutoff": "2025-02-13",
+          "actual": 62702.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "9f72f863208b6bd75864863a2d2718ba9a7742584a813f1b569f5ed8e46e265b",
+            "holiday": "0756e0592eec88fc41f6cf880f6d6c5ff7f7faac41f251fe56fd01e46423fc82",
+            "festival": "4e0e56b7ffbd62a04ee8751a77d74a2964cf8ee7a7d9cdd4cc0283ae9924b4b2",
+            "combined": "d38bf8ff949dc3a69dd4484dc6d3736b2f51b8bfda18950493b169067f3d687e"
+          },
+          "predictions": {
+            "B1": {
+              "value": 37121,
+              "reason": null
+            },
+            "B2": {
+              "value": 46756.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 48633.9511407485,
+              "reason": null
+            },
+            "holiday": {
+              "value": 45073.10497512882,
+              "reason": null
+            },
+            "festival": {
+              "value": 64365.05891310456,
+              "reason": null
+            },
+            "combined": {
+              "value": 63793.64574668025,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-29",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-03-20T09:00:00+09:00",
+          "cutoff": "2025-02-13",
+          "actual": 113466.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "9f72f863208b6bd75864863a2d2718ba9a7742584a813f1b569f5ed8e46e265b",
+            "holiday": "0756e0592eec88fc41f6cf880f6d6c5ff7f7faac41f251fe56fd01e46423fc82",
+            "festival": "4e0e56b7ffbd62a04ee8751a77d74a2964cf8ee7a7d9cdd4cc0283ae9924b4b2",
+            "combined": "d38bf8ff949dc3a69dd4484dc6d3736b2f51b8bfda18950493b169067f3d687e"
+          },
+          "predictions": {
+            "B1": {
+              "value": 44698.5,
+              "reason": null
+            },
+            "B2": {
+              "value": 71767.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 62606.31302829398,
+              "reason": null
+            },
+            "holiday": {
+              "value": 59440.29188610807,
+              "reason": null
+            },
+            "festival": {
+              "value": 115361.13553459031,
+              "reason": null
+            },
+            "combined": {
+              "value": 115322.14303944928,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2025-03-30",
+          "windowStart": "2025-03-27",
+          "year": 2025,
+          "issuedAt": "2025-03-20T09:00:00+09:00",
+          "cutoff": "2025-02-13",
+          "actual": 112010.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "9f72f863208b6bd75864863a2d2718ba9a7742584a813f1b569f5ed8e46e265b",
+            "holiday": "0756e0592eec88fc41f6cf880f6d6c5ff7f7faac41f251fe56fd01e46423fc82",
+            "festival": "4e0e56b7ffbd62a04ee8751a77d74a2964cf8ee7a7d9cdd4cc0283ae9924b4b2",
+            "combined": "d38bf8ff949dc3a69dd4484dc6d3736b2f51b8bfda18950493b169067f3d687e"
+          },
+          "predictions": {
+            "B1": {
+              "value": 41527.5,
+              "reason": null
+            },
+            "B2": {
+              "value": 69702.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 55386.51698063264,
+              "reason": null
+            },
+            "holiday": {
+              "value": 51822.90072312865,
+              "reason": null
+            },
+            "festival": {
+              "value": 113733.84455675207,
+              "reason": null
+            },
+            "combined": {
+              "value": 113595.8219163927,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-26",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-03-19T09:00:00+09:00",
+          "cutoff": "2026-02-12",
+          "actual": 61204.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "fd7c16fabacdf747fcd4383c9759577192e195ac67c48dc8791e77022171d0c5",
+            "holiday": "6d877350191766cc4b44c26fd93a39ee342d1897d1f37737b588fc6deaf10de3",
+            "festival": "c8c39bec5e5eb275c924db96b39c388725b9d2eed5dbf267d65c5bcacc3ec1c1",
+            "combined": "2a099d2084008d02071ed55efc8e839acb5749ff4bf76831a8e141483b6e9277"
+          },
+          "predictions": {
+            "B1": {
+              "value": 37154.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 52671.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 46488.803639311984,
+              "reason": null
+            },
+            "holiday": {
+              "value": 44287.761265503534,
+              "reason": null
+            },
+            "festival": {
+              "value": 56996.42254076253,
+              "reason": null
+            },
+            "combined": {
+              "value": 56723.44025980256,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-27",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-03-19T09:00:00+09:00",
+          "cutoff": "2026-02-12",
+          "actual": 67553.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "fd7c16fabacdf747fcd4383c9759577192e195ac67c48dc8791e77022171d0c5",
+            "holiday": "6d877350191766cc4b44c26fd93a39ee342d1897d1f37737b588fc6deaf10de3",
+            "festival": "c8c39bec5e5eb275c924db96b39c388725b9d2eed5dbf267d65c5bcacc3ec1c1",
+            "combined": "2a099d2084008d02071ed55efc8e839acb5749ff4bf76831a8e141483b6e9277"
+          },
+          "predictions": {
+            "B1": {
+              "value": 37434.25,
+              "reason": null
+            },
+            "B2": {
+              "value": 62702.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 48583.45743928444,
+              "reason": null
+            },
+            "holiday": {
+              "value": 46703.173338773304,
+              "reason": null
+            },
+            "festival": {
+              "value": 63802.97005264072,
+              "reason": null
+            },
+            "combined": {
+              "value": 64310.48030930039,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-03-19T09:00:00+09:00",
+          "cutoff": "2026-02-12",
+          "actual": 126794.5,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "fd7c16fabacdf747fcd4383c9759577192e195ac67c48dc8791e77022171d0c5",
+            "holiday": "6d877350191766cc4b44c26fd93a39ee342d1897d1f37737b588fc6deaf10de3",
+            "festival": "c8c39bec5e5eb275c924db96b39c388725b9d2eed5dbf267d65c5bcacc3ec1c1",
+            "combined": "2a099d2084008d02071ed55efc8e839acb5749ff4bf76831a8e141483b6e9277"
+          },
+          "predictions": {
+            "B1": {
+              "value": 55413.75,
+              "reason": null
+            },
+            "B2": {
+              "value": 113466.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 66767.27478806532,
+              "reason": null
+            },
+            "holiday": {
+              "value": 65217.0337449263,
+              "reason": null
+            },
+            "festival": {
+              "value": 117817.12443263302,
+              "reason": null
+            },
+            "combined": {
+              "value": 118625.44833769315,
+              "reason": null
+            }
+          }
+        },
+        {
+          "date": "2026-03-29",
+          "windowStart": "2026-03-26",
+          "year": 2026,
+          "issuedAt": "2026-03-19T09:00:00+09:00",
+          "cutoff": "2026-02-12",
+          "actual": 116711,
+          "festivalDay": true,
+          "holidayWindow": false,
+          "models": {
+            "ridge": "fd7c16fabacdf747fcd4383c9759577192e195ac67c48dc8791e77022171d0c5",
+            "holiday": "6d877350191766cc4b44c26fd93a39ee342d1897d1f37737b588fc6deaf10de3",
+            "festival": "c8c39bec5e5eb275c924db96b39c388725b9d2eed5dbf267d65c5bcacc3ec1c1",
+            "combined": "2a099d2084008d02071ed55efc8e839acb5749ff4bf76831a8e141483b6e9277"
+          },
+          "predictions": {
+            "B1": {
+              "value": 46025,
+              "reason": null
+            },
+            "B2": {
+              "value": 112010.5,
+              "reason": null
+            },
+            "ridge": {
+              "value": 58077.877518540474,
+              "reason": null
+            },
+            "holiday": {
+              "value": 55987.953362210916,
+              "reason": null
+            },
+            "festival": {
+              "value": 114169.52441242912,
+              "reason": null
+            },
+            "combined": {
+              "value": 114667.0351322535,
+              "reason": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "modelCount": 1104,
+  "reportHash": "abbeddc425884c6cea20c593bfd97be8a3cd588923d17c24963058d4830b727e"
+}
