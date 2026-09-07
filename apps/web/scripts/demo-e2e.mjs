@@ -44,6 +44,19 @@ try {
   await expectVisible(page.getByText("L1 총계 실측"), "home missing label maturity badge");
   await shot(page, "01-home-desktop");
 
+  await page.getByRole("link", { name: /논산딸기축제 방문 추세 비교/ }).click();
+  await page.waitForURL("**/forecast");
+  await expectVisible(page.getByRole("heading", { name: "논산딸기축제 방문 추세 예측" }), "forecast sample missing");
+  await expectVisible(page.getByText("실험 결과 사용 가능 · 축제 운영 적용은 검증 필요"), "forecast limitations missing");
+  await expectVisible(page.getByText(/마지막 입력 관측일 2025-01-23/), "forecast as-of cutoff missing");
+  await page.getByLabel("예측을 준비하는 시점").selectOption("7");
+  await page.getByRole("button", { name: "비교 보기" }).click();
+  await page.waitForURL("**/forecast?horizon=7&lag=35");
+  await expectVisible(page.getByText(/마지막 입력 관측일 2025-02-13/), "forecast horizon did not change inputs");
+  await expectVisible(page.getByRole("img", { name: /지역 방문 추세/ }), "forecast comparison chart missing");
+  await shot(page, "08-forecast-desktop");
+  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+
   await page.getByRole("link", { name: "○○군 봄꽃축제" }).click();
   await page.waitForURL("**/evidence");
   const originalEvidenceUrl = page.url();
@@ -144,6 +157,7 @@ try {
     ["ledger", `${originalFestivalPath}/ledger`],
     ["report", `${originalFestivalPath}/report`],
     ["logs", "/logs"],
+    ["forecast", "/forecast"],
   ]) {
     await mobile.goto(`${baseUrl}${route}`, { waitUntil: "networkidle" });
     const dimensions = await mobile.evaluate(() => ({
@@ -156,6 +170,8 @@ try {
   }
   await mobile.goto(`${baseUrl}${originalFestivalPath}/report`, { waitUntil: "networkidle" });
   await shot(mobile, "07-report-mobile");
+  await mobile.goto(`${baseUrl}/forecast`, { waitUntil: "networkidle" });
+  await shot(mobile, "09-forecast-mobile");
   await mobile.close();
 
   if (browserErrors.length) throw new Error(`browser diagnostics failed:\n${browserErrors.join("\n")}`);

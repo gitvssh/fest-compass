@@ -41,7 +41,7 @@ export default async function HomePage() {
           <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-blue">축제 의사결정 지원</p>
           <h1 className="text-4xl font-extrabold tracking-tight">올해의 축제가 내년의 나침반이 됩니다.</h1>
           <p className="mt-3 max-w-2xl text-muted">
-            흥행 숫자를 맞히는 서비스가 아닙니다. 근거, 가정, 운영 대안, 승인, 실제 결과를 한 기록으로 남깁니다.
+            과거 자료와 방문 추세 예측을 살펴보고, 근거, 가정, 운영 대안, 승인, 실제 결과를 한 기록으로 남깁니다.
           </p>
         </div>
         <EditorOnly>
@@ -50,6 +50,12 @@ export default async function HomePage() {
           </Link>
         </EditorOnly>
       </div>
+
+      <Link href="/forecast" className="mb-6 block rounded-3xl border border-blue/20 bg-blue-soft p-6">
+        <p className="text-xs font-extrabold text-blue">실제 자료로 학습한 예측 실험</p>
+        <h2 className="mt-2 text-xl font-extrabold">논산딸기축제 방문 추세 비교 →</h2>
+        <p className="mt-2 text-sm text-muted">3년의 지역 방문 이력으로 만든 모델과 단순 기준의 오차를 확인하세요. 2025년 사례이며 운영 적용은 검증이 필요합니다.</p>
+      </Link>
 
       <div className="grid gap-4">
         {festivals.map((festival) => (

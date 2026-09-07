@@ -19,6 +19,8 @@ last_verified: 2026-09-07
 - [샘플 축제 선정](validation/05-festival-selection.md) — 후보 3곳의 2023~2025 자료 비교, 논산 선정
 - [예측 지표·평가 계약](validation/06-forecast-contract.md) — 일별 외지인 추세, 발행시점·정답·검증 범위
 - [샘플 선정 변경 검증](validation/07-selection-validation.md)
+- [첫 예측 모델 실험 설계](validation/08-model-experiment.md) — 학습 입력·시간 분리·선정 규칙
+- [첫 모델 결과·검증](validation/09-model-validation.md) — 1,096일 수집, 실제 오차와 한계, 재현 명령
 - [프로젝트 실행 상태](../.ai/projects/fest-compass-evolution/STATE.md)
 
 - [Vision and scope](product/vision-scope.md)
