@@ -204,3 +204,25 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-011 · Codex · implementer
+
+- Position: 사용자 요청에 따라 개발보다 기획·요구사항·기능목록·화면설계·와이어프레임을 먼저 구체화하고 내부 traceboard에 검수본을 게시했다. 새 지도·비교·기획 기능은 개발 전이며 실제 담당자 검수와 제품 인수 시험은 미실시다.
+- Evidence:
+  - docs/review/2026-09-planning-review.md: 검수 순서·질문·개발 착수 기준
+  - docs/sdlc/: 기획·자료 계약·기능 23개/비기능 6개·UC 8개/AC 26개/TS 8개·화면 7개
+  - docs/validation/16-planning-review-publication.md: 원천 커밋·그림/링크/추적 검사·내부 배포 검증
+  - https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html
+- Changes:
+  - 제품 범위·용어집·CHARTER·마일스톤·실행 계획에 D0 문서/시안 검수를 개발 앞에 반영
+  - SCR-FC-001~007 편집 원본·SVG, 지역 지도 작은 화면 시안 포함
+  - traceboard.yaml과 traceboard 내부 포트폴리오 등록; 기존 FR/UC/SCR ID·accepted ADR·제품 코드·모델·수집기 유지
+- Validation:
+  - 문서 구조·상대 링크·Mermaid 5개·Excalidraw 7개 참조 검사·SVG 재생성 7개 해시 일치
+  - traceboard: 기능 FR 23·NFR 6·UC 8·AC 26·TS 8·화면 7 모두 연결, 문서 30개와 그림 7개; 위반 0·미평가 R3/R4/R5/R6 4개
+  - 실제 브라우저: 그림 7개 육안 검토·화면 흐름·문서 검색·페이지 링크 확인
+  - 신규 제품 인수 시험·앱 테스트·빌드 미실행: 제품/의존성 변경 없음. 기존 운영 검증을 새 기능 통과로 환산하지 않음
+  - 내부 게시 접근성 1,556 페이지 검사 조합 위반 0·미평가 0; traceboard-dev 86a4585 Succeeded/Synced/Healthy, HTTPS 48개 파일 원본 해시 일치와 실제 그림 7/7 확인
+- Questions:
+  - No open question
+- Handoff: Codex
