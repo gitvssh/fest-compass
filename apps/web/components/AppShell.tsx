@@ -18,6 +18,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               홈
             </Link>
             <Link href="/regions" className="font-bold text-blue">관광지도</Link>
+            <Link href="/compare" className="hover:text-ink">축제 비교</Link>
             <Link href="/evidence" className="hover:text-ink">담은 근거</Link>
             <Link href="/workspace" className="font-bold text-blue">내 작업공간</Link>
             {!readOnly ? (

@@ -40,11 +40,11 @@ export function RegionMap({ province, resources, selected, onProvince, onResourc
   const provinces = [...new Map(REGIONS.map(r => [r.provinceCode, r.provinceName])).entries()];
   return <div className="overflow-hidden rounded-2xl border border-ink/15 bg-[#e9f1f4]">
     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 bg-white/90 p-3 text-xs">
-      <span className="font-bold">{province ? "선택 지역 · 자료 좌표" : "남한 전국 · 시도 선택"}</span>
+      <span className="font-bold">{province ? "선택 지역 · 자료 좌표" : "전국 · 시도 선택"}</span>
       <div className="flex gap-1">{[["확대", "+", () => move(.65)], ["축소", "−", () => move(1.5)], ["서쪽으로 이동", "←", () => move(1, -.25)], ["동쪽으로 이동", "→", () => move(1, .25)], ["북쪽으로 이동", "↑", () => move(1, 0, .25)], ["남쪽으로 이동", "↓", () => move(1, 0, -.25)]] .map(([label, symbol, action]) => <button key={String(label)} aria-label={String(label)} onClick={action as () => void} className="min-h-9 min-w-9 rounded-lg border border-ink/20 bg-white font-bold">{String(symbol)}</button>)}</div>
     </div>
-    <svg role="group" aria-label="남한 지역 탐색 지도" className="h-[420px] w-full sm:h-[510px]" viewBox={`${left} ${top} ${right - left} ${bottom - top}`}>
-      <title>남한 육지 윤곽과 지역 선택 표식</title>
+    <svg role="group" aria-label="전국 지역 탐색 지도" className="h-[420px] w-full sm:h-[510px]" viewBox={`${left} ${top} ${right - left} ${bottom - top}`}>
+      <title>전국 육지 윤곽과 지역 선택 표식</title>
       <path d={outline.path} fill="#fafcf8" stroke="#95a9ad" strokeWidth={.65} vectorEffect="non-scaling-stroke" fillRule="evenodd" />
       {!province && provinces.map(([code, name]) => { const anchor = anchors[code]; if (!anchor) return null; const [x, y] = project(anchor[0], anchor[1]); return <g key={code} role="button" tabIndex={0} aria-label={`${name} 선택`} onClick={() => onProvince(code)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onProvince(code); } }} className="cursor-pointer focus:outline-blue">
         <rect x={x - size * 1.65} y={y - size * .72} width={size * 3.3} height={size * 1.44} rx={size * .45} fill="#071a33" />

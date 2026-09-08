@@ -1,0 +1,614 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-09-08",
+  "note": "선정·공개 사례 조사에서 연결한 8회차. 전국 과거 전수 목록이 아니며 현재 API로 덮어쓰지 않음",
+  "editions": [
+    {
+      "id": "nonsan-strawberry-2023",
+      "festivalId": "nonsan-strawberry",
+      "name": "논산딸기축제",
+      "year": 2023,
+      "region": {
+        "province": "44",
+        "district": "230",
+        "name": "충청남도 논산시"
+      },
+      "origin": "archive",
+      "start": "2023-03-08",
+      "end": "2023-03-12",
+      "status": "사후 발표 확인",
+      "statusNote": "논산시 사후 발표의 일정. 입장 계수·중복 제거 원자료 미확보",
+      "themes": [
+        "농특산물"
+      ],
+      "address": "장소별 사용 조건 미확인",
+      "source": {
+        "title": "논산시 2023-03-13 사후 발표",
+        "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=fa907dd5f01f2c66bf04db78c5072248",
+        "checkedAt": "2026-09-07T08:17:47.382082+00:00",
+        "publishedAt": "2023-03-13",
+        "sha256": "4bead5c32fda55556af2f638929e6d612ae581419d7971b06a92c92fe70b9dd1",
+        "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
+      },
+      "visits": {
+        "metric": "시군구 일별 외지인 방문",
+        "unit": "명 (통신 기반 추정)",
+        "method": "KTO-locgoRegnVisitrDDList-touDivCd2",
+        "regionCode": "44230",
+        "source": {
+          "title": "한국관광공사 지역별 방문자",
+          "url": "https://www.data.go.kr/data/15101972/openapi.do",
+          "checkedAt": "2026-09-07T08:58:14.039Z",
+          "publishedAt": null,
+          "sha256": "cf2d0135954b739d1a7f8eac8feee01b1a92c2841cc743e08a3c156ca4096ef9",
+          "note": "보관본에서 추출한 값. 행사장 입장객·축제 효과가 아님"
+        },
+        "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170",
+        "collectedAt": "2026-09-07T08:58:14.039Z",
+        "points": [
+          {
+            "date": "2023-03-01",
+            "value": 45031
+          },
+          {
+            "date": "2023-03-02",
+            "value": 39490.5
+          },
+          {
+            "date": "2023-03-03",
+            "value": 37114
+          },
+          {
+            "date": "2023-03-04",
+            "value": 53501
+          },
+          {
+            "date": "2023-03-05",
+            "value": 51796.5
+          },
+          {
+            "date": "2023-03-06",
+            "value": 40743.5
+          },
+          {
+            "date": "2023-03-07",
+            "value": 43099
+          },
+          {
+            "date": "2023-03-08",
+            "value": 48296.5
+          },
+          {
+            "date": "2023-03-09",
+            "value": 50771
+          },
+          {
+            "date": "2023-03-10",
+            "value": 55520.5
+          },
+          {
+            "date": "2023-03-11",
+            "value": 120599.5
+          },
+          {
+            "date": "2023-03-12",
+            "value": 67767
+          },
+          {
+            "date": "2023-03-13",
+            "value": 41863.5
+          },
+          {
+            "date": "2023-03-14",
+            "value": 44464
+          },
+          {
+            "date": "2023-03-15",
+            "value": 37905
+          }
+        ]
+      },
+      "costs": [],
+      "missing": [
+        "행사장 입장 계수 원자료",
+        "전체 축제 예산·결산",
+        "시간별 혼잡"
+      ]
+    },
+    {
+      "id": "nonsan-strawberry-2024",
+      "festivalId": "nonsan-strawberry",
+      "name": "논산딸기축제",
+      "year": 2024,
+      "region": {
+        "province": "44",
+        "district": "230",
+        "name": "충청남도 논산시"
+      },
+      "origin": "archive",
+      "start": "2024-03-21",
+      "end": "2024-03-24",
+      "status": "사후 발표 확인",
+      "statusNote": "논산시 사후 발표의 일정. 입장 계수·중복 제거 원자료 미확보",
+      "themes": [
+        "농특산물"
+      ],
+      "address": "장소별 사용 조건 미확인",
+      "source": {
+        "title": "논산시 2024-03-25 사후 발표",
+        "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=a88d5d363b97bc030372ceadfe7bd16a",
+        "checkedAt": "2026-09-07T08:17:47.387435+00:00",
+        "publishedAt": "2024-03-25",
+        "sha256": "c99e3bbb3979fcf6670b59f8a723ce825a6adcbb3ea93f2b8b93c93b8e658db6",
+        "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
+      },
+      "visits": {
+        "metric": "시군구 일별 외지인 방문",
+        "unit": "명 (통신 기반 추정)",
+        "method": "KTO-locgoRegnVisitrDDList-touDivCd2",
+        "regionCode": "44230",
+        "source": {
+          "title": "한국관광공사 지역별 방문자",
+          "url": "https://www.data.go.kr/data/15101972/openapi.do",
+          "checkedAt": "2026-09-07T08:58:14.039Z",
+          "publishedAt": null,
+          "sha256": "cf2d0135954b739d1a7f8eac8feee01b1a92c2841cc743e08a3c156ca4096ef9",
+          "note": "보관본에서 추출한 값. 행사장 입장객·축제 효과가 아님"
+        },
+        "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170",
+        "collectedAt": "2026-09-07T08:58:14.039Z",
+        "points": [
+          {
+            "date": "2024-03-14",
+            "value": 44653
+          },
+          {
+            "date": "2024-03-15",
+            "value": 43445.5
+          },
+          {
+            "date": "2024-03-16",
+            "value": 67378.5
+          },
+          {
+            "date": "2024-03-17",
+            "value": 59741.5
+          },
+          {
+            "date": "2024-03-18",
+            "value": 43750
+          },
+          {
+            "date": "2024-03-19",
+            "value": 45293.5
+          },
+          {
+            "date": "2024-03-20",
+            "value": 41261.5
+          },
+          {
+            "date": "2024-03-21",
+            "value": 56252
+          },
+          {
+            "date": "2024-03-22",
+            "value": 60280.5
+          },
+          {
+            "date": "2024-03-23",
+            "value": 126164.5
+          },
+          {
+            "date": "2024-03-24",
+            "value": 118954.5
+          },
+          {
+            "date": "2024-03-25",
+            "value": 46700.5
+          },
+          {
+            "date": "2024-03-26",
+            "value": 47908
+          },
+          {
+            "date": "2024-03-27",
+            "value": 45416
+          },
+          {
+            "date": "2024-03-28",
+            "value": 45115
+          }
+        ]
+      },
+      "costs": [],
+      "missing": [
+        "행사장 입장 계수 원자료",
+        "전체 축제 예산·결산",
+        "시간별 혼잡"
+      ]
+    },
+    {
+      "id": "nonsan-strawberry-2025",
+      "festivalId": "nonsan-strawberry",
+      "name": "논산딸기축제",
+      "year": 2025,
+      "region": {
+        "province": "44",
+        "district": "230",
+        "name": "충청남도 논산시"
+      },
+      "origin": "archive",
+      "start": "2025-03-27",
+      "end": "2025-03-30",
+      "status": "일부 프로그램 변경",
+      "statusNote": "산불로 일부 체험 축소를 사후 기사에서 확인. 변경 당시 공지 시각은 미확인",
+      "themes": [
+        "농특산물"
+      ],
+      "address": "장소별 사용 조건 미확인",
+      "source": {
+        "title": "2025 논산딸기축제 주 무대설치 및 행사운영 용역 공고 · 2쪽",
+        "url": "https://www.nonsan.go.kr/cntf/html/sub05/0503.html?dlgt=N&file_id=184487&mode=D&no=2a5451006dff034d8a709772015d9b8d",
+        "checkedAt": "2026-09-08",
+        "publishedAt": "2025-02-17",
+        "sha256": "005a296055f006f0b2c4784212f9897cfcdfef6f33a860f1f9811c748901a1b4",
+        "note": "일부 무대·운영 용역의 입찰 기초금액. 전체 예산·계약·집행 아님"
+      },
+      "visits": {
+        "metric": "시군구 일별 외지인 방문",
+        "unit": "명 (통신 기반 추정)",
+        "method": "KTO-locgoRegnVisitrDDList-touDivCd2",
+        "regionCode": "44230",
+        "source": {
+          "title": "한국관광공사 지역별 방문자",
+          "url": "https://www.data.go.kr/data/15101972/openapi.do",
+          "checkedAt": "2026-09-07T08:58:14.039Z",
+          "publishedAt": null,
+          "sha256": "cf2d0135954b739d1a7f8eac8feee01b1a92c2841cc743e08a3c156ca4096ef9",
+          "note": "보관본에서 추출한 값. 행사장 입장객·축제 효과가 아님"
+        },
+        "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170",
+        "collectedAt": "2026-09-07T08:58:14.039Z",
+        "points": [
+          {
+            "date": "2025-03-20",
+            "value": 41870.5
+          },
+          {
+            "date": "2025-03-21",
+            "value": 43540
+          },
+          {
+            "date": "2025-03-22",
+            "value": 70357
+          },
+          {
+            "date": "2025-03-23",
+            "value": 64886.5
+          },
+          {
+            "date": "2025-03-24",
+            "value": 44296
+          },
+          {
+            "date": "2025-03-25",
+            "value": 45073
+          },
+          {
+            "date": "2025-03-26",
+            "value": 45738
+          },
+          {
+            "date": "2025-03-27",
+            "value": 52671.5
+          },
+          {
+            "date": "2025-03-28",
+            "value": 62702.5
+          },
+          {
+            "date": "2025-03-29",
+            "value": 113466.5
+          },
+          {
+            "date": "2025-03-30",
+            "value": 112010.5
+          },
+          {
+            "date": "2025-03-31",
+            "value": 46203.5
+          },
+          {
+            "date": "2025-04-01",
+            "value": 32259.5
+          },
+          {
+            "date": "2025-04-02",
+            "value": 31416
+          },
+          {
+            "date": "2025-04-03",
+            "value": 35507.5
+          }
+        ]
+      },
+      "costs": [
+        {
+          "id": "nonsan-2025-stage-tender",
+          "label": "주 무대·행사운영 용역 기초금액",
+          "amount": 110000000,
+          "unit": "KRW",
+          "year": 2025,
+          "stage": "입찰 기초",
+          "scopeId": "nonsan-2025-stage",
+          "scope": "주 무대설치 및 행사운영 일부 용역",
+          "department": "논산문화관광재단",
+          "vat": "포함",
+          "source": {
+            "title": "2025 논산딸기축제 주 무대설치 및 행사운영 용역 공고 · 2쪽",
+            "url": "https://www.nonsan.go.kr/cntf/html/sub05/0503.html?dlgt=N&file_id=184487&mode=D&no=2a5451006dff034d8a709772015d9b8d",
+            "checkedAt": "2026-09-08",
+            "publishedAt": "2025-02-17",
+            "sha256": "005a296055f006f0b2c4784212f9897cfcdfef6f33a860f1f9811c748901a1b4",
+            "note": "일부 무대·운영 용역의 입찰 기초금액. 전체 예산·계약·집행 아님"
+          },
+          "parts": null,
+          "complete": false
+        }
+      ],
+      "missing": [
+        "행사장 입장 계수 원자료",
+        "전체 축제 예산·결산",
+        "시간별 혼잡"
+      ],
+      "statusSource": {
+        "title": "공식 축제 홈페이지 2025-04-07 사후 기사 재게시",
+        "url": "https://yangchon.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=e626118e154dd0aa509d0d368c942448",
+        "checkedAt": "2026-09-07T08:17:50.510114+00:00",
+        "publishedAt": "2025-04-07",
+        "sha256": "c2a4378ce69e505c1a611f7aaf3d4cedcdf7ab654fb2c793afc63e3fc81f15d8",
+        "note": "공식 홈페이지의 언론 재게시. 사후 변경 설명이며 독립적인 원자료 검증은 아님"
+      }
+    },
+    {
+      "id": "imsil-cheese-2023",
+      "festivalId": "imsil-cheese",
+      "name": "임실N치즈축제",
+      "year": 2023,
+      "region": {
+        "province": "52",
+        "district": "750",
+        "name": "전북특별자치도 임실군"
+      },
+      "origin": "archive",
+      "start": "2023-10-06",
+      "end": "2023-10-09",
+      "status": "회차 일정 확인",
+      "statusNote": "제전위원회 연도별 홈페이지. 결과·취소 여부의 독립 검증은 미확인. 2023년 지역명·코드 개편 전후 이력은 별도 확인",
+      "themes": [
+        "농특산물"
+      ],
+      "address": "장소별 사용 조건 미확인",
+      "source": {
+        "title": "제전위원회 2023 홈페이지",
+        "url": "https://www.imsilfestival.com/?r=2023",
+        "checkedAt": "2026-09-07T08:17:46.864270+00:00",
+        "publishedAt": null,
+        "sha256": "dd6118aaef5c65ac6828cf647dfe0991604c137c0c778dba066c4995fb08b461",
+        "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
+      },
+      "visits": null,
+      "costs": [],
+      "missing": [
+        "연속 일별 방문 이력",
+        "정의가 확인된 입장객",
+        "전체 예산·결산"
+      ]
+    },
+    {
+      "id": "imsil-cheese-2024",
+      "festivalId": "imsil-cheese",
+      "name": "임실N치즈축제",
+      "year": 2024,
+      "region": {
+        "province": "52",
+        "district": "750",
+        "name": "전북특별자치도 임실군"
+      },
+      "origin": "archive",
+      "start": "2024-10-03",
+      "end": "2024-10-06",
+      "status": "회차 일정 확인",
+      "statusNote": "제전위원회 연도별 홈페이지. 결과·취소 여부의 독립 검증은 미확인. 2023년 지역명·코드 개편 전후 이력은 별도 확인",
+      "themes": [
+        "농특산물"
+      ],
+      "address": "장소별 사용 조건 미확인",
+      "source": {
+        "title": "제전위원회 2024 홈페이지",
+        "url": "https://www.imsilfestival.com/?r=2024",
+        "checkedAt": "2026-09-07T08:17:46.864566+00:00",
+        "publishedAt": null,
+        "sha256": "a911cda238d9269606ffcfd77aabaa268774e4a4f781e0dad19377829600cdbe",
+        "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
+      },
+      "visits": null,
+      "costs": [],
+      "missing": [
+        "연속 일별 방문 이력",
+        "정의가 확인된 입장객",
+        "전체 예산·결산"
+      ]
+    },
+    {
+      "id": "imsil-cheese-2025",
+      "festivalId": "imsil-cheese",
+      "name": "임실N치즈축제",
+      "year": 2025,
+      "region": {
+        "province": "52",
+        "district": "750",
+        "name": "전북특별자치도 임실군"
+      },
+      "origin": "archive",
+      "start": "2025-10-08",
+      "end": "2025-10-12",
+      "status": "회차 일정 확인",
+      "statusNote": "제전위원회 연도별 홈페이지. 결과·취소 여부의 독립 검증은 미확인. 2023년 지역명·코드 개편 전후 이력은 별도 확인",
+      "themes": [
+        "농특산물"
+      ],
+      "address": "장소별 사용 조건 미확인",
+      "source": {
+        "title": "제전위원회 2025 홈페이지",
+        "url": "https://www.imsilfestival.com/?r=2025N",
+        "checkedAt": "2026-09-07T08:17:46.864987+00:00",
+        "publishedAt": null,
+        "sha256": "bd62e93e50597b4fc804a3d5df27e2d5f378ddfadcce228f868c95487ad179c2",
+        "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
+      },
+      "visits": null,
+      "costs": [],
+      "missing": [
+        "연속 일별 방문 이력",
+        "정의가 확인된 입장객",
+        "전체 예산·결산"
+      ]
+    },
+    {
+      "id": "baekje-gongju-2024",
+      "festivalId": "baekje-gongju",
+      "name": "백제문화제 · 공주",
+      "year": 2024,
+      "region": {
+        "province": "44",
+        "district": "150",
+        "name": "충청남도 공주시"
+      },
+      "origin": "archive",
+      "start": "2024-09-28",
+      "end": "2024-10-06",
+      "status": "결산 공시 일정 확인",
+      "statusNote": "공주 지역 공개 자료. 부여 회차 또는 두 지역의 합계로 사용하지 않음",
+      "themes": [
+        "역사문화"
+      ],
+      "address": "공주시 · 세부 장소 사용 조건 미확인",
+      "source": {
+        "title": "공주시 2025년 8월 결산 재정공시",
+        "url": "https://www.gongju.go.kr/thumbnail/fileInfo/FI_202509011049166440.pdf#page=97",
+        "checkedAt": "2026-09-07T08:17:47.227748+00:00",
+        "publishedAt": null,
+        "sha256": "605f6a7471cc504a0469ce7d6ae00c179d7a63026ee2ea843b85a5beab3eb45e",
+        "note": "2025년 8월 결산 재정공시 PDF 97쪽(인쇄 91쪽). 공주 2024 회차. 파일명 날짜를 게시일로 간주하지 않음"
+      },
+      "visits": null,
+      "costs": [],
+      "missing": [
+        "연속 일별 방문 이력",
+        "입장객 측정 방법",
+        "공통 기준의 비용 수치"
+      ]
+    },
+    {
+      "id": "wonju-peach-2022-21",
+      "festivalId": "wonju-peach",
+      "name": "치악산복숭아 축제",
+      "year": 2022,
+      "region": {
+        "province": "51",
+        "district": "130",
+        "name": "강원특별자치도 원주시"
+      },
+      "origin": "archive",
+      "start": null,
+      "end": null,
+      "status": "지원사업 정산 확인",
+      "statusNote": "제21회. 사업기간과 축제 개최일을 분리하며 개최일은 미확인. 검색 지역은 현행 목록에 대응",
+      "themes": [
+        "농특산물"
+      ],
+      "address": "개최 장소 미확인",
+      "source": {
+        "title": "2022년 제21회 치악산복숭아 축제 지원사업 보조금 집행 정산 검사서",
+        "url": "https://www.wonju.go.kr/www/downloadBbsFile.do?key=2481&atchmnflNo=322096",
+        "checkedAt": "2026-09-08",
+        "publishedAt": "2023-01-20",
+        "sha256": "564013dab4ef2015b74c862d0ac1e194dcf17ff8a4bc3762796f7fb56336b105",
+        "note": "검사일 2022-09-30. 사업기간 8/10~31은 축제 개최기간이 아님. 잔액·이자 원문 '-'는 미확인"
+      },
+      "visits": null,
+      "costs": [
+        {
+          "id": "wonju-2022-plan",
+          "label": "지원사업 계획액",
+          "amount": 35000000,
+          "unit": "KRW",
+          "year": 2022,
+          "stage": "계획",
+          "scopeId": "wonju-2022-peach-support",
+          "scope": "제21회 치악산복숭아 축제 지원사업 · 전체 축제 원가 아님",
+          "department": "원주시 로컬푸드과",
+          "vat": "미확인",
+          "source": {
+            "title": "2022년 제21회 치악산복숭아 축제 지원사업 보조금 집행 정산 검사서",
+            "url": "https://www.wonju.go.kr/www/downloadBbsFile.do?key=2481&atchmnflNo=322096",
+            "checkedAt": "2026-09-08",
+            "publishedAt": "2023-01-20",
+            "sha256": "564013dab4ef2015b74c862d0ac1e194dcf17ff8a4bc3762796f7fb56336b105",
+            "note": "검사일 2022-09-30. 사업기간 8/10~31은 축제 개최기간이 아님. 잔액·이자 원문 '-'는 미확인"
+          },
+          "parts": [
+            {
+              "label": "보조금",
+              "amount": 30000000
+            },
+            {
+              "label": "자부담",
+              "amount": 5000000
+            }
+          ],
+          "complete": true
+        },
+        {
+          "id": "wonju-2022-actual",
+          "label": "지원사업 집행액",
+          "amount": 35118200,
+          "unit": "KRW",
+          "year": 2022,
+          "stage": "정산 검사서 기재 집행",
+          "scopeId": "wonju-2022-peach-support",
+          "scope": "제21회 치악산복숭아 축제 지원사업 · 전체 축제 원가 아님",
+          "department": "원주시 로컬푸드과",
+          "vat": "미확인",
+          "source": {
+            "title": "2022년 제21회 치악산복숭아 축제 지원사업 보조금 집행 정산 검사서",
+            "url": "https://www.wonju.go.kr/www/downloadBbsFile.do?key=2481&atchmnflNo=322096",
+            "checkedAt": "2026-09-08",
+            "publishedAt": "2023-01-20",
+            "sha256": "564013dab4ef2015b74c862d0ac1e194dcf17ff8a4bc3762796f7fb56336b105",
+            "note": "검사일 2022-09-30. 사업기간 8/10~31은 축제 개최기간이 아님. 잔액·이자 원문 '-'는 미확인"
+          },
+          "parts": [
+            {
+              "label": "보조금",
+              "amount": 30000000
+            },
+            {
+              "label": "자부담",
+              "amount": 5118200
+            }
+          ],
+          "complete": true
+        }
+      ],
+      "missing": [
+        "축제 개최일",
+        "연속 일별 방문 이력",
+        "전체 축제 원가",
+        "세금 포함 기준",
+        "잔액·이자"
+      ]
+    }
+  ]
+}

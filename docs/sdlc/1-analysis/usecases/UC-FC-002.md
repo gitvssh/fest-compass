@@ -5,7 +5,7 @@ last_verified: 2026-09-08
 id: UC-FC-002
 version: v3
 status: active
-summary: "주변 행사와 과거 개최회차를 같은 기준으로 비교한다. 구현 전 인수 기준입니다."
+summary: "주변 행사·8개 과거 회차·그래프·근거 보관의 첫 기능을 구현했습니다. 전국 확장·전체 인수는 후속입니다."
 covers: ["FR-CMP-1","FR-CMP-2","FR-CMP-3","FR-CMP-4"]
 screens: ["SCR-FC-001","SCR-FC-002"]
 apis: []
@@ -27,7 +27,7 @@ acs:
 |---|---|
 | 액터 | 지자체 축제 담당자 |
 | 목적 | 참고 사례와 일정 중복을 확인하고 비교할 수 없는 자료를 알아본다. |
-| 구현 상태 | 개발 필요. active는 유효한 요구이며 구현 완료가 아님 |
+| 구현 상태 | 첫 기능 구현. [현재 제공 범위](../../2-design/festival-comparison-implementation.md)와 전체 요구를 구분 |
 
 ## 사전 조건
 

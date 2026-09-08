@@ -69,7 +69,7 @@ try {
   await step("결정·현장 기록");
   await visible(page.getByText(/아직 선택한 운영안이 없습니다/));
   await page.getByLabel("작업 파일 가져오기", { exact: true }).setInputFiles({ name: "bad.json", mimeType: "application/json", buffer: Buffer.from("{}") });
-  await visible(page.getByRole("alert"));
+  await visible(page.getByRole("alert").filter({ hasText: "지원하지 않거나 손상된 작업 파일" }));
   assert.equal(await page.getByLabel("작업 중인 회차").locator("option").count(), 2);
   await page.getByLabel("작업 파일 가져오기", { exact: true }).setInputFiles({ name: "saved.json", mimeType: "application/json", buffer: data });
   await page.getByRole("button", { name: "이 파일로 작업 목록 교체" }).click();

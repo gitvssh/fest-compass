@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "scope": "Previously reviewed official sources: HTTP and byte identity recheck, not a new full-document interpretation",
+  "sources": [
+    {
+      "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=fa907dd5f01f2c66bf04db78c5072248",
+      "title": "논산시 2023-03-13 사후 발표",
+      "checkedAt": "2026-09-08T07:45:06.736762+00:00",
+      "reviewedSha256": "4bead5c32fda55556af2f638929e6d612ae581419d7971b06a92c92fe70b9dd1",
+      "status": 200,
+      "sha256": "bf27c8bf8ef5f47254ac8b539889c49d5db548eb2765fa43f75e4332d79eddb9",
+      "bytes": 62654,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://www.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=a88d5d363b97bc030372ceadfe7bd16a",
+      "title": "논산시 2024-03-25 사후 발표",
+      "checkedAt": "2026-09-08T07:45:06.737259+00:00",
+      "reviewedSha256": "c99e3bbb3979fcf6670b59f8a723ce825a6adcbb3ea93f2b8b93c93b8e658db6",
+      "status": 200,
+      "sha256": "fb00dac4fc768449826599b0e1d2b4130f62639a416938de6fd710bafa13a76d",
+      "bytes": 38576,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://www.nonsan.go.kr/cntf/html/sub05/0503.html?dlgt=N&file_id=184487&mode=D&no=2a5451006dff034d8a709772015d9b8d",
+      "title": "2025 논산딸기축제 주 무대설치 및 행사운영 용역 공고 · 2쪽",
+      "checkedAt": "2026-09-08T07:45:06.737634+00:00",
+      "reviewedSha256": "005a296055f006f0b2c4784212f9897cfcdfef6f33a860f1f9811c748901a1b4",
+      "status": 200,
+      "sha256": "005a296055f006f0b2c4784212f9897cfcdfef6f33a860f1f9811c748901a1b4",
+      "bytes": 112565,
+      "contentType": "application/pdf"
+    },
+    {
+      "url": "https://yangchon.nonsan.go.kr/nsfestival/html/sub04/0405.html?mode=V&no=e626118e154dd0aa509d0d368c942448",
+      "title": "공식 축제 홈페이지 2025-04-07 사후 기사 재게시",
+      "checkedAt": "2026-09-08T07:45:06.737897+00:00",
+      "reviewedSha256": "c2a4378ce69e505c1a611f7aaf3d4cedcdf7ab654fb2c793afc63e3fc81f15d8",
+      "status": 200,
+      "sha256": "92b81b185c6fa072d864acfdaad71c3afc13a7f774623baaad9397bee04a2770",
+      "bytes": 24846,
+      "contentType": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://www.imsilfestival.com/?r=2023",
+      "title": "제전위원회 2023 홈페이지",
+      "checkedAt": "2026-09-08T07:45:08.347132+00:00",
+      "reviewedSha256": "dd6118aaef5c65ac6828cf647dfe0991604c137c0c778dba066c4995fb08b461",
+      "status": 200,
+      "sha256": "dd6118aaef5c65ac6828cf647dfe0991604c137c0c778dba066c4995fb08b461",
+      "bytes": 61143,
+      "contentType": "text/html;charset=utf-8"
+    },
+    {
+      "url": "https://www.imsilfestival.com/?r=2024",
+      "title": "제전위원회 2024 홈페이지",
+      "checkedAt": "2026-09-08T07:45:08.426612+00:00",
+      "reviewedSha256": "a911cda238d9269606ffcfd77aabaa268774e4a4f781e0dad19377829600cdbe",
+      "status": 200,
+      "sha256": "d8ad7d49c85f3e402df4c10219d5b7b07866b63889cfa53d0030e41652f385d7",
+      "bytes": 74007,
+      "contentType": "text/html;charset=utf-8"
+    },
+    {
+      "url": "https://www.imsilfestival.com/?r=2025N",
+      "title": "제전위원회 2025 홈페이지",
+      "checkedAt": "2026-09-08T07:45:08.459268+00:00",
+      "reviewedSha256": "bd62e93e50597b4fc804a3d5df27e2d5f378ddfadcce228f868c95487ad179c2",
+      "status": 200,
+      "sha256": "b7071367c94e079673e712453a29ba0be39892cc12648e6af8e0c1edeadadc32",
+      "bytes": 67690,
+      "contentType": "text/html;charset=utf-8"
+    },
+    {
+      "url": "https://www.gongju.go.kr/thumbnail/fileInfo/FI_202509011049166440.pdf#page=97",
+      "title": "공주시 2025년 8월 결산 재정공시",
+      "checkedAt": "2026-09-08T07:45:08.576399+00:00",
+      "reviewedSha256": "605f6a7471cc504a0469ce7d6ae00c179d7a63026ee2ea843b85a5beab3eb45e",
+      "status": 200,
+      "sha256": "605f6a7471cc504a0469ce7d6ae00c179d7a63026ee2ea843b85a5beab3eb45e",
+      "bytes": 9360403,
+      "contentType": "application/pdf;charset=UTF-8"
+    },
+    {
+      "url": "https://www.wonju.go.kr/www/downloadBbsFile.do?key=2481&atchmnflNo=322096",
+      "title": "2022년 제21회 치악산복숭아 축제 지원사업 보조금 집행 정산 검사서",
+      "checkedAt": "2026-09-08T07:45:08.663625+00:00",
+      "reviewedSha256": "564013dab4ef2015b74c862d0ac1e194dcf17ff8a4bc3762796f7fb56336b105",
+      "status": 200,
+      "sha256": "564013dab4ef2015b74c862d0ac1e194dcf17ff8a4bc3762796f7fb56336b105",
+      "bytes": 122368,
+      "contentType": "application/octet-stream;charset=utf-8"
+    }
+  ]
+}

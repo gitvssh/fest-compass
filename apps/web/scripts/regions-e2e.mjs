@@ -75,9 +75,9 @@ try {
   const pending = page.waitForEvent("download"); await page.getByRole("button", { name: "근거 파일 보관", exact: true }).click();
   const downloaded = await pending, exported = readFileSync(await downloaded.path(), "utf8");
   assert.equal(JSON.parse(exported).items.find(e => e.selection.dates?.length === 1).result.history.points[0].value, 52671.5);
-  await page.getByLabel("근거 파일 가져오기").setInputFiles({ name: "evidence.json", mimeType: "application/json", buffer: Buffer.from(exported) });
+  await page.getByLabel("근거 파일 가져오기", { exact: true }).setInputFiles({ name: "evidence.json", mimeType: "application/json", buffer: Buffer.from(exported) });
   await visible(page.getByText(/근거 0개를 추가했습니다/));
-  await page.getByLabel("근거 파일 가져오기").setInputFiles({ name: "broken.json", mimeType: "application/json", buffer: Buffer.from("{}") });
+  await page.getByLabel("근거 파일 가져오기", { exact: true }).setInputFiles({ name: "broken.json", mimeType: "application/json", buffer: Buffer.from("{}") });
   await visible(page.getByText(/손상된 근거 파일/));
   assert.equal(await page.evaluate(k => JSON.parse(localStorage.getItem(k)).items.length, key), 3);
   await page.setViewportSize({ width: 390, height: 844 }); await page.goto(`${base}/regions`);
