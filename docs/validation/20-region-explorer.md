@@ -48,7 +48,16 @@ Traceboard 정형 API/Spec/Run 연결과 실제 담당자 과제 관찰은 후�
 
 ## 공개 반영
 
-제품 이미지 발행과 공개 주소 검증을 진행한 뒤 대상 커밋·이미지·확인 결과를 이 절에 추가한다.
+상태: **전국→시도→시군구 조회와 개인 근거 보관 사용 가능**.
+
+- [공개 관광지도](https://kto.damecasol.com/regions), [담은 근거](https://kto.damecasol.com/evidence).
+- 기능 소스 `ba4732289bb60dce1eb994b97c7f88f873273bbf`.
+- [CI 34196206622](https://github.com/gitvssh/fest-compass/actions/runs/34196206622) 성공. 내부 `homelab-fest-compass-k8d69-runner-hhjx4`에서 검증·이미지 발행·원격 확인 완료.
+- 이미지 `sha256:d73143ec751acb8b81cf42cb0ef0939d8da9fd1012d82fe7373abb9266317bae`.
+- 배포 선언 `bbd4bdace21083ee914a29ebcfedb7eb5e40827d`, 등록 앱 `fest-compass-prod` Succeeded / Synced / Healthy, replica 1, pod 2/2 Running.
+- 첫 digest 변경 때 관측용 service-version 표식이 이전 값을 유지해 검사가 실패했다. 동일 이미지의 표식까지 수정하고 17개 배포 객체·40개 검사를 통과한 정확한 revision만 수동 sync했다.
+- 실제 공개 headless 브라우저에서 동의 창의 Reject All을 선택한 뒤 전국→충남→논산, 관광지 61건·3월 31일 관측, 3/27의 52,671.5명과 개인 근거 저장·재조회가 동작했다.
+- 배포 전후 최신 관측 2026-08-09, 기존 예측 2개, 겨울 시험 내용과 hash가 같았다. 연구 모델·매일 수집 로직·과거 예측을 바꾸지 않았다.
 
 ## 남은 범위
 
