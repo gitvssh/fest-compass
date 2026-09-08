@@ -184,3 +184,23 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-010 · Codex · proposer
+
+- Position: 현재 제품은 논산 분석과 개인 운영 기록에 치우쳐 지도 기반 기획 의사결정이 빠져 있었다. 사용자가 명확히 한 지자체 중심 목표를 반영해 지도·조회·비교에서 아이템·장소·시기·예산·준비 규모를 결정하는 제품 마일스톤을 명시했다. 이번에는 문서만 갱신했으며 지도 기능을 개발 완료로 표시하지 않는다.
+- Evidence:
+  - docs/validation/00-plan.md의 기존 7단계는 작업 절차이며 지자체 지도·비교검색의 명시적 완료 기준이 없었음
+  - apps/web/app/festivals/new/page.tsx: 편집 모드 전용 이름 검색. 현재 apps/web/app·components에는 지도 화면 없음
+  - apps/web/lib/workspace.ts 및 components/PersonalWorkspace.tsx: 수기 장소·총예산·자원·결정·실측 기록, 지도 근거와 항목별 비용 산출 연결 없음
+  - 2026-09-08 사용자: 지자체 담당자 타겟, 내 지자체 1차·주변 현재/과거 축제 2차 정보 수요, 올해 축제 아이템·위치·예산·준비 기획이 목표
+- Changes:
+  - docs/design/07-region-planning-milestones.md: M1~M6·현재 상태·완료 기준·근거 담기 흐름·첫 실무 과제 추가
+  - CHARTER.md·00-plan.md·설계 인덱스에 지자체 중심 목표와 M1→M2→M3 우선순위 반영
+  - 06-mvp-workspace.md와 STATE.md에서 개인 운영 기록 완성과 전체 제품 MVP 완성을 구분
+- Validation:
+  - 제품 코드·라우트·설계·프로젝트 기록을 대조해 개발 필요 범위를 확인
+  - 문서 상대 링크·변경 범위·diff 검사 및 project-dialogue 구조 검증
+  - 앱 테스트·빌드 미실행 — 제품·의존성·배포 선언 변경 없는 문서 작업. 기존 배포 검증은 docs/validation/15-mvp-journey.md 유지
+- Questions:
+  - No open question
+- Handoff: Codex
