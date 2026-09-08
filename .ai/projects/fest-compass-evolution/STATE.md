@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 16
+revision: 17
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question"
-updated_at: "2026-09-08T08:31:47.499Z"
+updated_at: "2026-09-08T09:45:13.875Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1 전국→시도→시군구 관광자료 탐색과 M2 첫 축제 비교를 공개 서비스에서 사용할 수 있다. 지도 표기는 전국으로 통일했다. 과거 8회차·논산 실제 방문값 45개·지역별 현재 등록 행사를 조회하고, 방문 추세·일정 겹침·비용 막대·재원 도넛과 당시 값/출처를 개인 근거로 보관·복원한다. 단위 143개·배포 40개·기존 회귀와 신규 비교 21개 headless 흐름 및 공개 현재 행사 11건을 검증했다. 모델·겨울 계획·기존 예측 2개는 유지한다. 다음은 M3 아이템·장소·시기 후보와 근거 연결, 이어서 M4~M6다. 지도 품질·전국 과거 전수자료·전체 TS 인수·실무자 관찰·정형 추적 연결은 후속이다. 내부 Traceboard에 실제 화면과 검수 안내를 게시했으며 64개 파일 일치·그림 3개·390px 표시를 확인했다.
+M1 전국·지역 조회와 M2 실제 축제 비교에 이어 M3 기획 후보가 사용 가능하다. 담당 지역·사업·아이템·장소·시기 대안에 선택 당시 지역/비교 자료를 연결하고 표·일정 그래프로 비교하며 장소 확인·준비 과제·불변 보관본을 개인 브라우저에 기록한다. 공개 앱에서 실제 M1/M2 연결·두 후보·보관 당시 수치를 확인했다. 기존 예측 2개·겨울 시험과 모델을 유지했다. 다음은 M4 수량×단가 예산·재원/지출·준비 규모 비교, 이어 M5 기획안·M6 결과 연결이다. 지도 품질·전국 과거 자료·실무자 관찰·전체 TS 인수와 정형 추적 연결은 후속이다. 내부 Traceboard에 사용 안내·실제 화면을 게시했고 70개 파일 일치·그림 4개·390px 표시를 확인했다.
 
 ## Accepted decisions
 
@@ -34,25 +34,27 @@ M1 전국→시도→시군구 관광자료 탐색과 M2 첫 축제 비교를 �
 - 2026-09-08 사용자 요청: Playwright 등 브라우저 자동 검증은 headless로 수행한다. v3는 설계·내부 검수본 갱신이며 제품 기능 구현 완료로 확대하지 않는다.
 - 2026-09-08 사용자가 시도→시군구 확장을 UI로 표현하고 다음 개발을 진행하도록 승인했다. M1 전국·지역 조회와 개인 근거 보관을 구현·공개하며 브라우저 검증은 계속 headless로 수행한다.
 - 2026-09-08 사용자 후속 요청: 지도 진입 표기를 '전국'으로 확정하고 다음 M2 축제 비교 개발을 이어간다. 모델 정확도보다 MVP 화면·기능 우선과 headless 검증을 유지한다.
+- 2026-09-08 사용자 후속 요청으로 다음 M3 기획 후보·근거 연결을 구현·검증·일반 게시한다. 모델 정확도보다 MVP 화면·기능 우선, 개인 브라우저 저장과 headless 검증을 유지한다.
 
 ## Open questions
 
-- M3에서 아이템·장소·시기 후보에 M1/M2에서 보관한 근거를 연결하고 비교한다. 이어 M4 비용·M5 기획안의 불변 버전으로 연결한다.
+- M4에서 후보별 수량×단가 산출과 재원/지출·금액 단계/범위·세금 미확인·준비 규모를 비교하고 M3 근거/보관본을 이어 쓴다. M5 완성 기획안·사업설명/준비 목록 출력과 M6 결과·다음 회차는 후속이다.
 - M2 전국 과거 전수자료·논산 외 방문 이력·거리 검색·취소/변경 지속 수집·이전에 시작한 장기 행사 전수 겹침 조회·공통 정의 비용 증감 UI는 후속이다. 현재 API를 과거 보관본으로 취급하지 않는다.
 - M1 정식 행정경계/도로 지도와 지도 품질·전국 방문 이력·지역 목록 자동 갱신·개편 코드의 과거 자료 대응은 후속이다.
-- Traceboard 정형 OpenAPI/Spec/Run·티켓은 미연결이다. TS-FC-001/002/003 전체 인수와 실제 담당자 관찰은 미완료다. 개인 사본 저장을 공동 저장·공식 승인 완료로 표시하지 않는다.
+- Traceboard 정형 OpenAPI/Spec/Run·티켓은 미연결이다. TS 전체 인수와 실제 담당자 관찰은 미완료다. 개인 사본 저장을 공동 저장·공식 승인 완료로 표시하지 않는다.
 
 ## Artifacts and durable documents
 
+- docs/validation/22-planning-options.md
+- docs/validation/evidence/2026-09-08-planning-options-production.json
+- docs/sdlc/2-design/planning-options-implementation.md
+- apps/web/app/planning/options/page.tsx
+- apps/web/lib/planning/
+- apps/web/components/PlanningWorkspace.tsx
+- apps/web/scripts/planning-e2e.mjs
 - docs/validation/21-festival-comparison.md
-- docs/validation/evidence/2026-09-08-festival-comparison-production.json
-- docs/validation/evidence/2026-09-08-comparison-source-checks.json
-- docs/sdlc/2-design/festival-comparison-implementation.md
-- apps/web/app/compare/page.tsx
-- apps/web/data/festival-editions.json
-- apps/web/lib/comparison/
-- apps/web/scripts/comparison-e2e.mjs
 - docs/validation/20-region-explorer.md
+- docs/sdlc/2-design/festival-comparison-implementation.md
 - docs/sdlc/2-design/region-explorer-implementation.md
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md

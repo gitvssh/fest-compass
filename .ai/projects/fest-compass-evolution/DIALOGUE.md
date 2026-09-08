@@ -348,3 +348,29 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-017 · Codex · implementer
+
+- Position: M3 기획 후보를 공개해 M1 지역 자료·M2 비교 근거와 아이템·장소·시기 판단을 연결했다. 두 후보의 항목·일정과 장소·준비 확인을 비교하고 당시 자료를 보관·복원할 수 있다. 다음은 M4 예산·준비 규모 비교이며 전체 MVP 완료와 공식 승인으로 확대하지 않는다.
+- Evidence:
+  - docs/sdlc/2-design/planning-options-implementation.md
+  - docs/validation/22-planning-options.md
+  - docs/validation/evidence/2026-09-08-planning-options-production.json
+  - 기능 590c80599c07113df19ad6900c64122fa6887afd; 앱 배포 c2d45fed92463d705c793082dc402916fe152fc9; CI 34208955839
+  - Traceboard 문서 원천 3260214858010f054589cd918bc30c11f61567e9; 게시 bc69393e91beb55b614e6b25eb1b11a832a5d22d
+- Changes:
+  - 담은 지역/비교 근거→기획 후보 동선, 담당 지역·사업·복수 수행 관계와 최대 6개 후보
+  - 아이템/대상/장소/시기/선택 판단에 당시 근거 사본·출처·조회 조건과 참고 이유 연결. 후보 항목 비교·공통 날짜 일정 그래프
+  - 설치/행사/철거별 장소 확인, 준비 과제·선행 관계·해당 없음·업무 진행과 외부 확인 분리. 조건 변경 시 이전 확인 보존·재확인
+  - 최대 20개 불변 보관본·초안/파일 복원·다른 창 충돌/공간 부족/손상 파일 방어. 후보 복사 시 선택·확인·준비 진행 초기화
+  - 요구·화면·검수 안내·검증 범위와 실제 화면 4개 갱신. 모델·데이터베이스·겨울 계획 유지
+- Validation:
+  - 단위 154개(신규 기획 11개)·타입/빌드·배포 계약 40개·운영 의존성 취약점 0. 전용 ARC CI 성공과 원격 digest 검증
+  - 기존 편집/개인 작업/지도/비교와 신규 기획 27개 headless 흐름 통과. 신규 오류/앱 쓰기 0·390px 넘침 0
+  - 공개 강경근대거리 관광자료·논산 실제 D0 근거 연결, 공주시 담당 지역 유지·검수용 두 후보 일정 비교·보관. 연결 해제 후 당시 52,671.5 재조회
+  - 공개 브라우저 콘솔 오류/경고 0·10개 URL HTTP 200·390px 넘침 0. Python 직접 조회의 경계 403은 통과에서 제외
+  - 앱 Synced/Healthy/Succeeded·1 replica·검증 이미지 일치. 전후 기존 예측 2개·겨울 시험·모니터 의미 값·당일 자동 처리 식별 보존
+  - Traceboard 접근성 1,680 화면 조합 위반/미평가 0·추적 누락 0·정형 연결 미평가 4 유지. 실제 HTTPS 70/70 파일 SHA-256 일치·그림 4/4 디코드·390px 넘침 0·제품 링크 확인. Synced/Healthy/Succeeded·이미지 일치·가용 1개. 콘솔은 기존 favicon 404 한 건
+- Questions:
+  - No open question
+- Handoff: Codex
