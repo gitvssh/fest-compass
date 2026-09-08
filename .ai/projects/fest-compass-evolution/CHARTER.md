@@ -48,3 +48,7 @@
 - [현재 상태](../../../docs/validation/01-baseline.md)
 - [WSL 개발환경](../../../docs/ops/wsl-development.md)
 - [운영 경계 ADR](../../../docs/decisions/0001-public-readonly-sqlite-boundary.md)
+
+## 2026-09-08 탐색·시각화 구체화
+
+첫 지도는 남한 전국에서 시작해 시도→시군구로 좁힌다. 우리 지역은 명시적 바로가기다. 과거 비교는 실제 출처·회차·지표별 확보 상태를 드러내고 그래프·파이/도넛·수치 표를 통해 기획 근거로 연결한다. 브라우저 자동 검증은 headless로 실행한다.

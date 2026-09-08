@@ -3,11 +3,11 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-08
 id: TS-FC-005
-version: v2
+version: v3
 status: active
 summary: "준비 내역과 항목별 예산을 비교한다의 인수 시나리오입니다. 실행 코드·통과 기록은 아직 없습니다."
 usecase: UC-FC-005
-covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7"]
+covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7","AC8","AC9"]
 apis: []
 specs: []
 ---
@@ -16,7 +16,7 @@ specs: []
 
 | 항목 | 내용 |
 |---|---|
-| 근거 | [UC-FC-005@v2](../../1-analysis/usecases/UC-FC-005.md) |
+| 근거 | [UC-FC-005@v3](../../1-analysis/usecases/UC-FC-005.md) |
 | 대상 환경 | 구현 후 격리된 로컬 브라우저 + 고정 자료 응답 |
 | 실행 상태 | 미실행. 신규 기능과 실행 명세 개발 필요 |
 
@@ -56,3 +56,12 @@ specs: []
 현재 Run은 없다. 개발 후 실행 파일과 결과를 specs·보고서 경로로 연결한다.
 새 인수 기준은 기존 운영 E2E 결과로 통과 처리하지 않는다.
 독립 브라우저 저장·고정 응답만 사용하고 종료 시 테스트 컨텍스트를 닫는다.
+
+## v3 추가 과제 · 미실행
+
+| 인수 기준 | 고정 입력·행동·기대 결과 |
+|---|---|
+| AC8 | 완전한 300000+200000원 계획 재원과 예정 상태, 미산정 지출, 총액 0, 중복 재원, 알 수 없는 분모를 각각 검사. 마지막 네 경우 파이 없음. |
+| AC9 | 같은 범위 400000/500000원은 0축 막대. 완전 구성비는 총액 병기. VAT 미확인·미산정 반례에 전체 비용 순위/완전 구성비 없음. |
+
+실제 수치 표본은 docs/research/evidence/2026-09-visualization-fixture.json을 사용한다. 가상 실패 입력과 구분하며 브라우저 시험은 headless로 실행한다.

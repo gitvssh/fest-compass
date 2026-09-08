@@ -18,6 +18,7 @@ stages:
       - {path: docs/research/2026-09-municipal-festival-cases.md, required: true}
       - {path: docs/research/2026-09-municipal-festival-sources.md, required: true}
       - {path: docs/research/2026-09-municipal-requirement-proposals.md, required: true}
+      - {path: docs/research/2026-09-historical-comparison-review.md, required: true}
   design:
     screens: docs/sdlc/2-design/screens.md
     artifacts:
@@ -26,6 +27,7 @@ stages:
       - {path: docs/sdlc/2-design/screens.md, required: true}
       - {path: docs/sdlc/2-design/design-system.md, required: true}
       - {path: docs/sdlc/2-design/architecture.md, required: true}
+      - {path: docs/sdlc/2-design/data-visualization.md, required: true}
   testing:
     usecases: "docs/sdlc/1-analysis/usecases/UC-FC-*.md"
     scenarios: "docs/sdlc/3-testing/scenarios/TS-FC-*.md"

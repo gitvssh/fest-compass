@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "purpose": "개발 전 v3 시안의 실제 수치. 서비스 데이터 연결 완료 아님",
+  "historySource": {
+    "path": "docs/validation/evidence/2026-09-07-nonsan-history.json",
+    "sha256": "cf2d0135954b739d1a7f8eac8feee01b1a92c2841cc743e08a3c156ca4096ef9",
+    "snapshotId": "de14d21e2ba9580d74de60160fd4a3b34b7a343cfa49d1ce626dedd4e4ea6170",
+    "collectedAt": "2026-09-07T08:58:14.039Z",
+    "sourcePublishedAt": null,
+    "url": "https://www.data.go.kr/data/15101972/openapi.do",
+    "region": {
+      "code": "44230",
+      "name": "논산시"
+    },
+    "metric": "외지인 일별 지역 방문 추정치",
+    "touDivCd": "2",
+    "unit": "제공처 방문 추정치 (명)",
+    "scheduleSource": "docs/validation/05-festival-selection.md"
+  },
+  "nonsan": [
+    {
+      "edition": "nonsan-strawberry-2023",
+      "year": 2023,
+      "eventStart": "2023-03-08",
+      "eventEnd": "2023-03-12",
+      "points": [
+        {
+          "offset": -7,
+          "date": "2023-03-01",
+          "value": 45031
+        },
+        {
+          "offset": -6,
+          "date": "2023-03-02",
+          "value": 39490.5
+        },
+        {
+          "offset": -5,
+          "date": "2023-03-03",
+          "value": 37114
+        },
+        {
+          "offset": -4,
+          "date": "2023-03-04",
+          "value": 53501
+        },
+        {
+          "offset": -3,
+          "date": "2023-03-05",
+          "value": 51796.5
+        },
+        {
+          "offset": -2,
+          "date": "2023-03-06",
+          "value": 40743.5
+        },
+        {
+          "offset": -1,
+          "date": "2023-03-07",
+          "value": 43099
+        },
+        {
+          "offset": 0,
+          "date": "2023-03-08",
+          "value": 48296.5
+        },
+        {
+          "offset": 1,
+          "date": "2023-03-09",
+          "value": 50771
+        },
+        {
+          "offset": 2,
+          "date": "2023-03-10",
+          "value": 55520.5
+        },
+        {
+          "offset": 3,
+          "date": "2023-03-11",
+          "value": 120599.5
+        },
+        {
+          "offset": 4,
+          "date": "2023-03-12",
+          "value": 67767
+        },
+        {
+          "offset": 5,
+          "date": "2023-03-13",
+          "value": 41863.5
+        },
+        {
+          "offset": 6,
+          "date": "2023-03-14",
+          "value": 44464
+        },
+        {
+          "offset": 7,
+          "date": "2023-03-15",
+          "value": 37905
+        }
+      ]
+    },
+    {
+      "edition": "nonsan-strawberry-2024",
+      "year": 2024,
+      "eventStart": "2024-03-21",
+      "eventEnd": "2024-03-24",
+      "points": [
+        {
+          "offset": -7,
+          "date": "2024-03-14",
+          "value": 44653
+        },
+        {
+          "offset": -6,
+          "date": "2024-03-15",
+          "value": 43445.5
+        },
+        {
+          "offset": -5,
+          "date": "2024-03-16",
+          "value": 67378.5
+        },
+        {
+          "offset": -4,
+          "date": "2024-03-17",
+          "value": 59741.5
+        },
+        {
+          "offset": -3,
+          "date": "2024-03-18",
+          "value": 43750
+        },
+        {
+          "offset": -2,
+          "date": "2024-03-19",
+          "value": 45293.5
+        },
+        {
+          "offset": -1,
+          "date": "2024-03-20",
+          "value": 41261.5
+        },
+        {
+          "offset": 0,
+          "date": "2024-03-21",
+          "value": 56252
+        },
+        {
+          "offset": 1,
+          "date": "2024-03-22",
+          "value": 60280.5
+        },
+        {
+          "offset": 2,
+          "date": "2024-03-23",
+          "value": 126164.5
+        },
+        {
+          "offset": 3,
+          "date": "2024-03-24",
+          "value": 118954.5
+        },
+        {
+          "offset": 4,
+          "date": "2024-03-25",
+          "value": 46700.5
+        },
+        {
+          "offset": 5,
+          "date": "2024-03-26",
+          "value": 47908
+        },
+        {
+          "offset": 6,
+          "date": "2024-03-27",
+          "value": 45416
+        },
+        {
+          "offset": 7,
+          "date": "2024-03-28",
+          "value": 45115
+        }
+      ]
+    },
+    {
+      "edition": "nonsan-strawberry-2025",
+      "year": 2025,
+      "eventStart": "2025-03-27",
+      "eventEnd": "2025-03-30",
+      "points": [
+        {
+          "offset": -7,
+          "date": "2025-03-20",
+          "value": 41870.5
+        },
+        {
+          "offset": -6,
+          "date": "2025-03-21",
+          "value": 43540
+        },
+        {
+          "offset": -5,
+          "date": "2025-03-22",
+          "value": 70357
+        },
+        {
+          "offset": -4,
+          "date": "2025-03-23",
+          "value": 64886.5
+        },
+        {
+          "offset": -3,
+          "date": "2025-03-24",
+          "value": 44296
+        },
+        {
+          "offset": -2,
+          "date": "2025-03-25",
+          "value": 45073
+        },
+        {
+          "offset": -1,
+          "date": "2025-03-26",
+          "value": 45738
+        },
+        {
+          "offset": 0,
+          "date": "2025-03-27",
+          "value": 52671.5
+        },
+        {
+          "offset": 1,
+          "date": "2025-03-28",
+          "value": 62702.5
+        },
+        {
+          "offset": 2,
+          "date": "2025-03-29",
+          "value": 113466.5
+        },
+        {
+          "offset": 3,
+          "date": "2025-03-30",
+          "value": 112010.5
+        },
+        {
+          "offset": 4,
+          "date": "2025-03-31",
+          "value": 46203.5
+        },
+        {
+          "offset": 5,
+          "date": "2025-04-01",
+          "value": 32259.5
+        },
+        {
+          "offset": 6,
+          "date": "2025-04-02",
+          "value": 31416
+        },
+        {
+          "offset": 7,
+          "date": "2025-04-03",
+          "value": 35507.5
+        }
+      ]
+    }
+  ],
+  "wonju": {
+    "sourceId": "SRC-MUN-03",
+    "sourceUrl": "https://www.wonju.go.kr/www/downloadBbsFile.do?key=2481&atchmnflNo=322096",
+    "document": "2022년 제21회 치악산복숭아 축제 지원사업 보조금 집행 정산 검사서",
+    "scope": "해당 지원사업, 전체 축제 원가 아님",
+    "unit": "원",
+    "inspectionDate": "2022-09-30",
+    "publishedAt": "2023-01-20",
+    "checkedAt": "2026-09-08",
+    "plan": {
+      "grant": 30000000,
+      "self": 5000000,
+      "total": 35000000
+    },
+    "actual": {
+      "grant": 30000000,
+      "self": 5118200,
+      "total": 35118200
+    },
+    "balance": null,
+    "interest": null,
+    "missingOriginal": "-"
+  }
+}

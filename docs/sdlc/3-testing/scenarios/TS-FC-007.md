@@ -3,11 +3,11 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-08
 id: TS-FC-007
-version: v2
+version: v3
 status: active
 summary: "운영 결과를 비교하고 다음 회차에 재사용한다의 인수 시나리오입니다. 실행 코드·통과 기록은 아직 없습니다."
 usecase: UC-FC-007
-covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7"]
+covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7","AC8"]
 apis: []
 specs: []
 ---
@@ -16,7 +16,7 @@ specs: []
 
 | 항목 | 내용 |
 |---|---|
-| 근거 | [UC-FC-007@v2](../../1-analysis/usecases/UC-FC-007.md) |
+| 근거 | [UC-FC-007@v3](../../1-analysis/usecases/UC-FC-007.md) |
 | 대상 환경 | 구현 후 격리된 로컬 브라우저 + 고정 자료 응답 |
 | 실행 상태 | 미실행. 신규 기능과 실행 명세 개발 필요 |
 
@@ -57,3 +57,11 @@ specs: []
 현재 Run은 없다. 개발 후 실행 파일과 결과를 specs·보고서 경로로 연결한다.
 새 인수 기준은 기존 운영 E2E 결과로 통과 처리하지 않는다.
 독립 브라우저 저장·고정 응답만 사용하고 종료 시 테스트 컨텍스트를 닫는다.
+
+## v3 추가 과제 · 미실행
+
+| 인수 기준 | 고정 입력·행동·기대 결과 |
+|---|---|
+| AC8 | 원주 지원사업 실제 표본은 원문 범위의 계획/집행 막대·재원 구성을 대조. 별도 가상 반례의 실측 결측·계획 0·정의 불일치는 막대/비율 보류. |
+
+실제 수치 표본은 docs/research/evidence/2026-09-visualization-fixture.json을 사용한다. 가상 실패 입력과 구분하며 브라우저 시험은 headless로 실행한다.

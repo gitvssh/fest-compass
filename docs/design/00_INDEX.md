@@ -103,3 +103,6 @@
 - 흐름: `scripts/demo-e2e.mjs` (Windows 전용 — playwright 경로가 `C:/dev` 하드코딩. WSL에서 돌릴 경우 수정 필요)
 - 데이터: `scripts/verify-kto-live.mjs` (실키·활용신청 필요)
 - 수용 기준: 04 §9 (개선안 §4.1 공모전 기간 내 검증표와 1:1 매핑)
+
+- [전국 시작·그래프 설계 v3](../sdlc/2-design/data-visualization.md)
+- [과거 비교 자료 점검](../research/2026-09-historical-comparison-review.md)
