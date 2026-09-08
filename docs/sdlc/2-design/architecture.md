@@ -2,7 +2,7 @@
 class: Current
 owner: fest-compass
 last_verified: 2026-09-08
-version: v1
+version: v2
 summary: "현재 개인 저장·공개 읽기 전용 경계 위에 지도·근거·기획 기능을 연결하는 설계 초안입니다. 배포 구조 변경은 없습니다."
 ---
 
@@ -50,3 +50,11 @@ flowchart LR
 조회 캐시와 공급 한도는 M1 착수 단계의 확인 항목이다.
 새 REST API나 DB 마이그레이션이 필요하다고 미리 가정하지 않는다. 실제 구현 경로가 정해지면
 유스케이스와 실행 계약·시험을 연결한다.
+
+## v2 연결 범위
+
+BusinessContext·DeliveryRelation·FundingPlan·AmountRecord·ReadinessTask·OutcomeRevision은 개인 기획 저장 경계 안의 신규 설계다.
+구체적인 스키마·마이그레이션과 기존 파일 형식의 호환 경로는 구현 전에 검증한다.
+금액의 단계·대상 범위와 불변 버전 참조를 분리하고 준비 과제 의존 순환을 검사한다.
+외부 증빙은 공개 링크 또는 사용자 문서 식별 메모로 참조한다. 원본 파일 보관·기관 시스템 연결을 새로 추가하지 않는다.
+결과 출력은 기획 사본과 결과 사본 쌍을 사용해 이후 수정과 분리한다.
