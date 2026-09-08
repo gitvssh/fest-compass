@@ -4,19 +4,27 @@ doc_class: current
 doc_kind: product
 authority: canonical
 owner: fest-compass
-last_verified: 2026-08-30
+last_verified: 2026-09-08
+summary: "지자체 담당자가 지역 관광자료와 주변·과거 축제를 비교해 올해 축제의 아이템·장소·시기·예산을 기획합니다."
 ---
 
-# Vision and scope
+# 제품 목표와 범위
 
-FEST Compass helps a festival planning team turn public tourism signals and locally approved operating assumptions into a reviewable decision trail.
+FEST Compass는 지자체 축제 담당자가 자기 지역의 관광자료를 지도·목록·차트로 탐색하고,
+주변의 등록 행사와 과거 개최회차를 비교해 올해 축제의 주제·아이템·대상·장소·시기·예산·준비 규모를 판단하도록 돕는다.
+공공데이터와 담당자의 가정, 선택 이유, 운영 결과를 연결해 다음 회차에 재사용한다.
 
-The product supports:
+목표 흐름은 지역 선택 → 관광정보 조회 → 주변·과거 비교 → 근거 보관 → 두 기획 대안 →
+항목별 예산·준비 비교 → 기획안 보관·출력 → 결과·다음 회차다.
+내 지자체 정보가 1차, 주변·과거 비교가 2차라는 정보 수요 순서는 실제 담당자 관찰로 검증할 가설이다.
 
-- festival workspaces created manually or from verified KTO festival records;
-- evidence snapshots that retain provenance, freshness, aggregation, and interpretation limits;
-- versioned minimum/base/maximum assumptions;
-- operational scenarios, capacity guardrails, approvals, triggers, field actions, and outcomes;
-- reports and next-event cloning with provenance preserved.
+현재 사용 가능: 논산 관광자료·추세 연구, 개인 브라우저의 운영안·결정·현장·결과·보고서·회차 복사.
+개발 필요: 지역 지도·비교 검색·근거 담기·아이템/장소/시기 후보·항목별 예산과 기존 작업의 연결.
+새 화면 설계와 경로는 구현 전 시안이다. 전체 제품 MVP가 완성됐다고 표시하지 않는다.
 
-The production demonstration at `kto.damecasol.com` exposes the seeded evidence and decision flow as a read-only public experience. Editing remains available in local editor mode until a separate authenticated operator boundary is accepted.
+공개 서버의 운영 기록은 읽기 전용이며 개인 작업은 브라우저에 저장한다.
+공동 편집·공식 승인·다중 기기 자동 동기화는 후속 범위다. 기존 ADR의 권한 경계는 유지한다.
+예측은 검증된 지역·지표·기간에서만 보조 자료로 제공하며 추가 모델 연구보다 기획 흐름을 우선한다.
+
+상세 기준은 [개정 기획서](../sdlc/0-planning/product-plan.md),
+[요구사항·기능목록](../sdlc/1-analysis/srs.md), [비목표](non-goals.md)를 따른다.

@@ -4,10 +4,19 @@ doc_class: current
 doc_kind: map
 authority: canonical
 owner: fest-compass
-last_verified: 2026-09-07
+last_verified: 2026-09-08
+summary: "새 축제 기획 검수 문서와 현재 사용 가능한 제품의 검증 이력으로 안내합니다."
 ---
 
 # Documentation map
+
+## 올해 축제 기획 검수
+
+- [검수 시작](review/2026-09-planning-review.md) — 문서·시안과 현재 기능의 차이, 읽는 순서
+- [개정 기획서](sdlc/0-planning/product-plan.md)
+- [요구사항·기능목록](sdlc/1-analysis/srs.md) · [자료 정의](sdlc/1-analysis/data-contract.md)
+- [정보구조](sdlc/2-design/ia.md) · [화면 흐름](sdlc/2-design/flows.md) · [화면·와이어프레임](sdlc/2-design/screens.md)
+- [인수 검증 계획](sdlc/3-testing/acceptance-plan.md)
 
 ## Product
 

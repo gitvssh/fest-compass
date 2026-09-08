@@ -1,0 +1,42 @@
+# 정본은 이 저장소 문서다. 내부 검수만 허용하며 공개 포트폴리오에는 등록하지 않는다.
+project: fest-compass
+visibility: internal
+stages:
+  planning:
+    artifacts:
+      - {path: docs/review/2026-09-planning-review.md, required: true}
+      - {path: docs/product/vision-scope.md, required: true}
+      - {path: docs/product/non-goals.md, required: true}
+      - {path: docs/product/glossary.md, required: true}
+      - {path: docs/sdlc/0-planning/product-plan.md, required: true}
+  analysis:
+    srs: docs/sdlc/1-analysis/srs.md
+    artifacts:
+      - {path: docs/sdlc/1-analysis/srs.md, required: true}
+      - {path: docs/sdlc/1-analysis/data-contract.md, required: true}
+      - {path: docs/sdlc/1-analysis/business-flow.md, required: true}
+  design:
+    screens: docs/sdlc/2-design/screens.md
+    artifacts:
+      - {path: docs/sdlc/2-design/ia.md, required: true}
+      - {path: docs/sdlc/2-design/flows.md, required: true}
+      - {path: docs/sdlc/2-design/screens.md, required: true}
+      - {path: docs/sdlc/2-design/design-system.md, required: true}
+      - {path: docs/sdlc/2-design/architecture.md, required: true}
+  testing:
+    usecases: "docs/sdlc/1-analysis/usecases/UC-FC-*.md"
+    scenarios: "docs/sdlc/3-testing/scenarios/TS-FC-*.md"
+    # 새 규격의 실행 명세와 보고서는 개발 후 연결한다. 기존 시험을 새 기능의 Run으로 대체하지 않는다.
+    max_run_age_days: 30
+    artifacts:
+      - {path: docs/sdlc/3-testing/acceptance-plan.md, required: true}
+  operations:
+    links:
+      - {label: 현재 사용 가능한 FEST Compass, url: "https://kto.damecasol.com"}
+# 새로운 API 계약·실행 기록·티켓 원천은 미선언이다. 미평가를 통과로 만들지 않는다.
+lint:
+  max_doc_age_days: 180
+  severity_overrides:
+    # 자기모순은 문서 작성 단계부터 차단한다. 미실행 잔여 R4는 warn으로 드러낸다.
+    R7: error
+    R9: error
