@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 13
+revision: 14
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-08T04:40:01.689Z"
+updated_at: "2026-09-08T05:51:26.649Z"
 ---
 
 # Current state
 
 ## Summary
 
-공개 사례 보완안 8개를 반영한 기획·요구사항·자료·화면 v2를 내부 traceboard에서 검수할 수 있다. 기존 요구 ID를 유지하고 인수 기준은 44개로 구체화했으며 7개 v2 시안과 v1 원본을 함께 보존했다. 사업 정보·복수 수행 관계, 장소/준비 확인, 재원/지출·단계/범위·증감, 재원별 결과와 차기 개선·목적별 출력이 연결된다. 게시 파일 51개 일치와 접근성·화면 표시를 검증했다. 신규 기능은 개발 필요이고 실제 공무원 관찰·TS 실행은 미실시다. 다음은 v2 검수 의견을 반영하면서 M1 지도·조회·근거 담기→M2 비교→M3 후보→M4~M6 연결이다. 모델 고정 계획과 기존 수집은 유지한다.
+남한 전국 시작·실자료·그래프 중심 비교를 반영한 기획·화면 v3를 내부 Traceboard에서 검수할 수 있다. 논산 과거 일별 실제 값 45개와 원주 지원사업의 계획/집행·재원 구성을 시안에 연결하고 지표별 미확보·비교 보류를 표시했다. 기존 요구·화면 ID를 유지하며 인수 기준 54개와 7개 v3 시안을 검증했다. headless로 게시 53개 파일 일치·그림 7개·흐름 5개·390px 표시를 확인했다. 제품 지도·일반 과거 검색·기획 기능은 개발 필요이고 실무자 관찰·신규 TS는 미실행이다. 다음은 v3 검수 의견 반영 후 M1 전국→지역 조회·출처·근거 담기, M2 비교→M3 후보→M4~M6 연결이다. 모델 추가 연구는 후순위이며 기존 고정 계획·수집을 유지한다.
 
 ## Accepted decisions
 
@@ -30,38 +30,36 @@ updated_at: "2026-09-08T04:40:01.689Z"
 - 검수용 문서·배치·기본값은 제안으로 표시하고 기존 내부 traceboard에만 게시한다. 지도·예산·위치 시안의 가상 자료를 실제 확보 데이터로 표현하지 않는다(위임된 문서·검수 게시 범위).
 - 2026-09-08 사용자 추가 요청: 실제 지자체 담당자의 축제 준비·예산안 작성·집행을 반영하기 위해 공개 온라인 사례를 조사한다. 조사 근거와 설계 보완안을 문서화하며 실제 사용자 관찰로 표현하지 않는다.
 - 2026-09-08 사용자 후속 승인: 공개 사례의 보완안 8개를 업무·자료·기존 요구/인수 기준과 7개 화면 v2에 반영하고 내부 traceboard 검수본을 갱신한다. 기능 구현·실무자 검증 완료로 확대하지 않는다.
+- 2026-09-08 사용자 승인: 첫 지도는 남한 전국에서 시작해 시도→시군구로 좁히고, 우리 지역·이전 탐색은 명시적 바로가기로 제공한다. 실제 과거 자료의 확보 여부와 출처를 드러내며 그래프·파이/도넛·수치 표 중심으로 비교·기획 근거에 연결한다.
+- 2026-09-08 사용자 요청: Playwright 등 브라우저 자동 검증은 headless로 수행한다. v3는 설계·내부 검수본 갱신이며 제품 기능 구현 완료로 확대하지 않는다.
 
 ## Open questions
 
-- v2 사업 정보·재원/지출·준비 과제·결과 출력의 검수 의견을 반영한다. 다음 구현은 M1 지역 지도/목록/차트·출처·근거 담기이며 추가 모델 연구를 선행하지 않는다.
-- 실제 담당자의 사업설명서 작성·확정 예산 후 조정·다부서 비용·정산 후 재사용 업무 관찰은 미실시다. 단일 회차의 예산 의결→계약→지급·정산 연결도 추가 확인 대상이다.
-- 기관·연도별 예산 분류 및 사전절차 적용은 별도 확인한다. 2027년도 기준을 과거 자료에 소급 적용하지 않으며 법정기한·금액 문턱의 자동 판단은 미제안이다.
-- 지도 공급자·경계·좌표·지역 코드·지역별 가용성과 개인 파일 형식 검증은 구현 착수 시 진행한다. M1 지도→M2 비교→M3 기획 대안→M4~M6 연결 순서를 유지한다.
-- API·실행 명세·Run·티켓 원천은 미연결, 추적 검사 4개 미평가, 신규 TS 8개 미실행이다. 모델 고정 계획·겨울 26건·기존 수집은 유지한다.
+- v3 전국 진입·실제 표본·차트·근거 연결의 검수 의견을 반영한다. 다음 개발은 M1 전국 지도/지역 목록/자료 조회·출처·근거 담기다.
+- 지도 공급자·행정경계·좌표·지역 코드 개편·전체 페이지 조회와 지역별 보유 범위는 구현 착수 때 검증한다. 전국 모든 과거 자료 확보를 M1의 선행 조건으로 만들지 않는다.
+- 과거 회차의 독립 식별·원문/보관본과 지표별 가용성 연결은 개발 필요다. 현재 축제 상세만으로 연도별 과거 회차를 복원하지 않는다.
+- 실제 담당자 관찰과 한 회차의 예산 의결→계약→지급/정산 전 과정 검증은 미실시다. 기관/연도별 분류·절차 적용을 자동 확정하지 않는다.
+- API·실행 명세·Run·티켓 원천은 미연결, 추적 4개 미평가·신규 TS 8개 미실행. 공개 서버 읽기 전용·개인 저장·모델 고정 및 겨울 계획은 유지한다.
 
 ## Artifacts and durable documents
 
-- docs/validation/18-municipal-planning-v2.md
-- docs/research/2026-09-municipal-festival-cases.md
-- docs/research/2026-09-municipal-festival-sources.md
-- docs/research/2026-09-municipal-requirement-proposals.md
-- docs/research/evidence/2026-09-source-checks.json
-- docs/validation/17-municipal-research-publication.md
+- docs/validation/19-national-comparison-v3.md
+- docs/validation/evidence/2026-09-08-planning-v3-publication.json
+- docs/sdlc/2-design/data-visualization.md
+- docs/research/2026-09-historical-comparison-review.md
+- docs/research/evidence/2026-09-visualization-fixture.json
 - docs/review/2026-09-planning-review.md
 - docs/sdlc/0-planning/product-plan.md
 - docs/sdlc/1-analysis/srs.md
 - docs/sdlc/1-analysis/data-contract.md
-- docs/sdlc/1-analysis/business-flow.md
 - docs/sdlc/1-analysis/usecases/
 - docs/sdlc/2-design/screens.md
 - docs/sdlc/2-design/flows.md
 - docs/sdlc/2-design/ia.md
-- docs/sdlc/2-design/architecture.md
-- docs/sdlc/3-testing/acceptance-plan.md
 - docs/sdlc/3-testing/scenarios/
 - docs/assets/
 - traceboard.yaml
-- docs/validation/16-planning-review-publication.md
 - docs/design/07-region-planning-milestones.md
-- docs/validation/15-mvp-journey.md
+- docs/validation/18-municipal-planning-v2.md
+- docs/research/2026-09-municipal-festival-sources.md
 - docs/ops/forecast-automation.md

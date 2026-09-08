@@ -269,3 +269,27 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-014 · Codex · implementer
+
+- Position: 전국 시작·실자료·시각화 검토안을 요구사항과 7개 v3 시안에 반영하고 내부 Traceboard에 게시·검증했다. 신규 지도·일반 과거 검색·기획 기능은 개발 필요이며 모든 브라우저 검증은 headless로 수행했다.
+- Evidence:
+  - docs/sdlc/2-design/data-visualization.md
+  - docs/research/2026-09-historical-comparison-review.md 및 evidence/2026-09-visualization-fixture.json
+  - docs/validation/19-national-comparison-v3.md 및 evidence/2026-09-08-planning-v3-publication.json
+  - FEST 원천 387af0e87ec80db1c22f0d0de817ad79585428da; Traceboard 게시 6a19ba87b85837b54809a5bdd29aa0696bd9435c
+- Changes:
+  - 남한 전국→시도→시군구·상위 복귀와 명시적 우리 지역 이동, 자료 확보 범위·페이지 완료 표시 계약
+  - 논산 실제 45개 일별 값 선그래프·일정표, 원주 지원사업 계획/집행 막대·재원 도넛, 예산 미산정 구성비 보류
+  - 기존 FR 23/NFR 6/UC 8/TS 8/화면 7 ID 유지, AC 44→54. v1·v2 자산 28개 보존
+  - 앱·모델·수집·FEST 배포 선언 변경 없음. 내부 Traceboard 동시 게시 이력 병합·기존 다른 프로젝트 수정 보존
+- Validation:
+  - 구조·추적 위반 0, 미평가 4 유지, UC 본문/YAML·TS 인수 기준 54개 일치
+  - 원천 해시·실제 45개 값과 그래프 좌표 대조, 원주 재원 합계 2개 대조
+  - Excalidraw 7개 참조·SVG 7개 재생성 일치·Mermaid 8블록 파싱·사이트 링크 누락 0
+  - headless 접근성 1,576 검사 조합 위반 0·미평가 0. 실제 HTTPS 53/53 파일 해시 일치
+  - 실제 v3 그림 7/7·흐름 5/5·390px 가로 넘침 0. 배포 Succeeded/Synced/Healthy 및 이미지 일치
+  - 앱 테스트·신규 TS·실무자 관찰 미실행. 제품·의존성 변경 없는 설계/검수 작업이며 기존 모델 계획 유지
+- Questions:
+  - No open question
+- Handoff: Codex
