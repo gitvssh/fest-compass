@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 17
+revision: 18
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question"
-updated_at: "2026-09-08T09:45:13.875Z"
+updated_at: "2026-09-08T23:29:09.947Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1 전국·지역 조회와 M2 실제 축제 비교에 이어 M3 기획 후보가 사용 가능하다. 담당 지역·사업·아이템·장소·시기 대안에 선택 당시 지역/비교 자료를 연결하고 표·일정 그래프로 비교하며 장소 확인·준비 과제·불변 보관본을 개인 브라우저에 기록한다. 공개 앱에서 실제 M1/M2 연결·두 후보·보관 당시 수치를 확인했다. 기존 예측 2개·겨울 시험과 모델을 유지했다. 다음은 M4 수량×단가 예산·재원/지출·준비 규모 비교, 이어 M5 기획안·M6 결과 연결이다. 지도 품질·전국 과거 자료·실무자 관찰·전체 TS 인수와 정형 추적 연결은 후속이다. 내부 Traceboard에 사용 안내·실제 화면을 게시했고 70개 파일 일치·그림 4개·390px 표시를 확인했다.
+M1 전국·지역 조회와 M2 축제 비교의 근거를 M3 기획 후보 및 M4 예산·준비 규모에 연결해 공개했다. 재원 확정/예정과 지출·미산정을 구분하고 후보별 그래프·원문 단계·준비 과제·불변 보관본을 개인 브라우저에서 조회·복원한다. 단위 168개·신규 headless 23개와 공개 비교/복원을 검증했고 기존 예측 2개·겨울 시험을 보존했다. 내부 Traceboard에 실제 화면과 검수 결과를 게시해 76개 파일·그림 4개·모바일 표시를 확인했다. 다음은 M5 완성 기획안·사업설명/준비 목록 출력, 이어 M6 결과 연결이다. 지도 품질·전국 과거자료·실무자 관찰·전체 TS 인수·정형 추적 연결은 후속이다.
 
 ## Accepted decisions
 
@@ -35,30 +35,28 @@ M1 전국·지역 조회와 M2 실제 축제 비교에 이어 M3 기획 후보�
 - 2026-09-08 사용자가 시도→시군구 확장을 UI로 표현하고 다음 개발을 진행하도록 승인했다. M1 전국·지역 조회와 개인 근거 보관을 구현·공개하며 브라우저 검증은 계속 headless로 수행한다.
 - 2026-09-08 사용자 후속 요청: 지도 진입 표기를 '전국'으로 확정하고 다음 M2 축제 비교 개발을 이어간다. 모델 정확도보다 MVP 화면·기능 우선과 headless 검증을 유지한다.
 - 2026-09-08 사용자 후속 요청으로 다음 M3 기획 후보·근거 연결을 구현·검증·일반 게시한다. 모델 정확도보다 MVP 화면·기능 우선, 개인 브라우저 저장과 headless 검증을 유지한다.
+- 2026-09-09 사용자가 다음 M4 예산·재원·준비 규모 비교의 개발·검증·일반 게시를 승인했다. 모델·겨울 시험·개인 브라우저 저장 경계와 headless 검증을 유지한다.
 
 ## Open questions
 
-- M4에서 후보별 수량×단가 산출과 재원/지출·금액 단계/범위·세금 미확인·준비 규모를 비교하고 M3 근거/보관본을 이어 쓴다. M5 완성 기획안·사업설명/준비 목록 출력과 M6 결과·다음 회차는 후속이다.
-- M2 전국 과거 전수자료·논산 외 방문 이력·거리 검색·취소/변경 지속 수집·이전에 시작한 장기 행사 전수 겹침 조회·공통 정의 비용 증감 UI는 후속이다. 현재 API를 과거 보관본으로 취급하지 않는다.
-- M1 정식 행정경계/도로 지도와 지도 품질·전국 방문 이력·지역 목록 자동 갱신·개편 코드의 과거 자료 대응은 후속이다.
-- Traceboard 정형 OpenAPI/Spec/Run·티켓은 미연결이다. TS 전체 인수와 실제 담당자 관찰은 미완료다. 개인 사본 저장을 공동 저장·공식 승인 완료로 표시하지 않는다.
+- M5에서 선택 이유가 있는 두 후보와 당시 근거·예산·준비 상태를 같은 불변 기획 버전으로 묶어 사업설명 자료·준비 목록으로 출력한다. 미산정·출처·버전·미확인 상태와 그래프/표를 유지한다. M6 결과·다음 회차 연결은 후속이다.
+- M1 정식 행정경계·도로 지도·지도 품질·전국 방문 이력과 M2 전국 과거자료·거리 검색·공통 비용 정의 확장은 후속이다. 현재 API를 과거 보관본으로 취급하지 않는다.
+- Traceboard 정형 OpenAPI/Spec/Run·티켓은 미연결이고 실제 담당자 관찰·전체 인수는 미완료다. 개인 저장을 공동 저장·공식 승인으로 표현하지 않는다.
 
 ## Artifacts and durable documents
 
-- docs/validation/22-planning-options.md
-- docs/validation/evidence/2026-09-08-planning-options-production.json
-- docs/sdlc/2-design/planning-options-implementation.md
-- apps/web/app/planning/options/page.tsx
+- docs/validation/evidence/2026-09-09-planning-budget-production.json
+- docs/validation/23-planning-budget.md
+- docs/sdlc/2-design/budget-implementation.md
+- apps/web/app/planning/budget/page.tsx
 - apps/web/lib/planning/
-- apps/web/components/PlanningWorkspace.tsx
-- apps/web/scripts/planning-e2e.mjs
-- docs/validation/21-festival-comparison.md
-- docs/validation/20-region-explorer.md
-- docs/sdlc/2-design/festival-comparison-implementation.md
-- docs/sdlc/2-design/region-explorer-implementation.md
+- apps/web/components/planning/budget/
+- apps/web/scripts/budget-e2e.mjs
+- docs/validation/22-planning-options.md
+- docs/sdlc/2-design/planning-options-implementation.md
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md
-- docs/sdlc/2-design/data-visualization.md
-- docs/research/2026-09-municipal-festival-sources.md
+- docs/sdlc/1-analysis/usecases/UC-FC-006.md
+- docs/sdlc/3-testing/scenarios/TS-FC-006.md
 - traceboard.yaml
 - docs/ops/forecast-automation.md

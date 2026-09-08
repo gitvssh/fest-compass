@@ -374,3 +374,31 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-018 · Codex · implementer
+
+- Position: M4 후보별 예산·재원·준비 규모 비교를 공개하고 Traceboard 검수본을 게시했다. 금액 산출·그래프·원문 단계 기록·이전 기획 복원을 연결했다. 다음은 M5 완성 기획안·사업설명/준비 목록 출력이며 전체 MVP 완료로 확대하지 않는다.
+- Evidence:
+  - docs/sdlc/2-design/budget-implementation.md
+  - docs/validation/23-planning-budget.md
+  - docs/validation/evidence/2026-09-09-planning-budget-production.json
+  - 소스 dcf1f5f5d710f086193eba78b0fe5934caa8790f; 배포 f51c0d0cd37979fbca02962fa0b6604e6408fc63; CI 34254837134 attempt 2
+  - Traceboard 문서 원천 61d5333ecde3ae82da31cf8bb72ccc42ff23d82b; 게시 d3592a8ca8589b1e5966f0f7e9f75086f6bbd204
+- Changes:
+  - 기획 후보와 같은 초안의 /planning/budget, 재원/지출 분리·수량/기간/단가·원 반올림·미산정/0·세금/범위 보류
+  - 0축 후보 금액 막대·총액 병기 구성비·독립 재원/지출 도넛과 수치 표. 같은 재원·상하위 분담 중복 검사
+  - 단계별 원문·누계·출처·단위·분류 연도 보존, 준비 과제·당시 근거 연결, 이전 예산 대비 변경 이유
+  - 기획 파일 v2·v1 읽기·기존 불변 보관본 보존, 작성 중 원문 입력 저장·조건 변경 재확인·후보 복사 초기화
+  - M4 요구·인수·검수 문서와 실제 화면 4개. 운영 모델·겨울 시험·DB 구조 유지
+- Validation:
+  - 단위 168개(예산 14개)·타입/빌드·배포 계약 40개·운영 의존성 취약점 0·변경 Mermaid 1개 통과
+  - 전체 기존 E2E와 신규 예산 23개 headless 흐름 통과·오류/앱 쓰기 0·390px 넘침 0
+  - 공개 두 후보 500000/600000원·독립 도넛·VAT 미확인 보류·단계 원문 3개 보존·수량 수정 후 보관본 불변·500000원 복원
+  - 공개 11개 URL HTTP 200·예산 사이트맵·저장/새로고침 유지·콘솔 오류/경고 0. 앱 Synced/Healthy/Succeeded·1 replica·이미지 일치
+  - 첫 CI quota 실패 뒤 기존 정기 retention으로 400733491 bytes 확보·정책 차이 0; 같은 실패 job 재실행 성공. 수동 삭제/증액 없음
+  - 배포 전후 예측 2개·겨울 시험·모니터 의미 값·당일 처리 식별 보존
+  - Traceboard 1684 접근성 조합 위반/미평가 0·실제 76/76 파일 SHA-256 일치·그림 4/4·390px 넘침 0. 기존 favicon 404 한 건
+  - Traceboard 동시 게시 두 이력 보존·13개 프로젝트 원천 동일/최신 확인. Synced/Healthy/Succeeded·이미지 일치·가용 1개
+- Questions:
+  - No open question
+- Handoff: Codex
