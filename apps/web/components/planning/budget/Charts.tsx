@@ -1,0 +1,18 @@
+import { money } from "@/lib/planning/budget-math";
+
+export const COLORS = ["#2667e8", "#146b61", "#b64b34", "#7b4bb7", "#88701d", "#52647c"];
+export function Composition({ title, values, allowed, reason }: { title: string; values: { label: string; amount: number }[]; allowed: boolean; reason: string }) {
+  const total = values.reduce((n, v) => n + v.amount, 0); let offset = 0;
+  return <section className="region-card min-w-0"><h3 className="text-lg font-extrabold">{title}</h3>
+    {allowed && total > 0 ? <><svg role="img" aria-label={`${title} 도넛 · ${money(total)}`} viewBox="0 0 220 220" className="mx-auto mt-3 w-48 max-w-full"><title>{title} · 원금액은 아래 표에서 확인</title>{values.map((v, i) => { const start = offset, percent = v.amount / total * 100; offset += percent; return v.amount > 0 ? <circle key={i} cx="110" cy="110" r="80" pathLength="100" fill="none" stroke={COLORS[i % COLORS.length]} strokeWidth="30" strokeDasharray={`${percent} ${100 - percent}`} strokeDashoffset={-start} transform="rotate(-90 110 110)"><title>{v.label}: {money(v.amount)}</title></circle> : null; })}<text x="110" y="108" textAnchor="middle" fontSize="16" fill="#10233d">구성 합계</text><text x="110" y="130" textAnchor="middle" fontSize="12" fill="#10233d">{money(total)}</text></svg><p className="my-3 text-xs text-muted">반올림한 비율의 합은 100%와 다를 수 있습니다. 합계 {money(total)}</p></> : <p className="my-4 rounded-xl bg-paper p-4 text-sm leading-6">구성비 보류 · {reason}</p>}
+    <table className="comparison-table"><caption className="sr-only">{title} 수치 표</caption><thead><tr><th>구성</th><th>원금액</th>{allowed && <th>비율</th>}</tr></thead><tbody>{values.map((v, i) => <tr key={i}><th className="break-words"><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: COLORS[i % COLORS.length] }} />{v.label}</th><td>{money(v.amount)}</td>{allowed && <td>{(v.amount / total * 100).toFixed(1)}%</td>}</tr>)}</tbody></table>
+  </section>;
+}
+export function AmountBars({ values }: { values: { name: string; amount: number; pieces: { name: string; amount: number }[] }[] }) {
+  const max = Math.max(1, ...values.map(v => v.amount));
+  return <section className="region-card space-y-4"><h3 className="text-lg font-extrabold">같은 기준의 후보 금액 비교</h3><p className="text-sm text-muted">0원에서 시작하는 같은 축 · 같은 단계·세금·포함 범위의 명목 산출액</p>
+    <svg role="img" aria-label="0원 기준 후보별 금액 막대" viewBox={`0 0 800 ${values.length * 74 + 30}`} className="w-full"><text x="0" y="14" fontSize="12">0원</text><text x="790" y="14" fontSize="12" textAnchor="end">{money(max)}</text>{values.map((v, i) => <g key={i}><text x="0" y={44 + i * 74} fontSize="15" fill="#10233d">{v.name.slice(0, 28)} · {money(v.amount)}</text><rect x="0" y={54 + i * 74} width={v.amount / max * 790} height="22" rx="3" fill={COLORS[i % COLORS.length]} /><line x1="0" x2="790" y1={79 + i * 74} y2={79 + i * 74} stroke="#c6cfdb" /></g>)}</svg>
+    <h4 className="font-bold">후보별 지출 구성과 총액</h4><p className="text-xs text-muted">각 막대의 길이는 해당 후보의 100%입니다. 전체 규모는 위 금액 막대와 총액으로 비교하세요.</p>
+    {values.map((v, i) => <div key={i} className="space-y-2"><p className="text-sm font-bold">{v.name} · 총액 {money(v.amount)}</p>{v.amount > 0 ? <div className="flex h-5 overflow-hidden rounded-full" role="img" aria-label={`${v.name} 지출 구성 · 총액 ${money(v.amount)}`}>{v.pieces.map((piece, j) => <span key={j} style={{ width: `${piece.amount / v.amount * 100}%`, background: COLORS[j % COLORS.length] }} title={`${piece.name}: ${money(piece.amount)}`} />)}</div> : <p className="text-sm">총액 0원 · 구성비 보류</p>}<p className="text-xs leading-6">{v.pieces.map(p => `${p.name} ${money(p.amount)}`).join(" · ")}</p></div>)}
+  </section>;
+}

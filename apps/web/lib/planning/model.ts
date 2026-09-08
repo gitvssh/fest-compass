@@ -3,6 +3,8 @@ import { encodeEvidence } from "../region/evidence";
 import { encodeComparisons } from "../comparison/evidence";
 import { CONDITIONS, FIELDS, PROGRESS, REVIEW_STATUS, STAGES, VENUE_STATUS } from "./types";
 import type { Option, Period, PlanDraft, Planning, ReadinessTask, SourceCopy, Stage, VenueCheck } from "./types";
+import { copiedBudget } from "./budget-model";
+import { validateBudget } from "./budget-validation";
 
 export const PLANNING_KEY = "fest-compass.planning.v1";
 export const MAX_PLANNING_BYTES = 5_000_000;
@@ -13,7 +15,7 @@ export function newOption(name = "후보 A"): Option {
   return { id: uid(), name, theme: "", item: "", audience: "", venue: "", periods: { setup: { start: "", end: "" }, event: { start: "", end: "" }, teardown: { start: "", end: "" } }, assumptions: "", constraints: "", decision: "undecided", reason: "", links: [], venueChecks: [], tasks: [] };
 }
 export function newPlanning(year: number): Planning {
-  return { format: "fest-compass-planning", version: 1, stamp: uid(), updatedAt: new Date().toISOString(), draft: { id: uid(), title: "올해 축제 기획", regionKey: "", year, department: "", purpose: "", continuity: "unknown", period: { start: "", end: "" }, asOf: today(), relations: [], options: [newOption()], evidence: [] }, revisions: [] };
+  return { format: "fest-compass-planning", version: 2, stamp: uid(), updatedAt: new Date().toISOString(), draft: { id: uid(), title: "올해 축제 기획", regionKey: "", year, department: "", purpose: "", continuity: "unknown", period: { start: "", end: "" }, asOf: today(), relations: [], options: [newOption()], evidence: [] }, revisions: [] };
 }
 export function taskBasis(o: Option): string { return JSON.stringify({ venue: o.venue, item: o.item, audience: o.audience, periods: o.periods }); }
 export function venueBasis(o: Option, stage: Stage): string { return JSON.stringify({ venue: o.venue, item: o.item, audience: o.audience, period: o.periods[stage] }); }
@@ -33,6 +35,7 @@ export function duplicateOption(o: Option): Option {
   const next = copy(o), ids = new Map(o.tasks.map(t => [t.id, uid()]));
   next.id = uid(); next.name = `${o.name} 복사`.slice(0, 200); next.decision = "undecided"; next.reason = ""; next.venueChecks = [];
   next.tasks = next.tasks.map(t => ({ ...t, id: ids.get(t.id)!, dependsOn: t.dependsOn.map(id => ids.get(id)!), due: "", applies: "unknown", naReason: "", decidedAt: "", progress: "todo", exceptionReason: "", reviews: [], basis: taskBasis(next) }));
+  if (o.budget) next.budget = copiedBudget(o.budget, next, ids);
   return next;
 }
 export function connectEvidence(d: PlanDraft, optionId: string, source: SourceCopy, field: keyof typeof FIELDS, reason: string): PlanDraft {
@@ -44,7 +47,7 @@ export function connectEvidence(d: PlanDraft, optionId: string, source: SourceCo
   if (!existing) next.evidence.push(copy(source));
   option.links.push({ sourceKey: source.key, field, reason }); return next;
 }
-export function pruneEvidence(d: PlanDraft) { const used = new Set(d.options.flatMap(o => o.links.map(l => l.sourceKey))); d.evidence = d.evidence.filter(e => used.has(e.key)); }
+export function pruneEvidence(d: PlanDraft) { const used = new Set(d.options.flatMap(o => [...o.links.map(l => l.sourceKey), ...(o.budget?.lines.flatMap(l => l.evidenceKeys) ?? [])])); d.evidence = d.evidence.filter(e => used.has(e.key)); }
 export function archive(p: Planning, note: string): Planning {
   const next = copy(p); next.revisions.push({ id: uid(), savedAt: new Date().toISOString(), note, draft: copy(p.draft) });
   validatePlanning(next); return next;
@@ -124,12 +127,15 @@ function draft(d: PlanDraft) {
     const visit = (t: ReadinessTask) => { requireValue(!visiting.has(t.id), "선행 과제가 서로를 기다리는 순환 관계입니다."); if (done.has(t.id)) return; visiting.add(t.id); t.dependsOn.forEach(dep => visit(o.tasks.find(x => x.id === dep)!)); visiting.delete(t.id); done.add(t.id); };
     o.tasks.forEach(visit);
     for (const t of o.tasks) requireValue(taskStatus(o, t).stale || t.progress === "todo" || taskStatus(o, t).blocked.length === 0 || !!t.exceptionReason.trim(), "선행 과제가 미완료입니다. 예외 진행 이유를 입력하세요.");
+    if (o.budget !== undefined) validateBudget(o.budget, d, o);
   }
 }
 export function validatePlanning(p: Planning): void {
-  requireValue(p && p.format === "fest-compass-planning" && p.version === 1 && id(p.stamp) && instant(p.updatedAt)); draft(p.draft);
+  requireValue(p && p.format === "fest-compass-planning" && [1, 2].includes(p.version) && id(p.stamp) && instant(p.updatedAt)); draft(p.draft);
+  requireValue(p.version === 2 || [...p.draft.options, ...p.revisions.flatMap(r => r.draft.options)].every(o => o.budget === undefined && o.links.every(l => l.field !== "budget")), "예산 기능은 기획 파일 형식 v2가 필요합니다.");
   list(p.revisions, 20); unique(p.revisions.map(r => r.id));
   for (const r of p.revisions) { requireValue(id(r.id) && instant(r.savedAt) && str(r.note)); draft(r.draft); }
+  for (const o of p.draft.options) if (o.budget?.baselineRevision) requireValue(p.revisions.some(r => r.id === o.budget!.baselineRevision && r.draft.options.some(b => b.id === o.budget!.baselineOption)), "비교할 예산 보관본·후보를 확인하세요.");
 }
 export function parsePlanning(raw: string): Planning {
   if (new TextEncoder().encode(raw).length > MAX_PLANNING_BYTES) throw new Error("기획 파일은 5MB 이하여야 합니다.");
@@ -145,6 +151,6 @@ export function writePlanning(p: Planning, expected: string | null, storage: Pic
     const previous = parsePlanning(current);
     for (const r of previous.revisions) requireValue(p.revisions.some(n => n.id === r.id && JSON.stringify(n) === JSON.stringify(r)), "이미 보관한 버전은 수정하거나 제거할 수 없습니다.");
   }
-  const next = { ...p, stamp: uid(), updatedAt: new Date().toISOString() }, raw = encodePlanning(next);
+  const next: Planning = { ...p, version: 2, stamp: uid(), updatedAt: new Date().toISOString() }, raw = encodePlanning(next);
   storage.setItem(PLANNING_KEY, raw); return raw;
 }

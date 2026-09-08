@@ -31,6 +31,7 @@ stages:
       - {path: docs/sdlc/2-design/region-explorer-implementation.md, required: true}
       - {path: docs/sdlc/2-design/festival-comparison-implementation.md, required: true}
       - {path: docs/sdlc/2-design/planning-options-implementation.md, required: true}
+      - {path: docs/sdlc/2-design/budget-implementation.md, required: true}
   testing:
     usecases: "docs/sdlc/1-analysis/usecases/UC-FC-*.md"
     scenarios: "docs/sdlc/3-testing/scenarios/TS-FC-*.md"
@@ -41,6 +42,7 @@ stages:
       - {path: docs/validation/20-region-explorer.md, required: true}
       - {path: docs/validation/21-festival-comparison.md, required: true}
       - {path: docs/validation/22-planning-options.md, required: true}
+      - {path: docs/validation/23-planning-budget.md, required: true}
   operations:
     links:
       - {label: 현재 사용 가능한 FEST Compass, url: "https://kto.damecasol.com"}

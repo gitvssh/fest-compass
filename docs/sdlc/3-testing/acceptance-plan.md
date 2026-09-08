@@ -1,9 +1,9 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-08
+last_verified: 2026-09-09
 version: v3
-summary: "M1 지역 탐색·M2 축제 비교·개인 근거 보관의 첫 자동 검증을 추가했습니다. 전체 기획 인수 시험·실무자 관찰은 남아 있습니다."
+summary: "M1~M4 지역 탐색·비교·기획 후보·예산의 첫 자동 검증을 추가했습니다. 전체 기획 인수 시험·실무자 관찰은 남아 있습니다."
 ---
 
 # 검수와 인수 검증
@@ -13,7 +13,7 @@ summary: "M1 지역 탐색·M2 축제 비교·개인 근거 보관의 첫 자동
 문서·와이어프레임은 검수 초안이다. M1 지도·개인 근거의 첫 구현을 자동 검증했고
 TS-FC-001/003의 해당 범위에 [검증 결과](../../validation/20-region-explorer.md)를 연결했다.
 M2 비교의 단위 8개·신규 headless 흐름 21개와 공개 동선을 확인하고 TS-FC-002의 부분 실행 범위에 [결과](../../validation/21-festival-comparison.md)를 연결했다.
-M3의 근거·후보·장소/준비·불변 보관을 구현하고 TS-FC-003/004 해당 범위를 [검증 기록](../../validation/22-planning-options.md)에 연결했다. 예산·완성 기획안 관련 과제와 각 TS의 전체 인수·실무자 관찰은 남아 있다.
+M3의 근거·후보·장소/준비·불변 보관을 구현하고 TS-FC-003/004 해당 범위를 [검증 기록](../../validation/22-planning-options.md)에 연결했다. M4 단위 14개·headless 흐름 23개에서 TS-FC-005 AC1~9를 검증했고 [결과](../../validation/23-planning-budget.md)를 연결했다. 완성 기획안 관련 과제와 각 TS의 전체 인수·실무자 관찰은 남아 있다.
 이 문서의 시나리오 작성은 제품 시험 통과가 아니다.
 기존 앱 시험·공개 개인 작업 검증은 [MVP 검증 이력](../../validation/15-mvp-journey.md)의 대상 코드에만 유효하다.
 
