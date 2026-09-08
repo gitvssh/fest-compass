@@ -63,6 +63,7 @@ export function PersonalWorkspace({ evidence }: { evidence: Evidence }) {
   return <div className="space-y-6">
     <header className="no-print space-y-3">
       <p className="text-xs font-extrabold tracking-widest text-blue">축제 운영 MVP</p>
+      <Link href="/evidence" className="inline-block text-sm font-bold text-blue underline">지도에서 담은 기획 근거 확인 →</Link>
       <h1 className="text-3xl font-extrabold sm:text-4xl">내 축제 작업공간</h1>
       <p className="max-w-3xl text-sm leading-7 text-muted">자료를 살펴보고 운영안을 정한 뒤, 현장 기록과 결과를 다음 축제로 이어가세요. 이 공간의 기록은 <strong className="text-ink">이 브라우저에만 저장</strong>됩니다. 공동 편집·공식 승인 기능은 개발 예정입니다. 브라우저 데이터를 지우기 전에 파일을 내려받으세요.</p>
       <div className="flex flex-wrap items-center gap-2">

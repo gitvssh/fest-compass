@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: isPublicReadonly()
-      ? { userAgent: "*", allow: "/", disallow: ["/health/", "/logs", "/festivals/new"] }
+      ? { userAgent: "*", allow: "/", disallow: ["/api/", "/evidence", "/health/", "/logs", "/festivals/new"] }
       : { userAgent: "*", disallow: "/" },
     sitemap: canonicalUrl("/sitemap.xml"),
   };

@@ -51,6 +51,12 @@ export default async function HomePage() {
         </EditorOnly>
       </div>
 
+      <section className="mb-8 rounded-3xl border border-blue/20 bg-blue-soft p-6 sm:p-8">
+        <p className="text-xs font-extrabold text-blue">공공데이터에서 시작하는 축제 기획</p>
+        <h2 className="mt-3 text-2xl font-extrabold">전국에서 우리 지역으로, 기획 근거를 찾아보세요.</h2>
+        <p className="mt-3 text-sm leading-7 text-muted">시도 → 시군구를 선택해 관광자원·등록 행사와 방문 추세를 조회하고, 출처와 함께 필요한 자료를 담으세요.</p>
+        <Link href="/regions" className="region-primary mt-5">전국 관광지도 열기 →</Link>
+      </section>
       <section className="mb-8 rounded-3xl bg-navy p-6 text-white sm:p-8">
         <p className="text-xs font-bold text-white/70">직접 써보는 축제 작업공간</p>
         <h2 className="mt-3 text-2xl font-extrabold">우리 축제의 운영안을 만들어 볼까요?</h2>

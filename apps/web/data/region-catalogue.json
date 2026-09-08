@@ -1,0 +1,1623 @@
+{
+  "source": "https://www.data.go.kr/data/15101578/openapi.do",
+  "endpoint": "ldongCode2",
+  "collectedAt": "2026-09-08T06:14:54.400Z",
+  "sourceSha256": "a189f56b2dd80fe9d870ddd4223ddab6258611b0e32b89b206b363ba2d10151b",
+  "note": "관광공사 조회 단위. 일반시와 행정구를 함께 포함하며 기초자치단체 수가 아님. 세종의 36110/36110은 원문 그대로 보존.",
+  "rows": [
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "110",
+      "districtName": "종로구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "140",
+      "districtName": "중구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "170",
+      "districtName": "용산구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "200",
+      "districtName": "성동구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "215",
+      "districtName": "광진구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "230",
+      "districtName": "동대문구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "260",
+      "districtName": "중랑구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "290",
+      "districtName": "성북구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "305",
+      "districtName": "강북구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "320",
+      "districtName": "도봉구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "350",
+      "districtName": "노원구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "380",
+      "districtName": "은평구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "410",
+      "districtName": "서대문구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "440",
+      "districtName": "마포구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "470",
+      "districtName": "양천구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "500",
+      "districtName": "강서구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "530",
+      "districtName": "구로구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "545",
+      "districtName": "금천구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "560",
+      "districtName": "영등포구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "590",
+      "districtName": "동작구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "620",
+      "districtName": "관악구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "650",
+      "districtName": "서초구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "680",
+      "districtName": "강남구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "710",
+      "districtName": "송파구"
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "740",
+      "districtName": "강동구"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "110",
+      "districtName": "목포시"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "130",
+      "districtName": "여수시"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "150",
+      "districtName": "순천시"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "170",
+      "districtName": "나주시"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "190",
+      "districtName": "광양시"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "210",
+      "districtName": "동구"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "240",
+      "districtName": "서구"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "270",
+      "districtName": "남구"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "300",
+      "districtName": "북구"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "330",
+      "districtName": "광산구"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "710",
+      "districtName": "담양군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "720",
+      "districtName": "곡성군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "730",
+      "districtName": "구례군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "740",
+      "districtName": "고흥군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "750",
+      "districtName": "보성군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "760",
+      "districtName": "화순군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "770",
+      "districtName": "장흥군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "780",
+      "districtName": "강진군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "790",
+      "districtName": "해남군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "800",
+      "districtName": "영암군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "810",
+      "districtName": "무안군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "820",
+      "districtName": "함평군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "830",
+      "districtName": "영광군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "840",
+      "districtName": "장성군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "850",
+      "districtName": "완도군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "860",
+      "districtName": "진도군"
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "870",
+      "districtName": "신안군"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "110",
+      "districtName": "중구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "140",
+      "districtName": "서구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "170",
+      "districtName": "동구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "200",
+      "districtName": "영도구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "230",
+      "districtName": "부산진구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "260",
+      "districtName": "동래구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "290",
+      "districtName": "남구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "320",
+      "districtName": "북구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "350",
+      "districtName": "해운대구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "380",
+      "districtName": "사하구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "410",
+      "districtName": "금정구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "440",
+      "districtName": "강서구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "470",
+      "districtName": "연제구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "500",
+      "districtName": "수영구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "530",
+      "districtName": "사상구"
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "710",
+      "districtName": "기장군"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "110",
+      "districtName": "중구"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "140",
+      "districtName": "동구"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "170",
+      "districtName": "서구"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "200",
+      "districtName": "남구"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "230",
+      "districtName": "북구"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "260",
+      "districtName": "수성구"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "290",
+      "districtName": "달서구"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "710",
+      "districtName": "달성군"
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "720",
+      "districtName": "군위군"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "125",
+      "districtName": "제물포구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "155",
+      "districtName": "영종구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "177",
+      "districtName": "미추홀구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "185",
+      "districtName": "연수구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "200",
+      "districtName": "남동구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "237",
+      "districtName": "부평구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "245",
+      "districtName": "계양구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "275",
+      "districtName": "서해구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "290",
+      "districtName": "검단구"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "710",
+      "districtName": "강화군"
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "720",
+      "districtName": "옹진군"
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "110",
+      "districtName": "동구"
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "140",
+      "districtName": "중구"
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "170",
+      "districtName": "서구"
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "200",
+      "districtName": "유성구"
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "230",
+      "districtName": "대덕구"
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "110",
+      "districtName": "중구"
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "140",
+      "districtName": "남구"
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "170",
+      "districtName": "동구"
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "200",
+      "districtName": "북구"
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "710",
+      "districtName": "울주군"
+    },
+    {
+      "provinceCode": "36110",
+      "provinceName": "세종특별자치시",
+      "districtCode": "36110",
+      "districtName": "세종특별자치시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "110",
+      "districtName": "수원시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "111",
+      "districtName": "수원시 장안구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "113",
+      "districtName": "수원시 권선구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "115",
+      "districtName": "수원시 팔달구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "117",
+      "districtName": "수원시 영통구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "130",
+      "districtName": "성남시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "131",
+      "districtName": "성남시 수정구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "133",
+      "districtName": "성남시 중원구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "135",
+      "districtName": "성남시 분당구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "150",
+      "districtName": "의정부시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "170",
+      "districtName": "안양시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "171",
+      "districtName": "안양시 만안구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "173",
+      "districtName": "안양시 동안구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "190",
+      "districtName": "부천시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "192",
+      "districtName": "부천시 원미구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "194",
+      "districtName": "부천시 소사구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "196",
+      "districtName": "부천시 오정구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "210",
+      "districtName": "광명시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "220",
+      "districtName": "평택시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "250",
+      "districtName": "동두천시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "270",
+      "districtName": "안산시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "271",
+      "districtName": "안산시 상록구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "273",
+      "districtName": "안산시 단원구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "280",
+      "districtName": "고양시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "281",
+      "districtName": "고양시 덕양구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "285",
+      "districtName": "고양시 일산동구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "287",
+      "districtName": "고양시 일산서구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "290",
+      "districtName": "과천시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "310",
+      "districtName": "구리시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "360",
+      "districtName": "남양주시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "370",
+      "districtName": "오산시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "390",
+      "districtName": "시흥시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "410",
+      "districtName": "군포시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "430",
+      "districtName": "의왕시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "450",
+      "districtName": "하남시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "460",
+      "districtName": "용인시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "461",
+      "districtName": "용인시 처인구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "463",
+      "districtName": "용인시 기흥구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "465",
+      "districtName": "용인시 수지구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "480",
+      "districtName": "파주시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "500",
+      "districtName": "이천시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "550",
+      "districtName": "안성시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "570",
+      "districtName": "김포시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "590",
+      "districtName": "화성시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "591",
+      "districtName": "화성시 만세구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "593",
+      "districtName": "화성시 효행구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "595",
+      "districtName": "화성시 병점구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "597",
+      "districtName": "화성시 동탄구"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "610",
+      "districtName": "광주시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "630",
+      "districtName": "양주시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "650",
+      "districtName": "포천시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "670",
+      "districtName": "여주시"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "800",
+      "districtName": "연천군"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "820",
+      "districtName": "가평군"
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "830",
+      "districtName": "양평군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "110",
+      "districtName": "청주시"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "111",
+      "districtName": "청주시 상당구"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "112",
+      "districtName": "청주시 서원구"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "113",
+      "districtName": "청주시 흥덕구"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "114",
+      "districtName": "청주시 청원구"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "130",
+      "districtName": "충주시"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "150",
+      "districtName": "제천시"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "720",
+      "districtName": "보은군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "730",
+      "districtName": "옥천군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "740",
+      "districtName": "영동군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "745",
+      "districtName": "증평군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "750",
+      "districtName": "진천군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "760",
+      "districtName": "괴산군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "770",
+      "districtName": "음성군"
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "800",
+      "districtName": "단양군"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "130",
+      "districtName": "천안시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "131",
+      "districtName": "천안시 동남구"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "133",
+      "districtName": "천안시 서북구"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "150",
+      "districtName": "공주시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "180",
+      "districtName": "보령시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "200",
+      "districtName": "아산시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "210",
+      "districtName": "서산시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "230",
+      "districtName": "논산시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "250",
+      "districtName": "계룡시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "270",
+      "districtName": "당진시"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "710",
+      "districtName": "금산군"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "760",
+      "districtName": "부여군"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "770",
+      "districtName": "서천군"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "790",
+      "districtName": "청양군"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "800",
+      "districtName": "홍성군"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "810",
+      "districtName": "예산군"
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "825",
+      "districtName": "태안군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "110",
+      "districtName": "포항시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "111",
+      "districtName": "포항시 남구"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "113",
+      "districtName": "포항시 북구"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "130",
+      "districtName": "경주시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "150",
+      "districtName": "김천시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "170",
+      "districtName": "안동시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "190",
+      "districtName": "구미시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "210",
+      "districtName": "영주시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "230",
+      "districtName": "영천시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "250",
+      "districtName": "상주시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "280",
+      "districtName": "문경시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "290",
+      "districtName": "경산시"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "730",
+      "districtName": "의성군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "750",
+      "districtName": "청송군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "760",
+      "districtName": "영양군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "770",
+      "districtName": "영덕군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "820",
+      "districtName": "청도군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "830",
+      "districtName": "고령군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "840",
+      "districtName": "성주군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "850",
+      "districtName": "칠곡군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "900",
+      "districtName": "예천군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "920",
+      "districtName": "봉화군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "930",
+      "districtName": "울진군"
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "940",
+      "districtName": "울릉군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "120",
+      "districtName": "창원시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "121",
+      "districtName": "창원시 의창구"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "123",
+      "districtName": "창원시 성산구"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "125",
+      "districtName": "창원시 마산합포구"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "127",
+      "districtName": "창원시 마산회원구"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "129",
+      "districtName": "창원시 진해구"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "170",
+      "districtName": "진주시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "220",
+      "districtName": "통영시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "240",
+      "districtName": "사천시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "250",
+      "districtName": "김해시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "270",
+      "districtName": "밀양시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "310",
+      "districtName": "거제시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "330",
+      "districtName": "양산시"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "720",
+      "districtName": "의령군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "730",
+      "districtName": "함안군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "740",
+      "districtName": "창녕군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "820",
+      "districtName": "고성군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "840",
+      "districtName": "남해군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "850",
+      "districtName": "하동군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "860",
+      "districtName": "산청군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "870",
+      "districtName": "함양군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "880",
+      "districtName": "거창군"
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "890",
+      "districtName": "합천군"
+    },
+    {
+      "provinceCode": "50",
+      "provinceName": "제주특별자치도",
+      "districtCode": "110",
+      "districtName": "제주시"
+    },
+    {
+      "provinceCode": "50",
+      "provinceName": "제주특별자치도",
+      "districtCode": "130",
+      "districtName": "서귀포시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "110",
+      "districtName": "춘천시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "130",
+      "districtName": "원주시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "150",
+      "districtName": "강릉시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "170",
+      "districtName": "동해시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "190",
+      "districtName": "태백시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "210",
+      "districtName": "속초시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "230",
+      "districtName": "삼척시"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "720",
+      "districtName": "홍천군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "730",
+      "districtName": "횡성군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "750",
+      "districtName": "영월군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "760",
+      "districtName": "평창군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "770",
+      "districtName": "정선군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "780",
+      "districtName": "철원군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "790",
+      "districtName": "화천군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "800",
+      "districtName": "양구군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "810",
+      "districtName": "인제군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "820",
+      "districtName": "고성군"
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "830",
+      "districtName": "양양군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "110",
+      "districtName": "전주시"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "111",
+      "districtName": "전주시 완산구"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "113",
+      "districtName": "전주시 덕진구"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "130",
+      "districtName": "군산시"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "140",
+      "districtName": "익산시"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "180",
+      "districtName": "정읍시"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "190",
+      "districtName": "남원시"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "210",
+      "districtName": "김제시"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "710",
+      "districtName": "완주군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "720",
+      "districtName": "진안군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "730",
+      "districtName": "무주군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "740",
+      "districtName": "장수군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "750",
+      "districtName": "임실군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "770",
+      "districtName": "순창군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "790",
+      "districtName": "고창군"
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "800",
+      "districtName": "부안군"
+    }
+  ]
+}

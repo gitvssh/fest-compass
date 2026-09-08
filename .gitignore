@@ -4,4 +4,5 @@ __pycache__/
 *.py[cod]
 *.tsbuildinfo
 output/
+.playwright-cli/
 tmp/
