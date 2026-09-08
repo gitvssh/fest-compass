@@ -293,3 +293,28 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-015 · Codex · implementer
+
+- Position: M1 전국→시도→시군구 조회와 개인 근거 보관을 구현·공개했다. 실제 관광자료·논산 방문 추세·당시 근거를 연결하고 내부 Traceboard에 실제 화면과 검증 범위를 게시·확인했다. 전체 과거 회차 비교·기획 후보·예산 연결과 실무자 관찰은 후속이다.
+- Evidence:
+  - docs/sdlc/2-design/region-explorer-implementation.md
+  - docs/validation/20-region-explorer.md
+  - docs/validation/evidence/2026-09-08-region-explorer-production.json
+  - 기능 ba4732289bb60dce1eb994b97c7f88f873273bbf; 앱 배포 bbd4bdace21083ee914a29ebcfedb7eb5e40827d; CI 34196206622
+  - Traceboard 문서 원천 1dc8abca1a2b36917996725bce5e02da8eb6234b; 게시 9c5b4fce71a5ddbe956586aced289b896daa0423
+- Changes:
+  - 전국 기본 진입·선택 뒤 펼쳐지는 시군구·상위 복귀·명시적 우리 지역·390px 두 선택창
+  - 공식 조회 목록 269행/16시도 그룹·개편 코드·세종 36110 예외 보존. 관광지/문화시설/기간 내 시작 행사 완전 조회·출처·좌표 누락·조회 순서 검사
+  - 논산 보관 방문 이력 선그래프/수치 표, 개인 근거 사본·중복 방지·공간 조건·파일 보관/복원. 기존 개인 작업에 근거 보기 연결
+  - M1 현황·UC/TS의 구현 범위와 후속 구분, 실제 화면 4개와 공개 검증 기록. 예측 모델·겨울 계획 유지
+- Validation:
+  - 단위 135건·배포 40건·타입/빌드·고정 코드 14개 해시·의존성 audit 통과
+  - 기존 편집/공개 개인 작업 E2E 및 신규 지역 14개 흐름+공간 필터 검증. 모두 headless, 새 흐름 오류/앱 쓰기 0·390px 넘침 0
+  - 공개 전국→충남→논산, 관광지 61건·2026 행사 4건·세종 관광지 54건·3/27 52,671.5명 저장/재조회 확인
+  - 앱 Synced/Healthy/Succeeded·1 replica. 배포 전후 기존 예측 2개·최신 관측 2026-08-09·겨울 시험 내용/hash 보존
+  - Traceboard 추적 누락 0·4개 정형 연결 미평가 유지. 내부 접근성 1,680 화면 조합 위반/미평가 0
+  - Traceboard 게시 파일 59/59 SHA-256 일치·실제 화면 4/4 로드·390px 넘침 0, 등록 앱 Synced/Healthy/Succeeded 확인
+- Questions:
+  - No open question
+- Handoff: Codex

@@ -1,0 +1,678 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-08T06:57:57.468880+00:00",
+  "sourceCommit": "ba4732289bb60dce1eb994b97c7f88f873273bbf",
+  "ci": {
+    "runId": 34196206622,
+    "conclusion": "success",
+    "runner": "homelab-fest-compass-k8d69-runner-hhjx4",
+    "labels": [
+      "homelab-fest-compass"
+    ]
+  },
+  "deployment": {
+    "revision": "bbd4bdace21083ee914a29ebcfedb7eb5e40827d",
+    "image": "sha256:d73143ec751acb8b81cf42cb0ef0939d8da9fd1012d82fe7373abb9266317bae",
+    "sync": "Synced",
+    "health": "Healthy",
+    "phase": "Succeeded",
+    "availableReplicas": 1
+  },
+  "local": {
+    "unitTests": 135,
+    "infraTests": 40,
+    "typecheck": "passed",
+    "build": "passed",
+    "auditVulnerabilities": 0,
+    "browserHeadless": true,
+    "newRegionScenarios": 14,
+    "regionBrowserErrors": 0,
+    "regionApplicationWrites": 0,
+    "mobileWidth": 390,
+    "mobileOverflow": false,
+    "resourceFixture": "Two explicit synthetic resources; real bundled historical observations",
+    "completeExistingEditorAndWorkspaceE2E": "passed"
+  },
+  "public": {
+    "url": "https://kto.damecasol.com/regions",
+    "headless": true,
+    "consent": "Reject All",
+    "nationProvinceDistrict": "passed",
+    "nonsanTourismTotal": 61,
+    "nonsan2026FestivalTotal": 4,
+    "sejongTourismTotal": 54,
+    "pagesEach": 1,
+    "nonsanMarch2025ObservedDays": 31,
+    "savedObservation": {
+      "date": "2025-03-27",
+      "value": 52671.5,
+      "source": "https://www.data.go.kr/data/15101972/openapi.do"
+    },
+    "savedEvidenceReopened": true,
+    "mobileWidth": 390,
+    "mobileOverflow": false,
+    "nonsan2026ObservedDays": 221,
+    "sejongHistoryObservedDays": 0,
+    "fixedPages200": [
+      "/",
+      "/robots.txt",
+      "/sitemap.xml",
+      "/forecast/history",
+      "/forecast/records"
+    ],
+    "browserConsoleErrors": 0
+  },
+  "forecastPreservation": {
+    "before": {
+      "checkedAt": "2026-09-08T06:48:18.304Z",
+      "coverage": {
+        "start": "2023-01-01",
+        "end": "2026-09-07",
+        "queriedDays": 1346,
+        "availableDays": 1317,
+        "latestObservation": "2026-08-09",
+        "observationAgeDays": 30,
+        "latestCollectionAt": "2026-09-08T00:00:10.734Z",
+        "missingDates": [
+          "2026-08-10",
+          "2026-08-11",
+          "2026-08-12",
+          "2026-08-13",
+          "2026-08-14",
+          "2026-08-15",
+          "2026-08-16",
+          "2026-08-17",
+          "2026-08-18",
+          "2026-08-19",
+          "2026-08-20",
+          "2026-08-21",
+          "2026-08-22",
+          "2026-08-23",
+          "2026-08-24",
+          "2026-08-25",
+          "2026-08-26",
+          "2026-08-27",
+          "2026-08-28",
+          "2026-08-29",
+          "2026-08-30",
+          "2026-08-31",
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "invalidDates": [],
+        "interiorMissing": [],
+        "trailingMissing": [
+          "2026-08-10",
+          "2026-08-11",
+          "2026-08-12",
+          "2026-08-13",
+          "2026-08-14",
+          "2026-08-15",
+          "2026-08-16",
+          "2026-08-17",
+          "2026-08-18",
+          "2026-08-19",
+          "2026-08-20",
+          "2026-08-21",
+          "2026-08-22",
+          "2026-08-23",
+          "2026-08-24",
+          "2026-08-25",
+          "2026-08-26",
+          "2026-08-27",
+          "2026-08-28",
+          "2026-08-29",
+          "2026-08-30",
+          "2026-08-31",
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ]
+      },
+      "recordsHash": "02693b2157c701036dd02220f83dd2257b73c956cfe0b346f72f6002d4f255a2",
+      "records": 2,
+      "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+      "automation": "partial"
+    },
+    "after": {
+      "checkedAt": "2026-09-08T06:54:09.307Z",
+      "coverage": {
+        "start": "2023-01-01",
+        "end": "2026-09-07",
+        "queriedDays": 1346,
+        "availableDays": 1317,
+        "latestObservation": "2026-08-09",
+        "observationAgeDays": 30,
+        "latestCollectionAt": "2026-09-08T00:00:10.734Z",
+        "missingDates": [
+          "2026-08-10",
+          "2026-08-11",
+          "2026-08-12",
+          "2026-08-13",
+          "2026-08-14",
+          "2026-08-15",
+          "2026-08-16",
+          "2026-08-17",
+          "2026-08-18",
+          "2026-08-19",
+          "2026-08-20",
+          "2026-08-21",
+          "2026-08-22",
+          "2026-08-23",
+          "2026-08-24",
+          "2026-08-25",
+          "2026-08-26",
+          "2026-08-27",
+          "2026-08-28",
+          "2026-08-29",
+          "2026-08-30",
+          "2026-08-31",
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ],
+        "invalidDates": [],
+        "interiorMissing": [],
+        "trailingMissing": [
+          "2026-08-10",
+          "2026-08-11",
+          "2026-08-12",
+          "2026-08-13",
+          "2026-08-14",
+          "2026-08-15",
+          "2026-08-16",
+          "2026-08-17",
+          "2026-08-18",
+          "2026-08-19",
+          "2026-08-20",
+          "2026-08-21",
+          "2026-08-22",
+          "2026-08-23",
+          "2026-08-24",
+          "2026-08-25",
+          "2026-08-26",
+          "2026-08-27",
+          "2026-08-28",
+          "2026-08-29",
+          "2026-08-30",
+          "2026-08-31",
+          "2026-09-01",
+          "2026-09-02",
+          "2026-09-03",
+          "2026-09-04",
+          "2026-09-05",
+          "2026-09-06",
+          "2026-09-07"
+        ]
+      },
+      "recordsHash": "02693b2157c701036dd02220f83dd2257b73c956cfe0b346f72f6002d4f255a2",
+      "records": 2,
+      "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+      "automation": "partial"
+    },
+    "equalFields": [
+      "coverage",
+      "recordsHash",
+      "records",
+      "calendarTrialHash",
+      "automation"
+    ]
+  },
+  "traceboard": {
+    "status": "published-and-verified",
+    "sourceCommit": "1dc8abca1a2b36917996725bce5e02da8eb6234b",
+    "toolCommit": "f2dba2c58a432050a34e87fd1434dc9fa54b9aef",
+    "publicationCommit": "9c5b4fce71a5ddbe956586aced289b896daa0423",
+    "image": "sha256:f0263ff25b9d87d5c088ed4025e12beec705f2a6087456db2623e06d908fe3e5",
+    "checkedAt": "2026-09-08T07:10:33.421161+00:00",
+    "sync": "Synced",
+    "health": "Healthy",
+    "phase": "Succeeded",
+    "availableReplicas": 1,
+    "a11yChecks": 1680,
+    "a11yViolations": 0,
+    "a11yUnevaluated": 0,
+    "fileMatches": 59,
+    "headlessImagesLoaded": 4,
+    "mobileWidth": 390,
+    "mobileOverflow": false,
+    "browserNote": "Existing favicon.ico 404 observed; all 59 publication files returned 200 and matched.",
+    "files": [
+      {
+        "path": "assets/docs-assets-SCR-FC-001-implementation-mobile.png.png",
+        "sha256": "9fb931fc8a691334f9e82525d595ed1c61236f33bebba5e1a51f4006496f95b6",
+        "status": 200,
+        "actualSha256": "9fb931fc8a691334f9e82525d595ed1c61236f33bebba5e1a51f4006496f95b6",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-001-implementation-national.png.png",
+        "sha256": "795e950db5d26982fd1f33834d9d53b69a14fa681dd9f895fb214f5ed416af55",
+        "status": 200,
+        "actualSha256": "795e950db5d26982fd1f33834d9d53b69a14fa681dd9f895fb214f5ed416af55",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-001-implementation-nonsan.png.png",
+        "sha256": "c9f0f1f0841e0a18d05d09beb9918371422bd42332f903b43feee1bdeffb45ac",
+        "status": 200,
+        "actualSha256": "c9f0f1f0841e0a18d05d09beb9918371422bd42332f903b43feee1bdeffb45ac",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-001-implementation-province.png.png",
+        "sha256": "4eb9920dc59dce28f09f2f14df8ff99bb379286cf20317039c6cb0bfd55e1f1a",
+        "status": 200,
+        "actualSha256": "4eb9920dc59dce28f09f2f14df8ff99bb379286cf20317039c6cb0bfd55e1f1a",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-001-wireframe-v3.svg.svg",
+        "sha256": "449a4dd590088ab2874e629b1bf4127d2fb6752abed4f8bde76e3ec10d8a4bb5",
+        "status": 200,
+        "actualSha256": "449a4dd590088ab2874e629b1bf4127d2fb6752abed4f8bde76e3ec10d8a4bb5",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-002-wireframe-v3.svg.svg",
+        "sha256": "cc8969ac08e477c44d2f38211d71081ea5506a2d7dd75f07586be76b96b99ba7",
+        "status": 200,
+        "actualSha256": "cc8969ac08e477c44d2f38211d71081ea5506a2d7dd75f07586be76b96b99ba7",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-003-wireframe-v3.svg.svg",
+        "sha256": "08ef87a154241711224d961a156113020673d81c548e77f5a1a39bd41f1c868f",
+        "status": 200,
+        "actualSha256": "08ef87a154241711224d961a156113020673d81c548e77f5a1a39bd41f1c868f",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-004-wireframe-v3.svg.svg",
+        "sha256": "18a35fa63834807c7a87f77243b7e604b63de67c7e2cc9a9d07d91e4c8899f44",
+        "status": 200,
+        "actualSha256": "18a35fa63834807c7a87f77243b7e604b63de67c7e2cc9a9d07d91e4c8899f44",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-005-wireframe-v3.svg.svg",
+        "sha256": "506f85c81667228da5acfb96905c9ca0840c54c229846e1de1ad96957e63803b",
+        "status": 200,
+        "actualSha256": "506f85c81667228da5acfb96905c9ca0840c54c229846e1de1ad96957e63803b",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-006-wireframe-v3.svg.svg",
+        "sha256": "13e8120e6f4273ff9bb12c8ce30d3c13d66691583b6cfb9143b03e9584b4f5d6",
+        "status": 200,
+        "actualSha256": "13e8120e6f4273ff9bb12c8ce30d3c13d66691583b6cfb9143b03e9584b4f5d6",
+        "matches": true
+      },
+      {
+        "path": "assets/docs-assets-SCR-FC-007-wireframe-v3.svg.svg",
+        "sha256": "68d287a879e91a366ccbe721da3725ccede3e6048c3d3168e8ecdd74f8f15fe8",
+        "status": 200,
+        "actualSha256": "68d287a879e91a366ccbe721da3725ccede3e6048c3d3168e8ecdd74f8f15fe8",
+        "matches": true
+      },
+      {
+        "path": "assets/fonts/OFL.txt",
+        "sha256": "82e9c8a4b203261f10ddba1296422d64914ff3d4b7bd8a12896d03f0f088d70a",
+        "status": 200,
+        "actualSha256": "82e9c8a4b203261f10ddba1296422d64914ff3d4b7bd8a12896d03f0f088d70a",
+        "matches": true
+      },
+      {
+        "path": "assets/fonts/pretendard-400.woff2",
+        "sha256": "01dd73155fdfab7ce9b25224523e85a96927e21aef97f21957d41f1bfa7e3878",
+        "status": 200,
+        "actualSha256": "01dd73155fdfab7ce9b25224523e85a96927e21aef97f21957d41f1bfa7e3878",
+        "matches": true
+      },
+      {
+        "path": "assets/fonts/pretendard-600.woff2",
+        "sha256": "4247dc5e260b92640c2cbd0e75091154647b71e1d5884116655e2903468c54cc",
+        "status": 200,
+        "actualSha256": "4247dc5e260b92640c2cbd0e75091154647b71e1d5884116655e2903468c54cc",
+        "matches": true
+      },
+      {
+        "path": "assets/site.css",
+        "sha256": "b2f3a5bff74e9580d5910961112e7ab9bd5a6bdecb640cca6d89235bd506e499",
+        "status": 200,
+        "actualSha256": "b2f3a5bff74e9580d5910961112e7ab9bd5a6bdecb640cca6d89235bd506e499",
+        "matches": true
+      },
+      {
+        "path": "assets/site.js",
+        "sha256": "c773545759ff4f816b0bde92a1e8564f1503b1b89c49085974a74c597459515f",
+        "status": 200,
+        "actualSha256": "c773545759ff4f816b0bde92a1e8564f1503b1b89c49085974a74c597459515f",
+        "matches": true
+      },
+      {
+        "path": "assets/vendor/mermaid.min.js",
+        "sha256": "d0830a6c05546e9edb8fe20a8f545f3e0dc7c4c3134d584bad9c13a99d7a71e0",
+        "status": 200,
+        "actualSha256": "d0830a6c05546e9edb8fe20a8f545f3e0dc7c4c3134d584bad9c13a99d7a71e0",
+        "matches": true
+      },
+      {
+        "path": "gaps.json",
+        "sha256": "7ef91a2c481c039c4967ba0c8347200a729ee4afdfc49facd3514d3b1f42c220",
+        "status": 200,
+        "actualSha256": "7ef91a2c481c039c4967ba0c8347200a729ee4afdfc49facd3514d3b1f42c220",
+        "matches": true
+      },
+      {
+        "path": "index.html",
+        "sha256": "937760fa807685f5f35255dcdf418e8eff1b5b396a7f8b62bde2b2bd02abf638",
+        "status": 200,
+        "actualSha256": "937760fa807685f5f35255dcdf418e8eff1b5b396a7f8b62bde2b2bd02abf638",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-product-glossary.html",
+        "sha256": "5d8f3a36403fb794f4aa74b010a252f95ddaa79536d0004ea1de19c4ac527d8c",
+        "status": 200,
+        "actualSha256": "5d8f3a36403fb794f4aa74b010a252f95ddaa79536d0004ea1de19c4ac527d8c",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-product-non-goals.html",
+        "sha256": "ef247b7c5d56522827bd5890126a3f74f5d086558c5a04e7a492d08d0aa0db7b",
+        "status": 200,
+        "actualSha256": "ef247b7c5d56522827bd5890126a3f74f5d086558c5a04e7a492d08d0aa0db7b",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-product-vision-scope.html",
+        "sha256": "c8b432d6d55d6650fef75e23c7e0c6607195556cb7215d51d935e01a84d22cdc",
+        "status": 200,
+        "actualSha256": "c8b432d6d55d6650fef75e23c7e0c6607195556cb7215d51d935e01a84d22cdc",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-research-2026-09-historical-comparison-review.html",
+        "sha256": "b71cd74ae6f5ccf3b30be65be041ff20ea34f0415a958af95344cad4a8f3b6d5",
+        "status": 200,
+        "actualSha256": "b71cd74ae6f5ccf3b30be65be041ff20ea34f0415a958af95344cad4a8f3b6d5",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-research-2026-09-municipal-festival-cases.html",
+        "sha256": "d85ede7fd01888f4affde7f7ddf04be518e7e517a9b86fe1451a131cbe59871b",
+        "status": 200,
+        "actualSha256": "d85ede7fd01888f4affde7f7ddf04be518e7e517a9b86fe1451a131cbe59871b",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-research-2026-09-municipal-festival-sources.html",
+        "sha256": "bcd96910c1acc3d18967d8cb22c53919f68af223187b2491613323918a6bad3c",
+        "status": 200,
+        "actualSha256": "bcd96910c1acc3d18967d8cb22c53919f68af223187b2491613323918a6bad3c",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-research-2026-09-municipal-requirement-proposals.html",
+        "sha256": "4af7ebbc8b78a6cba3a7b2acf2c298f32df3309f8eb0ec1ce2c938bb9051264a",
+        "status": 200,
+        "actualSha256": "4af7ebbc8b78a6cba3a7b2acf2c298f32df3309f8eb0ec1ce2c938bb9051264a",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-review-2026-09-planning-review.html",
+        "sha256": "59e7834cad706f1881783d47a83410483636f60c50bdc37c8b860d1fc2761e3e",
+        "status": 200,
+        "actualSha256": "59e7834cad706f1881783d47a83410483636f60c50bdc37c8b860d1fc2761e3e",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-0-planning-product-plan.html",
+        "sha256": "d3bef0c676933d3b2b435ff00be38b389c4ec3cc412001b7c1be149a796890f4",
+        "status": 200,
+        "actualSha256": "d3bef0c676933d3b2b435ff00be38b389c4ec3cc412001b7c1be149a796890f4",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-business-flow.html",
+        "sha256": "5003ec32466dd7a89f481221d9436d962b3048100621673f5180e10f9770d5f4",
+        "status": 200,
+        "actualSha256": "5003ec32466dd7a89f481221d9436d962b3048100621673f5180e10f9770d5f4",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-data-contract.html",
+        "sha256": "165ab5ff9640142db735cbf83da93fabf8d0c34b0d56c5e8997affb137a151e7",
+        "status": 200,
+        "actualSha256": "165ab5ff9640142db735cbf83da93fabf8d0c34b0d56c5e8997affb137a151e7",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-srs.html",
+        "sha256": "8f9cb6226b62f768474def683a72229d486a590c1f0310977a45b639b227de63",
+        "status": 200,
+        "actualSha256": "8f9cb6226b62f768474def683a72229d486a590c1f0310977a45b639b227de63",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-001.html",
+        "sha256": "af5b67299ff83b50726a16d2e50a4a0f8f68e0a1d0cbda09b824eee4163054e8",
+        "status": 200,
+        "actualSha256": "af5b67299ff83b50726a16d2e50a4a0f8f68e0a1d0cbda09b824eee4163054e8",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-002.html",
+        "sha256": "4fce0e8d7ee60d8fdb894a22e68fe23de435d8b47106c6fec478c350f61793ea",
+        "status": 200,
+        "actualSha256": "4fce0e8d7ee60d8fdb894a22e68fe23de435d8b47106c6fec478c350f61793ea",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-003.html",
+        "sha256": "f133664c99a05f5f528aed26141f63c1c146118029b1290608b52474d9d7151d",
+        "status": 200,
+        "actualSha256": "f133664c99a05f5f528aed26141f63c1c146118029b1290608b52474d9d7151d",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-004.html",
+        "sha256": "aa8e1450f7b661c3a881750a8ae4ce30980be025ee214151c4a43a6aa3524161",
+        "status": 200,
+        "actualSha256": "aa8e1450f7b661c3a881750a8ae4ce30980be025ee214151c4a43a6aa3524161",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-005.html",
+        "sha256": "b28969a48874a99c1f24df1554a86a260eee29956fc839240c178fad82ad2f89",
+        "status": 200,
+        "actualSha256": "b28969a48874a99c1f24df1554a86a260eee29956fc839240c178fad82ad2f89",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-006.html",
+        "sha256": "ed6f803ed709f5a41fa556864989afb438716df5a32488bbd1410cd3e42aeb73",
+        "status": 200,
+        "actualSha256": "ed6f803ed709f5a41fa556864989afb438716df5a32488bbd1410cd3e42aeb73",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-007.html",
+        "sha256": "1e83a75d0cf06a00bf07495f5b41a5981ec0054ad86f03c45cdc19bc9da2a84e",
+        "status": 200,
+        "actualSha256": "1e83a75d0cf06a00bf07495f5b41a5981ec0054ad86f03c45cdc19bc9da2a84e",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-008.html",
+        "sha256": "09d8e0de5379c9ffdfe2380d354a070dfafd071f2efaf3ba57d2b537d267015c",
+        "status": 200,
+        "actualSha256": "09d8e0de5379c9ffdfe2380d354a070dfafd071f2efaf3ba57d2b537d267015c",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-2-design-architecture.html",
+        "sha256": "4afeec89fbbbeafa17e482dfe02561691d08a66b10b756fc6543b7dae58b18d0",
+        "status": 200,
+        "actualSha256": "4afeec89fbbbeafa17e482dfe02561691d08a66b10b756fc6543b7dae58b18d0",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-2-design-data-visualization.html",
+        "sha256": "ad0cd0e7208c9a77f75c9ddbc981e14c03dd6f08f1e4180bb59acba38498f7d9",
+        "status": 200,
+        "actualSha256": "ad0cd0e7208c9a77f75c9ddbc981e14c03dd6f08f1e4180bb59acba38498f7d9",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-2-design-design-system.html",
+        "sha256": "511591a33f4d5bc4453eab6d025c727ae3e1497f7f0dfd29cd25e908e93e70f7",
+        "status": 200,
+        "actualSha256": "511591a33f4d5bc4453eab6d025c727ae3e1497f7f0dfd29cd25e908e93e70f7",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-2-design-flows.html",
+        "sha256": "8fe1343695975e5aa435b58389d325529b30c120a46f963a4fa013d2ca107d76",
+        "status": 200,
+        "actualSha256": "8fe1343695975e5aa435b58389d325529b30c120a46f963a4fa013d2ca107d76",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-2-design-ia.html",
+        "sha256": "3deb285554ece0bcb296e287b653d3fc4e6d904a786e50b50cb450cc3b50053e",
+        "status": 200,
+        "actualSha256": "3deb285554ece0bcb296e287b653d3fc4e6d904a786e50b50cb450cc3b50053e",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-2-design-region-explorer-implementation.html",
+        "sha256": "5e01ebeb16567be346295f647e789c0ee61b2f664b9fb1c24fe76b317ca2121e",
+        "status": 200,
+        "actualSha256": "5e01ebeb16567be346295f647e789c0ee61b2f664b9fb1c24fe76b317ca2121e",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-2-design-screens.html",
+        "sha256": "fce7fd6fe3fb1e26ad29c73096741ebeddf7a95195c74b4b11ec24b7cee15cb3",
+        "status": 200,
+        "actualSha256": "fce7fd6fe3fb1e26ad29c73096741ebeddf7a95195c74b4b11ec24b7cee15cb3",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-acceptance-plan.html",
+        "sha256": "7f241ca2f84f6d938bed7a1ec4ce711c559a81306316e6f05ac242f43c5efc0f",
+        "status": 200,
+        "actualSha256": "7f241ca2f84f6d938bed7a1ec4ce711c559a81306316e6f05ac242f43c5efc0f",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-001.html",
+        "sha256": "b570d2d5e2d279efa494a920542e8a6af7e7fd1020180aea96186b471316c086",
+        "status": 200,
+        "actualSha256": "b570d2d5e2d279efa494a920542e8a6af7e7fd1020180aea96186b471316c086",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-002.html",
+        "sha256": "cc4a3117ee19b36b623ff71efd28ded28adde90829f4254635c73c944232f4b1",
+        "status": 200,
+        "actualSha256": "cc4a3117ee19b36b623ff71efd28ded28adde90829f4254635c73c944232f4b1",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-003.html",
+        "sha256": "f707a5f778f34bd0afae3a9b068ef1024cb9ea5e7e729a97ba297561563bf46f",
+        "status": 200,
+        "actualSha256": "f707a5f778f34bd0afae3a9b068ef1024cb9ea5e7e729a97ba297561563bf46f",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-004.html",
+        "sha256": "460ad9b469c763ef1e8f43a39996af862e15ac9b6147fa9bd2432d266d97c77c",
+        "status": 200,
+        "actualSha256": "460ad9b469c763ef1e8f43a39996af862e15ac9b6147fa9bd2432d266d97c77c",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-005.html",
+        "sha256": "a57ea204b0e10613b04ed6dc5178022f48e590e64da9b19db49b577035d88a3e",
+        "status": 200,
+        "actualSha256": "a57ea204b0e10613b04ed6dc5178022f48e590e64da9b19db49b577035d88a3e",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-006.html",
+        "sha256": "6b22acf9e6232077fd3ec646a08a601b92a6b4594f94e0f94a52feb03b409ec4",
+        "status": 200,
+        "actualSha256": "6b22acf9e6232077fd3ec646a08a601b92a6b4594f94e0f94a52feb03b409ec4",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-007.html",
+        "sha256": "40881a8a847ef74ca0d61823fd1030219341bcee8ef60da7bdf8cfe675165160",
+        "status": 200,
+        "actualSha256": "40881a8a847ef74ca0d61823fd1030219341bcee8ef60da7bdf8cfe675165160",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-008.html",
+        "sha256": "0471c3d30913253b12c8928054b20e8ac033760bf42fdcff28d30b0d540873c1",
+        "status": 200,
+        "actualSha256": "0471c3d30913253b12c8928054b20e8ac033760bf42fdcff28d30b0d540873c1",
+        "matches": true
+      },
+      {
+        "path": "pages/docs-validation-20-region-explorer.html",
+        "sha256": "ce7dfae9dc4eed28ab88de93a9322d84831d6d54ab83150267f453fd7ca68710",
+        "status": 200,
+        "actualSha256": "ce7dfae9dc4eed28ab88de93a9322d84831d6d54ab83150267f453fd7ca68710",
+        "matches": true
+      },
+      {
+        "path": "search-index.js",
+        "sha256": "bb8a2a6635f8cda7d1d0a971c9c033eaa237e47bc96de99bd9279ea6fd217063",
+        "status": 200,
+        "actualSha256": "bb8a2a6635f8cda7d1d0a971c9c033eaa237e47bc96de99bd9279ea6fd217063",
+        "matches": true
+      },
+      {
+        "path": "site.json",
+        "sha256": "96d53a76ba082963756ddb75c72b64b68f414e76dc83d9c4d2d1103f79bff58d",
+        "status": 200,
+        "actualSha256": "96d53a76ba082963756ddb75c72b64b68f414e76dc83d9c4d2d1103f79bff58d",
+        "matches": true
+      },
+      {
+        "path": "trace.json",
+        "sha256": "47a9d2ac0177a36ec5cb8392d06becddd8d6a9c3af59d774494b8384dc3e01ad",
+        "status": 200,
+        "actualSha256": "47a9d2ac0177a36ec5cb8392d06becddd8d6a9c3af59d774494b8384dc3e01ad",
+        "matches": true
+      }
+    ]
+  },
+  "notCompleted": [
+    "all-municipality visitor histories",
+    "formal administrative or street map",
+    "independent past festival edition comparison",
+    "planning candidate linkage",
+    "official approvals and shared storage",
+    "civil-servant observation",
+    "typed Traceboard API/Spec/Run integration"
+  ]
+}
