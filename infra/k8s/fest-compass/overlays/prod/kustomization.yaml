@@ -11,7 +11,7 @@ resources:
 images:
   - name: registry.damecasol.com/fest-compass/web
     newName: registry.damecasol.com/fest-compass/web
-    digest: sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789
+    digest: sha256:d73143ec751acb8b81cf42cb0ef0939d8da9fd1012d82fe7373abb9266317bae
 
 patches:
   - target:
