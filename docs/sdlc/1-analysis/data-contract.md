@@ -86,7 +86,7 @@ summary: "지도·비교·예산에 쓰는 자료의 단위와 확보 상태를 
 ## v2: 사업·수행 관계와 준비 과제
 
 [공개 사례 보완안](../../research/2026-09-municipal-requirement-proposals.md)의 1·2·6을 반영한다.
-새 객체는 개발 전 계약이며 실제 DB나 파일 형식에 이미 추가된 것이 아니다.
+M3의 BusinessContext·DeliveryRelation·VenueCondition·ReadinessTask는 개인 기획 파일에 구현했다. 세부 범위·필드·보관 제한은 [구현 계약](../2-design/planning-options-implementation.md)을 따른다. 운영 DB 마이그레이션은 없다.
 
 | 객체 | 최소 필드 | 관계와 상태 규칙 |
 |---|---|---|

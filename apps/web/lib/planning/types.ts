@@ -1,0 +1,21 @@
+import type { Evidence } from "../region/types";
+import type { ComparisonEvidence } from "../comparison/types";
+
+export const STAGES = { setup: "설치", event: "행사", teardown: "철거" } as const;
+export const FIELDS = { item: "주제·아이템", audience: "참여 대상", venue: "장소", timing: "시기", decision: "선택·제외 판단" } as const;
+export const CONDITIONS = { use: "장소 사용", power: "전력", toilets: "화장실", access: "접근", traffic: "교통" } as const;
+export const VENUE_STATUS = { unknown: "미확인", conditional: "조건부 가능", available: "가능", unavailable: "불가" } as const;
+export const REVIEW_STATUS = { unknown: "미확인", reviewing: "검토 중", changes: "보완 요청", confirmed: "확인됨" } as const;
+export const PROGRESS = { todo: "미착수", doing: "진행", done: "완료" } as const;
+export type Stage = keyof typeof STAGES;
+export type Period = { start: string; end: string };
+export type SourceCopy = { key: string } & ({ kind: "region"; value: Evidence } | { kind: "comparison"; value: ComparisonEvidence });
+export type EvidenceLink = { sourceKey: string; field: keyof typeof FIELDS; reason: string };
+export type VenueCheck = { id: string; stage: Stage; kind: keyof typeof CONDITIONS; status: keyof typeof VENUE_STATUS; owner: string; date: string; reference: string; note: string; basis: string };
+export type TaskReview = { id: string; status: keyof typeof REVIEW_STATUS; owner: string; date: string; reference: string; basis: string };
+export type ReadinessTask = { id: string; title: string; owner: string; due: string; needed: string; reference: string; applies: "unknown" | "yes" | "no"; naReason: string; decidedAt: string; progress: keyof typeof PROGRESS; dependsOn: string[]; exceptionReason: string; basis: string; reviews: TaskReview[] };
+export type Option = { id: string; name: string; theme: string; item: string; audience: string; venue: string; periods: Record<Stage, Period>; assumptions: string; constraints: string; decision: "undecided" | "selected" | "excluded"; reason: string; links: EvidenceLink[]; venueChecks: VenueCheck[]; tasks: ReadinessTask[] };
+export type Delivery = { id: string; organization: string; relation: "unknown" | "direct" | "foundation" | "entrust" | "service" | "subsidy"; scope: string; reference: string; checkedAt: string };
+export type PlanDraft = { id: string; title: string; regionKey: string; year: number; department: string; purpose: string; continuity: "unknown" | "new" | "continuing"; period: Period; asOf: string; relations: Delivery[]; options: Option[]; evidence: SourceCopy[] };
+export type Revision = { id: string; savedAt: string; note: string; draft: PlanDraft };
+export type Planning = { format: "fest-compass-planning"; version: 1; stamp: string; updatedAt: string; draft: PlanDraft; revisions: Revision[] };

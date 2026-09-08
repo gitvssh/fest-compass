@@ -20,6 +20,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Link href="/regions" className="font-bold text-blue">관광지도</Link>
             <Link href="/compare" className="hover:text-ink">축제 비교</Link>
             <Link href="/evidence" className="hover:text-ink">담은 근거</Link>
+            <Link href="/planning/options" className="font-bold text-blue">기획 후보</Link>
             <Link href="/workspace" className="font-bold text-blue">내 작업공간</Link>
             {!readOnly ? (
               <>
@@ -39,7 +40,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </header>
       {readOnly ? (
         <aside className="no-print border-b border-blue/20 bg-blue-soft px-5 py-3 text-center text-sm font-bold text-navy" role="status">
-          공개 자료는 읽기 전용입니다. 내 작업공간의 입력은 이 브라우저에만 저장됩니다.
+          공개 자료는 읽기 전용입니다. 기획 후보와 내 작업공간의 입력은 이 브라우저에만 저장됩니다.
         </aside>
       ) : null}
       <main className="mx-auto w-full max-w-6xl px-5 py-8">{children}</main>

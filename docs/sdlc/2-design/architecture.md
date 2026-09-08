@@ -13,7 +13,7 @@ summary: "현재 개인 저장·공개 읽기 전용 경계 위에 지도·근�
 현재 구성은 apps/web/app, apps/web/lib/workspace.ts, apps/web/lib/kto,
 apps/web/prisma/schema.prisma와 기존 [운영 경계 결정](../../decisions/0001-public-readonly-sqlite-boundary.md)에 근거한다.
 신규 객체와 화면은 [자료 정의](../1-analysis/data-contract.md)·[화면설계](screens.md)의 제안이다.
-이번 작업은 문서 설계이며 서비스·DB·수집기·모델·배포 설정을 변경하지 않는다.
+M1~M3는 기존 공개 읽기 전용·개인 브라우저 저장 경계에 연결했다. 운영 DB·수집기·모델 구조는 유지한다. [M3 저장 계약](planning-options-implementation.md)을 따른다.
 
 ## 현재 구성과 연결 제안
 
@@ -25,10 +25,11 @@ flowchart LR
   EDIT["로컬 편집 모드"] --> DB["현재 운영 기록 DB"]
   KTO["공공데이터"] --> FETCH["현재 서버 조회·수집"]
   FETCH --> READ
-  U -.-> NEW["제안: 지역 지도·비교·후보·예산"]
-  READ -.-> NEW
-  NEW -.-> SNAP["제안: 근거·기획안 사본"]
-  SNAP -.-> LOCAL
+  U --> NEW["지역 지도·비교·기획 후보"]
+  READ --> NEW
+  NEW --> SNAP["근거·후보 사본"]
+  SNAP --> LOCAL
+  NEW -.-> FUTURE["후속: 예산·완성 기획안·결과 연결"]
 ```
 
 실선은 현재 구성, 점선은 연결 개발이 필요한 제안이다.

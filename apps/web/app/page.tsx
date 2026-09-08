@@ -57,6 +57,7 @@ export default async function HomePage() {
         <p className="mt-3 text-sm leading-7 text-muted">시도 → 시군구를 선택해 관광자원·등록 행사와 방문 추세를 조회하고, 출처와 함께 필요한 자료를 담으세요.</p>
         <Link href="/regions" className="region-primary mt-5">전국 관광지도 열기 →</Link>
         <Link href="/compare" className="region-button ml-2 mt-3">주변·과거 축제 비교 →</Link>
+        <Link href="/planning/options" className="region-button ml-2 mt-3">근거로 올해 후보 기획 →</Link>
       </section>
       <section className="mb-8 rounded-3xl bg-navy p-6 text-white sm:p-8">
         <p className="text-xs font-bold text-white/70">직접 써보는 축제 작업공간</p>

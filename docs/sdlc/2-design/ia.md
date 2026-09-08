@@ -11,7 +11,7 @@ summary: "전국에서 지역을 좁혀 탐색하고 비교·근거·기획·예
 2026-09-08 첫 구현: `/regions`에서 전국→시도→시군구 조회, `/evidence`에서 개인 근거 보관을 제공한다.
 데스크톱은 시도 선택 뒤 목록을 접고 시군구를 펼치며, 모바일은 두 선택창을 나란히 제공한다.
 `/compare`는 지역별 현재 등록 행사·8개 과거 회차·비교 그래프·개인 사본 보관을 추가했다. [M2 구현 범위](festival-comparison-implementation.md)를 따른다.
-그 외 기획 메뉴는 아래 설계 제안이며 [현재 구현 범위](region-explorer-implementation.md)와 구분한다.
+`/planning/options`는 사업·후보·장소/준비·근거 연결·비교·보관본을 제공한다. [M3 구현 범위](planning-options-implementation.md)를 따른다. 예산·완성 기획안 메뉴는 아래 설계 제안이다.
 
 ## 근거와 성격
 
