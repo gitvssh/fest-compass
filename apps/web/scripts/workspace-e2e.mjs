@@ -10,11 +10,19 @@ const page = await context.newPage();
 const errors = [], writes = [];
 page.on("pageerror", e => errors.push(e.message));
 page.on("console", m => { if (m.type() === "error") errors.push(m.text()); });
-page.on("request", r => { if (r.method() !== "GET" && r.url().startsWith(base)) writes.push(r.url()); });
+page.on("request", r => {
+  const url = new URL(r.url());
+  // Cloudflare owns the consent transport; all application writes remain forbidden.
+  if (r.method() !== "GET" && url.origin === new URL(base).origin && !url.pathname.startsWith("/cdn-cgi/zaraz/")) writes.push(r.url());
+});
 async function visible(locator) { await locator.waitFor({ state: "visible" }); }
 const step = name => page.getByRole("navigation", { name: "축제 준비 단계" }).getByRole("button", { name: new RegExp(name) }).click();
 try {
   await page.goto(`${base}/workspace`);
+  if (process.env.E2E_REJECT_ANALYTICS === "1") {
+    await page.getByRole("button", { name: "Reject All", exact: true }).click();
+    await page.getByRole("dialog").waitFor({ state: "hidden" });
+  }
   await page.getByRole("button", { name: "논산 샘플로 시작" }).click();
   await page.getByLabel("행사 전체 예상 입장 건수 (건)", { exact: true }).fill("10000");
   await page.getByLabel("가정의 근거와 집계 기준").fill("입구 계수기 · 재입장 포함 · 행사 전체");

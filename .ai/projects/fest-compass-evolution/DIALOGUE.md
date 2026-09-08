@@ -163,3 +163,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - 현재/직전 복구 이미지를 보존하고 docs/ops/forecast-history-release.md의 미사용 이미지 4개 정리와 기존 매일 자동 정리 정책 연결을 승인할지 사용자 답변이 필요하다.
 - Handoff: Codex
+
+## T-009 · Codex · implementer
+
+- Position: 사용자 승인 범위의 이미지 정리·자동 정책 연결과 배포 복구를 마쳤다. 모델 정확도보다 MVP 기능을 우선하라는 요청에 따라 개인 작업의 자료·운영안·결정·현장·결과·다음 회차 흐름을 구현하고 공개 사이트에서 검증했다.
+- Evidence:
+  - docs/ops/forecast-history-release.md: 승인된 4개 정리, 보호본 2개 보존, retention 17 연결, 기존 CI 재실행과 이력 화면 배포 완료
+  - docs/design/06-mvp-workspace.md: 개인 작업의 5단계와 저장·결정·결과 기준 및 사용자 과제
+  - docs/validation/15-mvp-journey.md 및 evidence/2026-09-08-mvp-production.json: 배포·검증·보존 증거
+- Changes:
+  - 홈의 주 동선을 내 축제 작업 시작으로 개편하고 /workspace 구현
+  - 브라우저 자동 저장·JSON 복원·선택 당시 입력 보존·실측 비교·보고서·다음 회차·의견 파일 제공
+  - 기능 소스 6fee76a76fe13ae0f26794053d0fdebd8a9b4704와 검증 이미지 4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789 게시·등록 앱 sync
+  - 모델 추가 개선을 미루고 화면·기능 피드백 우선으로 계획 개정; 기존 ADR·서버 쓰기 차단·고정 모델 유지
+- Validation:
+  - 앱 127건·배포 계약 40건·타입·빌드 통과, 운영 의존성 취약점 0, 겨울 코드 14개 해시 일치
+  - CI 34173719257 전용 ARC 성공, a7d7df2be31eb831c601827590f12cbe3c2a15f6 배포 Succeeded/Synced/Healthy
+  - 공개 Chromium 전체 작업 E2E 통과: 분석 거부, 앱 쓰기 0, 오류 0, 390px 넘침 0, 저장·파일·0/결측·결정 보존·보고서·복사·탭 충돌 확인
+  - 2026-09-08 09시 수집 7회·1,317일·최신 8/9·누락 29일 유지, 기존 예측 2개와 겨울 원본 등록 26건 보존
+- Questions:
+  - No open question
+- Handoff: Codex

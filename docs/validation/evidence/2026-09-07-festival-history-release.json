@@ -89,8 +89,36 @@
       }
     ]
   },
-  "releaseStatus": "awaiting-image-cleanup-approval",
-  "productionImageUnchanged": "sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd",
-  "retentionExecuted": false,
-  "retentionScheduleActivated": false
+  "releaseStatus": "deployed-after-approved-cleanup",
+  "productionImageBefore": "sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd",
+  "retentionExecuted": true,
+  "retentionScheduleActivated": true,
+  "recovery": {
+    "approvedAtDate": "2026-09-07",
+    "scope": "exact four candidates above, preserve both protected artifacts, connect declared daily retention",
+    "retentionId": "17",
+    "activationDryRun": 3294,
+    "executionDryRun": 3296,
+    "execution": 3297,
+    "executionStatus": "success",
+    "remainingProtectedArtifacts": 2,
+    "remainingCandidates": 0,
+    "quotaCheckedAt": "2026-09-07T14:30:33.174415+00:00",
+    "usedBytesAfterCleanup": 397279170,
+    "limitBytesUnchanged": 1073741824,
+    "ciRunId": 34126770861,
+    "ciAttempt": 2,
+    "ciConclusion": "success",
+    "verifiedDigest": "sha256:cabb7feee52693a937ff682460d8e346fe2cf01b6302eccd0a80a91ac7ab45b0",
+    "deploymentRevision": "2aac948555fc34cfdf3ca8509dc1377c6296224b",
+    "deploymentDate": "2026-09-08",
+    "argo": "Succeeded/Synced/Healthy",
+    "publicChromiumCheck": "passed",
+    "dailyAvailableDays": 1317,
+    "dailyLatestObservation": "2026-08-09",
+    "missingDays": 29,
+    "prePostDailyResultEqual": true,
+    "prePostForecastsEqual": true,
+    "prePostTrialRegistrationEqual": true
+  }
 }

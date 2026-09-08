@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-08T00:41:40.906820+00:00",
+  "sourceCommit": "6fee76a76fe13ae0f26794053d0fdebd8a9b4704",
+  "ci": {
+    "runId": 34173719257,
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/34173719257",
+    "conclusion": "success",
+    "runner": {
+      "conclusion": "success",
+      "id": 101898881452,
+      "labels": [
+        "homelab-fest-compass"
+      ],
+      "runner_name": "homelab-fest-compass-k8d69-runner-jf289",
+      "status": "completed"
+    }
+  },
+  "deployment": {
+    "revision": "a7d7df2be31eb831c601827590f12cbe3c2a15f6",
+    "image": "sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789",
+    "checkedAt": "2026-09-08T00:40:43.133598+00:00",
+    "sync": "Synced",
+    "health": "Healthy",
+    "phase": "Succeeded",
+    "images": [
+      "registry.damecasol.com/fest-compass/web@sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789",
+      "registry.damecasol.com/fest-compass/web@sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789"
+    ],
+    "replicas": 1,
+    "readyReplicas": 1
+  },
+  "validation": {
+    "appTests": 127,
+    "infraTests": 40,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "frozenCodeHashes": 14,
+    "productionDependencyVulnerabilities": 0,
+    "localEditorE2E": "passed",
+    "localPublicWorkspaceE2E": "passed",
+    "publicUrl": "https://kto.damecasol.com/workspace",
+    "publicWorkspaceE2E": "passed",
+    "analyticsChoice": "Reject All",
+    "applicationWriteRequests": 0,
+    "browserErrors": 0,
+    "mobileWidth": 390,
+    "mobileOverflow": false,
+    "tested": [
+      "sample setup",
+      "two resource alternatives",
+      "decision input preservation",
+      "field action completion",
+      "missing versus actual zero",
+      "report print/PDF",
+      "JSON export/import and damaged-file rejection",
+      "next edition reset",
+      "reload persistence",
+      "tab conflict protection"
+    ]
+  },
+  "preservation": {
+    "baselineCheckedAt": "2026-09-08T00:32:07.107Z",
+    "afterCheckedAt": "2026-09-08T00:40:06.596Z",
+    "equal": {
+      "coverage": true,
+      "daily": true,
+      "dailyFileHash": true,
+      "forecasts": true,
+      "trial": true,
+      "sqliteVisibleToWorker": true
+    },
+    "latestObservation": "2026-08-09",
+    "availableDays": 1317,
+    "missingDays": 29,
+    "dailyCalls": 7,
+    "dailyCompletedAt": "2026-09-08T00:00:35.197Z",
+    "archivedDaily20260907FileHash": "08b19fb496d33071229e89d274d6bac6960775117efee7293d9c5e2c052e58e6",
+    "forecasts": [
+      {
+        "file": "nonsan-20260914-d7-v1.json",
+        "hash": "d641899c08067326e0184416dfa2805087a64557b9a8c9e97eb26f182ad10955"
+      },
+      {
+        "file": "nonsan-20261005-d28-v1.json",
+        "hash": "92972bdb39d6ad99babe6bb81d2ab4050989c6c4232f494bba9bcd82ddb01b6d"
+      }
+    ],
+    "winterTrial": {
+      "planId": "411d2207f62d531413671b6c16e3193e225db74ecab95b97cce23a5b481ef351",
+      "registeredAt": "2026-09-07T12:17:08.395Z",
+      "firstIssueAt": "2026-10-08T09:00:00+09:00",
+      "requests": 26,
+      "issued": 0,
+      "outcomes": 0,
+      "processingError": null,
+      "registrationFileHash": "78c50dd887efcc200dae5644fbfcdf918309aa7f8ce8dd3b9457e8d34c83bc70"
+    }
+  },
+  "approvedCleanup": {
+    "date": "2026-09-07",
+    "deletedArtifacts": 4,
+    "protectedArtifacts": 2,
+    "retentionId": "17",
+    "usedBytesAfterCleanup": 397279170,
+    "limitBytesUnchanged": 1073741824
+  },
+  "limits": [
+    "personal browser storage; no server/team editing",
+    "no official approval or field effectiveness validation",
+    "no new model training; frozen trial unchanged",
+    "real user task observation pending"
+  ]
+}

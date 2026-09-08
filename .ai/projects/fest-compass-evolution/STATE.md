@@ -1,80 +1,57 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 8
+revision: 9
 status: active
 next_actor: codex
 last_actor: codex
-current_question: "현재/직전 복구 이미지를 보존하고 docs/ops/forecast-history-release.md의 미사용 이미지 4개 정리와 기존 매일 자동 정리 정책 연결을 승인할지 사용자 답변이 필요하다."
-updated_at: "2026-09-07T13:37:39.042Z"
+current_question: "No open question recorded"
+updated_at: "2026-09-08T00:43:44.771Z"
 ---
 
 # Current state
 
 ## Summary
 
-2022년 방문 이력 365일을 확보해 총 1,681일로 보강했고, 2023년 축제 정답 5일까지 학습했다. 기존 결합 모델 대비 공통 날짜 MAE는 3.7~5.7% 감소했지만 2025·2026년 축제일은 악화됐다. /forecast/history 구현·전체 재계산·120개 테스트·E2E와 main 게시 완료. Harbor 1GiB 한도 초과로 이미지 push가 실패해 새 화면은 운영 반영 대기다. 현재/복구본을 보존한 구 이미지 4개 정리·선언된 자동 정리 연결 승인을 요청했다. 기존 겨울 시험·운영 예측은 정상이며 7단계 전체는 진행 중이다.
+모델 추가 개선을 미루고 MVP 전체 개인 작업 흐름을 먼저 공개했다. /workspace에서 자료·준비→운영안→결정·현장→결과→보고·다음 회차를 사용할 수 있다. 브라우저 저장·JSON 복원·모바일·보고서와 공개 E2E 통과, 앱 127개·배포 40개 검사 및 CI 성공. 승인된 구 이미지 4개 정리·자동 정책 연결·이전 이력 화면 배포도 완료했다. 기존 수집·예측·겨울 시험은 보존했다. 공동 편집·공식 승인과 실제 사용자 검증은 후속이며 7단계 전체는 진행 중이다.
 
 ## Accepted decisions
 
-- 공모전 완성도와 실무 활용성을 같은 비중으로 추진한다(2026-09-07 사용자 확인).
-- 과거·현재·향후 예측·운영 결정·결과 기록·장기 재사용을 연결하고 실제 축제 한 곳으로 샘플을 구현한다(2026-09-07 사용자 확인).
-- 승인된 7단계 계획에 따라 개발·필수 검증·일반 Git 게시를 진행한다(사용자 개발 착수 요청 및 저장소 게시 규약).
-- 2026-09-07 사용자의 후보 비교·샘플 및 지표 선정 요청 범위에서 논산딸기축제를 개발 샘플로 선정한다. 2025 사례·2023~2024 비교를 사용하고 1차 예측 대상은 논산시 일별 외지인 방문 추세다(docs/validation/05~06). 축제 입장객·시간대별 혼잡과 구분한다.
-- 2026-09-07 사용자가 과거 이력 기반 예측 모델 개발을 확인하고 후속 진행을 요청했다. 연속 자료 수집·실제 모델 학습·기준 비교·읽기 전용 실험 화면을 구현했다(docs/validation/08~09).
-- 2026-09-07 추가 후속 진행 요청의 개발 범위에서 2026년 수집본·시점별 보존·일반 날짜 사전 예측 발행·사후 비교 기능을 구현했다(docs/validation/10).
-- 2026-09-07 사용자의 다음 단계 개발 요청과 일반 게시·등록 앱 sync 위임 범위에서 매일 수집·발행·결과 확인을 기존 운영 서비스에 연결했다. 공휴일/축제 자료와 향후 평가 계획을 정리하되 v1 설정·기존 예측은 유지한다(docs/validation/11~12).
-- 2026-09-07 사용자의 후속 진행 요청과 개발·일반 게시 위임 범위에서 공식 달력 15개 근거를 검증하고 네 후보를 학습했다. 공휴일 모델을 겨울 사전 시험 후보, v1을 비교 기준으로 선정해 26건을 운영 등록했다. 개발 성능을 향후 검증으로 간주하거나 기존 v1 발행을 바꾸지 않는다(docs/validation/13).
-- 2026-09-07 사용자의 계속 개발 요청 범위에서 2022년 선행 이력 수집·2023년 회차 학습·동일 날짜 및 2023년 제외 비교를 구현했다. 2022년 비대면 중심 행사를 현장 축제 정답으로 합치지 않으며 기존 겨울 시험·운영 입력은 유지한다(docs/validation/14). 이미지 삭제·정리 스케줄 활성화는 아직 승인받지 않았다.
+- 공모전 완성도와 실무 활용성을 같은 비중으로 추진하고 과거·현재·예측·운영 결정·결과·다음 회차를 연결한다(2026-09-07 사용자 확인).
+- 승인된 7단계 범위의 개발·검증·일반 Git 게시·등록 앱 sync와 전용 worktree 정리를 진행한다(사용자 요청·저장소 규약).
+- 논산딸기축제를 개발 샘플, 논산시 일별 외지인 방문 추세를 1차 예측 지표로 삼는다. 축제장 입장 건수·시간별 혼잡과 구분한다(docs/validation/05~06).
+- 과거 이력 학습·사전 예측·일일 자동 수집·공휴일 후보 겨울 시험을 구현했다. 발행 당시 입력과 겨울 계획·코드 14개는 고정하며 개발 결과를 미래 검증으로 표현하지 않는다(docs/validation/08~14).
+- 2026-09-07 사용자가 docs/ops/forecast-history-release.md의 구 이미지 4개 정리와 현재/복구본 보호·선언된 매일 자동 정리 연결을 승인했다. 동일 범위로 실행·배포 복구 완료, quota·권한·전역 GC 변경 없음.
+- 2026-09-07 사용자는 모델 정확도 개선보다 화면 구성·기능 개발과 MVP 전체 흐름을 우선한다고 명시했고 2026-09-08 재개를 요청했다. 기존 예측을 유지하고 /workspace 개인 작업을 공개했다(docs/design/06-mvp-workspace.md).
+- 공개 서버의 쓰기 차단은 유지한다. 개인 입력은 브라우저에만 저장하고 공동 저장·공식 승인·실측 검증을 이미 제공하는 것처럼 표현하지 않는다(기존 ADR-0001 및 위임된 MVP 구현 범위).
 
 ## Open questions
 
-- 운영 배포만 이미지 정리 승인 대기다. main 소스 6dce3c6의 CI 34126770861은 검증 통과 후 Harbor 1GiB quota 초과로 push 실패했다. 실제 retention ID null이며 docs/ops/forecast-history-release.md의 current/rollback 2개 보존·구 artifact 4개 정리·선언된 매일 정책 연결을 사용자에게 요청했다. 응답 전 삭제·스케줄 활성화·quota 증액을 실행하지 않는다. 승인 시 exact 목록 재확인→scoped plan/apply/dry-run/execute→동일 CI 재실행→검증 digest 게시/sync/공개 확인까지 재개한다.
-- 겨울 시험은 2026-11-05~2027-01-31 목~일 13개 창, D-28/D-7 26건이 등록됐다. 첫 발행 10/8, 첫 60일 결과 2027-01-04, 마지막 60일/90일 결과 4/1·5/1이다. 실제 발행·결과 도착을 확인해야 하며 고정 계획을 뒤늦게 바꾸지 않는다.
-- 2023년 축제 누락은 2022년 선행 자료로 보완했다. 평균 개선은 2024년에 집중됐고 2025·2026년 축제일 MAE는 악화됐다. 다음 독립 작업은 회차별 기간·요일·발표 시점·방문 형태에 따른 오차 원인과 비교 가능한 축제 표본의 제공 범위를 검토하는 것이다. 새 회차 예측력·현장 효과는 미검증이다.
-- 매일 09시 실제 제공 전환·개정·장기 저장량을 계속 확인한다. 최신 관측은 2026-08-08, 이후 29일 누락이며 실제 공개 지연은 미확정이다.
-- 기존 9월·10월 예측 2건은 사후 관측 0일이다. 9/28의 10월 D-7은 미래 발행이다. 80% 구간 보정·포함률 검증은 별도의 뒤쪽 기간이 필요하다.
-- 2027년 딸기산업엑스포의 24일 일정은 공식 본문으로 확인했지만 기존 4일 축제와 다른 대상이다. 최신 변경·행사 동일성·별도 발행 및 평가 계약을 정하기 전 자동 등록하지 않는다.
-- 소비 강도·자원 수요의 다월 empty 원인과 제공 범위, 제출일·가용시간·실무자 연결, 행사장 일별/시간별 계수·셔틀 119대 집계 단위·운행/대기/비용 자료는 미확보이며 운영 효과 검증에 필요하다.
+- 다음 우선순위는 docs/design/06-mvp-workspace.md의 다섯 사용자 과제로 입력 부담·완료시간·수치 이해를 확인하고 화면·기능을 보완하는 것이다. 실제 사용자 관찰은 미실시이며 제출일·실무자 연결은 미확보다.
+- 공동 저장·인증·공식 승인, CSV와 시간·구역 실측의 개인 작업 연결, 다른 지역 자료 연결은 개발 필요다. 기존 편집 모드의 시간·구역 실측은 유지된다.
+- 모델 회차별 오차 원인과 추가 비교 표본 검토는 MVP 사용 피드백 이후로 미룬다. 셔틀·인력 효과와 현장 대기·비용·수용량은 필요한 운영 자료·검증이 없다.
+- 겨울 시험 26건은 첫 발행 2026-10-08, 첫 60일 결과 2027-01-04, 마지막 60일/90일 결과 4/1·5/1을 기다린다. 기존 계획을 뒤늦게 바꾸지 않는다.
+- 2026-09-08 09시 수집은 새 하루를 확보했다. 최신 자료 2026-08-09·누락 29일이며 실제 공개 지연은 아직 미확정이다. 9월·10월 발행 예측 2건의 실제 사후 결과와 9/28 추가 발행은 미래다.
+- 2027년 24일 딸기산업엑스포는 기존 4일 축제와 다른 대상이다. 일정·동일성·별도 평가 계약을 정하기 전 자동 등록하지 않는다.
 
 ## Artifacts and durable documents
 
 - docs/validation/00-plan.md
-- docs/validation/01-baseline.md
-- docs/validation/02-data-profiling.md
-- docs/validation/03-first-data-review.md
-- docs/validation/04-wsl-validation.md
 - docs/validation/05-festival-selection.md
 - docs/validation/06-forecast-contract.md
-- docs/validation/07-selection-validation.md
-- docs/validation/08-model-experiment.md
 - docs/validation/09-model-validation.md
 - docs/validation/10-prospective-records.md
-- docs/validation/evidence/2026-09-07-nonsan-history.json
-- docs/validation/evidence/2026-09-07-nonsan-current-history.json
-- docs/validation/evidence/2026-09-07-nonsan-forecast.json.gz
-- docs/validation/evidence/prospective/
-- docs/validation/evidence/targets/
-- apps/web/data/nonsan-forecast-summary.json
-- apps/web/data/nonsan-prospective-summary.json
-- docs/ops/wsl-development.md
 - docs/validation/11-daily-automation.md
-- docs/validation/12-calendar-model-plan.md
-- docs/validation/evidence/2026-09-07-nonsan-daily-production.json
-- docs/validation/evidence/2026-09-07-daily-production-result.json
-- docs/ops/forecast-automation.md
-- apps/web/data/forecast-plan.json
-- apps/web/data/forecast-seed.json.gz
 - docs/validation/13-calendar-experiment.md
-- docs/validation/evidence/2026-09-07-nonsan-calendar.json.gz
-- docs/validation/evidence/2026-09-07-calendar-production.json
-- apps/web/data/nonsan-calendar.json
-- apps/web/data/nonsan-calendar-summary.json
-- apps/web/data/calendar-trial-plan.json
 - docs/validation/14-festival-history.md
-- docs/validation/evidence/2026-09-07-nonsan-2022-history.json
-- docs/validation/evidence/2026-09-07-nonsan-festival-history.json.gz
-- apps/web/data/nonsan-festival-history-summary.json
-- apps/web/data/nonsan-history-sources.json
+- docs/validation/15-mvp-journey.md
+- docs/design/06-mvp-workspace.md
+- docs/ops/forecast-automation.md
 - docs/ops/forecast-history-release.md
 - docs/validation/evidence/2026-09-07-festival-history-release.json
+- docs/validation/evidence/2026-09-08-mvp-production.json
+- apps/web/app/workspace/page.tsx
+- apps/web/components/PersonalWorkspace.tsx
+- apps/web/lib/workspace.ts
+- apps/web/scripts/workspace-e2e.mjs
+- apps/web/data/calendar-trial-plan.json

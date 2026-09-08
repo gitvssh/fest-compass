@@ -32,4 +32,24 @@
 공동 저장·인증·공식 승인, CSV와 시간·구역 실측의 개인 작업 연결, 다른 지역 데이터 연결은 후속이다.
 기존 겨울 시험은 실제 발행과 관측 도착을 기다린다. 이 구현을 공모전·실무 종합 평가 완료로 표시하지 않는다.
 
-공개 배포의 커밋·이미지·동작 검증은 아래 배포 확인에 추가한다.
+## 2026-09-08 공개 배포 확인
+
+상태: **개인 작업 전체 흐름 사용 가능**. [내 축제 작업공간](https://kto.damecasol.com/workspace)에서
+논산 샘플 또는 빈 축제로 시작할 수 있다. 공동 편집·공식 승인은 개발 필요다.
+
+- 기능 소스: `6fee76a76fe13ae0f26794053d0fdebd8a9b4704`.
+- [배포 CI 34173719257](https://github.com/gitvssh/fest-compass/actions/runs/34173719257): 성공.
+  `homelab-fest-compass-k8d69-runner-jf289`에서 127개 테스트·타입·빌드·배포 검사와 원격 이미지 검증 통과.
+- 검증 이미지: `sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789`.
+- 배포 선언: `a7d7df2be31eb831c601827590f12cbe3c2a15f6`. Argo Succeeded / Synced / Healthy, 한 replica 유지.
+- 공개 전체 흐름 검증: `E2E_BASE_URL=https://kto.damecasol.com E2E_REJECT_ANALYTICS=1 node scripts/workspace-e2e.mjs` 통과.
+  실제 Cloudflare 동의 창에서 Reject All을 선택한 뒤 개인 입력·저장·출력·다중 탭 보호를 확인했다.
+  애플리케이션 쓰기 요청 0건, 브라우저 오류 0건, 다섯 단계의 390px 가로 넘침 0건.
+  동의 창의 별도 전송은 Cloudflare 소유 경로로 구분하며 개인 작업 데이터를 허용하지 않는다.
+- 공개 홈 → 내 작업공간 진입과 기존 이력 비교·수집 화면을 Chromium으로 확인했다.
+- 오늘 09시 수집 7회, 최신 관측 2026-08-09·1,317일·누락 29일이 배포 전후 같았다.
+  기존 예측 2개와 겨울 등록 원본·26건 계획의 값과 해시가 보존됐다.
+
+정형 증거: [2026-09-08-mvp-production.json](evidence/2026-09-08-mvp-production.json).
+공개 동의 창 처리만 E2E 스크립트에 추가했으며 이미지의 제품 소스·고정 예측 코드는 바꾸지 않았다.
+실제 사용자 관찰은 자동 브라우저 검증과 별개로 남아 있다.
