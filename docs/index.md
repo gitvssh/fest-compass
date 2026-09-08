@@ -3,6 +3,7 @@
 > fest-compass 문서 시스템 맵 (에이전트용, llms.txt식). 고정 경로로 결정론적 회수.
 
 ## 먼저 읽을 것
+- [지자체 축제 업무 사례 조사](research/2026-09-municipal-festival-cases.md) — 공개 예산·발주·정산 근거와 요구사항 보완안
 - [2026-09 기획 검수](review/2026-09-planning-review.md) — 개발 전 문서·시안 정본과 traceboard 검수 경로
 - [울타리(목표·비목표·용어)](product/) — 작업 제안 전 필독
 - [결정 로그](decisions/) — 왜 이렇게 결정했나

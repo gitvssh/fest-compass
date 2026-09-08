@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-09-08",
+  "purpose": "공개 지자체 축제 업무 조사에서 내려받아 읽은 원본의 식별 정보",
+  "raw_documents_committed": false,
+  "files": [
+    {"source": "SRC-MUN-01", "bytes": 336516, "sha256": "aa909702b5d963b2369b804fcfd97a84d1c5aeaefe189e53ef128c3cfe669f3b", "inspection": "PDF 본문 및 6~7쪽 렌더 대조"},
+    {"source": "SRC-MUN-02", "bytes": 112565, "sha256": "005a296055f006f0b2c4784212f9897cfcdfef6f33a860f1f9811c748901a1b4", "inspection": "PDF 본문 및 2쪽 렌더 대조"},
+    {"source": "SRC-MUN-03", "bytes": 122368, "sha256": "564013dab4ef2015b74c862d0ac1e194dcf17ff8a4bc3762796f7fb56336b105", "inspection": "HWP BodyText 및 내장 첫 페이지 이미지 대조"},
+    {"source": "SRC-MUN-04", "bytes": 979195, "sha256": "a7a669727ce23a5e89080c722c47affa6544311c286e9679b3e9f0660184263f", "inspection": "PDF 관련 절 본문 및 21쪽 렌더 대조"},
+    {"source": "SRC-MUN-08", "bytes": 10799985, "sha256": "b682c58d4ced9c9e816f7691bf4ec2597252957e9af9d7f5c5255a7e591f55b2", "inspection": "PDF 관련 절 본문 및 PDF 27·153쪽 렌더 대조"}
+  ],
+  "other_sources": [
+    {"source": "SRC-MUN-05", "status": "공식 HTML 직접 열람; 회의 발언을 확정 예산 또는 검증된 성과로 사용하지 않음"},
+    {"source": "SRC-MUN-06", "status": "검색 도구 제공 공식 PDF 본문 열람; 직접 다운로드 404, 시각 재확인 실패; 보조 근거"},
+    {"source": "SRC-MUN-07", "status": "공식 HTML 공표 항목 및 첨부 목록 열람; 개별 수치 미추출"}
+  ],
+  "limitations": ["전문은 재배포하지 않음", "사용자 인터뷰 미실시", "동일 회차의 전 단계 문서 연결 미완료", "현행 법정기한·금액 기준의 자동 판정 규칙은 미제안"]
+}

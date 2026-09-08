@@ -15,6 +15,9 @@ stages:
       - {path: docs/sdlc/1-analysis/srs.md, required: true}
       - {path: docs/sdlc/1-analysis/data-contract.md, required: true}
       - {path: docs/sdlc/1-analysis/business-flow.md, required: true}
+      - {path: docs/research/2026-09-municipal-festival-cases.md, required: true}
+      - {path: docs/research/2026-09-municipal-festival-sources.md, required: true}
+      - {path: docs/research/2026-09-municipal-requirement-proposals.md, required: true}
   design:
     screens: docs/sdlc/2-design/screens.md
     artifacts:
