@@ -318,3 +318,33 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-016 · Codex · implementer
+
+- Position: 지도 표기를 전국으로 통일하고 M2 첫 축제 비교를 공개했다. 실제 과거 8회차·지역별 현재 등록 행사·그래프·선택 당시 근거 보관을 연결하고 Traceboard에 실제 화면을 게시·검증했다. 다음은 M3 기획 후보와 근거 연결이며 전국 과거 전수자료와 지도 품질 보완은 남아 있다.
+- Evidence:
+  - docs/sdlc/2-design/festival-comparison-implementation.md
+  - docs/validation/21-festival-comparison.md
+  - docs/validation/evidence/2026-09-08-festival-comparison-production.json
+  - docs/validation/evidence/2026-09-08-comparison-source-checks.json
+  - 기능 181144c3a9505f916dcbc11cca16d562f6436d0c; 앱 배포 78e182a5601304ac5c02dca86df99bd59ec56f13; CI 34202154992
+  - Traceboard 문서 원천 fdfe3cd94a2ab46fe7dcf753044fd0debb0146fd; 게시 c5f27a68fac5b14973a663354abe197d998c662a
+- Changes:
+  - 제품 UI·활성 기획의 전국 표기, 전국/지역 조회→비교 동선·홈/탐색/검색 색인 연결
+  - 독립 회차 8개·현재 지역 최대 3곳 조회·필터·지표별 확보 상태, 선택 최대 3회차와 당시 조회 조건 보존
+  - 실제 방문값 45개 추세/상대일/점·구간 선택·수치 표, 연도별 일정과 실제 겹침, 비용 범위/단계별 막대·합계 확인 재원 도넛
+  - 비교 근거 사본·파일 보관/복원·중복/손상 방어·모바일/인쇄, 기존 지역 근거와 개인 저장 경계 유지
+  - 요구·인수 기준과 기획 현황 갱신, 실제 화면 3개·출처 점검·운영 검증 기록. TS-FC-002 전체 완료로 확대하지 않음
+- Validation:
+  - 단위 143개(신규 비교 8개)·배포 선언 40개·타입/빌드·운영 의존성 검사 통과. 전용 ARC CI에서 대상 소스 재검증
+  - 기존 편집·개인 작업·지역 흐름과 신규 비교 21개 headless 흐름 통과. 신규 오류/앱 쓰기 0·390px 넘침 0·인쇄 출처 확인
+  - 과거 45개 관측 원값 전수 일치·공식 URL 9개 HTTP 200·기존 확인 원문 해시 4개 일치. 나머지 동적 HTML은 기존 검토본 식별 유지
+  - 공개 전국→충남→논산→비교, 논산 D0 52,671.5명 보관/재조회·공주/임실 4일 겹침·원주 재원 도넛 확인. 2026 시작 행사 논산 4·공주 3·부여 4건 각 조회 완료
+  - 공개 콘솔 오류/경고 0·390px 넘침 0·7개 URL HTTP 200. 앱 Synced/Healthy/Succeeded·1 replica·검증 이미지 일치
+  - 배포 전후 기존 예측 2개·방문 상태·겨울 시험의 내용 해시·당일 자동 처리 식별 보존. 모델·겨울 고정 코드·데이터베이스 구조 유지
+  - Traceboard 접근성 1,680 화면 조합 위반/미평가 0·추적 누락 0·정형 연결 미평가 4개 유지
+  - Traceboard 실제 HTTPS 64/64 파일 SHA-256 일치·그림 3/3 디코드·390px 넘침 0·제품 비교 링크 확인. 콘솔은 기존 favicon 404 한 건
+  - Traceboard Synced/Healthy/Succeeded·검증 이미지 일치·가용 1개. 동시 게시 13개 프로젝트 원천이 동일/최신임을 확인하고 두 게시 이력을 보존해 병합
+- Questions:
+  - No open question
+- Handoff: Codex
