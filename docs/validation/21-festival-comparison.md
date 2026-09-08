@@ -3,7 +3,7 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-08
 version: v1
-summary: "전국 표기와 M2 첫 비교 기능의 실제 자료·구현·검증 범위입니다. 공개 배포 확인은 완료 후 기록합니다."
+summary: "전국 표기와 M2 첫 비교 기능을 공개하고 실제 동선을 확인했습니다. 143개 단위 검사·21개 신규 headless 흐름과 자료별 제공 범위를 기록합니다."
 ---
 
 # 전국 표기와 축제 비교 검증
@@ -50,4 +50,17 @@ Node 24.20.0 / npm 11.19.0, 격리된 SQLite 및 브라우저 저장 환경을 �
 TS-FC-002의 전체 인수 시나리오 및 실제 공무원 관찰 완료로 표시하지 않는다.
 다음 제품 단계는 M3 아이템·장소·시기 후보와 보관 근거 연결이다.
 
-공개 배포·Traceboard 게시와 실제 브라우저 확인은 완료 후 아래에 추가한다.
+## 공개 배포와 실제 확인
+
+- 소스: `181144c3a9505f916dcbc11cca16d562f6436d0c`.
+- [CI 34202154992](https://github.com/gitvssh/fest-compass/actions/runs/34202154992) 성공. 리포 전용 ARC `homelab-fest-compass-k8d69-runner-6l2m8`에서 단위·타입·빌드·배포 선언을 다시 검증했다.
+- 원격 검증 이미지: `registry.damecasol.com/fest-compass/web@sha256:5c090b44164c4a442761375c7a29051696fdacff97c6d1bddfb9ebf66df657fa`.
+- 배포 선언 `78e182a5601304ac5c02dca86df99bd59ec56f13`을 등록 앱에 적용했다. `fest-compass-prod` Synced/Healthy/Succeeded, 가용 1개이며 두 컨테이너 이미지가 일치했다.
+- 공개 [전국 지도](https://kto.damecasol.com/regions)의 이전 표기 0, 전국→충남→논산→비교 링크의 지역·기간 전달을 확인했다.
+- 공개 [비교 화면](https://kto.damecasol.com/compare)에서 과거 8회차·논산 3회차 D0 값을 확인하고 52,671.5명 사본을 보관/재조회했다. 공주·임실 4일 겹침과 원주 실제 집행 재원 도넛을 확인했다.
+- 2026-01-01~12-31 시작일 조회: 논산 4·공주 3·부여 4건, 합계 등록 결과 11건. 각 지역 1페이지 전체 완료이며 전국 총수나 전수 일정 중복 검색이 아니다.
+- 공개 390px 가로 넘침 0, 브라우저 콘솔 오류/경고 0. 분석 동의는 검수 브라우저에서 Reject All로 선택했다.
+- `/`, `/compare`, `/regions`, `/robots.txt`, `/sitemap.xml`, `/forecast/history`, `/forecast/records` 모두 HTTP 200, sitemap에 `/compare` 포함.
+- 배포 전후 기존 예측 2개, 방문 자료 상태, 겨울 시험의 내용 해시와 오늘 자동 처리 상태·보관 식별자가 일치했다. 기존 모델·겨울 고정 코드·SQLite 단일 쓰기 경계는 유지했다.
+
+내부 Traceboard의 게시 확인과 최종 인계는 프로젝트 상태 및 `docs/validation/evidence/2026-09-08-festival-comparison-production.json`에 기록한다.

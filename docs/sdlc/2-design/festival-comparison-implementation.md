@@ -8,6 +8,8 @@ summary: "현재 등록 행사와 출처가 있는 과거 회차를 찾아 일�
 
 # 주변·과거 축제 비교의 첫 구현
 
+[공개 비교 화면 열기](https://kto.damecasol.com/compare) · [담은 비교 근거](https://kto.damecasol.com/evidence#comparisons)
+
 `/compare`에 SCR-FC-002의 첫 기능을 추가했다. 지역 지도에서 선택한 지역·기간을 전달하고,
 현재 등록 행사와 독립적으로 보관한 과거 회차를 찾는다. `/evidence#comparisons`에서 당시 비교를 다시 읽고 파일로 보관한다.
 앱의 지도 경로·선택창·지도 제목·접근성 이름·검색 설명은 사용자 요청대로 **전국**으로 통일했다.
