@@ -226,3 +226,26 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-012 · Codex · reviewer
+
+- Position: 공개 지자체 축제 업무 사례와 예산·집행 문서를 조사해 기존 기획의 보완안 8개를 작성하고 내부 traceboard에 게시했다. 다음은 이 근거를 요구·화면 문서에 반영하는 작업이다.
+- Evidence:
+  - docs/research/2026-09-municipal-festival-cases.md: 경기 광주·논산·원주·제주·중랑 핵심 5개 사례
+  - docs/research/2026-09-municipal-festival-sources.md: 공식 출처 8건, 직접 접근 실패·열람 범위 구분
+  - docs/research/evidence/2026-09-source-checks.json: 내려받은 원본 5개 식별과 확인 범위
+  - docs/validation/17-municipal-research-publication.md: 문서 원천 51d2f55, 내부 게시 5ea684a
+- Changes:
+  - 조사·출처·요구사항/화면 보완안 3문서와 원본 식별 대장 추가
+  - 검수 안내·업무 흐름·색인·traceboard 설정에 조사 문서를 연결
+  - 제품 코드·모델·수집·기존 SRS/UC/TS·7개 시안은 변경하지 않음
+- Validation:
+  - 문서 구조·추적 위반 0; 미평가 규칙 4개 유지
+  - Mermaid 2개, 게시 문서 33개 상대 링크 검사 통과
+  - 발행 접근성 1,560페이지 검사 조합: 위반 0·미평가 0
+  - HTTPS 51개 파일 SHA-256 일치; 실제 보고서→보완안 링크·8개 항목 확인
+  - traceboard-dev 5ea684a Succeeded/Synced/Healthy, 이미지 cb5d79a 일치
+  - 앱 테스트·실제 공무원 인터뷰·사용성 효과 측정은 미실시
+- Questions:
+  - No open question
+- Handoff: Codex
