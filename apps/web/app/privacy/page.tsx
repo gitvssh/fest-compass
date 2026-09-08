@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-blue">Privacy & analytics</p>
         <h1 className="mt-2 text-3xl font-extrabold">개인정보·분석 안내</h1>
         <p className="mt-3 text-sm text-muted">
-          {siteConfig.name}은 축제 운영 근거를 기록하는 서비스입니다. 공개 읽기 전용 화면은 데이터를 변경하지 않습니다.
+          {siteConfig.name}은 축제 운영 근거를 기록하는 서비스입니다. 공개 자료는 조회하며, 내 작업공간의 개인 기록은 브라우저에 저장됩니다.
         </p>
       </header>
 
@@ -32,6 +32,11 @@ export default function PrivacyPage() {
           편집 모드에서 입력한 축제명, 일정, 장소, 가정, 승인자·작성자·담당자 표기, 결정과 실측값은 운영 데이터베이스에 저장됩니다.
           자유 입력란에는 불필요한 개인정보를 입력하지 마세요. 공개 읽기 전용 배포에서는 이러한 입력 기능이 서버에서 차단됩니다.
         </p>
+      </section>
+
+      <section>
+        <h2 className="text-xl font-extrabold">내 작업공간의 개인 기록</h2>
+        <p className="mt-2 text-sm leading-7 text-muted">내 작업공간에서 입력한 축제 정보·운영안·담당자 표기·현장 대응·실측은 현재 브라우저의 저장 공간(localStorage)에만 보관합니다. 서버나 선택 분석으로 전송하지 않으며, 다른 기기와 자동 동기화하지 않습니다. 불필요한 개인정보는 입력하지 마세요. 브라우저의 사이트 데이터를 지우면 삭제됩니다. 보관이 필요하면 작업 파일을 내려받고, 공용 기기를 사용할 때는 사용 후 사이트 데이터를 지우세요. 의견 입력은 파일을 내려받기 전까지 화면에만 남습니다.</p>
       </section>
 
       <section>

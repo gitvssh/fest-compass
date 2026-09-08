@@ -85,7 +85,7 @@ runNode(prismaCli, ["db", "push", "--force-reset", "--skip-generate", "--schema"
 runNode(tsxCli, ["prisma/seed.ts"]);
 runNode(nextCli, ["build"]);
 
-const server = spawn(process.execPath, [nextCli, "start", "-H", "127.0.0.1", "-p", String(port)], {
+let server = spawn(process.execPath, [nextCli, "start", "-H", "127.0.0.1", "-p", String(port)], {
   cwd: webRoot,
   env,
   stdio: "inherit",
@@ -94,6 +94,15 @@ const server = spawn(process.execPath, [nextCli, "start", "-H", "127.0.0.1", "-p
 try {
   await waitForServer();
   runNode(join(webRoot, "scripts", "demo-e2e.mjs"), []);
+  // The personal workspace must also work under the public server's write prohibition.
+  const exited = once(server, "exit");
+  server.kill();
+  await exited;
+  server = spawn(process.execPath, [nextCli, "start", "-H", "127.0.0.1", "-p", String(port)], {
+    cwd: webRoot, env: { ...env, APP_MODE: "public-readonly" }, stdio: "inherit",
+  });
+  await waitForServer();
+  runNode(join(webRoot, "scripts", "workspace-e2e.mjs"), []);
 } finally {
   if (server.exitCode === null && server.pid) {
     if (process.platform === "win32") {

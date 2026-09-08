@@ -16,6 +16,12 @@ button {
   font: inherit;
 }
 
+@layer components {
+  .workspace-input { @apply w-full min-w-0 rounded-xl border border-ink/20 bg-white px-3 py-2.5 font-normal outline-none focus:border-blue focus:ring-2 focus:ring-blue/20 disabled:bg-paper; }
+  .workspace-link { @apply rounded-xl border border-blue/20 bg-blue-soft p-4 text-sm font-bold text-blue hover:underline; }
+  .workspace-link span { @apply mt-2 block text-xs font-normal text-muted; }
+}
+
 @media print {
   html,
   body {
