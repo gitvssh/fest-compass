@@ -3,10 +3,12 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-09
 version: v1
-summary: "기획 후보의 재원·지출·기간별 산출·근거·준비 과제를 연결한 M4 검수 안내입니다. 로컬 검증을 마쳤고 공개 반영을 준비 중입니다."
+summary: "기획 후보의 재원·지출·기간별 산출·근거·준비 과제를 연결했습니다. 공개 앱에서 후보 비교·그래프·이전 보관본 복원을 확인했습니다."
 ---
 
 # 후보별 예산과 준비 규모
+
+[예산·준비 규모 비교 열기](https://kto.damecasol.com/planning/budget)에서 사용할 수 있다.
 
 SCR-FC-005와 FR-BGT-1~3, UC-FC-005의 첫 구현이다. 기존 기획의 후보·자료·보관본을 함께 사용한다.
 기획 후보의 **예산·준비 규모** 탭과 `/planning/budget`에서 같은 초안을 연다.

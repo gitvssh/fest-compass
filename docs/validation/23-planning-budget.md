@@ -3,7 +3,7 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-09
 version: v1
-summary: "M4 예산·준비 규모를 구현했습니다. 단위 168건·신규 headless 흐름 23개가 통과했으며 공개 반영을 준비 중입니다."
+summary: "M4 예산·준비 규모를 공개했습니다. 단위 168건·신규 headless 흐름 23개와 공개 후보 비교·복원을 확인했고 기존 예측 기록을 보존했습니다."
 ---
 
 # 예산·준비 규모 검증
@@ -47,5 +47,18 @@ Node 24.20.0/npm 11.19.0. 신규 브라우저 오류·앱 쓰기 요청 0건, 39
 
 ## 공개 반영
 
-공개 앱과 내부 Traceboard 게시 후 실제 동선·대상 커밋·이미지·기존 예측 자료 보존과 검수 파일 일치를 기록한다.
-진행 중인 검증을 통과로 표시하지 않는다.
+소스 `dcf1f5f5d710f086193eba78b0fe5934caa8790f`, [CI 34254837134](https://github.com/gitvssh/fest-compass/actions/runs/34254837134) attempt 2가 전용 `homelab-fest-compass` 실행 환경에서 성공했다.
+첫 시도는 코드 검증 뒤 Harbor 1GiB 한도로 이미지 push가 실패했다. 기존 정기 retention 이후 사용량 400733491 bytes·정책 차이 0을 확인하고 같은 실패 job만 재실행했다. 수동 이미지 삭제·quota 변경은 하지 않았다.
+
+이미지 `sha256:d4d655f8c4f087fa34987ead203f816cbeeddb52a7d0e1beb3ef373a76cf9799`를 원격 검증했고,
+배포 선언 `f51c0d0cd37979fbca02962fa0b6604e6408fc63`을 main에 게시했다. 등록 앱은 Synced/Healthy/Succeeded, 가용 인스턴스 1개와 실제 이미지 일치를 확인했다.
+첫 sync의 짧은 커밋 표기는 거부되어 같은 커밋의 전체 SHA로 재시도했다.
+
+[공개 예산 화면](https://kto.damecasol.com/planning/budget)에서 검수용 두 후보 500000/600000원, 0축 막대와 재원/지출 도넛, 세금 미확인 시 지출 파이 보류를 확인했다.
+요구 500000·계약 480000·지급 300000 원문은 따로 유지됐다. 수량 수정 뒤 기존 보관본은 그대로였고 이전 500000원 안을 새 초안으로 다시 열었다.
+예산의 자료·준비 연결과 390px 넘침 0, 주요 11개 URL HTTP 200·사이트맵의 예산 경로를 확인했다. 브라우저 자동화는 모두 headless다.
+배포 전후 예측 2건·겨울 시험·모니터 의미 값·당일 자동 처리 식별의 해시가 같았다.
+
+내부 Traceboard에는 이 문서와 [실제 화면 4장](../sdlc/2-design/budget-implementation.md)을 게시한다.
+게시 이미지·접근성 검사·실제 파일 일치 결과는 `docs/validation/evidence/2026-09-09-planning-budget-production.json`에 최종 기록한다.
+정형 Spec/Run 연결·실무자 관찰·M5 기획안 출력·M6 결과 연결은 미완료다.
