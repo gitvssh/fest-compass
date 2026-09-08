@@ -249,3 +249,23 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-013 · Codex · implementer
+
+- Position: 공개 사례 보완안 8개를 기획·자료·SRS/UC/TS와 7개 화면 v2에 반영하고 내부 traceboard에 게시·검증했다. 지도 중심 MVP 순서와 개인 저장 경계를 유지한다.
+- Evidence:
+  - docs/research/2026-09-municipal-requirement-proposals.md
+  - docs/validation/18-municipal-planning-v2.md
+  - FEST 원천 74c3faf363b4cf59ede3d991da340466202ee26d; traceboard 게시 fe067d1279b3dcda4ec801e34237fa430da42f35
+- Changes:
+  - 사업·수행 관계, 장소 기간/조건, 재원/지출·금액 단계·범위·분류, 준비 과제, 결과/개선·출력 계약 반영
+  - 기존 FR 23/NFR 6/UC 8/TS 8·화면 7 ID 유지, AC 26→44. v2 소스/SVG 7쌍 추가, v1 14개 파일 보존
+  - 검수 안내·마일스톤·용어·설계 연결 갱신. 앱·모델·수집·공개 배포 설정 변경 없음
+- Validation:
+  - 문서 구조·추적 누락 0, 미평가 4 유지. AC 본문 정합 44/44, 신규 TS 모두 미실행
+  - Excalidraw 참조 7/7, SVG 두 번 렌더 해시 일치 7/7, Mermaid 7블록 파싱, 사이트 링크 누락 0
+  - 내부 발행 접근성 1,576 검사 조합 위반/미평가 0. 배포 Synced/Healthy·이미지 일치·가용 1
+  - 실제 HTTPS 파일 SHA-256 51/51 일치. 검수 안내→v2 시안 7개 및 흐름 4개 브라우저 확인
+- Questions:
+  - No open question
+- Handoff: Codex
