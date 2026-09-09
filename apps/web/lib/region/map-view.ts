@@ -31,5 +31,21 @@ export function groupResources(resources: Resource[], project: (lon: number, lat
     const p = project(resource.longitude, resource.latitude), key = `${Math.floor(p.x / 42)}:${Math.floor(p.y / 42)}`;
     const rows = groups.get(key) ?? []; rows.push({ resource, number: index + 1 }); groups.set(key, rows);
   });
-  return [...groups.values()];
+  const clusters = [...groups.values()].map(rows => ({ rows, x: rows.reduce((s, r) => s + project(r.resource.longitude, r.resource.latitude).x, 0) / rows.length,
+    y: rows.reduce((s, r) => s + project(r.resource.longitude, r.resource.latitude).y, 0) / rows.length }));
+  // Grid edges can put almost identical locations in different cells. Merge
+  // overlapping cluster centres too, repeating after each centre moves.
+  let merged = true;
+  while (merged) {
+    merged = false;
+    outer: for (let i = 0; i < clusters.length; i++) for (let j = i + 1; j < clusters.length; j++) {
+      const a = clusters[i], b = clusters[j];
+      if (Math.hypot(a.x - b.x, a.y - b.y) >= 52) continue;
+      const count = a.rows.length + b.rows.length;
+      a.x = (a.x * a.rows.length + b.x * b.rows.length) / count;
+      a.y = (a.y * a.rows.length + b.y * b.rows.length) / count;
+      a.rows.push(...b.rows); clusters.splice(j, 1); merged = true; break outer;
+    }
+  }
+  return clusters.map(c => c.rows.sort((a, b) => a.number - b.number));
 }

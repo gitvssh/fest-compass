@@ -26,6 +26,12 @@ test("map clusters keep catalogue numbering and identities through missing and d
   assert.deepEqual(result.map(g => g.map(r => r.number)), [[2, 3], [4]]);
   assert.deepEqual(result.flat().map(r => r.resource.id), ["123", "456", "789"]);
 });
+test("adjacent grid cells do not hide near-identical resources behind another cluster", () => {
+  const one = mapResource(row(), q);
+  const resources = [127.099,127.101,127.8].map((longitude,i)=>({...one,id:String(i),longitude}));
+  const groups = groupResources(resources, x=>({x:(x-127)*420,y:0}));
+  assert.deepEqual(groups.map(g=>g.map(r=>r.number)),[[1,2],[3]]);
+});
 test("directory preserves current codes and the verified Sejong exception", () => {
   assert.equal(REGIONS.length, 269); assert.equal(new Set(REGIONS.map(r => r.provinceCode)).size, 16);
   assert.equal(parseQuery(new URLSearchParams({ ...q, province: "36110", district: "36110" })).province, "36110");

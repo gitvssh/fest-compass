@@ -34,7 +34,7 @@ async function checkLabels() {
 try {
   mkdirSync("output/playwright", { recursive: true });
   await page.goto(`${base}/regions`);
-  if (new URL(base).hostname === "kto.damecasol.com") { await wait(btn("Reject All")); await btn("Reject All").click(); }
+  if (new URL(base).hostname === "kto.damecasol.com") { const reject=page.getByRole("button",{name:/^(Reject All|모두 거부)$/}); await wait(reject); await reject.click(); }
   await wait(btn("제주특별자치도 선택")); await page.locator("img.leaflet-tile-loaded").first().waitFor();
   assert.equal(apiCalls,0); assert.ok(await map().getByRole("link",{ name:"OpenStreetMap",exact:true }).isVisible());
   await checkLabels();
