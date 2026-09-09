@@ -12,6 +12,7 @@ summary: "7개 핵심 화면의 필드·행동·예외를 정의합니다. M1~M6
 
 **아래 그림 7개는 v3 시안이다. SCR-FC-001과 SCR-FC-003의 첫 기능 구현은 [실제 화면 검수](region-explorer-implementation.md)에서 별도로 확인한다.**
 SCR-FC-002의 현재 화면과 제한은 [축제 비교 구현](festival-comparison-implementation.md)에서 확인한다.
+SCR-FC-001의 도로 배경·자료 묶음·명시적 영역 적용과 대체 지도는 [전국·지역 지도 개선](region-map-improvement.md)을 따른다.
 사용자 요구는 [제품 기획](../0-planning/product-plan.md)과 [SRS](../1-analysis/srs.md)에서,
 현재 기능은 apps/web/app과 [개인 작업 명세](../../design/06-mvp-workspace.md)에서 확인했다.
 화면 배치·신규 경로·예시 수치·비교 개수는 검수용 제안이다. 지도 윤곽은 개념도다. v3의 논산 방문 그래프와 원주 지원사업 결과는 출처가 있는 실제 표본이며, 올해 후보·견적 입력 예시는 가상이다. [자료별 구분](data-visualization.md)을 따른다.

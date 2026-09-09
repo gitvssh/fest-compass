@@ -3,11 +3,11 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-08
 id: TS-FC-001
-version: v3
+version: v4
 status: active
 summary: "우리 지역의 관광자원과 방문 추세를 조회한다의 인수 시나리오입니다. M1 해당 범위의 자동 검증을 추가했으며 전체 인수는 남아 있습니다."
 usecase: UC-FC-001
-covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7"]
+covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7","AC8"]
 apis: []
 specs: []
 ---
@@ -16,7 +16,7 @@ specs: []
 
 | 항목 | 내용 |
 |---|---|
-| 근거 | [UC-FC-001@v3](../../1-analysis/usecases/UC-FC-001.md) |
+| 근거 | [UC-FC-001@v4](../../1-analysis/usecases/UC-FC-001.md) |
 | 대상 환경 | 구현 후 격리된 로컬 브라우저 + 고정 자료 응답 |
 | 실행 상태 | M1 해당 범위 자동 검증 완료. 아래 전체 과제·정형 Run 연결은 후속 |
 
@@ -65,5 +65,7 @@ R-A→R-B 전환 후 100 표시가 남지 않는지, 좌표 결측 1건이 목�
 실제 수치 표본은 docs/research/evidence/2026-09-visualization-fixture.json을 사용한다. 가상 실패 입력과 구분하며 브라우저 시험은 headless로 실행한다.
 
 ## M1 첫 실행 연결
+
+v4 AC8은 `scripts/map-e2e.mjs`로 전국 표식 겹침·모바일 선택·자료 묶음·원래 목록 번호·드래그/키보드·명시적 영역·근거 보존·휠 스크롤·배경 실패를 검사한다. 타일은 가상 응답으로 대체하고 제공자에 자동화 요청을 전달하지 않는다. 실제 도로 배경의 가용성 검증과 구분한다. [추가 검증 기록](../../../validation/26-region-map.md)을 따른다.
 
 [실행 범위·남은 과제](../../../validation/20-region-explorer.md)를 따른다. 앱의 `scripts/regions-e2e.mjs`와 `lib/region/region.test.ts`로 지역 전환·자료 격리·당시 값 보존을 검증했다. 비용 원문·후보 연결·기획안 버전과 실무 관찰은 완료로 처리하지 않는다.

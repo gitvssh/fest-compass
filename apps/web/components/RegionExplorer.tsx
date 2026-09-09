@@ -40,7 +40,7 @@ export function RegionExplorer({ year }: { year: number }) {
   }, [query, retry]);
   function setRange(value: string, isStart: boolean) { reset(); if (isStart) setStart(value); else setEnd(value); }
   function saveHome() { try { const value = { province, district }; localStorage.setItem(HOME_REGION_KEY, JSON.stringify(value)); setHome(value); setNotice("우리 지역을 저장했습니다. 다음 방문도 전국에서 시작하며 바로가기로 이동할 수 있습니다."); } catch { setNotice("우리 지역을 저장하지 못했습니다. 브라우저 저장 설정을 확인하세요."); } }
-  function selectResource(id: string) { setResourceId(id); setDate(""); details.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }); }
+  function selectResource(id: string) { setResourceId(id); setDate(""); }
   async function save(allDates = false) {
     if (!data) return;
     try {
@@ -71,7 +71,8 @@ export function RegionExplorer({ year }: { year: number }) {
         <p className="text-xs leading-5 text-muted">지역 목록 확인: {CATALOGUE.collectedAt.slice(0, 10)}<br /><a href={CATALOGUE.source} className="underline" target="_blank" rel="noreferrer">한국관광공사 법정동 조회 목록 ↗</a></p>
       </aside>
       <div className="min-w-0 space-y-4">
-        <RegionMap province={province} resources={resources} selected={resourceId} onProvince={chooseProvince} onResource={selectResource} onBounds={b => { setBounds(b); setResourceId(""); }} />
+        <RegionMap province={province} resources={resources} selected={resourceId} appliedBounds={bounds} onProvince={chooseProvince} onResource={selectResource} onBounds={b => { setBounds(b); setResourceId(""); }} />
+        {resource && <button className="region-button w-full" onClick={() => details.current?.scrollIntoView({ behavior: "smooth", block: "start" })}>{resource.title} · 상세·기획 근거 확인 ↓</button>}
         <section className="region-card"><div className="mb-3 flex flex-wrap items-center justify-between gap-2"><h2 className="font-extrabold"><span className="text-blue">03</span> 자료 조회 조건</h2>{district && <button className="region-button" onClick={saveHome}>우리 지역으로 저장</button>}</div><form onSubmit={e => { e.preventDefault(); if (district) load(province, district); }} className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <label className="text-xs font-bold">통계 시작일<input aria-label="통계 시작일" type="date" min="2000-01-01" max="2035-12-31" className="workspace-input mt-2" value={start} onChange={e => setRange(e.target.value, true)} /></label><label className="text-xs font-bold">통계 종료일<input aria-label="통계 종료일" type="date" min="2000-01-01" max="2035-12-31" className="workspace-input mt-2" value={end} onChange={e => setRange(e.target.value, false)} /></label>
           <label className="text-xs font-bold">지도·목록 자료<select className="workspace-input mt-2" value={kind} onChange={e => { const next = e.target.value as Query["kind"]; setKind(next); reset(); if (district) load(province, district, start, end, next); }}>{Object.entries(TYPES).map(([code, name]) => <option key={code} value={code}>{name}</option>)}</select></label><button type="submit" className="region-primary self-end" disabled={!district || loading}>자료 조회</button>

@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { chromium } from "playwright";
+import { mockMapTiles } from "./map-test-tiles.mjs";
 
 const base = process.env.E2E_BASE_URL || "http://127.0.0.1:3112", key = "fest-compass.planning.v1";
 const browser = await chromium.launch({ headless: true }), context = await browser.newContext({ viewport: { width: 1440, height: 1000 } }), page = await context.newPage();
+await mockMapTiles(context);
 const errors = [], writes = [], passed = [];
 const watch = p => { p.on("pageerror", e => errors.push(e.message)); p.on("console", m => { if (m.type() === "error") errors.push(m.text()); }); p.on("request", r => { if (r.url().startsWith(base) && r.method() !== "GET") writes.push(r.method()); }); };
 watch(page);

@@ -1,64 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
-import outline from "@/data/korea-outline.json";
-import { REGIONS } from "@/lib/region/model";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+import type { Bounds } from "@/lib/region/map-view";
 import type { Resource } from "@/lib/region/types";
-export type Bounds = [number, number, number, number];
-const cosine = Math.cos(36 * Math.PI / 180);
-const project = (lon: number, lat: number) => [lon * cosine * 100, -lat * 100];
-const nationwide: Bounds = [124.3, 32.8, 132.2, 38.8];
-// Selection label anchors, not administrative centroids or boundaries.
-const anchors: Record<string, [number, number, string, number]> = {
-  "11": [126.98, 37.57, "서울", 0.45], "12": [126.9, 34.8, "전남광주", 2.8],
-  "26": [129.07, 35.18, "부산", 0.7], "27": [128.6, 35.88, "대구", 0.9], "28": [126.45, 37.46, "인천", 1.2],
-  "30": [127.38, 36.35, "대전", 0.5], "31": [129.31, 35.55, "울산", 0.6], "36110": [127.28, 36.6, "세종", 0.55],
-  "41": [127.25, 37.9, "경기", 2], "43": [127.9, 36.85, "충북", 1.8], "44": [126.65, 36.68, "충남", 1.8],
-  "47": [128.85, 36.5, "경북", 2.4], "48": [128.1, 35.3, "경남", 2], "50": [126.55, 33.38, "제주", 1.3],
-  "51": [128.45, 37.7, "강원", 2.3], "52": [127.15, 35.7, "전북", 1.7],
-};
-export function RegionMap({ province, resources, selected, onProvince, onResource, onBounds }: {
-  province: string; resources: Resource[]; selected: string; onProvince: (code: string) => void; onResource: (id: string) => void; onBounds: (bounds: Bounds | null) => void;
-}) {
-  const [bounds, setBounds] = useState<Bounds>(nationwide), [changed, setChanged] = useState(false);
-  useEffect(() => {
-    const mapped = resources.filter(r => r.longitude !== null && r.latitude !== null);
-    if (mapped.length) {
-      const xs = mapped.map(r => r.longitude!), ys = mapped.map(r => r.latitude!);
-      const width = Math.max(0.18, Math.max(...xs) - Math.min(...xs)), height = Math.max(0.18, Math.max(...ys) - Math.min(...ys));
-      setBounds([Math.min(...xs) - width * .2, Math.min(...ys) - height * .2, Math.max(...xs) + width * .2, Math.max(...ys) + height * .2]);
-    } else if (province && anchors[province]) { const [x, y, , w] = anchors[province]; setBounds([x - w / 2, y - w / 2, x + w / 2, y + w / 2]); }
-    else setBounds(nationwide);
-    setChanged(false);
-  }, [province, resources]);
-  function move(scale: number, dx = 0, dy = 0) {
-    const [w, h] = [bounds[2] - bounds[0], bounds[3] - bounds[1]], cx = (bounds[0] + bounds[2]) / 2 + dx * w, cy = (bounds[1] + bounds[3]) / 2 + dy * h;
-    if (w * scale < 0.025 || w * scale > 15) return;
-    setBounds([cx - w * scale / 2, cy - h * scale / 2, cx + w * scale / 2, cy + h * scale / 2]); setChanged(true);
-  }
-  const [left, bottom] = project(bounds[0], bounds[1]), [right, top] = project(bounds[2], bounds[3]);
-  const size = Math.max(right - left, bottom - top) / 42;
-  const provinces = [...new Map(REGIONS.map(r => [r.provinceCode, r.provinceName])).entries()];
-  return <div className="overflow-hidden rounded-2xl border border-ink/15 bg-[#e9f1f4]">
-    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 bg-white/90 p-3 text-xs">
-      <span className="font-bold">{province ? "선택 지역 · 자료 좌표" : "전국 · 시도 선택"}</span>
-      <div className="flex gap-1">{[["확대", "+", () => move(.65)], ["축소", "−", () => move(1.5)], ["서쪽으로 이동", "←", () => move(1, -.25)], ["동쪽으로 이동", "→", () => move(1, .25)], ["북쪽으로 이동", "↑", () => move(1, 0, .25)], ["남쪽으로 이동", "↓", () => move(1, 0, -.25)]] .map(([label, symbol, action]) => <button key={String(label)} aria-label={String(label)} onClick={action as () => void} className="min-h-9 min-w-9 rounded-lg border border-ink/20 bg-white font-bold">{String(symbol)}</button>)}</div>
-    </div>
-    <svg role="group" aria-label="전국 지역 탐색 지도" className="h-[420px] w-full sm:h-[510px]" viewBox={`${left} ${top} ${right - left} ${bottom - top}`}>
-      <title>전국 육지 윤곽과 지역 선택 표식</title>
-      <path d={outline.path} fill="#fafcf8" stroke="#95a9ad" strokeWidth={.65} vectorEffect="non-scaling-stroke" fillRule="evenodd" />
-      {!province && provinces.map(([code, name]) => { const anchor = anchors[code]; if (!anchor) return null; const [x, y] = project(anchor[0], anchor[1]); return <g key={code} role="button" tabIndex={0} aria-label={`${name} 선택`} onClick={() => onProvince(code)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onProvince(code); } }} className="cursor-pointer focus:outline-blue">
-        <rect x={x - size * 1.65} y={y - size * .72} width={size * 3.3} height={size * 1.44} rx={size * .45} fill="#071a33" />
-        <text x={x} y={y + size * .26} textAnchor="middle" fontSize={size * .75} fontWeight="700" fill="white">{anchor[2]}</text>
-      </g>; })}
-      {resources.filter(r => r.longitude !== null && r.latitude !== null).map((r, i) => { const [x, y] = project(r.longitude!, r.latitude!); return <g key={r.id} role="button" tabIndex={0} aria-label={`지도에서 ${r.title} 상세`} onClick={() => onResource(r.id)} onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onResource(r.id); } }} className="cursor-pointer">
-        <circle cx={x} cy={y} r={size * .8} fill={selected === r.id ? "#ae2e20" : "#2667e8"} stroke="white" strokeWidth={size * .12} /><text x={x} y={y + size * .25} fill="white" fontSize={size * .68} textAnchor="middle" fontWeight="bold">{i + 1}</text><title>{r.title}</title>
-      </g>; })}
-      {!province && <text x={project(131.1, 37.4)[0]} y={project(131.1, 37.4)[1]} fontSize={size * .58} textAnchor="middle" fill="#334155">울릉도·독도</text>}
-    </svg>
-    <div className="space-y-2 bg-white/90 p-3 text-xs leading-5 text-muted">
-      {province && <div className="flex flex-wrap gap-2"><button className="region-button" disabled={!changed} onClick={() => { onBounds(bounds); setChanged(false); }}>이 영역의 자료 보기</button><button className="region-button" onClick={() => onBounds(null)}>공간 필터 해제</button></div>}
-      <p>지역 표식은 선택용이며 행정경계가 아닙니다. 확대 지도는 자료의 좌표를 보여주며, 도로·토지 이용과 장소 사용 가능 여부는 별도 확인이 필요합니다.</p>
-      <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer" className="underline">육지 윤곽: Natural Earth 5.1.2 · Public domain</a>
-    </div>
-  </div>;
+import { RegionOutlineMap } from "./RegionOutlineMap";
+export type { Bounds } from "@/lib/region/map-view";
+export type RegionMapProps = { province: string; resources: Resource[]; selected: string; appliedBounds?: Bounds | null; onProvince: (code: string) => void; onResource: (id: string) => void; onBounds: (bounds: Bounds | null) => void };
+const StreetMap = dynamic(() => import("./RegionStreetMap"), { ssr: false, loading: () => <p role="status" className="region-card">지도를 준비하고 있습니다. 지역 목록도 사용할 수 있습니다.</p> });
+export function RegionMap(props: RegionMapProps) {
+  const [simple, setSimple] = useState(false);
+  return <section aria-label="관광지도" className="min-w-0 space-y-2">
+    <div className="flex flex-wrap items-center justify-between gap-2"><strong className="text-sm">{props.province ? "선택 지역 관광지도" : "전국 관광지도"}</strong><div className="flex gap-2"><button className="region-button" aria-pressed={!simple} onClick={() => setSimple(false)}>도로 지도</button><button className="region-button" aria-pressed={simple} onClick={() => setSimple(true)}>간단 지도</button></div></div>
+    {simple ? <RegionOutlineMap {...props} /> : <StreetMap {...props} onFallback={() => setSimple(true)} />}
+  </section>;
 }

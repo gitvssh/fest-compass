@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.region-street-map { z-index: 0; font: inherit; background: #e9f1f4; }
+.region-street-map .leaflet-control-attribution { max-width: 100%; font-size: 10px; }
+.region-street-map .leaflet-control-attribution a { color: #164ea1; }
+.map-label-container { background: transparent; border: 0; }
+.map-province { min-width: 46px; min-height: 30px; border: 1px solid white; border-radius: 8px; padding: 3px 5px; background: #10233d; color: white; font-size: 11px; font-weight: 800; white-space: nowrap; box-shadow: 0 1px 4px #10233d55; }
+.map-resource { width: 36px; height: 36px; border: 2px solid white; border-radius: 50%; background: #2667e8; color: white; font-size: 12px; font-weight: 800; box-shadow: 0 1px 5px #10233d66; }
+.map-resource-group { background: #17384d; }
+.map-resource.is-selected { background: #ae2e20; outline: 3px solid #f8bc46; }
+.map-province:focus-visible, .map-resource:focus-visible { outline: 3px solid #f8bc46; outline-offset: 2px; }
+.map-popup-list { min-width: 150px; max-width: 260px; color: #10233d; }
+.map-popup-item { display: block; width: 100%; padding: 8px 4px; border-bottom: 1px solid #d1dce5; text-align: left; font-weight: 700; }
+.map-popup-item[aria-pressed="true"] { color: #ae2e20; background: #fff5e5; }
+.map-popup-list p { margin: 3px 4px 10px !important; font-size: 11px; line-height: 1.5; }
+
 html,
 body {
   background: #f6f7f4;

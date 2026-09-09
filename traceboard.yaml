@@ -29,6 +29,7 @@ stages:
       - {path: docs/sdlc/2-design/architecture.md, required: true}
       - {path: docs/sdlc/2-design/data-visualization.md, required: true}
       - {path: docs/sdlc/2-design/region-explorer-implementation.md, required: true}
+      - {path: docs/sdlc/2-design/region-map-improvement.md, required: true}
       - {path: docs/sdlc/2-design/festival-comparison-implementation.md, required: true}
       - {path: docs/sdlc/2-design/planning-options-implementation.md, required: true}
       - {path: docs/sdlc/2-design/budget-implementation.md, required: true}
@@ -47,6 +48,7 @@ stages:
       - {path: docs/validation/23-planning-budget.md, required: true}
       - {path: docs/validation/24-planning-proposal.md, required: true}
       - {path: docs/validation/25-planning-outcomes.md, required: true}
+      - {path: docs/validation/26-region-map.md, required: true}
   operations:
     artifacts:
       - {path: docs/ops/planning-outcomes-release.md, required: true}

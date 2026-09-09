@@ -48,6 +48,12 @@ export default function PrivacyPage() {
       </section>
 
       <section>
+        <h2 className="text-xl font-extrabold">도로 배경지도</h2>
+        <p className="mt-2 text-sm leading-7 text-muted">관광지도의 도로 배경을 표시할 때 브라우저가 OpenStreetMap에 현재 화면의 지도 이미지를 요청합니다. IP 주소·지도 영역·이 사이트의 주소(origin)가 지도 제공자에게 전달되며, 개인 기획 내용·메모·예산은 보내지 않습니다. 지도 표시 요청은 선택 분석과 별개입니다. ‘간단 지도’를 선택하면 외부 배경지도 없이 자료 좌표와 지역 목록을 사용할 수 있습니다.</p>
+        <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noreferrer" className="text-sm text-blue underline">OpenStreetMap 재단 개인정보 정책</a>
+      </section>
+
+      <section>
         <h2 className="text-xl font-extrabold">선택 분석과 동의 경계</h2>
         <p className="mt-2 text-sm leading-7 text-muted">
           선택 분석은 <strong className="font-bold text-ink">동의하신 경우에만</strong> 실행됩니다. 처음 방문하시면

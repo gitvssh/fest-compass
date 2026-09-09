@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import { readFileSync, mkdirSync } from "node:fs";
 import { chromium } from "playwright";
+import { mockMapTiles } from "./map-test-tiles.mjs";
 const base=process.env.E2E_BASE_URL;
 if(!base)throw new Error("E2E_BASE_URL required");
 const browser=await chromium.launch({headless:true}),context=await browser.newContext({viewport:{width:1440,height:1000},locale:"ko-KR"}),page=await context.newPage();
+await mockMapTiles(context);
 const errors=[],writes=[],key="fest-compass.comparison-evidence.v1";
 page.on("pageerror",e=>errors.push(e.message));page.on("request",r=>{if(r.method()!=="GET"&&new URL(r.url()).origin===new URL(base).origin)writes.push(r.url());});
 const visible=l=>l.waitFor({state:"visible"});

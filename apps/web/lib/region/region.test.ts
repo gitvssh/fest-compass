@@ -5,8 +5,27 @@ import { collectResources } from "./service";
 import { dates, lineSegments, mapResource, parseQuery, regionOf, REGIONS, selectHistory, SOURCE } from "./model";
 import { encodeEvidence, makeEvidence, parseEvidence } from "./evidence";
 import type { Query, RegionResult } from "./types";
+import { groupResources, hasPosition, NATIONAL_BOUNDS, resourceBounds } from "./map-view";
 const q: Query = { province: "44", district: "230", start: "2025-03-01", end: "2025-03-31", kind: "12" };
 const row = (id = "123") => ({ contentid: id, title: "자료", lDongRegnCd: "44", lDongSignguCd: "230", mapx: "127.1", mapy: "36.2" });
+test("map bounds retain islands and all valid resource positions without inventing missing coordinates", () => {
+  assert.deepEqual(resourceBounds([], ""), NATIONAL_BOUNDS);
+  assert.ok(NATIONAL_BOUNDS[0] < 124.7 && NATIONAL_BOUNDS[2] > 131.9 && NATIONAL_BOUNDS[1] < 33.1);
+  const one = mapResource(row(), q), two = { ...one, id: "456", longitude: 127.4, latitude: 36.6 };
+  const missing = { ...one, id: "missing", longitude: null, latitude: null };
+  assert.equal(hasPosition(missing), false); assert.equal(hasPosition({ ...one, latitude: Infinity }), false);
+  const b = resourceBounds([missing, one, two], "44");
+  assert.ok(b[0] < one.longitude! && b[1] < one.latitude! && b[2] > two.longitude && b[3] > two.latitude);
+  const single = resourceBounds([one], "44"); assert.ok(single[0] < single[2] && single[1] < single[3]);
+  assert.notDeepEqual(resourceBounds([missing], "44"), NATIONAL_BOUNDS);
+});
+test("map clusters keep catalogue numbering and identities through missing and duplicate coordinates", () => {
+  const one = mapResource(row(), q), two = { ...one, id: "456" }, missing = { ...one, id: "missing", longitude: null };
+  const far = { ...one, id: "789", longitude: 128.5 };
+  const result = groupResources([missing, one, two, far], (x, y) => ({ x: x * 100, y: y * 100 }));
+  assert.deepEqual(result.map(g => g.map(r => r.number)), [[2, 3], [4]]);
+  assert.deepEqual(result.flat().map(r => r.resource.id), ["123", "456", "789"]);
+});
 test("directory preserves current codes and the verified Sejong exception", () => {
   assert.equal(REGIONS.length, 269); assert.equal(new Set(REGIONS.map(r => r.provinceCode)).size, 16);
   assert.equal(parseQuery(new URLSearchParams({ ...q, province: "36110", district: "36110" })).province, "36110");
