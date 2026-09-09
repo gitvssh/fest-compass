@@ -1,0 +1,5104 @@
+{
+  "schemaVersion": 1,
+  "source": "https://www.data.go.kr/data/15129688/fileData.do",
+  "boundaryDate": "2025-06-30",
+  "statisticsYear": 2024,
+  "archiveSha256": "f1cf0f9de453ac7eaacb273f39cee52851183372b9ddfda428a967c3a670b2c6",
+  "archiveBytes": 269032521,
+  "sourceCrs": "EPSG:5179",
+  "geometryValidated": false,
+  "note": "명칭 대조 후보이며 공식 코드 연계·공간 동일성 검증 결과가 아님. 지도 연결 금지.",
+  "catalogue": {
+    "source": "https://www.data.go.kr/data/15101578/openapi.do",
+    "collectedAt": "2026-09-08T06:14:54.400Z",
+    "fileSha256": "8f5652253199caeeb0f6a03b89fad9cbde271877c5aea51aaa0da390d34f235a",
+    "rows": 269
+  },
+  "counts": {
+    "aggregate-candidate": 12,
+    "name-candidate": 221,
+    "unresolved": 36
+  },
+  "verifiedJoins": 0,
+  "members": [
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/1. 2025년 2분기 기준 시도 경계/bnd_sido_00_2025_2Q.dbf",
+      "bytes": 742,
+      "sha256": "37584ab7f943cffb14f81f7ddde5284529d7e82644b667e88d70f5b3d116819a"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/1. 2025년 2분기 기준 시도 경계/bnd_sido_00_2025_2Q.cpg",
+      "bytes": 5,
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/1. 2025년 2분기 기준 시도 경계/bnd_sido_00_2025_2Q.prj",
+      "bytes": 435,
+      "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/1. 2025년 2분기 기준 시도 경계/bnd_sido_00_2025_2Q.shp",
+      "bytes": 86988364,
+      "sha256": "8edb33f1f633002a41f9bc407943cbebf0c2d8d5b3c18bd3fa5eb41aabe7e77e"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/1. 2025년 2분기 기준 시도 경계/bnd_sido_00_2025_2Q.shx",
+      "bytes": 236,
+      "sha256": "e70c77ef6c164fe1d3596326b05e700055c7f5267feeaad9defa6936c7f436ea"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/2. 2025년 2분기 기준 시군구 경계/bnd_sigungu_00_2025_2Q.dbf",
+      "bytes": 9958,
+      "sha256": "18f7d3a5f0fd8cf12e4a5deca3faf52133db4f7221dfbeccedf94ec06b58ece6"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/2. 2025년 2분기 기준 시군구 경계/bnd_sigungu_00_2025_2Q.cpg",
+      "bytes": 5,
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/2. 2025년 2분기 기준 시군구 경계/bnd_sigungu_00_2025_2Q.prj",
+      "bytes": 435,
+      "sha256": "e21b26451491c617318aab7d28abf4d07f5facc2aed1564e082ec8d4268cfa3b"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/2. 2025년 2분기 기준 시군구 경계/bnd_sigungu_00_2025_2Q.shp",
+      "bytes": 97462924,
+      "sha256": "85523b10411652aa6b5c286a82eff7e77c7e563d5f644eb62a221a121f7e3968"
+    },
+    {
+      "path": "국가데이터처_SGIS 행정구역 통계 및 경계/2. 경계/2. 2025년 2분기 기준 시군구 경계/bnd_sigungu_00_2025_2Q.shx",
+      "bytes": 2116,
+      "sha256": "9fbaeb394ffde8be2fce4e47f2420ac63942fbbdf6c15cf2c71ac69136b9428c"
+    }
+  ],
+  "provinces": [
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "11",
+      "SIDO_NM": "서울특별시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "21",
+      "SIDO_NM": "부산광역시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "22",
+      "SIDO_NM": "대구광역시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "23",
+      "SIDO_NM": "인천광역시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "24",
+      "SIDO_NM": "광주광역시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "25",
+      "SIDO_NM": "대전광역시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "26",
+      "SIDO_NM": "울산광역시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "29",
+      "SIDO_NM": "세종특별자치시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "31",
+      "SIDO_NM": "경기도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "32",
+      "SIDO_NM": "강원특별자치도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "33",
+      "SIDO_NM": "충청북도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "34",
+      "SIDO_NM": "충청남도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "35",
+      "SIDO_NM": "전북특별자치도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "36",
+      "SIDO_NM": "전라남도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "37",
+      "SIDO_NM": "경상북도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "38",
+      "SIDO_NM": "경상남도"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIDO_CD": "39",
+      "SIDO_NM": "제주특별자치도"
+    }
+  ],
+  "districts": [
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11010",
+      "SIGUNGU_NM": "종로구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11020",
+      "SIGUNGU_NM": "중구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11030",
+      "SIGUNGU_NM": "용산구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11040",
+      "SIGUNGU_NM": "성동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11050",
+      "SIGUNGU_NM": "광진구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11060",
+      "SIGUNGU_NM": "동대문구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11070",
+      "SIGUNGU_NM": "중랑구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11080",
+      "SIGUNGU_NM": "성북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11090",
+      "SIGUNGU_NM": "강북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11100",
+      "SIGUNGU_NM": "도봉구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11110",
+      "SIGUNGU_NM": "노원구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11120",
+      "SIGUNGU_NM": "은평구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11130",
+      "SIGUNGU_NM": "서대문구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11140",
+      "SIGUNGU_NM": "마포구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11150",
+      "SIGUNGU_NM": "양천구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11160",
+      "SIGUNGU_NM": "강서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11170",
+      "SIGUNGU_NM": "구로구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11180",
+      "SIGUNGU_NM": "금천구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11190",
+      "SIGUNGU_NM": "영등포구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11200",
+      "SIGUNGU_NM": "동작구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11210",
+      "SIGUNGU_NM": "관악구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11220",
+      "SIGUNGU_NM": "서초구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11230",
+      "SIGUNGU_NM": "강남구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11240",
+      "SIGUNGU_NM": "송파구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "11250",
+      "SIGUNGU_NM": "강동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21010",
+      "SIGUNGU_NM": "중구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21020",
+      "SIGUNGU_NM": "서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21030",
+      "SIGUNGU_NM": "동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21040",
+      "SIGUNGU_NM": "영도구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21050",
+      "SIGUNGU_NM": "부산진구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21060",
+      "SIGUNGU_NM": "동래구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21070",
+      "SIGUNGU_NM": "남구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21080",
+      "SIGUNGU_NM": "북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21090",
+      "SIGUNGU_NM": "해운대구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21100",
+      "SIGUNGU_NM": "사하구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21110",
+      "SIGUNGU_NM": "금정구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21120",
+      "SIGUNGU_NM": "강서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21130",
+      "SIGUNGU_NM": "연제구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21140",
+      "SIGUNGU_NM": "수영구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21150",
+      "SIGUNGU_NM": "사상구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "21510",
+      "SIGUNGU_NM": "기장군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22010",
+      "SIGUNGU_NM": "중구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22020",
+      "SIGUNGU_NM": "동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22030",
+      "SIGUNGU_NM": "서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22040",
+      "SIGUNGU_NM": "남구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22050",
+      "SIGUNGU_NM": "북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22060",
+      "SIGUNGU_NM": "수성구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22070",
+      "SIGUNGU_NM": "달서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22510",
+      "SIGUNGU_NM": "달성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "22520",
+      "SIGUNGU_NM": "군위군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23010",
+      "SIGUNGU_NM": "중구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23020",
+      "SIGUNGU_NM": "동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23040",
+      "SIGUNGU_NM": "연수구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23050",
+      "SIGUNGU_NM": "남동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23060",
+      "SIGUNGU_NM": "부평구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23070",
+      "SIGUNGU_NM": "계양구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23080",
+      "SIGUNGU_NM": "서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23090",
+      "SIGUNGU_NM": "미추홀구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23510",
+      "SIGUNGU_NM": "강화군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "23520",
+      "SIGUNGU_NM": "옹진군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "24010",
+      "SIGUNGU_NM": "동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "24020",
+      "SIGUNGU_NM": "서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "24030",
+      "SIGUNGU_NM": "남구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "24040",
+      "SIGUNGU_NM": "북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "24050",
+      "SIGUNGU_NM": "광산구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "25010",
+      "SIGUNGU_NM": "동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "25020",
+      "SIGUNGU_NM": "중구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "25030",
+      "SIGUNGU_NM": "서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "25040",
+      "SIGUNGU_NM": "유성구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "25050",
+      "SIGUNGU_NM": "대덕구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "26010",
+      "SIGUNGU_NM": "중구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "26020",
+      "SIGUNGU_NM": "남구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "26030",
+      "SIGUNGU_NM": "동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "26040",
+      "SIGUNGU_NM": "북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "26510",
+      "SIGUNGU_NM": "울주군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "29010",
+      "SIGUNGU_NM": "세종시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31011",
+      "SIGUNGU_NM": "수원시 장안구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31012",
+      "SIGUNGU_NM": "수원시 권선구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31013",
+      "SIGUNGU_NM": "수원시 팔달구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31014",
+      "SIGUNGU_NM": "수원시 영통구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31021",
+      "SIGUNGU_NM": "성남시 수정구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31022",
+      "SIGUNGU_NM": "성남시 중원구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31023",
+      "SIGUNGU_NM": "성남시 분당구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31030",
+      "SIGUNGU_NM": "의정부시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31041",
+      "SIGUNGU_NM": "안양시 만안구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31042",
+      "SIGUNGU_NM": "안양시 동안구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31051",
+      "SIGUNGU_NM": "부천시 원미구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31052",
+      "SIGUNGU_NM": "부천시 소사구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31053",
+      "SIGUNGU_NM": "부천시 오정구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31060",
+      "SIGUNGU_NM": "광명시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31070",
+      "SIGUNGU_NM": "평택시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31080",
+      "SIGUNGU_NM": "동두천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31091",
+      "SIGUNGU_NM": "안산시 상록구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31092",
+      "SIGUNGU_NM": "안산시 단원구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31101",
+      "SIGUNGU_NM": "고양시 덕양구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31103",
+      "SIGUNGU_NM": "고양시 일산동구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31104",
+      "SIGUNGU_NM": "고양시 일산서구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31110",
+      "SIGUNGU_NM": "과천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31120",
+      "SIGUNGU_NM": "구리시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31130",
+      "SIGUNGU_NM": "남양주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31140",
+      "SIGUNGU_NM": "오산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31150",
+      "SIGUNGU_NM": "시흥시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31160",
+      "SIGUNGU_NM": "군포시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31170",
+      "SIGUNGU_NM": "의왕시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31180",
+      "SIGUNGU_NM": "하남시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31191",
+      "SIGUNGU_NM": "용인시 처인구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31192",
+      "SIGUNGU_NM": "용인시 기흥구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31193",
+      "SIGUNGU_NM": "용인시 수지구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31200",
+      "SIGUNGU_NM": "파주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31210",
+      "SIGUNGU_NM": "이천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31220",
+      "SIGUNGU_NM": "안성시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31230",
+      "SIGUNGU_NM": "김포시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31240",
+      "SIGUNGU_NM": "화성시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31250",
+      "SIGUNGU_NM": "광주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31260",
+      "SIGUNGU_NM": "양주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31270",
+      "SIGUNGU_NM": "포천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31280",
+      "SIGUNGU_NM": "여주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31550",
+      "SIGUNGU_NM": "연천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31570",
+      "SIGUNGU_NM": "가평군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "31580",
+      "SIGUNGU_NM": "양평군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32010",
+      "SIGUNGU_NM": "춘천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32020",
+      "SIGUNGU_NM": "원주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32030",
+      "SIGUNGU_NM": "강릉시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32040",
+      "SIGUNGU_NM": "동해시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32050",
+      "SIGUNGU_NM": "태백시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32060",
+      "SIGUNGU_NM": "속초시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32070",
+      "SIGUNGU_NM": "삼척시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32510",
+      "SIGUNGU_NM": "홍천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32520",
+      "SIGUNGU_NM": "횡성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32530",
+      "SIGUNGU_NM": "영월군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32540",
+      "SIGUNGU_NM": "평창군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32550",
+      "SIGUNGU_NM": "정선군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32560",
+      "SIGUNGU_NM": "철원군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32570",
+      "SIGUNGU_NM": "화천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32580",
+      "SIGUNGU_NM": "양구군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32590",
+      "SIGUNGU_NM": "인제군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32600",
+      "SIGUNGU_NM": "고성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "32610",
+      "SIGUNGU_NM": "양양군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33020",
+      "SIGUNGU_NM": "충주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33030",
+      "SIGUNGU_NM": "제천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33041",
+      "SIGUNGU_NM": "청주시 상당구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33042",
+      "SIGUNGU_NM": "청주시 서원구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33043",
+      "SIGUNGU_NM": "청주시 흥덕구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33044",
+      "SIGUNGU_NM": "청주시 청원구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33520",
+      "SIGUNGU_NM": "보은군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33530",
+      "SIGUNGU_NM": "옥천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33540",
+      "SIGUNGU_NM": "영동군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33550",
+      "SIGUNGU_NM": "진천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33560",
+      "SIGUNGU_NM": "괴산군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33570",
+      "SIGUNGU_NM": "음성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33580",
+      "SIGUNGU_NM": "단양군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "33590",
+      "SIGUNGU_NM": "증평군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34011",
+      "SIGUNGU_NM": "천안시 동남구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34012",
+      "SIGUNGU_NM": "천안시 서북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34020",
+      "SIGUNGU_NM": "공주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34030",
+      "SIGUNGU_NM": "보령시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34040",
+      "SIGUNGU_NM": "아산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34050",
+      "SIGUNGU_NM": "서산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34060",
+      "SIGUNGU_NM": "논산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34070",
+      "SIGUNGU_NM": "계룡시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34080",
+      "SIGUNGU_NM": "당진시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34510",
+      "SIGUNGU_NM": "금산군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34530",
+      "SIGUNGU_NM": "부여군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34540",
+      "SIGUNGU_NM": "서천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34550",
+      "SIGUNGU_NM": "청양군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34560",
+      "SIGUNGU_NM": "홍성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34570",
+      "SIGUNGU_NM": "예산군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "34580",
+      "SIGUNGU_NM": "태안군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35011",
+      "SIGUNGU_NM": "전주시 완산구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35012",
+      "SIGUNGU_NM": "전주시 덕진구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35020",
+      "SIGUNGU_NM": "군산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35030",
+      "SIGUNGU_NM": "익산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35040",
+      "SIGUNGU_NM": "정읍시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35050",
+      "SIGUNGU_NM": "남원시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35060",
+      "SIGUNGU_NM": "김제시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35510",
+      "SIGUNGU_NM": "완주군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35520",
+      "SIGUNGU_NM": "진안군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35530",
+      "SIGUNGU_NM": "무주군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35540",
+      "SIGUNGU_NM": "장수군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35550",
+      "SIGUNGU_NM": "임실군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35560",
+      "SIGUNGU_NM": "순창군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35570",
+      "SIGUNGU_NM": "고창군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "35580",
+      "SIGUNGU_NM": "부안군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36010",
+      "SIGUNGU_NM": "목포시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36020",
+      "SIGUNGU_NM": "여수시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36030",
+      "SIGUNGU_NM": "순천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36040",
+      "SIGUNGU_NM": "나주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36060",
+      "SIGUNGU_NM": "광양시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36510",
+      "SIGUNGU_NM": "담양군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36520",
+      "SIGUNGU_NM": "곡성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36530",
+      "SIGUNGU_NM": "구례군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36550",
+      "SIGUNGU_NM": "고흥군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36560",
+      "SIGUNGU_NM": "보성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36570",
+      "SIGUNGU_NM": "화순군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36580",
+      "SIGUNGU_NM": "장흥군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36590",
+      "SIGUNGU_NM": "강진군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36600",
+      "SIGUNGU_NM": "해남군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36610",
+      "SIGUNGU_NM": "영암군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36620",
+      "SIGUNGU_NM": "무안군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36630",
+      "SIGUNGU_NM": "함평군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36640",
+      "SIGUNGU_NM": "영광군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36650",
+      "SIGUNGU_NM": "장성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36660",
+      "SIGUNGU_NM": "완도군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36670",
+      "SIGUNGU_NM": "진도군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "36680",
+      "SIGUNGU_NM": "신안군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37011",
+      "SIGUNGU_NM": "포항시 남구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37012",
+      "SIGUNGU_NM": "포항시 북구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37020",
+      "SIGUNGU_NM": "경주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37030",
+      "SIGUNGU_NM": "김천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37040",
+      "SIGUNGU_NM": "안동시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37050",
+      "SIGUNGU_NM": "구미시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37060",
+      "SIGUNGU_NM": "영주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37070",
+      "SIGUNGU_NM": "영천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37080",
+      "SIGUNGU_NM": "상주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37090",
+      "SIGUNGU_NM": "문경시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37100",
+      "SIGUNGU_NM": "경산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37520",
+      "SIGUNGU_NM": "의성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37530",
+      "SIGUNGU_NM": "청송군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37540",
+      "SIGUNGU_NM": "영양군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37550",
+      "SIGUNGU_NM": "영덕군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37560",
+      "SIGUNGU_NM": "청도군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37570",
+      "SIGUNGU_NM": "고령군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37580",
+      "SIGUNGU_NM": "성주군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37590",
+      "SIGUNGU_NM": "칠곡군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37600",
+      "SIGUNGU_NM": "예천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37610",
+      "SIGUNGU_NM": "봉화군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37620",
+      "SIGUNGU_NM": "울진군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "37630",
+      "SIGUNGU_NM": "울릉군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38030",
+      "SIGUNGU_NM": "진주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38050",
+      "SIGUNGU_NM": "통영시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38060",
+      "SIGUNGU_NM": "사천시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38070",
+      "SIGUNGU_NM": "김해시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38080",
+      "SIGUNGU_NM": "밀양시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38090",
+      "SIGUNGU_NM": "거제시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38100",
+      "SIGUNGU_NM": "양산시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38111",
+      "SIGUNGU_NM": "창원시 의창구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38112",
+      "SIGUNGU_NM": "창원시 성산구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38113",
+      "SIGUNGU_NM": "창원시 마산합포구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38114",
+      "SIGUNGU_NM": "창원시 마산회원구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38115",
+      "SIGUNGU_NM": "창원시 진해구"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38510",
+      "SIGUNGU_NM": "의령군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38520",
+      "SIGUNGU_NM": "함안군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38530",
+      "SIGUNGU_NM": "창녕군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38540",
+      "SIGUNGU_NM": "고성군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38550",
+      "SIGUNGU_NM": "남해군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38560",
+      "SIGUNGU_NM": "하동군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38570",
+      "SIGUNGU_NM": "산청군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38580",
+      "SIGUNGU_NM": "함양군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38590",
+      "SIGUNGU_NM": "거창군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "38600",
+      "SIGUNGU_NM": "합천군"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "39010",
+      "SIGUNGU_NM": "제주시"
+    },
+    {
+      "BASE_DATE": "20250630",
+      "SIGUNGU_CD": "39020",
+      "SIGUNGU_NM": "서귀포시"
+    }
+  ],
+  "rows": [
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "110",
+      "districtName": "종로구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11010",
+          "name": "종로구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "140",
+      "districtName": "중구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11020",
+          "name": "중구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "170",
+      "districtName": "용산구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11030",
+          "name": "용산구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "200",
+      "districtName": "성동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11040",
+          "name": "성동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "215",
+      "districtName": "광진구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11050",
+          "name": "광진구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "230",
+      "districtName": "동대문구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11060",
+          "name": "동대문구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "260",
+      "districtName": "중랑구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11070",
+          "name": "중랑구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "290",
+      "districtName": "성북구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11080",
+          "name": "성북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "305",
+      "districtName": "강북구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11090",
+          "name": "강북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "320",
+      "districtName": "도봉구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11100",
+          "name": "도봉구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "350",
+      "districtName": "노원구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11110",
+          "name": "노원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "380",
+      "districtName": "은평구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11120",
+          "name": "은평구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "410",
+      "districtName": "서대문구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11130",
+          "name": "서대문구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "440",
+      "districtName": "마포구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11140",
+          "name": "마포구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "470",
+      "districtName": "양천구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11150",
+          "name": "양천구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "500",
+      "districtName": "강서구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11160",
+          "name": "강서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "530",
+      "districtName": "구로구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11170",
+          "name": "구로구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "545",
+      "districtName": "금천구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11180",
+          "name": "금천구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "560",
+      "districtName": "영등포구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11190",
+          "name": "영등포구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "590",
+      "districtName": "동작구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11200",
+          "name": "동작구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "620",
+      "districtName": "관악구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11210",
+          "name": "관악구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "650",
+      "districtName": "서초구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11220",
+          "name": "서초구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "680",
+      "districtName": "강남구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11230",
+          "name": "강남구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "710",
+      "districtName": "송파구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11240",
+          "name": "송파구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "740",
+      "districtName": "강동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "11250",
+          "name": "강동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "110",
+      "districtName": "목포시",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "130",
+      "districtName": "여수시",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "150",
+      "districtName": "순천시",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "170",
+      "districtName": "나주시",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "190",
+      "districtName": "광양시",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "210",
+      "districtName": "동구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "240",
+      "districtName": "서구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "270",
+      "districtName": "남구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "300",
+      "districtName": "북구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "330",
+      "districtName": "광산구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "710",
+      "districtName": "담양군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "720",
+      "districtName": "곡성군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "730",
+      "districtName": "구례군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "740",
+      "districtName": "고흥군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "750",
+      "districtName": "보성군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "760",
+      "districtName": "화순군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "770",
+      "districtName": "장흥군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "780",
+      "districtName": "강진군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "790",
+      "districtName": "해남군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "800",
+      "districtName": "영암군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "810",
+      "districtName": "무안군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "820",
+      "districtName": "함평군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "830",
+      "districtName": "영광군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "840",
+      "districtName": "장성군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "850",
+      "districtName": "완도군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "860",
+      "districtName": "진도군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "870",
+      "districtName": "신안군",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "110",
+      "districtName": "중구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21010",
+          "name": "중구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "140",
+      "districtName": "서구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21020",
+          "name": "서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "170",
+      "districtName": "동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21030",
+          "name": "동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "200",
+      "districtName": "영도구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21040",
+          "name": "영도구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "230",
+      "districtName": "부산진구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21050",
+          "name": "부산진구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "260",
+      "districtName": "동래구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21060",
+          "name": "동래구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "290",
+      "districtName": "남구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21070",
+          "name": "남구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "320",
+      "districtName": "북구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21080",
+          "name": "북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "350",
+      "districtName": "해운대구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21090",
+          "name": "해운대구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "380",
+      "districtName": "사하구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21100",
+          "name": "사하구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "410",
+      "districtName": "금정구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21110",
+          "name": "금정구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "440",
+      "districtName": "강서구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21120",
+          "name": "강서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "470",
+      "districtName": "연제구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21130",
+          "name": "연제구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "500",
+      "districtName": "수영구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21140",
+          "name": "수영구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "530",
+      "districtName": "사상구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21150",
+          "name": "사상구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "710",
+      "districtName": "기장군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "21510",
+          "name": "기장군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "110",
+      "districtName": "중구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22010",
+          "name": "중구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "140",
+      "districtName": "동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22020",
+          "name": "동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "170",
+      "districtName": "서구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22030",
+          "name": "서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "200",
+      "districtName": "남구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22040",
+          "name": "남구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "230",
+      "districtName": "북구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22050",
+          "name": "북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "260",
+      "districtName": "수성구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22060",
+          "name": "수성구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "290",
+      "districtName": "달서구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22070",
+          "name": "달서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "710",
+      "districtName": "달성군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22510",
+          "name": "달성군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "720",
+      "districtName": "군위군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "22520",
+          "name": "군위군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "125",
+      "districtName": "제물포구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "155",
+      "districtName": "영종구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "177",
+      "districtName": "미추홀구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "23090",
+          "name": "미추홀구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "185",
+      "districtName": "연수구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "23040",
+          "name": "연수구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "200",
+      "districtName": "남동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "23050",
+          "name": "남동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "237",
+      "districtName": "부평구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "23060",
+          "name": "부평구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "245",
+      "districtName": "계양구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "23070",
+          "name": "계양구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "275",
+      "districtName": "서해구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "290",
+      "districtName": "검단구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "710",
+      "districtName": "강화군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "23510",
+          "name": "강화군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "720",
+      "districtName": "옹진군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "23520",
+          "name": "옹진군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "110",
+      "districtName": "동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "25010",
+          "name": "동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "140",
+      "districtName": "중구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "25020",
+          "name": "중구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "170",
+      "districtName": "서구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "25030",
+          "name": "서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "200",
+      "districtName": "유성구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "25040",
+          "name": "유성구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "230",
+      "districtName": "대덕구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "25050",
+          "name": "대덕구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "110",
+      "districtName": "중구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "26010",
+          "name": "중구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "140",
+      "districtName": "남구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "26020",
+          "name": "남구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "170",
+      "districtName": "동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "26030",
+          "name": "동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "200",
+      "districtName": "북구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "26040",
+          "name": "북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "710",
+      "districtName": "울주군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "26510",
+          "name": "울주군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "36110",
+      "provinceName": "세종특별자치시",
+      "districtCode": "36110",
+      "districtName": "세종특별자치시",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "110",
+      "districtName": "수원시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31011",
+          "name": "수원시 장안구"
+        },
+        {
+          "code": "31012",
+          "name": "수원시 권선구"
+        },
+        {
+          "code": "31013",
+          "name": "수원시 팔달구"
+        },
+        {
+          "code": "31014",
+          "name": "수원시 영통구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "111",
+      "districtName": "수원시 장안구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31011",
+          "name": "수원시 장안구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "113",
+      "districtName": "수원시 권선구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31012",
+          "name": "수원시 권선구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "115",
+      "districtName": "수원시 팔달구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31013",
+          "name": "수원시 팔달구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "117",
+      "districtName": "수원시 영통구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31014",
+          "name": "수원시 영통구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "130",
+      "districtName": "성남시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31021",
+          "name": "성남시 수정구"
+        },
+        {
+          "code": "31022",
+          "name": "성남시 중원구"
+        },
+        {
+          "code": "31023",
+          "name": "성남시 분당구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "131",
+      "districtName": "성남시 수정구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31021",
+          "name": "성남시 수정구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "133",
+      "districtName": "성남시 중원구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31022",
+          "name": "성남시 중원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "135",
+      "districtName": "성남시 분당구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31023",
+          "name": "성남시 분당구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "150",
+      "districtName": "의정부시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31030",
+          "name": "의정부시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "170",
+      "districtName": "안양시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31041",
+          "name": "안양시 만안구"
+        },
+        {
+          "code": "31042",
+          "name": "안양시 동안구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "171",
+      "districtName": "안양시 만안구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31041",
+          "name": "안양시 만안구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "173",
+      "districtName": "안양시 동안구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31042",
+          "name": "안양시 동안구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "190",
+      "districtName": "부천시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31051",
+          "name": "부천시 원미구"
+        },
+        {
+          "code": "31052",
+          "name": "부천시 소사구"
+        },
+        {
+          "code": "31053",
+          "name": "부천시 오정구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "192",
+      "districtName": "부천시 원미구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31051",
+          "name": "부천시 원미구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "194",
+      "districtName": "부천시 소사구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31052",
+          "name": "부천시 소사구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "196",
+      "districtName": "부천시 오정구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31053",
+          "name": "부천시 오정구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "210",
+      "districtName": "광명시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31060",
+          "name": "광명시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "220",
+      "districtName": "평택시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31070",
+          "name": "평택시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "250",
+      "districtName": "동두천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31080",
+          "name": "동두천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "270",
+      "districtName": "안산시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31091",
+          "name": "안산시 상록구"
+        },
+        {
+          "code": "31092",
+          "name": "안산시 단원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "271",
+      "districtName": "안산시 상록구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31091",
+          "name": "안산시 상록구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "273",
+      "districtName": "안산시 단원구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31092",
+          "name": "안산시 단원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "280",
+      "districtName": "고양시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31101",
+          "name": "고양시 덕양구"
+        },
+        {
+          "code": "31103",
+          "name": "고양시 일산동구"
+        },
+        {
+          "code": "31104",
+          "name": "고양시 일산서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "281",
+      "districtName": "고양시 덕양구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31101",
+          "name": "고양시 덕양구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "285",
+      "districtName": "고양시 일산동구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31103",
+          "name": "고양시 일산동구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "287",
+      "districtName": "고양시 일산서구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31104",
+          "name": "고양시 일산서구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "290",
+      "districtName": "과천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31110",
+          "name": "과천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "310",
+      "districtName": "구리시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31120",
+          "name": "구리시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "360",
+      "districtName": "남양주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31130",
+          "name": "남양주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "370",
+      "districtName": "오산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31140",
+          "name": "오산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "390",
+      "districtName": "시흥시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31150",
+          "name": "시흥시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "410",
+      "districtName": "군포시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31160",
+          "name": "군포시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "430",
+      "districtName": "의왕시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31170",
+          "name": "의왕시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "450",
+      "districtName": "하남시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31180",
+          "name": "하남시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "460",
+      "districtName": "용인시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31191",
+          "name": "용인시 처인구"
+        },
+        {
+          "code": "31192",
+          "name": "용인시 기흥구"
+        },
+        {
+          "code": "31193",
+          "name": "용인시 수지구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "461",
+      "districtName": "용인시 처인구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31191",
+          "name": "용인시 처인구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "463",
+      "districtName": "용인시 기흥구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31192",
+          "name": "용인시 기흥구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "465",
+      "districtName": "용인시 수지구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31193",
+          "name": "용인시 수지구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "480",
+      "districtName": "파주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31200",
+          "name": "파주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "500",
+      "districtName": "이천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31210",
+          "name": "이천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "550",
+      "districtName": "안성시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31220",
+          "name": "안성시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "570",
+      "districtName": "김포시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31230",
+          "name": "김포시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "590",
+      "districtName": "화성시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31240",
+          "name": "화성시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "591",
+      "districtName": "화성시 만세구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "593",
+      "districtName": "화성시 효행구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "595",
+      "districtName": "화성시 병점구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "597",
+      "districtName": "화성시 동탄구",
+      "status": "unresolved",
+      "joinAllowed": false,
+      "sgisCandidates": []
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "610",
+      "districtName": "광주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31250",
+          "name": "광주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "630",
+      "districtName": "양주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31260",
+          "name": "양주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "650",
+      "districtName": "포천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31270",
+          "name": "포천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "670",
+      "districtName": "여주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31280",
+          "name": "여주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "800",
+      "districtName": "연천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31550",
+          "name": "연천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "820",
+      "districtName": "가평군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31570",
+          "name": "가평군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "830",
+      "districtName": "양평군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "31580",
+          "name": "양평군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "110",
+      "districtName": "청주시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33041",
+          "name": "청주시 상당구"
+        },
+        {
+          "code": "33042",
+          "name": "청주시 서원구"
+        },
+        {
+          "code": "33043",
+          "name": "청주시 흥덕구"
+        },
+        {
+          "code": "33044",
+          "name": "청주시 청원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "111",
+      "districtName": "청주시 상당구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33041",
+          "name": "청주시 상당구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "112",
+      "districtName": "청주시 서원구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33042",
+          "name": "청주시 서원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "113",
+      "districtName": "청주시 흥덕구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33043",
+          "name": "청주시 흥덕구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "114",
+      "districtName": "청주시 청원구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33044",
+          "name": "청주시 청원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "130",
+      "districtName": "충주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33020",
+          "name": "충주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "150",
+      "districtName": "제천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33030",
+          "name": "제천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "720",
+      "districtName": "보은군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33520",
+          "name": "보은군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "730",
+      "districtName": "옥천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33530",
+          "name": "옥천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "740",
+      "districtName": "영동군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33540",
+          "name": "영동군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "745",
+      "districtName": "증평군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33590",
+          "name": "증평군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "750",
+      "districtName": "진천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33550",
+          "name": "진천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "760",
+      "districtName": "괴산군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33560",
+          "name": "괴산군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "770",
+      "districtName": "음성군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33570",
+          "name": "음성군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "800",
+      "districtName": "단양군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "33580",
+          "name": "단양군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "130",
+      "districtName": "천안시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34011",
+          "name": "천안시 동남구"
+        },
+        {
+          "code": "34012",
+          "name": "천안시 서북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "131",
+      "districtName": "천안시 동남구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34011",
+          "name": "천안시 동남구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "133",
+      "districtName": "천안시 서북구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34012",
+          "name": "천안시 서북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "150",
+      "districtName": "공주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34020",
+          "name": "공주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "180",
+      "districtName": "보령시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34030",
+          "name": "보령시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "200",
+      "districtName": "아산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34040",
+          "name": "아산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "210",
+      "districtName": "서산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34050",
+          "name": "서산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "230",
+      "districtName": "논산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34060",
+          "name": "논산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "250",
+      "districtName": "계룡시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34070",
+          "name": "계룡시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "270",
+      "districtName": "당진시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34080",
+          "name": "당진시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "710",
+      "districtName": "금산군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34510",
+          "name": "금산군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "760",
+      "districtName": "부여군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34530",
+          "name": "부여군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "770",
+      "districtName": "서천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34540",
+          "name": "서천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "790",
+      "districtName": "청양군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34550",
+          "name": "청양군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "800",
+      "districtName": "홍성군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34560",
+          "name": "홍성군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "810",
+      "districtName": "예산군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34570",
+          "name": "예산군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "825",
+      "districtName": "태안군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "34580",
+          "name": "태안군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "110",
+      "districtName": "포항시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37011",
+          "name": "포항시 남구"
+        },
+        {
+          "code": "37012",
+          "name": "포항시 북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "111",
+      "districtName": "포항시 남구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37011",
+          "name": "포항시 남구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "113",
+      "districtName": "포항시 북구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37012",
+          "name": "포항시 북구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "130",
+      "districtName": "경주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37020",
+          "name": "경주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "150",
+      "districtName": "김천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37030",
+          "name": "김천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "170",
+      "districtName": "안동시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37040",
+          "name": "안동시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "190",
+      "districtName": "구미시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37050",
+          "name": "구미시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "210",
+      "districtName": "영주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37060",
+          "name": "영주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "230",
+      "districtName": "영천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37070",
+          "name": "영천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "250",
+      "districtName": "상주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37080",
+          "name": "상주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "280",
+      "districtName": "문경시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37090",
+          "name": "문경시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "290",
+      "districtName": "경산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37100",
+          "name": "경산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "730",
+      "districtName": "의성군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37520",
+          "name": "의성군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "750",
+      "districtName": "청송군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37530",
+          "name": "청송군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "760",
+      "districtName": "영양군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37540",
+          "name": "영양군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "770",
+      "districtName": "영덕군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37550",
+          "name": "영덕군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "820",
+      "districtName": "청도군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37560",
+          "name": "청도군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "830",
+      "districtName": "고령군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37570",
+          "name": "고령군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "840",
+      "districtName": "성주군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37580",
+          "name": "성주군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "850",
+      "districtName": "칠곡군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37590",
+          "name": "칠곡군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "900",
+      "districtName": "예천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37600",
+          "name": "예천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "920",
+      "districtName": "봉화군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37610",
+          "name": "봉화군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "930",
+      "districtName": "울진군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37620",
+          "name": "울진군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "940",
+      "districtName": "울릉군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "37630",
+          "name": "울릉군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "120",
+      "districtName": "창원시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38111",
+          "name": "창원시 의창구"
+        },
+        {
+          "code": "38112",
+          "name": "창원시 성산구"
+        },
+        {
+          "code": "38113",
+          "name": "창원시 마산합포구"
+        },
+        {
+          "code": "38114",
+          "name": "창원시 마산회원구"
+        },
+        {
+          "code": "38115",
+          "name": "창원시 진해구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "121",
+      "districtName": "창원시 의창구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38111",
+          "name": "창원시 의창구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "123",
+      "districtName": "창원시 성산구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38112",
+          "name": "창원시 성산구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "125",
+      "districtName": "창원시 마산합포구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38113",
+          "name": "창원시 마산합포구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "127",
+      "districtName": "창원시 마산회원구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38114",
+          "name": "창원시 마산회원구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "129",
+      "districtName": "창원시 진해구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38115",
+          "name": "창원시 진해구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "170",
+      "districtName": "진주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38030",
+          "name": "진주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "220",
+      "districtName": "통영시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38050",
+          "name": "통영시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "240",
+      "districtName": "사천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38060",
+          "name": "사천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "250",
+      "districtName": "김해시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38070",
+          "name": "김해시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "270",
+      "districtName": "밀양시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38080",
+          "name": "밀양시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "310",
+      "districtName": "거제시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38090",
+          "name": "거제시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "330",
+      "districtName": "양산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38100",
+          "name": "양산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "720",
+      "districtName": "의령군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38510",
+          "name": "의령군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "730",
+      "districtName": "함안군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38520",
+          "name": "함안군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "740",
+      "districtName": "창녕군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38530",
+          "name": "창녕군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "820",
+      "districtName": "고성군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38540",
+          "name": "고성군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "840",
+      "districtName": "남해군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38550",
+          "name": "남해군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "850",
+      "districtName": "하동군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38560",
+          "name": "하동군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "860",
+      "districtName": "산청군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38570",
+          "name": "산청군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "870",
+      "districtName": "함양군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38580",
+          "name": "함양군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "880",
+      "districtName": "거창군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38590",
+          "name": "거창군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "890",
+      "districtName": "합천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "38600",
+          "name": "합천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "50",
+      "provinceName": "제주특별자치도",
+      "districtCode": "110",
+      "districtName": "제주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "39010",
+          "name": "제주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "50",
+      "provinceName": "제주특별자치도",
+      "districtCode": "130",
+      "districtName": "서귀포시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "39020",
+          "name": "서귀포시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "110",
+      "districtName": "춘천시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32010",
+          "name": "춘천시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "130",
+      "districtName": "원주시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32020",
+          "name": "원주시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "150",
+      "districtName": "강릉시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32030",
+          "name": "강릉시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "170",
+      "districtName": "동해시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32040",
+          "name": "동해시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "190",
+      "districtName": "태백시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32050",
+          "name": "태백시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "210",
+      "districtName": "속초시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32060",
+          "name": "속초시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "230",
+      "districtName": "삼척시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32070",
+          "name": "삼척시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "720",
+      "districtName": "홍천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32510",
+          "name": "홍천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "730",
+      "districtName": "횡성군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32520",
+          "name": "횡성군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "750",
+      "districtName": "영월군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32530",
+          "name": "영월군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "760",
+      "districtName": "평창군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32540",
+          "name": "평창군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "770",
+      "districtName": "정선군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32550",
+          "name": "정선군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "780",
+      "districtName": "철원군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32560",
+          "name": "철원군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "790",
+      "districtName": "화천군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32570",
+          "name": "화천군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "800",
+      "districtName": "양구군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32580",
+          "name": "양구군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "810",
+      "districtName": "인제군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32590",
+          "name": "인제군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "820",
+      "districtName": "고성군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32600",
+          "name": "고성군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "830",
+      "districtName": "양양군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "32610",
+          "name": "양양군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "110",
+      "districtName": "전주시",
+      "status": "aggregate-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35011",
+          "name": "전주시 완산구"
+        },
+        {
+          "code": "35012",
+          "name": "전주시 덕진구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "111",
+      "districtName": "전주시 완산구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35011",
+          "name": "전주시 완산구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "113",
+      "districtName": "전주시 덕진구",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35012",
+          "name": "전주시 덕진구"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "130",
+      "districtName": "군산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35020",
+          "name": "군산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "140",
+      "districtName": "익산시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35030",
+          "name": "익산시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "180",
+      "districtName": "정읍시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35040",
+          "name": "정읍시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "190",
+      "districtName": "남원시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35050",
+          "name": "남원시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "210",
+      "districtName": "김제시",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35060",
+          "name": "김제시"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "710",
+      "districtName": "완주군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35510",
+          "name": "완주군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "720",
+      "districtName": "진안군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35520",
+          "name": "진안군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "730",
+      "districtName": "무주군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35530",
+          "name": "무주군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "740",
+      "districtName": "장수군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35540",
+          "name": "장수군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "750",
+      "districtName": "임실군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35550",
+          "name": "임실군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "770",
+      "districtName": "순창군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35560",
+          "name": "순창군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "790",
+      "districtName": "고창군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35570",
+          "name": "고창군"
+        }
+      ]
+    },
+    {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "800",
+      "districtName": "부안군",
+      "status": "name-candidate",
+      "joinAllowed": false,
+      "sgisCandidates": [
+        {
+          "code": "35580",
+          "name": "부안군"
+        }
+      ]
+    }
+  ]
+}

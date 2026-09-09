@@ -11,6 +11,7 @@ summary: "M1~M6 첫 흐름과 전국·지역 지도 개선 검수 안내입니�
 **전국 조회·비교 근거에서 후보·예산·기획안 출력, 공개 비용·개인 결과와 다음 회차까지 첫 기능을 연결했습니다.**
 **M1~M6는 공개 사용 가능합니다.** M6도 공개 headless 14개 흐름을 검증했습니다. 아래 실제 화면과 공개 앱으로 검수할 수 있습니다. 전국 자료 완비·실제 담당자 관찰은 아직 완료하지 않았습니다.
 이번에는 [전국·지역 지도 개선과 검수 행동](../sdlc/2-design/region-map-improvement.md), [검증·게시 상태](../validation/26-region-map.md)를 먼저 확인하세요. 지도에서 자료를 선택하고 조건·출처와 함께 근거로 담는 흐름을 검수합니다.
+후속으로 [행정경계 연결 기준](../sdlc/2-design/region-boundary-contract.md)과 [원본 대조 결과](../validation/27-region-boundary-audit.md)를 구체화했습니다. 공식 원본은 확보했지만 현재 지역과의 연결은 개발 필요입니다. 경계 기준일·미연결 안내·과거 경계와 현재 조회의 구분을 검토할 수 있습니다.
 이전 단계는 [M6 실제 화면·검수 과제](../sdlc/2-design/outcome-implementation.md), [M6 검증·게시 상태](../validation/25-planning-outcomes.md)를 확인하세요.
 이전 단계는 [M5 기획안·출력](../sdlc/2-design/proposal-implementation.md), [M4 실제 화면·검수 과제](../sdlc/2-design/budget-implementation.md), [M4 검증 기록](../validation/23-planning-budget.md)을 확인하세요.
 이전 단계는 [M3 실제 기능과 검수 과제](../sdlc/2-design/planning-options-implementation.md), [M3 검증 기록](../validation/22-planning-options.md)을 확인하세요.
@@ -71,7 +72,7 @@ traceboard의 화면 카탈로그와 화면 흐름에서 7개 시안을 열 수 
 ## 다음 검증 범위
 
 지역·기간·지도/목록/차트·출처·근거 담기는 구현했습니다. 이제 실제 담당자가 지역 탐색에서 두 기획 후보 선택까지 이어갈 수 있는지 관찰할 필요가 있습니다.
-정식 행정경계와 전국 과거 자료의 확보·비교 가능성 검증은 후속입니다. 도로 배경을 공식 경계 검증 완료로 해석하지 않습니다.
+정식 행정경계 원본은 확보했고 코드·명칭 차이를 확인했습니다. 공식 연계·형상·화면 연결과 전국 과거 자료 확대는 후속입니다. 도로 배경을 공식 경계 검증 완료로 해석하지 않습니다.
 M1~M5에 이어 [M6 공개 비용·결과·다음 회차](../sdlc/2-design/outcome-implementation.md)를 연결했습니다. 전국 자료 완비나 추가 예측 정확도 연구를 먼저 요구하지 않습니다.
 
 ## v2에서 집중해 볼 화면
