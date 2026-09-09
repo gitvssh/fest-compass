@@ -458,3 +458,33 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - docs/ops/planning-outcomes-release.md에 명시한 미사용 이미지 4개 삭제 승인 필요. 현재·복구용 2개는 보존한다. 기존 승인은 다른 4개에 한정되므로 확대하지 않는다.
 - Handoff: Codex
+
+## T-021 · Codex · implementer
+
+- Position: M6 공개 배포와 검증 완료. 공개 비용 원문과 개인 결과 입력을 구분하고 계획/실측·재원 비교·불변 결과 출력·개인 과거 회차 검색·차기 개선 연결을 사용할 수 있다. 승인된 네 이미지만 정리해 배포를 복구했다. 전국 자료 완비·지도 품질·실무자 인수까지 완료한 것은 아니다.
+- Evidence:
+  - docs/validation/evidence/2026-09-09-planning-outcomes-production.json
+  - docs/validation/25-planning-outcomes.md
+  - docs/ops/planning-outcomes-release.md
+  - docs/sdlc/2-design/outcome-implementation.md
+  - apps/web/scripts/outcome-e2e.mjs
+  - docs/design/07-region-planning-milestones.md
+  - docs/review/2026-09-planning-review.md
+  - traceboard.yaml
+  - CI 34302743602 attempt 2 source c3e53b309ef63a32008aea85f911d8ac74ce69b3 success, 전용 ARC homelab-fest-compass-k8d69-runner-tbbvc
+  - 배포 867e1036ad9427109b481c931ae37bb0d0d3610f, 실제 이미지 9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a, Synced/Healthy/Succeeded, generation 16, 가용 1개
+  - Traceboard source 0569377b88c4a28bbe62b76b1a2ad0f0031ad629, publication 779fb07cf0e44a4f266a7511f947e5427580d642, image 8aa21dfaed7e3427b8fa88b05e7288738e66b96c4bfc088d140790eeae14c80a
+- Changes:
+  - 정확한 승인 목록 대조→비삭제 3577→실제 정리 3578: 현재/복구 2개 보존, 미사용 4개 삭제, quota/권한/데이터 변경 없음
+  - 공개 분석 쿠키 창의 Reject All 버튼을 누르는 headless 검증 절차 보완; 런타임 기능은 검증된 c3e53b3와 동일
+  - 운영 이미지와 service-version 고정, 공개 사용 상태·정책 확인·배포 증거 문서 반영
+  - Traceboard 공개 사용 안내·실제 검증 결과 갱신과 발행; 전체 프로젝트 MVP나 실무자 검수 완료로 확대하지 않음
+- Validation:
+  - 기존 단위 183개·신규 로컬 14개 증거 재사용, CI 동일 소스 검증 통과; 배포 계약 40개·17개 prod 리소스 검사 통과
+  - 공개 신규 headless 14개 모두 통과, 오류/앱 쓰기 0, 390px 넘침 0. 첫 시도의 쿠키 모달 차단은 실제 거부 동작 추가 후 재실행해 해소
+  - 공개 A4 19쪽 PDF 수치 35118200·당시 자료 52671.5·P/R 연결·개선 문구 확인; 11개 경로 HTTP 200·M6 sitemap 포함
+  - 배포 전후 예측 2건·모니터 의미 값·겨울 시험·당일 수집 결과 일치
+  - Traceboard 1680 조합 위반/미평가 0, HTTPS 91/91 SHA 일치, 그림 5/5 스크롤·디코드, 390px 넘침 0. 기존 favicon 404 한 건. Synced/Healthy/Succeeded, generation 46, 가용 1개
+- Questions:
+  - No open question
+- Handoff: Codex

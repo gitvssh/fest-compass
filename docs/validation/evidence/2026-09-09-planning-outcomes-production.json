@@ -249,6 +249,13 @@
       },
       "globalGcExecuted": false,
       "quotaOrPermissionsChanged": false
+    },
+    "finalMarkers": {
+      "artifacts": 3,
+      "current": "sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a",
+      "rollback": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
+      "used": 561269465,
+      "limit": 1073741824
     }
   },
   "publicVerification": {
@@ -379,7 +386,59 @@
     }
   },
   "traceboard": {
-    "status": "pending updated production verification publication"
+    "status": "published-and-verified",
+    "sourceCommit": "0569377b88c4a28bbe62b76b1a2ad0f0031ad629",
+    "publishedCommit": "779fb07cf0e44a4f266a7511f947e5427580d642",
+    "deployment": {
+      "revision": "779fb07cf0e44a4f266a7511f947e5427580d642",
+      "sync": "Synced",
+      "health": "Healthy",
+      "phase": "Succeeded",
+      "generation": 46,
+      "observedGeneration": 46,
+      "availableReplicas": 1,
+      "image": "registry.damecasol.com/traceboard/site@sha256:8aa21dfaed7e3427b8fa88b05e7288738e66b96c4bfc088d140790eeae14c80a"
+    },
+    "layoutCombinations": 1680,
+    "layoutViolations": 0,
+    "unevaluated": 0,
+    "remoteCheckedAt": "2026-09-09T04:38:28.399294+00:00",
+    "remoteFiles": 91,
+    "sha256Matches": 91,
+    "browser": {
+      "viewport": 390,
+      "width": 390,
+      "available": true,
+      "images": [
+        {
+          "loaded": true,
+          "width": 1440,
+          "height": 2388
+        },
+        {
+          "loaded": true,
+          "width": 1440,
+          "height": 5180
+        },
+        {
+          "loaded": true,
+          "width": 390,
+          "height": 6077
+        },
+        {
+          "loaded": true,
+          "width": 1440,
+          "height": 2585
+        },
+        {
+          "loaded": true,
+          "width": 990,
+          "height": 1400
+        }
+      ]
+    },
+    "browserException": "Existing favicon.ico 404; 0 warnings; all five lazy-loaded implementation images scrolled into view and decoded",
+    "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-outcome-implementation.html"
   },
   "registryDryRun": {
     "execution": 3576,
@@ -399,7 +458,7 @@
     "meaning": "M1-M5 available; M6 production verification remains not run"
   },
   "retainedLocalEvidence": "/home/lsh/.cache/fest-compass/verification/2026-09-09-m6-release/",
-  "complete": false,
+  "complete": true,
   "limitations": [
     "Nationwide public actual-spending data not connected; existing reviewed samples only",
     "Personal input is distinct from verified public lookup",
@@ -615,5 +674,17 @@
     "mobileViewportAndDocumentWidth": 390,
     "pendingAppDeploymentNoticeVisible": true,
     "browserException": "Existing favicon.ico 404; no page-image failures"
+  },
+  "completionAudit": {
+    "scope": "M6 first implementation and publication; not nationwide data completeness or observed municipal-user acceptance",
+    "publicSourceAndPersonalInput": "Reviewed source checksum plus public-original-costs-and-composition-scope and tender-and-missing-not-actual-spending",
+    "unknownVsZero": "fund-totals-35000000-35118200-and-unknown-versus-zero",
+    "comparison": "metric-definitions-units-periods-zero-gates",
+    "immutableOutput": "fixed-plan-result-pdf-with-original-evidence and r2-changes-never-change-p1-r1",
+    "pastEditions": "personal-edition-search-is-local-and-separate",
+    "nextEdition": "next-edition-resets-and-links-improvements",
+    "dataCompatibility": "v4-file-roundtrip-keeps-lineage-and-results and conflicting-result-import-preserves-data",
+    "runtimePreservation": "forecastPreserved fields matched; only post-image app source change is public E2E consent handling",
+    "publication": "release.deployment and traceboard.deployment/remote SHA evidence"
   }
 }

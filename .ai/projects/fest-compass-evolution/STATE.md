@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 20
-status: waiting-codex
+revision: 21
+status: active
 next_actor: codex
 last_actor: codex
-current_question: "docs/ops/planning-outcomes-release.md에 명시한 미사용 이미지 4개 삭제 승인 필요. 현재·복구용 2개는 보존한다. 기존 승인은 다른 4개에 한정되므로 확대하지 않는다."
-updated_at: "2026-09-09T02:49:29.484Z"
+current_question: "No open question recorded"
+updated_at: "2026-09-09T04:39:34.375Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1~M5는 공개 사용 가능하다. M6 공개 비용 사례·개인 행사 결과·계획/실측과 재원 비교·불변 출력·개인 과거 검색·다음 회차 연결을 구현하고 단위 183개·신규 headless 14개를 검증했다. Traceboard 검수본 게시와 실제 91개 파일 일치를 확인했다. 앱 이미지 push가 Harbor quota로 실패해 M6 공개 배포는 미완료다. 새 미사용 이미지 4개 삭제 승인 후 동일 CI를 재실행하고 검증된 이미지 배포·공개 검증을 이어간다. 전국 실제 비용 API·정식 지도 경계·실무자 관찰은 미완료다.
+M1~M6 첫 기능이 공개 사용 가능하다. M6의 공개 비용·개인 결과 구분, 계획/실측·재원별 비용 비교, 불변 결과·PDF, 개인 과거 회차 검색과 다음 회차 초기화·개선 연결을 공개 headless 14개로 검증했다. 승인된 미사용 이미지 4개 정리 후 동일 CI를 재실행해 배포했고 기존 예측을 보존했다. 전국 자료·정식 지도 경계·실제 담당자 관찰·정형 API/Spec/Run 연결은 후속이다. Traceboard 검수본도 갱신해 실제 파일 91개 일치와 모바일 표시를 확인했다. M6 goal의 구현·검증·앱 및 검수본 게시가 끝났다.
 
 ## Accepted decisions
 
@@ -38,12 +38,12 @@ M1~M5는 공개 사용 가능하다. M6 공개 비용 사례·개인 행사 결�
 - 2026-09-09 사용자가 다음 M4 예산·재원·준비 규모 비교의 개발·검증·일반 게시를 승인했다. 모델·겨울 시험·개인 브라우저 저장 경계와 headless 검증을 유지한다.
 - 2026-09-09 사용자가 다음 마일스톤을 goal로 설정해 진행하도록 요청했다. M5 기획안 보관·사업설명/준비 목록 출력의 구현·headless 검증·일반 게시·작업공간 정리를 수행하며 모델·개인 저장 경계는 유지한다.
 - 2026-09-09 사용자가 M6를 goal로 지정해 진행하도록 요청했다. 공개 집행·정산 자료와 담당자 입력을 구분하고 미확인 금액을 추정하거나 0으로 처리하지 않는다. 구현·검증·일반 게시·작업공간 정리를 수행한다.
+- 2026-09-09 사용자가 docs/ops/planning-outcomes-release.md의 미사용 이미지 네 개 삭제를 명시 승인하고 기본 승인 정책 확인을 요청했다. 정확한 대상만 정리했으며 기존 자동 예약 정리와 수동 삭제 승인 경계를 구분한다.
 
 ## Open questions
 
-- docs/ops/planning-outcomes-release.md에 명시한 미사용 이미지 4개 삭제 승인 필요. 현재·복구용 2개는 보존한다. 기존 승인은 다른 4개에 한정되므로 확대하지 않는다.
-- 승인 후 현재/복구 marker와 exact 4개를 재확인하고 project-scoped 정리→동일 CI 34302743602 재실행→원격 검증 digest 게시→정상 sync→공개 headless 14개·예측 보존 검증→Traceboard 상태 갱신. 임의 quota/권한/전역 GC 변경 금지.
-- 전국 관광·과거·실제 비용 자료 확장, 정식 지도 경계, 실제 담당자 업무 인수와 정형 API/Spec/Run 연결은 후속이다.
+- 전국 관광·과거·실제 비용 자료 확장, 정식 지도 경계·거리 검색과 지도 품질 개선은 후속이다. 현재 확보 표본을 전국 자료로 표현하지 않는다.
+- 실제 담당자 관찰과 전체 업무 인수, 공동 편집·공식 승인·정형 API/Spec/Run 연결은 미완료다. 다음 우선순위는 사용자 피드백으로 정한다.
 
 ## Artifacts and durable documents
 
@@ -51,8 +51,6 @@ M1~M5는 공개 사용 가능하다. M6 공개 비용 사례·개인 행사 결�
 - docs/validation/25-planning-outcomes.md
 - docs/ops/planning-outcomes-release.md
 - docs/sdlc/2-design/outcome-implementation.md
-- apps/web/app/planning/outcomes/page.tsx
-- apps/web/lib/planning/outcome-model.ts
 - apps/web/scripts/outcome-e2e.mjs
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md
