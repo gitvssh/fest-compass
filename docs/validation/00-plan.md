@@ -13,7 +13,7 @@
 [제품 마일스톤 M1~M6](../design/07-region-planning-milestones.md)를 우선순위·완료 기준의 정본으로 삼는다.
 D0 v3 검토 뒤 사용자 승인으로 [M1 전국→지역 조회와 근거 보관](20-region-explorer.md)의 첫 구현·검증을 추가했다.
 [검수 안내](../review/2026-09-planning-review.md)를 시작점으로 삼는다.
-M1 지역별 검증을 이어가며 [M2 주변·과거 비교검색 첫 기능](21-festival-comparison.md)을 추가했다. [M3 기획 후보·근거·준비 과제](22-planning-options.md)의 첫 기능을 구현했다. [M4 예산·준비 규모 비교](23-planning-budget.md)의 첫 기능과 자동 검증을 추가했다. 다음 제품 단계는 M5 기획안과 결정 자료 출력이다.
+M1 지역별 검증을 이어가며 [M2 주변·과거 비교검색 첫 기능](21-festival-comparison.md)을 추가했다. [M3 기획 후보·근거·준비 과제](22-planning-options.md)의 첫 기능을 구현했다. [M4 예산·준비 규모 비교](23-planning-budget.md)의 첫 기능과 자동 검증을 추가했다. [M5 기획안 보관·출력](24-planning-proposal.md)을 완료했고 [M6 비용·결과·다음 회차](25-planning-outcomes.md)를 구현·검증 중이다.
 M5 기획안·결정 → M6 결과 재사용에는 기존 운영 기록 기능을 연결한다.
 추가 모델 정확도 연구는 뒤로 미룬다. 현재 `/workspace`는 개인 운영 기록의 기반이며,
 지도에서 공공데이터를 선택해 축제 기획을 결정하는 전체 제품 MVP는 아직 개발 필요다.

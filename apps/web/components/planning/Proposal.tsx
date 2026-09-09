@@ -17,7 +17,7 @@ const kinds = { business: "사업설명 자료", preparation: "준비 목록" };
 
 // Browsers omit closed details when printing. Expand only this report, then
 // restore the reader's screen state; keyboard/browser-menu print works too.
-function usePrintDetails(ref: React.RefObject<HTMLDivElement | null>) {
+export function usePrintDetails(ref: React.RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     let closed: HTMLDetailsElement[] = [];
     const before = () => { if (closed.length) return; closed = [...(ref.current?.querySelectorAll<HTMLDetailsElement>("details:not([open])") ?? [])]; closed.forEach(d => { d.open = true; }); };
@@ -27,7 +27,7 @@ function usePrintDetails(ref: React.RefObject<HTMLDivElement | null>) {
   }, [ref]);
 }
 
-function ProposalReport({ revision: r, number, kind, generatedAt }: { revision: Revision; number: number; kind: Kind; generatedAt: string }) {
+export function ProposalReport({ revision: r, number, kind, generatedAt }: { revision: Revision; number: number; kind: Kind; generatedAt: string }) {
   const ref = useRef<HTMLDivElement>(null); usePrintDetails(ref);
   const d = r.draft, region = REGIONS.find(x => `${x.provinceCode}/${x.districtCode}` === d.regionKey);
   const records = <RecordDetails draft={d} />;
@@ -67,7 +67,7 @@ export function Proposal({ planning: p, change, save, edit }: { planning: Planni
   }
   return <section className="space-y-6">
     <div className="no-print region-card space-y-4"><h2 className="text-2xl font-extrabold">기획안 보관과 출력</h2><p className="text-sm leading-7">후보·선택 이유·근거·예산·준비 기록을 같은 버전으로 보관합니다. 미정 항목은 미정으로 남습니다. 이 브라우저에만 저장되며 공식 제출은 별도로 진행하세요.</p>
-      <Field label="측정 계획" multiline value={p.draft.measurementPlan ?? ""} onChange={measurementPlan => change({ ...p, version: 3, draft: { ...p.draft, measurementPlan } })} />
+      <Field label="측정 계획" multiline value={p.draft.measurementPlan ?? ""} onChange={measurementPlan => change({ ...p, version: Math.max(3, p.version) as Planning["version"], draft: { ...p.draft, measurementPlan } })} />
       <p className="text-xs text-muted">측정할 지표·단위·기간·수집 방법·담당을 적으세요. 지역 방문 지표를 행사장 입장객으로 바꾸어 해석하지 않습니다.</p>
       <Field label="기획안 보관 메모" value={note} onChange={setNote} />
       {!!blockers.length && <ul className="list-disc pl-5 text-sm text-coral" aria-label="기획안 보관 전 확인">{blockers.map(s => <li key={s}>{s}</li>)}</ul>}

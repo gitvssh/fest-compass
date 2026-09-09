@@ -13,7 +13,7 @@ summary: "개인 저장·공개 읽기 전용 경계 안에서 지도·근거·�
 현재 구성은 apps/web/app, apps/web/lib/workspace.ts, apps/web/lib/kto,
 apps/web/prisma/schema.prisma와 기존 [운영 경계 결정](../../decisions/0001-public-readonly-sqlite-boundary.md)에 근거한다.
 신규 객체와 화면은 [자료 정의](../1-analysis/data-contract.md)·[화면설계](screens.md)의 제안이다.
-M1~M5는 기존 공개 읽기 전용·개인 브라우저 저장 경계에 연결했다. 운영 DB·수집기·모델 구조는 유지한다. [M3 저장 계약](planning-options-implementation.md)과 [M4 파일 v2 호환 계약](budget-implementation.md)을 따른다.
+M1~M6는 기존 공개 읽기 전용·개인 브라우저 저장 경계에 연결했다. 운영 DB·수집기·모델 구조는 유지한다. [M3 저장 계약](planning-options-implementation.md)과 [M4 파일 v2 호환 계약](budget-implementation.md)을 따른다.
 
 ## 현재 구성과 연결 제안
 
@@ -62,3 +62,9 @@ M3 사업·준비와 M4 재원·지출·원문 기록은 구현했다. 기획 v1
 결과 출력은 기획 사본과 결과 사본 쌍을 사용해 이후 수정과 분리한다.
 
 M5는 [v3 개인 파일 계약](proposal-implementation.md)을 사용한다. 출력은 선택한 불변 보관본만 읽고 최신 API를 재조회하지 않는다. 기존 운영 DB·예측 기록은 변경하지 않는다.
+
+## M6 결과와 기획의 연결
+
+`/planning/outcomes`와 기획 탭은 같은 개인 파일 v4를 사용한다. 결과 저장·검증·불변 보관·파일 병합은 `lib/planning/outcome-*`와 기존 저장의 잠금/충돌 검사를 따른다.
+공개 비용은 기존 회차 원문 표본을 읽고 내 행사 결과는 개인 파일에서 읽는다. 서버 쓰기·기관 원장 연동 없이 출처를 구분한다.
+출력은 고정 P/R 사본과 당시 근거만 읽는다. [상세 계약](outcome-implementation.md)을 따른다. 기존 `/workspace` 파일과 자동 병합하지 않는다.

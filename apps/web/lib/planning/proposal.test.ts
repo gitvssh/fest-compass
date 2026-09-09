@@ -64,7 +64,7 @@ test("M5 구 v1/v2 보관본을 변경하지 않고 v3 가져오기·내보내�
 
 test("M5 미래 형식·v2 위장 기획안·불완전 비교 기획안은 읽기를 거부한다", () => {
   const p = archiveProposal(fixture(), "P1");
-  for (const value of [{ ...p, version: 4 }, { ...p, version: 2 }]) assert.throws(() => parsePlanning(JSON.stringify(value)));
+  for (const value of [{ ...p, version: 5 }, { ...p, version: 2 }]) assert.throws(() => parsePlanning(JSON.stringify(value)));
   p.revisions[0].draft.options = [p.revisions[0].draft.options[0]]; assert.throws(() => validatePlanning(p), /후보 두 개/);
 });
 

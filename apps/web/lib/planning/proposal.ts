@@ -13,7 +13,7 @@ export function proposalBlockers(d: PlanDraft): string[] {
 export function archiveProposal(p: Planning, note: string): Planning {
   const blockers = proposalBlockers(p.draft);
   if (blockers.length) throw new Error(blockers.join(" "));
-  const next = archive({ ...copy(p), version: 3 }, note);
+  const next = archive({ ...copy(p), version: Math.max(3, p.version) as Planning["version"] }, note);
   next.revisions.at(-1)!.proposal = { format: 1 };
   validatePlanning(next);
   return next;

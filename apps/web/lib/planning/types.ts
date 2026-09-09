@@ -1,6 +1,7 @@
 import type { Evidence } from "../region/types";
 import type { ComparisonEvidence } from "../comparison/types";
 import type { Budget } from "./budget-types";
+import type { OutcomeStore } from "./outcome-types";
 
 export const STAGES = { setup: "설치", event: "행사", teardown: "철거" } as const;
 export const FIELDS = { item: "주제·아이템", audience: "참여 대상", venue: "장소", timing: "시기", decision: "선택·제외 판단", budget: "예산·준비 규모" } as const;
@@ -17,6 +18,6 @@ export type TaskReview = { id: string; status: keyof typeof REVIEW_STATUS; owner
 export type ReadinessTask = { id: string; title: string; owner: string; due: string; needed: string; reference: string; applies: "unknown" | "yes" | "no"; naReason: string; decidedAt: string; progress: keyof typeof PROGRESS; dependsOn: string[]; exceptionReason: string; basis: string; reviews: TaskReview[] };
 export type Option = { id: string; name: string; theme: string; item: string; audience: string; venue: string; periods: Record<Stage, Period>; assumptions: string; constraints: string; decision: "undecided" | "selected" | "excluded"; reason: string; links: EvidenceLink[]; venueChecks: VenueCheck[]; tasks: ReadinessTask[]; budget?: Budget };
 export type Delivery = { id: string; organization: string; relation: "unknown" | "direct" | "foundation" | "entrust" | "service" | "subsidy"; scope: string; reference: string; checkedAt: string };
-export type PlanDraft = { id: string; title: string; regionKey: string; year: number; department: string; purpose: string; continuity: "unknown" | "new" | "continuing"; period: Period; asOf: string; relations: Delivery[]; options: Option[]; evidence: SourceCopy[]; measurementPlan?: string };
+export type PlanDraft = { id: string; title: string; regionKey: string; year: number; department: string; purpose: string; continuity: "unknown" | "new" | "continuing"; period: Period; asOf: string; relations: Delivery[]; options: Option[]; evidence: SourceCopy[]; measurementPlan?: string; previousOutcomeId?: string };
 export type Revision = { id: string; savedAt: string; note: string; draft: PlanDraft; proposal?: { format: 1 } };
-export type Planning = { format: "fest-compass-planning"; version: 1 | 2 | 3; stamp: string; updatedAt: string; draft: PlanDraft; revisions: Revision[] };
+export type Planning = { format: "fest-compass-planning"; version: 1 | 2 | 3 | 4; stamp: string; updatedAt: string; draft: PlanDraft; revisions: Revision[]; outcomes?: OutcomeStore };

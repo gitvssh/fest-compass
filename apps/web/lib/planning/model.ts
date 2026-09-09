@@ -5,6 +5,7 @@ import { CONDITIONS, FIELDS, PROGRESS, REVIEW_STATUS, STAGES, VENUE_STATUS } fro
 import type { Option, Period, PlanDraft, Planning, ReadinessTask, SourceCopy, Stage, VenueCheck } from "./types";
 import { copiedBudget } from "./budget-model";
 import { validateBudget } from "./budget-validation";
+import { validateOutcomes } from "./outcome-validation";
 
 export const PLANNING_KEY = "fest-compass.planning.v1";
 export const MAX_PLANNING_BYTES = 5_000_000;
@@ -61,6 +62,16 @@ export function importPlanning(current: Planning, incoming: Planning): Planning 
     if (!old) next.revisions.push(copy(r));
   }
   next.version = Math.max(next.version, incoming.version) as Planning["version"];
+  if (current.outcomes || incoming.outcomes) {
+    next.outcomes = copy(current.outcomes ?? { draft: null, revisions: [] });
+    if (next.outcomes.draft) next.outcomes.revisions.push({ id: uid(), savedAt: new Date().toISOString(), note: "파일 가져오기 직전 결과 초안", draft: copy(next.outcomes.draft) });
+    for (const r of incoming.outcomes?.revisions ?? []) {
+      const old = next.outcomes.revisions.find(x => x.id === r.id);
+      if (old && JSON.stringify(old) !== JSON.stringify(r)) throw new Error("같은 결과 보관본 식별자의 내용이 다릅니다.");
+      if (!old) next.outcomes.revisions.push(copy(r));
+    }
+    next.outcomes.draft = copy(incoming.outcomes?.draft ?? null);
+  }
   next.draft = copy(incoming.draft); validatePlanning(next); return next;
 }
 export function optionIssues(o: Option): string[] {
@@ -132,18 +143,19 @@ function draft(d: PlanDraft) {
   }
 }
 export function validatePlanning(p: Planning): void {
-  requireValue(p && p.format === "fest-compass-planning" && [1, 2, 3].includes(p.version) && id(p.stamp) && instant(p.updatedAt)); draft(p.draft);
+  requireValue(p && p.format === "fest-compass-planning" && [1, 2, 3, 4].includes(p.version) && id(p.stamp) && instant(p.updatedAt)); draft(p.draft);
   requireValue(p.version >= 2 || [...p.draft.options, ...p.revisions.flatMap(r => r.draft.options)].every(o => o.budget === undefined && o.links.every(l => l.field !== "budget")), "예산 기능은 기획 파일 형식 v2가 필요합니다.");
   list(p.revisions, 20); unique(p.revisions.map(r => r.id));
-  for (const d of [p.draft, ...p.revisions.map(r => r.draft)]) if (d.measurementPlan !== undefined) requireValue(p.version === 3 && str(d.measurementPlan), "측정 계획은 기획 파일 형식 v3가 필요합니다.");
+  for (const d of [p.draft, ...p.revisions.map(r => r.draft)]) if (d.measurementPlan !== undefined) requireValue(p.version >= 3 && str(d.measurementPlan), "측정 계획은 기획 파일 형식 v3 이상이 필요합니다.");
   for (const r of p.revisions) {
     requireValue(id(r.id) && instant(r.savedAt) && str(r.note)); draft(r.draft);
     if (r.proposal !== undefined) {
-      requireValue(p.version === 3 && r.proposal?.format === 1, "기획안은 지원하는 v3 형식이 필요합니다.");
+      requireValue(p.version >= 3 && r.proposal?.format === 1, "기획안은 지원하는 v3 이상 형식이 필요합니다.");
       requireValue(r.draft.options.length >= 2 && r.draft.options.some(o => o.decision === "selected" && o.reason.trim()), "기획안 보관에는 후보 두 개 이상과 우선 후보의 선택 이유가 필요합니다.");
     }
   }
   for (const o of p.draft.options) if (o.budget?.baselineRevision) requireValue(p.revisions.some(r => r.id === o.budget!.baselineRevision && r.draft.options.some(b => b.id === o.budget!.baselineOption)), "비교할 예산 보관본·후보를 확인하세요.");
+  validateOutcomes(p);
 }
 export function parsePlanning(raw: string): Planning {
   if (new TextEncoder().encode(raw).length > MAX_PLANNING_BYTES) throw new Error("기획 파일은 5MB 이하여야 합니다.");
@@ -158,7 +170,8 @@ export function writePlanning(p: Planning, expected: string | null, storage: Pic
   if (current) {
     const previous = parsePlanning(current);
     for (const r of previous.revisions) requireValue(p.revisions.some(n => n.id === r.id && JSON.stringify(n) === JSON.stringify(r)), "이미 보관한 버전은 수정하거나 제거할 수 없습니다.");
+    for (const r of previous.outcomes?.revisions ?? []) requireValue(p.outcomes?.revisions.some(n => n.id === r.id && JSON.stringify(n) === JSON.stringify(r)), "이미 보관한 결과 버전은 수정하거나 제거할 수 없습니다.");
   }
-  const next: Planning = { ...p, version: p.version === 3 ? 3 : 2, stamp: uid(), updatedAt: new Date().toISOString() }, raw = encodePlanning(next);
+  const next: Planning = { ...p, version: Math.max(p.version, 2) as Planning["version"], stamp: uid(), updatedAt: new Date().toISOString() }, raw = encodePlanning(next);
   storage.setItem(PLANNING_KEY, raw); return raw;
 }
