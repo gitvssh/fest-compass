@@ -3,7 +3,7 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-09
 version: v1
-summary: "M6 공개 비용 사례·개인 결과 비교·불변 결과 출력·다음 회차 기획의 검증 기록입니다. 게시 확인은 완료 후 이 문서에 기록합니다."
+summary: "M6 개발·단위 183개·신규 headless 14개 검증 완료. 앱 이미지 업로드는 저장소 한도로 실패해 정리 승인이 필요하며 로컬 실제 화면을 Traceboard 검수본으로 제공합니다."
 ---
 
 # M6 비용·결과와 다음 회차 검증
@@ -51,4 +51,7 @@ summary: "M6 공개 비용 사례·개인 결과 비교·불변 결과 출력·�
 
 ## 게시 진행
 
-앱·내부 Traceboard 게시 및 공개 환경 검증은 진행 중이다.
+**M6 앱 배포는 대기 상태다.** [CI 34302743602](https://github.com/gitvssh/fest-compass/actions/runs/34302743602)의 코드 검증과 이미지 빌드는 통과했으나, 저장량 985.1MiB + 새 레이어 86.7MiB가 1GiB 한도를 넘어 업로드가 실패했다. 운영 서비스는 기존 M5 이미지를 유지한다.
+
+[정리 대상 네 개·보존본·승인 후 복구 절차](../ops/planning-outcomes-release.md)를 구체화했다. 새 대상 삭제·quota·권한 변경은 실행하지 않았다.
+공개 M6 시험은 배포 전이므로 미실시다. 내부 Traceboard에 로컬 실제 화면과 검수 자료를 게시한다.

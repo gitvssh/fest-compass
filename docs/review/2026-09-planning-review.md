@@ -3,13 +3,15 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-09
 version: v3
-summary: "올해 어떤 축제를 열지 결정하는 전체 흐름의 검수 안내입니다. 전국 탐색부터 기획안 출력까지 사용 가능하며, 기획·요구사항·실제 화면과 개발 전 시안을 함께 확인할 수 있습니다."
+summary: "전국 탐색·비교·기획·예산·출력에 공개 비용·개인 결과·다음 회차를 연결한 검수 안내입니다. 실제 제공·검증 상태와 남은 자료·실무 검증을 함께 확인합니다."
 ---
 
 # FEST Compass 기획 검수 v3
 
-**전국 조회·축제 비교의 근거에서 후보·예산·기획안 보관과 출력까지 연결했습니다. 다음은 운영 결과와 다음 회차 연결입니다.**
-먼저 [M4 실제 화면·검수 과제](../sdlc/2-design/budget-implementation.md), [M4 검증 기록](../validation/23-planning-budget.md)을 확인하세요.
+**전국 조회·비교 근거에서 후보·예산·기획안 출력, 공개 비용·개인 결과와 다음 회차까지 첫 기능을 연결했습니다.**
+M1~M5는 사용 가능하며 **M6는 개발·검증 완료, 이미지 저장소 한도로 앱 배포 대기**입니다. 아래 M6 실제 화면으로 검수할 수 있습니다.
+먼저 [M6 실제 화면·검수 과제](../sdlc/2-design/outcome-implementation.md), [M6 검증·게시 상태](../validation/25-planning-outcomes.md)를 확인하세요.
+이전 단계는 [M5 기획안·출력](../sdlc/2-design/proposal-implementation.md), [M4 실제 화면·검수 과제](../sdlc/2-design/budget-implementation.md), [M4 검증 기록](../validation/23-planning-budget.md)을 확인하세요.
 이전 단계는 [M3 실제 기능과 검수 과제](../sdlc/2-design/planning-options-implementation.md), [M3 검증 기록](../validation/22-planning-options.md)을 확인하세요.
 이전 단계는 [축제 비교 구현·검수 범위](../sdlc/2-design/festival-comparison-implementation.md)와 [M2 검증 기록](../validation/21-festival-comparison.md)을 확인하세요.
 이전 단계는 [실제 화면과 제공 범위](../sdlc/2-design/region-explorer-implementation.md), [검증·공개 반영 상태](../validation/20-region-explorer.md)를 확인하세요.

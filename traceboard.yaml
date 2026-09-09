@@ -48,6 +48,8 @@ stages:
       - {path: docs/validation/24-planning-proposal.md, required: true}
       - {path: docs/validation/25-planning-outcomes.md, required: true}
   operations:
+    artifacts:
+      - {path: docs/ops/planning-outcomes-release.md, required: true}
     links:
       - {label: 현재 사용 가능한 FEST Compass, url: "https://kto.damecasol.com"}
 # 새로운 API 계약·실행 기록·티켓 원천은 미선언이다. 미평가를 통과로 만들지 않는다.

@@ -8,7 +8,8 @@ summary: "공개 비용 사례 조회, 개인 행사 결과·실제 사용액 �
 
 # 공개 비용·행사 결과와 다음 회차 기획
 
-[비용·결과 화면](https://kto.damecasol.com/planning/outcomes)은 공개 사례 조회에서 시작한다.
+**개발·자동 검증 완료 / 앱 배포 대기.** 이미지 저장소 한도로 운영 반영을 기다리며, 아래 실제 화면은 로컬 검수 결과다.
+배포 후 [비용·결과 화면](https://kto.damecasol.com/planning/outcomes)은 공개 사례 조회에서 시작한다.
 실제 게시·검증 상태는 [M6 검증 기록](../../validation/25-planning-outcomes.md)을 따른다.
 FR-LGR-5/6, FR-RPT-2/3의 결과 부분, UC-FC-007/TS-FC-007, SCR-FC-007에 대응한다.
 
