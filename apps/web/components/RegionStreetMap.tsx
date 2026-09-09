@@ -5,6 +5,8 @@ import "leaflet/dist/leaflet.css";
 import { REGIONS } from "@/lib/region/model";
 import { groupResources, hasPosition, NATIONAL_BOUNDS, PROVINCE_ANCHORS, resourceBounds, type Bounds } from "@/lib/region/map-view";
 import type { RegionMapProps } from "./RegionMap";
+import { RegionBoundaryLayer } from "./RegionBoundaryLayer";
+import { boundaryBounds } from "@/lib/region/boundaries";
 
 const corners = (b: Bounds): Leaflet.LatLngBoundsExpression => [[b[1], b[0]], [b[3], b[2]]];
 const offsets: Record<string, [number, number]> = { "11": [20, -17], "28": [-24, 0], "41": [24, -4], "36110": [-14, -9], "30": [19, 9], "44": [-24, 0], "26": [19, 10], "31": [24, -8], "48": [-15, 6], "52": [-10, -5] };
@@ -22,7 +24,7 @@ export default function RegionStreetMap(props: RegionMapProps & { onFallback: ()
       const map = L.map(element.current, { center: [36, 128], zoom: 6, zoomSnap: .25, minZoom: 5, maxZoom: 18, zoomControl: false,
         scrollWheelZoom: false, fadeAnimation: false, maxBounds: [[30, 120], [41, 136]], maxBoundsViscosity: .8, attributionControl: true });
       instance = map;
-      map.fitBounds(corners(latest.current.province ? resourceBounds(latest.current.resources, latest.current.province) : NATIONAL_BOUNDS), { padding: [22, 22], maxZoom: 14, animate: false });
+      map.fitBounds(corners(latest.current.province ? boundaryBounds(latest.current.province, latest.current.district) ?? resourceBounds(latest.current.resources, latest.current.province) : NATIONAL_BOUNDS), { padding: [22, 22], maxZoom: 14, animate: false });
       const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, noWrap: true, keepBuffer: 0, updateWhenIdle: true, updateWhenZooming: false,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors' });
       tiles.on("tileerror", () => setTileError(true));
@@ -35,10 +37,10 @@ export default function RegionStreetMap(props: RegionMapProps & { onFallback: ()
   function fit() {
     if (!engine) return;
     fitting.current = true;
-    engine.map.fitBounds(corners(props.province ? resourceBounds(props.resources, props.province) : NATIONAL_BOUNDS), { padding: [22, 22], maxZoom: 14, animate: false });
+    engine.map.fitBounds(corners(props.province ? (props.resources.length ? resourceBounds(props.resources, props.province) : boundaryBounds(props.province, props.district) ?? resourceBounds(props.resources, props.province)) : NATIONAL_BOUNDS), { padding: [22, 22], maxZoom: 14, animate: false });
     fitting.current = false; setChanged(false);
   }
-  useEffect(() => { fit(); /* New query results or province changes reset the view. */ }, [engine, props.province, props.resources]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { fit(); /* New query results or region changes reset the view. */ }, [engine, props.province, props.district, props.resources]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!engine) return;
     const observer = new ResizeObserver(() => engine.map.invalidateSize({ pan: false }));
@@ -107,7 +109,13 @@ export default function RegionStreetMap(props: RegionMapProps & { onFallback: ()
     return () => { rectangle.remove(); };
   }, [engine, props.appliedBounds]);
   function applyBounds() { if (engine) { const b = engine.map.getBounds(); props.onBounds([b.getWest(), b.getSouth(), b.getEast(), b.getNorth()]); setChanged(false); } }
+  function fitBoundary() {
+    const b = boundaryBounds(props.province, props.district);
+    if (engine && b) { fitting.current = true; engine.map.fitBounds(corners(b), { padding: [22, 22], maxZoom: 14, animate: false }); fitting.current = false; setChanged(false); }
+  }
   return <div className="relative isolate overflow-hidden rounded-2xl border border-ink/15 bg-[#e9f1f4]">
+    <RegionBoundaryLayer engine={engine} province={props.province} district={props.district} onProvince={props.onProvince} onDistrict={props.onDistrict} onBoundary={props.onBoundary} />
+    {props.province && boundaryBounds(props.province, props.district) && <div className="bg-white px-3 pb-2"><button className="region-button" disabled={!engine} onClick={fitBoundary}>선택 지역 경계에 맞추기</button></div>}
     <div className="flex flex-wrap items-center justify-between gap-2 bg-white p-3"><span className="text-xs font-bold">{props.province ? "자료 좌표 · 주변 도로" : "전국 · 시도 표식 선택"}</span><div className="flex flex-wrap gap-1"><button className="region-button" aria-label="확대" disabled={!engine || zoom >= 18} onClick={() => engine?.map.zoomIn()}>＋</button><button className="region-button" aria-label="축소" disabled={!engine || zoom <= 5} onClick={() => engine?.map.zoomOut()}>−</button><button className="region-button" disabled={!engine} onClick={fit}>{props.province ? "조회 자료에 맞추기" : "전국 범위로 맞추기"}</button></div></div>
     <div ref={element} role="group" aria-label="전국 지역 탐색 지도" className="region-street-map h-[420px] w-full sm:h-[510px]" />
     <div className="space-y-2 bg-white p-3 text-xs leading-5 text-muted">

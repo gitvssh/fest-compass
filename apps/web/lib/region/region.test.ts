@@ -6,8 +6,52 @@ import { dates, lineSegments, mapResource, parseQuery, regionOf, REGIONS, select
 import { encodeEvidence, makeEvidence, parseEvidence } from "./evidence";
 import type { Query, RegionResult } from "./types";
 import { groupResources, hasPosition, NATIONAL_BOUNDS, resourceBounds } from "./map-view";
+import { BOUNDARIES, boundaryBounds, boundaryReference } from "./boundaries";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 const q: Query = { province: "44", district: "230", start: "2025-03-01", end: "2025-03-31", kind: "12" };
 const row = (id = "123") => ({ contentid: id, title: "자료", lDongRegnCd: "44", lDongSignguCd: "230", mapx: "127.1", mapy: "36.2" });
+test("all published geometry assets match the verified source build and selectable catalogue", () => {
+  const report = JSON.parse(readFileSync(new URL("../../../../docs/validation/evidence/2026-09-09-boundary-build.json", import.meta.url), "utf8"));
+  assert.equal(report.version, BOUNDARIES.version);
+  const seen = new Set<string>();
+  for (const [name, info] of Object.entries(report.files) as [string, { bytes: number; sha256: string }][]) {
+    const data = readFileSync(new URL(`../../public/data/boundaries/${BOUNDARIES.version}/${name}`, import.meta.url));
+    assert.equal(data.length, info.bytes); assert.equal(createHash("sha256").update(data).digest("hex"), info.sha256);
+    const collection = JSON.parse(data.toString()); assert.equal(collection.version, BOUNDARIES.version);
+    if (name !== "national.json") for (const f of collection.features) {
+      const key = `${name.slice(9, -5)}:${f.properties.id}`;
+      assert.equal(BOUNDARIES.regions[key]?.status, "available"); assert.equal(seen.has(key), false); seen.add(key);
+    }
+  }
+  assert.equal(seen.size, 234);
+});
+test("official crosswalk preserves numeric collisions, Sejong and ordinary-city aggregation", () => {
+  assert.deepEqual(boundaryReference("26", "110")?.codes, ["21010"]);
+  assert.deepEqual(boundaryReference("36110", "36110")?.codes, ["29010"]);
+  assert.equal(boundaryReference("41", "110")?.codes.length, 4);
+  assert.deepEqual(boundaryReference("44", "230")?.codes, ["34060"]);
+  assert.ok(boundaryBounds("44", "230")![0] < 127.1);
+});
+test("changed regions never acquire old reference shapes by name or parent inference", () => {
+  assert.equal(Object.values(BOUNDARIES.regions).filter(r => r.status === "available").length, 234);
+  for (const [p, d] of [["12", "110"], ["28", "125"], ["41", "597"], ["11", "999"]]) {
+    assert.equal(boundaryReference(p, d), null); assert.equal(boundaryBounds(p, d), undefined);
+  }
+});
+test("boundary evidence survives export, remains immutable and rejects mismatched scope or source", async () => {
+  const result: RegionResult = { query: q, region: regionOf(q), resources: await collectResources(q, async () => ({ total: 1, rows: [row()] })), history: selectHistory(q, bundled) };
+  const boundary = boundaryReference("44", "230")!;
+  const evidence = await makeEvidence(result, { resourceId: "123", boundary }, "경계 참고");
+  boundary.codes[0] = "99999";
+  const encoded = encodeEvidence([evidence]), roundTrip = parseEvidence(encoded)[0];
+  assert.ok("resourceId" in roundTrip.selection && roundTrip.selection.boundary?.codes[0] === "34060");
+  for (const change of [{ source: "javascript:alert(1)" }, { district: "150" }, { codes: ["34060", "34060"] }, { boundaryDate: "invalid" }]) {
+    const bad = JSON.parse(encoded); Object.assign(bad.items[0].selection.boundary, change); assert.throws(() => parseEvidence(JSON.stringify(bad)));
+  }
+  const old = await makeEvidence(result, { resourceId: "123" }, "이전 근거");
+  assert.equal(parseEvidence(encodeEvidence([old])).length, 1);
+});
 test("map bounds retain islands and all valid resource positions without inventing missing coordinates", () => {
   assert.deepEqual(resourceBounds([], ""), NATIONAL_BOUNDS);
   assert.ok(NATIONAL_BOUNDS[0] < 124.7 && NATIONAL_BOUNDS[2] > 131.9 && NATIONAL_BOUNDS[1] < 33.1);

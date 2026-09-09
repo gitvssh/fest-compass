@@ -3,13 +3,14 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-09
 id: UC-FC-001
-version: v4
+version: v5
 status: active
 summary: "우리 지역의 관광자원과 방문 추세를 조회한다. M1 첫 구현 범위의 자동 검증을 추가했습니다."
 covers: ["FR-REG-1","FR-REG-2","FR-REG-3","FR-REG-4","FR-REG-5"]
 screens: ["SCR-FC-001"]
 apis: []
 acs:
+  - {id: AC9, text: "Given 공식 코드로 연결한 기준일 있는 참고 경계에서 When 시도·시군구를 선택하거나 경계를 숨기고 자원을 담으면 Then 해당 지역을 조회하며 실제 표시한 경계의 기준일·코드·버전만 근거에 남고 개편·실패·늦은 응답은 이전 경계로 대체되지 않는다."}
   - {id: AC8, text: "Given 전국 또는 조회된 지역 지도에서 When 이동·확대·자료 선택·영역 적용 또는 배경 오류가 발생하면 Then 지역 표식이 겹치지 않고 목록 번호와 상세가 일치하며 명시적 적용만 조회 범위에 반영되고 간단 지도와 목록으로 계속할 수 있다."}
   - {id: AC1, text: "Given 논산을 보고 있는 상태에서 When 자료가 없는 다른 시군구로 바꾸면 Then 모든 영역의 지역명이 바뀌고 논산 수치는 새 지역의 값으로 남지 않는다."}
   - {id: AC2, text: "Given 같은 조건의 자료가 있을 때 When 기간 또는 유형을 바꾸면 Then 지도·목록·차트의 조회 조건이 일치하고 이전 응답이 최신 선택을 덮지 않는다."}

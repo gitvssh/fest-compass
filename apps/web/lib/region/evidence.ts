@@ -4,6 +4,7 @@ export const EVIDENCE_KEY = "fest-compass.region-evidence.v1";
 export const HOME_REGION_KEY = "fest-compass.home-region.v1";
 export const MAX_EVIDENCE_BYTES = 2_000_000;
 export async function makeEvidence(result: RegionResult, selection: Evidence["selection"], note: string): Promise<Evidence> {
+  selection = JSON.parse(JSON.stringify(selection));
   const snapshot: RegionResult = JSON.parse(JSON.stringify(result));
   snapshot.resources.items = "resourceId" in selection ? snapshot.resources.items.filter(r => r.id === selection.resourceId) : [];
   snapshot.history.points = "dates" in selection ? snapshot.history.points.filter(p => selection.dates.includes(p.date)) : [];
@@ -23,6 +24,13 @@ export function parseEvidence(raw: string): Evidence[] {
     for (const e of value.items) {
       if (e.version !== 1 || !/^[a-f0-9]{64}$/.test(e.id) || !text(e.savedAt, 30) || !Number.isFinite(Date.parse(e.savedAt)) || !text(e.title) || !text(e.note, 2000)) throw new Error();
       const r = e.result; parseQuery(new URLSearchParams(r.query));
+      if (e.selection?.boundary !== undefined) {
+        const b = e.selection.boundary;
+        if (!("resourceId" in e.selection) || !b || !text(b.version, 100) || !/^[a-z0-9-]+$/.test(b.version)
+          || b.source !== "https://www.data.go.kr/data/15129688/fileData.do" || !day(b.boundaryDate) || !day(b.crosswalkDate)
+          || b.province !== r.query.province || b.district !== r.query.district || !Array.isArray(b.codes) || b.codes.length < 1 || b.codes.length > 10
+          || b.codes.some((code: unknown) => typeof code !== "string" || !/^\d{5}$/.test(code)) || new Set(b.codes).size !== b.codes.length) throw new Error();
+      }
       if (!r.region || r.region.provinceCode !== r.query.province || r.region.districtCode !== r.query.district || !text(r.region.provinceName) || !text(r.region.districtName)) throw new Error();
       if (r.resources.source !== SOURCE || r.history.source !== HISTORY_SOURCE || !text(r.resources.message, 2000) || !text(r.history.message, 2000) || !text(r.history.unit) || !text(r.history.metric)) throw new Error();
       if (!Number.isFinite(Date.parse(r.resources.collectedAt)) || !["complete", "empty", "unavailable"].includes(r.resources.status) || !["available", "unavailable"].includes(r.history.status)) throw new Error();

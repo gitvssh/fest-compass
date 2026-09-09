@@ -6,6 +6,7 @@ import { HOME_REGION_KEY, makeEvidence, storeEvidence } from "@/lib/region/evide
 import type { Query, RegionResult, Resource } from "@/lib/region/types";
 import { RegionMap, type Bounds } from "./RegionMap";
 import { RegionHistory } from "./RegionHistory";
+import type { BoundaryReference } from "@/lib/region/boundaries";
 
 const emptyResources: Resource[] = [];
 const provinces = [...new Map(REGIONS.map(r => [r.provinceCode, r.provinceName])).entries()];
@@ -19,6 +20,7 @@ export function RegionExplorer({ year }: { year: number }) {
   const [home, setHome] = useState<{ province: string; district: string } | null>(null), [bounds, setBounds] = useState<Bounds | null>(null);
   const [districtSearch, setDistrictSearch] = useState(""), [retry, setRetry] = useState(0);
   const [provinceExpanded, setProvinceExpanded] = useState(true);
+  const [boundary, setBoundary] = useState<BoundaryReference | null>(null);
   const serial = useRef(0), details = useRef<HTMLDivElement>(null);
   useEffect(() => { try { const saved = JSON.parse(localStorage.getItem(HOME_REGION_KEY) ?? "null"); if (REGIONS.some(r => r.provinceCode === saved?.province && r.districtCode === saved?.district)) setHome(saved); } catch { /* The initial view stays nationwide. */ } }, []);
   function reset() { serial.current++; setData(null); setQuery(null); setLoading(false); setError(""); setResourceId(""); setDate(""); setBounds(null); setNote(""); }
@@ -44,7 +46,8 @@ export function RegionExplorer({ year }: { year: number }) {
   async function save(allDates = false) {
     if (!data) return;
     try {
-      const selection = allDates ? { dates: data.history.points.map(p => p.date) } : resourceId ? { resourceId, ...(bounds ? { mapBounds: bounds } : {}) } : { dates: [date] };
+      const selection = allDates ? { dates: data.history.points.map(p => p.date) } : resourceId ? { resourceId, ...(bounds ? { mapBounds: bounds } : {}),
+        ...(boundary && boundary.province === data.query.province && boundary.district === data.query.district ? { boundary } : {}) } : { dates: [date] };
       const item = await makeEvidence(data, selection, note), result = storeEvidence([item]);
       setNotice(result.added ? "기획 근거에 담았습니다. 이 브라우저의 ‘담은 근거’에서 확인하세요." : "같은 자료와 조회 조건을 이미 담았습니다. 기존 근거를 유지합니다.");
     } catch (e) { setNotice(e instanceof Error ? e.message : "저장하지 못했습니다. 브라우저 저장 공간을 확인하세요."); }
@@ -71,7 +74,7 @@ export function RegionExplorer({ year }: { year: number }) {
         <p className="text-xs leading-5 text-muted">지역 목록 확인: {CATALOGUE.collectedAt.slice(0, 10)}<br /><a href={CATALOGUE.source} className="underline" target="_blank" rel="noreferrer">한국관광공사 법정동 조회 목록 ↗</a></p>
       </aside>
       <div className="min-w-0 space-y-4">
-        <RegionMap province={province} resources={resources} selected={resourceId} appliedBounds={bounds} onProvince={chooseProvince} onResource={selectResource} onBounds={b => { setBounds(b); setResourceId(""); }} />
+        <RegionMap province={province} district={district} resources={resources} selected={resourceId} appliedBounds={bounds} onProvince={chooseProvince} onDistrict={code => load(province, code)} onBoundary={setBoundary} onResource={selectResource} onBounds={b => { setBounds(b); setResourceId(""); }} />
         {resource && <button className="region-button w-full" onClick={() => details.current?.scrollIntoView({ behavior: "smooth", block: "start" })}>{resource.title} · 상세·기획 근거 확인 ↓</button>}
         <section className="region-card"><div className="mb-3 flex flex-wrap items-center justify-between gap-2"><h2 className="font-extrabold"><span className="text-blue">03</span> 자료 조회 조건</h2>{district && <button className="region-button" onClick={saveHome}>우리 지역으로 저장</button>}</div><form onSubmit={e => { e.preventDefault(); if (district) load(province, district); }} className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <label className="text-xs font-bold">통계 시작일<input aria-label="통계 시작일" type="date" min="2000-01-01" max="2035-12-31" className="workspace-input mt-2" value={start} onChange={e => setRange(e.target.value, true)} /></label><label className="text-xs font-bold">통계 종료일<input aria-label="통계 종료일" type="date" min="2000-01-01" max="2035-12-31" className="workspace-input mt-2" value={end} onChange={e => setRange(e.target.value, false)} /></label>

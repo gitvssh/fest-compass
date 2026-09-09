@@ -1,0 +1,4497 @@
+{
+  "version": "sgis-20250630-kssc-20260710-v1",
+  "source": "https://www.data.go.kr/data/15129688/fileData.do",
+  "boundaryDate": "2025-06-30",
+  "crosswalkDate": "2026-07-10",
+  "catalogueCollectedAt": "2026-09-08T06:14:54.400Z",
+  "provinces": {
+    "11": {
+      "status": "available",
+      "code": "11",
+      "name": "서울특별시",
+      "bounds": [
+        126.76455922,
+        37.42833977,
+        127.18379493,
+        37.70145527
+      ]
+    },
+    "12": {
+      "status": "changed",
+      "code": "12",
+      "name": "전남광주통합특별시"
+    },
+    "26": {
+      "status": "available",
+      "code": "21",
+      "name": "부산광역시",
+      "bounds": [
+        128.76137683,
+        34.88436066,
+        129.3056419,
+        35.38903745
+      ]
+    },
+    "27": {
+      "status": "available",
+      "code": "22",
+      "name": "대구광역시",
+      "bounds": [
+        128.35147572,
+        35.60685954,
+        128.90019666,
+        36.32723645
+      ]
+    },
+    "28": {
+      "status": "available",
+      "code": "23",
+      "name": "인천광역시",
+      "bounds": [
+        124.60971768,
+        36.92695945,
+        126.79369544,
+        37.98424189
+      ]
+    },
+    "30": {
+      "status": "available",
+      "code": "25",
+      "name": "대전광역시",
+      "bounds": [
+        127.246653,
+        36.18310008,
+        127.55967899,
+        36.50023063
+      ]
+    },
+    "31": {
+      "status": "available",
+      "code": "26",
+      "name": "울산광역시",
+      "bounds": [
+        128.9711902,
+        35.3280768,
+        129.4648063,
+        35.72491979
+      ]
+    },
+    "36110": {
+      "status": "available",
+      "code": "29",
+      "name": "세종특별자치시",
+      "bounds": [
+        127.12776573,
+        36.40684275,
+        127.41080358,
+        36.73382187
+      ]
+    },
+    "41": {
+      "status": "available",
+      "code": "31",
+      "name": "경기도",
+      "bounds": [
+        126.37899165,
+        36.89377888,
+        127.84811314,
+        38.28226055
+      ]
+    },
+    "43": {
+      "status": "available",
+      "code": "33",
+      "name": "충청북도",
+      "bounds": [
+        127.27565046,
+        36.01220683,
+        128.6520965,
+        37.25833428
+      ]
+    },
+    "44": {
+      "status": "available",
+      "code": "34",
+      "name": "충청남도",
+      "bounds": [
+        125.54091411,
+        35.97826412,
+        127.63974826,
+        37.08001239
+      ]
+    },
+    "47": {
+      "status": "available",
+      "code": "37",
+      "name": "경상북도",
+      "bounds": [
+        127.79615213,
+        35.56688816,
+        131.87278315,
+        37.55130234
+      ]
+    },
+    "48": {
+      "status": "available",
+      "code": "38",
+      "name": "경상남도",
+      "bounds": [
+        127.57607075,
+        34.49746559,
+        129.21888798,
+        35.90993055
+      ]
+    },
+    "50": {
+      "status": "available",
+      "code": "39",
+      "name": "제주특별자치도",
+      "bounds": [
+        126.14367216,
+        33.11238398,
+        126.9725947,
+        34.01321613
+      ]
+    },
+    "51": {
+      "status": "available",
+      "code": "32",
+      "name": "강원특별자치도",
+      "bounds": [
+        127.09503732,
+        37.02783249,
+        129.36567161,
+        38.6137093
+      ]
+    },
+    "52": {
+      "status": "available",
+      "code": "35",
+      "name": "전북특별자치도",
+      "bounds": [
+        125.96660397,
+        35.2992326,
+        127.91136738,
+        36.15657044
+      ]
+    }
+  },
+  "regions": {
+    "11:110": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "110",
+      "districtName": "종로구",
+      "status": "available",
+      "codes": [
+        "11010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.94889796,
+        37.56582035,
+        127.02336165,
+        37.63237477
+      ]
+    },
+    "11:140": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "140",
+      "districtName": "중구",
+      "status": "available",
+      "codes": [
+        "11020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.96161143,
+        37.54385713,
+        127.02678112,
+        37.5719111
+      ]
+    },
+    "11:170": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "170",
+      "districtName": "용산구",
+      "status": "available",
+      "codes": [
+        "11030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.94459,
+        37.50653629,
+        127.01753063,
+        37.55566256
+      ]
+    },
+    "11:200": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "200",
+      "districtName": "성동구",
+      "status": "available",
+      "codes": [
+        "11040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.00815255,
+        37.52833097,
+        127.07373576,
+        37.57302019
+      ]
+    },
+    "11:215": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "215",
+      "districtName": "광진구",
+      "status": "available",
+      "codes": [
+        "11050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.05622154,
+        37.52251399,
+        127.11522556,
+        37.57376349
+      ]
+    },
+    "11:230": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "230",
+      "districtName": "동대문구",
+      "status": "available",
+      "codes": [
+        "11060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.0231385,
+        37.55996035,
+        127.07820165,
+        37.60901876
+      ]
+    },
+    "11:260": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "260",
+      "districtName": "중랑구",
+      "status": "available",
+      "codes": [
+        "11070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.06943269,
+        37.5696978,
+        127.11847693,
+        37.62105458
+      ]
+    },
+    "11:290": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "290",
+      "districtName": "성북구",
+      "status": "available",
+      "codes": [
+        "11080"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.97468086,
+        37.57756673,
+        127.07170948,
+        37.63645689
+      ]
+    },
+    "11:305": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "305",
+      "districtName": "강북구",
+      "status": "available",
+      "codes": [
+        "11090"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.97965839,
+        37.60897346,
+        127.04973988,
+        37.68508878
+      ]
+    },
+    "11:320": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "320",
+      "districtName": "도봉구",
+      "status": "available",
+      "codes": [
+        "11100"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.00762105,
+        37.6305722,
+        127.05587538,
+        37.70145527
+      ]
+    },
+    "11:350": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "350",
+      "districtName": "노원구",
+      "status": "available",
+      "codes": [
+        "11110"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.0416579,
+        37.61426899,
+        127.11248319,
+        37.69613746
+      ]
+    },
+    "11:380": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "380",
+      "districtName": "은평구",
+      "status": "available",
+      "codes": [
+        "11120"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.88205583,
+        37.57600701,
+        126.96332879,
+        37.65921539
+      ]
+    },
+    "11:410": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "410",
+      "districtName": "서대문구",
+      "status": "available",
+      "codes": [
+        "11130"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.90182976,
+        37.55509883,
+        126.96946311,
+        37.61062264
+      ]
+    },
+    "11:440": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "440",
+      "districtName": "마포구",
+      "status": "available",
+      "codes": [
+        "11140"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.85362855,
+        37.53378573,
+        126.96388561,
+        37.59079243
+      ]
+    },
+    "11:470": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "470",
+      "districtName": "양천구",
+      "status": "available",
+      "codes": [
+        "11150"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.8215906,
+        37.5028165,
+        126.89064844,
+        37.55115035
+      ]
+    },
+    "11:500": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "500",
+      "districtName": "강서구",
+      "status": "available",
+      "codes": [
+        "11160"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.76455922,
+        37.52648146,
+        126.88066399,
+        37.60503275
+      ]
+    },
+    "11:530": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "530",
+      "districtName": "구로구",
+      "status": "available",
+      "codes": [
+        "11170"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.81301232,
+        37.47318779,
+        126.90319678,
+        37.51796082
+      ]
+    },
+    "11:545": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "545",
+      "districtName": "금천구",
+      "status": "available",
+      "codes": [
+        "11180"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.87176263,
+        37.43351782,
+        126.92839869,
+        37.48667233
+      ]
+    },
+    "11:560": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "560",
+      "districtName": "영등포구",
+      "status": "available",
+      "codes": [
+        "11190"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.87803261,
+        37.48500151,
+        126.94988655,
+        37.55626953
+      ]
+    },
+    "11:590": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "590",
+      "districtName": "동작구",
+      "status": "available",
+      "codes": [
+        "11200"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.90319891,
+        37.47537649,
+        126.98538719,
+        37.51761449
+      ]
+    },
+    "11:620": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "620",
+      "districtName": "관악구",
+      "status": "available",
+      "codes": [
+        "11210"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.89894342,
+        37.43571237,
+        126.98863556,
+        37.49501505
+      ]
+    },
+    "11:650": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "650",
+      "districtName": "서초구",
+      "status": "available",
+      "codes": [
+        "11220"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.97984938,
+        37.42833977,
+        127.09565655,
+        37.52559552
+      ]
+    },
+    "11:680": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "680",
+      "districtName": "강남구",
+      "status": "available",
+      "codes": [
+        "11230"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.00857748,
+        37.45621878,
+        127.12420688,
+        37.53582316
+      ]
+    },
+    "11:710": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "710",
+      "districtName": "송파구",
+      "status": "available",
+      "codes": [
+        "11240"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.06747911,
+        37.46652048,
+        127.16139031,
+        37.54317131
+      ]
+    },
+    "11:740": {
+      "provinceCode": "11",
+      "provinceName": "서울특별시",
+      "districtCode": "740",
+      "districtName": "강동구",
+      "status": "available",
+      "codes": [
+        "11250"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.10923972,
+        37.51683495,
+        127.18379493,
+        37.58120033
+      ]
+    },
+    "12:110": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "110",
+      "districtName": "목포시",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:130": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "130",
+      "districtName": "여수시",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:150": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "150",
+      "districtName": "순천시",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:170": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "170",
+      "districtName": "나주시",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:190": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "190",
+      "districtName": "광양시",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:210": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "210",
+      "districtName": "동구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:240": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "240",
+      "districtName": "서구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:270": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "270",
+      "districtName": "남구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:300": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "300",
+      "districtName": "북구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:330": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "330",
+      "districtName": "광산구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:710": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "710",
+      "districtName": "담양군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:720": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "720",
+      "districtName": "곡성군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:730": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "730",
+      "districtName": "구례군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:740": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "740",
+      "districtName": "고흥군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:750": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "750",
+      "districtName": "보성군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:760": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "760",
+      "districtName": "화순군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:770": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "770",
+      "districtName": "장흥군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:780": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "780",
+      "districtName": "강진군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:790": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "790",
+      "districtName": "해남군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:800": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "800",
+      "districtName": "영암군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:810": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "810",
+      "districtName": "무안군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:820": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "820",
+      "districtName": "함평군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:830": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "830",
+      "districtName": "영광군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:840": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "840",
+      "districtName": "장성군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:850": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "850",
+      "districtName": "완도군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:860": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "860",
+      "districtName": "진도군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "12:870": {
+      "provinceCode": "12",
+      "provinceName": "전남광주통합특별시",
+      "districtCode": "870",
+      "districtName": "신안군",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "26:110": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "110",
+      "districtName": "중구",
+      "status": "available",
+      "codes": [
+        "21010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.0211755,
+        35.095397,
+        129.04563606,
+        35.11655903
+      ]
+    },
+    "26:140": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "140",
+      "districtName": "서구",
+      "status": "available",
+      "codes": [
+        "21020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.9960325,
+        35.04777597,
+        129.03132847,
+        35.14099189
+      ]
+    },
+    "26:170": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "170",
+      "districtName": "동구",
+      "status": "available",
+      "codes": [
+        "21030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.02430317,
+        35.10760822,
+        129.06615709,
+        35.14609149
+      ]
+    },
+    "26:200": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "200",
+      "districtName": "영도구",
+      "status": "available",
+      "codes": [
+        "21040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.03110551,
+        35.03668887,
+        129.10524701,
+        35.10443113
+      ]
+    },
+    "26:230": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "230",
+      "districtName": "부산진구",
+      "status": "available",
+      "codes": [
+        "21050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.0105012,
+        35.1355103,
+        129.08284398,
+        35.20008003
+      ]
+    },
+    "26:260": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "260",
+      "districtName": "동래구",
+      "status": "available",
+      "codes": [
+        "21060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.04412629,
+        35.18365382,
+        129.11637321,
+        35.2263382
+      ]
+    },
+    "26:290": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "290",
+      "districtName": "남구",
+      "status": "available",
+      "codes": [
+        "21070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.06301004,
+        35.08441347,
+        129.12883547,
+        35.16131322
+      ]
+    },
+    "26:320": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "320",
+      "districtName": "북구",
+      "status": "available",
+      "codes": [
+        "21080"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.98773679,
+        35.18747005,
+        129.06177425,
+        35.27687803
+      ]
+    },
+    "26:350": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "350",
+      "districtName": "해운대구",
+      "status": "available",
+      "codes": [
+        "21090"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.11024111,
+        35.15149743,
+        129.20841909,
+        35.25094153
+      ]
+    },
+    "26:380": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "380",
+      "districtName": "사하구",
+      "status": "available",
+      "codes": [
+        "21100"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.92452816,
+        34.88436066,
+        129.0143667,
+        35.13683255
+      ]
+    },
+    "26:410": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "410",
+      "districtName": "금정구",
+      "status": "available",
+      "codes": [
+        "21110"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.03656542,
+        35.20956146,
+        129.14459911,
+        35.30645736
+      ]
+    },
+    "26:440": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "440",
+      "districtName": "강서구",
+      "status": "available",
+      "codes": [
+        "21120"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.76137683,
+        34.98861948,
+        128.99822439,
+        35.23608056
+      ]
+    },
+    "26:470": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "470",
+      "districtName": "연제구",
+      "status": "available",
+      "codes": [
+        "21130"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.04732531,
+        35.15817411,
+        129.11509271,
+        35.19939653
+      ]
+    },
+    "26:500": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "500",
+      "districtName": "수영구",
+      "status": "available",
+      "codes": [
+        "21140"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.09157568,
+        35.13576249,
+        129.13530322,
+        35.18625725
+      ]
+    },
+    "26:530": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "530",
+      "districtName": "사상구",
+      "status": "available",
+      "codes": [
+        "21150"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.95746211,
+        35.11690488,
+        129.02106842,
+        35.20146091
+      ]
+    },
+    "26:710": {
+      "provinceCode": "26",
+      "provinceName": "부산광역시",
+      "districtCode": "710",
+      "districtName": "기장군",
+      "status": "available",
+      "codes": [
+        "21510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.10856198,
+        35.17905079,
+        129.3056419,
+        35.38903745
+      ]
+    },
+    "27:110": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "110",
+      "districtName": "중구",
+      "status": "available",
+      "codes": [
+        "22010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.57377272,
+        35.85490598,
+        128.61466446,
+        35.87960138
+      ]
+    },
+    "27:140": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "140",
+      "districtName": "동구",
+      "status": "available",
+      "codes": [
+        "22020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.60337806,
+        35.85116069,
+        128.76269267,
+        36.01616509
+      ]
+    },
+    "27:170": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "170",
+      "districtName": "서구",
+      "status": "available",
+      "codes": [
+        "22030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.51634665,
+        35.85430406,
+        128.58184489,
+        35.89721991
+      ]
+    },
+    "27:200": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "200",
+      "districtName": "남구",
+      "status": "available",
+      "codes": [
+        "22040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.55549997,
+        35.80719302,
+        128.60882819,
+        35.86006671
+      ]
+    },
+    "27:230": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "230",
+      "districtName": "북구",
+      "status": "available",
+      "codes": [
+        "22050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.50463241,
+        35.87387346,
+        128.63259435,
+        35.98782278
+      ]
+    },
+    "27:260": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "260",
+      "districtName": "수성구",
+      "status": "available",
+      "codes": [
+        "22060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.59148517,
+        35.7901313,
+        128.72687157,
+        35.87848657
+      ]
+    },
+    "27:290": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "290",
+      "districtName": "달서구",
+      "status": "available",
+      "codes": [
+        "22070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.46869458,
+        35.77294235,
+        128.58780227,
+        35.86956776
+      ]
+    },
+    "27:710": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "710",
+      "districtName": "달성군",
+      "status": "available",
+      "codes": [
+        "22510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.35147572,
+        35.60685954,
+        128.69548563,
+        35.94314944
+      ]
+    },
+    "27:720": {
+      "provinceCode": "27",
+      "provinceName": "대구광역시",
+      "districtCode": "720",
+      "districtName": "군위군",
+      "status": "available",
+      "codes": [
+        "22520"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.41043911,
+        36.00730678,
+        128.90019666,
+        36.32723645
+      ]
+    },
+    "28:125": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "125",
+      "districtName": "제물포구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "28:155": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "155",
+      "districtName": "영종구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "28:177": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "177",
+      "districtName": "미추홀구",
+      "status": "available",
+      "codes": [
+        "23090"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.628872,
+        37.42994969,
+        126.70294069,
+        37.48403268
+      ]
+    },
+    "28:185": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "185",
+      "districtName": "연수구",
+      "status": "available",
+      "codes": [
+        "23040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.58064154,
+        37.3373039,
+        126.70662915,
+        37.43938454
+      ]
+    },
+    "28:200": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "200",
+      "districtName": "남동구",
+      "status": "available",
+      "codes": [
+        "23050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.66685188,
+        37.38111654,
+        126.78043223,
+        37.47993673
+      ]
+    },
+    "28:237": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "237",
+      "districtName": "부평구",
+      "status": "available",
+      "codes": [
+        "23060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.68327234,
+        37.46444242,
+        126.76775281,
+        37.52407917
+      ]
+    },
+    "28:245": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "245",
+      "districtName": "계양구",
+      "status": "available",
+      "codes": [
+        "23070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.68105692,
+        37.52355601,
+        126.79369544,
+        37.59370268
+      ]
+    },
+    "28:275": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "275",
+      "districtName": "서해구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "28:290": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "290",
+      "districtName": "검단구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "28:710": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "710",
+      "districtName": "강화군",
+      "status": "available",
+      "codes": [
+        "23510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        125.97159844,
+        37.57987142,
+        126.54395372,
+        37.83217901
+      ]
+    },
+    "28:720": {
+      "provinceCode": "28",
+      "provinceName": "인천광역시",
+      "districtCode": "720",
+      "districtName": "옹진군",
+      "status": "available",
+      "codes": [
+        "23520"
+      ],
+      "aggregate": false,
+      "bounds": [
+        124.60971768,
+        36.92695945,
+        126.55126227,
+        37.98424189
+      ]
+    },
+    "30:110": {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "110",
+      "districtName": "동구",
+      "status": "available",
+      "codes": [
+        "25010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.41366363,
+        36.19475334,
+        127.55967899,
+        36.43980279
+      ]
+    },
+    "30:140": {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "140",
+      "districtName": "중구",
+      "status": "available",
+      "codes": [
+        "25020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.36747559,
+        36.20712697,
+        127.45905875,
+        36.34962869
+      ]
+    },
+    "30:170": {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "170",
+      "districtName": "서구",
+      "status": "available",
+      "codes": [
+        "25030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.2791451,
+        36.18310008,
+        127.40461215,
+        36.3720094
+      ]
+    },
+    "30:200": {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "200",
+      "districtName": "유성구",
+      "status": "available",
+      "codes": [
+        "25040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.246653,
+        36.26416338,
+        127.42026243,
+        36.50023063
+      ]
+    },
+    "30:230": {
+      "provinceCode": "30",
+      "provinceName": "대전광역시",
+      "districtCode": "230",
+      "districtName": "대덕구",
+      "status": "available",
+      "codes": [
+        "25050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.38930253,
+        36.34093151,
+        127.50447192,
+        36.47717881
+      ]
+    },
+    "31:110": {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "110",
+      "districtName": "중구",
+      "status": "available",
+      "codes": [
+        "26010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.25259989,
+        35.54491411,
+        129.35368011,
+        35.59911204
+      ]
+    },
+    "31:140": {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "140",
+      "districtName": "남구",
+      "status": "available",
+      "codes": [
+        "26020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.23653927,
+        35.45060081,
+        129.39124155,
+        35.5569057
+      ]
+    },
+    "31:170": {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "170",
+      "districtName": "동구",
+      "status": "available",
+      "codes": [
+        "26030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.38762907,
+        35.46646126,
+        129.45951448,
+        35.5716021
+      ]
+    },
+    "31:200": {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "200",
+      "districtName": "북구",
+      "status": "available",
+      "codes": [
+        "26040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.28939392,
+        35.51600755,
+        129.4648063,
+        35.67938023
+      ]
+    },
+    "31:710": {
+      "provinceCode": "31",
+      "provinceName": "울산광역시",
+      "districtCode": "710",
+      "districtName": "울주군",
+      "status": "available",
+      "codes": [
+        "26510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.9711902,
+        35.3280768,
+        129.38118024,
+        35.72491979
+      ]
+    },
+    "36110:36110": {
+      "provinceCode": "36110",
+      "provinceName": "세종특별자치시",
+      "districtCode": "36110",
+      "districtName": "세종특별자치시",
+      "status": "available",
+      "codes": [
+        "29010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.12776573,
+        36.40684275,
+        127.41080358,
+        36.73382187
+      ]
+    },
+    "41:110": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "110",
+      "districtName": "수원시",
+      "status": "available",
+      "codes": [
+        "31011",
+        "31012",
+        "31013",
+        "31014"
+      ],
+      "aggregate": true,
+      "bounds": [
+        126.92706084,
+        37.22454425,
+        127.08962893,
+        37.3510449
+      ]
+    },
+    "41:111": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "111",
+      "districtName": "수원시 장안구",
+      "status": "available",
+      "codes": [
+        "31011"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.96080547,
+        37.2855121,
+        127.03977387,
+        37.3510449
+      ]
+    },
+    "41:113": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "113",
+      "districtName": "수원시 권선구",
+      "status": "available",
+      "codes": [
+        "31012"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.92706084,
+        37.22454425,
+        127.04217135,
+        37.30333879
+      ]
+    },
+    "41:115": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "115",
+      "districtName": "수원시 팔달구",
+      "status": "available",
+      "codes": [
+        "31013"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.97733753,
+        37.25652098,
+        127.04563796,
+        37.2934253
+      ]
+    },
+    "41:117": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "117",
+      "districtName": "수원시 영통구",
+      "status": "available",
+      "codes": [
+        "31014"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.03239057,
+        37.23127641,
+        127.08962893,
+        37.32094619
+      ]
+    },
+    "41:130": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "130",
+      "districtName": "성남시",
+      "status": "available",
+      "codes": [
+        "31021",
+        "31022",
+        "31023"
+      ],
+      "aggregate": true,
+      "bounds": [
+        127.02770624,
+        37.33337502,
+        127.19581856,
+        37.4748079
+      ]
+    },
+    "41:131": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "131",
+      "districtName": "성남시 수정구",
+      "status": "available",
+      "codes": [
+        "31021"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.04178289,
+        37.39706881,
+        127.17646957,
+        37.47462646
+      ]
+    },
+    "41:133": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "133",
+      "districtName": "성남시 중원구",
+      "status": "available",
+      "codes": [
+        "31022"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.1171091,
+        37.40522439,
+        127.19581856,
+        37.4748079
+      ]
+    },
+    "41:135": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "135",
+      "districtName": "성남시 분당구",
+      "status": "available",
+      "codes": [
+        "31023"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.02770624,
+        37.33337502,
+        127.1772461,
+        37.41724938
+      ]
+    },
+    "41:150": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "150",
+      "districtName": "의정부시",
+      "status": "available",
+      "codes": [
+        "31030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.00169413,
+        37.68581485,
+        127.14725628,
+        37.7803404
+      ]
+    },
+    "41:170": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "170",
+      "districtName": "안양시",
+      "status": "available",
+      "codes": [
+        "31041",
+        "31042"
+      ],
+      "aggregate": true,
+      "bounds": [
+        126.87024227,
+        37.35877293,
+        126.98285493,
+        37.45021248
+      ]
+    },
+    "41:171": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "171",
+      "districtName": "안양시 만안구",
+      "status": "available",
+      "codes": [
+        "31041"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.87024227,
+        37.35877293,
+        126.94903205,
+        37.45021248
+      ]
+    },
+    "41:173": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "173",
+      "districtName": "안양시 동안구",
+      "status": "available",
+      "codes": [
+        "31042"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.92539879,
+        37.36163544,
+        126.98285493,
+        37.44078694
+      ]
+    },
+    "41:190": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "190",
+      "districtName": "부천시",
+      "status": "available",
+      "codes": [
+        "31051",
+        "31052",
+        "31053"
+      ],
+      "aggregate": true,
+      "bounds": [
+        126.74147097,
+        37.45837522,
+        126.83360058,
+        37.55424238
+      ]
+    },
+    "41:192": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "192",
+      "districtName": "부천시 원미구",
+      "status": "available",
+      "codes": [
+        "31051"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.74147097,
+        37.4822578,
+        126.8225504,
+        37.52234204
+      ]
+    },
+    "41:194": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "194",
+      "districtName": "부천시 소사구",
+      "status": "available",
+      "codes": [
+        "31052"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.74235366,
+        37.45837522,
+        126.83360058,
+        37.49071711
+      ]
+    },
+    "41:196": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "196",
+      "districtName": "부천시 오정구",
+      "status": "available",
+      "codes": [
+        "31053"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.76010645,
+        37.50581595,
+        126.82842769,
+        37.55424238
+      ]
+    },
+    "41:210": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "210",
+      "districtName": "광명시",
+      "status": "available",
+      "codes": [
+        "31060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.82610123,
+        37.40152437,
+        126.89992592,
+        37.49510789
+      ]
+    },
+    "41:220": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "220",
+      "districtName": "평택시",
+      "status": "available",
+      "codes": [
+        "31070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.77886166,
+        36.90159561,
+        127.15399236,
+        37.14459561
+      ]
+    },
+    "41:250": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "250",
+      "districtName": "동두천시",
+      "status": "available",
+      "codes": [
+        "31080"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.00622059,
+        37.86038319,
+        127.1553708,
+        37.98104926
+      ]
+    },
+    "41:270": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "270",
+      "districtName": "안산시",
+      "status": "available",
+      "codes": [
+        "31091",
+        "31092"
+      ],
+      "aggregate": true,
+      "bounds": [
+        126.37899165,
+        37.08087054,
+        126.93957261,
+        37.37744472
+      ]
+    },
+    "41:271": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "271",
+      "districtName": "안산시 상록구",
+      "status": "available",
+      "codes": [
+        "31091"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.81426304,
+        37.26748499,
+        126.93957261,
+        37.37744472
+      ]
+    },
+    "41:273": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "273",
+      "districtName": "안산시 단원구",
+      "status": "available",
+      "codes": [
+        "31092"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.37899165,
+        37.08087054,
+        126.84314163,
+        37.36590651
+      ]
+    },
+    "41:280": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "280",
+      "districtName": "고양시",
+      "status": "available",
+      "codes": [
+        "31101",
+        "31103",
+        "31104"
+      ],
+      "aggregate": true,
+      "bounds": [
+        126.67035609,
+        37.57179055,
+        126.99435736,
+        37.74848501
+      ]
+    },
+    "41:281": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "281",
+      "districtName": "고양시 덕양구",
+      "status": "available",
+      "codes": [
+        "31101"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.75951925,
+        37.57179055,
+        126.99435736,
+        37.74848501
+      ]
+    },
+    "41:285": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "285",
+      "districtName": "고양시 일산동구",
+      "status": "available",
+      "codes": [
+        "31103"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.73247007,
+        37.62562301,
+        126.85607045,
+        37.73704416
+      ]
+    },
+    "41:287": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "287",
+      "districtName": "고양시 일산서구",
+      "status": "available",
+      "codes": [
+        "31104"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.67035609,
+        37.64751844,
+        126.78176213,
+        37.70728399
+      ]
+    },
+    "41:290": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "290",
+      "districtName": "과천시",
+      "status": "available",
+      "codes": [
+        "31110"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.96093109,
+        37.40068513,
+        127.04736924,
+        37.46772039
+      ]
+    },
+    "41:310": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "310",
+      "districtName": "구리시",
+      "status": "available",
+      "codes": [
+        "31120"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.10088787,
+        37.55642159,
+        127.17059803,
+        37.64600422
+      ]
+    },
+    "41:360": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "360",
+      "districtName": "남양주시",
+      "status": "available",
+      "codes": [
+        "31130"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.08023289,
+        37.5055205,
+        127.38098617,
+        37.78052751
+      ]
+    },
+    "41:370": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "370",
+      "districtName": "오산시",
+      "status": "available",
+      "codes": [
+        "31140"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.99498155,
+        37.12532349,
+        127.10303836,
+        37.20065488
+      ]
+    },
+    "41:390": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "390",
+      "districtName": "시흥시",
+      "status": "available",
+      "codes": [
+        "31150"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.61440381,
+        37.30828408,
+        126.8816444,
+        37.47239283
+      ]
+    },
+    "41:410": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "410",
+      "districtName": "군포시",
+      "status": "available",
+      "codes": [
+        "31160"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.87277593,
+        37.30505436,
+        126.96236852,
+        37.37865644
+      ]
+    },
+    "41:430": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "430",
+      "districtName": "의왕시",
+      "status": "available",
+      "codes": [
+        "31170"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.92931266,
+        37.30033961,
+        127.04684285,
+        37.41553873
+      ]
+    },
+    "41:450": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "450",
+      "districtName": "하남시",
+      "status": "available",
+      "codes": [
+        "31180"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.13993486,
+        37.46877238,
+        127.28570112,
+        37.59171739
+      ]
+    },
+    "41:460": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "460",
+      "districtName": "용인시",
+      "status": "available",
+      "codes": [
+        "31191",
+        "31192",
+        "31193"
+      ],
+      "aggregate": true,
+      "bounds": [
+        127.01648574,
+        37.08363592,
+        127.42775438,
+        37.37230402
+      ]
+    },
+    "41:461": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "461",
+      "districtName": "용인시 처인구",
+      "status": "available",
+      "codes": [
+        "31191"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.10872803,
+        37.08363592,
+        127.42775438,
+        37.36044193
+      ]
+    },
+    "41:463": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "463",
+      "districtName": "용인시 기흥구",
+      "status": "available",
+      "codes": [
+        "31192"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.06402384,
+        37.21560106,
+        127.17712794,
+        37.32471058
+      ]
+    },
+    "41:465": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "465",
+      "districtName": "용인시 수지구",
+      "status": "available",
+      "codes": [
+        "31193"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.01648574,
+        37.29323106,
+        127.14244448,
+        37.37230402
+      ]
+    },
+    "41:480": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "480",
+      "districtName": "파주시",
+      "status": "available",
+      "codes": [
+        "31200"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.65932325,
+        37.68860572,
+        127.01710714,
+        38.01059074
+      ]
+    },
+    "41:500": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "500",
+      "districtName": "이천시",
+      "status": "available",
+      "codes": [
+        "31210"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.33003109,
+        37.04126453,
+        127.63776773,
+        37.36169764
+      ]
+    },
+    "41:550": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "550",
+      "districtName": "안성시",
+      "status": "available",
+      "codes": [
+        "31220"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.10201597,
+        36.89377888,
+        127.51659146,
+        37.15588899
+      ]
+    },
+    "41:570": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "570",
+      "districtName": "김포시",
+      "status": "available",
+      "codes": [
+        "31230"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.51704958,
+        37.57960001,
+        126.8025814,
+        37.79009816
+      ]
+    },
+    "41:590": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "590",
+      "districtName": "화성시",
+      "status": "available",
+      "codes": [
+        "31240"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.5292345,
+        37.00911141,
+        127.16136728,
+        37.3027673
+      ]
+    },
+    "41:591": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "591",
+      "districtName": "화성시 만세구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "41:593": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "593",
+      "districtName": "화성시 효행구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "41:595": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "595",
+      "districtName": "화성시 병점구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "41:597": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "597",
+      "districtName": "화성시 동탄구",
+      "status": "changed",
+      "codes": [],
+      "aggregate": false
+    },
+    "41:610": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "610",
+      "districtName": "광주시",
+      "status": "available",
+      "codes": [
+        "31250"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.13283962,
+        37.26501794,
+        127.44663778,
+        37.53586239
+      ]
+    },
+    "41:630": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "630",
+      "districtName": "양주시",
+      "status": "available",
+      "codes": [
+        "31260"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.90195444,
+        37.66868534,
+        127.12219256,
+        37.94208451
+      ]
+    },
+    "41:650": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "650",
+      "districtName": "포천시",
+      "status": "available",
+      "codes": [
+        "31270"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.08979616,
+        37.74692924,
+        127.44707595,
+        38.18829609
+      ]
+    },
+    "41:670": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "670",
+      "districtName": "여주시",
+      "status": "available",
+      "codes": [
+        "31280"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.39821945,
+        37.13505554,
+        127.76841172,
+        37.44042622
+      ]
+    },
+    "41:800": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "800",
+      "districtName": "연천군",
+      "status": "available",
+      "codes": [
+        "31550"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.78577038,
+        37.92823007,
+        127.19215586,
+        38.28226055
+      ]
+    },
+    "41:820": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "820",
+      "districtName": "가평군",
+      "status": "available",
+      "codes": [
+        "31570"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.26691398,
+        37.57114667,
+        127.61705255,
+        38.05121365
+      ]
+    },
+    "41:830": {
+      "provinceCode": "41",
+      "provinceName": "경기도",
+      "districtCode": "830",
+      "districtName": "양평군",
+      "status": "available",
+      "codes": [
+        "31580"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.30592274,
+        37.36701285,
+        127.84811314,
+        37.67079247
+      ]
+    },
+    "43:110": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "110",
+      "districtName": "청주시",
+      "status": "available",
+      "codes": [
+        "33041",
+        "33042",
+        "33043",
+        "33044"
+      ],
+      "aggregate": true,
+      "bounds": [
+        127.27565046,
+        36.40820616,
+        127.76978232,
+        36.78026341
+      ]
+    },
+    "43:111": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "111",
+      "districtName": "청주시 상당구",
+      "status": "available",
+      "codes": [
+        "33041"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.44529278,
+        36.40820616,
+        127.76978232,
+        36.72999315
+      ]
+    },
+    "43:112": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "112",
+      "districtName": "청주시 서원구",
+      "status": "available",
+      "codes": [
+        "33042"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.37204435,
+        36.44919472,
+        127.49962482,
+        36.64658251
+      ]
+    },
+    "43:113": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "113",
+      "districtName": "청주시 흥덕구",
+      "status": "available",
+      "codes": [
+        "33043"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.27565046,
+        36.56168453,
+        127.48185538,
+        36.72490812
+      ]
+    },
+    "43:114": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "114",
+      "districtName": "청주시 청원구",
+      "status": "available",
+      "codes": [
+        "33044"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.31801274,
+        36.64483603,
+        127.61891451,
+        36.78026341
+      ]
+    },
+    "43:130": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "130",
+      "districtName": "충주시",
+      "status": "available",
+      "codes": [
+        "33020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.65085109,
+        36.79663753,
+        128.13398334,
+        37.21486082
+      ]
+    },
+    "43:150": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "150",
+      "districtName": "제천시",
+      "status": "available",
+      "codes": [
+        "33030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.92158335,
+        36.81169523,
+        128.33339659,
+        37.25833428
+      ]
+    },
+    "43:720": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "720",
+      "districtName": "보은군",
+      "status": "available",
+      "codes": [
+        "33520"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.51451272,
+        36.36914688,
+        127.90614077,
+        36.61376746
+      ]
+    },
+    "43:730": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "730",
+      "districtName": "옥천군",
+      "status": "available",
+      "codes": [
+        "33530"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.48604836,
+        36.17070956,
+        127.89126745,
+        36.44528865
+      ]
+    },
+    "43:740": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "740",
+      "districtName": "영동군",
+      "status": "available",
+      "codes": [
+        "33540"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.58943705,
+        36.01220683,
+        128.05814615,
+        36.31663972
+      ]
+    },
+    "43:745": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "745",
+      "districtName": "증평군",
+      "status": "available",
+      "codes": [
+        "33590"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.53732716,
+        36.70128065,
+        127.66450499,
+        36.86007512
+      ]
+    },
+    "43:750": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "750",
+      "districtName": "진천군",
+      "status": "available",
+      "codes": [
+        "33550"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.28782873,
+        36.74872554,
+        127.58511215,
+        37.01200213
+      ]
+    },
+    "43:760": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "760",
+      "districtName": "괴산군",
+      "status": "available",
+      "codes": [
+        "33560"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.6204795,
+        36.60111832,
+        128.0727238,
+        36.94755361
+      ]
+    },
+    "43:770": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "770",
+      "districtName": "음성군",
+      "status": "available",
+      "codes": [
+        "33570"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.44534813,
+        36.83383017,
+        127.79847097,
+        37.15528638
+      ]
+    },
+    "43:800": {
+      "provinceCode": "43",
+      "provinceName": "충청북도",
+      "districtCode": "800",
+      "districtName": "단양군",
+      "status": "available",
+      "codes": [
+        "33580"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.21712494,
+        36.80207603,
+        128.6520965,
+        37.15820618
+      ]
+    },
+    "44:130": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "130",
+      "districtName": "천안시",
+      "status": "available",
+      "codes": [
+        "34011",
+        "34012"
+      ],
+      "aggregate": true,
+      "bounds": [
+        127.00836388,
+        36.61974955,
+        127.42031722,
+        36.97307404
+      ]
+    },
+    "44:131": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "131",
+      "districtName": "천안시 동남구",
+      "status": "available",
+      "codes": [
+        "34011"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.00836388,
+        36.61974955,
+        127.42031722,
+        36.89219698
+      ]
+    },
+    "44:133": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "133",
+      "districtName": "천안시 서북구",
+      "status": "available",
+      "codes": [
+        "34012"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.07408249,
+        36.78492694,
+        127.29058804,
+        36.97307404
+      ]
+    },
+    "44:150": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "150",
+      "districtName": "공주시",
+      "status": "available",
+      "codes": [
+        "34020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.88357274,
+        36.27714893,
+        127.2821433,
+        36.67924702
+      ]
+    },
+    "44:180": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "180",
+      "districtName": "보령시",
+      "status": "available",
+      "codes": [
+        "34030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        125.95533788,
+        36.17188289,
+        126.73871499,
+        36.52479129
+      ]
+    },
+    "44:200": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "200",
+      "districtName": "아산시",
+      "status": "available",
+      "codes": [
+        "34040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.82909387,
+        36.64861173,
+        127.11970689,
+        36.94224122
+      ]
+    },
+    "44:210": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "210",
+      "districtName": "서산시",
+      "status": "available",
+      "codes": [
+        "34050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.31562248,
+        36.60033758,
+        126.65362105,
+        37.02666668
+      ]
+    },
+    "44:230": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "230",
+      "districtName": "논산시",
+      "status": "available",
+      "codes": [
+        "34060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.98365109,
+        36.06303331,
+        127.33356851,
+        36.34028508
+      ]
+    },
+    "44:250": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "250",
+      "districtName": "계룡시",
+      "status": "available",
+      "codes": [
+        "34070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.19634611,
+        36.23176054,
+        127.29193522,
+        36.35024882
+      ]
+    },
+    "44:270": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "270",
+      "districtName": "당진시",
+      "status": "available",
+      "codes": [
+        "34080"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.41030026,
+        36.74926208,
+        126.85906143,
+        37.08001239
+      ]
+    },
+    "44:710": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "710",
+      "districtName": "금산군",
+      "status": "available",
+      "codes": [
+        "34510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.3180148,
+        35.97826412,
+        127.63974826,
+        36.27217852
+      ]
+    },
+    "44:760": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "760",
+      "districtName": "부여군",
+      "status": "available",
+      "codes": [
+        "34530"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.67845227,
+        36.07122365,
+        127.07030787,
+        36.38704225
+      ]
+    },
+    "44:770": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "770",
+      "districtName": "서천군",
+      "status": "available",
+      "codes": [
+        "34540"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.48420973,
+        35.98692154,
+        126.87108627,
+        36.19214827
+      ]
+    },
+    "44:790": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "790",
+      "districtName": "청양군",
+      "status": "available",
+      "codes": [
+        "34550"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.67192968,
+        36.31449818,
+        127.02824143,
+        36.57176593
+      ]
+    },
+    "44:800": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "800",
+      "districtName": "홍성군",
+      "status": "available",
+      "codes": [
+        "34560"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.42575637,
+        36.45973365,
+        126.77319131,
+        36.67300939
+      ]
+    },
+    "44:810": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "810",
+      "districtName": "예산군",
+      "status": "available",
+      "codes": [
+        "34570"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.58543496,
+        36.52666329,
+        126.97234337,
+        36.80372137
+      ]
+    },
+    "44:825": {
+      "provinceCode": "44",
+      "provinceName": "충청남도",
+      "districtCode": "825",
+      "districtName": "태안군",
+      "status": "available",
+      "codes": [
+        "34580"
+      ],
+      "aggregate": false,
+      "bounds": [
+        125.54091411,
+        36.39479998,
+        126.43632901,
+        36.97934423
+      ]
+    },
+    "47:110": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "110",
+      "districtName": "포항시",
+      "status": "available",
+      "codes": [
+        "37011",
+        "37012"
+      ],
+      "aggregate": true,
+      "bounds": [
+        128.98949118,
+        35.83833897,
+        129.5851304,
+        36.33336524
+      ]
+    },
+    "47:111": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "111",
+      "districtName": "포항시 남구",
+      "status": "available",
+      "codes": [
+        "37011"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.27681618,
+        35.83833897,
+        129.5851304,
+        36.09129121
+      ]
+    },
+    "47:113": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "113",
+      "districtName": "포항시 북구",
+      "status": "available",
+      "codes": [
+        "37012"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.98949118,
+        36.01415181,
+        129.46433418,
+        36.33336524
+      ]
+    },
+    "47:130": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "130",
+      "districtName": "경주시",
+      "status": "available",
+      "codes": [
+        "37020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.97072677,
+        35.64035589,
+        129.52061523,
+        36.07969716
+      ]
+    },
+    "47:150": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "150",
+      "districtName": "김천시",
+      "status": "available",
+      "codes": [
+        "37030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.87527101,
+        35.82893402,
+        128.30123445,
+        36.25805083
+      ]
+    },
+    "47:170": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "170",
+      "districtName": "안동시",
+      "status": "available",
+      "codes": [
+        "37040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.42848889,
+        36.29572351,
+        129.00159841,
+        36.82316259
+      ]
+    },
+    "47:190": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "190",
+      "districtName": "구미시",
+      "status": "available",
+      "codes": [
+        "37050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.13277989,
+        36.06058117,
+        128.56400289,
+        36.36246684
+      ]
+    },
+    "47:210": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "210",
+      "districtName": "영주시",
+      "status": "available",
+      "codes": [
+        "37060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.42396975,
+        36.69537033,
+        128.74556932,
+        37.06571436
+      ]
+    },
+    "47:230": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "230",
+      "districtName": "영천시",
+      "status": "available",
+      "codes": [
+        "37070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.69415943,
+        35.83008981,
+        129.15132697,
+        36.18459344
+      ]
+    },
+    "47:250": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "250",
+      "districtName": "상주시",
+      "status": "available",
+      "codes": [
+        "37080"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.79615213,
+        36.23716356,
+        128.33903709,
+        36.65675379
+      ]
+    },
+    "47:280": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "280",
+      "districtName": "문경시",
+      "status": "available",
+      "codes": [
+        "37090"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.8742929,
+        36.51302318,
+        128.37204865,
+        36.87232568
+      ]
+    },
+    "47:290": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "290",
+      "districtName": "경산시",
+      "status": "available",
+      "codes": [
+        "37100"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.68140376,
+        35.7005009,
+        128.97094848,
+        35.99387238
+      ]
+    },
+    "47:730": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "730",
+      "districtName": "의성군",
+      "status": "available",
+      "codes": [
+        "37520"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.2876822,
+        36.19071321,
+        128.89662082,
+        36.53250187
+      ]
+    },
+    "47:750": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "750",
+      "districtName": "청송군",
+      "status": "available",
+      "codes": [
+        "37530"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.84688834,
+        36.16079722,
+        129.25420912,
+        36.59496299
+      ]
+    },
+    "47:760": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "760",
+      "districtName": "영양군",
+      "status": "available",
+      "codes": [
+        "37540"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.98378252,
+        36.48892098,
+        129.31411621,
+        36.88154703
+      ]
+    },
+    "47:770": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "770",
+      "districtName": "영덕군",
+      "status": "available",
+      "codes": [
+        "37550"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.14770808,
+        36.26670943,
+        129.45484094,
+        36.67387161
+      ]
+    },
+    "47:820": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "820",
+      "districtName": "청도군",
+      "status": "available",
+      "codes": [
+        "37560"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.52680845,
+        35.56688816,
+        129.04690108,
+        35.8461992
+      ]
+    },
+    "47:830": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "830",
+      "districtName": "고령군",
+      "status": "available",
+      "codes": [
+        "37570"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.15932848,
+        35.61088094,
+        128.48306896,
+        35.85240618
+      ]
+    },
+    "47:840": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "840",
+      "districtName": "성주군",
+      "status": "available",
+      "codes": [
+        "37580"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.0467528,
+        35.77719223,
+        128.39913479,
+        36.05539538
+      ]
+    },
+    "47:850": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "850",
+      "districtName": "칠곡군",
+      "status": "available",
+      "codes": [
+        "37590"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.28495706,
+        35.88644812,
+        128.6407105,
+        36.12589864
+      ]
+    },
+    "47:900": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "900",
+      "districtName": "예천군",
+      "status": "available",
+      "codes": [
+        "37600"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.26064458,
+        36.4544794,
+        128.61052052,
+        36.84860646
+      ]
+    },
+    "47:920": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "920",
+      "districtName": "봉화군",
+      "status": "available",
+      "codes": [
+        "37610"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.63762839,
+        36.74690389,
+        129.18540949,
+        37.10031306
+      ]
+    },
+    "47:930": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "930",
+      "districtName": "울진군",
+      "status": "available",
+      "codes": [
+        "37620"
+      ],
+      "aggregate": false,
+      "bounds": [
+        129.07665659,
+        36.6435038,
+        129.47863524,
+        37.14682969
+      ]
+    },
+    "47:940": {
+      "provinceCode": "47",
+      "provinceName": "경상북도",
+      "districtCode": "940",
+      "districtName": "울릉군",
+      "status": "available",
+      "codes": [
+        "37630"
+      ],
+      "aggregate": false,
+      "bounds": [
+        130.79168523,
+        37.23794379,
+        131.87278315,
+        37.55130234
+      ]
+    },
+    "48:120": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "120",
+      "districtName": "창원시",
+      "status": "available",
+      "codes": [
+        "38111",
+        "38112",
+        "38113",
+        "38114",
+        "38115"
+      ],
+      "aggregate": true,
+      "bounds": [
+        128.34813639,
+        35.05216013,
+        128.84325817,
+        35.3933776
+      ]
+    },
+    "48:121": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "121",
+      "districtName": "창원시 의창구",
+      "status": "available",
+      "codes": [
+        "38111"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.55929237,
+        35.21710577,
+        128.7641168,
+        35.3933776
+      ]
+    },
+    "48:123": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "123",
+      "districtName": "창원시 성산구",
+      "status": "available",
+      "codes": [
+        "38112"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.58924978,
+        35.15097988,
+        128.75139381,
+        35.24597695
+      ]
+    },
+    "48:125": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "125",
+      "districtName": "창원시 마산합포구",
+      "status": "available",
+      "codes": [
+        "38113"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.34813639,
+        35.05216013,
+        128.6399608,
+        35.22250908
+      ]
+    },
+    "48:127": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "127",
+      "districtName": "창원시 마산회원구",
+      "status": "available",
+      "codes": [
+        "38114"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.47365969,
+        35.17705047,
+        128.62694292,
+        35.27707716
+      ]
+    },
+    "48:129": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "129",
+      "districtName": "창원시 진해구",
+      "status": "available",
+      "codes": [
+        "38115"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.60684973,
+        35.05588424,
+        128.84325817,
+        35.18117331
+      ]
+    },
+    "48:170": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "170",
+      "districtName": "진주시",
+      "status": "available",
+      "codes": [
+        "38030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.88781773,
+        35.05092391,
+        128.36818821,
+        35.35112803
+      ]
+    },
+    "48:220": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "220",
+      "districtName": "통영시",
+      "status": "available",
+      "codes": [
+        "38050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.12458969,
+        34.49746559,
+        128.73509993,
+        34.97638961
+      ]
+    },
+    "48:240": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "240",
+      "districtName": "사천시",
+      "status": "available",
+      "codes": [
+        "38060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.87896446,
+        34.88601598,
+        128.18432278,
+        35.15926343
+      ]
+    },
+    "48:250": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "250",
+      "districtName": "김해시",
+      "status": "available",
+      "codes": [
+        "38070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.6916036,
+        35.15046486,
+        129.01481782,
+        35.39554916
+      ]
+    },
+    "48:270": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "270",
+      "districtName": "밀양시",
+      "status": "available",
+      "codes": [
+        "38080"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.5711984,
+        35.34550695,
+        129.02462286,
+        35.64061874
+      ]
+    },
+    "48:310": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "310",
+      "districtName": "거제시",
+      "status": "available",
+      "codes": [
+        "38090"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.45539532,
+        34.68103005,
+        128.75655508,
+        35.04069117
+      ]
+    },
+    "48:330": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "330",
+      "districtName": "양산시",
+      "status": "available",
+      "codes": [
+        "38100"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.87407283,
+        35.27375861,
+        129.21888798,
+        35.53226753
+      ]
+    },
+    "48:720": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "720",
+      "districtName": "의령군",
+      "status": "available",
+      "codes": [
+        "38510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.08264851,
+        35.25336633,
+        128.4374473,
+        35.5173836
+      ]
+    },
+    "48:730": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "730",
+      "districtName": "함안군",
+      "status": "available",
+      "codes": [
+        "38520"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.27404463,
+        35.16401282,
+        128.59165028,
+        35.40151343
+      ]
+    },
+    "48:740": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "740",
+      "districtName": "창녕군",
+      "status": "available",
+      "codes": [
+        "38530"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.35044353,
+        35.36856733,
+        128.65163931,
+        35.68315512
+      ]
+    },
+    "48:820": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "820",
+      "districtName": "고성군",
+      "status": "available",
+      "codes": [
+        "38540"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.10090197,
+        34.87604514,
+        128.50160473,
+        35.13243729
+      ]
+    },
+    "48:840": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "840",
+      "districtName": "남해군",
+      "status": "available",
+      "codes": [
+        "38550"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.80750566,
+        34.49863395,
+        128.11816134,
+        34.94709242
+      ]
+    },
+    "48:850": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "850",
+      "districtName": "하동군",
+      "status": "available",
+      "codes": [
+        "38560"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.57607075,
+        34.92275808,
+        127.93925389,
+        35.33256272
+      ]
+    },
+    "48:860": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "860",
+      "districtName": "산청군",
+      "status": "available",
+      "codes": [
+        "38570"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.68791145,
+        35.21903105,
+        128.11519475,
+        35.5761966
+      ]
+    },
+    "48:870": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "870",
+      "districtName": "함양군",
+      "status": "available",
+      "codes": [
+        "38580"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.58486107,
+        35.31575532,
+        127.87792383,
+        35.77137366
+      ]
+    },
+    "48:880": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "880",
+      "districtName": "거창군",
+      "status": "available",
+      "codes": [
+        "38590"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.67943627,
+        35.5143957,
+        128.09518426,
+        35.90993055
+      ]
+    },
+    "48:890": {
+      "provinceCode": "48",
+      "provinceName": "경상남도",
+      "districtCode": "890",
+      "districtName": "합천군",
+      "status": "available",
+      "codes": [
+        "38600"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.95322856,
+        35.3679044,
+        128.37985508,
+        35.83226389
+      ]
+    },
+    "50:110": {
+      "provinceCode": "50",
+      "provinceName": "제주특별자치도",
+      "districtCode": "110",
+      "districtName": "제주시",
+      "status": "available",
+      "codes": [
+        "39010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.14367216,
+        33.27296605,
+        126.9725947,
+        34.01321613
+      ]
+    },
+    "50:130": {
+      "provinceCode": "50",
+      "provinceName": "제주특별자치도",
+      "districtCode": "130",
+      "districtName": "서귀포시",
+      "status": "available",
+      "codes": [
+        "39020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.16828443,
+        33.11238398,
+        126.94784947,
+        33.48308107
+      ]
+    },
+    "51:110": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "110",
+      "districtName": "춘천시",
+      "status": "available",
+      "codes": [
+        "32010"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.50614813,
+        37.67564492,
+        128.02960826,
+        38.08502534
+      ]
+    },
+    "51:130": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "130",
+      "districtName": "원주시",
+      "status": "available",
+      "codes": [
+        "32020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.74413475,
+        37.14340828,
+        128.21845526,
+        37.50690994
+      ]
+    },
+    "51:150": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "150",
+      "districtName": "강릉시",
+      "status": "available",
+      "codes": [
+        "32030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.58035971,
+        37.50329593,
+        129.07487544,
+        37.91753429
+      ]
+    },
+    "51:170": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "170",
+      "districtName": "동해시",
+      "status": "available",
+      "codes": [
+        "32040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.95761848,
+        37.42679759,
+        129.16547214,
+        37.60486226
+      ]
+    },
+    "51:190": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "190",
+      "districtName": "태백시",
+      "status": "available",
+      "codes": [
+        "32050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.86716439,
+        37.06168505,
+        129.09566004,
+        37.34559284
+      ]
+    },
+    "51:210": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "210",
+      "districtName": "속초시",
+      "status": "available",
+      "codes": [
+        "32060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.42114037,
+        38.11901501,
+        128.61466194,
+        38.23077171
+      ]
+    },
+    "51:230": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "230",
+      "districtName": "삼척시",
+      "status": "available",
+      "codes": [
+        "32070"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.84594651,
+        37.03868483,
+        129.36567161,
+        37.47638364
+      ]
+    },
+    "51:720": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "720",
+      "districtName": "홍천군",
+      "status": "available",
+      "codes": [
+        "32510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.53524466,
+        37.55230202,
+        128.58878753,
+        37.94551994
+      ]
+    },
+    "51:730": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "730",
+      "districtName": "횡성군",
+      "status": "available",
+      "codes": [
+        "32520"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.75942149,
+        37.2987801,
+        128.3022667,
+        37.68015987
+      ]
+    },
+    "51:750": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "750",
+      "districtName": "영월군",
+      "status": "available",
+      "codes": [
+        "32530"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.10716245,
+        37.02783249,
+        128.91041654,
+        37.40896138
+      ]
+    },
+    "51:760": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "760",
+      "districtName": "평창군",
+      "status": "available",
+      "codes": [
+        "32540"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.24355416,
+        37.2666346,
+        128.76511074,
+        37.82138508
+      ]
+    },
+    "51:770": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "770",
+      "districtName": "정선군",
+      "status": "available",
+      "codes": [
+        "32550"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.5059738,
+        37.14707734,
+        128.98966274,
+        37.59291585
+      ]
+    },
+    "51:780": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "780",
+      "districtName": "철원군",
+      "status": "available",
+      "codes": [
+        "32560"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.09503732,
+        38.0897686,
+        127.888468,
+        38.34899909
+      ]
+    },
+    "51:790": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "790",
+      "districtName": "화천군",
+      "status": "available",
+      "codes": [
+        "32570"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.43053202,
+        37.99428686,
+        127.91363828,
+        38.28805709
+      ]
+    },
+    "51:800": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "800",
+      "districtName": "양구군",
+      "status": "available",
+      "codes": [
+        "32580"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.85174538,
+        38.00162464,
+        128.172391,
+        38.32932881
+      ]
+    },
+    "51:810": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "810",
+      "districtName": "인제군",
+      "status": "available",
+      "codes": [
+        "32590"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.97751228,
+        37.81199581,
+        128.51357421,
+        38.38964187
+      ]
+    },
+    "51:820": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "820",
+      "districtName": "고성군",
+      "status": "available",
+      "codes": [
+        "32600"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.22615044,
+        38.18733142,
+        128.58493302,
+        38.6137093
+      ]
+    },
+    "51:830": {
+      "provinceCode": "51",
+      "provinceName": "강원특별자치도",
+      "districtCode": "830",
+      "districtName": "양양군",
+      "status": "available",
+      "codes": [
+        "32610"
+      ],
+      "aggregate": false,
+      "bounds": [
+        128.40424668,
+        37.86203322,
+        128.81000249,
+        38.16189074
+      ]
+    },
+    "52:110": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "110",
+      "districtName": "전주시",
+      "status": "available",
+      "codes": [
+        "35011",
+        "35012"
+      ],
+      "aggregate": true,
+      "bounds": [
+        126.99784373,
+        35.72857463,
+        127.23428938,
+        35.90310751
+      ]
+    },
+    "52:111": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "111",
+      "districtName": "전주시 완산구",
+      "status": "available",
+      "codes": [
+        "35011"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.05043676,
+        35.72857463,
+        127.21702005,
+        35.84331881
+      ]
+    },
+    "52:113": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "113",
+      "districtName": "전주시 덕진구",
+      "status": "available",
+      "codes": [
+        "35012"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.99784373,
+        35.80165117,
+        127.23428938,
+        35.90310751
+      ]
+    },
+    "52:130": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "130",
+      "districtName": "군산시",
+      "status": "available",
+      "codes": [
+        "35020"
+      ],
+      "aggregate": false,
+      "bounds": [
+        125.96660397,
+        35.67430374,
+        126.91540195,
+        36.12738617
+      ]
+    },
+    "52:140": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "140",
+      "districtName": "익산시",
+      "status": "available",
+      "codes": [
+        "35030"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.85140734,
+        35.88357301,
+        127.13972198,
+        36.15657044
+      ]
+    },
+    "52:180": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "180",
+      "districtName": "정읍시",
+      "status": "available",
+      "codes": [
+        "35040"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.71558082,
+        35.46120677,
+        127.11693686,
+        35.7588628
+      ]
+    },
+    "52:190": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "190",
+      "districtName": "남원시",
+      "status": "available",
+      "codes": [
+        "35050"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.18390706,
+        35.30245771,
+        127.67406934,
+        35.56077899
+      ]
+    },
+    "52:210": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "210",
+      "districtName": "김제시",
+      "status": "available",
+      "codes": [
+        "35060"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.47972094,
+        35.66614313,
+        127.08667872,
+        35.91770364
+      ]
+    },
+    "52:710": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "710",
+      "districtName": "완주군",
+      "status": "available",
+      "codes": [
+        "35510"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.99515368,
+        35.61825874,
+        127.37822887,
+        36.13084089
+      ]
+    },
+    "52:720": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "720",
+      "districtName": "진안군",
+      "status": "available",
+      "codes": [
+        "35520"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.26529854,
+        35.61869617,
+        127.62483965,
+        36.02949513
+      ]
+    },
+    "52:730": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "730",
+      "districtName": "무주군",
+      "status": "available",
+      "codes": [
+        "35530"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.52442455,
+        35.78823093,
+        127.91136738,
+        36.0683444
+      ]
+    },
+    "52:740": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "740",
+      "districtName": "장수군",
+      "status": "available",
+      "codes": [
+        "35540"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.36181189,
+        35.46804469,
+        127.69978944,
+        35.83894326
+      ]
+    },
+    "52:750": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "750",
+      "districtName": "임실군",
+      "status": "available",
+      "codes": [
+        "35550"
+      ],
+      "aggregate": false,
+      "bounds": [
+        127.08309867,
+        35.45978618,
+        127.43628583,
+        35.77764675
+      ]
+    },
+    "52:770": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "770",
+      "districtName": "순창군",
+      "status": "available",
+      "codes": [
+        "35560"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.85975459,
+        35.2992326,
+        127.31426964,
+        35.55612686
+      ]
+    },
+    "52:790": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "790",
+      "districtName": "고창군",
+      "status": "available",
+      "codes": [
+        "35570"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.42322569,
+        35.3007873,
+        126.77415223,
+        35.57482151
+      ]
+    },
+    "52:800": {
+      "provinceCode": "52",
+      "provinceName": "전북특별자치도",
+      "districtCode": "800",
+      "districtName": "부안군",
+      "status": "available",
+      "codes": [
+        "35580"
+      ],
+      "aggregate": false,
+      "bounds": [
+        126.10021631,
+        35.55842343,
+        126.84105357,
+        35.81745799
+      ]
+    }
+  }
+}

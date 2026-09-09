@@ -5,4 +5,4 @@ export type ResourceResult = { status: "complete" | "empty" | "unavailable"; mes
 export type Observation = { date: string; value: number | null; quality: string; snapshotId: string | null; collectedAt: string | null };
 export type History = { status: "available" | "unavailable"; message: string; source: string; unit: string; metric: string; points: Observation[] };
 export type RegionResult = { query: Query; region: Region; resources: ResourceResult; history: History };
-export type Evidence = { version: 1; id: string; savedAt: string; title: string; result: RegionResult; selection: { resourceId: string; mapBounds?: [number, number, number, number] } | { dates: string[] }; note: string };
+export type Evidence = { version: 1; id: string; savedAt: string; title: string; result: RegionResult; selection: { resourceId: string; mapBounds?: [number, number, number, number]; boundary?: import("./boundaries").BoundaryReference } | { dates: string[] }; note: string };
