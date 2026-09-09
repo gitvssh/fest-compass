@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-09-09T08:02:37.599Z",
+  "sourceCommit": "7ac5296b50227d8f328a2eddd264a70206df9bc4",
+  "scope": "Official boundary source audit, offline tool, design and internal review publication; app runtime unchanged",
+  "sourceAudit": {
+    "report": "docs/validation/evidence/2026-09-09-region-boundary-audit.json",
+    "archiveBytes": 269032521,
+    "archiveSha256": "f1cf0f9de453ac7eaacb273f39cee52851183372b9ddfda428a967c3a670b2c6",
+    "reproductionExact": true,
+    "unitTestsPassed": 6,
+    "catalogueRows": 269,
+    "nameCandidates": 221,
+    "aggregateCandidates": 12,
+    "unresolved": 36,
+    "verifiedJoins": 0,
+    "geometryValidated": false
+  },
+  "traceboard": {
+    "commit": "244a4b93ddef52eaddbcda6da6e0153b5ba62ca0",
+    "image": "sha256:2531cbdd42f4b65e2ea0375db19fe5dc698c6b231042b5f370ec13d87b16d8bf",
+    "sync": "Synced",
+    "health": "Healthy",
+    "operation": "Succeeded",
+    "generation": 49,
+    "observedGeneration": 49,
+    "availableReplicas": 1,
+    "declaredArtifacts": 36,
+    "missingArtifacts": 0,
+    "undeclaredSourceCategories": 4,
+    "publicationSampleCombinations": 1684,
+    "changedDocumentCombinations": 16,
+    "a11yViolations": 0,
+    "a11yUnevaluated": 0,
+    "httpsFiles": 97,
+    "httpsSha256Matches": 97,
+    "headless": true,
+    "reviewToDesignToValidation": true,
+    "candidateCountsVisible": true,
+    "developmentStatusVisible": true,
+    "mobileWidth": 390,
+    "horizontalOverflow": false,
+    "browserErrors": [],
+    "consoleErrors": [],
+    "concurrentPublication": {
+      "priorCommit": "38a8aa0eb7ddd47a69eb86cf8622a587b70afe28",
+      "initialPush": "non-fast-forward rejected",
+      "resolution": "Preserved both generated history entries; all 13 published project sources are identical or ancestors of this verified image's sources; merged without force push",
+      "imageReusedAfterMetadataMerge": true
+    }
+  },
+  "app": {
+    "runtimeChanged": false,
+    "deploymentChanged": false,
+    "comparisonBase": "b0835c686b85310601ccfdf45637df2c3d960c13",
+    "unchangedPaths": ["apps/web", "infra"],
+    "fullRegressionRerun": false,
+    "reason": "No app runtime or deployment changes"
+  },
+  "localEvidence": "/home/lsh/.cache/fest-compass/verification/2026-09-09-region-boundary/",
+  "next": "Official dated crosswalk, sample geometry verification, boundary layers and explicit unmatched-region UI"
+}

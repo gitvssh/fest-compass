@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 22
+revision: 23
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-09T05:46:50.278Z"
+updated_at: "2026-09-09T08:04:00.865Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1~M6 첫 흐름에 전국·지역 지도 개선을 공개했다. 도로 배경·드래그/터치/키보드·자료 묶음/상세·영역 필터와 기획 근거를 연결했고 실제 논산 61건의 표식 겹침도 수정했다. 단위 186개·전체 headless 125개와 공개 지도 12개/실자료 검증을 통과했고 예측·수집 기록을 보존했다. Traceboard 95개 파일·링크·모바일 표시까지 게시 검증을 마쳤다. 정식 행정경계·전국 과거 자료·실제 담당자 관찰·정형 API/Spec/Run 연결은 후속이다.
+M1~M6 첫 흐름과 지도 개선은 공개 사용 가능하다. 후속으로 공식 SGIS 2025 경계 원본을 확보하고 현재 관광조회 269개 단위를 대조했다(명칭 후보 221·합성 후보 12·미연결 36). 오연결 방지 도구·설계와 Traceboard 97파일 게시 검증을 완료했다. 공식 연계·공간 검증은 미완료라 경계 레이어는 아직 개발 필요다. 앱 런타임·배포는 변경하지 않았다. 다음은 공식 기준시점별 코드 연계→표본 형상 검증→기준일/미연결 안내를 포함한 지도 연결이다.
 
 ## Accepted decisions
 
@@ -43,16 +43,17 @@ M1~M6 첫 흐름에 전국·지역 지도 개선을 공개했다. 도로 배경�
 
 ## Open questions
 
-- 정식 행정경계 연도/코드 검증·거리 검색, 전국 관광/과거/실제 비용 자료 확대는 후속이다. 현재 표본을 전국 확보 자료로 표현하지 않는다.
-- 실제 담당자 관찰·전체 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 미완료다. 다음 우선순위는 사용 피드백을 반영한다.
+- 공식 기준시점별 통계/법정구역 코드 연계와 개편 근거, 표본 형상 검증 뒤 경계 레이어를 연결한다. 이름 일치 후보를 검증 완료로 취급하지 않는다.
+- 전국 과거 방문/실제 비용 자료·거리 검색·실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
 
 ## Artifacts and durable documents
 
-- docs/validation/evidence/2026-09-09-region-map-production.json
-- docs/validation/26-region-map.md
-- docs/sdlc/2-design/region-map-improvement.md
-- apps/web/scripts/map-e2e.mjs
-- apps/web/lib/region/map-view.ts
+- docs/sdlc/2-design/region-boundary-contract.md
+- docs/validation/27-region-boundary-audit.md
+- docs/validation/evidence/2026-09-09-region-boundary-audit.json
+- docs/validation/evidence/2026-09-09-region-boundary-publication.json
+- tools/audit_region_boundaries.py
+- tools/test_audit_region_boundaries.py
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md
 - traceboard.yaml
