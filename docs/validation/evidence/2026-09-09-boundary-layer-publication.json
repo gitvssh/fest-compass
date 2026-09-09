@@ -1,0 +1,298 @@
+{
+  "checkedAt": "2026-09-09T10:09:12.075585+00:00",
+  "implementationCommit": "8d92c88e635d85dd395428cc2f1c5ee5bf55843e",
+  "reviewSourceCommit": "3c0cf9fb0fd41ef5269574b273f5b017aa3dc332",
+  "scope": "Dated official boundary selection and evidence preservation; public app and internal review publication",
+  "geometryBuild": "docs/validation/evidence/2026-09-09-boundary-build.json",
+  "coverage": {
+    "provinceBoundaries": 15,
+    "availableQueryUnits": 234,
+    "direct": 222,
+    "aggregate": 12,
+    "changedWithoutBoundary": 35,
+    "boundaryDate": "2025-06-30",
+    "crosswalkDate": "2026-07-10"
+  },
+  "localValidation": {
+    "appUnitPassed": 190,
+    "pythonPassed": 9,
+    "namedHeadlessPassed": 136,
+    "editorAndPublicWorkspaceJourneys": "passed",
+    "typecheck": "passed",
+    "build": "passed",
+    "productionAuditVulnerabilities": 0,
+    "infraTestsPassed": 40,
+    "releaseResources": 17
+  },
+  "ci": {
+    "run": {
+      "conclusion": "success",
+      "headSha": "8d92c88e635d85dd395428cc2f1c5ee5bf55843e",
+      "startedAt": "2026-09-09T09:47:14Z",
+      "status": "completed",
+      "updatedAt": "2026-09-09T09:51:12Z",
+      "url": "https://github.com/gitvssh/fest-compass/actions/runs/34336660754"
+    },
+    "job": {
+      "conclusion": "success",
+      "labels": [
+        "homelab-fest-compass"
+      ],
+      "runner_name": "homelab-fest-compass-k8d69-runner-d9jzq"
+    }
+  },
+  "app": {
+    "deployment": {
+      "checkedAt": "2026-09-09T09:56:08.818878+00:00",
+      "generation": 19,
+      "observedGeneration": 19,
+      "availableReplicas": 1,
+      "images": {
+        "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:8a20e5c577457a7f5fefbfdd79fecc8fc72b2d2de44efba5f0e8725b25162756",
+        "web": "registry.damecasol.com/fest-compass/web@sha256:8a20e5c577457a7f5fefbfdd79fecc8fc72b2d2de44efba5f0e8725b25162756"
+      }
+    },
+    "argo": {
+      "sync": {
+        "comparedTo": {
+          "destination": {
+            "namespace": "fest-compass",
+            "server": "https://kubernetes.default.svc"
+          },
+          "source": {
+            "path": "infra/k8s/fest-compass/overlays/prod",
+            "repoURL": "https://github.com/gitvssh/fest-compass.git",
+            "targetRevision": "main"
+          }
+        },
+        "revision": "3c0cf9fb0fd41ef5269574b273f5b017aa3dc332",
+        "status": "Synced"
+      },
+      "health": "Healthy",
+      "operation": "Succeeded",
+      "operationRevision": "4b0443539c8e35c433ff973ea8712fd6022ae179"
+    },
+    "publicAssets": {
+      "checkedAt": "2026-09-09T09:52:51.309506+00:00",
+      "version": "sgis-20250630-kssc-20260710-v1",
+      "files": 16,
+      "matches": 16,
+      "results": [
+        {
+          "file": "province-11.json",
+          "status": 200,
+          "bytes": 81645,
+          "sha256": "8164318cf649d6f4dbad0360d446f7aa91f3db9a274f675963cfe697fdf96694",
+          "matches": true
+        },
+        {
+          "file": "province-26.json",
+          "status": 200,
+          "bytes": 117837,
+          "sha256": "8c160ffba751d98626ff791bb0925fa69cd38783e6951450ceffd067f02e62fa",
+          "matches": true
+        },
+        {
+          "file": "province-27.json",
+          "status": 200,
+          "bytes": 76191,
+          "sha256": "1e35a97b121c6a0fe2cd9506d10f7a8c59df647b1c6c7d1f62920d19ef8def92",
+          "matches": true
+        },
+        {
+          "file": "province-28.json",
+          "status": 200,
+          "bytes": 196543,
+          "sha256": "a7cda0243d5da25f53bf52178e5c07719e9cfa3ad2d3fd6092a94b3d584de640",
+          "matches": true
+        },
+        {
+          "file": "province-30.json",
+          "status": 200,
+          "bytes": 44459,
+          "sha256": "6a93948e3fb1002b27d6505f2c001a6f5a010bedf4af6f630b831a7f61206606",
+          "matches": true
+        },
+        {
+          "file": "province-31.json",
+          "status": 200,
+          "bytes": 105689,
+          "sha256": "89f0dec3e1f3a77d73c40bd2f14ff380fe839632a87a7913dc8336573d17c3b7",
+          "matches": true
+        },
+        {
+          "file": "province-36110.json",
+          "status": 200,
+          "bytes": 22187,
+          "sha256": "9b89ae1f2ad5003719b6057b4c96b8cdf043be6dcd6db5fce7a83e3635e15a5a",
+          "matches": true
+        },
+        {
+          "file": "province-41.json",
+          "status": 200,
+          "bytes": 636032,
+          "sha256": "a473bde47374e9663d1355344267f7b077be9db29bad3d7dd8d4bf8d72ab8973",
+          "matches": true
+        },
+        {
+          "file": "province-43.json",
+          "status": 200,
+          "bytes": 315993,
+          "sha256": "f1d3b75c353d65195748aaec2143e06c5d6270efb42cff7e015e930d74a3d579",
+          "matches": true
+        },
+        {
+          "file": "province-44.json",
+          "status": 200,
+          "bytes": 635994,
+          "sha256": "f9eb70549cd957f49aa627242c657504679fa45861ece82efb8ffa5648be271c",
+          "matches": true
+        },
+        {
+          "file": "province-47.json",
+          "status": 200,
+          "bytes": 781260,
+          "sha256": "221b98e9a3b03e10c5ffd88b2653c03cc23202e9e715771d39d3d5eccd022dd8",
+          "matches": true
+        },
+        {
+          "file": "province-48.json",
+          "status": 200,
+          "bytes": 949146,
+          "sha256": "f332b73c5afee494274ff035cb88edd4437ef9dc4d11631fbae887ba2899433d",
+          "matches": true
+        },
+        {
+          "file": "province-50.json",
+          "status": 200,
+          "bytes": 191868,
+          "sha256": "92cf29abfd9eb36458e82711ae0cf0e0a1b2bd0f8c4067373561ef52270ad2e0",
+          "matches": true
+        },
+        {
+          "file": "province-51.json",
+          "status": 200,
+          "bytes": 595650,
+          "sha256": "eaceb53eca87c583de69a061a940bff2c0c7be20dffb2a7265299b6984edcea6",
+          "matches": true
+        },
+        {
+          "file": "province-52.json",
+          "status": 200,
+          "bytes": 448738,
+          "sha256": "5ee77890491ede5678eb2ed582e31f6fddc9b0d49bd62e72cb71e41f82551cb6",
+          "matches": true
+        },
+        {
+          "file": "national.json",
+          "status": 200,
+          "bytes": 2776053,
+          "sha256": "ad2e22da3002b2e9e00a1b5755d9897813b4459b3e2e4d0a91f52c5b8489910d",
+          "matches": true
+        }
+      ]
+    },
+    "headlessBoundary": {
+      "headless": true,
+      "background": "synthetic tiles; no OSMF requests",
+      "passed": [
+        "national-15-dated-provinces",
+        "keyboard-province-district-query",
+        "displayed-boundary-evidence-preserved",
+        "hidden-boundary-not-attached",
+        "ordinary-city-aggregate-only-on-selection",
+        "changed-district-has-list-without-old-boundary",
+        "merged-province-not-invented",
+        "boundary-failure-keeps-resource-list",
+        "late-region-response-discarded",
+        "simple-map-does-not-claim-boundary",
+        "390px-boundary-controls"
+      ],
+      "errors": [],
+      "writes": []
+    },
+    "actualPublicNonsan": {
+      "checkedAt": "2026-09-09T09:53:32.101Z",
+      "headless": true,
+      "http": 200,
+      "resourceApi": 200,
+      "resources": 61,
+      "historyPoints": 31,
+      "selectedResourceId": "2650372",
+      "evidenceExact": true,
+      "boundary": {
+        "version": "sgis-20250630-kssc-20260710-v1",
+        "source": "https://www.data.go.kr/data/15129688/fileData.do",
+        "boundaryDate": "2025-06-30",
+        "crosswalkDate": "2026-07-10",
+        "province": "44",
+        "district": "230",
+        "codes": [
+          "34060"
+        ]
+      },
+      "evidencePageVerified": true,
+      "mobileWidth": 390,
+      "interceptedTiles": 29,
+      "background": "synthetic; no OSM requests forwarded",
+      "tourismApi": "actual public app response; no API mocks",
+      "browserErrors": [],
+      "appWrites": []
+    }
+  },
+  "forecastPreservation": {
+    "comparisonKeys": [
+      "monitorDataHash",
+      "recordsCount",
+      "recordsHash",
+      "calendarTrialHash",
+      "automation"
+    ],
+    "allMatch": true,
+    "beforeCheckedAt": "2026-09-09T09:39:17.640Z",
+    "afterCheckedAt": "2026-09-09T09:53:11.474Z",
+    "recordsCount": 2,
+    "monitorDataHash": "6a51bdb18f0f68b936e01d5559aa48b8a4f8d76b918650a73a50b0ca84b8e778",
+    "recordsHash": "6fc2c95f5870a9d5aeac1e327e718f2e2792f8a50b169ae70c3348ec73dd4d39",
+    "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+    "dailyStatus": "partial"
+  },
+  "traceboard": {
+    "checkedAt": "2026-09-09T10:08:10.055571+00:00",
+    "commit": "fa478cac6b693f3c154a4f7946fe776ce2366bd0",
+    "sync": "Synced",
+    "health": "Healthy",
+    "operation": "Succeeded",
+    "generation": 50,
+    "observedGeneration": 50,
+    "availableReplicas": 1,
+    "image": "registry.damecasol.com/traceboard/site@sha256:35624fa792433657242bfe22d2f4ba894d60661a92c83755ea64fc1fc594793f",
+    "declaredArtifacts": 38,
+    "missingArtifacts": 0,
+    "undeclaredSourceCategories": 4,
+    "publicationSampleCombinations": 1684,
+    "changedDocumentCombinations": 32,
+    "a11yViolations": 0,
+    "a11yUnevaluated": 0,
+    "httpsFiles": 102,
+    "httpsSha256Matches": 102,
+    "headlessBrowser": {
+      "checkedAt": "2026-09-09T10:08:35.304Z",
+      "headless": true,
+      "reviewToDesignAndValidation": true,
+      "boundaryCountsVisible": true,
+      "mobileWidth": 390,
+      "horizontalOverflow": false,
+      "imagesDecoded": 3,
+      "browserErrors": [],
+      "consoleErrors": []
+    }
+  },
+  "localEvidence": "/home/lsh/.cache/fest-compass/verification/2026-09-09-boundary-layer",
+  "limitations": [
+    "2025 reference geometry does not certify current legal extent or venue availability",
+    "Changed 35 query units use existing list; no invented old-to-new polygons",
+    "Headless background tiles are synthetic; real tile-provider availability not claimed",
+    "Nationwide historical data and municipal staff acceptance remain follow-up"
+  ]
+}

@@ -546,3 +546,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-024 · Codex · implementer
+
+- Position: 공식 연계표와 도형 검증을 거친 2025년 참고 경계 지도를 공개했다. 전국·시도·시군구 선택과 실제 관광자료의 근거 보관, 내부 검수 문서 게시까지 완료했다. 최신 경계·전국 과거 자료·실무자 인수는 별도 후속이다.
+- Evidence:
+  - docs/sdlc/2-design/region-boundary-layer.md
+  - docs/validation/28-boundary-layer.md
+  - docs/validation/evidence/2026-09-09-boundary-build.json
+  - docs/validation/evidence/2026-09-09-boundary-layer-publication.json
+- Changes:
+  - 시도 15개·시군구 조회 단위 234개 경계와 날짜·개편 35개 목록 대체; 표시된 경계만 근거 보관
+  - 공식 XLSX 두 기준시점·SGIS 형상/공유 경계/섬 보존·좌표 변환 검증, 배포 파일 16개 생성
+  - 공개 앱 배포·검수 v5·Traceboard 게시와 실제 자료 증거 기록
+- Validation:
+  - 앱 단위 190·Python 9·전체 headless 명명 시험 136 및 기존 편집/공개 작업공간·타입·빌드·취약점 0·배포 계약 40 통과
+  - CI 34336660754 전용 ARC 성공; 공개 경계 11개·경계 파일 16/16 해시 일치·실제 논산 61자원/31일·당시 원문/경계 근거 보존·브라우저 오류/앱 쓰기 0
+  - 기존 예측 자료·기록 2개·겨울 시험·일일 수집 상태 보존
+  - Traceboard 산출물 38·추적 오류 0, HTTPS 102/102 파일 일치; 접근성·headless 링크/이미지/390px 검증 완료. 미선언 원천 4종은 미평가
+- Questions:
+  - No open question
+- Handoff: Codex
