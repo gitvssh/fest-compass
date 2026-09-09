@@ -427,3 +427,34 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-020 · Codex · implementer
+
+- Position: M6 운영 결과·실제 비용·다음 회차 연결의 구현과 검증, Traceboard 게시를 완료했다. 공개 앱은 Harbor 1GiB quota 때문에 기존 M5 상태이며 M6는 아직 사용할 수 없다. 정확한 정리 대상 4개를 문서화하고 비삭제 모의 실행을 완료했다. goal은 앱 배포·공개 검증이 남아 완료하지 않았다.
+- Evidence:
+  - docs/validation/evidence/2026-09-09-planning-outcomes-production.json
+  - docs/validation/25-planning-outcomes.md
+  - docs/ops/planning-outcomes-release.md
+  - docs/sdlc/2-design/outcome-implementation.md
+  - apps/web/app/planning/outcomes/page.tsx
+  - apps/web/lib/planning/outcome-model.ts
+  - apps/web/scripts/outcome-e2e.mjs
+  - docs/design/07-region-planning-milestones.md
+  - docs/review/2026-09-planning-review.md
+  - traceboard.yaml
+  - CI 34302743602 source c3e53b3: 코드 검증·이미지 빌드 통과, push quota 실패; 원격 검증·marker 승격·배포 미실행
+  - Traceboard df6508c1eb2020a58d2f6e9ed28a5b8564aa8fe2: Synced/Healthy/Succeeded, generation 45, image b3c8fe4948a736745eaab6f2b0c785d49690fac21b3ff491f686fcb829708062
+  - Harbor dry-run 3576 success: 전체 6, 보호 2, 후보 4; 실제 삭제 없음
+- Changes:
+  - M6 공개 비용 사례·개인 결과 입력·계획/실측 차트·재원별 실제 비용·불변 결과 출력·과거 회차 검색·다음 회차 개선 연결
+  - v1~v4 호환·개인 저장 경계·이전 계획/결과 보존과 차기 일정/검토 상태 초기화
+  - 화면·요구·인수 기준·로드맵·검증·배포 복구 문서 갱신; 검수용 실제 화면 5개 게시
+- Validation:
+  - 단위 183개, 신규 headless 14개와 기존 전체 흐름 통과; typecheck/build/infra 40개 통과
+  - 390px 넘침 수정 후 신규 14개 재실행 통과; A4 19쪽 PDF 수치·출처·흑백·출력 후 복원 확인
+  - Traceboard 1680 조합 위반/미평가 0; 실제 HTTPS 91/91 SHA 일치, 이미지 5개 표시, 390px 가로 넘침 없음; 기존 favicon 404는 별도
+  - 공개 기존 8경로 200, /planning/outcomes 404; M6 공개 배포 검증은 미실행
+  - 보존 증거: /home/lsh/.cache/fest-compass/verification/2026-09-09-m6/
+- Questions:
+  - docs/ops/planning-outcomes-release.md에 명시한 미사용 이미지 4개 삭제 승인 필요. 현재·복구용 2개는 보존한다. 기존 승인은 다른 4개에 한정되므로 확대하지 않는다.
+- Handoff: Codex

@@ -306,7 +306,45 @@
     "reason": "M6 image not published; existing service remains healthy"
   },
   "forecastAfter": null,
-  "traceboard": null,
+  "traceboard": {
+    "sourceCommit": "81533f062bf014f00f4b8f4ac4297989266c56bd",
+    "publishedCommit": "df6508c1eb2020a58d2f6e9ed28a5b8564aa8fe2",
+    "image": "sha256:b3c8fe4948a736745eaab6f2b0c785d49690fac21b3ff491f686fcb829708062",
+    "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-outcome-implementation.html",
+    "argo": "Synced/Healthy/Succeeded",
+    "generation": 45,
+    "observedGeneration": 45,
+    "availableReplicas": 1,
+    "layoutCombinations": 1680,
+    "layoutViolations": 0,
+    "unevaluated": 0,
+    "remoteCheckedAt": "2026-09-09T02:43:39.797777Z",
+    "remoteFiles": 91,
+    "sha256Matches": 91,
+    "decodedImplementationImages": 5,
+    "mobileViewportAndDocumentWidth": 390,
+    "pendingAppDeploymentNoticeVisible": true,
+    "browserException": "Existing favicon.ico 404; no page-image failures"
+  },
+  "registryDryRun": {
+    "execution": 3576,
+    "status": "success",
+    "artifacts": 6,
+    "protected": 2,
+    "candidates": 4,
+    "policyPlan": "No Harbor policy drift",
+    "actualDeletionExecuted": false,
+    "approval": "pending; exact digests in docs/ops/planning-outcomes-release.md"
+  },
+  "predeploymentPublicCheck": {
+    "checkedOn": "2026-09-09",
+    "method": "headless browser GET",
+    "existingRoutes200": 8,
+    "outcomesStatus": 404,
+    "meaning": "M1-M5 available; M6 production verification remains not run"
+  },
+  "retainedLocalEvidence": "/home/lsh/.cache/fest-compass/verification/2026-09-09-m6/",
+  "complete": false,
   "limitations": [
     "Nationwide public actual-spending data not connected; existing reviewed samples only",
     "Personal input is distinct from verified public lookup",

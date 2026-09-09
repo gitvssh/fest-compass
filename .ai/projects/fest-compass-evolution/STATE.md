@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 19
-status: active
+revision: 20
+status: waiting-codex
 next_actor: codex
 last_actor: codex
-current_question: "No open question recorded"
-updated_at: "2026-09-09T01:50:10.724Z"
+current_question: "docs/ops/planning-outcomes-release.md에 명시한 미사용 이미지 4개 삭제 승인 필요. 현재·복구용 2개는 보존한다. 기존 승인은 다른 4개에 한정되므로 확대하지 않는다."
+updated_at: "2026-09-09T02:49:29.484Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1 전국·지역 조회, M2 축제 비교, M3 기획 후보와 M4 예산을 M5 기획안 보관·출력에 연결했다. 두 후보·선택 이유·당시 자료·예산·준비·측정 계획을 개인 불변 버전으로 보관하며 사업설명 자료와 준비 목록을 출력한다. 단위 175개·신규 headless 14개, 공개 PDF·45개 실제 수치·기존 예측 보존을 검증했다. 다음은 M6 운영 결과·실제 비용·개선과 다음 회차 연결이다. 전국 자료·지도 품질·실무자 관찰·정형 Spec/Run 연결은 후속이다. 내부 Traceboard에 실제 화면 5개와 검수 문서를 게시하고 파일 83개 일치를 확인했다.
+M1~M5는 공개 사용 가능하다. M6 공개 비용 사례·개인 행사 결과·계획/실측과 재원 비교·불변 출력·개인 과거 검색·다음 회차 연결을 구현하고 단위 183개·신규 headless 14개를 검증했다. Traceboard 검수본 게시와 실제 91개 파일 일치를 확인했다. 앱 이미지 push가 Harbor quota로 실패해 M6 공개 배포는 미완료다. 새 미사용 이미지 4개 삭제 승인 후 동일 CI를 재실행하고 검증된 이미지 배포·공개 검증을 이어간다. 전국 실제 비용 API·정식 지도 경계·실무자 관찰은 미완료다.
 
 ## Accepted decisions
 
@@ -37,24 +37,23 @@ M1 전국·지역 조회, M2 축제 비교, M3 기획 후보와 M4 예산을 M5 
 - 2026-09-08 사용자 후속 요청으로 다음 M3 기획 후보·근거 연결을 구현·검증·일반 게시한다. 모델 정확도보다 MVP 화면·기능 우선, 개인 브라우저 저장과 headless 검증을 유지한다.
 - 2026-09-09 사용자가 다음 M4 예산·재원·준비 규모 비교의 개발·검증·일반 게시를 승인했다. 모델·겨울 시험·개인 브라우저 저장 경계와 headless 검증을 유지한다.
 - 2026-09-09 사용자가 다음 마일스톤을 goal로 설정해 진행하도록 요청했다. M5 기획안 보관·사업설명/준비 목록 출력의 구현·headless 검증·일반 게시·작업공간 정리를 수행하며 모델·개인 저장 경계는 유지한다.
+- 2026-09-09 사용자가 M6를 goal로 지정해 진행하도록 요청했다. 공개 집행·정산 자료와 담당자 입력을 구분하고 미확인 금액을 추정하거나 0으로 처리하지 않는다. 구현·검증·일반 게시·작업공간 정리를 수행한다.
 
 ## Open questions
 
-- 다음 M6: UC-FC-007/TS-FC-007, FR-LGR-5/6과 FR-RPT-2/3의 결과 부분. 같은 정의의 계획/실측·재원별 실제 사용/잔액/반납/이자·증빙 상태, 불변 결과 출력·개인 과거 회차 검색·차기 준비/예산 연결을 구현한다.
-- M1 지도 품질·정식 경계·전국 방문 이력과 M2 전국 과거자료·거리 검색·일반 비용 비교 확장은 후속이다. 현재 자료를 과거 사본으로 취급하지 않는다.
-- 실제 담당자 관찰·전체 업무 인수·정형 API/Spec/Run·티켓 연결은 미완료다. 개인 보관을 공동 저장·공식 승인으로 표현하지 않는다.
+- docs/ops/planning-outcomes-release.md에 명시한 미사용 이미지 4개 삭제 승인 필요. 현재·복구용 2개는 보존한다. 기존 승인은 다른 4개에 한정되므로 확대하지 않는다.
+- 승인 후 현재/복구 marker와 exact 4개를 재확인하고 project-scoped 정리→동일 CI 34302743602 재실행→원격 검증 digest 게시→정상 sync→공개 headless 14개·예측 보존 검증→Traceboard 상태 갱신. 임의 quota/권한/전역 GC 변경 금지.
+- 전국 관광·과거·실제 비용 자료 확장, 정식 지도 경계, 실제 담당자 업무 인수와 정형 API/Spec/Run 연결은 후속이다.
 
 ## Artifacts and durable documents
 
-- docs/validation/evidence/2026-09-09-planning-proposal-production.json
-- docs/validation/24-planning-proposal.md
-- docs/sdlc/2-design/proposal-implementation.md
-- apps/web/app/planning/proposal/page.tsx
-- apps/web/components/planning/Proposal.tsx
-- apps/web/lib/planning/proposal.ts
-- apps/web/scripts/proposal-e2e.mjs
+- docs/validation/evidence/2026-09-09-planning-outcomes-production.json
+- docs/validation/25-planning-outcomes.md
+- docs/ops/planning-outcomes-release.md
+- docs/sdlc/2-design/outcome-implementation.md
+- apps/web/app/planning/outcomes/page.tsx
+- apps/web/lib/planning/outcome-model.ts
+- apps/web/scripts/outcome-e2e.mjs
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md
-- docs/sdlc/1-analysis/usecases/UC-FC-007.md
-- docs/sdlc/3-testing/scenarios/TS-FC-007.md
 - traceboard.yaml
