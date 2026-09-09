@@ -2,15 +2,16 @@
 class: Current
 owner: fest-compass
 last_verified: 2026-09-09
-version: v3
-summary: "전국 탐색·비교·기획·예산·출력에 공개 비용·개인 결과·다음 회차를 연결한 검수 안내입니다. 실제 제공·검증 상태와 남은 자료·실무 검증을 함께 확인합니다."
+version: v4
+summary: "M1~M6 첫 흐름과 전국·지역 지도 개선 검수 안내입니다. 도로 배경·자료 선택·영역 필터에서 기획 근거까지 확인하며 자료 확보 범위와 남은 실무 검증을 구분합니다."
 ---
 
-# FEST Compass 기획 검수 v3
+# FEST Compass 기획 검수 v4
 
 **전국 조회·비교 근거에서 후보·예산·기획안 출력, 공개 비용·개인 결과와 다음 회차까지 첫 기능을 연결했습니다.**
 **M1~M6는 공개 사용 가능합니다.** M6도 공개 headless 14개 흐름을 검증했습니다. 아래 실제 화면과 공개 앱으로 검수할 수 있습니다. 전국 자료 완비·실제 담당자 관찰은 아직 완료하지 않았습니다.
-먼저 [M6 실제 화면·검수 과제](../sdlc/2-design/outcome-implementation.md), [M6 검증·게시 상태](../validation/25-planning-outcomes.md)를 확인하세요.
+이번에는 [전국·지역 지도 개선과 검수 행동](../sdlc/2-design/region-map-improvement.md), [검증·게시 상태](../validation/26-region-map.md)를 먼저 확인하세요. 지도에서 자료를 선택하고 조건·출처와 함께 근거로 담는 흐름을 검수합니다.
+이전 단계는 [M6 실제 화면·검수 과제](../sdlc/2-design/outcome-implementation.md), [M6 검증·게시 상태](../validation/25-planning-outcomes.md)를 확인하세요.
 이전 단계는 [M5 기획안·출력](../sdlc/2-design/proposal-implementation.md), [M4 실제 화면·검수 과제](../sdlc/2-design/budget-implementation.md), [M4 검증 기록](../validation/23-planning-budget.md)을 확인하세요.
 이전 단계는 [M3 실제 기능과 검수 과제](../sdlc/2-design/planning-options-implementation.md), [M3 검증 기록](../validation/22-planning-options.md)을 확인하세요.
 이전 단계는 [축제 비교 구현·검수 범위](../sdlc/2-design/festival-comparison-implementation.md)와 [M2 검증 기록](../validation/21-festival-comparison.md)을 확인하세요.
@@ -64,13 +65,13 @@ traceboard의 화면 카탈로그와 화면 흐름에서 7개 시안을 열 수 
 화면 번호나 요구사항 ID와 함께 '현재 시안 / 원하는 행동 / 이유'를 적으면 수정 위치를 찾기 쉽습니다.
 예: 'SCR-FC-002: 회차 비교에 예산 출처를 항상 보고 싶다. 총사업비와 지원금을 혼동할 수 있다.'
 상태는 미검토 → 의견 반영 중 → 재검토 → 검토 완료로 구분합니다.
-현재는 **사용자 전국 진입·실자료·시각화 의견을 반영한 v3 재검토** 단계입니다.
+현재는 **M1~M6 첫 기능을 연결한 뒤 지도 품질을 보완하는 v4 검수** 단계입니다. 아래 v2·v3 그림은 당시 설계 이력이며 최신 구현 증거는 위 검증 기록을 따릅니다.
 실제 담당자 인터뷰·시안 검수 완료는 기록하지 않았습니다.
 
-## 개발 착수 조건
+## 다음 검증 범위
 
-핵심 흐름과 기획안 항목을 검토한 뒤 M1의 지역·기간·지도/목록/차트·출처·근거 담기를 구현합니다.
-지도 공급자·행정경계·좌표·지역별 자료 가용성은 개발 착수 시 확인할 항목입니다.
+지역·기간·지도/목록/차트·출처·근거 담기는 구현했습니다. 이제 실제 담당자가 지역 탐색에서 두 기획 후보 선택까지 이어갈 수 있는지 관찰할 필요가 있습니다.
+정식 행정경계와 전국 과거 자료의 확보·비교 가능성 검증은 후속입니다. 도로 배경을 공식 경계 검증 완료로 해석하지 않습니다.
 M1~M5에 이어 [M6 공개 비용·결과·다음 회차](../sdlc/2-design/outcome-implementation.md)를 연결했습니다. 전국 자료 완비나 추가 예측 정확도 연구를 먼저 요구하지 않습니다.
 
 ## v2에서 집중해 볼 화면
