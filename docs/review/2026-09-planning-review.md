@@ -9,7 +9,7 @@ summary: "전국 탐색·비교·기획·예산·출력에 공개 비용·개인
 # FEST Compass 기획 검수 v3
 
 **전국 조회·비교 근거에서 후보·예산·기획안 출력, 공개 비용·개인 결과와 다음 회차까지 첫 기능을 연결했습니다.**
-M1~M5는 사용 가능하며 **M6는 개발·검증 완료, 이미지 저장소 한도로 앱 배포 대기**입니다. 아래 M6 실제 화면으로 검수할 수 있습니다.
+**M1~M6는 공개 사용 가능합니다.** M6도 공개 headless 14개 흐름을 검증했습니다. 아래 실제 화면과 공개 앱으로 검수할 수 있습니다. 전국 자료 완비·실제 담당자 관찰은 아직 완료하지 않았습니다.
 먼저 [M6 실제 화면·검수 과제](../sdlc/2-design/outcome-implementation.md), [M6 검증·게시 상태](../validation/25-planning-outcomes.md)를 확인하세요.
 이전 단계는 [M5 기획안·출력](../sdlc/2-design/proposal-implementation.md), [M4 실제 화면·검수 과제](../sdlc/2-design/budget-implementation.md), [M4 검증 기록](../validation/23-planning-budget.md)을 확인하세요.
 이전 단계는 [M3 실제 기능과 검수 과제](../sdlc/2-design/planning-options-implementation.md), [M3 검증 기록](../validation/22-planning-options.md)을 확인하세요.

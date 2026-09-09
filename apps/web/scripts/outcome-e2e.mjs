@@ -21,6 +21,13 @@ async function openSummary(text) { await page.locator("summary").filter({ hasTex
 async function actual(v) { await f("실제 사용액(원) 값").fill(v); await f("실제 사용액(원) 출처 구분").selectOption("manual"); await f("실제 사용액(원) 출처·문서·쪽 참조").fill("가상 지급 기록 · 검수 전용"); }
 try {
   mkdirSync("output/playwright", { recursive: true }); await page.goto(`${base}/planning/outcomes`);
+  // The public edge asks for analytics consent in a fresh browser. Exercise the
+  // visible refusal action before testing the app; never bypass the overlay.
+  if (new URL(base).hostname === "kto.damecasol.com") {
+    await btn("Reject All").waitFor({ state: "visible", timeout: 15000 });
+    await btn("Reject All").click();
+    await btn("Reject All").waitFor({ state: "hidden" });
+  }
   await visible(page.getByRole("heading", { name: "비용·결과와 다음 회차", exact: true }));
   await f("공개 사례·개인 회차 검색어").fill("복숭아"); assert.match(await page.locator("main").innerText(), /35,118,200/); assert.match(await page.locator("main").innerText(), /전체 축제 원가 아님/);
   assert.ok(await page.getByRole("img").filter({ hasText: "" }).count() >= 2); await page.evaluate(() => window.scrollTo(0,0)); await page.screenshot({ path: "output/playwright/outcome-public.png", fullPage: true }); passed.push("public-original-costs-and-composition-scope");

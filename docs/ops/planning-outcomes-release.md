@@ -6,7 +6,7 @@ version: v2
 summary: "사용자 승인으로 미사용 이미지 네 개를 정리하고 현재·복구용 두 개를 보존했습니다. 동일 소스 배포 재실행과 공개 검증 결과를 기록합니다."
 ---
 
-# M6 배포 대기와 이미지 정리 검토
+# M6 배포 복구와 이미지 정리 기록
 
 2026-09-09 최초 시도는 **개발·자동 검증 완료 / 새 앱 이미지 업로드 실패**였다.
 이후 사용자가 아래 네 이미지 삭제를 승인했고 정리를 완료했다. 앱 배포 결과는 아래 후속 기록을 따른다.
@@ -15,14 +15,14 @@ summary: "사용자 승인으로 미사용 이미지 네 개를 정리하고 현
 전용 ARC `homelab-fest-compass-k8d69-runner-s2fqv`에서 코드 검증과 이미지 빌드까지 통과했으나 업로드가 거부됐다.
 저장량 985.1MiB에 새 레이어 86.7MiB를 더하면 기존 한도 1GiB를 넘는다. 원격 이미지 검증·보호 표식 승격은 실행하지 않았다.
 
-## 보존할 이미지
+## 정리 당시 보존한 이미지
 
 | 역할 | source commit | digest |
 |---|---|---|
 | 현재 운영·deploy-current | 1e63741279f7170b430fee07f30945c0f1f35c0a | sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d |
 | 직전 복구·deploy-rollback | 00432323f58feedfb5781535526f79158d996804 | sha256:4f0df90a7ed0b7695c63bd32384f3b5d781035abf59b7420ffa28cb0db4542bd |
 
-현재 Deployment의 web·forecast-worker와 Git overlay가 위 현재 운영 이미지를 사용한다.
+정리 당시 Deployment의 web·forecast-worker와 Git overlay가 위 현재 운영 이미지를 사용했다. 후속 배포의 새 현재/복구 표식은 아래 기록을 따른다.
 
 ## 사용자가 승인한 정리 대상
 
@@ -64,3 +64,11 @@ Harbor 조회에서 저장소는 web 하나·artifact 6개·보호 표식 2개�
 종료 후 **artifact 2개·보호본 2개·후보 0개**, 사용량 **403,833,432 / 1,073,741,824 bytes**를 확인했다.
 현재/복구 digest는 위 표와 같았다. 축제 자료·예측 기록·PVC·quota·권한·다른 프로젝트는 변경하지 않았다.
 이는 artifact 정리와 프로젝트 quota 확보의 증거이며 물리 orphan blob의 GC 완료 증거로 표현하지 않는다.
+
+## 후속 배포 완료
+
+동일 CI 34302743602 attempt 2가 원격 검증·표식 승격까지 성공했다. 새 현재 이미지는
+`sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a`,
+복구용 표식은 직전 운영 이미지 `sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d`로 이동했다.
+배포 커밋 `867e1036ad9427109b481c931ae37bb0d0d3610f`를 sync하고 실제 web·forecast-worker 이미지와 generation 16의 정상 가동을 확인했다.
+공개 headless 14개·PDF·11개 경로·기존 예측 보존 결과는 [M6 검증 기록](../validation/25-planning-outcomes.md)을 따른다.

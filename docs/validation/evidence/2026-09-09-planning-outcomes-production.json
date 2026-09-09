@@ -75,7 +75,7 @@
     }
   },
   "forecastBefore": {
-    "checkedAt": "2026-09-09T02:18:51.908Z",
+    "checkedAt": "2026-09-09T04:11:31.669Z",
     "monitorAsOf": "2026-09-09T01:27:54.396Z",
     "monitorDataHash": "6a51bdb18f0f68b936e01d5559aa48b8a4f8d76b918650a73a50b0ca84b8e778",
     "recordsCount": 2,
@@ -122,191 +122,481 @@
   },
   "release": {
     "ci": 34302743602,
-    "attempt": 1,
+    "attempt": 2,
     "sourceCommit": "c3e53b309ef63a32008aea85f911d8ac74ce69b3",
-    "runner": "homelab-fest-compass-k8d69-runner-s2fqv",
-    "status": "failed",
-    "failedStep": "Build and push immutable image once",
+    "runner": "homelab-fest-compass-k8d69-runner-tbbvc",
+    "status": "success",
     "codeValidation": "passed",
     "imageBuild": "passed",
-    "push": "quota-exceeded",
-    "remoteVerification": "not-run",
-    "markerPromotion": "not-run",
-    "deployment": "not-run",
-    "currentImage": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
-    "registryInventory": {
-      "artifacts": [
-        {
-          "digest": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
-          "size": 237296720,
-          "type": "IMAGE",
-          "push_time": "2026-09-09T01:25:43.345Z",
-          "tags": [
-            "deploy-current",
-            "1e63741279f7170b430fee07f30945c0f1f35c0a"
-          ]
-        },
-        {
-          "digest": "sha256:4232ae15b44b5a6d61d47d91919c093868d8bfed349828e5db17a778ef899c21",
-          "size": 237297012,
-          "type": "IMAGE",
-          "push_time": "2026-09-09T01:19:29.982Z",
-          "tags": [
-            "fed424fddd2b7c6b3c6ea38f4a3bcd332fe2c022"
-          ]
-        },
-        {
-          "digest": "sha256:4f0df90a7ed0b7695c63bd32384f3b5d781035abf59b7420ffa28cb0db4542bd",
-          "size": 237297665,
-          "type": "IMAGE",
-          "push_time": "2026-09-09T01:14:44.929Z",
-          "tags": [
-            "deploy-rollback",
-            "00432323f58feedfb5781535526f79158d996804"
-          ]
-        },
-        {
-          "digest": "sha256:d4d655f8c4f087fa34987ead203f816cbeeddb52a7d0e1beb3ef373a76cf9799",
-          "size": 237283847,
-          "type": "IMAGE",
-          "push_time": "2026-09-08T23:03:56.016Z",
-          "tags": [
-            "dcf1f5f5d710f086193eba78b0fe5934caa8790f"
-          ]
-        },
-        {
-          "digest": "sha256:00322425feb7b9d1d26237adad224bb5dcf4f33a78e092b3f06f2d080ced7846",
-          "size": 237259809,
-          "type": "IMAGE",
-          "push_time": "2026-09-08T09:19:25.962Z",
-          "tags": [
-            "590c80599c07113df19ad6900c64122fa6887afd"
-          ]
-        },
-        {
-          "digest": "sha256:5c090b44164c4a442761375c7a29051696fdacff97c6d1bddfb9ebf66df657fa",
-          "size": 237223949,
-          "type": "IMAGE",
-          "push_time": "2026-09-08T08:03:59.169Z",
-          "tags": [
-            "181144c3a9505f916dcbc11cca16d562f6436d0c"
-          ]
-        }
-      ],
-      "project": {
-        "project_id": 20,
-        "name": "fest-compass",
-        "repo_count": 1,
-        "metadata": {
-          "auto_sbom_generation": "true",
-          "auto_scan": "true",
-          "public": "false",
-          "retention_id": "17"
-        }
-      },
-      "quotas": [
-        {
-          "id": 20,
-          "hard": {
-            "storage": 1073741824
-          },
-          "used": {
-            "storage": 1032968664
-          }
-        }
-      ],
-      "retention": {
-        "algorithm": "or",
-        "id": 17,
-        "rules": [
-          {
-            "action": "retain",
-            "scope_selectors": {
-              "repository": [
-                {
-                  "decoration": "repoMatches",
-                  "kind": "doublestar",
-                  "pattern": "**"
-                }
-              ]
-            },
-            "tag_selectors": [
-              {
-                "decoration": "matches",
-                "kind": "doublestar",
-                "pattern": "deploy-current"
-              }
-            ],
-            "template": "always"
-          },
-          {
-            "action": "retain",
-            "scope_selectors": {
-              "repository": [
-                {
-                  "decoration": "repoMatches",
-                  "kind": "doublestar",
-                  "pattern": "**"
-                }
-              ]
-            },
-            "tag_selectors": [
-              {
-                "decoration": "matches",
-                "kind": "doublestar",
-                "pattern": "deploy-rollback"
-              }
-            ],
-            "template": "always"
-          }
-        ],
-        "scope": {
-          "level": "project",
-          "ref": 20
-        },
-        "trigger": {
-          "kind": "Schedule",
-          "settings": {
-            "cron": "0 30 18 * * *",
-            "next_scheduled_time": "2026-09-09T18:30:00.000Z"
-          }
-        }
-      },
-      "recentExecutions": [
-        {
-          "id": 3507,
-          "status": "Success",
-          "dry_run": null,
-          "trigger": "Schedule",
-          "start_time": "2026-09-08T18:30:01.191394Z",
-          "end_time": "2026-09-08T18:30:01Z"
-        },
-        {
-          "id": 3304,
-          "status": "Success",
-          "dry_run": null,
-          "trigger": "Schedule",
-          "start_time": "2026-09-07T18:30:01.438993Z",
-          "end_time": "2026-09-07T18:30:01Z"
-        },
-        {
-          "id": 3297,
-          "status": "Success",
-          "dry_run": null,
-          "trigger": "MANUAL",
-          "start_time": "2026-09-07T14:26:16.918911Z",
-          "end_time": "2026-09-07T14:26:17Z"
-        }
+    "push": "passed",
+    "remoteVerification": "passed",
+    "markerPromotion": "passed",
+    "deployment": {
+      "revision": "867e1036ad9427109b481c931ae37bb0d0d3610f",
+      "sync": "Synced",
+      "health": "Healthy",
+      "phase": "Succeeded",
+      "generation": 16,
+      "observedGeneration": 16,
+      "availableReplicas": 1,
+      "images": [
+        "registry.damecasol.com/fest-compass/web@sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a",
+        "registry.damecasol.com/fest-compass/web@sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a"
       ]
     },
-    "cleanup": "not-executed; approval required for exact four new candidate digests"
+    "cleanup": {
+      "userApprovedOn": "2026-09-09",
+      "dryRun": 3577,
+      "execution": 3578,
+      "status": "success",
+      "before": {
+        "artifacts": [
+          {
+            "digest": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
+            "tags": [
+              "deploy-current",
+              "1e63741279f7170b430fee07f30945c0f1f35c0a"
+            ]
+          },
+          {
+            "digest": "sha256:4232ae15b44b5a6d61d47d91919c093868d8bfed349828e5db17a778ef899c21",
+            "tags": [
+              "fed424fddd2b7c6b3c6ea38f4a3bcd332fe2c022"
+            ]
+          },
+          {
+            "digest": "sha256:4f0df90a7ed0b7695c63bd32384f3b5d781035abf59b7420ffa28cb0db4542bd",
+            "tags": [
+              "deploy-rollback",
+              "00432323f58feedfb5781535526f79158d996804"
+            ]
+          },
+          {
+            "digest": "sha256:d4d655f8c4f087fa34987ead203f816cbeeddb52a7d0e1beb3ef373a76cf9799",
+            "tags": [
+              "dcf1f5f5d710f086193eba78b0fe5934caa8790f"
+            ]
+          },
+          {
+            "digest": "sha256:00322425feb7b9d1d26237adad224bb5dcf4f33a78e092b3f06f2d080ced7846",
+            "tags": [
+              "590c80599c07113df19ad6900c64122fa6887afd"
+            ]
+          },
+          {
+            "digest": "sha256:5c090b44164c4a442761375c7a29051696fdacff97c6d1bddfb9ebf66df657fa",
+            "tags": [
+              "181144c3a9505f916dcbc11cca16d562f6436d0c"
+            ]
+          }
+        ],
+        "quota": [
+          {
+            "creation_time": "2026-08-31T13:28:32.411Z",
+            "hard": {
+              "storage": 1073741824
+            },
+            "id": 20,
+            "ref": {
+              "id": 20,
+              "name": "fest-compass",
+              "owner_name": ""
+            },
+            "update_time": "2026-09-09T02:23:42.000Z",
+            "used": {
+              "storage": 1032968664
+            }
+          }
+        ],
+        "exactApprovedSetMatches": true
+      },
+      "after": {
+        "artifacts": [
+          {
+            "digest": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
+            "tags": [
+              "deploy-current",
+              "1e63741279f7170b430fee07f30945c0f1f35c0a"
+            ]
+          },
+          {
+            "digest": "sha256:4f0df90a7ed0b7695c63bd32384f3b5d781035abf59b7420ffa28cb0db4542bd",
+            "tags": [
+              "deploy-rollback",
+              "00432323f58feedfb5781535526f79158d996804"
+            ]
+          }
+        ],
+        "quota": [
+          {
+            "creation_time": "2026-08-31T13:28:32.411Z",
+            "hard": {
+              "storage": 1073741824
+            },
+            "id": 20,
+            "ref": {
+              "id": 20,
+              "name": "fest-compass",
+              "owner_name": ""
+            },
+            "update_time": "2026-09-09T04:11:29.000Z",
+            "used": {
+              "storage": 403833432
+            }
+          }
+        ],
+        "onlyProtectedRemain": true
+      },
+      "globalGcExecuted": false,
+      "quotaOrPermissionsChanged": false
+    }
   },
   "publicVerification": {
-    "status": "not-run",
-    "reason": "M6 image not published; existing service remains healthy"
+    "status": "passed",
+    "origin": "https://kto.damecasol.com",
+    "headless": {
+      "headless": true,
+      "passed": [
+        "public-original-costs-and-composition-scope",
+        "tender-and-missing-not-actual-spending",
+        "missing-proposal-guides-to-planning",
+        "metric-definitions-units-periods-zero-gates",
+        "fund-totals-35000000-35118200-and-unknown-versus-zero",
+        "draft-reload-preserves-sources-and-improvements",
+        "contract-reference-is-not-settlement-approval",
+        "fixed-plan-result-pdf-with-original-evidence",
+        "390px-result-no-overflow",
+        "r2-changes-never-change-p1-r1",
+        "personal-edition-search-is-local-and-separate",
+        "next-edition-resets-and-links-improvements",
+        "v4-file-roundtrip-keeps-lineage-and-results",
+        "conflicting-result-import-preserves-data"
+      ],
+      "browserErrors": [],
+      "appWrites": []
+    },
+    "initialFailure": "Analytics consent overlay intercepted click; test now clicks visible Reject All on public host, all 14 rerun passed",
+    "routes": [
+      {
+        "path": "/",
+        "status": 200
+      },
+      {
+        "path": "/regions",
+        "status": 200
+      },
+      {
+        "path": "/compare",
+        "status": 200
+      },
+      {
+        "path": "/planning/options",
+        "status": 200
+      },
+      {
+        "path": "/planning/budget",
+        "status": 200
+      },
+      {
+        "path": "/planning/proposal",
+        "status": 200
+      },
+      {
+        "path": "/planning/outcomes",
+        "status": 200
+      },
+      {
+        "path": "/forecast/records",
+        "status": 200
+      },
+      {
+        "path": "/forecast/calendar",
+        "status": 200
+      },
+      {
+        "path": "/robots.txt",
+        "status": 200
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "hasOutcome": true
+      }
+    ],
+    "pdf": {
+      "pages": 19,
+      "format": "A4",
+      "actual": 35118200,
+      "sourceD0": 52671.5,
+      "planReference": "outcome-e2e-proposal",
+      "improvementVerified": true
+    }
   },
-  "forecastAfter": null,
+  "forecastAfter": {
+    "checkedAt": "2026-09-09T04:18:37.743Z",
+    "monitorAsOf": "2026-09-09T01:27:54.396Z",
+    "monitorDataHash": "6a51bdb18f0f68b936e01d5559aa48b8a4f8d76b918650a73a50b0ca84b8e778",
+    "recordsCount": 2,
+    "recordsHash": "6fc2c95f5870a9d5aeac1e327e718f2e2792f8a50b169ae70c3348ec73dd4d39",
+    "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+    "automation": {
+      "schemaVersion": 1,
+      "date": "2026-09-09",
+      "startedAt": "2026-09-09T00:00:11.136Z",
+      "completedAt": "2026-09-09T00:00:43.742Z",
+      "status": "partial",
+      "calls": 7,
+      "error": null,
+      "snapshot": {
+        "archiveId": "9826b78dbeb42ca04ecf6aff8686247cde795c49c54759517892928ab5161947",
+        "snapshotId": "eed308ce69c1dc595791d05ba683b6437e3ee41e66f3e1f255871bc69aa3c68d"
+      },
+      "nextRunAt": "2026-09-10T09:00:00+09:00",
+      "mode": "daily",
+      "schedule": [
+        {
+          "requestId": "nonsan-20260914-d7-v1",
+          "start": "2026-09-14",
+          "horizonDays": 7,
+          "dueDate": "2026-09-07",
+          "status": "recorded"
+        },
+        {
+          "requestId": "nonsan-20261005-d28-v1",
+          "start": "2026-10-05",
+          "horizonDays": 28,
+          "dueDate": "2026-09-07",
+          "status": "recorded"
+        },
+        {
+          "requestId": "nonsan-20261005-d7-v1",
+          "start": "2026-10-05",
+          "horizonDays": 7,
+          "dueDate": "2026-09-28",
+          "status": "upcoming"
+        }
+      ]
+    }
+  },
   "traceboard": {
+    "status": "pending updated production verification publication"
+  },
+  "registryDryRun": {
+    "execution": 3576,
+    "status": "success",
+    "artifacts": 6,
+    "protected": 2,
+    "candidates": 4,
+    "policyPlan": "No Harbor policy drift",
+    "actualDeletionExecuted": false,
+    "approval": "approved and executed; see release.cleanup"
+  },
+  "predeploymentPublicCheck": {
+    "checkedOn": "2026-09-09",
+    "method": "headless browser GET",
+    "existingRoutes200": 8,
+    "outcomesStatus": 404,
+    "meaning": "M1-M5 available; M6 production verification remains not run"
+  },
+  "retainedLocalEvidence": "/home/lsh/.cache/fest-compass/verification/2026-09-09-m6-release/",
+  "complete": false,
+  "limitations": [
+    "Nationwide public actual-spending data not connected; existing reviewed samples only",
+    "Personal input is distinct from verified public lookup",
+    "No official approval/settlement, shared editing, or observed municipal-user acceptance",
+    "No formal API/Spec/Run/ticket sources"
+  ],
+  "releaseAttempts": [
+    {
+      "ci": 34302743602,
+      "attempt": 1,
+      "sourceCommit": "c3e53b309ef63a32008aea85f911d8ac74ce69b3",
+      "runner": "homelab-fest-compass-k8d69-runner-s2fqv",
+      "status": "failed",
+      "failedStep": "Build and push immutable image once",
+      "codeValidation": "passed",
+      "imageBuild": "passed",
+      "push": "quota-exceeded",
+      "remoteVerification": "not-run",
+      "markerPromotion": "not-run",
+      "deployment": "not-run",
+      "currentImage": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
+      "registryInventory": {
+        "artifacts": [
+          {
+            "digest": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
+            "size": 237296720,
+            "type": "IMAGE",
+            "push_time": "2026-09-09T01:25:43.345Z",
+            "tags": [
+              "deploy-current",
+              "1e63741279f7170b430fee07f30945c0f1f35c0a"
+            ]
+          },
+          {
+            "digest": "sha256:4232ae15b44b5a6d61d47d91919c093868d8bfed349828e5db17a778ef899c21",
+            "size": 237297012,
+            "type": "IMAGE",
+            "push_time": "2026-09-09T01:19:29.982Z",
+            "tags": [
+              "fed424fddd2b7c6b3c6ea38f4a3bcd332fe2c022"
+            ]
+          },
+          {
+            "digest": "sha256:4f0df90a7ed0b7695c63bd32384f3b5d781035abf59b7420ffa28cb0db4542bd",
+            "size": 237297665,
+            "type": "IMAGE",
+            "push_time": "2026-09-09T01:14:44.929Z",
+            "tags": [
+              "deploy-rollback",
+              "00432323f58feedfb5781535526f79158d996804"
+            ]
+          },
+          {
+            "digest": "sha256:d4d655f8c4f087fa34987ead203f816cbeeddb52a7d0e1beb3ef373a76cf9799",
+            "size": 237283847,
+            "type": "IMAGE",
+            "push_time": "2026-09-08T23:03:56.016Z",
+            "tags": [
+              "dcf1f5f5d710f086193eba78b0fe5934caa8790f"
+            ]
+          },
+          {
+            "digest": "sha256:00322425feb7b9d1d26237adad224bb5dcf4f33a78e092b3f06f2d080ced7846",
+            "size": 237259809,
+            "type": "IMAGE",
+            "push_time": "2026-09-08T09:19:25.962Z",
+            "tags": [
+              "590c80599c07113df19ad6900c64122fa6887afd"
+            ]
+          },
+          {
+            "digest": "sha256:5c090b44164c4a442761375c7a29051696fdacff97c6d1bddfb9ebf66df657fa",
+            "size": 237223949,
+            "type": "IMAGE",
+            "push_time": "2026-09-08T08:03:59.169Z",
+            "tags": [
+              "181144c3a9505f916dcbc11cca16d562f6436d0c"
+            ]
+          }
+        ],
+        "project": {
+          "project_id": 20,
+          "name": "fest-compass",
+          "repo_count": 1,
+          "metadata": {
+            "auto_sbom_generation": "true",
+            "auto_scan": "true",
+            "public": "false",
+            "retention_id": "17"
+          }
+        },
+        "quotas": [
+          {
+            "id": 20,
+            "hard": {
+              "storage": 1073741824
+            },
+            "used": {
+              "storage": 1032968664
+            }
+          }
+        ],
+        "retention": {
+          "algorithm": "or",
+          "id": 17,
+          "rules": [
+            {
+              "action": "retain",
+              "scope_selectors": {
+                "repository": [
+                  {
+                    "decoration": "repoMatches",
+                    "kind": "doublestar",
+                    "pattern": "**"
+                  }
+                ]
+              },
+              "tag_selectors": [
+                {
+                  "decoration": "matches",
+                  "kind": "doublestar",
+                  "pattern": "deploy-current"
+                }
+              ],
+              "template": "always"
+            },
+            {
+              "action": "retain",
+              "scope_selectors": {
+                "repository": [
+                  {
+                    "decoration": "repoMatches",
+                    "kind": "doublestar",
+                    "pattern": "**"
+                  }
+                ]
+              },
+              "tag_selectors": [
+                {
+                  "decoration": "matches",
+                  "kind": "doublestar",
+                  "pattern": "deploy-rollback"
+                }
+              ],
+              "template": "always"
+            }
+          ],
+          "scope": {
+            "level": "project",
+            "ref": 20
+          },
+          "trigger": {
+            "kind": "Schedule",
+            "settings": {
+              "cron": "0 30 18 * * *",
+              "next_scheduled_time": "2026-09-09T18:30:00.000Z"
+            }
+          }
+        },
+        "recentExecutions": [
+          {
+            "id": 3507,
+            "status": "Success",
+            "dry_run": null,
+            "trigger": "Schedule",
+            "start_time": "2026-09-08T18:30:01.191394Z",
+            "end_time": "2026-09-08T18:30:01Z"
+          },
+          {
+            "id": 3304,
+            "status": "Success",
+            "dry_run": null,
+            "trigger": "Schedule",
+            "start_time": "2026-09-07T18:30:01.438993Z",
+            "end_time": "2026-09-07T18:30:01Z"
+          },
+          {
+            "id": 3297,
+            "status": "Success",
+            "dry_run": null,
+            "trigger": "MANUAL",
+            "start_time": "2026-09-07T14:26:16.918911Z",
+            "end_time": "2026-09-07T14:26:17Z"
+          }
+        ]
+      },
+      "cleanup": "not-executed; approval required for exact four new candidate digests"
+    }
+  ],
+  "forecastPreserved": [
+    "monitorDataHash",
+    "recordsCount",
+    "recordsHash",
+    "calendarTrialHash",
+    "automation"
+  ],
+  "traceboardPreviousPublication": {
     "sourceCommit": "81533f062bf014f00f4b8f4ac4297989266c56bd",
     "publishedCommit": "df6508c1eb2020a58d2f6e9ed28a5b8564aa8fe2",
     "image": "sha256:b3c8fe4948a736745eaab6f2b0c785d49690fac21b3ff491f686fcb829708062",
@@ -325,30 +615,5 @@
     "mobileViewportAndDocumentWidth": 390,
     "pendingAppDeploymentNoticeVisible": true,
     "browserException": "Existing favicon.ico 404; no page-image failures"
-  },
-  "registryDryRun": {
-    "execution": 3576,
-    "status": "success",
-    "artifacts": 6,
-    "protected": 2,
-    "candidates": 4,
-    "policyPlan": "No Harbor policy drift",
-    "actualDeletionExecuted": false,
-    "approval": "pending; exact digests in docs/ops/planning-outcomes-release.md"
-  },
-  "predeploymentPublicCheck": {
-    "checkedOn": "2026-09-09",
-    "method": "headless browser GET",
-    "existingRoutes200": 8,
-    "outcomesStatus": 404,
-    "meaning": "M1-M5 available; M6 production verification remains not run"
-  },
-  "retainedLocalEvidence": "/home/lsh/.cache/fest-compass/verification/2026-09-09-m6/",
-  "complete": false,
-  "limitations": [
-    "Nationwide public actual-spending data not connected; existing reviewed samples only",
-    "Personal input is distinct from verified public lookup",
-    "No official approval/settlement, shared editing, or observed municipal-user acceptance",
-    "No formal API/Spec/Run/ticket sources"
-  ]
+  }
 }

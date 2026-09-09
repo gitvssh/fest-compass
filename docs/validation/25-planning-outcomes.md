@@ -2,8 +2,8 @@
 class: Current
 owner: fest-compass
 last_verified: 2026-09-09
-version: v1
-summary: "M6 개발·단위 183개·신규 headless 14개 검증 완료. 앱 이미지 업로드는 저장소 한도로 실패해 정리 승인이 필요하며 로컬 실제 화면을 Traceboard 검수본으로 제공합니다."
+version: v2
+summary: "M6 공개 사용 가능. 단위 183개·신규 공개 headless 14개, 19쪽 PDF·기존 예측 보존을 검증했습니다. 승인된 이미지 정리 후 배포를 복구했습니다."
 ---
 
 # M6 비용·결과와 다음 회차 검증
@@ -49,9 +49,19 @@ summary: "M6 개발·단위 183개·신규 headless 14개 검증 완료. 앱 이
 독립 headless CLI에서도 파일 가져오기·개인 결과·모바일 390px·결과 그래프를 확인했다.
 최종 앱 빌드·겨울 고정 코드 14개 확인이 통과했고, 기존 모델·DB 구조 변경은 없다.
 
-## 게시 진행
+## 공개 배포와 검증
 
-**M6 앱 배포는 대기 상태다.** [CI 34302743602](https://github.com/gitvssh/fest-compass/actions/runs/34302743602)의 코드 검증과 이미지 빌드는 통과했으나, 저장량 985.1MiB + 새 레이어 86.7MiB가 1GiB 한도를 넘어 업로드가 실패했다. 운영 서비스는 기존 M5 이미지를 유지한다.
+**M6 공개 사용 가능.** [CI 34302743602](https://github.com/gitvssh/fest-compass/actions/runs/34302743602)의 첫 시도는 1GiB 이미지 한도로 실패했다. 이후 사용자 승인으로 [정확한 미사용 이미지 네 개](../ops/planning-outcomes-release.md)를 정리하고 동일 소스 `c3e53b309ef63a32008aea85f911d8ac74ce69b3`의 attempt 2를 재실행해 성공했다.
+전용 ARC `homelab-fest-compass-k8d69-runner-tbbvc`에서 원격 이미지·현재/복구 표식을 검증했다.
+이미지 `sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a`를 배포 커밋 `867e1036ad9427109b481c931ae37bb0d0d3610f`에 고정했다.
+Argo는 Synced/Healthy/Succeeded, Deployment generation/observed 16, 가용 1개이며 web·forecast-worker 모두 해당 이미지다.
 
-[정리 대상 네 개·보존본·승인 후 복구 절차](../ops/planning-outcomes-release.md)를 구체화했다. 새 대상 삭제·quota·권한 변경은 실행하지 않았다.
-공개 M6 시험은 배포 전이므로 미실시다. 내부 Traceboard에 로컬 실제 화면과 검수 자료를 게시한다.
+- 공개 `https://kto.damecasol.com`에서 신규 14개 headless 흐름 전체 통과. 브라우저 오류·앱 쓰기 0, 모바일 390px 넘침 0.
+- 첫 공개 시도는 분석 쿠키 창이 클릭을 가로막아 실패했다. 공개 호스트의 실제 `Reject All` 버튼을 누르는 절차를 테스트에 추가한 뒤 전체 재실행했다. 모달 강제 제거·클릭 우회·분석 동의 허용은 하지 않았다.
+- 공개 원주 지원사업 35,000,000/35,118,200원, 논산 입찰 기초와 실제 비용 미확보 구분, 개인 입력의 출처·미확인/0·불변 P/R·다음 회차 초기화·개선 연결을 검증했다.
+- 실제 공개 결과 PDF A4 19쪽에서 35,118,200원·당시 자료 52,671.5명·기준 기획 식별자·개선 문구를 추출·확인했다.
+- 기존/M6/예측/robots/sitemap 11개 경로 HTTP 200, sitemap에 `/planning/outcomes` 포함.
+- 배포 전후 예측 2건·모니터 의미 값·겨울 시험·당일 수집 결과가 일치한다. 모델·DB·겨울 고정 코드 변경 없음.
+
+내부 Traceboard 검수 문서에는 이 공개 검증 결과를 반영한다. 실제 실무자 관찰과 전국 자료 확보를 완료했다는 의미는 아니다.
+정형 증거는 [배포 검증 JSON](evidence/2026-09-09-planning-outcomes-production.json)에 보존한다.
