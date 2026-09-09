@@ -13,7 +13,7 @@ summary: "현재 개인 저장·공개 읽기 전용 경계 위에 지도·근�
 현재 구성은 apps/web/app, apps/web/lib/workspace.ts, apps/web/lib/kto,
 apps/web/prisma/schema.prisma와 기존 [운영 경계 결정](../../decisions/0001-public-readonly-sqlite-boundary.md)에 근거한다.
 신규 객체와 화면은 [자료 정의](../1-analysis/data-contract.md)·[화면설계](screens.md)의 제안이다.
-M1~M4는 기존 공개 읽기 전용·개인 브라우저 저장 경계에 연결했다. 운영 DB·수집기·모델 구조는 유지한다. [M3 저장 계약](planning-options-implementation.md)과 [M4 파일 v2 호환 계약](budget-implementation.md)을 따른다.
+M1~M5는 기존 공개 읽기 전용·개인 브라우저 저장 경계에 연결했다. 운영 DB·수집기·모델 구조는 유지한다. [M3 저장 계약](planning-options-implementation.md)과 [M4 파일 v2 호환 계약](budget-implementation.md)을 따른다.
 
 ## 현재 구성과 연결 제안
 
@@ -29,7 +29,8 @@ flowchart LR
   READ --> NEW
   NEW --> SNAP["근거·후보·예산 사본"]
   SNAP --> LOCAL
-  NEW -.-> FUTURE["후속: 완성 기획안·결과 연결"]
+  SNAP --> REPORT["기획안 버전·사업설명·준비 목록 출력"]
+  NEW -.-> FUTURE["후속: 결과 연결"]
 ```
 
 실선은 현재 구성, 점선은 연결 개발이 필요한 제안이다.
@@ -59,3 +60,5 @@ M3 사업·준비와 M4 재원·지출·원문 기록은 구현했다. 기획 v1
 금액의 단계·대상 범위와 불변 버전 참조를 분리하고 준비 과제 의존 순환을 검사한다.
 외부 증빙은 공개 링크 또는 사용자 문서 식별 메모로 참조한다. 원본 파일 보관·기관 시스템 연결을 새로 추가하지 않는다.
 결과 출력은 기획 사본과 결과 사본 쌍을 사용해 이후 수정과 분리한다.
+
+M5는 [v3 개인 파일 계약](proposal-implementation.md)을 사용한다. 출력은 선택한 불변 보관본만 읽고 최신 API를 재조회하지 않는다. 기존 운영 DB·예측 기록은 변경하지 않는다.

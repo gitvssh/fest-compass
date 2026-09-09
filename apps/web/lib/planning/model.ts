@@ -60,6 +60,7 @@ export function importPlanning(current: Planning, incoming: Planning): Planning 
     if (old && JSON.stringify(old) !== JSON.stringify(r)) throw new Error("같은 보관본 식별자의 내용이 다릅니다. 기존 기획을 유지합니다.");
     if (!old) next.revisions.push(copy(r));
   }
+  next.version = Math.max(next.version, incoming.version) as Planning["version"];
   next.draft = copy(incoming.draft); validatePlanning(next); return next;
 }
 export function optionIssues(o: Option): string[] {
@@ -131,10 +132,17 @@ function draft(d: PlanDraft) {
   }
 }
 export function validatePlanning(p: Planning): void {
-  requireValue(p && p.format === "fest-compass-planning" && [1, 2].includes(p.version) && id(p.stamp) && instant(p.updatedAt)); draft(p.draft);
-  requireValue(p.version === 2 || [...p.draft.options, ...p.revisions.flatMap(r => r.draft.options)].every(o => o.budget === undefined && o.links.every(l => l.field !== "budget")), "예산 기능은 기획 파일 형식 v2가 필요합니다.");
+  requireValue(p && p.format === "fest-compass-planning" && [1, 2, 3].includes(p.version) && id(p.stamp) && instant(p.updatedAt)); draft(p.draft);
+  requireValue(p.version >= 2 || [...p.draft.options, ...p.revisions.flatMap(r => r.draft.options)].every(o => o.budget === undefined && o.links.every(l => l.field !== "budget")), "예산 기능은 기획 파일 형식 v2가 필요합니다.");
   list(p.revisions, 20); unique(p.revisions.map(r => r.id));
-  for (const r of p.revisions) { requireValue(id(r.id) && instant(r.savedAt) && str(r.note)); draft(r.draft); }
+  for (const d of [p.draft, ...p.revisions.map(r => r.draft)]) if (d.measurementPlan !== undefined) requireValue(p.version === 3 && str(d.measurementPlan), "측정 계획은 기획 파일 형식 v3가 필요합니다.");
+  for (const r of p.revisions) {
+    requireValue(id(r.id) && instant(r.savedAt) && str(r.note)); draft(r.draft);
+    if (r.proposal !== undefined) {
+      requireValue(p.version === 3 && r.proposal?.format === 1, "기획안은 지원하는 v3 형식이 필요합니다.");
+      requireValue(r.draft.options.length >= 2 && r.draft.options.some(o => o.decision === "selected" && o.reason.trim()), "기획안 보관에는 후보 두 개 이상과 우선 후보의 선택 이유가 필요합니다.");
+    }
+  }
   for (const o of p.draft.options) if (o.budget?.baselineRevision) requireValue(p.revisions.some(r => r.id === o.budget!.baselineRevision && r.draft.options.some(b => b.id === o.budget!.baselineOption)), "비교할 예산 보관본·후보를 확인하세요.");
 }
 export function parsePlanning(raw: string): Planning {
@@ -151,6 +159,6 @@ export function writePlanning(p: Planning, expected: string | null, storage: Pic
     const previous = parsePlanning(current);
     for (const r of previous.revisions) requireValue(p.revisions.some(n => n.id === r.id && JSON.stringify(n) === JSON.stringify(r)), "이미 보관한 버전은 수정하거나 제거할 수 없습니다.");
   }
-  const next: Planning = { ...p, version: 2, stamp: uid(), updatedAt: new Date().toISOString() }, raw = encodePlanning(next);
+  const next: Planning = { ...p, version: p.version === 3 ? 3 : 2, stamp: uid(), updatedAt: new Date().toISOString() }, raw = encodePlanning(next);
   storage.setItem(PLANNING_KEY, raw); return raw;
 }

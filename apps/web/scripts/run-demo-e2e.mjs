@@ -107,6 +107,7 @@ try {
   runNode(join(webRoot, "scripts", "comparison-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "planning-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "budget-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "proposal-e2e.mjs"), []);
 } finally {
   if (server.exitCode === null && server.pid) {
     if (process.platform === "win32") {

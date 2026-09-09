@@ -34,6 +34,20 @@ button {
 :focus-visible { outline: 3px solid #2667e8; outline-offset: 3px; }
 
 @media print {
+  @page { size: A4; margin: 14mm; }
+  .proposal-workspace > header,
+  .proposal-workspace > [role="status"],
+  .proposal-workspace > [role="alert"] { display: none !important; }
+  .proposal-report { color: #111; }
+  .proposal-report * { max-height: none !important; overflow: visible !important; }
+  .proposal-report .comparison-table { table-layout: fixed; font-size: 8pt; min-width: 0 !important; }
+  .proposal-report .comparison-table th, .proposal-report .comparison-table td { min-width: 0 !important; padding: 5px; overflow-wrap: anywhere; }
+  .proposal-report thead { display: table-header-group; }
+  .proposal-report tr, .proposal-report svg { break-inside: avoid; }
+  .proposal-report h2, .proposal-report h3, .proposal-report h4, .proposal-report summary { break-after: avoid; }
+  .proposal-report a { overflow-wrap: anywhere; }
+  .proposal-report a::after { content: " (" attr(href) ")"; font-size: 8pt; color: #111; }
+  .proposal-report { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   html,
   body {
     background: #fff;

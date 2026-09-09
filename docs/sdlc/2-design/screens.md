@@ -29,7 +29,7 @@ SCR-FC-002의 현재 화면과 제한은 [축제 비교 구현](festival-compari
 | SCR-FC-003 | 기획 근거 보관 | `/evidence` | 개인 보관·M3 후보 연결 구현 | 선택 자료 목록·출처·당시 값·관련 후보·메모 |
 | SCR-FC-004 | 올해 기획 후보 | `/planning/options` | 첫 기능 구현·검증 | 주제·아이템·대상·장소·기간·근거·제약·후보 A/B |
 | SCR-FC-005 | 예산·준비 비교 | `/planning/budget` | 재원·지출·후보 비교 첫 구현 | 항목·수량·단위·단가·세금 기준·출처·합계·한도 |
-| SCR-FC-006 | 근거가 연결된 기획안 | `/planning/proposal` | 개발 필요 | 선택안·대안·이유·공공 근거·비용·제약·버전·인쇄 |
+| SCR-FC-006 | 근거가 연결된 기획안 | `/planning/proposal` | 불변 보관·사업설명/준비 목록 첫 구현 | 선택안·대안·이유·공공 근거·비용·제약·버전·인쇄 |
 | SCR-FC-007 | 결과·다음 회차 | `/planning/outcomes` | 개발 필요 | 기준 기획안·현장 조치·실측·실제 비용·교훈·복사 |
 
 ## 공통 동작
@@ -90,7 +90,7 @@ SCR-FC-002의 현재 화면과 제한은 [축제 비교 구현](festival-compari
 
 ## SCR-FC-004 · 올해 기획 후보
 
-첫 구현은 [기획 후보 검수 안내](planning-options-implementation.md)에서 확인한다. 아래 v3 시안은 설계 당시 배치이며 예산 이동은 M4에 연결했고 완성 기획안은 후속이다.
+첫 구현은 [기획 후보 검수 안내](planning-options-implementation.md)에서 확인한다. 아래 v3 시안은 설계 당시 배치이며 예산 이동은 M4에 연결했고 기획안 보관·출력은 M5에 연결했다.
 
 관련 요구: FR-PLN-1~3, 공통 저장은 FR-SAVE-1~2.
 
@@ -129,6 +129,8 @@ SCR-FC-002의 현재 화면과 제한은 [축제 비교 구현](festival-compari
 ![예산·준비 비교 개발 전 와이어프레임](../../assets/SCR-FC-005/wireframe-v3.svg)
 
 ## SCR-FC-006 · 근거가 연결된 기획안
+
+[실제 기획안 화면과 출력 계약](proposal-implementation.md), [검증 결과](../../validation/24-planning-proposal.md)를 연결했다. 아래 와이어프레임은 개발 전 제안으로 유지한다.
 
 관련 요구: FR-RPT-2~3, 공통 저장은 FR-SAVE-1~2.
 

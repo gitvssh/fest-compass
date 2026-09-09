@@ -22,6 +22,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <Link href="/evidence" className="hover:text-ink">담은 근거</Link>
             <Link href="/planning/options" className="font-bold text-blue">기획 후보</Link>
             <Link href="/planning/budget" className="font-bold text-blue">예산·준비</Link>
+            <Link href="/planning/proposal" className="font-bold text-blue">기획안·출력</Link>
             <Link href="/workspace" className="font-bold text-blue">내 작업공간</Link>
             {!readOnly ? (
               <>
