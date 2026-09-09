@@ -488,3 +488,32 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-022 · Codex · implementer
+
+- Position: 전국·지역 지도 개선을 공개했다. 도로 배경과 드래그/터치/키보드 이동, 자료 묶음·상세 선택, 명시적 영역 필터·근거 보관과 간단 지도 대체를 사용할 수 있다. 실제 논산 자료에서 발견한 표식 겹침도 수정했다. 정식 경계·전국 과거 자료·실무자 인수는 후속이다.
+- Evidence:
+  - docs/validation/evidence/2026-09-09-region-map-production.json
+  - docs/validation/26-region-map.md
+  - docs/sdlc/2-design/region-map-improvement.md
+  - apps/web/scripts/map-e2e.mjs
+  - apps/web/lib/region/map-view.ts
+  - docs/design/07-region-planning-milestones.md
+  - docs/review/2026-09-planning-review.md
+  - traceboard.yaml
+  - CI 34314707431: source 89e40a0ac7bf91f2c4dda0fd4e294824ba31c814, 전용 ARC success. 배포 8a5fa6f7effeab4ff997ddfe4d979f95f48a2fd5, image b83bba2bc9c0604d919109148cf2542b5c60935e57486d5d7d492810446106e5, generation 18, Synced/Healthy/Succeeded.
+  - Traceboard source 49d5b6d9caef660cd9f6a694305a32f5024b397d, publication 149eda00b44eb2e15cd6bffffc5273a3e0d352c2, generation 47, Synced/Healthy/Succeeded.
+- Changes:
+  - Leaflet 배경·출처/개인정보 안내·CSP 한정 호스트와 외부 배경 없는 대체 지도
+  - 지역명 충돌 방지·원래 목록 번호·같은/가까운 위치 자료 묶음·선택 원문과 영역 보관
+  - 실제 61건 검사에서 인접 격자 묶음 겹침 수정, 해당 회귀 시험과 공개 동의창 언어 대응 추가
+  - UC/TS v4 AC8·요구/설계·마일스톤/검수 안내·공개 검증 기록과 내부 검수본 갱신
+- Validation:
+  - 단위 186개·전체 headless 명명 125개 및 편집/공개 작업공간 흐름·타입·빌드·배포 계약 40개/17리소스 통과, 운영 의존성 취약점 0
+  - 공개 지도 headless 12개 통과. 실제 논산 관광자료 61건/좌표 61건·2025년 3월 방문 31일 조회와 표식 겹침 없음·선택 원문/조건/출처/수집일 보존 확인, 브라우저 예외/앱 쓰기 0
+  - 모든 지도 자동화 타일은 가상 응답, OSMF로 전달 0. 실제 배경 가용성 검증으로 표현하지 않음
+  - 배포 전후 예측 2건·관측 내용·겨울 시험·당일 자동 수집 상태 동일
+  - Traceboard 게시 게이트 표본 1680조합 + 변경 문서 28조합 위반/미평가 0. 실제 HTTPS 95/95 SHA 일치, 링크·그림 2개 디코드·390px 넘침 없음, 브라우저/콘솔 예외 0. 추적 원천 미선언 4종은 미평가 유지
+- Questions:
+  - No open question
+- Handoff: Codex

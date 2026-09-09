@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-09-09T05:45:20Z",
+  "scope": "M1 nationwide and regional map navigation, resource selection and saved evidence",
+  "sourceCommit": "89e40a0ac7bf91f2c4dda0fd4e294824ba31c814",
+  "deploymentCommit": "8a5fa6f7effeab4ff997ddfe4d979f95f48a2fd5",
+  "reviewSourceCommit": "49d5b6d9caef660cd9f6a694305a32f5024b397d",
+  "ci": {
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/34314707431",
+    "conclusion": "success",
+    "runner": "homelab-fest-compass-k8d69-runner-qxxmf",
+    "label": "homelab-fest-compass",
+    "remoteImageAndRetentionMarkersVerified": true
+  },
+  "app": {
+    "url": "https://kto.damecasol.com/regions",
+    "imageDigest": "sha256:b83bba2bc9c0604d919109148cf2542b5c60935e57486d5d7d492810446106e5",
+    "generation": 18,
+    "observedGeneration": 18,
+    "availableReplicas": 1,
+    "webAndWorkerImageMatch": true,
+    "argo": "Synced/Healthy/Succeeded"
+  },
+  "localValidation": {
+    "unitTests": 186,
+    "namedBrowserScenarios": 125,
+    "editorAndPublicWorkspaceJourneys": "passed",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "productionDependencyVulnerabilities": 0,
+    "deploymentContractTests": 40,
+    "renderedProductionResources": 17
+  },
+  "publicValidation": {
+    "headless": true,
+    "mapScenarios": 12,
+    "actualTourismApiHttp": 200,
+    "actualResources": 61,
+    "actualResourcesWithCoordinates": 61,
+    "actualHistoryDays": 31,
+    "selectedResourceId": "2650372",
+    "markerOverlap": false,
+    "selectedSourceCoordinatesQueryAndCollectedAtPreserved": true,
+    "browserErrors": 0,
+    "applicationWriteRequests": 0,
+    "tileReferer": "site origin only",
+    "tileBackground": "Synthetic responses in all browser automation; zero requests forwarded to OSMF. This is not proof of real tile service availability."
+  },
+  "forecastPreservation": {
+    "issuedRecords": 2,
+    "monitorDataHash": "6a51bdb18f0f68b936e01d5559aa48b8a4f8d76b918650a73a50b0ca84b8e778",
+    "recordsHash": "6fc2c95f5870a9d5aeac1e327e718f2e2792f8a50b169ae70c3348ec73dd4d39",
+    "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+    "allComparedValuesUnchanged": true,
+    "dailyAutomationUnchanged": true
+  },
+  "traceboard": {
+    "status": "published and verified",
+    "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-region-map-improvement.html",
+    "publicationCommit": "149eda00b44eb2e15cd6bffffc5273a3e0d352c2",
+    "imageDigest": "sha256:d0ba223f3a181c14e9073d09ba16724d08414bbb012acae14bb73775c70b5ea7",
+    "generation": 47,
+    "observedGeneration": 47,
+    "availableReplicas": 1,
+    "argo": "Synced/Healthy/Succeeded",
+    "publisherGateSampleCombinations": 1680,
+    "changedDocumentCombinations": 28,
+    "accessibilityViolations": 0,
+    "accessibilityUnevaluated": 0,
+    "actualHttpsFiles": 95,
+    "sha256Matches": 95,
+    "reviewDesignValidationLinks": "passed",
+    "decodedImages": 2,
+    "mobileWidth": 390,
+    "horizontalOverflow": false,
+    "browserErrors": 0,
+    "consoleErrors": 0,
+    "traceSourceArtifacts": 34,
+    "traceSourceGaps": 0,
+    "traceSourceUnevaluatedCategories": 4
+  },
+  "corrections": [
+    "Removed transient duplicate popup close controls and prevented marker click bubbling from closing a newly opened popup.",
+    "Merged adjacent grid clusters after actual Nonsan data exposed overlapping markers; added a boundary regression test and repeated the full browser suite.",
+    "Public test handles both Korean and English consent rejection labels."
+  ],
+  "notCompleted": [
+    "Official administrative boundary year and code verification",
+    "Nationwide historical visitor and spending data coverage",
+    "Municipal staff task observation and full MVP acceptance",
+    "Formal API, Spec, Run and ticket source integration"
+  ],
+  "evidenceDirectory": "/home/lsh/.cache/fest-compass/verification/2026-09-09-region-map"
+}

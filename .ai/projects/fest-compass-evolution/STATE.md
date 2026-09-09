@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 21
+revision: 22
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-09T04:39:34.375Z"
+updated_at: "2026-09-09T05:46:50.278Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1~M6 첫 기능이 공개 사용 가능하다. M6의 공개 비용·개인 결과 구분, 계획/실측·재원별 비용 비교, 불변 결과·PDF, 개인 과거 회차 검색과 다음 회차 초기화·개선 연결을 공개 headless 14개로 검증했다. 승인된 미사용 이미지 4개 정리 후 동일 CI를 재실행해 배포했고 기존 예측을 보존했다. 전국 자료·정식 지도 경계·실제 담당자 관찰·정형 API/Spec/Run 연결은 후속이다. Traceboard 검수본도 갱신해 실제 파일 91개 일치와 모바일 표시를 확인했다. M6 goal의 구현·검증·앱 및 검수본 게시가 끝났다.
+M1~M6 첫 흐름에 전국·지역 지도 개선을 공개했다. 도로 배경·드래그/터치/키보드·자료 묶음/상세·영역 필터와 기획 근거를 연결했고 실제 논산 61건의 표식 겹침도 수정했다. 단위 186개·전체 headless 125개와 공개 지도 12개/실자료 검증을 통과했고 예측·수집 기록을 보존했다. Traceboard 95개 파일·링크·모바일 표시까지 게시 검증을 마쳤다. 정식 행정경계·전국 과거 자료·실제 담당자 관찰·정형 API/Spec/Run 연결은 후속이다.
 
 ## Accepted decisions
 
@@ -39,19 +39,20 @@ M1~M6 첫 기능이 공개 사용 가능하다. M6의 공개 비용·개인 결�
 - 2026-09-09 사용자가 다음 마일스톤을 goal로 설정해 진행하도록 요청했다. M5 기획안 보관·사업설명/준비 목록 출력의 구현·headless 검증·일반 게시·작업공간 정리를 수행하며 모델·개인 저장 경계는 유지한다.
 - 2026-09-09 사용자가 M6를 goal로 지정해 진행하도록 요청했다. 공개 집행·정산 자료와 담당자 입력을 구분하고 미확인 금액을 추정하거나 0으로 처리하지 않는다. 구현·검증·일반 게시·작업공간 정리를 수행한다.
 - 2026-09-09 사용자가 docs/ops/planning-outcomes-release.md의 미사용 이미지 네 개 삭제를 명시 승인하고 기본 승인 정책 확인을 요청했다. 정확한 대상만 정리했으며 기존 자동 예약 정리와 수동 삭제 승인 경계를 구분한다.
+- 2026-09-09 다음 작업 진행 요청에 따라 기존 지도 품질 피드백을 우선 보완했다. 도로 배경·이동·자료 선택·영역 보관을 구현·검증·일반 게시하며 모델·개인 저장 경계와 headless 원칙을 유지한다(기존 기능 우선 위임 범위).
 
 ## Open questions
 
-- 전국 관광·과거·실제 비용 자료 확장, 정식 지도 경계·거리 검색과 지도 품질 개선은 후속이다. 현재 확보 표본을 전국 자료로 표현하지 않는다.
-- 실제 담당자 관찰과 전체 업무 인수, 공동 편집·공식 승인·정형 API/Spec/Run 연결은 미완료다. 다음 우선순위는 사용자 피드백으로 정한다.
+- 정식 행정경계 연도/코드 검증·거리 검색, 전국 관광/과거/실제 비용 자료 확대는 후속이다. 현재 표본을 전국 확보 자료로 표현하지 않는다.
+- 실제 담당자 관찰·전체 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 미완료다. 다음 우선순위는 사용 피드백을 반영한다.
 
 ## Artifacts and durable documents
 
-- docs/validation/evidence/2026-09-09-planning-outcomes-production.json
-- docs/validation/25-planning-outcomes.md
-- docs/ops/planning-outcomes-release.md
-- docs/sdlc/2-design/outcome-implementation.md
-- apps/web/scripts/outcome-e2e.mjs
+- docs/validation/evidence/2026-09-09-region-map-production.json
+- docs/validation/26-region-map.md
+- docs/sdlc/2-design/region-map-improvement.md
+- apps/web/scripts/map-e2e.mjs
+- apps/web/lib/region/map-view.ts
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md
 - traceboard.yaml
