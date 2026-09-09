@@ -70,6 +70,8 @@ PDF는 내려받은 출력물이고 서버 보관/공유 링크는 없다. 기�
 
 ![기획안에 보관한 과거 방문 근거](../../assets/SCR-FC-006/implementation/proposal-evidence.png)
 
+![세 회차의 행사 전후 실제 일별 값 45개를 보관한 출력 화면](../../assets/SCR-FC-006/implementation/proposal-full-trend.png)
+
 ![미산정 비용과 번호가 있는 재원 도넛의 흑백 인쇄 검수](../../assets/SCR-FC-006/implementation/proposal-print-gray.png)
 
 v3 개발 전 와이어프레임은 당시 제안으로 유지한다. 실제 담당자 과제 관찰·정형 Spec/Run 연결·M6 결과 자료는 후속이다.

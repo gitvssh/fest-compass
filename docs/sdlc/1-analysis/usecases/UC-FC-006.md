@@ -1,11 +1,11 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-08
+last_verified: 2026-09-09
 id: UC-FC-006
 version: v3
 status: active
-summary: "근거가 연결된 기획안을 보관하고 출력한다. 구현 전 인수 기준입니다."
+summary: "근거가 연결된 기획안을 보관하고 출력한다. M5 구현·자동 검증을 연결했으며 실제 담당자 관찰은 후속입니다."
 covers: ["FR-RPT-2","FR-RPT-3"]
 screens: ["SCR-FC-004","SCR-FC-005","SCR-FC-006"]
 apis: []
@@ -19,6 +19,8 @@ acs:
 ---
 
 # UC-FC-006 · 근거가 연결된 기획안을 보관하고 출력한다
+
+[M5 구현](../../2-design/proposal-implementation.md)과 [검증 결과](../../../validation/24-planning-proposal.md)를 연결했다. 아래 인수 기준은 유지한다.
 
 | 항목 | 내용 |
 |---|---|
