@@ -402,3 +402,28 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-019 · Codex · implementer
+
+- Position: M5 기획안 불변 보관과 사업설명/준비 목록 출력을 공개하고 검수 문서를 연결했다. 다음은 M6 결과·다음 회차 연결이며 전체 MVP나 실무자 검수 완료로 확대하지 않는다.
+- Evidence:
+  - docs/sdlc/2-design/proposal-implementation.md
+  - docs/validation/24-planning-proposal.md
+  - docs/validation/evidence/2026-09-09-planning-proposal-production.json
+  - 최종 앱 소스 1e63741279f7170b430fee07f30945c0f1f35c0a; CI 34298889931; 배포 f0e557e5202c9d47f91c499923e6d2dd378ac1f1
+  - Traceboard 원천 285a4e3b08e8e13f7bab40d7ee33d657378a7877; 게시 d0a2fef202841c3180b55f84c4411a049032e3c4
+- Changes:
+  - /planning/proposal, 불변 기획안·선택 이유·측정 계획·두 종류 PDF, 보관본의 그래프/표/출처/준비 상태 유지
+  - v3 개인 파일·v1/v2 호환·동시 창 충돌/변조/한도 검사, 기존 보관본과 직전 초안 보존
+  - M5 요구·인수·검수 문서와 실제 화면 5개, 운영 DB·모델·겨울 시험 유지
+- Validation:
+  - 단위 175개(신규 7)·headless 신규 14개 및 기존 전체 흐름·타입/빌드·배포 계약 40개·운영 취약점 0
+  - 공개 두 PDF·새 버전 저장·P1 보존·파일 가져오기·390px·12개 URL HTTP 200·사이트맵 확인
+  - 최종 실제 45값과 지역 15점·자료 확보 한국어·명시적 비교 기준·PDF 수치 대조, 브라우저 오류/기획 앱 쓰기 0; Cloudflare Zaraz 요청은 별도 분류
+  - 예측 2건·겨울 시험·모니터 의미 값·당일 자동 처리 식별의 전후 보존
+  - 최종 CI 34298889931와 배포 f0e557e5202c9d47f91c499923e6d2dd378ac1f1: Synced/Healthy/Succeeded·가용 1개·이미지 일치
+  - 이미지 표식과 선언 순서 불일치로 중단된 후속 승격을 검증된 첫 이미지 반영→후속 CI로 복구. 검사 우회·수동 삭제·quota/권한 변경 없음
+  - Traceboard 접근성 1676 조합 위반/미평가 0·HTTPS 83/83 파일 SHA-256 일치·그림 5/5·390px 넘침 0. 기존 favicon 404 한 건. Synced/Healthy/Succeeded·이미지 일치·가용 1개
+- Questions:
+  - No open question
+- Handoff: Codex

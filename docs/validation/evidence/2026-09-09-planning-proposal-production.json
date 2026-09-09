@@ -1,0 +1,848 @@
+{
+  "schemaVersion": 1,
+  "implementationCommit": "00432323f58feedfb5781535526f79158d996804",
+  "sourceCommit": "1e63741279f7170b430fee07f30945c0f1f35c0a",
+  "ci": {
+    "runId": 34298889931,
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/34298889931",
+    "conclusion": "success",
+    "runnerLabel": "homelab-fest-compass",
+    "steps": [
+      {
+        "name": "Set up job",
+        "conclusion": "success"
+      },
+      {
+        "name": "Check out trusted main",
+        "conclusion": "success"
+      },
+      {
+        "name": "Set up Node without Actions cache",
+        "conclusion": "success"
+      },
+      {
+        "name": "Set up kubectl for offline Kustomize rendering",
+        "conclusion": "success"
+      },
+      {
+        "name": "Validate the exact commit before publication",
+        "conclusion": "success"
+      },
+      {
+        "name": "Configure scoped Harbor credentials",
+        "conclusion": "success"
+      },
+      {
+        "name": "Resolve existing immutable commit tag",
+        "conclusion": "success"
+      },
+      {
+        "name": "Build and push immutable image once",
+        "conclusion": "success"
+      },
+      {
+        "name": "Remotely verify selected immutable image",
+        "conclusion": "success"
+      },
+      {
+        "name": "Promote and verify Harbor retention markers",
+        "conclusion": "success"
+      },
+      {
+        "name": "Report verified immutable digest",
+        "conclusion": "success"
+      },
+      {
+        "name": "Remove credential files",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Set up Node without Actions cache",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Check out trusted main",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "publicationRecovery": {
+    "firstVerifiedRun": 34298035619,
+    "intermediateRun": 34298457926,
+    "failure": "Retention marker gate found current different from the checked-in desired digest; code and remote image verification passed",
+    "action": "Published and synced the first verified M5 image, then validated and published the next source with the reconciled desired digest",
+    "gateBypassed": false,
+    "manualArtifactDeletion": false,
+    "quotaOrPermissionChange": false
+  },
+  "deployment": {
+    "commit": "f0e557e5202c9d47f91c499923e6d2dd378ac1f1",
+    "digest": "sha256:6b5f271087a7080f3b444beb666b279a5e6d10f325397cf8aabcb037b598381d",
+    "sync": "Synced",
+    "health": "Healthy",
+    "operation": "Succeeded",
+    "observedGeneration": 15,
+    "generation": 15,
+    "availableReplicas": 1
+  },
+  "localValidation": {
+    "node": "24.20.0",
+    "unitTests": 175,
+    "newUnitTests": 7,
+    "newHeadlessFlows": {
+      "headless": true,
+      "passed": [
+        "single-candidate-blocks-proposal-but-saves-draft",
+        "blank-selection-reason-blocks-proposal",
+        "measurement-plan-survives-reload",
+        "source-budget-preparation-archived-together",
+        "missing-cost-does-not-become-zero-or-approval",
+        "same-version-business-and-preparation-pdf",
+        "closed-records-and-sources-print-and-restore",
+        "real-source-d0-and-query-preserved",
+        "390px-no-page-overflow",
+        "new-draft-preserves-previous-draft-and-all-legacy-revisions",
+        "p2-changes-never-change-p1",
+        "archived-chart-selection-is-read-only",
+        "v3-file-roundtrip-keeps-proposals",
+        "conflicting-proposal-import-keeps-stored-data"
+      ],
+      "browserErrors": 0,
+      "clientWrites": 0
+    },
+    "existingHeadlessFlows": "editor, workspace, region 14, comparison 21, planning 27, budget 23 passed",
+    "deploymentContractTests": 40,
+    "prodResources": 17,
+    "productionDependencyVulnerabilities": 0,
+    "typecheck": "passed",
+    "build": "passed",
+    "traceGaps": 0,
+    "traceSkippedRules": [
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "realFixturePdfValuesChecked": 45
+  },
+  "publicInitial": {
+    "p1": "8c36308b-ef18-4ed6-a1a8-eb3f20e9b3d7",
+    "proposals": 3,
+    "preserved": true,
+    "pdfKinds": 2,
+    "mobileWidth": 390,
+    "urls": {
+      "result": [
+        {
+          "path": "/",
+          "status": 200
+        },
+        {
+          "path": "/regions",
+          "status": 200
+        },
+        {
+          "path": "/compare",
+          "status": 200
+        },
+        {
+          "path": "/evidence",
+          "status": 200
+        },
+        {
+          "path": "/planning/options",
+          "status": 200
+        },
+        {
+          "path": "/planning/budget",
+          "status": 200
+        },
+        {
+          "path": "/planning/proposal",
+          "status": 200
+        },
+        {
+          "path": "/workspace",
+          "status": 200
+        },
+        {
+          "path": "/forecast",
+          "status": 200
+        },
+        {
+          "path": "/forecast/records",
+          "status": 200
+        },
+        {
+          "path": "/forecast/calendar",
+          "status": 200
+        },
+        {
+          "path": "/forecast/history",
+          "status": 200
+        }
+      ],
+      "sitemap": true
+    },
+    "errors": [],
+    "writes": []
+  },
+  "publicFinal": {
+    "url": "https://kto.damecasol.com/planning/proposal",
+    "readableStatus": true,
+    "baselineNamed": true,
+    "regionPoints": 15,
+    "fullSelection": true,
+    "mobileWidth": 390,
+    "errors": [],
+    "writes": [
+      "POST"
+    ]
+  },
+  "publicNetworkClassification": {
+    "observedPostPaths": [
+      "/cdn-cgi/zaraz/t"
+    ],
+    "classifiedFrom": "Playwright requests list; no request bodies or credential headers read",
+    "followup": {
+      "writes": [],
+      "appWrites": []
+    }
+  },
+  "forecastBefore": {
+    "checkedAt": "2026-09-09T01:07:44.341Z",
+    "monitorAsOf": "2026-09-09T00:00:43.748Z",
+    "monitorDataHash": "6a51bdb18f0f68b936e01d5559aa48b8a4f8d76b918650a73a50b0ca84b8e778",
+    "recordsCount": 2,
+    "recordsHash": "6fc2c95f5870a9d5aeac1e327e718f2e2792f8a50b169ae70c3348ec73dd4d39",
+    "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+    "automation": {
+      "date": "2026-09-09",
+      "status": "partial",
+      "snapshot": {
+        "archiveId": "9826b78dbeb42ca04ecf6aff8686247cde795c49c54759517892928ab5161947",
+        "snapshotId": "eed308ce69c1dc595791d05ba683b6437e3ee41e66f3e1f255871bc69aa3c68d"
+      }
+    }
+  },
+  "forecastAfter": {
+    "checkedAt": "2026-09-09T01:28:16.716Z",
+    "monitorAsOf": "2026-09-09T01:22:27.587Z",
+    "monitorDataHash": "6a51bdb18f0f68b936e01d5559aa48b8a4f8d76b918650a73a50b0ca84b8e778",
+    "recordsCount": 2,
+    "recordsHash": "6fc2c95f5870a9d5aeac1e327e718f2e2792f8a50b169ae70c3348ec73dd4d39",
+    "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+    "automation": {
+      "date": "2026-09-09",
+      "status": "partial",
+      "snapshot": {
+        "archiveId": "9826b78dbeb42ca04ecf6aff8686247cde795c49c54759517892928ab5161947",
+        "snapshotId": "eed308ce69c1dc595791d05ba683b6437e3ee41e66f3e1f255871bc69aa3c68d"
+      }
+    }
+  },
+  "forecastPreservedFields": [
+    "monitorDataHash",
+    "recordsCount",
+    "recordsHash",
+    "calendarTrialHash",
+    "automation"
+  ],
+  "pdf": [
+    {
+      "name": "proposal-public-business.pdf",
+      "sha256": "b1bac30a2249e0a4c54055920cb3c591ce554681c59f301fd972063517523857",
+      "pages": 15
+    },
+    {
+      "name": "proposal-public-preparation.pdf",
+      "sha256": "164b6723fb8e63eea48a308ca914804192e407328cd6eb47de7b867bf36e466a",
+      "pages": 15
+    },
+    {
+      "name": "proposal-final-public.pdf",
+      "sha256": "006466068b265940b5776927590526369944ae6f74af610b1c730cbd6a1151e5",
+      "pages": 19
+    },
+    {
+      "name": "proposal-final-preparation.pdf",
+      "sha256": "175e543a52c1ad13d42c0e1359712d6a2c4b9091d297c63fa75eaeb34d365517",
+      "pages": 19
+    }
+  ],
+  "limitations": [
+    "Personal browser storage; no official approval or shared editing",
+    "Actual municipal-user observation and formal Spec/Run mapping remain incomplete",
+    "M6 outcome and next-edition linkage remains to be implemented"
+  ],
+  "traceboard": {
+    "sourceCommit": "285a4e3b08e8e13f7bab40d7ee33d657378a7877",
+    "publishCommit": "d0a2fef202841c3180b55f84c4411a049032e3c4",
+    "digest": "sha256:9ff357a41857e6b49501d6a534cfd3b033e1c91f9eb03f09dd256f6284acf85c",
+    "sync": "Synced",
+    "health": "Healthy",
+    "operation": "Succeeded",
+    "observedGeneration": 44,
+    "generation": 44,
+    "availableReplicas": 1,
+    "accessibility": {
+      "combinations": 1676,
+      "violations": 0,
+      "unevaluated": 0
+    },
+    "remoteFiles": {
+      "checkedAt": "2026-09-09T01:48:47.465356+00:00",
+      "files": 83,
+      "matches": 83,
+      "source": {
+        "sha": "285a4e3b08e8e13f7bab40d7ee33d657378a7877",
+        "short": "285a4e3b08e8",
+        "branch": "main"
+      },
+      "results": [
+        {
+          "path": "trace.json",
+          "status": 200,
+          "sha256": "7293fbc16af5ff3ff07df6707556a08bd4a15648c918f60b2162661fb82385ab",
+          "matches": true
+        },
+        {
+          "path": "site.json",
+          "status": 200,
+          "sha256": "bbd7489ddc57f0814a9619ca3b7b127167309d6f9f6b5d937edd9bf648b47226",
+          "matches": true
+        },
+        {
+          "path": "gaps.json",
+          "status": 200,
+          "sha256": "63ec938c0daee2bca4db0b4d592b283a900a60b32f5bbefadbaec57c6129b20f",
+          "matches": true
+        },
+        {
+          "path": "search-index.js",
+          "status": 200,
+          "sha256": "947e90d85ab8d2bd76dbe9e07739e1e7a3e83d7b95f5f5a269c6a3042af8a401",
+          "matches": true
+        },
+        {
+          "path": "index.html",
+          "status": 200,
+          "sha256": "116a4909341b66797f744d4b7a04ef9e6dfca922c44a57f83d6a15431df88edf",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-003-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "08ef87a154241711224d961a156113020673d81c548e77f5a1a39bd41f1c868f",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "449a4dd590088ab2874e629b1bf4127d2fb6752abed4f8bde76e3ec10d8a4bb5",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-mobile.png.png",
+          "status": 200,
+          "sha256": "b286a76f8fb83eaefd276335a5c774f140836185b90eb8808a8ccbc90cea36a0",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "af0586a92ca07c6d7621e6398b077597ff9c84d001fc267a7d7d031d793b98ae",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-desktop.png.png",
+          "status": 200,
+          "sha256": "648f80c2a5fe4812bc36fcb6b0256447c0c18cc719d1a31a47e5d0ee921745d9",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-evidence.png.png",
+          "status": 200,
+          "sha256": "2194c76680fae243efe9183f899f84dd596049462612f1ca9331e1256ebbf9cc",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "91c2bbc67472d274e3dfeb716ba1f554ef762f45d75459e5c8fb7b829c2c3395",
+          "matches": true
+        },
+        {
+          "path": "assets/site.css",
+          "status": 200,
+          "sha256": "b2f3a5bff74e9580d5910961112e7ab9bd5a6bdecb640cca6d89235bd506e499",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-timeline.png.png",
+          "status": 200,
+          "sha256": "ffb1752e0a08823bfa622d052366f90c9e0856f512578c61bd89f69e4aaffb1c",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-records.png.png",
+          "status": 200,
+          "sha256": "9c6b670bf1349afff2d45705c34cdf3085a97a2c5acc2b124dc6b0542d1abecd",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-national.png.png",
+          "status": 200,
+          "sha256": "795e950db5d26982fd1f33834d9d53b69a14fa681dd9f895fb214f5ed416af55",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "13e8120e6f4273ff9bb12c8ce30d3c13d66691583b6cfb9143b03e9584b4f5d6",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "cc8969ac08e477c44d2f38211d71081ea5506a2d7dd75f07586be76b96b99ba7",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "12458b1b16ba809ebb83af4a82370cf484e42e08bd0732a13257eee3f1075935",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-007-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "68d287a879e91a366ccbe721da3725ccede3e6048c3d3168e8ecdd74f8f15fe8",
+          "matches": true
+        },
+        {
+          "path": "assets/site.js",
+          "status": 200,
+          "sha256": "c773545759ff4f816b0bde92a1e8564f1503b1b89c49085974a74c597459515f",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-implementation-visits.png.png",
+          "status": 200,
+          "sha256": "e6e826d33b214c63e6a7b790c72f6800aef1d20073e79effb3a0e9e7c9786084",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "9fb931fc8a691334f9e82525d595ed1c61236f33bebba5e1a51f4006496f95b6",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-comparison.png.png",
+          "status": 200,
+          "sha256": "6c59a9eb8f7cacbef22f1767ac8b120ac5ee9e93fe1e8974997126dbb1cd1015",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "506f85c81667228da5acfb96905c9ca0840c54c229846e1de1ad96957e63803b",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-print-gray.png.png",
+          "status": 200,
+          "sha256": "034b276faa35741f8d76a09f2abe0cedc300a374e3f7079c323380e97cb0589e",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-comparison.png.png",
+          "status": 200,
+          "sha256": "fd37a27e2e6d0e895794a587f1f765ddb0ed541364eb072a2d87cd7576b5fc6e",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-province.png.png",
+          "status": 200,
+          "sha256": "4eb9920dc59dce28f09f2f14df8ff99bb379286cf20317039c6cb0bfd55e1f1a",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-full-trend.png.png",
+          "status": 200,
+          "sha256": "ed94dd8c1bd123c0f080e6064e354f860900db959a9ae53f856250939ce47b4b",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "18a35fa63834807c7a87f77243b7e604b63de67c7e2cc9a9d07d91e4c8899f44",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-evidence.png.png",
+          "status": 200,
+          "sha256": "867ab95ad652629aeae0bef34535d7a09da1e0138f4916f4e33dc9fef5faa997",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-funding.png.png",
+          "status": 200,
+          "sha256": "3731134d7d0d18a5bb7fba89de46d339a6f83fe2e482d210fdb1443c612cf94a",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-nonsan.png.png",
+          "status": 200,
+          "sha256": "c9f0f1f0841e0a18d05d09beb9918371422bd42332f903b43feee1bdeffb45ac",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-implementation-cost.png.png",
+          "status": 200,
+          "sha256": "c1ee161644ed10beb5cdc760f020f09dd3f0f29bee45a999c0367a8d0015a053",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-acceptance-plan.html",
+          "status": 200,
+          "sha256": "ff013beb956ab9493e929d98cbd709b1e02d1bcf97c192fde3a9e015c18af1bb",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-product-vision-scope.html",
+          "status": 200,
+          "sha256": "4eb06fcda71e8d87e4a61bb5d0f1f3096d6de620fc924ae328d6375cb9954892",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-srs.html",
+          "status": 200,
+          "sha256": "b91614f3e1a4a6ba2a94a15b2fd26e2eb30985ad0e92bd5790717625b97ca2cb",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-data-contract.html",
+          "status": 200,
+          "sha256": "f0e94e871aa911a17b8c27d66ccdb3bcce935fdb2bc5ef00f3bce6f8b3ea11d1",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-data-visualization.html",
+          "status": 200,
+          "sha256": "ffff64362a2a4a8484c0b82c48c9ea69a5d0e9484eb62b2bc7d436a7d5bcce98",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-005.html",
+          "status": 200,
+          "sha256": "67078b07612cd95f03d315ac8ce29cd642c7b5a83bd519d392730a49a1e90efc",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-006.html",
+          "status": 200,
+          "sha256": "39a47b5b9c598fdd6aa63efef202214526316cf7c7a0a6eb73e7e4e685673ad0",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-005.html",
+          "status": 200,
+          "sha256": "bc86405e1d66df84efc4a44ffc5c03df8ff54f15bcc3835b7fc17828fb64c317",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-21-festival-comparison.html",
+          "status": 200,
+          "sha256": "2b06f19bb827c3e35f372a4a95cbf1bd75716035ea5dae2b9dd7d4acaaf2e672",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-review-2026-09-planning-review.html",
+          "status": 200,
+          "sha256": "b1b95595317d3f430f3df9ef77d7ace6f0e832216edb7e745d7e38d08b8ca494",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-design-system.html",
+          "status": 200,
+          "sha256": "ab145d5468c3f8993037163a87e038f5856d74e0240f0be8b637feaa131b0e1d",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-planning-options-implementation.html",
+          "status": 200,
+          "sha256": "689c5012ebf3c863d1ab0f0e7cd0a5ad8c3fa7d8fd373763f73361caf3196e5f",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-flows.html",
+          "status": 200,
+          "sha256": "2bb56216a4ef4df008f76984c46f8917d079b012d9df28248a5f4899f064d035",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-003.html",
+          "status": 200,
+          "sha256": "285fba19326d171d7514b11ffbfb0c21e98be86bfa98c52315f5e31472a1e157",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-006.html",
+          "status": 200,
+          "sha256": "bd625510a9ffb05c8fe1d6bfa2b9107e98bc6d51c7897988ee4f967f91cae249",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-001.html",
+          "status": 200,
+          "sha256": "dd9720e913f321767529541aecd81213c04de576bfc1500cdfa230a9ea1accb8",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-festival-comparison-implementation.html",
+          "status": 200,
+          "sha256": "9c263030bed11fb9fb17821c6d5319defd8760823466d850b7f22a33ab26a18a",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-007.html",
+          "status": 200,
+          "sha256": "466eee4823eef89409e1aa348682b09bc67accb61b4ff1f5a409e7a42d661815",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-product-glossary.html",
+          "status": 200,
+          "sha256": "24b47b1fd867de75a6bfcb3853f92d0cc611305e7d2783e00b8e325982fe56c8",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-ia.html",
+          "status": 200,
+          "sha256": "8ecdc07d2621205455ca866f8415986068eaec3fa57295a2d9c5e38c2bf048d4",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-municipal-festival-cases.html",
+          "status": 200,
+          "sha256": "0dd4d645ce3a9a6869df0d2ba676b1aa142693cd1488639241322f49cd9ffc84",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-proposal-implementation.html",
+          "status": 200,
+          "sha256": "924884331605b1207226cfe357b4f03f590aa34ee82539d35f8e04e1931d2336",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-region-explorer-implementation.html",
+          "status": 200,
+          "sha256": "54fceec5975ba5aac0fc236c70514f0890dc07a52d21d64c6418283363cb33b4",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-008.html",
+          "status": 200,
+          "sha256": "1799898906a83c20a6ce0a7151d41271e2c5b76781f990bc8c8fec6d8d7bf29a",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-24-planning-proposal.html",
+          "status": 200,
+          "sha256": "2a9ff0b8eb8681b58a7bf4c79ee6e10b4226cd3072586369acca15d5584abadc",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-004.html",
+          "status": 200,
+          "sha256": "ef36663dbca6ebcea93a7a74f69efa5682941d2bb26afcb93b068eee3747c43b",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-008.html",
+          "status": 200,
+          "sha256": "8ef4c74b9a6c265583c475ed9569a80e545dd33bdd48db25ac358e9f78db7a00",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-002.html",
+          "status": 200,
+          "sha256": "80facb6632809988fac8b51d65b227372772c27c813f0ac6eef0b5e7005a0d86",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-municipal-festival-sources.html",
+          "status": 200,
+          "sha256": "259ac15b30fc1cb2ceab420bb8efcf1fad082683a4b25fb975c8f8c23ddab056",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-business-flow.html",
+          "status": 200,
+          "sha256": "ed66ffa33a4647f9bfd56b140dcfe5b6639bab2b434afbbe1a10fa9b7c21476c",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-historical-comparison-review.html",
+          "status": 200,
+          "sha256": "49babfadd9cc0cc7697f8ffdfe7026193d1010c16b8ab23bef32c1185a41f4a4",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-007.html",
+          "status": 200,
+          "sha256": "6a81f7bc79b22eb6ea7b8b77e6376966e5a36b7cb32281534c4b8272f8f465f9",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-002.html",
+          "status": 200,
+          "sha256": "9d77bb59a39f7f4cc977fbccf0ad6cb0a73b006aa6b621bf2110275490907ca9",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-municipal-requirement-proposals.html",
+          "status": 200,
+          "sha256": "98840929404e5a9b255ee421fd6bc8d059b521dacc6bcfb9e2e1b92a0a57cbd7",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-product-non-goals.html",
+          "status": 200,
+          "sha256": "77f188f33c3f81c1076ca53c1410cc230f82a152601f2034fc5a76d539662258",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-20-region-explorer.html",
+          "status": 200,
+          "sha256": "7f174de5fc8e695752ab1c6bb04eb72a53b7b2f77ba72af127bf5bb24cfd4965",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-screens.html",
+          "status": 200,
+          "sha256": "4a544270b3e4f1f8f65dcba598553e78b87cb21da5afc6bf7b71a42613ee1327",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-0-planning-product-plan.html",
+          "status": 200,
+          "sha256": "a6e0b0a946a79b07636a58714b8f1c064fc0353e555fd736e30a01257d8aa1f2",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-004.html",
+          "status": 200,
+          "sha256": "a24010bb9cc7e32b6322ad68e399d190ad50373163f581e4829971baa4d78ac3",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-003.html",
+          "status": 200,
+          "sha256": "8a33e4a0994fe65753c1e70ed410c49c67bd1b70b8ef1f53d47cad341d875375",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-23-planning-budget.html",
+          "status": 200,
+          "sha256": "e4287ae30447e65fdde6d12dc839212bfdff243454af0c9ec1832199cad5a3b4",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-22-planning-options.html",
+          "status": 200,
+          "sha256": "e5461a5e14020f3eaedd1777497d0ea57e340762a502853b71369cc5493cafee",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-001.html",
+          "status": 200,
+          "sha256": "0b0e4f6f310a50fd7e0c027557407e9eb69297d6b67e19014356bf7c48fd3dbd",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-architecture.html",
+          "status": 200,
+          "sha256": "c8880f75ad7a6149b476f123ccdb40945efcdf13ef8bb6d3f0452ae02b6c5c11",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-budget-implementation.html",
+          "status": 200,
+          "sha256": "74a9b0ece4623470e208252270d5a2c7526aa8f0c9d90771f197881469e9500a",
+          "matches": true
+        },
+        {
+          "path": "assets/fonts/OFL.txt",
+          "status": 200,
+          "sha256": "82e9c8a4b203261f10ddba1296422d64914ff3d4b7bd8a12896d03f0f088d70a",
+          "matches": true
+        },
+        {
+          "path": "assets/fonts/pretendard-600.woff2",
+          "status": 200,
+          "sha256": "4247dc5e260b92640c2cbd0e75091154647b71e1d5884116655e2903468c54cc",
+          "matches": true
+        },
+        {
+          "path": "assets/fonts/pretendard-400.woff2",
+          "status": 200,
+          "sha256": "01dd73155fdfab7ce9b25224523e85a96927e21aef97f21957d41f1bfa7e3878",
+          "matches": true
+        },
+        {
+          "path": "assets/vendor/mermaid.min.js",
+          "status": 200,
+          "sha256": "d0830a6c05546e9edb8fe20a8f545f3e0dc7c4c3134d584bad9c13a99d7a71e0",
+          "matches": true
+        }
+      ]
+    },
+    "browser": {
+      "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-proposal-implementation.html#view=all",
+      "images": [
+        {
+          "alt": "기획안 버전과 사업설명 자료",
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "alt": "390px 준비 목록 화면",
+          "width": 390,
+          "height": 844
+        },
+        {
+          "alt": "기획안에 보관한 과거 방문 근거",
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "alt": "세 회차의 행사 전후 실제 일별 값 45개를 보관한 출력 화면",
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "alt": "미산정 비용과 번호가 있는 재원 도넛의 흑백 인쇄 검수",
+          "width": 920,
+          "height": 1300
+        }
+      ],
+      "mobileWidth": 390,
+      "productLink": "https://kto.damecasol.com/planning/proposal"
+    },
+    "console": {
+      "errors": 1,
+      "warnings": 0,
+      "detail": "Existing /favicon.ico 404; document and images loaded"
+    },
+    "priorUnpublishedAudit": "Stopped this audit process tree before image publication to correct stale UC/TS status text; regenerated from committed corrected source and reran the entire publication gate"
+  },
+  "retainedLocalArtifacts": "/home/lsh/.cache/fest-compass/verification/2026-09-09-m5",
+  "complete": true
+}
