@@ -3,7 +3,7 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-09
 version: v3
-summary: "7개 핵심 화면의 필드·행동·예외와 작은 화면 대응을 정의한 개발 전 설계입니다."
+summary: "7개 핵심 화면의 필드·행동·예외를 정의합니다. M1~M5 실제 구현을 연결했으며 개발 전 시안은 당시 제안으로 유지합니다. 결과 화면은 개발 필요입니다."
 ---
 
 # 화면설계서

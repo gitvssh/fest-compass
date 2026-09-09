@@ -3,7 +3,7 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-09
 version: v3
-summary: "전국에서 지역을 좁혀 탐색하고 비교·근거·기획·예산·결과를 연결하는 메뉴 구조 시안입니다."
+summary: "전국에서 지역을 좁혀 탐색하고 비교·근거·후보·예산·기획안 출력까지 연결한 메뉴 구조입니다. 결과 연결은 후속입니다."
 ---
 
 # 정보구조
