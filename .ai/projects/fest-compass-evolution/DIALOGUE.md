@@ -629,3 +629,22 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-028 · Codex · implementer
+
+- Position: 지역 과거 방문과 공개 비용을 실제 원문 기반으로 확대하고 앱·Traceboard 게시 및 검증을 완료했다.
+- Evidence:
+  - docs/research/2026-09-regional-history-costs.md
+  - docs/research/evidence/2026-09-10-gongju-cost.json
+  - docs/validation/evidence/2026-09-10-history-costs-publication.json
+- Changes:
+  - 공주·임실 1096일씩 수집·검증·보관하고 4회차 비교에 60개 값을 추가했다.
+  - 공주 예산·집행·총원가를 구분하고 확인된 원가 항목만 도넛·수치 표로 표시하며 근거 파일·기획 연결을 보존했다.
+  - 지도·비교 바로가기, 요구/인수 기준·화면 설계·조사·검증 문서를 보완했다.
+- Validation:
+  - 단위 201+격리 마이그레이션 1, typecheck/build, 전체 headless 176 흐름 통과; production audit 0, 배포 계약 40/17 통과.
+  - 공개 실제 11개 headless 흐름과 6회 API 조회의 2192일 대조 통과, 앱 쓰기·브라우저 오류 0.
+  - 예측 보존 다섯 값 일치; 앱·Traceboard Healthy/Synced/Succeeded, 게시 파일 일치와 접근성 검사 통과.
+- Questions:
+  - No open question
+- Handoff: Codex
