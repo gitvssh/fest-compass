@@ -3,13 +3,14 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-10
 id: UC-FC-002
-version: v4
+version: v5
 status: active
 summary: "주변 행사·8개 과거 회차·그래프·근거 보관의 첫 기능을 구현했습니다. 전국 확장·전체 인수는 후속입니다."
 covers: ["FR-CMP-1","FR-CMP-2","FR-CMP-3","FR-CMP-4"]
 screens: ["SCR-FC-001","SCR-FC-002"]
 apis: []
 acs:
+  - {id: AC11, text: "Given 등록 좌표가 있는 기준 행사와 좌표 없는 행사가 있을 때 When 거리순과 반경으로 비교하고 근거를 담으면 Then 거리 미확인 자료를 남기고 선택 당시 기준 좌표·반경·출처와 거리 그림을 보존한다."}
   - {id: AC10, text: "Given 기획 기간 전에 시작해 계속되는 등록 행사가 있을 때 When 기간 겹침과 기간 안 시작으로 검색하면 Then 조회 실패 없이 각각의 조건을 적용하고 일정 그림·출처·선택 당시 방식과 기간을 근거에 보존한다."}
   - {id: AC1, text: "Given 이름이 같은 서로 다른 축제와 한 축제의 두 회차가 있을 때 When 검색하면 Then 축제 ID와 회차 ID로 구분하고 취소/변경과 확인일을 볼 수 있다."}
   - {id: AC2, text: "Given 입장 건수와 지역 방문자 또는 총사업비와 지원금이 섞였을 때 When 비교하면 Then 동일 지표로 순위·증감·합계를 계산하지 않고 이유를 표시한다."}
@@ -67,6 +68,8 @@ acs:
 - [ ] AC9: Given 회차별 확보 지표가 다를 때 When 비교하면 Then 확보 현황과 비교 보류 사유를 보여주고 가용 지표는 유지하며 키보드로 선택한 점·기간을 당시 값·출처와 함께 담는다.
 
 - [ ] AC10: 이전에 시작한 행사·경계일 포함·종료 행사 제외·366일 한도·실패 지역·당시 조건과 일정 그림 보존은 [겹침 조회 설계](../../2-design/current-festival-overlap.md)와 [29번 검증](../../../validation/29-current-festival-overlap.md)을 따른다.
+
+- [ ] AC11: Given 등록 좌표가 있는 기준 행사와 좌표 없는 행사가 있을 때 When 거리순과 반경으로 비교하고 근거를 담으면 Then 거리 미확인 자료를 남기고 선택 당시 기준 좌표·반경·출처와 거리 그림을 보존한다. [거리 설계](../../2-design/festival-distance-comparison.md)와 [30번 검증](../../../validation/30-festival-distance.md)을 따른다.
 
 ## 사후 상태와 검증
 

@@ -1,4 +1,5 @@
 import test from "node:test";
+import { distanceKm, distanceRows, validPoint } from "./distance";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -10,6 +11,32 @@ import type { RegionResult } from "../region/types";
 const editions = catalogue.editions as Edition[], nonsan = editions.slice(0,3), wonju = editions.at(-1)!;
 const q:SearchContext={mode:"archive",regions:[],start:"2022-01-01",end:"2025-12-31",keyword:"",theme:"",dateRule:"overlap",queriedAt:null};
 const clone = <T>(v:T):T=>JSON.parse(JSON.stringify(v));
+
+test("distance uses a bounded registered point and a versioned spherical approximation",()=>{
+  const a={latitude:36,longitude:127},b={latitude:37,longitude:127};
+  assert.equal(distanceKm(a,a),0);assert.ok(Math.abs(distanceKm(a,b)-111.19492664455873)<1e-8);assert.equal(distanceKm(a,b),distanceKm(b,a));
+  for(const point of [undefined,null,{latitude:0,longitude:0},{latitude:36,longitude:null},{latitude:"36",longitude:127},{latitude:40,longitude:127},{latitude:36,longitude:Infinity}])assert.equal(validPoint(point),false);
+  assert.ok(validPoint({latitude:32,longitude:124}));assert.ok(validPoint({latitude:39,longitude:132}));
+});
+test("distance ordering and radius retain unknown positions separately and use unrounded boundaries",()=>{
+  const point={latitude:36,longitude:127},anchor={editionId:"anchor",name:"기준",point,source:nonsan[0].source};
+  const condition={method:"haversine-v1" as const,anchor,radiusKm:10};
+  const latitudeFor=(km:number)=>36+km/6371*180/Math.PI;
+  const items:Edition[]=[{...nonsan[0],id:"unknown"},{...nonsan[0],id:"outside",point:{latitude:latitudeFor(10.001),longitude:127}},{...nonsan[0],id:"inside",point:{latitude:latitudeFor(9.999),longitude:127}},{...nonsan[0],id:"zero",point}];
+  assert.deepEqual(distanceRows(items,condition).map(r=>r.edition.id),["zero","inside","unknown"]);
+  assert.deepEqual(distanceRows(items,{...condition,radiusKm:null}).map(r=>r.edition.id),["zero","inside","outside","unknown"]);
+  assert.deepEqual(distanceRows(items,undefined).map(r=>r.edition.id),items.map(e=>e.id));
+  const km=distanceKm(point,items[2].point!);assert.equal(distanceRows([items[2]],{...condition,radiusKm:km}).length,1);
+});
+test("distance evidence keeps original anchor coordinates and scope through export and rejects invalid imports",async()=>{
+  const point={latitude:36,longitude:127};
+  const context:SearchContext={...q,mode:"current",start:"2025-03-01",end:"2025-03-31",distance:{method:"haversine-v1",anchor:{editionId:"anchor",name:"기준",point:{...point},source:clone(nonsan[0].source)},radiusKm:30}};
+  const item:Edition={...clone(nonsan[2]),origin:"current",point:{latitude:36.1,longitude:127},discoveredWith:clone(context)};
+  const saved=await makeComparison([item],context,{kind:"overview"},"");context.distance!.anchor.point.latitude=37;item.point!.latitude=38;
+  const restored=parseComparisons(encodeComparisons([saved]))[0];assert.equal(restored.context.distance!.anchor.point.latitude,36);assert.equal(restored.editions[0].point!.latitude,36.1);assert.deepEqual(restored.editions[0].discoveredWith!.distance,saved.context.distance);
+  for(const mutate of [(e:typeof saved)=>{e.context.distance!.radiusKm=-1;},(e:typeof saved)=>{e.context.distance!.anchor.point.longitude=0;},(e:typeof saved)=>{e.context.distance!.anchor.source.url="https://example.com";},(e:typeof saved)=>{e.editions[0].point!.latitude=90;},(e:typeof saved)=>{e.context.mode="archive";},(e:typeof saved)=>{Object.assign(e.context.distance!.anchor,{editionId:undefined});},(e:typeof saved)=>{Object.assign(e.context.distance!,{method:"road"});}]){const bad=clone(saved);mutate(bad);assert.throws(()=>encodeComparisons([bad]));}
+  const legacy=await makeComparison(nonsan,q,{kind:"overview"},"");assert.deepEqual(parseComparisons(encodeComparisons([legacy])),[legacy]);
+});
 
 test("current overlap includes continuing and boundary-day events while starts-within excludes earlier starts",()=>{
   const search:SearchContext={...q,mode:"current",start:"2026-10-03",end:"2026-10-05"};
@@ -72,6 +99,8 @@ test("cost scope, stage, VAT and year gate comparisons; pie requires an exact no
 });
 test("current provider rows have independent identity and cannot overwrite an archived edition",()=>{
   const r={query:{province:"44",district:"230",kind:"15",start:"2026-01-01",end:"2026-12-31"},region:{provinceName:"충청남도",districtName:"논산시"},resources:{status:"complete",source:"https://www.data.go.kr/data/15101578/openapi.do",collectedAt:"2026-09-08T00:00:00Z",total:1,pages:1,items:[{id:"525292",title:"논산딸기축제",start:"2026-03-26",end:"2026-03-29",modifiedAt:null,address:"논산"}]}} as RegionResult;
+  const located=currentEditions({...r,resources:{...r.resources,items:[{...r.resources.items[0],latitude:36.1,longitude:127}]}})[0];assert.deepEqual(located.point,{latitude:36.1,longitude:127});
+  assert.equal(currentEditions({...r,resources:{...r.resources,items:[{...r.resources.items[0],latitude:null,longitude:127}]}})[0].point,undefined);
   const live=currentEditions(r)[0];assert.notEqual(live.festivalId,nonsan[2].festivalId);assert.notEqual(live.id,nonsan[2].id);assert.equal(live.visits,null);assert.equal(live.costs.length,0);assert.equal(nonsan[2].start,"2025-03-27");
   assert.deepEqual(currentEditions({...r,resources:{...r.resources,status:"unavailable"}}),[]);
 });

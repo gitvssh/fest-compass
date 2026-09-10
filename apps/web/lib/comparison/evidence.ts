@@ -1,4 +1,5 @@
 import { day } from "../region/model";
+import { validPoint } from "./distance";
 import { relativePoints, validRange } from "./model";
 import type { ComparisonEvidence, Edition, SearchContext, Selection, Source } from "./types";
 export const COMPARISON_KEY = "fest-compass.comparison-evidence.v1";
@@ -12,12 +13,18 @@ function source(s: Source) {
   if (url.protocol !== "https:" || url.username || url.password || !(url.hostname.endsWith(".go.kr") || url.hostname === "www.imsilfestival.com") || !text(s.title) || !text(s.url, 2000) || !instant(s.checkedAt) || !(s.publishedAt === null || day(s.publishedAt)) || !(s.sha256 === null || hex(s.sha256)) || !text(s.note, 3000)) throw new Error();
 }
 function context(c: SearchContext) {
+  if (c.distance !== undefined) {
+    const d = c.distance;
+    if (!d || c.mode !== "current" || d.method !== "haversine-v1" || !d.anchor || typeof d.anchor.editionId !== "string" || !/^[a-zA-Z0-9_-]{1,200}$/.test(d.anchor.editionId) || !text(d.anchor.name, 300) || !d.anchor.name.trim() || !validPoint(d.anchor.point) || !(d.radiusKm === null || [10,30,50,100].includes(d.radiusKm))) throw new Error();
+    source(d.anchor.source);
+  }
   validRange(c.start, c.end, c.mode === "current");
   if (!["archive", "current"].includes(c.mode) || !Array.isArray(c.regions) || c.regions.length > 3 || !c.regions.every(r => /^\d{2,5}\/\d{3,5}$/.test(r)) || !text(c.keyword, 200) || !text(c.theme, 100) || !(c.mode === "archive" ? c.dateRule === "overlap" : ["overlap", "starts-within"].includes(c.dateRule)) || !(c.queriedAt === null || instant(c.queriedAt))) throw new Error();
 }
 export function validateEditions(editions: Edition[]) {
   if (!Array.isArray(editions) || editions.length < 1 || editions.length > 3 || new Set(editions.map(e => e.id)).size !== editions.length) throw new Error();
   for (const e of editions) {
+    if (e.point !== undefined && (e.origin !== "current" || !validPoint(e.point))) throw new Error();
     if (![e.id, e.festivalId].every(s => typeof s === "string" && /^[a-zA-Z0-9_-]{1,200}$/.test(s)) || !text(e.name, 300) || !amount(e.year) || e.year < 2000 || e.year > 2035 || !text(e.region.name) || !/^\d{2,5}$/.test(e.region.province) || !/^\d{3,5}$/.test(e.region.district) || !["archive", "current"].includes(e.origin) || !text(e.status) || !text(e.statusNote, 3000) || !text(e.address) || !Array.isArray(e.themes) || e.themes.length > 10 || !e.themes.every(t => text(t, 100)) || !Array.isArray(e.missing) || e.missing.length > 20 || !e.missing.every(t => text(t))) throw new Error();
     if (e.start === null ? e.end !== null : !day(e.start) || !e.end || !day(e.end) || e.end < e.start || Number(e.start.slice(0,4)) !== e.year) throw new Error();
     source(e.source); if (e.statusSource) source(e.statusSource); if (e.discoveredWith) context(e.discoveredWith);
