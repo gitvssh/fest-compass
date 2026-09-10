@@ -608,3 +608,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-027 · Codex · implementer
+
+- Position: 관광자료의 후보 장소 입력 연결을 공개하고 실제 논산 자료·출처 사본·변경 후 확인 재검토와 내부 검수본 게시를 확인했다.
+- Evidence:
+  - docs/validation/31-venue-evidence.md
+  - docs/validation/evidence/2026-09-10-venue-publication.json
+  - 공개 논산 관광자료 61건 중 강경근대거리 이름·주소·좌표로 지도→근거→기획 입력 확인
+- Changes:
+  - 장소 입력 미리보기와 명시적 이름·주소 적용, 당시 출처 사본 연결; 기존 기획 파일 형식 유지
+  - UC-FC-004/TS-FC-004 v3 AC7, 요구사항·화면 설계·검수 v8·Traceboard 선언 갱신
+  - 앱 배포 세대 22, Traceboard 세대 54·게시 파일 114개 일치
+- Validation:
+  - 단위 198 + 격리 마이그레이션 1, typecheck/build, 전체 headless 165개와 운영·개인 여정 통과
+  - 공개 가상 회귀 9 + 실제 관광자료 6개 흐름, 앱 서버 쓰기·브라우저 오류 0; 동의창·Zaraz 전송은 앱 쓰기와 구분
+  - CI 34455285244 성공, 배포 계약 40·리소스 17, 운영 의존성 audit 0
+  - 예측 모니터·발행 기록·겨울 시험·자동 수집 의미 값 5개 배포 전후 동일
+  - Traceboard 1672 + 변경 문서 24개 페이지·테마 조합 위반/미평가 0, 실제 링크·이미지 2·390px 확인
+- Questions:
+  - No open question
+- Handoff: Codex

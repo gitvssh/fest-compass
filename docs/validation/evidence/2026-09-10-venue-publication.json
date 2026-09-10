@@ -1,0 +1,1327 @@
+{
+  "checkedAt": "2026-09-10T08:48:41.191382+00:00",
+  "implementationCommit": "b2cceea7b8eeed6960a5127d5ad5663c87ad4879",
+  "ci": {
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/34455285244",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "image",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "local": {
+    "node": "24.20.0",
+    "unit": 198,
+    "migration": 1,
+    "e2e_named": 165,
+    "e2e_groups": [
+      {
+        "headless": true,
+        "passed": [
+          "national-entry",
+          "visible-province-district-expansion",
+          "coordinate-missing",
+          "source-detail",
+          "actual-52671.5",
+          "snapshot-and-dedup",
+          "export-import",
+          "corrupt-import-preserves",
+          "explicit-home-only",
+          "different-region-clears",
+          "out-of-order-request",
+          "390px-no-overflow",
+          "missing-key-keeps-history",
+          "read-only-api"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0
+      },
+      {
+        "headless": true,
+        "background": "synthetic test tiles; zero requests forwarded to OSMF",
+        "passed": [
+          "national-first-attribution-no-resource-query",
+          "province-district-cluster-selection-and-missing-coordinate-numbering",
+          "keyboard-pan-does-not-change-query",
+          "drag-pan-keeps-query-explicit",
+          "applied-area-shown-without-extra-api-call",
+          "applied-bounds-and-missing-coordinate-evidence-preserved",
+          "wheel-scroll-does-not-zoom-map",
+          "simple-map-unmounts-external-background",
+          "tile-failure-keeps-fallback-and-list",
+          "390px-region-select-and-map-no-overflow",
+          "two-finger-touch-zoom",
+          "tile-only-url-no-personal-payload-or-cache-bypass"
+        ],
+        "browserErrors": [],
+        "appWrites": [],
+        "interceptedTileRequests": 167
+      },
+      {
+        "passed": [
+          "national-15-dated-provinces",
+          "keyboard-province-district-query",
+          "displayed-boundary-evidence-preserved",
+          "hidden-boundary-not-attached",
+          "ordinary-city-aggregate-only-on-selection",
+          "changed-district-has-list-without-old-boundary",
+          "merged-province-not-invented",
+          "boundary-failure-keeps-resource-list",
+          "late-region-response-discarded",
+          "simple-map-does-not-claim-boundary",
+          "390px-boundary-controls"
+        ],
+        "errors": [],
+        "writes": []
+      },
+      {
+        "headless": true,
+        "passed": [
+          "nationwide-label",
+          "eight-independent-archives",
+          "three-edition-selection",
+          "actual-45-values",
+          "actual-calendar-axis",
+          "selected-point-snapshot",
+          "dedup",
+          "filter-keeps-selection",
+          "unknown-date-retained",
+          "cost-scope-hold",
+          "funding-denominator",
+          "four-day-calendar-overlap",
+          "empty-not-absence",
+          "three-region-partial-failure",
+          "current-not-archive",
+          "stale-response-cancelled",
+          "reopen-saved-values",
+          "export-import-corruption",
+          "390px-no-overflow",
+          "print-sources",
+          "missing-key-keeps-archive"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0
+      },
+      {
+        "checkedAt": "2026-09-10T08:26:44.366Z",
+        "headless": true,
+        "data": "synthetic current festival responses",
+        "passed": [
+          "legacy-starts-within",
+          "continuing-boundary-day-and-ended-filter",
+          "provider-total-and-overlap-chart",
+          "selected-original-context-after-new-search",
+          "saved-scope-chart-and-limit",
+          "planning-retains-original-overlap-chart",
+          "over-limit-no-request",
+          "failed-region-not-zero-claim",
+          "late-current-response-after-mode-switch",
+          "390px-range-chart"
+        ],
+        "errors": [],
+        "writes": []
+      },
+      {
+        "checkedAt": "2026-09-10T08:26:46.012Z",
+        "headless": true,
+        "data": "synthetic registered festivals and coordinates",
+        "passed": [
+          "only-located-current-events-can-be-anchors",
+          "distance-order-and-numeric-chart",
+          "radius-keeps-unknown-separate",
+          "distance-controls-make-no-additional-api-calls",
+          "selected-original-anchor-survives-new-reference",
+          "download-import-original-distance-chart",
+          "planning-keeps-distance-snapshot",
+          "requery-does-not-replace-anchor-snapshot",
+          "clear-and-archive-remove-distance-controls",
+          "390px-distance-chart"
+        ],
+        "errors": [],
+        "writes": []
+      },
+      {
+        "headless": true,
+        "passed": [
+          "real-comparison-deep-link",
+          "evidence-and-judgment-separated",
+          "duplicate-link-preserved",
+          "owner-region-independent",
+          "multiple-delivery-relations",
+          "invalid-date-keeps-storage",
+          "venue-confirmation-requires-basis",
+          "three-stage-confirmations-independent",
+          "reference-is-not-completion",
+          "cycle-rejected",
+          "dependency-exception-reason",
+          "not-applicable-requires-reason-date",
+          "external-review-independent",
+          "copy-resets-confirmations",
+          "two-options-and-differences",
+          "same-calendar-timeline",
+          "immutable-snapshot-created",
+          "date-change-rechecks-preparation",
+          "unlink-keeps-archived-evidence",
+          "archived-real-value-reopened",
+          "file-roundtrip-keeps-both-histories",
+          "corrupt-file-keeps-storage",
+          "two-tab-conflict-preserves-both-inputs",
+          "unsaved-navigation-keeps-input",
+          "quota-failure-keeps-input",
+          "390px-no-page-overflow",
+          "exploration-keeps-owner-region"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0
+      },
+      {
+        "headless": true,
+        "fixture": true,
+        "passed": [
+          "map-evidence-planning-deep-link",
+          "source-preview-without-overwrite",
+          "atomic-venue-and-source-copy",
+          "owner-and-archive-unchanged",
+          "tourism-is-not-permission",
+          "existing-link-reason-kept",
+          "source-survives-library-removal",
+          "planning-file-roundtrip",
+          "390px-no-overflow"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0
+      },
+      {
+        "headless": true,
+        "passed": [
+          "legacy-v1-keeps-immutable-history",
+          "quantity-and-included-duration",
+          "missing-budget-and-minimum-excess",
+          "planned-funds-not-secured",
+          "complete-funding-donut-with-incomplete-costs",
+          "duplicate-funding-blocks-composition",
+          "zero-is-distinct-from-missing",
+          "exact-per-line-rounding",
+          "invalid-input-keeps-prior-save",
+          "unknown-tax-blocks-total",
+          "source-and-preparation-links",
+          "immutable-budget-baseline-difference",
+          "department-scope-blocks-comparison",
+          "unfinished-source-record-survives-navigation",
+          "source-record-needs-reference",
+          "amount-stages-not-added-or-overwritten",
+          "copy-resets-funding-and-records",
+          "comparable-candidates-zero-axis-and-total-labels",
+          "whole-planning-and-budget-snapshot",
+          "390px-no-page-overflow",
+          "new-year-rechecks-funding-and-classification",
+          "budget-file-roundtrip-keeps-all-history",
+          "invalid-file-keeps-budget"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0
+      },
+      {
+        "headless": true,
+        "passed": [
+          "single-candidate-blocks-proposal-but-saves-draft",
+          "blank-selection-reason-blocks-proposal",
+          "measurement-plan-survives-reload",
+          "source-budget-preparation-archived-together",
+          "missing-cost-does-not-become-zero-or-approval",
+          "same-version-business-and-preparation-pdf",
+          "closed-records-and-sources-print-and-restore",
+          "real-source-d0-and-query-preserved",
+          "390px-no-page-overflow",
+          "new-draft-preserves-previous-draft-and-all-legacy-revisions",
+          "p2-changes-never-change-p1",
+          "archived-chart-selection-is-read-only",
+          "v3-file-roundtrip-keeps-proposals",
+          "conflicting-proposal-import-keeps-stored-data"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0
+      },
+      {
+        "headless": true,
+        "passed": [
+          "public-original-costs-and-composition-scope",
+          "tender-and-missing-not-actual-spending",
+          "missing-proposal-guides-to-planning",
+          "metric-definitions-units-periods-zero-gates",
+          "fund-totals-35000000-35118200-and-unknown-versus-zero",
+          "draft-reload-preserves-sources-and-improvements",
+          "contract-reference-is-not-settlement-approval",
+          "fixed-plan-result-pdf-with-original-evidence",
+          "390px-result-no-overflow",
+          "r2-changes-never-change-p1-r1",
+          "personal-edition-search-is-local-and-separate",
+          "next-edition-resets-and-links-improvements",
+          "v4-file-roundtrip-keeps-lineage-and-results",
+          "conflicting-result-import-preserves-data"
+        ],
+        "browserErrors": [],
+        "appWrites": []
+      }
+    ],
+    "extra_journeys": [
+      "editor",
+      "public-workspace"
+    ],
+    "build": "passed",
+    "typecheck": "passed",
+    "infra_tests": 40,
+    "infra_resources": 17,
+    "production_audit_vulnerabilities": 0
+  },
+  "app": {
+    "generation": 22,
+    "observedGeneration": 22,
+    "availableReplicas": 1,
+    "containers": [
+      {
+        "name": "forecast-worker",
+        "image": "registry.damecasol.com/fest-compass/web@sha256:9d4e04e39ffddd98dd6ac4aece7d2c65b41dabcfd35f38e6bd4e082e29b04d41"
+      },
+      {
+        "name": "web",
+        "image": "registry.damecasol.com/fest-compass/web@sha256:9d4e04e39ffddd98dd6ac4aece7d2c65b41dabcfd35f38e6bd4e082e29b04d41"
+      }
+    ],
+    "health": "Healthy",
+    "sync": "Synced",
+    "operation": "Succeeded",
+    "revision": "e8bf993cf0b46dd6c05b6979c859441fb0a39185"
+  },
+  "publicReal": {
+    "checkedAt": "2026-09-10T08:34:12.315Z",
+    "headless": true,
+    "passed": [
+      "live-61-resource-query-and-selected-record",
+      "actual-name-address-coordinate-preview",
+      "explicit-venue-input-and-source-snapshot",
+      "owner-region-and-no-permission-claim",
+      "public-reload-keeps-original-source",
+      "390px-no-overflow"
+    ],
+    "errors": [],
+    "writes": [],
+    "query": {
+      "province": "44",
+      "district": "230",
+      "start": "2026-01-01",
+      "end": "2026-12-31",
+      "kind": "12"
+    },
+    "total": 61,
+    "collectedAt": "2026-09-10T08:34:10.342Z",
+    "resource": {
+      "id": "2650372",
+      "title": "강경근대거리",
+      "address": "충청남도 논산시 강경읍 옥녀봉로 30-5",
+      "longitude": 127.0178591698,
+      "latitude": 36.1617259238,
+      "start": null,
+      "end": null,
+      "modifiedAt": "20260821170619"
+    },
+    "stored": {
+      "format": "fest-compass-planning",
+      "version": 2,
+      "stamp": "041314e2-c7a2-47d0-a729-5995205f9577",
+      "updatedAt": "2026-09-10T08:34:11.814Z",
+      "draft": {
+        "id": "afbb1990-ca04-4893-8bb4-436266570b8c",
+        "title": "올해 축제 기획",
+        "regionKey": "44/150",
+        "year": 2026,
+        "department": "",
+        "purpose": "",
+        "continuity": "unknown",
+        "period": {
+          "start": "",
+          "end": ""
+        },
+        "asOf": "2026-09-10",
+        "relations": [],
+        "options": [
+          {
+            "id": "2d161afd-b27f-4a48-91bb-98f2c6591d6e",
+            "name": "후보 A",
+            "theme": "",
+            "item": "",
+            "audience": "",
+            "venue": "강경근대거리 · 충청남도 논산시 강경읍 옥녀봉로 30-5",
+            "periods": {
+              "setup": {
+                "start": "",
+                "end": ""
+              },
+              "event": {
+                "start": "",
+                "end": ""
+              },
+              "teardown": {
+                "start": "",
+                "end": ""
+              }
+            },
+            "assumptions": "",
+            "constraints": "",
+            "decision": "undecided",
+            "reason": "",
+            "links": [
+              {
+                "sourceKey": "region:b668532b4cf9b0cabf4ea4de912e9eca4ec60ec69fe69f49f748eb0138ed683f",
+                "field": "venue",
+                "reason": "근대거리 자원을 연계한 기획 가능성 검토 · 담당자 검수용 가정"
+              }
+            ],
+            "venueChecks": [],
+            "tasks": []
+          }
+        ],
+        "evidence": [
+          {
+            "key": "region:b668532b4cf9b0cabf4ea4de912e9eca4ec60ec69fe69f49f748eb0138ed683f",
+            "kind": "region",
+            "value": {
+              "version": 1,
+              "id": "b668532b4cf9b0cabf4ea4de912e9eca4ec60ec69fe69f49f748eb0138ed683f",
+              "savedAt": "2026-09-10T08:34:10.600Z",
+              "title": "강경근대거리",
+              "result": {
+                "query": {
+                  "province": "44",
+                  "district": "230",
+                  "start": "2026-01-01",
+                  "end": "2026-12-31",
+                  "kind": "12"
+                },
+                "region": {
+                  "provinceCode": "44",
+                  "provinceName": "충청남도",
+                  "districtCode": "230",
+                  "districtName": "논산시"
+                },
+                "resources": {
+                  "status": "complete",
+                  "message": "전체 페이지 확인 완료",
+                  "items": [
+                    {
+                      "id": "2650372",
+                      "title": "강경근대거리",
+                      "address": "충청남도 논산시 강경읍 옥녀봉로 30-5",
+                      "longitude": 127.0178591698,
+                      "latitude": 36.1617259238,
+                      "start": null,
+                      "end": null,
+                      "modifiedAt": "20260821170619"
+                    }
+                  ],
+                  "total": 61,
+                  "pages": 1,
+                  "source": "https://www.data.go.kr/data/15101578/openapi.do",
+                  "collectedAt": "2026-09-10T08:34:10.342Z"
+                },
+                "history": {
+                  "status": "available",
+                  "source": "https://www.data.go.kr/data/15101972/openapi.do",
+                  "unit": "명 (통신 기반 추정)",
+                  "metric": "시군구 일별 외지인 방문",
+                  "message": "논산시 보관 관측 자료. 행사장 입장객·혼잡도가 아니며 날짜별 합계를 고유 방문객으로 해석할 수 없습니다. 매일 수집한 보관본을 함께 조회합니다. 실시간 자료가 아닙니다.",
+                  "points": []
+                }
+              },
+              "selection": {
+                "resourceId": "2650372",
+                "boundary": {
+                  "version": "sgis-20250630-kssc-20260710-v1",
+                  "source": "https://www.data.go.kr/data/15129688/fileData.do",
+                  "boundaryDate": "2025-06-30",
+                  "crosswalkDate": "2026-07-10",
+                  "province": "44",
+                  "district": "230",
+                  "codes": [
+                    "34060"
+                  ]
+                }
+              },
+              "note": "공개 관광자료의 장소 입력 연결 검수 · 행사장 사용 미확인"
+            }
+          }
+        ]
+      },
+      "revisions": []
+    }
+  },
+  "publicFixture": {
+    "headless": true,
+    "fixture": true,
+    "passed": [
+      "map-evidence-planning-deep-link",
+      "source-preview-without-overwrite",
+      "atomic-venue-and-source-copy",
+      "owner-and-archive-unchanged",
+      "tourism-is-not-permission",
+      "existing-link-reason-kept",
+      "source-survives-library-removal",
+      "planning-file-roundtrip",
+      "390px-no-overflow"
+    ],
+    "browserErrors": 0,
+    "clientWrites": 0,
+    "transportPosts": [
+      "/cdn-cgi/zaraz/t",
+      "/cdn-cgi/zaraz/t",
+      "/cdn-cgi/zaraz/t",
+      "/cdn-cgi/zaraz/t"
+    ]
+  },
+  "testEnvironmentNotes": [
+    "First local fixture used an incorrect history source URL; corrected fixture then full suite passed.",
+    "Extra public fixture required dismissing Cloudflare consent. Zaraz transport POSTs are recorded separately from app writes; actual app writes zero."
+  ],
+  "forecast": {
+    "before": {
+      "checkedAt": "2026-09-10T08:28:37.848Z",
+      "monitorAsOf": "2026-09-10T07:48:12.886Z",
+      "monitorDataHash": "8b80f92f76f63b44f2187d292945f24bd428eefe9e5686def5236dcce0c8eb80",
+      "recordsCount": 2,
+      "recordsHash": "267a469cf11d3a54806c70b5442663edb77b3a1b249f64d3d0573ccdb9f9e1c6",
+      "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+      "automation": {
+        "schemaVersion": 1,
+        "date": "2026-09-10",
+        "startedAt": "2026-09-10T00:00:04.747Z",
+        "completedAt": "2026-09-10T00:00:40.227Z",
+        "status": "partial",
+        "calls": 7,
+        "error": null,
+        "snapshot": {
+          "archiveId": "d6eed13ea1603f87b3d45e8c72c62527176eba4a6a34a8d34e8a0254149aeca5",
+          "snapshotId": "3c74bde75f40e0b5bcbbd4870d70315490004845e0ccd6833751db42a9001fda"
+        },
+        "nextRunAt": "2026-09-11T09:00:00+09:00",
+        "mode": "daily",
+        "schedule": [
+          {
+            "requestId": "nonsan-20260914-d7-v1",
+            "start": "2026-09-14",
+            "horizonDays": 7,
+            "dueDate": "2026-09-07",
+            "status": "recorded"
+          },
+          {
+            "requestId": "nonsan-20261005-d28-v1",
+            "start": "2026-10-05",
+            "horizonDays": 28,
+            "dueDate": "2026-09-07",
+            "status": "recorded"
+          },
+          {
+            "requestId": "nonsan-20261005-d7-v1",
+            "start": "2026-10-05",
+            "horizonDays": 7,
+            "dueDate": "2026-09-28",
+            "status": "upcoming"
+          }
+        ]
+      }
+    },
+    "after": {
+      "checkedAt": "2026-09-10T08:34:09.894Z",
+      "monitorAsOf": "2026-09-10T07:48:12.886Z",
+      "monitorDataHash": "8b80f92f76f63b44f2187d292945f24bd428eefe9e5686def5236dcce0c8eb80",
+      "recordsCount": 2,
+      "recordsHash": "267a469cf11d3a54806c70b5442663edb77b3a1b249f64d3d0573ccdb9f9e1c6",
+      "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+      "automation": {
+        "schemaVersion": 1,
+        "date": "2026-09-10",
+        "startedAt": "2026-09-10T00:00:04.747Z",
+        "completedAt": "2026-09-10T00:00:40.227Z",
+        "status": "partial",
+        "calls": 7,
+        "error": null,
+        "snapshot": {
+          "archiveId": "d6eed13ea1603f87b3d45e8c72c62527176eba4a6a34a8d34e8a0254149aeca5",
+          "snapshotId": "3c74bde75f40e0b5bcbbd4870d70315490004845e0ccd6833751db42a9001fda"
+        },
+        "nextRunAt": "2026-09-11T09:00:00+09:00",
+        "mode": "daily",
+        "schedule": [
+          {
+            "requestId": "nonsan-20260914-d7-v1",
+            "start": "2026-09-14",
+            "horizonDays": 7,
+            "dueDate": "2026-09-07",
+            "status": "recorded"
+          },
+          {
+            "requestId": "nonsan-20261005-d28-v1",
+            "start": "2026-10-05",
+            "horizonDays": 28,
+            "dueDate": "2026-09-07",
+            "status": "recorded"
+          },
+          {
+            "requestId": "nonsan-20261005-d7-v1",
+            "start": "2026-10-05",
+            "horizonDays": 7,
+            "dueDate": "2026-09-28",
+            "status": "upcoming"
+          }
+        ]
+      }
+    },
+    "preserved": {
+      "monitorDataHash": true,
+      "recordsCount": true,
+      "recordsHash": true,
+      "calendarTrialHash": true,
+      "automation": true
+    }
+  },
+  "traceboard": {
+    "publicationCommit": "e6bbfbeecfdd16cd090acfa13d6f2f25518b7eae",
+    "runtime": {
+      "generation": 54,
+      "observedGeneration": 54,
+      "availableReplicas": 1,
+      "containers": [
+        {
+          "name": "site",
+          "image": "registry.damecasol.com/traceboard/site@sha256:cb50ae41efd2461ae83e39a44681f6610808d6c295b804353cf6a05b1e834ebd"
+        }
+      ],
+      "health": "Healthy",
+      "sync": "Synced",
+      "operation": "Succeeded",
+      "revision": "e6bbfbeecfdd16cd090acfa13d6f2f25518b7eae"
+    },
+    "remote": {
+      "checkedAt": "2026-09-10T08:48:21.334507+00:00",
+      "files": 114,
+      "matches": 114,
+      "source": {
+        "sha": "97c19fb3a030c6f725015ff3e334c39a97c014d1",
+        "short": "97c19fb3a030",
+        "branch": "main"
+      },
+      "results": [
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-boundary-national-test.png.png",
+          "status": 200,
+          "sha256": "ecffe7c1500565ebd7812ed73623ffd41793e09b7f7b9401581d12a55a5c792a",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-boundary-public-real-desktop.png.png",
+          "status": 200,
+          "sha256": "49ef9a149ea29a280f002804498e45f28174570789834881df4a136c63813360",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-boundary-public-real-mobile.png.png",
+          "status": 200,
+          "sha256": "d2f46a1ed0416e000d242a62d1e3aef80944d655cef0be1ed4c8f0485e3747a1",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-map-mobile-test.png.png",
+          "status": 200,
+          "sha256": "015f2206c9632e7fb15566e45ff6263d85d61e4af51a9a8763341f6ab0dc51ea",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-map-national-test.png.png",
+          "status": 200,
+          "sha256": "f759ff1d037acbe8148c36c892a5686dbc79642a0c815509ea1ee06ad098174d",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "9fb931fc8a691334f9e82525d595ed1c61236f33bebba5e1a51f4006496f95b6",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-national.png.png",
+          "status": 200,
+          "sha256": "795e950db5d26982fd1f33834d9d53b69a14fa681dd9f895fb214f5ed416af55",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-nonsan.png.png",
+          "status": 200,
+          "sha256": "c9f0f1f0841e0a18d05d09beb9918371422bd42332f903b43feee1bdeffb45ac",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-implementation-province.png.png",
+          "status": 200,
+          "sha256": "4eb9920dc59dce28f09f2f14df8ff99bb379286cf20317039c6cb0bfd55e1f1a",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-001-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "449a4dd590088ab2874e629b1bf4127d2fb6752abed4f8bde76e3ec10d8a4bb5",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-implementation-cost.png.png",
+          "status": 200,
+          "sha256": "c1ee161644ed10beb5cdc760f020f09dd3f0f29bee45a999c0367a8d0015a053",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "af0586a92ca07c6d7621e6398b077597ff9c84d001fc267a7d7d031d793b98ae",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-implementation-visits.png.png",
+          "status": 200,
+          "sha256": "e6e826d33b214c63e6a7b790c72f6800aef1d20073e79effb3a0e9e7c9786084",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-002-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "cc8969ac08e477c44d2f38211d71081ea5506a2d7dd75f07586be76b96b99ba7",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-003-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "08ef87a154241711224d961a156113020673d81c548e77f5a1a39bd41f1c868f",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-comparison.png.png",
+          "status": 200,
+          "sha256": "6c59a9eb8f7cacbef22f1767ac8b120ac5ee9e93fe1e8974997126dbb1cd1015",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-evidence.png.png",
+          "status": 200,
+          "sha256": "867ab95ad652629aeae0bef34535d7a09da1e0138f4916f4e33dc9fef5faa997",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "91c2bbc67472d274e3dfeb716ba1f554ef762f45d75459e5c8fb7b829c2c3395",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-implementation-timeline.png.png",
+          "status": 200,
+          "sha256": "ffb1752e0a08823bfa622d052366f90c9e0856f512578c61bd89f69e4aaffb1c",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-004-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "18a35fa63834807c7a87f77243b7e604b63de67c7e2cc9a9d07d91e4c8899f44",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-comparison.png.png",
+          "status": 200,
+          "sha256": "fd37a27e2e6d0e895794a587f1f765ddb0ed541364eb072a2d87cd7576b5fc6e",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-funding.png.png",
+          "status": 200,
+          "sha256": "3731134d7d0d18a5bb7fba89de46d339a6f83fe2e482d210fdb1443c612cf94a",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-mobile.png.png",
+          "status": 200,
+          "sha256": "12458b1b16ba809ebb83af4a82370cf484e42e08bd0732a13257eee3f1075935",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-implementation-records.png.png",
+          "status": 200,
+          "sha256": "9c6b670bf1349afff2d45705c34cdf3085a97a2c5acc2b124dc6b0542d1abecd",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-005-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "506f85c81667228da5acfb96905c9ca0840c54c229846e1de1ad96957e63803b",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-desktop.png.png",
+          "status": 200,
+          "sha256": "648f80c2a5fe4812bc36fcb6b0256447c0c18cc719d1a31a47e5d0ee921745d9",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-evidence.png.png",
+          "status": 200,
+          "sha256": "2194c76680fae243efe9183f899f84dd596049462612f1ca9331e1256ebbf9cc",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-full-trend.png.png",
+          "status": 200,
+          "sha256": "ed94dd8c1bd123c0f080e6064e354f860900db959a9ae53f856250939ce47b4b",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-mobile.png.png",
+          "status": 200,
+          "sha256": "b286a76f8fb83eaefd276335a5c774f140836185b90eb8808a8ccbc90cea36a0",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-implementation-proposal-print-gray.png.png",
+          "status": 200,
+          "sha256": "034b276faa35741f8d76a09f2abe0cedc300a374e3f7079c323380e97cb0589e",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-006-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "13e8120e6f4273ff9bb12c8ce30d3c13d66691583b6cfb9143b03e9584b4f5d6",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-007-implementation-outcome-mobile.png.png",
+          "status": 200,
+          "sha256": "09b5a5cd9043f8fd7b5f8f914d4b73c566d0aa73a20ba73bb71aa29baa565631",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-007-implementation-outcome-next.png.png",
+          "status": 200,
+          "sha256": "79de22b2eac0ab4014f35d3bde937bc8382ce6819bf56077627caafda4f7d14c",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-007-implementation-outcome-print-gray.png.png",
+          "status": 200,
+          "sha256": "5d20f3972a71a8e9a7e1c019891c10069bac8b36d3587f584711fdfddaa0a5bb",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-007-implementation-outcome-public.png.png",
+          "status": 200,
+          "sha256": "69367f536d582b0a5c58727b3942dfce36407a977515d30d6401049b3939ea5e",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-007-implementation-outcome-result.png.png",
+          "status": 200,
+          "sha256": "72ad641ae5e4a9938c776fea2ee92a9134aeb8cfeb2591925e63a7be3175ad16",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-assets-SCR-FC-007-wireframe-v3.svg.svg",
+          "status": 200,
+          "sha256": "68d287a879e91a366ccbe721da3725ccede3e6048c3d3168e8ecdd74f8f15fe8",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-validation-images-29-overlap-public-desktop.png.png",
+          "status": 200,
+          "sha256": "b0ce745d6f77cf62ba9ffdb419380167ae887f5f8984130a4a28a97423c57556",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-validation-images-29-overlap-public-mobile.png.png",
+          "status": 200,
+          "sha256": "eecdca4970aae9e76741ad48764b52ce37eb4f058481b6dda7dbe976fdc43802",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-validation-images-30-distance-public-desktop.png.png",
+          "status": 200,
+          "sha256": "254ff187cfb00f972d8daf0fb427f0a54ff9c385db22b6e025f63cb5e61c9e79",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-validation-images-30-distance-public-mobile.png.png",
+          "status": 200,
+          "sha256": "cb6135e118985fd9465a6db1ac31c62299cf6712639a200e99c146c0adf13a6a",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-validation-images-31-venue-public-desktop.png.png",
+          "status": 200,
+          "sha256": "f2285bcc9964a5c0e5c1487bbde5823b3237cc07bde9ca53e7d4d55a4e357d0f",
+          "matches": true
+        },
+        {
+          "path": "assets/docs-validation-images-31-venue-public-mobile.png.png",
+          "status": 200,
+          "sha256": "b857868b053e37a68cbbae9e271719c7a7eae02bcdcd6bf4ef7aeb5048ba1a2e",
+          "matches": true
+        },
+        {
+          "path": "assets/fonts/OFL.txt",
+          "status": 200,
+          "sha256": "82e9c8a4b203261f10ddba1296422d64914ff3d4b7bd8a12896d03f0f088d70a",
+          "matches": true
+        },
+        {
+          "path": "assets/fonts/pretendard-400.woff2",
+          "status": 200,
+          "sha256": "01dd73155fdfab7ce9b25224523e85a96927e21aef97f21957d41f1bfa7e3878",
+          "matches": true
+        },
+        {
+          "path": "assets/fonts/pretendard-600.woff2",
+          "status": 200,
+          "sha256": "4247dc5e260b92640c2cbd0e75091154647b71e1d5884116655e2903468c54cc",
+          "matches": true
+        },
+        {
+          "path": "assets/site.css",
+          "status": 200,
+          "sha256": "b2f3a5bff74e9580d5910961112e7ab9bd5a6bdecb640cca6d89235bd506e499",
+          "matches": true
+        },
+        {
+          "path": "assets/site.js",
+          "status": 200,
+          "sha256": "c773545759ff4f816b0bde92a1e8564f1503b1b89c49085974a74c597459515f",
+          "matches": true
+        },
+        {
+          "path": "assets/vendor/mermaid.min.js",
+          "status": 200,
+          "sha256": "d0830a6c05546e9edb8fe20a8f545f3e0dc7c4c3134d584bad9c13a99d7a71e0",
+          "matches": true
+        },
+        {
+          "path": "gaps.json",
+          "status": 200,
+          "sha256": "6899028ecc2771ba47bfe8f50b6827235173dd8ff09aee76a29d40194190a261",
+          "matches": true
+        },
+        {
+          "path": "index.html",
+          "status": 200,
+          "sha256": "c4ab1f05f06b40deaa26e27abfb4fd3d19e276b77315d5af0797e50328dd3e8f",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-ops-planning-outcomes-release.html",
+          "status": 200,
+          "sha256": "6ff4e1ddefac8057db22a9f2131d544d8f173bc4dc49ab95f8dc47e24930237f",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-product-glossary.html",
+          "status": 200,
+          "sha256": "2d78f8b63800d2020ef6b52a05a2736afc50cf415c7b4f0336bd15510fbde205",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-product-non-goals.html",
+          "status": 200,
+          "sha256": "1bfbce3269433e17e2dee41de07c79f39e36494d10aabcc035ba64e90ccacc57",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-product-vision-scope.html",
+          "status": 200,
+          "sha256": "9dc2d212f7c245e1bd11a85c9cc4fe0dae011c00653929cdc593312d0636a2ab",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-historical-comparison-review.html",
+          "status": 200,
+          "sha256": "52fd7c9b42623ca73f4e78275bdcfc630e2293ffaa98033ece224ccf6fff5937",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-municipal-festival-cases.html",
+          "status": 200,
+          "sha256": "2aaade626e8d8b529d91e2fc9af8ab379dc2c41f1f811a66c1cb29d2ee1f47c9",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-municipal-festival-sources.html",
+          "status": 200,
+          "sha256": "20fc899954be804ea09dfb9dc17430041e2f0e20c503b4c9849b07850bc50f5c",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-research-2026-09-municipal-requirement-proposals.html",
+          "status": 200,
+          "sha256": "2f0deb8d1c7376c544fed1e13ab1f9e5286369c79d4e9a8da68f444fba1d5d22",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-review-2026-09-planning-review.html",
+          "status": 200,
+          "sha256": "a0b4712c74869472d9cf47995a074ff49d6542401111d4e8f1caaa1afaa908d4",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-0-planning-product-plan.html",
+          "status": 200,
+          "sha256": "a5163b2d0c1990901395d13917a834cc031e70336f338c8aa46b4085362c64c1",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-business-flow.html",
+          "status": 200,
+          "sha256": "3a40147b9535aa38163e432f70913c7de2d127d90a68ac8c0778dcaa46d38f6a",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-data-contract.html",
+          "status": 200,
+          "sha256": "196f1adf770ad06759423dd357fc86e1af7e09bbe28766843db27276be057360",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-srs.html",
+          "status": 200,
+          "sha256": "465b7c9f1d11c8245f11374c82a6855f955140bc58bd17bb9e433c0ebb552b15",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-001.html",
+          "status": 200,
+          "sha256": "519c665c2d6e9bc3a64fa143ab3ab577c520d64e8d6ba4e0b619a410930e4572",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-002.html",
+          "status": 200,
+          "sha256": "c28ba4223e694306a6fd8821769c0183ab62b56682773df2ad6bc23647ceeda1",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-003.html",
+          "status": 200,
+          "sha256": "89f673c63cbb3437549d5c699af2dc17a4dd3e1e7c57cba18d553aa03e28844f",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-004.html",
+          "status": 200,
+          "sha256": "eb17c9f22ec85f66c52663dd6e12a7aa96c7133f3cf64ce3799a7d5ca024d533",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-005.html",
+          "status": 200,
+          "sha256": "767ff92cbfa1ccefa4112cf93f0f037841c00018ed5b3bf4516036b315d11945",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-006.html",
+          "status": 200,
+          "sha256": "90ddb1e662a432b0e752bc5cf54c5381eab03d2f9b0aa426a359ef64543dda00",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-007.html",
+          "status": 200,
+          "sha256": "cd3096ad516fe0daa73d279741e02abeee5d82398eb5f41ce598c2e04067d0b5",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-1-analysis-usecases-UC-FC-008.html",
+          "status": 200,
+          "sha256": "8abd38cf3269f7ca2698649b384f4f92af466bcc3ba48d721dc1dd4d1e3e7428",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-architecture.html",
+          "status": 200,
+          "sha256": "50ea5a54e9c0a3e972fd77b7edf22319a757a901ca9ba0f6787bf4ac6ab4b200",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-budget-implementation.html",
+          "status": 200,
+          "sha256": "9568db8b65094f79b794b875aa5600524c17787a0af163da733f745b60698bf7",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-current-festival-overlap.html",
+          "status": 200,
+          "sha256": "1e6d0f2c9b803a2e511ed2b45e4c1d511ec50d10814d6889258eb5dec4819172",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-data-visualization.html",
+          "status": 200,
+          "sha256": "6df6e5ac06277b047184b69ef04f7cf648ac54f709ff8ae602ccb99451c9e04b",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-design-system.html",
+          "status": 200,
+          "sha256": "f346e6dabed14c2fd2d22313421a12753c8a6da4c391868f511ad8bad710de2e",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-festival-comparison-implementation.html",
+          "status": 200,
+          "sha256": "6939918ef0756821a011f4a490e1525c3ed23f8fc0c169de65cbf1629e204e00",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-festival-distance-comparison.html",
+          "status": 200,
+          "sha256": "799b985c391c58cac9bb94e86cd81b36377fa691a61046439a50b82329f6f298",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-flows.html",
+          "status": 200,
+          "sha256": "6e5883bae11845f8e77059790018eb914d3707e68e9fd0e7f05b7bbcc793ee51",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-ia.html",
+          "status": 200,
+          "sha256": "f665ca196db3aeeac6202990b19d635577d1d6707a72f8506ef9ddd2daded73b",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-outcome-implementation.html",
+          "status": 200,
+          "sha256": "d62dce27407037c503a9c5d3a71726f83c3d9b660f3da1101c90b4ee8c18352a",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-planning-options-implementation.html",
+          "status": 200,
+          "sha256": "aa4f3f8aabe9f2aa766c36dac183b5a1223e45714791afa7138f06a5f8993244",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-proposal-implementation.html",
+          "status": 200,
+          "sha256": "2c3921de1ed45c3c64e92676785e17ef7aa08083fedbcd5596e6c86ca4cca99c",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-region-boundary-contract.html",
+          "status": 200,
+          "sha256": "3748450a9c9e9b69aba4bab9e52325049d3299f40a0d49151fe47a991edf55a7",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-region-boundary-layer.html",
+          "status": 200,
+          "sha256": "362fcfa96eace1f62e922d0a5d0651276569eb0eef58e94057960e2cc134fd8c",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-region-explorer-implementation.html",
+          "status": 200,
+          "sha256": "8933fffc098d9acad4c766a3fb14eb14fe1c0df32c28b56d95a098323bf5bb5c",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-region-map-improvement.html",
+          "status": 200,
+          "sha256": "3f973f7ceba8a25fa3500f6fa4d03c7dd09347dee81f2e0a39a805caeeadeb1f",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-screens.html",
+          "status": 200,
+          "sha256": "9720342a8f9c3805d7c8d3e2b5c4b31ca942997ad78f4343de13560eb446874a",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-2-design-venue-evidence.html",
+          "status": 200,
+          "sha256": "d7391317e1f7991b5281b6d69137add2106adab529ec7105b2766c7c76c758de",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-acceptance-plan.html",
+          "status": 200,
+          "sha256": "bd88ae45b9d19da462380c37f4f12a216a38b411aaa94cb8352b5d6c6fa39e19",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-001.html",
+          "status": 200,
+          "sha256": "2a74cfb479c8885f04a3164cf7edcb3dfe3e772932e4d2cd2575c0c37ad9b6a5",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-002.html",
+          "status": 200,
+          "sha256": "521597d707e1472bd7ca62a67988738f95d1151d1aecc93d8953853d8ddf3842",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-003.html",
+          "status": 200,
+          "sha256": "82a6e4b8693cfc34c796b8a6eb91c9ef67ed649850c25d94143faa9db7a5a921",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-004.html",
+          "status": 200,
+          "sha256": "a6ff3b6dfed66d7bb6bda42771ca1423f473de4473e9b1d81fc7f5dd7726ef54",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-005.html",
+          "status": 200,
+          "sha256": "353d27d1c31d9217d2251e9c2e20ac7b8dda1e8f62f466a719ed6a3c84dbdcd5",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-006.html",
+          "status": 200,
+          "sha256": "e5731f8381935f9199b7588c6f61cefdacc939e87e7c88f68363b254db76ca5e",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-007.html",
+          "status": 200,
+          "sha256": "7bc2df409883fc7b63f553b82e1d2b6baff061583b599150c67b6a4a98f89a7b",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-sdlc-3-testing-scenarios-TS-FC-008.html",
+          "status": 200,
+          "sha256": "b1e51ed78fb91c0eaf51ae65f178b9e5432a7cd865829b091cce21a49f8807a8",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-20-region-explorer.html",
+          "status": 200,
+          "sha256": "5012dbb17183df02a6392da5aeeed1a1e58e49d938c19859e5155058b4973d46",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-21-festival-comparison.html",
+          "status": 200,
+          "sha256": "a8be0b185e50109a611357409ded65126dd61790f0932d0e3f0333e550971697",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-22-planning-options.html",
+          "status": 200,
+          "sha256": "936f92aee59e58d686a65c7ac07884cf9ca4302ba71d97f26021f8e2c5f18f1b",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-23-planning-budget.html",
+          "status": 200,
+          "sha256": "bcfb1abb6a655b3247d1202f45f6d5e6e8235445eedad74364c7649818d03302",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-24-planning-proposal.html",
+          "status": 200,
+          "sha256": "d093e973953687d8f239919827b45450d13fe6adda816f8a059930d3e9e059fb",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-25-planning-outcomes.html",
+          "status": 200,
+          "sha256": "e624b9204c341218f71f344d6dba1bac420ad8fba29838517db60fc77dbe2d78",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-26-region-map.html",
+          "status": 200,
+          "sha256": "109918d78368449bad1d09de1f0adba690ef0dc3964d723ee51f5d835d5e447f",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-27-region-boundary-audit.html",
+          "status": 200,
+          "sha256": "de09c26d7249d06110536ad601a4e40919470f8107dbd832225edecca2183ce0",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-28-boundary-layer.html",
+          "status": 200,
+          "sha256": "ec86d2a8de63757204d3742365728fa0466e0d72a5bf0bb06f5ee954510e987b",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-29-current-festival-overlap.html",
+          "status": 200,
+          "sha256": "fee65b8fd7b61d6a207f9de6034395c5208d646a065ee3b2fb9ff912c954778a",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-30-festival-distance.html",
+          "status": 200,
+          "sha256": "98576a7de1ec2b5393a87ffbdfbe4e2d76095198f1e0ae4587558e53a3869bd1",
+          "matches": true
+        },
+        {
+          "path": "pages/docs-validation-31-venue-evidence.html",
+          "status": 200,
+          "sha256": "e34860128a67a0cd43f01539a5011549223742df55c26a0aa3339a7dc4f0275e",
+          "matches": true
+        },
+        {
+          "path": "search-index.js",
+          "status": 200,
+          "sha256": "ad050594e325c00365cbfa118f6bd110a66b2d79734b30653c53696544471d7c",
+          "matches": true
+        },
+        {
+          "path": "site.json",
+          "status": 200,
+          "sha256": "b959a7fc26b66a3f63755995b8b221f5afedfdf60f99be3f27ef6e52fa768a0d",
+          "matches": true
+        },
+        {
+          "path": "trace.json",
+          "status": 200,
+          "sha256": "411aae7091f83e2dae0a25a431acb44db97ff30e47a2cc819b3a38352db6cbf6",
+          "matches": true
+        }
+      ]
+    },
+    "browser": {
+      "checkedAt": "2026-09-10T08:48:33.826Z",
+      "headless": true,
+      "links": 2,
+      "images": 2,
+      "mobileWidth": 390,
+      "errors": []
+    },
+    "accessibility": {
+      "publisher": {
+        "pageThemeCombinations": 1672,
+        "violations": 0,
+        "unevaluated": 0
+      },
+      "changedPages": {
+        "pageThemeCombinations": 24,
+        "violations": 0,
+        "unevaluated": 0
+      }
+    }
+  },
+  "scopeLimits": [
+    "No official venue booking, safety approval, capacity measurement or municipal staff acceptance.",
+    "Regional historical visitor and public cost data expansion remains future work.",
+    "API/Spec/Run/YouTrack sources remain undeclared and unevaluated."
+  ]
+}

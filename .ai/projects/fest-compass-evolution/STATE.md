@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 26
+revision: 27
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-10T08:03:06.166Z"
+updated_at: "2026-09-10T08:49:27.890Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1~M6 첫 흐름·참고 경계·일정 겹침에 이어 조회한 현재 행사의 직선거리순·반경 비교를 공개 사용 가능하다. 실제 공주 3·논산 4건을 독립 근사식으로 대조하고 선택 당시 기준 좌표·반경·출처가 근거·기획에 유지됨을 확인했다. 단위·마이그레이션 196, 전체 headless 156, 공개 회귀 10·실제 6개 흐름 통과. Traceboard 110파일 게시 일치, 모델·겨울 시험·개인 저장 경계 유지. 다음은 검수 피드백과 지역별 과거 방문/공개 비용 자료 확대, 관광자원과 기획 장소의 연결을 구체화하는 것이다. 전국 자동 주변 검색과 실제 담당자 인수는 후속이다.
+M1~M6 첫 흐름·경계·일정·거리 비교에 이어 지도에서 담은 관광지·문화시설의 이름·주소를 후보 장소로 명시적으로 입력하고 출처 사본을 연결하는 기능을 공개 사용 가능하다. 실제 논산 관광자료 61건 중 강경근대거리로 원문·보관·모바일을 대조했다. 단위·마이그레이션 199, 전체 headless 165, 공개 회귀 9·실제 6개 흐름 통과. Traceboard 114파일 게시 일치, 모델·겨울 시험·개인 저장 경계 유지. 다음은 검수 피드백과 지역별 과거 방문/공개 비용 자료 확대이며 전국 자동 주변 검색·실제 담당자 인수는 후속이다.
 
 ## Accepted decisions
 
@@ -43,18 +43,19 @@ M1~M6 첫 흐름·참고 경계·일정 겹침에 이어 조회한 현재 행사
 - 2026-09-09 다음 작업 진행 요청에 따라 공식 연계표·도형 검증과 기준일 있는 경계 지도를 구현·공개했다. 참고 경계는 지역 선택과 당시 근거 보관에 사용하고 현재 법정 영역 인증·자원 포함 판정·통계 배분에는 사용하지 않는다(기존 지도 개선·일반 게시 위임 범위).
 - 2026-09-10 다음 작업 진행 요청에 따라 기획 기간과 겹치는 현재 등록 행사 조회·일정 그림·선택 당시 조건 보관을 구현·공개했다. 실제 제공처 응답을 근거로 시작일 범위라는 기존 가정을 정정했으며 거리 검색·전국 자료 완비·실제 개최 증명으로 확대하지 않는다(기존 화면·M2 보완·일반 게시 위임 범위).
 - 2026-09-10 다음 작업 진행 요청으로 조회한 현재 행사 안의 직선거리순·반경 비교와 기준 좌표·출처 보관을 구현·공개했다. 좌표 미확인은 유지하고 전국 자동 탐색·이동시간·행사장 실측 정확도로 확대하지 않는다(기존 M2 보완·일반 게시 위임 범위).
+- 2026-09-10 다음 작업 진행 요청에 따라 지도에서 담은 관광지·문화시설의 이름·주소를 후보 장소 입력에 명시적으로 적용하고 출처 사본을 연결하는 기능을 구현·공개했다. 관광정보를 대관·안전·수용 인원 확인으로 확대하지 않고 장소 변경 시 기존 확인을 재검토한다(기존 M1→M3 화면 보완·일반 게시 위임 범위).
 
 ## Open questions
 
 - 개편 35개 조회 단위의 최신 공식 경계 확보·버전 교체는 후속이며 2025년 경계를 현재 법정 영역으로 인증하지 않는다.
-- 전국 자동 주변 검색·지역별 과거 방문/실제 비용 자료 확대·관광자원과 기획 장소 연결 보완·실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
+- 전국 자동 주변 검색·지역별 과거 방문/실제 비용 자료 확대·실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
 
 ## Artifacts and durable documents
 
-- docs/sdlc/2-design/festival-distance-comparison.md
-- docs/validation/30-festival-distance.md
-- docs/validation/evidence/2026-09-10-distance-publication.json
-- apps/web/scripts/distance-e2e.mjs
+- docs/sdlc/2-design/venue-evidence.md
+- docs/validation/31-venue-evidence.md
+- docs/validation/evidence/2026-09-10-venue-publication.json
+- apps/web/scripts/venue-e2e.mjs
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md
 - traceboard.yaml
