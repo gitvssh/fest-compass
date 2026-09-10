@@ -36,6 +36,7 @@ stages:
       - {path: docs/sdlc/2-design/festival-distance-comparison.md, required: true}
       - {path: docs/sdlc/2-design/festival-comparison-implementation.md, required: true}
       - {path: docs/sdlc/2-design/planning-options-implementation.md, required: true}
+      - {path: docs/sdlc/2-design/venue-evidence.md, required: true}
       - {path: docs/sdlc/2-design/budget-implementation.md, required: true}
       - {path: docs/sdlc/2-design/proposal-implementation.md, required: true}
       - {path: docs/sdlc/2-design/outcome-implementation.md, required: true}
@@ -57,6 +58,7 @@ stages:
       - {path: docs/validation/28-boundary-layer.md, required: true}
       - {path: docs/validation/29-current-festival-overlap.md, required: true}
       - {path: docs/validation/30-festival-distance.md, required: true}
+      - {path: docs/validation/31-venue-evidence.md, required: true}
   operations:
     artifacts:
       - {path: docs/ops/planning-outcomes-release.md, required: true}

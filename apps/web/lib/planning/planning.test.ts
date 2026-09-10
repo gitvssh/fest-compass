@@ -7,6 +7,43 @@ import { HISTORY_SOURCE, SOURCE } from "../region/model";
 import type { Edition } from "../comparison/types";
 import { archive, connectEvidence, copy, currentCheck, duplicateOption, encodePlanning, importPlanning, newOption, newPlanning, newTask, parsePlanning, PLANNING_KEY, taskBasis, taskStatus, uid, validatePlanning, venueBasis, writePlanning } from "./model";
 import type { Planning, SourceCopy } from "./types";
+import { applyVenueEvidence, venueResource } from "./venue-evidence";
+
+async function venueSource(address = "검증용 주소"): Promise<SourceCopy> {
+  const value = await makeEvidence({ query: { province: "44", district: "230", start: "2026-01-01", end: "2026-12-31", kind: "12" }, region: { provinceCode: "44", provinceName: "충청남도", districtCode: "230", districtName: "논산시" }, resources: { status: "complete", message: "검증용 가상 자료", items: [{ id: "9001", title: "검증용 관광지", address, longitude: null, latitude: null, start: null, end: null, modifiedAt: null }], total: 1, pages: 1, collectedAt: "2026-09-10T00:00:00Z", source: SOURCE }, history: { status: "unavailable", message: "검증용 결측", source: HISTORY_SOURCE, unit: "명", metric: "시군구 일별 외지인 방문", points: [] } }, { resourceId: "9001" }, "장소 조사");
+  return { key: `region:${value.id}`, kind: "region", value };
+}
+
+test("관광자료 장소 적용은 사본·판단을 함께 연결하고 기존 확인·보관본·담당 지역을 보존한다", async () => {
+  let p = fixture(); const before = p.draft.options[0];
+  before.venueChecks.push({ id: uid(), stage: "event", kind: "use", status: "available", owner: "검증 담당", date: "2026-09-10", reference: "기존 장소 회신", note: "", basis: venueBasis(before, "event") });
+  before.tasks.push(newTask(before)); p = archive(p, "변경 전");
+  const old = JSON.stringify(p.revisions), source = await venueSource();
+  p.draft = applyVenueEvidence(p.draft, before.id, source, "지역 자원 활용");
+  const o = p.draft.options[0]; assert.equal(o.venue, "검증용 관광지 · 검증용 주소");
+  assert.equal(currentCheck(o, "event", "use"), undefined); assert.equal(taskStatus(o, o.tasks[0]).stale, true);
+  assert.deepEqual(o.venueChecks, before.venueChecks); assert.equal(p.draft.regionKey, "44/230");
+  source.value.note = "보관함 변경"; assert.equal(p.draft.evidence[0].value.note, "장소 조사");
+  assert.equal(o.links[0].reason, "지역 자원 활용"); assert.equal(JSON.stringify(parsePlanning(encodePlanning(p)).revisions), old);
+});
+test("이미 연결한 관광자료의 장소 적용은 원래 이유를 유지하고 같은 장소·다른 내용은 거부한다", async () => {
+  const p = fixture(), s = await venueSource(), id = p.draft.options[0].id;
+  p.draft = connectEvidence(p.draft, id, s, "venue", "원래 판단");
+  p.draft = applyVenueEvidence(p.draft, id, s, "새 판단");
+  assert.equal(p.draft.options[0].links.length, 1); assert.equal(p.draft.options[0].links[0].reason, "원래 판단");
+  assert.throws(() => applyVenueEvidence(p.draft, id, s, ""), /같은 장소/);
+  p.draft.options[0].venue = "다른 입력"; const old = JSON.stringify(p.draft); s.value.note = "변조";
+  assert.throws(() => applyVenueEvidence(p.draft, id, s, ""), /식별자의 내용/); assert.equal(JSON.stringify(p.draft), old);
+});
+test("주소 결측은 이름만 쓰고 행사·비교·선택 누락·초과 길이는 장소 입력에 쓰지 않는다", async () => {
+  const s = await venueSource(""); assert.equal(venueResource(s)?.venue, "검증용 관광지");
+  if (s.kind !== "region") throw Error("fixture");
+  s.value.result.query.kind = "14"; assert.ok(venueResource(s));
+  s.value.result.query.kind = "15"; assert.equal(venueResource(s), null);
+  s.value.result.query.kind = "12"; s.value.selection = { resourceId: "missing" }; assert.equal(venueResource(s), null);
+  s.value.selection = { resourceId: "9001" }; s.value.result.resources.items[0].address = "가".repeat(2000); assert.equal(venueResource(s), null);
+  assert.equal(venueResource(await source()), null);
+});
 
 function fixture() {
   const p = newPlanning(2027), o = p.draft.options[0];

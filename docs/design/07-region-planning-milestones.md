@@ -131,3 +131,7 @@ flowchart LR
 ## M5 첫 구현 (2026-09-09)
 
 두 후보와 선택 이유가 있는 기획안을 같은 버전으로 보관·출력한다. [사용 흐름](../sdlc/2-design/proposal-implementation.md)과 [검증·게시 상태](../validation/24-planning-proposal.md)를 따른다. M6 결과·다음 회차 연결은 [별도 검증 기록](../validation/25-planning-outcomes.md)을 따른다. 실제 담당자 관찰은 아직 완료하지 않았다.
+
+## M1→M3 관광자원 장소 연결 (2026-09-10)
+
+지도에서 담은 관광지·문화시설의 이름·주소를 후보 장소 입력으로 옮기고 당시 출처 사본을 함께 남긴다. [화면 흐름](../sdlc/2-design/venue-evidence.md)과 [31번 검증·게시 상태](../validation/31-venue-evidence.md)를 따른다. 지역별 과거 방문·공개 비용 확대와 실제 담당자 인수는 후속이다.

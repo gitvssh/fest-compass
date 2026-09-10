@@ -1,13 +1,13 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-08
+last_verified: 2026-09-10
 id: TS-FC-004
-version: v2
+version: v3
 status: active
 summary: "아이템·장소·시기가 다른 기획 대안을 구성한다의 인수 시나리오입니다. M3 구현과 자동 검증을 연결했습니다."
 usecase: UC-FC-004
-covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6"]
+covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7"]
 apis: []
 specs: []
 ---
@@ -16,7 +16,7 @@ specs: []
 
 | 항목 | 내용 |
 |---|---|
-| 근거 | [UC-FC-004@v2](../../1-analysis/usecases/UC-FC-004.md) |
+| 근거 | [UC-FC-004@v3](../../1-analysis/usecases/UC-FC-004.md) |
 | 대상 환경 | 구현 후 격리된 로컬 브라우저 + 고정 자료 응답 |
 | 실행 상태 | 첫 구현 자동 검증. 실행 범위는 아래 증거 참조, 정형 Spec/Run 연결과 실무 관찰은 후속 |
 
@@ -55,3 +55,7 @@ specs: []
 자동 실행 코드는 `apps/web/scripts/planning-e2e.mjs`, 반례 검사는 `apps/web/lib/planning/planning.test.ts`다. 결과는 [22번 검증 기록](../../../validation/22-planning-options.md)을 따른다. 정형 Spec/Run은 아직 연결하지 않았다.
 새 인수 기준은 기존 운영 E2E 결과로 통과 처리하지 않는다.
 독립 브라우저 저장·고정 응답만 사용하고 종료 시 테스트 컨텍스트를 닫는다.
+
+## AC7 · 관광자료에서 후보 장소로
+
+고정 관광지·문화시설 자료를 담고 이름·주소·좌표·수집 시각을 미리 본다. 선택만으로 기존 장소가 바뀌지 않고 명시적 적용 후 장소와 사본이 함께 남아야 한다. 기존 장소 확인·준비 기록은 보존하지만 변경한 조건에서는 재확인한다. 주소/좌표 결측·중복 연결·다른 내용의 같은 식별자·행사/통계 근거를 시험한다. 담당 지역과 보관본 불변, 파일 재가져오기, 모바일 가로 넘침도 확인한다. [31번 검증](../../../validation/31-venue-evidence.md).
