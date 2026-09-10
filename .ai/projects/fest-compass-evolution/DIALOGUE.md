@@ -588,3 +588,23 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-026 · Codex · implementer
+
+- Position: 조회한 현재 행사에서 실제 등록 좌표의 직선거리순·반경 비교와 일정 그림을 연결해 공개했다. 거리 미확인 자료를 남기고 기준 좌표·반경·출처를 근거와 기획 상세에 보존했다. 실제 공주·논산 7개 자료 검수와 Traceboard 게시까지 완료했다.
+- Evidence:
+  - docs/sdlc/2-design/festival-distance-comparison.md
+  - docs/validation/30-festival-distance.md
+  - docs/validation/evidence/2026-09-10-distance-publication.json
+- Changes:
+  - 등록 좌표 사본과 버전 있는 구면 거리 계산, 반경 밖·거리 미확인 구분
+  - 추가 API 호출 없는 기준/반경 조작과 최대 20건 거리 그림, 기존 파일 호환·입력 검사
+  - 요구·AC11·설계·실제 검증 문서와 공개 앱·내부 검수본 게시
+- Validation:
+  - 단위·마이그레이션 196, 전체 headless 156 및 기존 편집/공개 흐름, 타입·빌드·취약점 0·배포 선언 40 통과
+  - CI 34451230981 내부 ARC 성공; 공개 거리 회귀 10개, 실제 공주 3·논산 4건의 거리순·10/30km·원래 근거·기획 연결 6개 흐름 통과. 오류·앱 서버 쓰기 0
+  - 예측 요약·기록 2개·겨울 시험·자동 수집 상태 보존
+  - Traceboard 산출물 42·추적 누락 0, HTTPS 110/110 일치, 접근성·headless 링크/이미지/390px 통과. 미선언 원천 4종은 미평가
+- Questions:
+  - No open question
+- Handoff: Codex
