@@ -10,7 +10,7 @@ summary: "기획 기간과 겹치는 등록 축제 조회와 일정 그림을 �
 
 **전국 조회·비교 근거에서 후보·예산·기획안 출력, 공개 비용·개인 결과와 다음 회차까지 첫 기능을 연결했습니다.**
 **M1~M6는 공개 사용 가능합니다.** M6도 공개 headless 14개 흐름을 검증했습니다. 아래 실제 화면과 공개 앱으로 검수할 수 있습니다. 전국 자료 완비·실제 담당자 관찰은 아직 완료하지 않았습니다.
-이번에는 [전국·지역 지도 개선과 검수 행동](../sdlc/2-design/region-map-improvement.md), [검증·게시 상태](../validation/26-region-map.md)를 먼저 확인하세요. 지도에서 자료를 선택하고 조건·출처와 함께 근거로 담는 흐름을 검수합니다.
+이전 지도 개선은 [전국·지역 지도 개선과 검수 행동](../sdlc/2-design/region-map-improvement.md), [검증·게시 상태](../validation/26-region-map.md)에서 확인하세요. 지도에서 자료를 선택하고 조건·출처와 함께 근거로 담는 흐름을 검수합니다.
 이번에는 [기획 기간과 겹치는 등록 행사 찾기](../sdlc/2-design/current-festival-overlap.md)와 [29번 검증·게시 상태](../validation/29-current-festival-overlap.md)를 확인하세요. 공주 9월 5~6일을 조회했을 때 9월 4일 시작한 행사도 찾고, 일정 그림과 선택 당시 조건이 근거에 남는지 검수합니다.
 이전 추가 기능은 [기준일이 있는 경계 지도](../sdlc/2-design/region-boundary-layer.md)와 [28번 검증·게시 상태](../validation/28-boundary-layer.md)에서 확인하세요. 시도 15개·시군구 조회 단위 234개의 2025년 참고 경계 선택과 근거 보관을 구현했습니다. 개편 35개는 목록으로 조회하며, 기준일·현재 구역과의 차이·표시한 경계만 근거에 남는지 검수합니다. [원본 대조 결과](../validation/27-region-boundary-audit.md)는 이전 조사 이력입니다.
 이전 단계는 [M6 실제 화면·검수 과제](../sdlc/2-design/outcome-implementation.md), [M6 검증·게시 상태](../validation/25-planning-outcomes.md)를 확인하세요.
