@@ -111,6 +111,7 @@ try {
   runNode(join(webRoot, "scripts", "distance-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "planning-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "venue-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "history-costs-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "budget-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "proposal-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "outcome-e2e.mjs"), []);

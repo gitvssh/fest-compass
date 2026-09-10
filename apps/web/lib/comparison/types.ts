@@ -2,7 +2,7 @@ export type Source = { title: string; url: string; checkedAt: string; publishedA
 export type Point = { latitude: number; longitude: number };
 export type DistanceCondition = { method: "haversine-v1"; anchor: { editionId: string; name: string; point: Point; source: Source }; radiusKm: number | null };
 export type VisitSeries = { metric: string; unit: string; method: string; regionCode: string; source: Source; snapshotId: string; collectedAt: string; points: { date: string; value: number | null }[] };
-export type Cost = { id: string; label: string; amount: number; unit: "KRW"; year: number; stage: string; scopeId: string; scope: string; department: string; vat: "포함" | "별도" | "미확인"; source: Source; parts: { label: string; amount: number }[] | null; complete: boolean };
+export type Cost = { id: string; label: string; amount: number; unit: "KRW"; year: number; stage: string; scopeId: string; scope: string; department: string; vat: "포함" | "별도" | "미확인"; source: Source; parts: { label: string; amount: number }[] | null; complete: boolean; compositionKind?: "funding" | "expense" };
 export type Edition = {
   id: string; festivalId: string; name: string; year: number; region: { province: string; district: string; name: string };
   origin: "archive" | "current"; start: string | null; end: string | null; status: string; statusNote: string;

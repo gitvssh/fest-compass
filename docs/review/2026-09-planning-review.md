@@ -2,15 +2,16 @@
 class: Current
 owner: fest-compass
 last_verified: 2026-09-10
-version: v8
-summary: "지도에서 담은 관광자원을 후보 장소 입력에 연결합니다. 이름·주소 미리보기, 출처 사본, 장소 변경 후 확인 재검토를 검수합니다."
+version: v9
+summary: "공주·임실 과거 방문과 공주 공개 비용을 검수합니다. 실제 값·지역 격리·예산/집행/총원가 구분과 원가 구성 보관을 확인합니다."
 ---
 
-# FEST Compass 기획 검수 v8
+# FEST Compass 기획 검수 v9
 
 **전국 조회·비교 근거에서 후보·예산·기획안 출력, 공개 비용·개인 결과와 다음 회차까지 첫 기능을 연결했습니다.**
 **M1~M6는 공개 사용 가능합니다.** M6도 공개 headless 14개 흐름을 검증했습니다. 아래 실제 화면과 공개 앱으로 검수할 수 있습니다. 전국 자료 완비·실제 담당자 관찰은 아직 완료하지 않았습니다.
-이번에는 [관광자료를 후보 장소 입력으로 연결](../sdlc/2-design/venue-evidence.md)과 [31번 검증·게시 상태](../validation/31-venue-evidence.md)를 확인하세요. 지도에서 담은 관광지·문화시설의 이름·주소를 미리 본 뒤 장소 입력에 적용하고, 당시 출처와 대관 미확인이 유지되는지 검수합니다.
+이번에는 [공주·임실 방문 이력과 공주 축제 비용 확대](../sdlc/2-design/regional-history-costs.md)와 [32번 검증·게시 상태](../validation/32-regional-history-costs.md)를 확인하세요. 지도에서 두 지역의 2023~2025년 방문을 조회하고, 임실 3회차 비교·공주 예산/집행/총원가 및 원가 구성 도넛을 검수합니다.
+이전 장소 연결은 [관광자료를 후보 장소 입력으로 연결](../sdlc/2-design/venue-evidence.md)과 [31번 검증·게시 상태](../validation/31-venue-evidence.md)를 확인하세요. 지도에서 담은 관광지·문화시설의 이름·주소를 미리 본 뒤 장소 입력에 적용하고, 당시 출처와 대관 미확인이 유지되는지 검수합니다.
 이전 지도 개선은 [전국·지역 지도 개선과 검수 행동](../sdlc/2-design/region-map-improvement.md), [검증·게시 상태](../validation/26-region-map.md)에서 확인하세요. 지도에서 자료를 선택하고 조건·출처와 함께 근거로 담는 흐름을 검수합니다.
 이전 거리 보완은 [기준 행사에서 가까운 축제 비교](../sdlc/2-design/festival-distance-comparison.md)와 [30번 검증·게시 상태](../validation/30-festival-distance.md)를 확인하세요. 기준 행사·반경을 바꾸고 거리 미확인 자료와 당시 조건 보존을 검수합니다.
 이전 일정 보완은 [기획 기간과 겹치는 등록 행사 찾기](../sdlc/2-design/current-festival-overlap.md)와 [29번 검증·게시 상태](../validation/29-current-festival-overlap.md)를 확인하세요. 공주 9월 5~6일을 조회했을 때 9월 4일 시작한 행사도 찾고, 일정 그림과 선택 당시 조건이 근거에 남는지 검수합니다.

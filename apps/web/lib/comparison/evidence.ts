@@ -35,6 +35,7 @@ export function validateEditions(editions: Edition[]) {
     }
     if (!Array.isArray(e.costs) || e.costs.length > 20 || new Set(e.costs.map(c => c.id)).size !== e.costs.length) throw new Error();
     for (const c of e.costs) {
+      if (c.compositionKind !== undefined && !["funding", "expense"].includes(c.compositionKind)) throw new Error();
       if (![c.id, c.label, c.stage, c.scopeId, c.scope, c.department].every(x => text(x)) || !amount(c.amount) || !amount(c.year) || c.year !== e.year || c.unit !== "KRW" || !["포함", "별도", "미확인"].includes(c.vat) || typeof c.complete !== "boolean" || c.parts !== null && (!Array.isArray(c.parts) || c.parts.length > 20 || !c.parts.every(p => text(p.label) && amount(p.amount)))) throw new Error();
       source(c.source);
     }

@@ -19,6 +19,7 @@ stages:
       - {path: docs/research/2026-09-municipal-festival-sources.md, required: true}
       - {path: docs/research/2026-09-municipal-requirement-proposals.md, required: true}
       - {path: docs/research/2026-09-historical-comparison-review.md, required: true}
+      - {path: docs/research/2026-09-regional-history-costs.md, required: true}
   design:
     screens: docs/sdlc/2-design/screens.md
     artifacts:
@@ -37,6 +38,7 @@ stages:
       - {path: docs/sdlc/2-design/festival-comparison-implementation.md, required: true}
       - {path: docs/sdlc/2-design/planning-options-implementation.md, required: true}
       - {path: docs/sdlc/2-design/venue-evidence.md, required: true}
+      - {path: docs/sdlc/2-design/regional-history-costs.md, required: true}
       - {path: docs/sdlc/2-design/budget-implementation.md, required: true}
       - {path: docs/sdlc/2-design/proposal-implementation.md, required: true}
       - {path: docs/sdlc/2-design/outcome-implementation.md, required: true}
@@ -59,6 +61,7 @@ stages:
       - {path: docs/validation/29-current-festival-overlap.md, required: true}
       - {path: docs/validation/30-festival-distance.md, required: true}
       - {path: docs/validation/31-venue-evidence.md, required: true}
+      - {path: docs/validation/32-regional-history-costs.md, required: true}
   operations:
     artifacts:
       - {path: docs/ops/planning-outcomes-release.md, required: true}

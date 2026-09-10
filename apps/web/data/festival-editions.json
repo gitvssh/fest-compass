@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "reviewedAt": "2026-09-08",
-  "note": "선정·공개 사례 조사에서 연결한 8회차. 전국 과거 전수 목록이 아니며 현재 API로 덮어쓰지 않음",
+  "reviewedAt": "2026-09-10",
+  "note": "선정·공개 사례 조사에서 연결한 8회차. 논산·공주·임실 방문 이력과 공주 원가회계 추가. 전국 과거 전수 목록이 아니며 현재 API로 덮어쓰지 않음",
   "editions": [
     {
       "id": "nonsan-strawberry-2023",
@@ -397,10 +397,86 @@
         "sha256": "dd6118aaef5c65ac6828cf647dfe0991604c137c0c778dba066c4995fb08b461",
         "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
       },
-      "visits": null,
+      "visits": {
+        "metric": "시군구 일별 외지인 방문",
+        "unit": "명 (통신 기반 추정)",
+        "method": "KTO-locgoRegnVisitrDDList-touDivCd2",
+        "regionCode": "52750",
+        "source": {
+          "title": "한국관광공사 임실군 일별 외지인 방문",
+          "url": "https://www.data.go.kr/data/15101972/openapi.do",
+          "checkedAt": "2026-09-10T09:15:37.552Z",
+          "publishedAt": null,
+          "sha256": "18c70972f215beb3deababe30e99e668ee41751cc823eae3cbf691a096ad775a",
+          "note": "2023~2025년 월별 전체 페이지를 확인한 보관본. 원문 지역코드 52750. 당시 공개본·축제 입장객·축제 효과가 아님"
+        },
+        "snapshotId": "49fec1131951b32e5f555c3e8b9b5ae82812f923f8263caa82d30ca7f26d6323",
+        "collectedAt": "2026-09-10T09:15:37.552Z",
+        "points": [
+          {
+            "date": "2023-09-29",
+            "value": 119035
+          },
+          {
+            "date": "2023-09-30",
+            "value": 93257.5
+          },
+          {
+            "date": "2023-10-01",
+            "value": 70038.5
+          },
+          {
+            "date": "2023-10-02",
+            "value": 50918
+          },
+          {
+            "date": "2023-10-03",
+            "value": 33558
+          },
+          {
+            "date": "2023-10-04",
+            "value": 17734.5
+          },
+          {
+            "date": "2023-10-05",
+            "value": 20212.5
+          },
+          {
+            "date": "2023-10-06",
+            "value": 27762
+          },
+          {
+            "date": "2023-10-07",
+            "value": 54376
+          },
+          {
+            "date": "2023-10-08",
+            "value": 67791.5
+          },
+          {
+            "date": "2023-10-09",
+            "value": 56353.5
+          },
+          {
+            "date": "2023-10-10",
+            "value": 20587
+          },
+          {
+            "date": "2023-10-11",
+            "value": 21063
+          },
+          {
+            "date": "2023-10-12",
+            "value": 22746.5
+          },
+          {
+            "date": "2023-10-13",
+            "value": 23940
+          }
+        ]
+      },
       "costs": [],
       "missing": [
-        "연속 일별 방문 이력",
         "정의가 확인된 입장객",
         "전체 예산·결산"
       ]
@@ -432,10 +508,86 @@
         "sha256": "a911cda238d9269606ffcfd77aabaa268774e4a4f781e0dad19377829600cdbe",
         "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
       },
-      "visits": null,
+      "visits": {
+        "metric": "시군구 일별 외지인 방문",
+        "unit": "명 (통신 기반 추정)",
+        "method": "KTO-locgoRegnVisitrDDList-touDivCd2",
+        "regionCode": "52750",
+        "source": {
+          "title": "한국관광공사 임실군 일별 외지인 방문",
+          "url": "https://www.data.go.kr/data/15101972/openapi.do",
+          "checkedAt": "2026-09-10T09:15:37.552Z",
+          "publishedAt": null,
+          "sha256": "18c70972f215beb3deababe30e99e668ee41751cc823eae3cbf691a096ad775a",
+          "note": "2023~2025년 월별 전체 페이지를 확인한 보관본. 원문 지역코드 52750. 당시 공개본·축제 입장객·축제 효과가 아님"
+        },
+        "snapshotId": "49fec1131951b32e5f555c3e8b9b5ae82812f923f8263caa82d30ca7f26d6323",
+        "collectedAt": "2026-09-10T09:15:37.552Z",
+        "points": [
+          {
+            "date": "2024-09-26",
+            "value": 19148.5
+          },
+          {
+            "date": "2024-09-27",
+            "value": 21868
+          },
+          {
+            "date": "2024-09-28",
+            "value": 32711
+          },
+          {
+            "date": "2024-09-29",
+            "value": 31650.5
+          },
+          {
+            "date": "2024-09-30",
+            "value": 19873
+          },
+          {
+            "date": "2024-10-01",
+            "value": 25914
+          },
+          {
+            "date": "2024-10-02",
+            "value": 20205.5
+          },
+          {
+            "date": "2024-10-03",
+            "value": 50526
+          },
+          {
+            "date": "2024-10-04",
+            "value": 38619
+          },
+          {
+            "date": "2024-10-05",
+            "value": 64372
+          },
+          {
+            "date": "2024-10-06",
+            "value": 51593.5
+          },
+          {
+            "date": "2024-10-07",
+            "value": 17311
+          },
+          {
+            "date": "2024-10-08",
+            "value": 24531.5
+          },
+          {
+            "date": "2024-10-09",
+            "value": 39354
+          },
+          {
+            "date": "2024-10-10",
+            "value": 20884.5
+          }
+        ]
+      },
       "costs": [],
       "missing": [
-        "연속 일별 방문 이력",
         "정의가 확인된 입장객",
         "전체 예산·결산"
       ]
@@ -467,10 +619,86 @@
         "sha256": "bd62e93e50597b4fc804a3d5df27e2d5f378ddfadcce228f868c95487ad179c2",
         "note": "확인한 회차 자료에서 추출. 당시 공개본 재현은 아님"
       },
-      "visits": null,
+      "visits": {
+        "metric": "시군구 일별 외지인 방문",
+        "unit": "명 (통신 기반 추정)",
+        "method": "KTO-locgoRegnVisitrDDList-touDivCd2",
+        "regionCode": "52750",
+        "source": {
+          "title": "한국관광공사 임실군 일별 외지인 방문",
+          "url": "https://www.data.go.kr/data/15101972/openapi.do",
+          "checkedAt": "2026-09-10T09:15:37.552Z",
+          "publishedAt": null,
+          "sha256": "18c70972f215beb3deababe30e99e668ee41751cc823eae3cbf691a096ad775a",
+          "note": "2023~2025년 월별 전체 페이지를 확인한 보관본. 원문 지역코드 52750. 당시 공개본·축제 입장객·축제 효과가 아님"
+        },
+        "snapshotId": "49fec1131951b32e5f555c3e8b9b5ae82812f923f8263caa82d30ca7f26d6323",
+        "collectedAt": "2026-09-10T09:15:37.552Z",
+        "points": [
+          {
+            "date": "2025-10-01",
+            "value": 19610.5
+          },
+          {
+            "date": "2025-10-02",
+            "value": 22718.5
+          },
+          {
+            "date": "2025-10-03",
+            "value": 42784
+          },
+          {
+            "date": "2025-10-04",
+            "value": 62191.5
+          },
+          {
+            "date": "2025-10-05",
+            "value": 84791
+          },
+          {
+            "date": "2025-10-06",
+            "value": 123518.5
+          },
+          {
+            "date": "2025-10-07",
+            "value": 95795
+          },
+          {
+            "date": "2025-10-08",
+            "value": 109833.5
+          },
+          {
+            "date": "2025-10-09",
+            "value": 73409
+          },
+          {
+            "date": "2025-10-10",
+            "value": 43417.5
+          },
+          {
+            "date": "2025-10-11",
+            "value": 55632.5
+          },
+          {
+            "date": "2025-10-12",
+            "value": 47110
+          },
+          {
+            "date": "2025-10-13",
+            "value": 16576
+          },
+          {
+            "date": "2025-10-14",
+            "value": 21157.5
+          },
+          {
+            "date": "2025-10-15",
+            "value": 20139
+          }
+        ]
+      },
       "costs": [],
       "missing": [
-        "연속 일별 방문 이력",
         "정의가 확인된 입장객",
         "전체 예산·결산"
       ]
@@ -502,12 +730,228 @@
         "sha256": "605f6a7471cc504a0469ce7d6ae00c179d7a63026ee2ea843b85a5beab3eb45e",
         "note": "2025년 8월 결산 재정공시 PDF 97쪽(인쇄 91쪽). 공주 2024 회차. 파일명 날짜를 게시일로 간주하지 않음"
       },
-      "visits": null,
-      "costs": [],
+      "visits": {
+        "metric": "시군구 일별 외지인 방문",
+        "unit": "명 (통신 기반 추정)",
+        "method": "KTO-locgoRegnVisitrDDList-touDivCd2",
+        "regionCode": "44150",
+        "source": {
+          "title": "한국관광공사 공주시 일별 외지인 방문",
+          "url": "https://www.data.go.kr/data/15101972/openapi.do",
+          "checkedAt": "2026-09-10T09:15:37.552Z",
+          "publishedAt": null,
+          "sha256": "18c70972f215beb3deababe30e99e668ee41751cc823eae3cbf691a096ad775a",
+          "note": "2023~2025년 월별 전체 페이지를 확인한 보관본. 원문 지역코드 44150. 당시 공개본·축제 입장객·축제 효과가 아님"
+        },
+        "snapshotId": "e5aacd2086bac731d9f94f968a8b360f6ba20d1d5f940fed5fc85d287ad89918",
+        "collectedAt": "2026-09-10T09:15:37.552Z",
+        "points": [
+          {
+            "date": "2024-09-21",
+            "value": 65579.5
+          },
+          {
+            "date": "2024-09-22",
+            "value": 88949
+          },
+          {
+            "date": "2024-09-23",
+            "value": 53448.5
+          },
+          {
+            "date": "2024-09-24",
+            "value": 57459.5
+          },
+          {
+            "date": "2024-09-25",
+            "value": 58842
+          },
+          {
+            "date": "2024-09-26",
+            "value": 63010.5
+          },
+          {
+            "date": "2024-09-27",
+            "value": 74655
+          },
+          {
+            "date": "2024-09-28",
+            "value": 130382
+          },
+          {
+            "date": "2024-09-29",
+            "value": 114289
+          },
+          {
+            "date": "2024-09-30",
+            "value": 70490
+          },
+          {
+            "date": "2024-10-01",
+            "value": 76380.5
+          },
+          {
+            "date": "2024-10-02",
+            "value": 63563.5
+          },
+          {
+            "date": "2024-10-03",
+            "value": 101864
+          },
+          {
+            "date": "2024-10-04",
+            "value": 79544.5
+          },
+          {
+            "date": "2024-10-05",
+            "value": 127473.5
+          }
+        ]
+      },
+      "costs": [
+        {
+          "id": "gongju-2024-budget",
+          "label": "공주 백제문화제 예산액",
+          "stage": "결산 공시 예산",
+          "amount": 4637800000,
+          "unit": "KRW",
+          "year": 2024,
+          "scopeId": "gongju-2024-baekje",
+          "scope": "공주시 백제문화제 사업 · 부여 합계 아님 · 예산/집행/총원가 별도 정의",
+          "department": "공주시 관광과",
+          "vat": "미확인",
+          "source": {
+            "title": "공주시 2024회계연도 행사·축제별 원가회계정보 · 백제문화제",
+            "url": "https://www.gongju.go.kr/thumbnail/fileInfo/FI_202509011058264660.pdf",
+            "checkedAt": "2026-09-10T09:13:00Z",
+            "publishedAt": null,
+            "sha256": "52350ce215257ad108c13535fa557adbe41f76d7ebb5c4a88a362de9ae9c0417",
+            "note": "PDF 6쪽(인쇄 283쪽). 단위 천원을 원으로 1,000배 변환. 공주시 관광과의 공주 지역 사업이며 부여 합계 아님. 집행액과 총원가는 원문에서 서로 다르며 차이의 구체적 원인·부가세 기준 미확인. 파일명 날짜를 게시일로 단정하지 않음."
+          },
+          "compositionKind": "funding",
+          "parts": null,
+          "complete": false
+        },
+        {
+          "id": "gongju-2024-executed",
+          "label": "공주 백제문화제 집행액",
+          "stage": "결산 공시 집행",
+          "amount": 4614321000,
+          "unit": "KRW",
+          "year": 2024,
+          "scopeId": "gongju-2024-baekje",
+          "scope": "공주시 백제문화제 사업 · 부여 합계 아님 · 예산/집행/총원가 별도 정의",
+          "department": "공주시 관광과",
+          "vat": "미확인",
+          "source": {
+            "title": "공주시 2024회계연도 행사·축제별 원가회계정보 · 백제문화제",
+            "url": "https://www.gongju.go.kr/thumbnail/fileInfo/FI_202509011058264660.pdf",
+            "checkedAt": "2026-09-10T09:13:00Z",
+            "publishedAt": null,
+            "sha256": "52350ce215257ad108c13535fa557adbe41f76d7ebb5c4a88a362de9ae9c0417",
+            "note": "PDF 6쪽(인쇄 283쪽). 단위 천원을 원으로 1,000배 변환. 공주시 관광과의 공주 지역 사업이며 부여 합계 아님. 집행액과 총원가는 원문에서 서로 다르며 차이의 구체적 원인·부가세 기준 미확인. 파일명 날짜를 게시일로 단정하지 않음."
+          },
+          "compositionKind": "funding",
+          "parts": null,
+          "complete": false
+        },
+        {
+          "id": "gongju-2024-total-cost",
+          "label": "공주 백제문화제 총원가",
+          "stage": "원가회계 총원가",
+          "amount": 4159338000,
+          "unit": "KRW",
+          "year": 2024,
+          "scopeId": "gongju-2024-baekje",
+          "scope": "공주시 백제문화제 사업 · 부여 합계 아님 · 예산/집행/총원가 별도 정의",
+          "department": "공주시 관광과",
+          "vat": "미확인",
+          "source": {
+            "title": "공주시 2024회계연도 행사·축제별 원가회계정보 · 백제문화제",
+            "url": "https://www.gongju.go.kr/thumbnail/fileInfo/FI_202509011058264660.pdf",
+            "checkedAt": "2026-09-10T09:13:00Z",
+            "publishedAt": null,
+            "sha256": "52350ce215257ad108c13535fa557adbe41f76d7ebb5c4a88a362de9ae9c0417",
+            "note": "PDF 6쪽(인쇄 283쪽). 단위 천원을 원으로 1,000배 변환. 공주시 관광과의 공주 지역 사업이며 부여 합계 아님. 집행액과 총원가는 원문에서 서로 다르며 차이의 구체적 원인·부가세 기준 미확인. 파일명 날짜를 게시일로 단정하지 않음."
+          },
+          "compositionKind": "expense",
+          "parts": [
+            {
+              "label": "인건비",
+              "amount": 0
+            },
+            {
+              "label": "인쇄비",
+              "amount": 0
+            },
+            {
+              "label": "소모품비",
+              "amount": 0
+            },
+            {
+              "label": "제세공과금",
+              "amount": 0
+            },
+            {
+              "label": "보험료",
+              "amount": 21700000
+            },
+            {
+              "label": "출장비",
+              "amount": 0
+            },
+            {
+              "label": "연구개발비",
+              "amount": 0
+            },
+            {
+              "label": "업무추진비",
+              "amount": 0
+            },
+            {
+              "label": "연료비",
+              "amount": 0
+            },
+            {
+              "label": "기타행사운영비",
+              "amount": 2612869000
+            },
+            {
+              "label": "홍보및광고비",
+              "amount": 314769000
+            },
+            {
+              "label": "행사관련시설비",
+              "amount": 200000000
+            },
+            {
+              "label": "임차료",
+              "amount": 1010000000
+            },
+            {
+              "label": "외빈초청여비",
+              "amount": 0
+            },
+            {
+              "label": "행사실비보상비",
+              "amount": 0
+            },
+            {
+              "label": "감가상각비",
+              "amount": 0
+            },
+            {
+              "label": "기타",
+              "amount": 0
+            }
+          ],
+          "complete": true
+        }
+      ],
       "missing": [
-        "연속 일별 방문 이력",
         "입장객 측정 방법",
-        "공통 기준의 비용 수치"
+        "부가세 포함 기준",
+        "집행액과 총원가 차이의 구체적 원인"
       ]
     },
     {

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "source": {
+    "title": "공주시 2024회계연도 행사·축제별 원가회계정보 · 백제문화제",
+    "url": "https://www.gongju.go.kr/thumbnail/fileInfo/FI_202509011058264660.pdf",
+    "checkedAt": "2026-09-10T09:13:00Z",
+    "publishedAt": null,
+    "sha256": "52350ce215257ad108c13535fa557adbe41f76d7ebb5c4a88a362de9ae9c0417",
+    "note": "PDF 6쪽(인쇄 283쪽). 단위 천원을 원으로 1,000배 변환. 공주시 관광과의 공주 지역 사업이며 부여 합계 아님. 집행액과 총원가는 원문에서 서로 다르며 차이의 구체적 원인·부가세 기준 미확인. 파일명 날짜를 게시일로 단정하지 않음."
+  },
+  "editionId": "baekje-gongju-2024",
+  "year": 2024,
+  "start": "2024-09-28",
+  "end": "2024-10-06",
+  "originalUnit": "천원",
+  "multiplier": 1000,
+  "budget": 4637800,
+  "executed": 4614321,
+  "totalCost": 4159338,
+  "expenseParts": [
+    {"label": "인건비", "amount": 0},
+    {"label": "인쇄비", "amount": 0},
+    {"label": "소모품비", "amount": 0},
+    {"label": "제세공과금", "amount": 0},
+    {"label": "보험료", "amount": 21700},
+    {"label": "출장비", "amount": 0},
+    {"label": "연구개발비", "amount": 0},
+    {"label": "업무추진비", "amount": 0},
+    {"label": "연료비", "amount": 0},
+    {"label": "기타행사운영비", "amount": 2612869},
+    {"label": "홍보및광고비", "amount": 314769},
+    {"label": "행사관련시설비", "amount": 200000},
+    {"label": "임차료", "amount": 1010000},
+    {"label": "외빈초청여비", "amount": 0},
+    {"label": "행사실비보상비", "amount": 0},
+    {"label": "감가상각비", "amount": 0},
+    {"label": "기타", "amount": 0}
+  ]
+}

@@ -3,11 +3,11 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-10
 id: TS-FC-002
-version: v5
+version: v6
 status: active
 summary: "M2 첫 기능의 단위·headless 검증을 추가했습니다. 아래 전체 인수 시나리오와 정형 Run 연결은 아직 완료하지 않았습니다."
 usecase: UC-FC-002
-covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7","AC8","AC9","AC10","AC11"]
+covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7","AC8","AC9","AC10","AC11","AC12"]
 apis: []
 specs: []
 ---
@@ -20,7 +20,7 @@ AC10 추가: `apps/web/scripts/overlap-e2e.mjs`로 기획 기간 전 시작·경
 
 | 항목 | 내용 |
 |---|---|
-| 근거 | [UC-FC-002@v5](../../1-analysis/usecases/UC-FC-002.md) |
+| 근거 | [UC-FC-002@v6](../../1-analysis/usecases/UC-FC-002.md) |
 | 대상 환경 | 구현 후 격리된 로컬 브라우저 + 고정 자료 응답 |
 | 실행 상태 | 아래 전체 인수는 미완료. M2 첫 기능의 실제 실행 범위는 문서 하단 참조 |
 
@@ -87,3 +87,7 @@ AC10 추가: `apps/web/scripts/overlap-e2e.mjs`로 기획 기간 전 시작·경
 | AC9 | 확보 현황·미확보 유지, 날짜 선택창·선택 기간 저장, 비용 항목 보관 | 부분 이력의 모든 그래프 실패 입력·정형 Spec/Run 연결 |
 
 이 부분 실행을 위 v2/v3 가상 입력 전체 통과나 실제 담당자 사용성 검증으로 표시하지 않는다.
+
+## AC12 · 지역 방문·원가 자료 확대
+
+공주 2024-09-28 130,382명, 임실 2024-10-03 50,526명을 지도에서 확인하고 지역 전환 후 값 격리를 검증한다. 임실 3회차 D0 실제 값을 비교·보관한다. 공주 예산 4,637,800,000원·집행 4,614,321,000원·총원가 4,159,338,000원을 구분하고 원가 항목 합계·도넛·원문 단위·세금 미확인을 확인한다. 근거 파일과 기획에서도 항목 구성이 재원으로 바뀌지 않아야 한다. [32번 검증](../../../validation/32-regional-history-costs.md).

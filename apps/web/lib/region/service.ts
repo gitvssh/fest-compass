@@ -3,6 +3,7 @@ import { isKtoSuccessCode, parseKtoWire } from "../kto/wire";
 import { loadRuntimeSummary } from "../forecast/runtime";
 import { loadSnapshots } from "../forecast/store";
 import bundled from "../../data/region-history.json";
+import expanded from "../../data/regional-history-expanded.json";
 import { mapResource, regionOf, selectHistory, SOURCE, type Dataset } from "./model";
 import type { Query, RegionResult, ResourceResult } from "./types";
 
@@ -66,7 +67,7 @@ let runtimeHistory: { expires: number; value: Promise<{ datasets: Dataset[]; war
 async function historyDatasets() {
   if (runtimeHistory && runtimeHistory.expires > Date.now()) return runtimeHistory.value;
   const value = (async () => {
-    const datasets: Dataset[] = [...bundled];
+    const datasets: Dataset[] = [...bundled, ...expanded.datasets];
     try {
       const { summary, source } = await loadRuntimeSummary();
       const snapshot = summary.automation?.snapshot;
@@ -82,5 +83,6 @@ async function historyDatasets() {
 }
 export async function getRegionData(q: Query): Promise<RegionResult> {
   const [resources, history] = await Promise.all([getResources(q), historyDatasets()]);
-  return { query: q, region: regionOf(q), resources, history: selectHistory(q, history.datasets, history.warning) };
+  const warning = q.province === "44" && q.district === "230" ? history.warning : "지역별 보관본에서 조회합니다. 실제 확보 기간·날짜별 수집 시각을 확인하세요.";
+  return { query: q, region: regionOf(q), resources, history: selectHistory(q, history.datasets, warning) };
 }

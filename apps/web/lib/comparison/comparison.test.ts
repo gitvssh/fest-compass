@@ -55,7 +55,7 @@ test("overlap discovery preserves its original rule and period after selecting t
   const legacy=await makeComparison(nonsan,q,{kind:"overview"},"");assert.deepEqual(parseComparisons(encodeComparisons([legacy])),[legacy]);
 });
 
-test("all 45 product observations match the reviewed source bytes and rows",()=>{
+test("all 45 Nonsan product observations match the reviewed source bytes and rows",()=>{
   const raw=readFileSync(new URL("../../../../docs/validation/evidence/2026-09-07-nonsan-history.json",import.meta.url));
   assert.equal(createHash("sha256").update(raw).digest("hex"),nonsan[0].visits!.source.sha256);
   const source=JSON.parse(raw.toString());
@@ -96,6 +96,25 @@ test("cost scope, stage, VAT and year gate comparisons; pie requires an exact no
   assert.equal(composition({...b,amount:0}),null);
   assert.equal(composition({...b,complete:false}),null);
   assert.equal(composition({...b,amount:b.amount+1}),null);
+});
+test("expanded festival dates match regional source snapshots and Gongju cost stages never share a denominator", async () => {
+  const raw = readFileSync(new URL("../../data/regional-history-expanded.json", import.meta.url)), data = JSON.parse(raw.toString());
+  const added = editions.filter(e => e.festivalId === "imsil-cheese" || e.id === "baekje-gongju-2024");
+  assert.equal(added.length, 4);
+  for (const e of added) {
+    const d = data.datasets.find((d: { region: { code: string } }) => d.region.code === e.visits!.regionCode);
+    assert.equal(e.visits!.source.sha256, createHash("sha256").update(raw).digest("hex"));
+    assert.equal(e.visits!.snapshotId, d.snapshotId); assert.equal(e.visits!.points.length, 15);
+    for (const point of e.visits!.points) assert.equal(point.value, d.points.find((p: { date: string }) => p.date === point.date).value);
+  }
+  const e = added.find(e => e.id === "baekje-gongju-2024")!;
+  assert.deepEqual(e.costs.map(c => c.amount), [4637800000, 4614321000, 4159338000]);
+  assert.equal(composition(e.costs[0]), null); assert.equal(composition(e.costs[1]), null);
+  assert.equal(composition(e.costs[2])!.reduce((sum, p) => sum + p.amount, 0), 4159338000);
+  assert.equal(e.costs[2].compositionKind, "expense"); assert.match(costReason(e.costs[1], e.costs[2])!, /비교/);
+  const saved = await makeComparison([e], q, { kind: "cost", editionId: e.id, costId: e.costs[2].id }, "원가 구성 검토");
+  assert.equal(parseComparisons(encodeComparisons([saved]))[0].editions[0].costs[2].compositionKind, "expense");
+  const bad = clone(saved); Object.assign(bad.editions[0].costs[2], { compositionKind: "mixed" }); assert.throws(() => encodeComparisons([bad]));
 });
 test("current provider rows have independent identity and cannot overwrite an archived edition",()=>{
   const r={query:{province:"44",district:"230",kind:"15",start:"2026-01-01",end:"2026-12-31"},region:{provinceName:"충청남도",districtName:"논산시"},resources:{status:"complete",source:"https://www.data.go.kr/data/15101578/openapi.do",collectedAt:"2026-09-08T00:00:00Z",total:1,pages:1,items:[{id:"525292",title:"논산딸기축제",start:"2026-03-26",end:"2026-03-29",modifiedAt:null,address:"논산"}]}} as RegionResult;

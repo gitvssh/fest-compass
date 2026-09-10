@@ -1,6 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import bundled from "../../data/region-history.json";
+import expanded from "../../data/regional-history-expanded.json";
+import { fetchRegionalPage, regionalDatasets } from "./history-collection";
+import { hash, monthWindows } from "../kto/history";
 import { collectResources } from "./service";
 import { dates, lineSegments, mapResource, parseQuery, regionOf, REGIONS, selectHistory, SOURCE } from "./model";
 import { encodeEvidence, makeEvidence, parseEvidence } from "./evidence";
@@ -11,6 +14,36 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 const q: Query = { province: "44", district: "230", start: "2025-03-01", end: "2025-03-31", kind: "12" };
 const row = (id = "123") => ({ contentid: id, title: "자료", lDongRegnCd: "44", lDongSignguCd: "230", mapx: "127.1", mapy: "36.2" });
+
+test("expanded source snapshots preserve all 2192 regional dates and reviewed identities without mixing populations", () => {
+  assert.equal(expanded.calls, 108); assert.equal(expanded.pages.length, 108);
+  for (const d of expanded.datasets) {
+    const { snapshotId, ...content } = d; assert.equal(hash(JSON.stringify(content)), snapshotId);
+    assert.equal(d.points.length, 1096); assert.equal(new Set(d.points.map(p => p.date)).size, 1096);
+    assert.ok(d.points.every(p => p.quality === "complete" && p.value !== null && p.value >= 0));
+  }
+  const query = { ...q, district: "150", start: "2024-09-28", end: "2024-09-28" };
+  assert.equal(selectHistory(query, [...bundled, ...expanded.datasets]).points[0].value, 130382);
+  assert.equal(selectHistory({ ...query, province: "52", district: "750", start: "2024-10-03", end: "2024-10-03" }, expanded.datasets).points[0].value, 50526);
+  assert.equal(selectHistory({ ...query, district: "760" }, expanded.datasets).status, "unavailable");
+  assert.equal(selectHistory({ ...query, start: "2026-01-01", end: "2026-01-01" }, expanded.datasets).points[0].value, null);
+  const bad = structuredClone(expanded.datasets); bad[0].region.name = "논산시"; assert.equal(selectHistory(query, bad).status, "unavailable");
+});
+const regionalRows = (code: string, name: string, value: string) => ["현지인(a)", "외지인(b)", "외국인(c)"].map((touDivNm, i) => ({ baseYmd: "20231006", signguCode: code, signguNm: name, touDivCd: String(i + 1), touDivNm, touNum: value }));
+async function regionalPage(rows: Record<string, unknown>[]) {
+  return fetchRegionalPage({ start: "2023-10-06", end: "2023-10-06", pageNo: 1, pageSize: 10000 }, "private-test-key", async () => new Response(JSON.stringify({ response: { header: { resultCode: "0000" }, body: { pageNo: 1, numOfRows: rows.length, totalCount: rows.length, items: { item: rows } } } })));
+}
+test("regional collection retains historical aliases, rejects alias double-counting and never treats missing as zero", async () => {
+  const windows = monthWindows("2023-10-06", "2023-10-06");
+  const page = await regionalPage([...regionalRows("44150", "공주시", "0"), ...regionalRows("45750", "임실군", "12.5")]);
+  assert.ok(!JSON.stringify(page).includes("private-test-key"));
+  const data = regionalDatasets([page], windows); assert.equal(data[0].points[0].value, 0); assert.equal(data[1].points[0].value, 12.5); assert.deepEqual(data[1].sourceRegionCodes, ["45750"]); assert.equal(data[1].region.code, "52750");
+  const double = await regionalPage([...regionalRows("45750", "임실군", "12.5"), ...regionalRows("52750", "임실군", "12.5")]);
+  const invalid = regionalDatasets([double], windows); assert.equal(invalid[1].points[0].quality, "invalid"); assert.equal(invalid[1].points[0].value, null); assert.equal(invalid[0].points[0].quality, "missing");
+  const wrong = await regionalPage(regionalRows("44150", "임실군", "3")); assert.ok(regionalDatasets([wrong], windows).every(d => d.points[0].quality === "invalid"));
+  assert.throws(() => regionalDatasets([{ ...page, totalCount: 20000 }], windows), /incomplete/);
+  assert.throws(() => regionalDatasets([page, page], windows), /incomplete/);
+});
 test("all published geometry assets match the verified source build and selectable catalogue", () => {
   const report = JSON.parse(readFileSync(new URL("../../../../docs/validation/evidence/2026-09-09-boundary-build.json", import.meta.url), "utf8"));
   assert.equal(report.version, BOUNDARIES.version);

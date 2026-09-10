@@ -62,14 +62,14 @@ try {
   await visible(page.getByRole("button", { name: "제주특별자치도 선택", exact: true }));
   await page.getByRole("button", { name: "우리 지역 바로가기", exact: true }).click();
   await visible(page.getByRole("heading", { name: "논산시 방문 추세", exact: true }));
-  await page.getByRole("button", { name: "공주시", exact: true }).click();
-  await visible(page.getByRole("heading", { name: "공주시 방문 추세", exact: true }));
+  await page.getByRole("button", { name: "부여군", exact: true }).click();
+  await visible(page.getByRole("heading", { name: "부여군 방문 추세", exact: true }));
   await visible(page.getByText("선택 지역·기간의 방문 이력이 미확보 상태입니다.", { exact: true }));
   assert.equal(await page.getByText("52,671.5명 (통신 기반 추정)", { exact: true }).count(), 0);
   delayNonsan = true;
   await page.getByRole("button", { name: "논산시", exact: true }).click();
-  await page.getByRole("button", { name: "공주시", exact: true }).click();
-  await visible(page.getByRole("heading", { name: "공주시 방문 추세", exact: true }));
+  await page.getByRole("button", { name: "부여군", exact: true }).click();
+  await visible(page.getByRole("heading", { name: "부여군 방문 추세", exact: true }));
   await page.waitForTimeout(600);
   assert.equal(await page.getByRole("heading", { name: "논산시 방문 추세", exact: true }).count(), 0);
   await page.goto(`${base}/evidence`);
