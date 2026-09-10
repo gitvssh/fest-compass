@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 24
+revision: 25
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-09T10:09:12.099Z"
+updated_at: "2026-09-10T07:19:27.726Z"
 ---
 
 # Current state
 
 ## Summary
 
-M1~M6 첫 흐름과 2025년 참고 경계 지도를 공개 사용 가능하다. 공식 코드·도형 검증으로 시도 15개·시군구 조회 단위 234개를 연결하고 개편 35개는 목록 조회를 유지한다. 실제 논산 61자원/31일과 당시 경계·출처 근거 보관을 확인했다. 앱 190·Python 9·전체 headless 136 및 공개 경계 11개 통과, 경계 16파일·Traceboard 102파일 게시 일치. 모델·겨울 시험·개인 저장 경계는 유지했다. 다음은 사용자가 화면을 검수하면서 드러나는 탐색 불편을 보완하고 주변 축제 비교의 거리·일정 겹침 및 지역별 과거 자료 범위를 구체화하는 것이다. 실제 담당자 인수는 아직 미실시다.
+M1~M6 첫 흐름·참고 경계 지도에 이어 현재 등록 행사의 기간 겹침 검색과 일정 그림을 공개 사용 가능하다. 실제 제공처 응답 6개로 기존 시작일 가정을 정정했고 공주 국가유산야행 9월 4~6일을 5~6일 기획으로 조회·보관·기획 연결했다. 단위·마이그레이션 193, 전체 headless 146, 공개 회귀 10 및 실제 자료 7개 흐름 통과. Traceboard 106파일 게시 일치, 모델·겨울 시험·개인 저장 경계 유지. 다음은 검수 피드백을 반영하고 주변 축제 거리 비교·지역별 과거 방문/공개 비용 자료 범위를 구체화하는 것이다. 실제 담당자 인수는 미실시다.
 
 ## Accepted decisions
 
@@ -41,21 +41,20 @@ M1~M6 첫 흐름과 2025년 참고 경계 지도를 공개 사용 가능하다. 
 - 2026-09-09 사용자가 docs/ops/planning-outcomes-release.md의 미사용 이미지 네 개 삭제를 명시 승인하고 기본 승인 정책 확인을 요청했다. 정확한 대상만 정리했으며 기존 자동 예약 정리와 수동 삭제 승인 경계를 구분한다.
 - 2026-09-09 다음 작업 진행 요청에 따라 기존 지도 품질 피드백을 우선 보완했다. 도로 배경·이동·자료 선택·영역 보관을 구현·검증·일반 게시하며 모델·개인 저장 경계와 headless 원칙을 유지한다(기존 기능 우선 위임 범위).
 - 2026-09-09 다음 작업 진행 요청에 따라 공식 연계표·도형 검증과 기준일 있는 경계 지도를 구현·공개했다. 참고 경계는 지역 선택과 당시 근거 보관에 사용하고 현재 법정 영역 인증·자원 포함 판정·통계 배분에는 사용하지 않는다(기존 지도 개선·일반 게시 위임 범위).
+- 2026-09-10 다음 작업 진행 요청에 따라 기획 기간과 겹치는 현재 등록 행사 조회·일정 그림·선택 당시 조건 보관을 구현·공개했다. 실제 제공처 응답을 근거로 시작일 범위라는 기존 가정을 정정했으며 거리 검색·전국 자료 완비·실제 개최 증명으로 확대하지 않는다(기존 화면·M2 보완·일반 게시 위임 범위).
 
 ## Open questions
 
 - 개편 35개 조회 단위의 최신 공식 경계 확보·버전 교체는 후속이며 2025년 경계를 현재 법정 영역으로 인증하지 않는다.
-- 주변 축제 거리·일정 겹침 비교와 전국 과거 방문/실제 비용 자료 확대, 실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
+- 주변 축제 거리 비교와 전국 과거 방문/실제 비용 자료 확대, 실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
 
 ## Artifacts and durable documents
 
-- docs/sdlc/2-design/region-boundary-layer.md
-- docs/validation/28-boundary-layer.md
-- docs/validation/evidence/2026-09-09-boundary-build.json
-- docs/validation/evidence/2026-09-09-boundary-layer-publication.json
-- tools/build_region_boundaries.py
-- tools/test_build_region_boundaries.py
-- apps/web/scripts/boundary-e2e.mjs
+- docs/sdlc/2-design/current-festival-overlap.md
+- docs/validation/29-current-festival-overlap.md
+- docs/validation/evidence/2026-09-10-festival-date-probe.json
+- docs/validation/evidence/2026-09-10-overlap-publication.json
+- apps/web/scripts/overlap-e2e.mjs
 - docs/design/07-region-planning-milestones.md
 - docs/review/2026-09-planning-review.md
 - traceboard.yaml

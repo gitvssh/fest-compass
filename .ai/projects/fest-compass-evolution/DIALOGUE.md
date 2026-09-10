@@ -567,3 +567,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-025 · Codex · implementer
+
+- Position: 기획 기간 전에 시작한 현재 등록 행사도 조회하고 겹치는 일정을 그림으로 비교하도록 공개했다. 실제 공주 자료의 조회·근거 보관·기획 연결과 내부 검수 문서 게시를 완료했다.
+- Evidence:
+  - docs/sdlc/2-design/current-festival-overlap.md
+  - docs/validation/29-current-festival-overlap.md
+  - docs/validation/evidence/2026-09-10-festival-date-probe.json
+  - docs/validation/evidence/2026-09-10-overlap-publication.json
+- Changes:
+  - 공유 지역 API의 잘못된 시작일 거부 수정; 현재 비교 기본 기간 겹침과 기간 안 시작 선택
+  - 공통 날짜 축의 겹친 구간·일수 그림, 선택 당시 검색 조건을 근거·기획 상세에 유지
+  - 배포 의존성 검사에서 발견한 deepmerge-ts 취약점 수정, 실제 화면과 요구·인수 문서 게시
+- Validation:
+  - 단위·마이그레이션 193, 전체 headless 146 및 기존 편집/공개 흐름, 타입·빌드·취약점 0·배포 선언 40 통과
+  - CI 34447362560 내부 ARC 성공; 공개 회귀 10개·실제 공주 7개 흐름 통과, 오류·앱 서버 쓰기 0
+  - 예측 요약·기록 2개·겨울 시험·자동 수집 상태 보존
+  - Traceboard 산출물 40·추적 오류 0, HTTPS 106/106 파일 일치; 접근성·headless 링크/이미지/390px 검증 완료. 미선언 원천 4종은 미평가
+- Questions:
+  - No open question
+- Handoff: Codex

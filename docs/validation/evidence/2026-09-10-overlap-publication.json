@@ -1,0 +1,391 @@
+{
+  "checkedAt": "2026-09-10T07:19:27.702137+00:00",
+  "implementationCommit": "f0671e2ed12779cac852281fe2b5fbbe64cef4f3",
+  "reviewSourceCommit": "05b8a8a37d2f205f2769c85838337b877dd98ee4",
+  "scope": "Current registered festivals overlapping a planning period, shared region retrieval, timeline chart and original discovery-context preservation",
+  "providerProbe": "docs/validation/evidence/2026-09-10-festival-date-probe.json",
+  "localValidation": {
+    "appUnitAndMigrationPassed": 193,
+    "namedHeadlessPassed": 146,
+    "editorAndPublicWorkspaceJourneys": "passed",
+    "typecheck": "passed",
+    "build": "passed",
+    "productionAuditVulnerabilities": 0,
+    "infraTestsPassed": 40,
+    "releaseResources": 17
+  },
+  "ci": {
+    "conclusion": "success",
+    "headSha": "f0671e2ed12779cac852281fe2b5fbbe64cef4f3",
+    "jobs": [
+      {
+        "completedAt": "2026-09-10T07:01:07Z",
+        "conclusion": "success",
+        "databaseId": 102774998736,
+        "name": "image",
+        "startedAt": "2026-09-10T06:56:51Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-09-10T06:56:55Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-09-10T06:56:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T06:56:57Z",
+            "conclusion": "success",
+            "name": "Check out trusted main",
+            "number": 2,
+            "startedAt": "2026-09-10T06:56:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T06:57:05Z",
+            "conclusion": "success",
+            "name": "Set up Node without Actions cache",
+            "number": 3,
+            "startedAt": "2026-09-10T06:56:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T06:57:08Z",
+            "conclusion": "success",
+            "name": "Set up kubectl for offline Kustomize rendering",
+            "number": 4,
+            "startedAt": "2026-09-10T06:57:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T06:59:10Z",
+            "conclusion": "success",
+            "name": "Validate the exact commit before publication",
+            "number": 5,
+            "startedAt": "2026-09-10T06:57:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T06:59:10Z",
+            "conclusion": "success",
+            "name": "Configure scoped Harbor credentials",
+            "number": 6,
+            "startedAt": "2026-09-10T06:59:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T06:59:10Z",
+            "conclusion": "success",
+            "name": "Resolve existing immutable commit tag",
+            "number": 7,
+            "startedAt": "2026-09-10T06:59:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:56Z",
+            "conclusion": "success",
+            "name": "Build and push immutable image once",
+            "number": 8,
+            "startedAt": "2026-09-10T06:59:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:57Z",
+            "conclusion": "success",
+            "name": "Remotely verify selected immutable image",
+            "number": 9,
+            "startedAt": "2026-09-10T07:00:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:59Z",
+            "conclusion": "success",
+            "name": "Promote and verify Harbor retention markers",
+            "number": 10,
+            "startedAt": "2026-09-10T07:00:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:59Z",
+            "conclusion": "success",
+            "name": "Report verified immutable digest",
+            "number": 11,
+            "startedAt": "2026-09-10T07:00:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:59Z",
+            "conclusion": "success",
+            "name": "Remove credential files",
+            "number": 12,
+            "startedAt": "2026-09-10T07:00:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:59Z",
+            "conclusion": "success",
+            "name": "Post Set up Node without Actions cache",
+            "number": 23,
+            "startedAt": "2026-09-10T07:00:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:59Z",
+            "conclusion": "success",
+            "name": "Post Check out trusted main",
+            "number": 24,
+            "startedAt": "2026-09-10T07:00:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-09-10T07:00:59Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 25,
+            "startedAt": "2026-09-10T07:00:59Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/gitvssh/fest-compass/actions/runs/34447362560/job/102774998736"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/34447362560"
+  },
+  "app": {
+    "deployment": {
+      "generation": 20,
+      "images": [
+        "registry.damecasol.com/fest-compass/web@sha256:7e0791ff1d90dc114e2429ee47906c3e8845b30de626a3e69d56468d444088f7",
+        "registry.damecasol.com/fest-compass/web@sha256:7e0791ff1d90dc114e2429ee47906c3e8845b30de626a3e69d56468d444088f7"
+      ],
+      "availableReplicas": 1
+    },
+    "argo": {
+      "health": "Healthy",
+      "sync": "Synced",
+      "operation": "Succeeded",
+      "revision": "0e281c388ff713b9cbe4c36adf49382b547caee7"
+    },
+    "headlessFixtures": {
+      "checkedAt": "2026-09-10T07:06:01.017Z",
+      "headless": true,
+      "data": "synthetic current festival responses",
+      "passed": [
+        "legacy-starts-within",
+        "continuing-boundary-day-and-ended-filter",
+        "provider-total-and-overlap-chart",
+        "selected-original-context-after-new-search",
+        "saved-scope-chart-and-limit",
+        "planning-retains-original-overlap-chart",
+        "over-limit-no-request",
+        "failed-region-not-zero-claim",
+        "late-current-response-after-mode-switch",
+        "390px-range-chart"
+      ],
+      "errors": [],
+      "writes": []
+    },
+    "actualPublicGongju": {
+      "checkedAt": "2026-09-10T07:05:18.071Z",
+      "headless": true,
+      "data": "actual public API responses; no API mocks; synthetic map background tiles",
+      "passed": [
+        "actual-provider-continuing-event-and-two-day-chart",
+        "actual-390px-chart",
+        "starts-within-excludes-continuing-event",
+        "actual-original-query-and-full-schedule-preserved",
+        "saved-evidence-original-chart",
+        "planning-original-chart",
+        "actual-region-list-continuing-event"
+      ],
+      "errors": [],
+      "writes": [],
+      "response": {
+        "query": {
+          "province": "44",
+          "district": "150",
+          "start": "2026-09-05",
+          "end": "2026-09-06",
+          "kind": "15"
+        },
+        "region": {
+          "provinceCode": "44",
+          "provinceName": "충청남도",
+          "districtCode": "150",
+          "districtName": "공주시"
+        },
+        "resources": {
+          "status": "complete",
+          "message": "전체 페이지 확인 완료",
+          "items": [
+            {
+              "id": "2614763",
+              "title": "공주 국가유산야행",
+              "address": "충청남도 공주시 우체국길 8",
+              "longitude": 127.1220001033,
+              "latitude": 36.4543392909,
+              "start": "2026-09-04",
+              "end": "2026-09-06",
+              "modifiedAt": "20260901155032"
+            }
+          ],
+          "total": 1,
+          "pages": 1,
+          "source": "https://www.data.go.kr/data/15101578/openapi.do",
+          "collectedAt": "2026-09-10T07:03:04.090Z"
+        },
+        "history": {
+          "status": "unavailable",
+          "source": "https://www.data.go.kr/data/15101972/openapi.do",
+          "unit": "명 (통신 기반 추정)",
+          "metric": "시군구 일별 외지인 방문",
+          "message": "선택 지역의 연속 방문 이력 미확보. 행사장 입장객·혼잡도가 아니며 날짜별 합계를 고유 방문객으로 해석할 수 없습니다. 매일 수집한 보관본을 함께 조회합니다. 실시간 자료가 아닙니다.",
+          "points": [
+            {
+              "date": "2026-09-05",
+              "value": null,
+              "quality": "missing",
+              "snapshotId": null,
+              "collectedAt": null
+            },
+            {
+              "date": "2026-09-06",
+              "value": null,
+              "quality": "missing",
+              "snapshotId": null,
+              "collectedAt": null
+            }
+          ]
+        }
+      },
+      "stored": {
+        "version": 1,
+        "id": "bcbc0b225433f496fe361acdab47b3f5939b6283e84200c86782a583d14e8a75",
+        "savedAt": "2026-09-10T07:05:16.962Z",
+        "title": "2026 공주 국가유산야행",
+        "editions": [
+          {
+            "id": "current-2614763-2026-09-04-2026-09-06",
+            "festivalId": "kto-2614763",
+            "name": "공주 국가유산야행",
+            "year": 2026,
+            "region": {
+              "province": "44",
+              "district": "150",
+              "name": "충청남도 공주시"
+            },
+            "origin": "current",
+            "start": "2026-09-04",
+            "end": "2026-09-06",
+            "status": "현재 등록 정보",
+            "statusNote": "실제 개최·취소·변경은 미확인. 현재 조회값이며 과거 회차 보관본이 아닙니다.",
+            "themes": [],
+            "address": "충청남도 공주시 우체국길 8",
+            "source": {
+              "title": "한국관광공사 현재 등록 축제·행사",
+              "url": "https://www.data.go.kr/data/15101578/openapi.do",
+              "checkedAt": "2026-09-10T07:03:04.090Z",
+              "publishedAt": null,
+              "sha256": null,
+              "note": "contentId 2614763 · 수정 표기 20260901155032 · 전체 1건/1페이지 조회. 조회 조건 2026-09-05~2026-09-06와 겹치는 등록 행사"
+            },
+            "visits": null,
+            "costs": [],
+            "missing": [
+              "회차별 보관 원문",
+              "실제 개최·취소 확인",
+              "회차와 연결한 방문 이력",
+              "전체 예산·결산"
+            ],
+            "discoveredWith": {
+              "mode": "current",
+              "regions": [
+                "44/150"
+              ],
+              "start": "2026-09-05",
+              "end": "2026-09-06",
+              "keyword": "",
+              "theme": "",
+              "dateRule": "overlap",
+              "queriedAt": null
+            }
+          }
+        ],
+        "context": {
+          "mode": "current",
+          "regions": [
+            "44/150"
+          ],
+          "start": "2026-09-05",
+          "end": "2026-09-06",
+          "keyword": "",
+          "theme": "",
+          "dateRule": "starts-within",
+          "queriedAt": "2026-09-10T07:05:16.763Z"
+        },
+        "selection": {
+          "kind": "overview"
+        },
+        "note": ""
+      }
+    }
+  },
+  "forecastPreservation": {
+    "comparisonKeys": [
+      "monitorDataHash",
+      "recordsCount",
+      "recordsHash",
+      "calendarTrialHash",
+      "automation"
+    ],
+    "allMatch": true,
+    "beforeCheckedAt": "2026-09-10T06:46:15.986Z",
+    "afterCheckedAt": "2026-09-10T07:03:04.292Z",
+    "recordsCount": 2,
+    "monitorDataHash": "8b80f92f76f63b44f2187d292945f24bd428eefe9e5686def5236dcce0c8eb80",
+    "recordsHash": "267a469cf11d3a54806c70b5442663edb77b3a1b249f64d3d0573ccdb9f9e1c6",
+    "calendarTrialHash": "5d1824549bf339dc14ac07cca7458383ed48cb4dbcd70ca61a113c7dea797c5b",
+    "dailyStatus": "partial"
+  },
+  "traceboard": {
+    "checkedAt": "2026-09-10T07:19:01.586049+00:00",
+    "generation": 52,
+    "images": [
+      "registry.damecasol.com/traceboard/site@sha256:7b5815e123cc6a3222c50610d31ec60bc0ca1cf2dcc9f793accadcdd6fff7085"
+    ],
+    "availableReplicas": 1,
+    "health": "Healthy",
+    "sync": "Synced",
+    "operation": "Succeeded",
+    "revision": "598c7bce1883fb8262cf3f960a134d4755c909c4",
+    "declaredArtifacts": 40,
+    "missingArtifacts": 0,
+    "undeclaredSourceCategories": 4,
+    "publicationSampleCombinations": 1672,
+    "changedDocumentCombinations": 28,
+    "a11yViolations": 0,
+    "a11yUnevaluated": 0,
+    "httpsFiles": 106,
+    "httpsSha256Matches": 106,
+    "headlessBrowser": {
+      "checkedAt": "2026-09-10T07:19:17.844Z",
+      "headless": true,
+      "reviewToDesignAndValidation": true,
+      "overlapDetailsVisible": true,
+      "mobileWidth": 390,
+      "horizontalOverflow": false,
+      "imagesDecoded": 2,
+      "browserErrors": [],
+      "consoleErrors": []
+    }
+  },
+  "localEvidence": "/home/lsh/.cache/fest-compass/verification/2026-09-10-overlap",
+  "limitations": [
+    "Registered schedules do not prove actual holding, cancellation or provider completeness",
+    "Overlap semantics observed in six provider responses; parameter descriptions alone do not guarantee all cases",
+    "Synthetic map tiles in headless region verification; actual tile-provider availability not claimed",
+    "Distance ordering, nationwide historical data and municipal staff acceptance remain follow-up"
+  ]
+}
