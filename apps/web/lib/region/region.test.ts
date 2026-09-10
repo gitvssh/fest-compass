@@ -96,6 +96,15 @@ test("all pages complete, missing coordinates kept in the list", async () => {
   const result = await collectResources(q, async page => ({ total: 101, rows: page === 1 ? Array.from({ length: 100 }, (_, i) => row(String(i))) : [{ ...row("100"), mapx: "" }] }));
   assert.equal(result.status, "complete"); assert.equal(result.pages, 2); assert.equal(result.items.length, 101); assert.equal(result.items[100].longitude, null);
 });
+test("festival API accepts continuing events including either boundary and rejects disjoint or reversed schedules", async () => {
+  const query:Query={...q,kind:"15",start:"2026-09-05",end:"2026-09-06"};
+  const sample={...row(),eventstartdate:"20260904",eventenddate:"20260906"};
+  assert.equal(mapResource(sample,query).start,"2026-09-04");
+  assert.equal(mapResource({...sample,eventenddate:"20260905"},query).end,"2026-09-05");
+  assert.equal(mapResource({...sample,eventstartdate:"20260906",eventenddate:"20261001"},query).start,"2026-09-06");
+  for(const [start,end] of [["20260904","20260904"],["20260907","20260908"],["20260906","20260905"],["20260230","20260906"]])assert.throws(()=>mapResource({...sample,eventstartdate:start,eventenddate:end},query));
+  const result=await collectResources(query,async()=>({total:1,rows:[sample]}));assert.equal(result.status,"complete");assert.equal(result.items.length,1);
+});
 test("partial, duplicate, drifted, wrong-region and capped results never masquerade as totals", async () => {
   for (const load of [
     async () => ({ total: 101, rows: [row()] }),

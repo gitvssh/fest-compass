@@ -1,0 +1,130 @@
+{
+  "checkedAt": "2026-09-10T06:39:43.443Z",
+  "endpoint": "https://apis.data.go.kr/B551011/KorService2/searchFestival2",
+  "probes": [
+    {
+      "district": "150",
+      "start": "20260903",
+      "end": "20260903",
+      "http": 200,
+      "code": "0000",
+      "total": 0,
+      "items": []
+    },
+    {
+      "district": "150",
+      "start": "20260904",
+      "end": "20260904",
+      "http": 200,
+      "code": "0000",
+      "total": 1,
+      "items": [
+        {
+          "id": "2614763",
+          "title": "공주 국가유산야행",
+          "start": "20260904",
+          "end": "20260906",
+          "province": "44",
+          "district": "150"
+        }
+      ]
+    },
+    {
+      "district": "150",
+      "start": "20260905",
+      "end": "20260905",
+      "http": 200,
+      "code": "0000",
+      "total": 1,
+      "items": [
+        {
+          "id": "2614763",
+          "title": "공주 국가유산야행",
+          "start": "20260904",
+          "end": "20260906",
+          "province": "44",
+          "district": "150"
+        }
+      ]
+    },
+    {
+      "district": "150",
+      "start": "20260906",
+      "end": "20260906",
+      "http": 200,
+      "code": "0000",
+      "total": 1,
+      "items": [
+        {
+          "id": "2614763",
+          "title": "공주 국가유산야행",
+          "start": "20260904",
+          "end": "20260906",
+          "province": "44",
+          "district": "150"
+        }
+      ]
+    },
+    {
+      "district": "150",
+      "start": "20260907",
+      "end": "20260907",
+      "http": 200,
+      "code": "0000",
+      "total": 0,
+      "items": []
+    },
+    {
+      "district": "230",
+      "start": "20260327",
+      "end": "20260328",
+      "http": 200,
+      "code": "0000",
+      "total": 1,
+      "items": [
+        {
+          "id": "525292",
+          "title": "논산딸기축제",
+          "start": "20260326",
+          "end": "20260329",
+          "province": "44",
+          "district": "230"
+        }
+      ]
+    }
+  ],
+  "officialSpecification": {
+    "url": "https://www.data.go.kr/data/15101578/openapi.do",
+    "htmlSha256": "7dfadee435cad6f1829f0a053b0e0d5ad620cda5d65b1b45f09087613f17c77e",
+    "downloadedAt": "2026-09-10T06:39:43.443Z",
+    "dateParameters": [
+      {
+        "name": "eventStartDate",
+        "description": "행사시작일(형식 :YYYYMMDD)",
+        "type": "string",
+        "required": true,
+        "in": "query"
+      },
+      {
+        "name": "eventEndDate",
+        "description": "행사종료일(형식 :YYYYMMDD)",
+        "type": "string",
+        "required": false,
+        "in": "query"
+      }
+    ],
+    "interpretation": "Date comparison operators are not explicit in the parameter descriptions; overlap behavior observed in six actual responses."
+  },
+  "beforeFix": {
+    "query": {
+      "province": "44",
+      "district": "150",
+      "start": "2026-09-05",
+      "end": "2026-09-06",
+      "kind": "15"
+    },
+    "status": "unavailable",
+    "message": "행사 시작일 조건과 응답이 달라 표시를 보류했습니다.",
+    "collectedAt": "2026-09-10T06:38:06.978Z"
+  }
+}

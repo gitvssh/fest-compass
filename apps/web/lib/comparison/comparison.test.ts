@@ -11,6 +11,23 @@ const editions = catalogue.editions as Edition[], nonsan = editions.slice(0,3), 
 const q:SearchContext={mode:"archive",regions:[],start:"2022-01-01",end:"2025-12-31",keyword:"",theme:"",dateRule:"overlap",queriedAt:null};
 const clone = <T>(v:T):T=>JSON.parse(JSON.stringify(v));
 
+test("current overlap includes continuing and boundary-day events while starts-within excludes earlier starts",()=>{
+  const search:SearchContext={...q,mode:"current",start:"2026-10-03",end:"2026-10-05"};
+  const items=[['continuing','2026-09-01','2026-10-03'],['ended','2026-09-01','2026-10-02'],['last','2026-10-05','2026-10-06'],['after','2026-10-06','2026-10-07']].map(([id,start,end])=>({...nonsan[0],id,start,end,year:2026,origin:"current" as const}));
+  assert.deepEqual(filterEditions(items,search).map(e=>e.id),['continuing','last']);
+  const starts={...search,dateRule:"starts-within" as const};
+  assert.deepEqual(filterEditions(items,starts).map(e=>e.id),['last']);
+});
+test("overlap discovery preserves its original rule and period after selecting through another query and exporting",async()=>{
+  const search:SearchContext={...q,mode:"current",start:"2025-03-28",end:"2025-03-29",queriedAt:"2026-09-10T00:00:00Z"};
+  const item={...clone(nonsan[2]),discoveredWith:clone(search)};
+  const evidence=await makeComparison([item],q,{kind:"overview"},"기획 기간 겹침 확인");
+  item.discoveredWith.dateRule="starts-within";item.discoveredWith.start="2025-03-29";
+  const restored=parseComparisons(encodeComparisons([evidence]))[0];assert.equal(restored.editions[0].discoveredWith!.dateRule,"overlap");assert.equal(restored.editions[0].discoveredWith!.start,"2025-03-28");
+  const bad=clone(evidence);bad.editions[0].discoveredWith!.end="2024-01-01";assert.throws(()=>encodeComparisons([bad]));
+  const legacy=await makeComparison(nonsan,q,{kind:"overview"},"");assert.deepEqual(parseComparisons(encodeComparisons([legacy])),[legacy]);
+});
+
 test("all 45 product observations match the reviewed source bytes and rows",()=>{
   const raw=readFileSync(new URL("../../../../docs/validation/evidence/2026-09-07-nonsan-history.json",import.meta.url));
   assert.equal(createHash("sha256").update(raw).digest("hex"),nonsan[0].visits!.source.sha256);

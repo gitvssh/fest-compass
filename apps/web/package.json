@@ -48,6 +48,11 @@
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
+  "overrides": {
+    "@prisma/config": {
+      "deepmerge-ts": "8.0.2"
+    }
+  },
   "devDependencies": {
     "@types/node": "^22.18.0",
     "@types/leaflet": "1.9.22",

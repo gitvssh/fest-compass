@@ -30,7 +30,7 @@ export function mapResource(row: Record<string, unknown>, q: Query): Resource {
   if (!/^\d+$/.test(String(row.contentid)) || typeof row.title !== "string" || !row.title.trim()) throw new Error("자료 식별자를 확인하지 못했습니다.");
   const date = (v: unknown) => { const s = String(v ?? "").replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"); return day(s) ? s : null; };
   const start = date(row.eventstartdate), end = date(row.eventenddate);
-  if (q.kind === "15" && (!start || !end || end < start || start < q.start || start > q.end)) throw new Error("행사 시작일 조건과 응답이 달라 표시를 보류했습니다.");
+  if (q.kind === "15" && (!start || !end || end < start || end < q.start || start > q.end)) throw new Error("행사 일정이 조회 기간과 겹치지 않아 표시를 보류했습니다.");
   const longitude = coordinate(row.mapx, 124, 132), latitude = coordinate(row.mapy, 32, 39);
   return { id: String(row.contentid), title: row.title.slice(0, 300), address: String(row.addr1 ?? "").slice(0, 500),
     longitude: latitude === null ? null : longitude, latitude: longitude === null ? null : latitude,

@@ -43,7 +43,7 @@ try{
   await page.getByLabel("축제·지역 이름").fill("존재하지않는검색어");await page.getByRole("button",{name:"과거 회차 검색",exact:true}).click();await visible(page.getByText(/실제 행사 없음·미개최를 뜻하지 않습니다/));
   await page.getByRole("button",{name:"선택 비우기",exact:true}).click();
   await page.getByRole("button",{name:"논산·공주·부여 등록 행사 조회",exact:true}).click();await visible(page.getByRole("button",{name:"2026 부여군 등록 행사 (검증용) 비교에 추가",exact:true}));await visible(page.getByText(/검증용 공주 조회 실패/));
-  await page.getByRole("button",{name:"2026 논산시 등록 행사 (검증용) 비교에 추가",exact:true}).click();await visible(page.getByText(/실제 개최·취소·변경은 미확인/));assert.equal(await page.getByText("52,671.5",{exact:true}).count(),0);
+  await page.getByRole("button",{name:"2026 논산시 등록 행사 (검증용) 비교에 추가",exact:true}).click();await visible(page.getByText(/현재 등록 정보 · 실제 개최·취소·변경은 미확인/));assert.equal(await page.getByText("52,671.5",{exact:true}).count(),0);
   delay=700;await page.getByRole("button",{name:"등록 행사 조회",exact:true}).click();await page.getByRole("button",{name:"출처가 있는 과거 회차",exact:true}).click();await page.waitForTimeout(900);assert.equal(await page.getByRole("heading",{name:/현재 조회한 등록 행사/}).count(),0);
   await page.goto(`${base}/evidence#comparisons`);await visible(page.getByText("보관 비교 3개 / 최대 50개",{exact:true}));
   await page.getByText("당시 비교 그래프·수치·출처 보기",{exact:true}).first().click();await visible(page.getByText("52,671.5",{exact:true}).filter({visible:true}));

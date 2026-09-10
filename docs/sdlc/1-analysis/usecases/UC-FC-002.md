@@ -1,15 +1,16 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-08
+last_verified: 2026-09-10
 id: UC-FC-002
-version: v3
+version: v4
 status: active
 summary: "주변 행사·8개 과거 회차·그래프·근거 보관의 첫 기능을 구현했습니다. 전국 확장·전체 인수는 후속입니다."
 covers: ["FR-CMP-1","FR-CMP-2","FR-CMP-3","FR-CMP-4"]
 screens: ["SCR-FC-001","SCR-FC-002"]
 apis: []
 acs:
+  - {id: AC10, text: "Given 기획 기간 전에 시작해 계속되는 등록 행사가 있을 때 When 기간 겹침과 기간 안 시작으로 검색하면 Then 조회 실패 없이 각각의 조건을 적용하고 일정 그림·출처·선택 당시 방식과 기간을 근거에 보존한다."}
   - {id: AC1, text: "Given 이름이 같은 서로 다른 축제와 한 축제의 두 회차가 있을 때 When 검색하면 Then 축제 ID와 회차 ID로 구분하고 취소/변경과 확인일을 볼 수 있다."}
   - {id: AC2, text: "Given 입장 건수와 지역 방문자 또는 총사업비와 지원금이 섞였을 때 When 비교하면 Then 동일 지표로 순위·증감·합계를 계산하지 않고 이유를 표시한다."}
   - {id: AC3, text: "Given 회차 두 개를 비교 중일 때 When 근거로 담으면 Then 선택 ID·검색 조건·당시 값·출처가 함께 남는다."}
@@ -64,6 +65,8 @@ acs:
 - [ ] AC7: Given 현재 축제 상세와 과거 회차 원문이 다를 때 When 과거를 검색하면 Then 회차별 일정·출처·확인일을 유지하고 현재 상세로 덮지 않으며 검색 누락을 미개최로 단정하지 않는다.
 - [ ] AC8: Given 같은 지표의 과거 값과 결측이 있을 때 When 그래프로 비교하면 Then 공통 축·단위와 실제 날짜·상대 날짜 기준·개최 일수를 표시하고 결측 선을 잇지 않으며 수치 표와 값이 일치한다.
 - [ ] AC9: Given 회차별 확보 지표가 다를 때 When 비교하면 Then 확보 현황과 비교 보류 사유를 보여주고 가용 지표는 유지하며 키보드로 선택한 점·기간을 당시 값·출처와 함께 담는다.
+
+- [ ] AC10: 이전에 시작한 행사·경계일 포함·종료 행사 제외·366일 한도·실패 지역·당시 조건과 일정 그림 보존은 [겹침 조회 설계](../../2-design/current-festival-overlap.md)와 [29번 검증](../../../validation/29-current-festival-overlap.md)을 따른다.
 
 ## 사후 상태와 검증
 

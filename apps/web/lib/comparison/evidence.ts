@@ -13,7 +13,7 @@ function source(s: Source) {
 }
 function context(c: SearchContext) {
   validRange(c.start, c.end, c.mode === "current");
-  if (!["archive", "current"].includes(c.mode) || !Array.isArray(c.regions) || c.regions.length > 3 || !c.regions.every(r => /^\d{2,5}\/\d{3,5}$/.test(r)) || !text(c.keyword, 200) || !text(c.theme, 100) || c.dateRule !== (c.mode === "archive" ? "overlap" : "starts-within") || !(c.queriedAt === null || instant(c.queriedAt))) throw new Error();
+  if (!["archive", "current"].includes(c.mode) || !Array.isArray(c.regions) || c.regions.length > 3 || !c.regions.every(r => /^\d{2,5}\/\d{3,5}$/.test(r)) || !text(c.keyword, 200) || !text(c.theme, 100) || !(c.mode === "archive" ? c.dateRule === "overlap" : ["overlap", "starts-within"].includes(c.dateRule)) || !(c.queriedAt === null || instant(c.queriedAt))) throw new Error();
 }
 export function validateEditions(editions: Edition[]) {
   if (!Array.isArray(editions) || editions.length < 1 || editions.length > 3 || new Set(editions.map(e => e.id)).size !== editions.length) throw new Error();

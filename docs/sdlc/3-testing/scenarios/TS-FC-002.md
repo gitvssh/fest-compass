@@ -1,22 +1,24 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-08
+last_verified: 2026-09-10
 id: TS-FC-002
-version: v3
+version: v4
 status: active
 summary: "M2 첫 기능의 단위·headless 검증을 추가했습니다. 아래 전체 인수 시나리오와 정형 Run 연결은 아직 완료하지 않았습니다."
 usecase: UC-FC-002
-covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7","AC8","AC9"]
+covers_ac: ["AC1","AC2","AC3","AC4","AC5","AC6","AC7","AC8","AC9","AC10"]
 apis: []
 specs: []
 ---
 
 # TS-FC-002 · 주변 행사와 과거 개최회차를 같은 기준으로 비교한다
 
+AC10 추가: `apps/web/scripts/overlap-e2e.mjs`로 기획 기간 전 시작·경계일 종료·기간 전 종료·검색 방식·조건 변경 뒤 당시 조건 보존·조회 상한·실패·늦은 응답·390px를 검증한다. 고정 가상 행사와 별도의 실제 공주 등록 자료 검증을 구분하며 [29번 기록](../../../validation/29-current-festival-overlap.md)을 따른다.
+
 | 항목 | 내용 |
 |---|---|
-| 근거 | [UC-FC-002@v3](../../1-analysis/usecases/UC-FC-002.md) |
+| 근거 | [UC-FC-002@v4](../../1-analysis/usecases/UC-FC-002.md) |
 | 대상 환경 | 구현 후 격리된 로컬 브라우저 + 고정 자료 응답 |
 | 실행 상태 | 아래 전체 인수는 미완료. M2 첫 기능의 실제 실행 범위는 문서 하단 참조 |
 

@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export default async function ComparePage({searchParams}:{searchParams:Promise<Record<string,string|string[]|undefined>>}) {
   const params=await searchParams, year=Number(new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Seoul",year:"numeric"}));
   const region=REGIONS.find(r=>r.provinceCode===params.province&&r.districtCode===params.district), current=!!region&&params.mode==="current";
-  const initial:SearchContext={mode:current?"current":"archive",regions:region?[`${region.provinceCode}/${region.districtCode}`]:[],start:current?`${year}-01-01`:"2022-01-01",end:current?`${year}-12-31`:"2025-12-31",keyword:"",theme:"",dateRule:current?"starts-within":"overlap",queriedAt:null};
+  const initial:SearchContext={mode:current?"current":"archive",regions:region?[`${region.provinceCode}/${region.districtCode}`]:[],start:current?`${year}-01-01`:"2022-01-01",end:current?`${year}-12-31`:"2025-12-31",keyword:"",theme:"",dateRule:current&&params.dateRule==="starts-within"?"starts-within":"overlap",queriedAt:null};
   if(typeof params.start==="string"&&typeof params.end==="string")try{validRange(params.start,params.end,current);initial.start=params.start;initial.end=params.end;}catch{/* Keep bounded defaults for invalid deep links. */}
   return <FestivalComparison catalogue={catalogue.editions as Edition[]} initial={initial} year={year}/>;
 }
