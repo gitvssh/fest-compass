@@ -88,7 +88,7 @@ metadata:
 
     def test_public_hostname_and_listener_are_exact(self) -> None:
         mutations = (
-            ("kto.damecasol.com", "other.damecasol.com", "HTTPRoute hostname"),
+            ("pickday.damecasol.com", "other.damecasol.com", "HTTPRoute hostname"),
             ("websecure-fest-compass-public", "websecure", "HTTPRoute listener section"),
         )
         for old, new, message in mutations:
@@ -96,8 +96,8 @@ metadata:
                 self.assert_contract_rejects(self.rendered.replace(old, new), message)
 
         extra_hostname = self.rendered.replace(
-            "  - kto.damecasol.com\n  parentRefs:",
-            "  - kto.damecasol.com\n  - shadow.damecasol.com\n  parentRefs:",
+            "  - pickday.damecasol.com\n  parentRefs:",
+            "  - pickday.damecasol.com\n  - shadow.damecasol.com\n  parentRefs:",
         )
         self.assert_contract_rejects(extra_hostname, "exact public route contract")
 

@@ -31,7 +31,7 @@ ENV NODE_ENV=production \
     HOSTNAME=0.0.0.0 \
     PORT=3000 \
     APP_MODE=public-readonly \
-    SITE_URL=https://kto.damecasol.com \
+    SITE_URL=https://pickday.damecasol.com \
     DATABASE_URL=file:/data/fest-compass.db
 
 RUN mkdir -p /data /app/.next/cache && chown -R node:node /data /app

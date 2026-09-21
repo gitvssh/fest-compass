@@ -23,7 +23,7 @@ try {
   mkdirSync("output/playwright", { recursive: true }); await page.goto(`${base}/planning/outcomes`);
   // The public edge asks for analytics consent in a fresh browser. Exercise the
   // visible refusal action before testing the app; never bypass the overlay.
-  if (new URL(base).hostname === "kto.damecasol.com") {
+  if (new URL(base).hostname === "pickday.damecasol.com") {
     await btn("Reject All").waitFor({ state: "visible", timeout: 15000 });
     await btn("Reject All").click();
     await btn("Reject All").waitFor({ state: "hidden" });

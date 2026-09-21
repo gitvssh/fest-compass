@@ -22,7 +22,7 @@ npm run dev
 | `DATABASE_URL` | `file:./dev.db` | SQLite URL. 컨테이너에서는 반드시 `file:/data/...` 사용 |
 | `TOUR_API_KEY` | 빈 값 | 공공데이터포털 일반 인증키. 서버 런타임 Secret으로만 주입 |
 | `APP_MODE` | 개발 `editor`, production `public-readonly` | 읽기 전용에서는 모든 서버 액션이 거부되고 편집 UI가 숨겨짐 |
-| `SITE_URL` | 개발 `http://localhost:3000`, production `https://kto.damecasol.com` | canonical·robots·sitemap 기준 URL |
+| `SITE_URL` | 개발 `http://localhost:3000`, production `https://pickday.damecasol.com` | canonical·robots·sitemap 기준 URL |
 | `KTO_FETCH_TIMEOUT_MS` | `10000` | KTO 요청별 제한시간. 1,000~30,000ms만 허용 |
 
 잘못된 `APP_MODE` 값은 안전하게 `public-readonly`로 처리됩니다. `editor` 모드는 인증된 내부 경계에서만 사용해야 합니다.

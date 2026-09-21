@@ -19,7 +19,7 @@ npm run db:seed
 npm run dev
 ```
 
-Local development defaults to editor mode. Production at `https://kto.damecasol.com` is intentionally read-only until an authenticated operator boundary is approved and implemented.
+Local development defaults to editor mode. Production at `https://pickday.damecasol.com` is intentionally read-only until an authenticated operator boundary is approved and implemented.
 
 ## Verification
 

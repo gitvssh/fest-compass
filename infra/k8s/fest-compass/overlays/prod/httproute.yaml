@@ -11,7 +11,7 @@ spec:
       namespace: kube-system
       sectionName: websecure-fest-compass-public
   hostnames:
-    - kto.damecasol.com
+    - pickday.damecasol.com
   rules:
     - matches:
         - path:

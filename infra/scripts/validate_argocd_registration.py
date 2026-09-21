@@ -22,7 +22,7 @@ HARBOR_HELPER_PATH = REPO_ROOT / "infra" / "scripts" / "harbor_release.py"
 
 NAMESPACE = "fest-compass"
 IMAGE_REPOSITORY = "registry.damecasol.com/fest-compass/web"
-HOSTNAME = "kto.damecasol.com"
+HOSTNAME = "pickday.damecasol.com"
 LISTENER_SECTION = "websecure-fest-compass-public"
 SOURCE_REPOSITORY = "gitvssh/fest-compass"
 ARC_RUNNER_LABEL = "homelab-fest-compass"

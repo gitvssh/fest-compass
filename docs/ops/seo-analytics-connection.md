@@ -7,7 +7,7 @@ owner: fest-compass
 last_verified: 2026-08-31
 ---
 
-# 분석·검색 최종 연결 런북 (kto.damecasol.com)
+# 분석·검색 최종 연결 런북 (pickday.damecasol.com)
 
 앱 배포가 끝난 뒤 수행하는 **콘솔 연결 절차**다. 앱 구현은 완료됐고, 아래 항목은
 Cloudflare·GA4·Search Console 콘솔에서 사람이 설정해야 한다. 작성 시점에는 어떤
@@ -18,17 +18,20 @@ Cloudflare·GA4·Search Console 콘솔에서 사람이 설정해야 한다. 작�
 Cloudflare 콘솔이 소유한다. 따라서 동의가 없으면 `window.zaraz`가 없고, 이벤트는
 조용히 사라진다.
 
-## 1. 배포 전제 확인 (완료됨, 2026-08-31 실측)
+## 1. 배포 전제 확인
+
+2026-08-31 검증은 이전 `kto.damecasol.com` 기준이다. 아래 명령은 새 주소용이며,
+2026-09-21 전환 검증 결과는 `pickday-domain-migration.md`에 별도로 기록한다.
 
 ```bash
-curl -I https://kto.damecasol.com/
-curl -I https://kto.damecasol.com/privacy
-curl -I https://kto.damecasol.com/robots.txt
-curl -I https://kto.damecasol.com/sitemap.xml
+curl -I https://pickday.damecasol.com/
+curl -I https://pickday.damecasol.com/privacy
+curl -I https://pickday.damecasol.com/robots.txt
+curl -I https://pickday.damecasol.com/sitemap.xml
 ```
 
-네 경로 모두 `200`이고, `/` HTML의 canonical은 `https://kto.damecasol.com`,
-`robots.txt`는 `https://kto.damecasol.com/sitemap.xml`을 가리킨다. 비정규 호스트는
+네 경로 모두 `200`이어야 하며, `/` HTML의 canonical은 `https://pickday.damecasol.com`,
+`robots.txt`는 `https://pickday.damecasol.com/sitemap.xml`을 가리켜야 한다. 비정규 호스트는
 `APP_MODE`가 `public-readonly`가 아닐 때 전체 disallow와 `noindex`를 반환한다.
 
 ## 2. Zaraz · 동의 관리 · GA4 연결 (사용자 작업)
@@ -73,8 +76,8 @@ curl -I https://kto.damecasol.com/sitemap.xml
 
 ## 5. Google Search Console (사용자 작업)
 
-1. 속성을 `https://kto.damecasol.com`으로 등록한다(정규 canonical과 일치).
-2. `https://kto.damecasol.com/sitemap.xml`을 제출한다.
+1. 속성을 `https://pickday.damecasol.com`으로 등록한다(정규 canonical과 일치).
+2. `https://pickday.damecasol.com/sitemap.xml`을 제출한다.
 3. URL Inspection으로 `/`와 축제 상세 1건의 색인 가능 여부를 확인한다.
 
 ## 6. 연결 완료 판정

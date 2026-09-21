@@ -50,7 +50,7 @@ test("금지 속성은 사전을 통과하더라도 전송되지 않는다", () 
 test("열거되지 않은 값과 자유 입력은 버린다", () => {
   const rejected = [
     "unknown-tab",
-    "https://kto.damecasol.com/festivals/seed-spring-flower/report",
+    "https://pickday.damecasol.com/festivals/seed-spring-flower/report",
     "www.example.com",
     "person@example.com",
     "line1\nline2",

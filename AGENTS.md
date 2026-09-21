@@ -12,7 +12,7 @@ This repository contains the FEST Compass product and its app-owned deployment d
 ## Boundaries
 
 - Product/project slug: `fest-compass`.
-- Public hostname: `kto.damecasol.com`.
+- Public hostname: `pickday.damecasol.com`.
 - Public production mode is `APP_MODE=public-readonly`; local development defaults to editor mode.
 - Never commit `.env`, API keys, SQLite files, Kubernetes Secret values, or rendered secret data.
 - The app repository may own workload manifests and the bounded Argo descriptor only. It must not define an `Application`, `ApplicationSet`, `AppProject`, cluster destination, or sync/delete policy.

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { isPublicReadonly } from "@/lib/app-mode";
 
 const LOCAL_URL = "http://localhost:3000";
-const PRODUCTION_URL = "https://kto.damecasol.com";
+const PRODUCTION_URL = "https://pickday.damecasol.com";
 
 export const siteConfig = {
   name: "FEST Compass",
