@@ -1,12 +1,12 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 28
+revision: 29
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-10T09:52:37.031Z"
+updated_at: "2026-09-21T02:37:37.543Z"
 ---
 
 # Current state

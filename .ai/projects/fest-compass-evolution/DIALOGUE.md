@@ -648,3 +648,21 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-029 · Codex · implementer
+
+- Position: 공개 주소를 pickday.damecasol.com으로 전환하고 기존 gitvssh/fest-compass 배포 경로에서 검증했다. pick-d-day의 FEST 앱과 앱·배포 파일을 맞춘다.
+- Evidence:
+  - docs/ops/pickday-domain-migration.md
+  - https://github.com/gitvssh/fest-compass/actions/runs/35554076890
+- Changes:
+  - 공개 URL·HTTPRoute·인증서·Tunnel/DNS·호스트별 분석 연결을 pickday로 전환
+  - 기존 저장소 전용 ARC·PAT·운영 PVC와 자료 유지
+- Validation:
+  - 앱 202건·배포 계약 40건·빌드·타입 검사 통과
+  - 공개 경로 6개 200·canonical/sitemap 일치·실제 자료 headless 11개·분석 동의 거부/허용 통과
+  - Application/Deployment/PVC UID 유지, 예측 파일 124개 유지; heartbeat만 갱신
+  - 로컬 DNS NXDOMAIN 캐시를 구분하고 공개 DNS에서 확인한 정확한 Cloudflare IP로 TLS를 유지해 검증
+- Questions:
+  - No open question
+- Handoff: Codex
