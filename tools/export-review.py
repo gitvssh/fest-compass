@@ -49,7 +49,7 @@ SCREENS = [
 ]
 CSS = '''
 *{box-sizing:border-box}body{margin:0;background:#f6f7f4;color:#10233d;font:16px/1.65 system-ui,"Malgun Gothic",sans-serif}
-main{max-width:1120px;margin:auto;padding:36px 24px 80px}a{color:#174caa;text-underline-offset:3px}
+main{max-width:1120px;margin:auto;padding:36px 24px 80px;overflow-wrap:anywhere}a{color:#174caa;text-underline-offset:3px}
 h1{font-size:30px;line-height:1.35}h2{font-size:24px;margin-top:36px}h3{font-size:19px}p{max-width:80ch}
 nav{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}nav a,.button{display:inline-block;padding:10px 16px;background:white;border:1px solid #c5ced7;border-radius:6px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.card{padding:20px;background:white;border:1px solid #c5ced7;border-radius:8px}

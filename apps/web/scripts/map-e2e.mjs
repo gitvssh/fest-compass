@@ -69,8 +69,8 @@ try {
   await btn("간단 지도").click(); await wait(page.getByText(/육지 윤곽: Natural Earth/)); const count = requests.length;
   await btn("확대").click(); assert.equal(requests.length,count); assert.equal(await map().count(),0); passed.push("simple-map-unmounts-external-background");
   await context.unroute("https://tile.openstreetmap.org/**"); await mockMapTiles(context,{fail:true,requests}); await btn("도로 지도").click();
-  // Reload also discards decoded image memory from the earlier successful map.
-  await page.reload(); await wait(page.getByText(/배경 지도를 불러오지 못한 부분/));
+  // A fresh nationwide entry discards decoded image memory and clears the query address.
+  await page.goto(`${base}/regions`); await wait(page.getByText(/배경 지도를 불러오지 못한 부분/));
   await btn("충청남도 선택").click(); await btn("논산시").click();
   await wait(page.getByRole("region",{name:"조회 자료 목록"}).getByRole("button",{name:/^1\. 좌표 없는/}));
   await btn("간단 지도로 보기").click(); await wait(page.getByText(/육지 윤곽: Natural Earth/)); passed.push("tile-failure-keeps-fallback-and-list");

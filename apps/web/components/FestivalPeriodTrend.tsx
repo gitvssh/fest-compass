@@ -51,13 +51,15 @@ function TrendPanel({ dataset, festival, years, metric, onMetric, activeYear, on
       <div><h2 id="period-trend-title" ref={heading} tabIndex={-1} className="text-xl font-extrabold focus:outline-none">{festival.name}</h2><p className="mt-1 text-sm text-muted">{m.short} 방문자 · 단위 {unit}</p></div>
       <div role="group" aria-label="표시 값" className="flex gap-2">{(["mean", "total"] as const).map(k => <button key={k} type="button" className="region-button" aria-pressed={metric === k} onClick={() => onMetric(k)}>{METRICS[k].label}</button>)}</div>
     </div>
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${festival.name} 개최연도별 ${m.short} 방문자 그래프. 자료 연도 ${festival.years.map(v => v.year).join(", ")}. 정확한 값은 아래 표에 있습니다.`} className="w-full">
+    <div className="overflow-x-auto" role="region" aria-label={`${festival.name} 방문 흐름 그래프 영역`} tabIndex={0}>
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${festival.name} 개최연도별 ${m.short} 방문자 그래프. 자료 연도 ${festival.years.map(v => v.year).join(", ")}. 정확한 값은 아래 표에 있습니다.`} className="w-full min-w-[36rem]">
       {[0, .5, 1].map(r => <g key={r}><line x1={L} x2={R} y1={y(max * r)} y2={y(max * r)} stroke="#d5dce3" /><text x={L - 8} y={y(max * r) + 5} fontSize={14} textAnchor="end" fill="#4b5b6d">{formatCount(max * r)}</text></g>)}
       {years.map(yr => <g key={yr}><text x={x(yr)} y={B + 24} fontSize={15} textAnchor="middle" fill={byYear.has(yr) ? "#10233d" : "#8a96a8"} fontWeight={byYear.has(yr) ? 700 : 400}>{yr}</text>{!byYear.has(yr) && <text x={x(yr)} y={B + 44} fontSize={13} textAnchor="middle" fill="#8a96a8">없음</text>}</g>)}
       {consecutiveRuns(festival.years).filter(run => run.length > 1).map(run => <path key={run[0].year} d={run.map((p, i) => `${i ? "L" : "M"}${x(p.year)},${y(metricValue(p, metric))}`).join(" ")} fill="none" stroke="#2667e8" strokeWidth={2.5} />)}
       {festival.years.map(p => <circle key={p.year} cx={x(p.year)} cy={y(metricValue(p, metric))} r={active?.year === p.year ? 7 : 4.5} fill={active?.year === p.year ? "#ae2e20" : "#2667e8"} onClick={() => onYear(p.year)} className="cursor-pointer" />)}
       {active && <text x={Math.min(R - 4, Math.max(L + 4, x(active.year)))} y={y(metricValue(active, metric)) - 14} fontSize={15} fontWeight={700} textAnchor={x(active.year) > R - 60 ? "end" : x(active.year) < L + 60 ? "start" : "middle"} fill="#10233d">{formatMetric(metricValue(active, metric), metric)}</text>}
     </svg>
+    </div>
     {absent.length > 0 && <p className="text-xs text-muted">자료 없는 연도: {absent.join(" · ")}</p>}
     <div role="group" aria-label="연도별 상세 보기" className="flex flex-wrap gap-2">{festival.years.map(p => <button key={p.year} type="button" className="region-button min-h-9 px-2 py-1 text-xs" aria-pressed={active?.year === p.year} onClick={() => onYear(p.year)}>{p.year}</button>)}</div>
     {active && <YearDetail year={active} unit={unit} />}
@@ -94,7 +96,7 @@ function YearDetail({ year, unit }: { year: FestivalPeriodYear; unit: string }) 
 function RawTable({ dataset, festival }: { dataset: FestivalPeriodDataset; festival: Trend }) {
   return <details className="text-sm"><summary className="cursor-pointer font-bold">원문 표 보기</summary>
     <p className="mt-2 text-xs leading-5 text-muted">전년도는 직전에 자료가 있는 연도를 가리킬 수 있습니다.</p>
-    <div className="mt-2 max-h-80 overflow-auto rounded-xl border border-ink/10" role="region" aria-label={`${festival.name} 원문 표`} tabIndex={0}>
+    <div className="relative mt-2 max-h-80 overflow-auto rounded-xl border border-ink/10" role="region" aria-label={`${festival.name} 원문 표`} tabIndex={0}>
       <table className="min-w-max text-left text-xs"><caption className="sr-only">{festival.name} 연도별 방문자 추이 원문</caption>
         <thead><tr>{dataset.rawHeader.map(h => <th key={h} scope="col" className="whitespace-nowrap bg-paper p-2">{h}</th>)}</tr></thead>
         <tbody>{festival.years.map(p => <tr key={p.year} className="border-t border-ink/10">{p.raw.map((v, i) => <td key={i} className="whitespace-nowrap p-2">{v === "" ? <><span className="text-muted" aria-hidden="true">—</span><span className="sr-only">값 없음</span></> : v}</td>)}</tr>)}</tbody>

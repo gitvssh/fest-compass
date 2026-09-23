@@ -58,7 +58,8 @@ try {
   assert.equal(await page.evaluate(k => JSON.parse(localStorage.getItem(k)).items.length, key), 3);
   assert.equal(await page.evaluate(k => JSON.parse(localStorage.getItem(k)).items[0].selection.mapBounds.length, key), 4);
   await page.getByRole("button", { name: "우리 지역으로 저장", exact: true }).click();
-  await page.reload();
+  // A fresh entry stays nationwide; a query-bearing address now restores its condition.
+  await page.goto(`${base}/regions`);
   await visible(page.getByRole("button", { name: "제주특별자치도 선택", exact: true }));
   await page.getByRole("button", { name: "우리 지역 바로가기", exact: true }).click();
   await visible(page.getByRole("heading", { name: "논산시 방문 추세", exact: true }));

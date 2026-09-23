@@ -58,6 +58,7 @@ try{
   await page.getByText("원문 표 보기",{exact:true}).click();await page.getByText("출처와 기준",{exact:true}).click();
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),390);
   const rawBox=page.getByRole("region",{name:"서산해미읍성축제 원문 표"});assert.ok(await rawBox.evaluate(e=>e.scrollWidth>e.clientWidth));
+  const chartBox=page.getByRole("region",{name:"서산해미읍성축제 방문 흐름 그래프 영역"});assert.ok(await chartBox.evaluate(e=>e.scrollWidth>e.clientWidth&&e.querySelector("svg").getBoundingClientRect().width>=500));
   await rawBox.focus();await page.keyboard.press("End");
   await page.screenshot({path:"output/playwright/annual-trend-mobile.png",fullPage:true});
   assert.deepEqual(errors,[]);assert.deepEqual(writes,[]);assert.equal(await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.includes("annual")||k.includes("datalab")).length),0);
