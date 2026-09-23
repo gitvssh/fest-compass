@@ -170,7 +170,7 @@ jobs:
         run: |
           set -euo pipefail
           {
-            echo '## FEST Compass image verified'
+            echo '## pickDday image verified'
             echo
             printf -- '- Immutable image: `%s`\n' "${IMAGE}"
             printf -- '- Verified digest for reviewed GitOps pin: `%s`\n' "${DIGEST}"
