@@ -1,0 +1,288 @@
+{
+  "checkedAt": "2026-09-23T15:11:50.349137+00:00",
+  "displayDateKST": "2026-09-24",
+  "baseline": "e63c4f87c016dd598a77bc990ca81c2ba651d514",
+  "implementation": "c8f7c6c2ba932d53a5778118b2f6e9a8e0c6a042",
+  "deploymentRevision": "7bcb6ccd90078ec11700f9cbe8eeacaa6430fe7f",
+  "imageDigest": "sha256:4e1f2992616bd3963021838ac0c42677c98eb1d92451491d4c8140a131085351",
+  "modelDelegation": {
+    "requested": "Claude Opus 5.5",
+    "actual": "claude-opus-5-5",
+    "provider": "firstParty",
+    "finalCallsSuccessful": true,
+    "directReview": "code, independent raw-value calculation, browser, screenshots, deployment"
+  },
+  "localValidation": {
+    "node": "24.20.0",
+    "unitTests": 280,
+    "infraTests": 40,
+    "typecheck": "passed",
+    "build": "passed",
+    "headlessScripts": 18,
+    "newJourney": {
+      "headless": true,
+      "realArchive": [
+        "new/visits",
+        "holidays"
+      ],
+      "fixtures": "검증용 resources/introductions/events/map tiles + Imsil 2023 zero/missing + one duplicate holiday label",
+      "passed": [
+        "AC1-no-preselected-region-keyboard-choice-enters-resources",
+        "AC10-keyboard-region-choice-title-focus",
+        "AC9-one-type-failure-not-zero-retry-applies",
+        "AC3-no-distance-or-distance-sort-before-anchor",
+        "AC2-map-marker-and-list-row-same-resource",
+        "AC13-intro-plain-text-own-source-and-time",
+        "AC10-dialogs-and-detail-close-return-focus",
+        "AC13-empty-notfound-mismatch-omit-block-failure-retries-in-place",
+        "AC2-compare-max-two-third-rejected-replace-after-removal",
+        "AC3-compare-does-not-set-anchor",
+        "AC3-explicit-resource-anchor-distances-radius-unlocated-listed",
+        "AC11-filtered-out-compared-kept-and-removable",
+        "AC3-map-centre-anchor-explicit-only",
+        "AC6-calendar-and-events-without-candidates",
+        "AC14-cross-month-whole-range-count-only-after-complete",
+        "AC7-invalid-dates-fixed-in-place-others-kept",
+        "AC14-identical-not-duplicated-same-day-allowed-cap-two",
+        "AC6-one-candidate-no-second-or-reason-required",
+        "AC14-partial-overlap-own-results-holiday-date-dedup(검증용 label)",
+        "AC14-cross-year-whole-range",
+        "AC7-holiday-unknown-distinct-from-zero-events",
+        "AC9-events-failure-keeps-calendar-late-retry-ignored",
+        "AC4-real-2025-default-month-weekday-oracle-wed53-others52",
+        "AC10-table-close-and-dialog-focus",
+        "AC12-real-2025-10-daily-link-back-restores-month-and-focus",
+        "AC5-real-2026-months-1-7-kept-all-weekday-means-withheld-missing-not-zero",
+        "AC1-three-views-any-order-without-writing-or-saving",
+        "AC5-zero-kept-missing-dash-and-no-mean(검증용 Imsil 2023 variant)",
+        "AC8-late-previous-visits-ignored-year-kept-no-auto-fallback",
+        "AC8-late-resources-and-events-ignored-selections-reset-candidates-month-kept",
+        "AC11-failed-refresh-keeps-success-without-id-releases",
+        "AC13-same-resource-intro-refresh-failure-keeps-earlier",
+        "AC13-compare-only-empty-then-failed-refresh-shows-retry-and-stale-source",
+        "AC9-map-failure-list-usable-no-visit-archive-keeps-resources-and-calendar",
+        "AC10-390px-no-page-overflow-all-views",
+        "AC10-no-writes-no-storage-no-page-errors",
+        "AC1-sejong-route-36110-api-36110-36110"
+      ],
+      "browserErrors": 0,
+      "clientWrites": 0,
+      "apiRequests": 81,
+      "ignoredFetchFailures": 0
+    }
+  },
+  "ci": {
+    "runId": 35878391672,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "conclusion": "success",
+        "labels": [
+          "homelab-fest-compass"
+        ],
+        "runner_name": "homelab-fest-compass-k8d69-runner-2rbpj",
+        "status": "completed"
+      }
+    ],
+    "actionsArtifacts": 0
+  },
+  "deployment": {
+    "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+    "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+    "generation": 27,
+    "ready": 1,
+    "images": {
+      "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:4e1f2992616bd3963021838ac0c42677c98eb1d92451491d4c8140a131085351",
+      "web": "registry.damecasol.com/fest-compass/web@sha256:4e1f2992616bd3963021838ac0c42677c98eb1d92451491d4c8140a131085351"
+    },
+    "revision": "7bcb6ccd90078ec11700f9cbe8eeacaa6430fe7f",
+    "sync": "Synced",
+    "health": "Healthy"
+  },
+  "businessDataBefore": {
+    "festival": {
+      "rows": 1,
+      "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+    },
+    "evidenceSnapshot": {
+      "rows": 6,
+      "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+    },
+    "assumption": {
+      "rows": 4,
+      "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+    },
+    "capacityRule": {
+      "rows": 1,
+      "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+    },
+    "scenario": {
+      "rows": 3,
+      "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+    },
+    "decision": {
+      "rows": 1,
+      "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+    },
+    "operationTrigger": {
+      "rows": 1,
+      "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+    },
+    "fieldAction": {
+      "rows": 1,
+      "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+    },
+    "outcome": {
+      "rows": 2,
+      "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+    }
+  },
+  "businessDataAfter": {
+    "festival": {
+      "rows": 1,
+      "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+    },
+    "evidenceSnapshot": {
+      "rows": 6,
+      "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+    },
+    "assumption": {
+      "rows": 4,
+      "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+    },
+    "capacityRule": {
+      "rows": 1,
+      "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+    },
+    "scenario": {
+      "rows": 3,
+      "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+    },
+    "decision": {
+      "rows": 1,
+      "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+    },
+    "operationTrigger": {
+      "rows": 1,
+      "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+    },
+    "fieldAction": {
+      "rows": 1,
+      "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+    },
+    "outcome": {
+      "rows": 2,
+      "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+    }
+  },
+  "public": {
+    "checkedAt": "2026-09-23T15:11:50.349137+00:00",
+    "headless": true,
+    "base": "https://pickday.damecasol.com",
+    "fixtures": false,
+    "branding": {
+      "title": "pickDday",
+      "description": "지역 공무원이 공공데이터로 지역 관광자원과 방문 흐름을 살펴 축제를 기획·개선하도록 돕는 서비스"
+    },
+    "resources": [
+      {
+        "kind": "12",
+        "status": "complete",
+        "count": 61,
+        "collectedAt": "2026-09-23T15:11:54.919Z"
+      },
+      {
+        "kind": "14",
+        "status": "complete",
+        "count": 7,
+        "collectedAt": "2026-09-23T15:11:54.895Z"
+      }
+    ],
+    "introductions": [
+      {
+        "id": "2752308",
+        "kind": "12",
+        "title": "온빛자연휴양림",
+        "characters": 241,
+        "collectedAt": "2026-09-23T15:11:55.291Z",
+        "modifiedAt": "20260921155440"
+      },
+      {
+        "id": "1755094",
+        "kind": "14",
+        "title": "논산아트센터",
+        "characters": 409,
+        "collectedAt": "2026-09-23T15:11:55.584Z",
+        "modifiedAt": "20260910133634"
+      }
+    ],
+    "visits": [
+      {
+        "region": "44230",
+        "year": 2025,
+        "roundedMondayToSunday": [
+          44418,
+          42762,
+          41304,
+          40697,
+          43635,
+          62951,
+          59035
+        ]
+      },
+      {
+        "region": "44150",
+        "year": 2025,
+        "roundedMondayToSunday": [
+          57985,
+          57588,
+          56975,
+          61918,
+          69544,
+          98617,
+          92175
+        ]
+      },
+      {
+        "region": "52750",
+        "year": 2025,
+        "roundedMondayToSunday": [
+          20642,
+          20991,
+          20876,
+          20991,
+          23198,
+          35047,
+          34453
+        ]
+      }
+    ],
+    "partialYear": {
+      "year": 2026,
+      "weekdays": "incomplete-year",
+      "monthsWithMean": 7
+    },
+    "regionChange": {
+      "destination": "44150",
+      "candidatesKept": true,
+      "yearKept": true,
+      "resourceComparisonCleared": true
+    },
+    "invalidRegionRecovery": true,
+    "browserErrors": [],
+    "sameOriginApiWrites": [],
+    "mobileWidth": 390
+  },
+  "seo": {
+    "title": "새 축제 기획 · 지역 고르기 | pickDday",
+    "canonical": "https://pickday.damecasol.com/new",
+    "robots": "index, follow",
+    "sitemap": true
+  },
+  "limits": [
+    "Final visual design and officer usability not evaluated",
+    "Full assistive-technology and browser zoom combinations not evaluated",
+    "Windows browser direct execution not evaluated",
+    "Repository/deployment/storage format identifiers remain fest-compass"
+  ]
+}

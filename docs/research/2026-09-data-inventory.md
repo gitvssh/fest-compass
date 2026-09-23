@@ -3,7 +3,7 @@ class: Current
 doc_class: current
 doc_kind: research
 owner: pickDday
-last_verified: 2026-09-23
+last_verified: 2026-09-24
 version: v3
 summary: "현재 앱 데이터, 가져온 데이터랩 CSV, Foundry 보유 자료, 추가 후보를 구분합니다. 기존 축제 흐름과 연도별 추이 26개 CSV는 사용 가능하며 새 축제 흐름에 자원 소개와 요일별 방문을 연결했습니다. 이번 검증 상태는 보고35를 따릅니다. 나머지 CSV·Foundry·신규 후보 연결은 후속 작업입니다."
 ---

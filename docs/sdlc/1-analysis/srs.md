@@ -1,9 +1,9 @@
 ---
 class: Current
 owner: pickDday
-last_verified: 2026-09-23
+last_verified: 2026-09-24
 version: v8
-summary: "pickDday의 기존·새 축제 기능 상세와 각 14개 인수 기준을 연결합니다. 기존 축제의 구현·자동 검증은 기록34를 따르고 새 축제 전용 흐름은 구현 코드 있음 · 통합 검증 전입니다."
+summary: "pickDday의 기존·새 축제 기능 상세와 각 14개 인수 기준을 연결합니다. 기존 축제의 구현·자동 검증은 기록34를 따르고 새 축제 전용 흐름은 사용 가능입니다."
 ---
 
 # 요구사항 정의와 기능목록
@@ -17,7 +17,7 @@ FR-EXF-1~4·FR-NEW-1~4의 [기능 상세](../2-design/functional-spec.md)를 추
 다른 지역 탐색은 선택 축제의 지역·회차를 바꾸지 않는다. 자료 종류별 공급·출처 시점과 실패 분리는
 [데이터 계약 v7](../2-design/data-visualization.md)을 따른다. 두 UC의 AC11~14가 해당 동작을 인수한다.
 전역 장식·시각 스타일을 확정하지 않으며 화면 목표·와이어프레임·기본 배치는 [화면설계](../2-design/screens.md)에서 전달한다.
-기존 축제 화면·조회 연결의 실행 결과는 [검증 기록34](../../validation/34-existing-festival-journey.md)를 따른다. 새 축제 전용 연결은 **구현 코드 있음 · 통합 검증 전**이며 문서·렌더 검수나 코드 존재는 기능 동작의 통과가 아니다.
+기존 축제 화면·조회 연결의 실행 결과는 [검증 기록34](../../validation/34-existing-festival-journey.md)를 따른다. 새 축제 전용 연결은 **사용 가능**이며 문서·렌더 검수나 코드 존재는 기능 동작의 통과가 아니다.
 
 ## 2026-09-22 적용 경계
 
@@ -29,7 +29,7 @@ FR-EXF-1~4·FR-NEW-1~4의 [기능 상세](../2-design/functional-spec.md)를 추
 기존 FR·UC·TS의 상세 필수값과 동선 정렬은 후속이다. 기존 축제 탐색의 새 범위는
 FR-EXF-1~4와 [UC-FC-009](usecases/UC-FC-009.md), 새 축제 기획의 탐색 범위는
 FR-NEW-1~4와 [UC-FC-010](usecases/UC-FC-010.md)이다. FR-EXF는 구현·자동 인수 시험을 마쳤고(아래 참조) 실무자 업무 인수는 남아 있다.
-FR-NEW는 두 번째 전용 흐름으로 구현 코드가 있으나 통합 검증 전이며 인수 완료로 표시하지 않는다.
+FR-NEW는 두 번째 전용 흐름으로 구현·자동 인수 시험을 통과했으며 실제 담당자 인수는 후속이다.
 
 ### 기존 축제 개선의 새 요구와 표시 방식
 
@@ -50,7 +50,7 @@ FR-REG-4의 출처·단위·기간·해석 정보와 FR-CMP-3의 비교 가능�
 
 ### 새 축제 기획의 지역 중심 탐색
 
-FR-NEW-1~4는 모두 **active · 구현 코드 있음 · 통합 검증 전**이다. 경로는 `/new` → `/new/{지역코드}/resources·visits·timing`,
+FR-NEW-1~4는 모두 **active · 사용 가능**이다. 경로는 `/new` → `/new/{지역코드}/resources·visits·timing`,
 새 조회는 `/api/new/visits`·`/api/new/resource-detail`이다. 실행 결과는 [검증 기록35](../../validation/35-pickdday-new-festival.md)를 따른다.
 기존 축제 흐름 FR-EXF를 대체하지 않는다. 첫 화면 SCR-FC-011에서 새 축제 기획을 고르면
 축제 검색 대신 지역을 선택하고 SCR-FC-012의 현재 관광자원 지도·목록으로 진입한다.

@@ -1,9 +1,9 @@
 ---
 class: Current
 owner: pickDday
-last_verified: 2026-09-23
+last_verified: 2026-09-24
 version: v8
-summary: "두 목적과 세 탐색의 구조를 유지하고 기능 연결·다른 지역 복귀를 구체화합니다. 기존 축제 연결은 검증 기록34를 따르고 새 축제 전용 화면은 구현 코드 있음 · 통합 검증 전입니다."
+summary: "두 목적과 세 탐색의 구조를 유지하고 기능 연결·다른 지역 복귀를 구체화합니다. 기존 축제 연결은 검증 기록34를 따르고 새 축제 전용 화면은 사용 가능입니다."
 ---
 
 # 정보구조
@@ -17,8 +17,7 @@ summary: "두 목적과 세 탐색의 구조를 유지하고 기능 연결·다�
 2026-09-22 [확정 원칙](../../product/planning-principles.md)에 따라 두 목적의 진입을 v6로 연결한다.
 기존 축제는 v5의 세 핵심 기능을 유지하고, 새 축제는 지역 선택만으로 관광자원·방문 흐름·개최 시기를
 살펴보는 목표다. 기존 축제의 현재 구현·검증은 [실행 기록](../../validation/34-existing-festival-journey.md)을 따른다.
-새 축제 전용 화면은 구현 코드 있음 · 통합 검증 전이다. 작업 브랜치의 첫 화면은 새 축제 선택을 `/new`로 연결하며
-공개 중인 서비스는 아직 `/regions`를 연다. 실행 결과는 [검증 기록35](../../validation/35-pickdday-new-festival.md)를 따른다.
+새 축제 전용 화면은 사용 가능이다. 공개 서비스의 첫 화면은 새 축제 선택을 `/new`로 연결한다. 실행 결과는 [검증 기록35](../../validation/35-pickdday-new-festival.md)를 따른다.
 
 ## v6 근거와 성격
 
@@ -75,7 +74,7 @@ flowchart TD
 `/existing/{festivalId}/resources`, `/existing/{festivalId}/timing`이다. 새 축제는 `/new`의 지역 선택과
 `/new/{regionKey}/resources`, `/new/{regionKey}/visits`, `/new/{regionKey}/timing`을 제안한다.
 기존 축제 검색의 실제 경로는 `/existing/search`이며 `/existing`은 이곳으로 이동한다. 세 상세 경로의 ID는 `archive:<festivalId>` 또는 `current:<regionCode>:<contentid>`다.
-새 축제는 `/new`와 `/new/{지역코드}/resources·visits·timing`으로 구현했다(구현 코드 있음 · 통합 검증 전). 지역코드는 5자리 행정 코드이며
+새 축제는 `/new`와 `/new/{지역코드}/resources·visits·timing`으로 구현했다(사용 가능). 지역코드는 5자리 행정 코드이며
 세종은 `/new/36110`이 지역 목록의 `36110/36110` 행에 연결된다. `/new/{지역코드}`만 열면 관광자원으로 이동한다.
 
 ## v6 새 축제의 정보 우선순위

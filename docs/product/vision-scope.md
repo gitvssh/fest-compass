@@ -4,7 +4,7 @@ doc_class: current
 doc_kind: product
 authority: canonical
 owner: pickDday
-last_verified: 2026-09-23
+last_verified: 2026-09-24
 summary: "pickDday는 지방자치단체 축제 담당자가 공공 관광데이터로 지역 관광자원·방문 흐름·개최 시기를 살펴보고 관광 활성화를 위한 축제를 기획하도록 돕는 의사결정 지원 서비스입니다. 기존 축제 개선·새 축제 기획의 두 전용 흐름을 두며 사용자 기록은 선택 사항입니다."
 ---
 
@@ -30,7 +30,7 @@ summary: "pickDday는 지방자치단체 축제 담당자가 공공 관광데이
 
 현재 구현·검증: 두 목적 선택과 기존 축제 개선 흐름([UC-FC-009](../sdlc/1-analysis/usecases/UC-FC-009.md))은
 [검증 기록34](../validation/34-existing-festival-journey.md)에서 구현·자동 시험·공개 반영을 확인했다.
-새 축제 기획 전용 흐름([UC-FC-010](../sdlc/1-analysis/usecases/UC-FC-010.md))은 구현 코드 있음 · 통합 검증 전이며 공개 반영 전이다.
+새 축제 기획 전용 흐름([UC-FC-010](../sdlc/1-analysis/usecases/UC-FC-010.md))은 사용 가능하며 공개 운영 확인을 마쳤다.
 지역 탐색·비교·기획·예산·출력·결과와 논산 추세 연구는 [기획 검수 기록](../review/2026-09-planning-review.md) 및 현재 코드를 확인한다.
 후속: 새 축제 전용 흐름의 통합 검증·공개 반영, 최종 시각 디자인과 실제 담당자 관찰, 기존 기록 필수값·동선 재검토, 뉴스 연결과 AI 요약 검토.
 이 문서의 목표 정의를 구현 완료나 실제 담당자 검증 완료로 표시하지 않는다.
