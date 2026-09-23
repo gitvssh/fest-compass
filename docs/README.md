@@ -3,19 +3,21 @@ class: Current
 doc_class: current
 doc_kind: map
 authority: canonical
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-23
-summary: "확정 기획 원칙, 코드로 대조한 현행 기능, 데이터 보유·연결 상태, 2026-09-23 저장소 통합과 과거 검증 이력으로 안내합니다."
+summary: "pickDday의 제품 기준, 두 축제 흐름, 데이터 연결과 구현·검증 기록을 안내합니다."
 ---
 
 # Documentation map
 
 ## 현재 기획 기준
 
+- [pickDday 이름·새 축제 흐름](validation/35-pickdday-new-festival.md) — 이번 구현·검증의 현재 상태와 실제 화면
+- [기존 축제 개선 흐름](validation/34-existing-festival-journey.md) — 검색·과거 방문·관광자원·개최 시기 구현과 공개 확인
 - [관광 의사결정 지원 기획 기준](product/planning-principles.md) — 2026-09-22 사용자 확정: 관광 활성화, 기존 축제 개선·새 축제 기획, 목적에 맞춘 공공데이터 활용, 선택적 사용자 기록. 이후 기획·설계는 이 기준을 우선하며 아래 구현·검증 이력과 구분한다.
 - [현행 기능·문서·데이터 점검](review/2026-09-current-state.md) — 2026-09-22 코드 대조: 실제 화면·기록 조건·작업공간 연결과 다음 설계의 시작점
 - [활용 데이터 현황](research/2026-09-data-inventory.md) — 앱 소비·보관 CSV·Foundry 실보유·공식 추가 후보, 기준일·단위·연결 제한
-- [저장소 통합 보고](ops/repository-consolidation.md) — 2026-09-23 pick-d-day에서 최신 문서·시안과 데이터랩 원자료를 선별 통합. 새 연도별 방문 화면(`/compare/annual`, 26개 축제)은 검증·게시 대기이며 v7 두 목적 전체 흐름은 개발 필요
+- [저장소 통합 보고](ops/repository-consolidation.md) — 2026-09-23 pick-d-day에서 최신 문서·시안과 데이터랩 원자료를 선별 통합. 연도별 방문 화면(`/compare/annual`, 26개 축제)은 공개 반영 완료. 이후 두 목적 흐름의 상태는 위 최신 검증 기록 참조
 - [축제 담당자 인터뷰 질문지](research/festival-officer-interview.md) — 예정 질문. 아직 인터뷰하지 않음
 
 ## 올해 축제 기획 검수

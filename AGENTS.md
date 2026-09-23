@@ -1,18 +1,19 @@
-# FEST Compass repository guide
+# pickDday repository guide
 
-This repository contains the FEST Compass product and its app-owned deployment declarations.
+This repository contains the pickDday product and its app-owned deployment declarations.
 
 ## Authority
 
 - Running code, generated Prisma client, tests, and rendered Kustomize output take precedence over prose.
 - `docs/design/00_INDEX.md` is the design entry point.
-- Human review copies go to `D:\download\project\fest-compass\` (WSL: `/mnt/d/download/project/fest-compass/`); follow `docs/ops/review-delivery.md`. Keep project documents and editable sources in this repository.
+- Human review copies go to `D:\download\project\pickDday\` (WSL: `/mnt/d/download/project/pickDday/`); follow `docs/ops/review-delivery.md`. Earlier copies under `D:\download\project\fest-compass\` stay as delivered; do not move, delete, or overwrite them. Keep project documents and editable sources in this repository.
 - `docs/decisions/` records accepted production decisions. Do not rewrite accepted decisions; supersede them.
 - Cluster-wide policy remains owned by `/home/lsh/dev/homelab-gitops` and `/home/lsh/dev/infra`.
 
 ## Boundaries
 
-- Product/project slug: `fest-compass`.
+- Visible product name: `pickDday` (exact case) in UI, metadata, user-facing download names, and current documents. The npm package name is lowercase `pickdday`.
+- Project/infrastructure slug: `fest-compass`. Repository, deployment, Vault/registry, database, browser storage keys, and saved-file format identifiers keep this value unless a separate rename decision is recorded.
 - Canonical checkout: WSL `~/dev/side/fest-compass` (GitHub `gitvssh/fest-compass`). Make changes on a dedicated branch in `~/dev/worktrees/fest-compass-<topic>`; see `docs/ops/wsl-development.md`.
 - Public hostname: `pickday.damecasol.com`.
 - Public production mode is `APP_MODE=public-readonly`; local development defaults to editor mode.

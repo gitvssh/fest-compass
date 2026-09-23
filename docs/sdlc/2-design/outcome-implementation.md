@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-09
 version: v1
 summary: "공개 비용 사례 조회, 개인 행사 결과·실제 사용액 비교, 결과 출력과 다음 회차 기획을 연결한 M6 화면입니다. 공개 자료와 담당자 입력은 분리합니다."

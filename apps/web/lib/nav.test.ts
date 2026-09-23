@@ -16,6 +16,13 @@ test("nested pages mark the parent section without claiming to be it", () => {
   assert.equal(currentFor("/existing/archive%3Anonsan-strawberry/visits", existing.href, existing.section), "true");
   assert.equal(currentFor("/existing/search", existing.href, existing.section), "page");
   assert.equal(currentFor("/existing-other/search", existing.href, existing.section), undefined);
+  const fresh = navLinks(false).find(link => link.href === "/new")!;
+  assert.equal(fresh.label, "새 축제");
+  assert.equal(currentFor("/new", fresh.href, fresh.section), "page");
+  assert.equal(currentFor("/new/", fresh.href, fresh.section), "page");
+  assert.equal(currentFor("/new/44-230/visits", fresh.href, fresh.section), "true");
+  assert.equal(currentFor("/new-other", fresh.href, fresh.section), undefined);
+  assert.equal(currentFor("/festivals/new", fresh.href, fresh.section), undefined);
   assert.equal(currentFor("/compare", "/compare"), "page");
   assert.equal(currentFor("/compare/annual", "/compare"), "true");
   assert.equal(currentFor("/compare/annual/", "/compare"), "true");

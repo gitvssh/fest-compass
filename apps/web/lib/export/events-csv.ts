@@ -45,8 +45,8 @@ export function buildEventCsv({ start, end, condition, regions, events }: EventC
   return `﻿${rows.map(row => row.map(csvCell).join(",")).join("\r\n")}\r\n`;
 }
 export function csvFileName(regionKeys: string[], start: string, end: string): string {
-  const name = `fest-compass-events_${regionKeys.map(k => k.replace("/", "-")).join("_")}_${start}_${end}`.replace(/[^A-Za-z0-9._-]/g, "").slice(0, 120);
-  return `${name || "fest-compass-events"}.csv`;
+  const name = `pickDday-events_${regionKeys.map(k => k.replace("/", "-")).join("_")}_${start}_${end}`.replace(/[^A-Za-z0-9._-]/g, "").slice(0, 120);
+  return `${name || "pickDday-events"}.csv`;
 }
 export const REGION_EVENT_CONDITION = "축제·행사 · 조회 기간과 일정이 겹치는 등록 행사 전체";
 export function comparisonCondition(q: Pick<SearchContext, "dateRule" | "keyword" | "distance">): string {

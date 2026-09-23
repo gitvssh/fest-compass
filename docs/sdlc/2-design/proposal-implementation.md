@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-22
 version: v2
 summary: "후보·선택 이유·공공 근거·예산·준비 기록을 기획안 버전으로 보관하고 사업설명 자료와 준비 목록을 출력하는 M5 구현입니다. 검증·게시 결과는 연결된 보고서를 따릅니다."

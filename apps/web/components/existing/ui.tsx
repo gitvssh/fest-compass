@@ -20,11 +20,11 @@ export function LoadState({ loading, failure, hasData, retrievedAt, subject, onR
   return null;
 }
 
-/** Native modal dialog; closing (button, Esc) returns focus to the button that opened it. */
-export function InfoDialog({ label, title, children, buttonClassName = "region-button" }: { label: string; title: string; children: ReactNode; buttonClassName?: string }) {
+/** Native modal dialog; closing (button, Esc) returns focus to the button that opened it. `buttonLabel` names a repeated opener. */
+export function InfoDialog({ label, title, children, buttonClassName = "region-button", buttonLabel }: { label: string; title: string; children: ReactNode; buttonClassName?: string; buttonLabel?: string }) {
   const dialog = useRef<HTMLDialogElement>(null), opener = useRef<HTMLButtonElement>(null), id = useId();
   return <>
-    <button ref={opener} type="button" className={buttonClassName} aria-haspopup="dialog" onClick={() => dialog.current?.showModal()}>{label}</button>
+    <button ref={opener} type="button" className={buttonClassName} aria-haspopup="dialog" aria-label={buttonLabel} onClick={() => dialog.current?.showModal()}>{label}</button>
     <dialog ref={dialog} aria-labelledby={`${id}-title`} onClose={() => opener.current?.focus()}
       className="m-auto w-[min(40rem,calc(100vw-2rem))] rounded-2xl border border-ink/10 p-0 text-ink backdrop:bg-ink/40">
       <div className="max-h-[80vh] space-y-3 overflow-y-auto p-5 text-sm leading-6">

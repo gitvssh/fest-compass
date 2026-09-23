@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-22
 version: v2
 summary: "전국→시도→시군구 선택, 실제 관광자료·방문 추세 조회, 개인 근거 보관을 구현했습니다. 공개 반영 확인은 검증 기록에 남깁니다."

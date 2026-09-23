@@ -3,6 +3,7 @@ export type NavLink = { href: string; label: string; section?: string };
 export const NAV_LINKS: NavLink[] = [
   { href: "/", label: "홈" },
   { href: "/existing/search", label: "기존 축제", section: "/existing" },
+  { href: "/new", label: "새 축제" },
   { href: "/regions", label: "관광지도" },
   { href: "/compare", label: "축제 비교" },
   { href: "/evidence", label: "담은 근거" },

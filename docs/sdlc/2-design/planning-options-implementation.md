@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-09
 version: v1
 summary: "지도·비교에서 담은 근거를 올해 기획 후보에 연결하고 사업·장소·준비 과제를 기록할 수 있습니다. 공개 앱에서 두 후보 비교와 당시 자료 보존을 headless로 확인했습니다."

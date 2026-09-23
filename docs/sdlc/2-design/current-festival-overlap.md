@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-10
 version: v1
 summary: "기획 기간 전에 시작해 계속되는 등록 행사도 조회합니다. 기간 겹침과 기간 안 시작을 구분하고 일정 그림·당시 조건을 기획 근거에 보관합니다."

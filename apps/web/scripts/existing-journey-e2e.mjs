@@ -551,6 +551,9 @@ async function timing({ page }) {
   await page.getByRole("button", { name: "연도 보기", exact: true }).click();
   await waitParam(page, "year", "2026");
   await visible(page.getByRole("heading", { name: "2026년 논산시 월별 외지인 방문", exact: true }));
+  // The heading reflects the applied year while its response is still loading. Read the table only after that
+  // year's actual row is rendered; locator.evaluateAll alone would accept an empty, not-yet-mounted table.
+  await visible(page.getByRole("region", { name: "월별 일평균 수치 표", exact: true }).getByRole("rowheader", { name: "2026년 8월", exact: true }));
   const rows2026 = await rowsOf(page.getByRole("region", { name: "월별 일평균 수치 표", exact: true }));
   const august = rows2026.find(r => r[0] === "2026년 8월");
   assert.ok(august && august[1] === "—" && august[2] !== "31/31일", `2026-08 incomplete: ${august}`);

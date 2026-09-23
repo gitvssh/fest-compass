@@ -85,7 +85,7 @@ export async function runKtoProbe(
   if (Number(params.pageNo) !== 1 || !Number.isInteger(Number(params.numOfRows)) || Number(params.numOfRows) < 1 || Number(params.numOfRows) > 1000) {
     throw new Error("조사는 첫 페이지의 1~1000행으로 제한됩니다.");
   }
-  const search = new URLSearchParams({ serviceKey: key, MobileOS: "ETC", MobileApp: "FESTCompass", _type: "json" });
+  const search = new URLSearchParams({ serviceKey: key, MobileOS: "ETC", MobileApp: "pickDday", _type: "json" });
   for (const [name, value] of Object.entries(params)) search.set(name, String(value));
   const url = `https://apis.data.go.kr/B551011/${spec.service}/${spec.operation}?${search}`;
   const started = Date.now();

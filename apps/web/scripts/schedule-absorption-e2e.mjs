@@ -70,7 +70,7 @@ try {
   assert.equal(new URL(page.url()).searchParams.get("month"), "2026-02");
   passed.push("month-change-no-request-no-range-change");
   const regionCsv = await csv(calendar().getByRole("button", { name: REGION_CSV, exact: true }));
-  assert.equal(regionCsv.name, "fest-compass-events_44-230_2026-02-15_2026-04-10.csv");
+  assert.equal(regionCsv.name, "pickDday-events_44-230_2026-02-15_2026-04-10.csv");
   assert.ok(regionCsv.raw.startsWith("﻿"));
   assert.equal(regionCsv.raw.split("\r\n").filter(l => l.startsWith('"행사"')).length, 3);
   assert.ok(regionCsv.raw.includes('"2026-01-28","2026-02-20"'));
@@ -116,7 +116,7 @@ try {
   assert.equal(await compareCsvButton.isDisabled(), true); await visible(page.getByText("모든 지역을 불러온 뒤 내려받을 수 있어요", { exact: true }));
   await visible(page.getByText("불러오지 못한 지역은 파일에 따로 표시돼요", { exact: true })); delay = 0;
   const compareCsv = await csv(compareCsvButton);
-  assert.match(compareCsv.name, /^fest-compass-events_44-230_44-150_44-760_\d{4}-01-01_\d{4}-12-31\.csv$/);
+  assert.match(compareCsv.name, /^pickDday-events_44-230_44-150_44-760_\d{4}-01-01_\d{4}-12-31\.csv$/);
   assert.equal(compareCsv.raw.split("\r\n").filter(l => l.startsWith('"행사"')).length, 4);
   assert.match(compareCsv.raw, /"지역 조회 상태","","충청남도 공주시".*"불러오지 못함"/);
   passed.push("compare-csv-waits-and-keeps-failed-region");

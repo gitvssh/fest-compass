@@ -40,15 +40,15 @@ export default async function HomePage() {
         <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-blue">축제 의사결정 지원</p>
         <h1 id="purpose-heading" className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">어떤 축제를 준비하시나요?</h1>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-          <li className="flex flex-col rounded-3xl border border-blue/20 bg-blue-soft p-6 sm:p-8">
+          <li className="flex flex-col rounded-3xl border border-ink/10 bg-white p-6 shadow-card sm:p-8">
             <h2 className="text-2xl font-extrabold">기존 축제 개선</h2>
             <p className="mt-2 text-sm leading-7 text-muted">지난 개최 때의 지역 방문, 주변 관광자원, 다음 개최 시기를 살펴봅니다.</p>
             <Link href="/existing/search" className="region-primary mt-5 self-start">기존 축제 찾기 →</Link>
           </li>
           <li className="flex flex-col rounded-3xl border border-ink/10 bg-white p-6 shadow-card sm:p-8">
             <h2 className="text-2xl font-extrabold">새 축제 기획</h2>
-            <p className="mt-2 text-sm leading-7 text-muted">시도와 시군구를 골라 지역의 관광자원·등록 행사·방문 추세를 살펴봅니다.</p>
-            <Link href="/regions" className="region-button mt-5 self-start">지역부터 살펴보기 →</Link>
+            <p className="mt-2 text-sm leading-7 text-muted">지역을 골라 관광자원을 확인하고, 방문 추세와 개최 시기를 자유롭게 살펴봅니다.</p>
+            <Link href="/new" className="region-primary mt-5 self-start">지역부터 살펴보기 →</Link>
           </li>
         </ul>
       </section>

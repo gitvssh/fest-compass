@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-09
 version: v1
 summary: "공식 코드 연계로 확인한 지역에 2025년 기준 경계를 표시합니다. 최신 행정구역의 확정 경계로 표현하지 않고, 개편 지역은 안내와 기존 목록 조회를 제공합니다."

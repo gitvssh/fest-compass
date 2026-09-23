@@ -35,7 +35,7 @@ export function createTourCall(deps: TourDeps = {}): TourCall {
       try {
         let decoded = secret; try { decoded = decodeURIComponent(secret); } catch { /* raw key */ }
         const url = new URL(`${BASE}/${operation}`);
-        for (const [k, v] of Object.entries({ serviceKey: decoded, MobileOS: "ETC", MobileApp: "FestCompass", _type: "json", ...params })) url.searchParams.set(k, v);
+        for (const [k, v] of Object.entries({ serviceKey: decoded, MobileOS: "ETC", MobileApp: "pickDday", _type: "json", ...params })) url.searchParams.set(k, v);
         const response = await doFetch(url, { signal: AbortSignal.timeout(10_000), cache: "no-store" });
         if (!response.ok) throw new TourUnavailable();
         const raw = await response.text(); if (raw.length > 2_000_000) throw new TourUnavailable();

@@ -11,10 +11,10 @@ export function NavLinks({ showEditorLinks }: { showEditorLinks: boolean }) {
   })}</>;
 }
 
-/** Storage conditions belong to the recording tools, not the record-free festival journey. */
+/** Storage conditions belong to the recording tools, not the record-free festival journeys. */
 export function PublicStorageNotice() {
   const pathname = usePathname() ?? "";
-  if (pathname === "/" || pathname === "/existing" || pathname.startsWith("/existing/")) return null;
+  if (pathname === "/" || ["/existing", "/new"].some(root => pathname === root || pathname.startsWith(`${root}/`))) return null;
   return <aside className="no-print border-b border-blue/20 bg-blue-soft px-5 py-3 text-center text-sm font-bold text-navy" role="status">
     공개 자료는 읽기 전용입니다. 기획 후보와 내 작업공간의 입력은 이 브라우저에만 저장됩니다.
   </aside>;

@@ -70,7 +70,7 @@ stages:
     artifacts:
       - {path: docs/ops/planning-outcomes-release.md, required: true}
     links:
-      - {label: 현재 사용 가능한 FEST Compass, url: "https://pickday.damecasol.com"}
+      - {label: 현재 사용 가능한 pickDday, url: "https://pickday.damecasol.com"}
 # 새로운 API 계약·실행 기록·티켓 원천은 미선언이다. 미평가를 통과로 만들지 않는다.
 lint:
   max_doc_age_days: 180

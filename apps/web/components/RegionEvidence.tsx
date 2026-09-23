@@ -11,7 +11,7 @@ export function RegionEvidence() {
   }, []);
   function download() {
     const url = URL.createObjectURL(new Blob([encodeEvidence(items)], { type: "application/json" })), a = document.createElement("a");
-    a.href = url; a.download = `fest-compass-evidence-${new Date().toISOString().slice(0, 10)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    a.href = url; a.download = `pickDday-evidence-${new Date().toISOString().slice(0, 10)}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   async function restore(file?: File) {
     if (!file) return;

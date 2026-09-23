@@ -1,13 +1,15 @@
-# FEST Compass
+# pickDday
 
-FEST Compass is a Korean public-data decision workspace for local government officials who improve existing festivals or plan new ones to boost regional tourism. It connects source evidence, explicit assumptions, operational scenarios, approvals, field actions, and measured outcomes without presenting visitor counts as admissions or promising demand forecasts. Data informs but does not settle the planning judgment, and records are optional.
+pickDday helps local government officials use public data to explore regional tourism resources and visit trends when they plan a new festival or improve an existing one. Exploration needs no notes or saved plans; optional recording tools connect source evidence, explicit assumptions, operational scenarios, approvals, field actions, and measured outcomes. Visitor counts are not presented as admissions, and the data does not choose target visitors or the best date for the user.
+
+The visible product name is exactly `pickDday`. Internal identifiers keep their existing values: the npm package name is the lowercase `pickdday` because npm names cannot contain capitals, while the GitHub repository, checkout paths, deployment resources, database files, browser storage keys, and saved-file formats still use `fest-compass`.
 
 The web application lives in `apps/web`. Start with [the design index](docs/design/00_INDEX.md) for product behavior and [the documentation map](docs/README.md) for repository authority.
 
 For the 2026-09-22 review, read the [current feature and flow baseline](docs/review/2026-09-current-state.md)
 and [data inventory](docs/research/2026-09-data-inventory.md). They separate implemented behavior,
 stored data awaiting integration, and future redesign under the [agreed planning principles](docs/product/planning-principles.md).
-The home page now separates the two purposes. The existing-festival journey starts at `/existing/search` and connects past regional visits, current tourism resources, and timing exploration without requiring records. The new-festival card currently opens `/regions`; its dedicated journey remains future work. See the [existing-festival implementation and verification](docs/validation/34-existing-festival-journey.md).
+The home page separates the two purposes. The existing-festival journey starts at `/existing/search` and connects past regional visits, current tourism resources, and timing exploration without requiring records. See the [existing-festival implementation and verification](docs/validation/34-existing-festival-journey.md). The new-festival card and the `새 축제` menu open `/new`, a journey that starts from a region and its tourism resources and then lets the user freely explore visit trends and timing without notes; its implementation and verification are in progress. The general tourism map remains at `/regions`.
 
 The [repository consolidation report](docs/ops/repository-consolidation.md) tracks the return to `gitvssh/fest-compass`, selected imports, and verification. The annual view at `/compare/annual` connects 26 festivals and 147 festival-year observations from preserved Korea Tourism Data Lab CSVs. The region explorer also provides a monthly event calendar with shared map/list selection and event CSV export; current festival comparison exports the filtered list. These additions are available at [the public app](https://pickday.damecasol.com/compare/annual). These are festival-period visitors to the hosting administrative area. The original 304 CSV files and their provenance remain in [the research import](docs/research/imported/hkjin-plan-03/README.md).
 

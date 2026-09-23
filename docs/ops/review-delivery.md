@@ -1,29 +1,36 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-23
-version: v3
-summary: "사람이 확인할 시안·화면설계는 Windows 검토 폴더에 사본으로 전달하고 프로젝트 원본은 유지합니다."
+version: v4
+summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
 # 화면·설계 자료 전달
 
 2026-09-22 사용자 요청에 따라 사람이 확인할 화면설계·시안·임시 검토자료는
-`D:\download\project\fest-compass\<날짜-작업명>\`에 복사한다.
+Windows 검토 폴더에 복사한다. 2026-09-23 제품 이름을 `pickDday`로 바꾼 뒤의 새 사본은
+`D:\download\project\pickDday\<날짜-작업명>\`(WSL `/mnt/d/download/project/pickDday/`)에 만든다.
+이전 `D:\download\project\fest-compass\` 폴더의 묶음과 시작 페이지는 전달 당시 그대로 두며
+옮기거나 지우거나 덮어쓰지 않는다.
 프로젝트의 문서·편집 소스·필수 표시본은 기존 위치에 유지한다. 외부 폴더는 확인용이며
 내용을 고칠 때는 프로젝트 원본을 고치고 새 사본을 만든다.
 공통 정책은 devkit `dev-standard/policy/doc-architecture.md`의 검토용 사본 절이다.
 
 ## 여는 위치
 
-- 시작: `D:\download\project\fest-compass\index.html`
+- 시작: `D:\download\project\pickDday\index.html`
 - 각 묶음: `index.html`에서 기존 축제/새 축제 화면, 모바일 구성, 읽기용 설계 문서로 이동한다.
+  첫 항목은 새 축제 실제 화면·검증 결과(`docs/validation/35-pickdday-new-festival.md`), 다음은
+  기존 축제 실제 화면·검증 결과(`docs/validation/34-existing-festival-journey.md`)다.
 - `sources/`에는 원본과 동일한 Markdown·Excalidraw·SVG를 둔다.
 - `manifest.json`은 원본 경로·커밋·복사 시각·파일 해시를 남긴다. `source_root`는 정본 위치
   `~/dev/side/fest-compass`, `source_checkout`은 실제로 내보낸 작업 위치다. 기준 커밋은 그 위치의 `HEAD`이며
   선택 자료에 미커밋 변경이 있으면 `source_dirty`가 참이다. 포함하지 않은 추가 근거는 문서 링크에서
   `https://github.com/gitvssh/fest-compass`의 기준 커밋 원본으로 열린다. 저장소 밖 자료를 가리키는 링크는
   사본에서 링크 없이 글자로만 남기고 `manifest.json`의 `links_outside_project`에 기록한다.
+  `project`는 표시 이름 `pickDday`, `project_id`는 저장소·배포 식별자 `fest-compass`다.
+  저장소 이름과 정본 위치는 제품 이름 변경과 별개이며 바뀌지 않았다.
 
 최신 첫 페이지는 이 도구의 마지막 생성 해시와 일치하는 파일만 갱신한다. 사용자가 쓴 메모·기존 작업 폴더를
 삭제하거나 덮어쓰지 않는다. 같은 묶음 이름이 이미 있으면 새 이름으로 내보낸다.
@@ -35,18 +42,22 @@ Python의 `Markdown` 패키지와 설치된 traceboard의 Mermaid 표시 도구�
 현재 작업 환경에 두 가지가 준비돼 있다. 앱 의존성·빌드·운영 배포를 변경하는 도구가 아니다.
 
 ```bash
-python3 tools/export-review.py --label 2026-09-22-design-v6
+python3 tools/export-review.py --label 2026-09-23-pickdday-new-festival
 ```
 
-WSL 기본 대상은 실제 D 드라이브의 `/mnt/d/download/project`다. 대상 루트가 없거나 접근할 수 없으면
+WSL 기본 대상은 실제 D 드라이브의 `/mnt/d/download/project`이며 그 아래 `pickDday` 폴더를 쓴다.
+`pickDday` 폴더가 없으면 첫 내보내기에서 만든다. 대상 루트가 없거나 접근할 수 없으면
 실패하며 다른 Linux 폴더에 복사하고 Windows 전달이 완료됐다고 표시하지 않는다.
 다른 환경에서는 사용자가 정한 접근 가능한 경로를 `--destination`으로 전달한다.
 
 이 도구의 화면·문서 목록은 두 목적의 현재 검토 묶음이다. 후속 화면 버전이 바뀌면 `SCREENS`와
-`DOCS`를 해당 설계 정본에 맞춰 갱신한 뒤 내보낸다. 링크·이미지·모바일 펼치기를 headless로 확인하고
+`DOCS`를 해당 설계 정본에 맞춰 갱신한 뒤 내보낸다. `DOCS`의 문서가 하나라도 없으면 복사 전에 실패한다.
+링크·이미지·모바일 펼치기를 headless로 확인하고
 사본 해시가 원본과 일치하는지 확인한다. 사본 전달은 새 사용자 승인 단계가 아니다.
 
 ## 최초 전달과 검증
+
+아래 전달 기록은 제품 이름 변경 전의 기록이며 당시 경로 `D:\download\project\fest-compass\`와 이름을 그대로 남긴다.
 
 2026-09-22 `2026-09-22-design-v6-reviewed` 묶음을 D 드라이브에 전달했다.
 검토 대상의 원본은 `d74eb6c`이며 기존/새 축제 8개 시안 페이지·12개 문서 페이지와 시작 페이지를 포함한다.

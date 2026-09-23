@@ -45,7 +45,7 @@ async function getResources(q: Query): Promise<ResourceResult> {
     try {
       let decoded = secret; try { decoded = decodeURIComponent(secret); } catch { /* raw key */ }
       const url = new URL(`https://apis.data.go.kr/B551011/KorService2/${q.kind === "15" ? "searchFestival2" : "areaBasedList2"}`);
-      const params: Record<string, string> = { serviceKey: decoded, MobileOS: "ETC", MobileApp: "FestCompass", _type: "json", numOfRows: "100", pageNo: String(page), arrange: "C", lDongRegnCd: q.province, lDongSignguCd: q.district };
+      const params: Record<string, string> = { serviceKey: decoded, MobileOS: "ETC", MobileApp: "pickDday", _type: "json", numOfRows: "100", pageNo: String(page), arrange: "C", lDongRegnCd: q.province, lDongSignguCd: q.district };
       if (q.kind === "15") { params.eventStartDate = q.start.replaceAll("-", ""); params.eventEndDate = q.end.replaceAll("-", ""); }
       else params.contentTypeId = q.kind;
       Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));

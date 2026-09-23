@@ -16,9 +16,14 @@ import markdown
 from markdown.extensions.toc import slugify_unicode
 
 ROOT = Path(__file__).resolve().parents[1]
+BRAND = 'pickDday'
+# Review copies for the pickDday name start in a new folder; earlier fest-compass folders stay untouched.
+PROJECT_DIR = 'pickDday'
+PROJECT_ID = 'fest-compass'
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
-MARKER = '<!-- fest-compass-review-index -->'
+MARKER = '<!-- pickDday-review-index -->'
 DOCS = {
+    'docs/validation/35-pickdday-new-festival.md': '새 축제 실제 화면·검증 결과',
     'docs/validation/34-existing-festival-journey.md': '기존 축제 실제 화면·검증 결과',
     'docs/ops/repository-consolidation.md': '저장소 통합·구현 결과',
     'docs/sdlc/2-design/functional-spec.md': '기능 상세·디자인 작업 입력',
@@ -66,7 +71,7 @@ pre{overflow:auto;background:#fff;padding:16px;border:1px solid #d8dfe6}code{fon
 
 def page(title, body, mermaid=False):
     script = '<script src="mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,securityLevel:"strict"});</script>' if mermaid else ''
-    return f'<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} · FEST Compass</title><style>{CSS}</style><body><main>{body}</main>{script}</body></html>'
+    return f'<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} · {BRAND}</title><style>{CSS}</style><body><main>{body}</main>{script}</body></html>'
 
 
 def git(*args):
@@ -97,7 +102,7 @@ def main():
     common = Path(git('rev-parse', '--path-format=absolute', '--git-common-dir'))
     canonical = common.parent if common.name == '.git' else common
     remote = f'{REPOSITORY}/blob/{revision}/'
-    project = destination / 'fest-compass'
+    project = destination / PROJECT_DIR
     bundle = project / args.label
     paths = list(DOCS)
     for sid, version, _, _ in SCREENS:
@@ -177,19 +182,20 @@ def main():
         body = f'<nav><a href="index.html#{group}">검토 시작</a><a href="sources/{source}">전체 시안 열기</a></nav><h1>{title}</h1><p class="meta">SCR-FC-{sid} · {version} · 개발 전 설계</p>' + ''.join(figures)
         (bundle / filename).write_text(page(title, body))
         cards[group].append(f'<a class="card" href="{filename}"><strong>{title}</strong><br><span class="meta">SCR-FC-{sid} · {version}</span></a>')
-    first_doc = doc_pages['docs/validation/34-existing-festival-journey.md']
-    body = f'<p class="meta">FEST Compass · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>기존 축제의 실제 화면과 검증 결과부터 확인하세요. 기능 상세에는 두 목적의 화면 목표·행동·데이터 연결을 정리했습니다.</p><p>아래 와이어프레임은 개발 전 기본 배치입니다. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 읽을 수 있습니다. 최종 시각 디자인은 별도 작업이며 각 화면에서 모바일 구성을 펼쳐 볼 수 있습니다.</p><nav><a href="{first_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
+    first_doc = doc_pages['docs/validation/35-pickdday-new-festival.md']
+    existing_doc = doc_pages['docs/validation/34-existing-festival-journey.md']
+    body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>새 축제와 기존 축제의 실제 화면과 검증 결과부터 확인하세요. 기능 상세에는 두 목적의 화면 목표·행동·데이터 연결을 정리했습니다.</p><p>아래 와이어프레임은 개발 전 기본 배치입니다. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 읽을 수 있습니다. 최종 시각 디자인은 별도 작업이며 각 화면에서 모바일 구성을 펼쳐 볼 수 있습니다.</p><nav><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
     for group, title in [('existing', '기존 축제 개선 · 정상 상태 참고'), ('new', '새 축제 기획 · 정상 상태 참고'), ('states', '부족한 자료와 조회 실패 · 기본 배치')]:
         body += f'<section id="{group}"><h2>{title}</h2><div class="grid">' + ''.join(cards[group]) + '</div></section>'
     body += '<section id="documents"><h2>설계 문서</h2><div class="grid">' + ''.join(f'<a class="card" href="{doc_pages[p]}">{html.escape(title)}</a>' for p, title in DOCS.items()) + '</div></section>'
     checkout = f'<br>내보낸 작업 위치: {html.escape(str(ROOT))}' if ROOT != canonical else ''
     body += f'<details><summary>원본과 확인용 사본</summary><p>프로젝트 원본은 저장소에 유지됩니다. 이 폴더는 확인용 사본이며, 문서의 추가 근거 링크는 해당 시점의 저장소 원본으로 열립니다.</p><p class="source-path">원본: {html.escape(str(canonical))}{checkout}<br>저장소: {REPOSITORY}<br>기준 커밋: {revision}<br>선택 자료의 미커밋 변경: {"있음" if source_dirty else "없음"}<br>복사 시각: {stamp}</p><a href="manifest.json">복사 파일 목록·원본 해시</a></details>'
     (bundle / 'index.html').write_text(page('화면 검토', body))
-    manifest = {'project': 'fest-compass', 'copied_at': stamp, 'source_repository': REPOSITORY, 'source_root': str(canonical), 'source_checkout': str(ROOT), 'source_revision': revision, 'source_dirty': source_dirty, 'source_files_sha256': hashes, 'links_outside_project': outside, 'mermaid_sha256': hashlib.sha256(vendor.read_bytes()).hexdigest(), 'source_of_truth': 'project repository; review copies are not edited sources'}
+    manifest = {'project': BRAND, 'project_id': PROJECT_ID, 'copied_at': stamp, 'source_repository': REPOSITORY, 'source_root': str(canonical), 'source_checkout': str(ROOT), 'source_revision': revision, 'source_dirty': source_dirty, 'source_files_sha256': hashes, 'links_outside_project': outside, 'mermaid_sha256': hashlib.sha256(vendor.read_bytes()).hexdigest(), 'source_of_truth': 'project repository; review copies are not edited sources'}
     (bundle / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
     landing = project / 'index.html'
     landing_hash = project / '.review-index.sha256'
-    content = MARKER + page('최신 검토 자료', f'<h1>FEST Compass 검토 자료</h1><p>{stamp[:10]} · 두 목적의 기능 상세·화면 목표·기본 배치</p><a class="button" href="{quote(args.label)}/index.html">최신 기능·설계 문서 열기</a>')
+    content = MARKER + page('최신 검토 자료', f'<h1>{BRAND} 검토 자료</h1><p>{stamp[:10]} · 두 목적의 기능 상세·화면 목표·기본 배치</p><a class="button" href="{quote(args.label)}/index.html">최신 기능·설계 문서 열기</a>')
     if landing.exists() and (not landing_hash.exists() or hashlib.sha256(landing.read_bytes()).hexdigest() != landing_hash.read_text().strip()):
         print('Existing user index preserved:', landing)
         suffix = ''

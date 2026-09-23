@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-22
 version: v2
 summary: "현재 등록 행사와 출처가 있는 과거 회차를 찾아 일정·방문·비용 그래프를 보고 비교 근거를 보관하는 첫 기능입니다."

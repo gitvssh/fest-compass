@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-10
 version: v1
 summary: "조회한 현재 등록 축제를 기준 행사와의 직선거리로 비교합니다. 거리 미확인 자료를 남기고 기준 좌표·반경·출처를 선택 당시 근거에 보관합니다."

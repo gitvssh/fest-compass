@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-09
 version: v1
 summary: "기획 후보의 재원·지출·기간별 산출·근거·준비 과제를 연결했습니다. 공개 앱에서 후보 비교·그래프·이전 보관본 복원을 확인했습니다."

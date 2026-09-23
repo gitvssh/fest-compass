@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-22
 version: v4
 summary: "지도·비교·예산에 쓰는 자료의 단위와 확보 상태를 구분합니다. 논산 밖의 동일 데이터 확보를 가정하지 않습니다."

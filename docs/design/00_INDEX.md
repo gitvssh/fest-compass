@@ -1,4 +1,4 @@
-# FEST Compass 설계문서 인덱스
+# pickDday 설계문서 인덱스 (이전 이름 FEST Compass)
 
 > 작성일: 2026-08-30 · 작성: Claude (설계) → 구현 위임: Codex
 > 정본 관계: 이 설계문서들은 `output/2026_과제9_FEST_Compass_분석설계_기획서.md`(이하 "기획서")와
@@ -7,8 +7,17 @@
 
 ## 문서 구성
 
-사람 확인용 화면·문서는 `D:\download\project\fest-compass\index.html`에서 연다.
+사람 확인용 화면·문서의 새 사본은 `D:\download\project\pickDday\index.html`에서 시작한다.
+이전 `D:\download\project\fest-compass\` 사본은 전달 당시 그대로 둔다.
 [사본 전달 방법](../ops/review-delivery.md)에 따라 복사하며 이 프로젝트의 원본은 유지한다.
+
+2026-09-23 제품 이름·현재 상태: 제품 표시명은 **pickDday**다. 지방자치단체 축제 담당자가 공공 관광데이터로
+지역 관광자원·방문 흐름·개최 시기를 살펴보고 관광 활성화를 위한 축제를 기획하도록 돕는 의사결정 지원 서비스다.
+[제품 목표와 범위](../product/vision-scope.md)와 [현행 점검](../review/2026-09-current-state.md)을 먼저 읽는다.
+기존 축제 개선 흐름(UC-FC-009)은 구현·검증됐고([검증 기록34](../validation/34-existing-festival-journey.md)),
+새 축제 기획 전용 흐름(UC-FC-010)은 두 번째 흐름으로 구현 코드 있음 · 통합 검증 전이며 공개 반영 전이다
+([검증 기록35](../validation/35-pickdday-new-festival.md)). 아래 날짜별 항목의 '개발 필요'는 당시 상태다.
+프로젝트 식별자 `fest-compass`, 과거 원문 파일명과 아래 8월 설계 문서의 옛 이름은 유지한다.
 
 2026-09-23 저장소 통합: [통합 범위와 검증·게시 대기](../ops/repository-consolidation.md)를 먼저 확인한다.
 데이터랩 연도별 방문 추이 26개 축제를 새 화면 `/compare/annual`에 연결했으나 통합 검수 전이다.

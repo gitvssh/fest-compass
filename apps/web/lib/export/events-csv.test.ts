@@ -65,8 +65,8 @@ test("export waits for every region and refuses when none was checked", () => {
 });
 
 test("file names use only validated codes and dates", () => {
-  assert.equal(csvFileName(["44/230", "44/150"], "2026-02-15", "2026-04-10"), "fest-compass-events_44-230_44-150_2026-02-15_2026-04-10.csv");
-  assert.equal(csvFileName(["../x y/한"], "2026", "<>"), "fest-compass-events_..-xy_2026_.csv");
+  assert.equal(csvFileName(["44/230", "44/150"], "2026-02-15", "2026-04-10"), "pickDday-events_44-230_44-150_2026-02-15_2026-04-10.csv");
+  assert.equal(csvFileName(["../x y/한"], "2026", "<>"), "pickDday-events_..-xy_2026_.csv");
 });
 
 test("labels and comparison conditions", () => {

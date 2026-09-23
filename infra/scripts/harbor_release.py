@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed Harbor publication and deploy-marker gate for FEST Compass.
+"""Fail-closed Harbor publication and deploy-marker gate for pickDday.
 
 The immutable commit tag is resolved before BuildKit runs. An existing tag is
 never overwritten: it is reused only after the remote OCI index, SBOM

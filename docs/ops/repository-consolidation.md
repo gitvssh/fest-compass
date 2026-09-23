@@ -10,9 +10,13 @@ summary: "pick-d-day에 흩어져 있던 FEST Compass의 최신 문서·시안�
 
 # 저장소 통합 보고
 
+현재 제품명은 **pickDday**다. 아래는 FEST Compass라는 이름으로 진행한 통합 당시 기록이며,
+후속 두 목적 흐름의 상태는 [기존 축제](../validation/34-existing-festival-journey.md)와
+[새 축제·이름 변경](../validation/35-pickdday-new-festival.md) 검증 기록을 따른다.
+
 ## 결론
 
-**FEST Compass의 정본은 `gitvssh/fest-compass` 하나다.** 팀 저장소 `travel-resolver/pick-d-day`에서
+**pickDday의 정본은 `gitvssh/fest-compass` 하나다.** 팀 저장소 `travel-resolver/pick-d-day`에서
 같은 축제 제품의 최신 문서·시안과 축제 자료만 골라 이 저장소로 옮겼다. 원본 저장소는 지우거나 옮기지 않았고,
 다른 제품은 가져오지 않았다. 모노레포 전체를 이전한 작업이 아니다.
 

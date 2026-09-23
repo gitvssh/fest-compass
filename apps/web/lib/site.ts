@@ -6,8 +6,8 @@ const LOCAL_URL = "http://localhost:3000";
 const PRODUCTION_URL = "https://pickday.damecasol.com";
 
 export const siteConfig = {
-  name: "FEST Compass",
-  description: "공공 관광데이터 기반 축제 의사결정 지원 서비스",
+  name: "pickDday",
+  description: "지역 공무원이 공공데이터로 지역 관광자원과 방문 흐름을 살펴 축제를 기획·개선하도록 돕는 서비스",
   url: resolveSiteUrl(process.env.SITE_URL, process.env.NODE_ENV),
 } as const;
 

@@ -290,7 +290,7 @@ function withKey(base: string, path: string, params: Record<string, string | num
   const key = serviceKey();
   if (!key) return null;
   const search = new URLSearchParams({
-    serviceKey: key, MobileOS: "ETC", MobileApp: "FESTCompass", _type: "json",
+    serviceKey: key, MobileOS: "ETC", MobileApp: "pickDday", _type: "json",
   });
   for (const [name, value] of Object.entries(params)) {
     if (value !== undefined && value !== "") search.set(name, String(value));

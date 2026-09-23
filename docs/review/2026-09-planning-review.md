@@ -1,18 +1,24 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-23
-version: v13
-summary: "두 목적의 기능 상세·화면 목표·기본 배치를 검토합니다. 검색·조건 전달·자료 공급·실패 복구를 보완했고 시각 디자인은 사용자 작업, 앱 연결은 개발 필요입니다."
+version: v14
+summary: "pickDday 두 목적의 기능 상세·화면 목표·기본 배치를 검토합니다. 기존 축제 흐름은 구현·검증됐고 새 축제 전용 흐름은 구현 코드 있음 · 통합 검증 전입니다. 시각 디자인은 사용자 작업입니다."
 ---
 
-# FEST Compass 기획 검수 v13
+# pickDday 기획 검수 v14
+
+2026-09-23 제품 표시명을 **pickDday**로 정리했다(이전 이름 FEST Compass). pickDday는 지방자치단체 축제 담당자가
+공공 관광데이터로 지역 관광자원·방문 흐름·개최 시기를 살펴보고 관광 활성화를 위한 축제를 기획하도록 돕는 의사결정 지원 서비스다.
+기존 축제 개선 흐름은 [검증 기록34](../validation/34-existing-festival-journey.md)에서 구현·자동 시험·공개 반영을 확인했다.
+새 축제 기획 전용 흐름은 두 번째 흐름으로 구현 코드 있음 · 통합 검증 전이며 실행 화면 검수는 통합 검증 뒤다
+([검증 기록35](../validation/35-pickdday-new-festival.md)). 아래 v13 안내는 상태 문장만 보정해 유지하며 '개발 필요'는 v13 당시 상태다.
 
 **이번 검토는 [기능 상세·디자인 작업 입력](../sdlc/2-design/functional-spec.md)에서 시작합니다.**
 [화면 목표·기본 배치와 부족한 자료의 상태 v7](../sdlc/2-design/screens.md),
 [조건 전달·복귀 흐름](../sdlc/2-design/flows.md), [자료 공급·갱신](../sdlc/2-design/data-visualization.md)을 함께 확인합니다.
 최종 시각 디자인은 사용자 작업이며 기존 시안의 색·폰트·간격을 확정안으로 고정하지 않습니다.
-`D:\download\project\fest-compass\index.html`에 읽기용 문서와 화면 사본을 전달합니다.
+읽기용 문서와 화면의 새 사본 시작 위치는 `D:\download\project\pickDday\index.html`이며, 이전 `D:\download\project\fest-compass\` 사본은 그대로 둡니다.
 
 [확정 기획 원칙](../product/planning-principles.md)은 관광 활성화, 기존 축제 개선·새 축제 기획, 선택적 기록입니다.
 기존 축제 v5 설계를 유지하고, 새 축제는 지역 선택→관광자원부터 시작해 방문 흐름·개최 시기를 오가는
@@ -24,7 +30,7 @@ summary: "두 목적의 기능 상세·화면 목표·기본 배치를 검토합
 [디자인 작업 범위와 정성 검수](../sdlc/2-design/design-system.md)는 devkit `a71fd33`을 적용했습니다.
 이전 v6 시안의 검수 기준 `6e6ce25`와 결과는 해당 이력에 유지합니다.
 기존 축제 [UC-FC-009](../sdlc/1-analysis/usecases/UC-FC-009.md)와 새 축제
-[UC-FC-010](../sdlc/1-analysis/usecases/UC-FC-010.md)의 인수 기준은 각각 14개이며 실제 동작 통과로 표시하지 않습니다.
+[UC-FC-010](../sdlc/1-analysis/usecases/UC-FC-010.md)의 인수 기준은 각각 14개입니다. UC-FC-009는 이후 자동 인수 시험을 통과했고(검증 기록34) UC-FC-010은 구현 코드 있음 · 통합 검증 전으로 14개 모두 미평가입니다.
 [현행 기능·화면·기록 조건](2026-09-current-state.md)과 [데이터 확보·연결 현황](../research/2026-09-data-inventory.md)은 기반 자료로 읽습니다.
 
 M1~M6 첫 기능의 구현·공개 검증 기록이 있습니다. 이번에는 코드·문서·자료를 대조했고 앱 시험·운영 정상 여부를 재검증하지 않았습니다.
@@ -54,7 +60,7 @@ M1~M6 첫 기능의 구현·공개 검증 기록이 있습니다. 이번에는 �
 8개 보완 방향을 요구사항·자료 정의·인수 기준과 7개 와이어프레임에 반영했고, v3에서 전국 진입·실자료 그래프를 추가했습니다.
 기존 화면 번호와 지도 중심 순서를 유지하고, 기획·예산·결과 단계의 업무 정보를 구체화했습니다.
 
-내부 검수 사이트: [FEST Compass 문서](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/index.html).
+내부 검수 사이트: [pickDday 문서](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/index.html) (주소의 `fest-compass`는 프로젝트 식별자).
 이 주소는 기존 내부 접근 환경에서 사용합니다. 외부 공개 사이트 등록은 이번 범위가 아닙니다.
 traceboard의 화면 카탈로그와 화면 흐름에서 7개 시안을 열 수 있습니다.
 사이트의 '문서 존재' 표시는 개발 완료·사용자 검수 완료가 아닙니다.

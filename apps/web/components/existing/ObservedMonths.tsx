@@ -60,7 +60,7 @@ export function ObservedMonths({ region, result, year, onYear, selectedMonth, on
   </section>;
 }
 
-function MonthChart({ months, selected, onSelect }: { months: MonthMean[]; selected: string | null; onSelect: (month: string) => void }) {
+export function MonthChart({ months, selected, onSelect }: { months: MonthMean[]; selected: string | null; onSelect: (month: string) => void }) {
   const max = niceMax(Math.max(0, ...months.map(m => m.mean ?? 0)));
   const slot = (W - L - R) / 12, y = (v: number) => T + (1 - v / max) * PLOT_H;
   const title = `${months[0]?.month.slice(0, 4) ?? ""}년 월별 일평균 막대그래프. 값이 없는 달은 막대를 그리지 않았어요. 월별 값은 수치 표에서 볼 수 있어요.`;
@@ -80,7 +80,7 @@ function MonthChart({ months, selected, onSelect }: { months: MonthMean[]; selec
   </div>;
 }
 
-function MonthTable({ months }: { months: MonthMean[] }) {
+export function MonthTable({ months }: { months: MonthMean[] }) {
   return <TableScroll label="월별 일평균 수치 표">
     <table className="w-full min-w-[420px] border-collapse text-sm">
       <caption className="px-3 py-2 text-left font-bold">월별 일평균 · 명/일 · 추정</caption>

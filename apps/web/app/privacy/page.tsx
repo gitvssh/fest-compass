@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-blue">Privacy & analytics</p>
         <h1 className="mt-2 text-3xl font-extrabold">개인정보·분석 안내</h1>
         <p className="mt-3 text-sm text-muted">
-          {siteConfig.name}은 축제 운영 근거를 기록하는 서비스입니다. 공개 자료는 조회하며, 내 작업공간의 개인 기록은 브라우저에 저장됩니다.
+          {siteConfig.name}는 축제 운영 근거를 기록하는 서비스입니다. 공개 자료는 조회하며, 내 작업공간의 개인 기록은 브라우저에 저장됩니다.
         </p>
       </header>
 

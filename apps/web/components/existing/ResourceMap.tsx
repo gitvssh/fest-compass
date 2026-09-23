@@ -8,6 +8,9 @@ export type MapRow = { id: string; number: number; title: string; point: Point }
 export type ResourceMapProps = {
   rows: MapRow[]; selectedId: string | null; anchor: Point | null; radiusKm: number | null;
   onSelect: (id: string) => void; onCenter: (point: Point) => void; onFailure: () => void;
+  /** Optional extra marking (e.g. resources chosen for side-by-side reading); detail selection stays `selectedId`. */
+  highlightedIds?: readonly string[];
+  highlightLabel?: string;
 };
 type Engine = { L: typeof Leaflet; map: Leaflet.Map };
 
@@ -16,7 +19,7 @@ type Engine = { L: typeof Leaflet; map: Leaflet.Map };
  * venue or district centre is assumed. Moving the map never changes the query; the centre becomes a
  * distance anchor only through the explicit button.
  */
-export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSelect, onCenter, onFailure }: ResourceMapProps) {
+export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSelect, onCenter, onFailure, highlightedIds, highlightLabel }: ResourceMapProps) {
   const element = useRef<HTMLDivElement>(null), latest = useRef({ onSelect, onFailure });
   latest.current = { onSelect, onFailure };
   const [engine, setEngine] = useState<Engine | null>(null);
@@ -49,15 +52,17 @@ export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSele
     const pad = 0.01;
     engine.map.fitBounds([[Math.min(...lats) - pad, Math.min(...lons) - pad], [Math.max(...lats) + pad, Math.max(...lons) + pad]], { padding: [24, 24], maxZoom: 14, animate: false });
   }, [engine, signature]); // eslint-disable-line react-hooks/exhaustive-deps
+  const highlighted = (highlightedIds ?? []).join(",");
   useEffect(() => {
     if (!engine) return;
-    const { L, map } = engine, layer = L.layerGroup().addTo(map);
+    const { L, map } = engine, layer = L.layerGroup().addTo(map), marked = new Set(highlighted ? highlighted.split(",") : []);
     for (const row of rows) {
-      const selected = row.id === selectedId, button = document.createElement("button");
+      const selected = row.id === selectedId, extra = marked.has(row.id), button = document.createElement("button");
       button.type = "button"; button.className = `map-resource ${selected ? "is-selected" : ""}`; button.textContent = String(row.number);
-      button.setAttribute("aria-label", `지도에서 ${row.number}. ${row.title} 상세 보기`); button.setAttribute("aria-pressed", String(selected));
+      if (extra) button.style.boxShadow = "0 0 0 3px #fff, 0 0 0 6px #071a33";
+      button.setAttribute("aria-label", `지도에서 ${row.number}. ${row.title} 상세 보기${extra && highlightLabel ? `, ${highlightLabel}` : ""}`); button.setAttribute("aria-pressed", String(selected));
       button.addEventListener("click", event => { event.stopPropagation(); latest.current.onSelect(row.id); });
-      L.marker([row.point.latitude, row.point.longitude], { icon: L.divIcon({ html: button, className: "map-label-container", iconSize: [36, 36], iconAnchor: [18, 18] }), keyboard: false, zIndexOffset: selected ? 1000 : 0 }).addTo(layer);
+      L.marker([row.point.latitude, row.point.longitude], { icon: L.divIcon({ html: button, className: "map-label-container", iconSize: [36, 36], iconAnchor: [18, 18] }), keyboard: false, zIndexOffset: selected ? 1000 : extra ? 500 : 0 }).addTo(layer);
     }
     if (anchor) {
       const mark = document.createElement("span");
@@ -66,7 +71,7 @@ export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSele
       if (radiusKm) L.circle([anchor.latitude, anchor.longitude], { radius: radiusKm * 1000, color: "#071a33", weight: 2, dashArray: "6 5", fillOpacity: 0.03, interactive: false }).addTo(layer);
     }
     return () => { layer.remove(); };
-  }, [engine, rows, selectedId, anchor, radiusKm]);
+  }, [engine, rows, selectedId, anchor, radiusKm, highlighted, highlightLabel]);
   useEffect(() => {
     const row = rows.find(r => r.id === selectedId);
     if (engine && row) engine.map.panInside([row.point.latitude, row.point.longitude], { padding: [40, 40], animate: false });

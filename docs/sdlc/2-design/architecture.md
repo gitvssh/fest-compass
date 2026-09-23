@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-09
 version: v2
 summary: "개인 저장·공개 읽기 전용 경계 안에서 지도·근거·후보·예산·불변 기획안과 출력을 연결했습니다. 운영 DB와 배포 구조는 유지합니다."

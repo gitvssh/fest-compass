@@ -1,6 +1,6 @@
 ---
 class: Current
-owner: fest-compass
+owner: pickDday
 last_verified: 2026-09-09
 version: v1
 summary: "전국에서 지역과 관광자원을 탐색하는 지도를 개선합니다. 도로 배경·이동·확대·자료 선택과 조회 영역을 연결하며 행정경계와 장소 사용 가능 여부는 별도 확인합니다."
