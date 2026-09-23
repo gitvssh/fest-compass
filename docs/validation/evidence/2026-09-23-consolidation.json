@@ -1,0 +1,112 @@
+{
+  "date": "2026-09-23",
+  "sourceCommit": "f362e65ba9e1cac18757951236484cff666c2696",
+  "applicationCommit": "a889be5a803ff8c813448d42f1fe00c8291d087f",
+  "deploymentCommit": "05716b4efbb20eeec412c18730e725ec93c3bf64",
+  "sourceNoticeCommit": "6288436ea9e07bd8f5fa5188bb7d6c533dab0fe0",
+  "delegateModel": "claude-opus-5-5",
+  "reviewer": "codex",
+  "local": {
+    "node": "24.20.0",
+    "unitTests": 239,
+    "infraTests": 40,
+    "typecheck": "passed",
+    "build": "passed",
+    "headlessScripts": 16,
+    "auditHighVulnerabilities": 0,
+    "originalBlobsMatched": 309
+  },
+  "ci": {
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/35824313294",
+    "conclusion": "success",
+    "runnerLabel": "homelab-fest-compass",
+    "digest": "sha256:0f2e11eac39bde149f6ee09e3f4a42b666b6115a43daf778f5caae5e82920f88"
+  },
+  "deployment": {
+    "app": "fest-compass-prod",
+    "sync": "Synced",
+    "health": "Healthy",
+    "generation": 25,
+    "readyReplicas": 1,
+    "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+    "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+    "pvcStatus": "Bound",
+    "preservedData": {
+      "festival": {
+        "rows": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "rows": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "rows": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "rows": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "rows": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "rows": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "rows": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "rows": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "rows": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "dataBeforeEqualsAfter": true
+  },
+  "public": {
+    "checkedAt": "2026-09-23T06:04:56.524217+00:00",
+    "headless": true,
+    "base": "https://pickday.damecasol.com",
+    "fixtures": false,
+    "annual": {
+      "http": 200,
+      "festivals": 26,
+      "exact2018": [
+        "3",
+        "32,565.3",
+        "97,696"
+      ],
+      "missing2020": "값 없음",
+      "metricRestored": true,
+      "mobileWidth": 390,
+      "sourceLink": true
+    },
+    "events": {
+      "http": 200,
+      "status": "complete",
+      "total": 5,
+      "count": 5,
+      "names": [
+        "강경젓갈축제",
+        "한국유교문화축전",
+        "강경 국가유산야행"
+      ],
+      "csvDownloaded": true
+    },
+    "browserErrors": []
+  },
+  "reviewDelivery": {
+    "entry": "D:\\download\\project\\fest-compass\\index.html",
+    "plannedLabel": "2026-09-23-consolidated",
+    "sourceOfTruth": "gitvssh/fest-compass"
+  },
+  "remaining": "Full v7 existing/new festival journeys; remaining 278 CSV and Foundry integration; refresh pipelines; final visual design; news links later."
+}

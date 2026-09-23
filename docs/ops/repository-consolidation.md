@@ -5,7 +5,7 @@ doc_kind: ops
 owner: fest-compass
 last_verified: 2026-09-23
 version: v1
-summary: "pick-d-day에 흩어져 있던 FEST Compass의 최신 문서·시안과 데이터랩 원자료를 gitvssh/fest-compass로 선별 통합한 범위와 경계입니다. 원본 삭제나 모노레포 전체 이전이 아니며, 연도별 방문·달력·CSV·메뉴 연결의 로컬 검증을 완료했고 공개 반영을 준비합니다."
+summary: "pick-d-day에 흩어져 있던 FEST Compass의 최신 문서·시안과 데이터랩 원자료를 gitvssh/fest-compass로 선별 통합한 범위와 경계입니다. 원본 삭제나 모노레포 전체 이전이 아니며, 연도별 방문·달력·CSV·메뉴 연결의 검증을 마치고 공개 운영에 반영했습니다."
 ---
 
 # 저장소 통합 보고
@@ -18,10 +18,10 @@ summary: "pick-d-day에 흩어져 있던 FEST Compass의 최신 문서·시안�
 
 | 구분 | 상태 |
 |---|---|
-| 최신 문서·시안 62개 이관 | 이관·검수 완료. 공개 반영 대기 |
+| 최신 문서·시안 62개 이관 | 이관·검수·게시 완료 |
 | 데이터랩 원자료 CSV 304개·문서 5개 보존 | 이관 완료. 원본 바이트 일치 확인 |
-| 새 연도별 방문 화면 `/compare/annual` | 구현·로컬 검증 완료 — [검증 결과](#검증-결과) |
-| 개최 일정·앱 내 이동·추가 CSV 연결 | 구현·로컬 검증 완료. 공개 반영 대기 |
+| 새 연도별 방문 화면 `/compare/annual` | 사용 가능 — [검증 결과](#검증-결과) |
+| 개최 일정·앱 내 이동·추가 CSV 연결 | 사용 가능 |
 | v7 두 목적 전체 흐름 | 개발 필요 |
 
 ## 정본과 작업 위치
@@ -106,12 +106,11 @@ Claude Opus 5.5에 조사·구현·문서 정리를 위임하고 통합 담당�
 | 배포 계약 검사·인프라 단위 시험 | 17개 리소스 검사와 40개 시험 통과 |
 | 운영 의존성 검사 | high 기준 취약점 0건 |
 | 원본 보존 | 커밋된 CSV 304개·문서 5개의 Git blob이 원본과 309/309 일치 |
-| 검토 사본 | 27개 HTML·14개 Mermaid·이미지 누락 0 확인. 최종 사본의 모바일 검사와 전달은 게시 후 기록 |
+| 검토 사본 | 27개 HTML·14개 Mermaid·이미지 누락 0 확인. 390px 전체 페이지 넘침 0 |
 
 연도별 화면의 모바일 가로 넘침을 발견해 원문 표의 접근성 텍스트가 자기 스크롤 영역 안에 있도록 고쳤다.
 차트의 최소 너비와 키보드 스크롤도 보완했다. 재실행에서 페이지 너비 390px, 차트·원문 표의 내부 스크롤을 확인했다.
 달력 검증에는 `검증용` 행사 응답을 사용했고, 연도별 화면은 실제 보관 CSV에서 나온 값을 대조했다.
-중간 임시 서버 검사는 초기 데이터가 없는 시험 DB 때문에 홈에서 실패했다. 최종 전체 실행은 격리 DB를 구성해 통과했다.
 
 | UI/UX 검수 범위 | 판정·근거 |
 |---|---|
@@ -124,11 +123,22 @@ Claude Opus 5.5에 조사·구현·문서 정리를 위임하고 통합 담당�
 
 ## 운영 반영
 
-**공개 반영 대기.** 로컬 검증을 완료했고 기존 수동 이미지 게시 경로로 반영한다. 아래 결과는 실제 확인 후 갱신한다.
+**사용 가능.** [연도별 방문 흐름](https://pickday.damecasol.com/compare/annual), [관광지도](https://pickday.damecasol.com/regions), [축제 비교](https://pickday.damecasol.com/compare)에 반영했다.
 
-- CI: 저장소 전용 ARC `homelab-fest-compass`, 수동 `workflow_dispatch`. GitHub cache/artifact를 추가하지 않았다.
-- 운영: [ADR-0001](../decisions/0001-public-readonly-sqlite-boundary.md)의 공개 읽기 전용·단일 SQLite 쓰기·RWO PVC 유지.
-- 주소: `https://pickday.damecasol.com`. 이미지·배포·공개 화면 검증 결과는 후속 기록.
+- 검증·이미지 게시: [GitHub Actions 35824313294](https://github.com/gitvssh/fest-compass/actions/runs/35824313294) 성공. 앱 커밋 `a889be5a803ff8c813448d42f1fe00c8291d087f`.
+- 배포 선언: `05716b4efbb20eeec412c18730e725ec93c3bf64`. 이미지 `sha256:0f2e11eac39bde149f6ee09e3f4a42b666b6115a43daf778f5caae5e82920f88`를 원격 검증 뒤 고정했다.
+- 등록 앱 `fest-compass-prod`: Synced·Healthy, Deployment generation 25/observed 25/ready 1. 기존 Deployment와 PVC의 UID 유지, SQLite 업무 데이터 9개 테이블의 행수·내용 해시가 배포 전후 같다.
+- 공개 headless 확인: 실제 26개 축제, 서산 2018년 개최 3일·일평균 32,565.3·합계 97,696, 2020년 값 없음, 지표 선택 복원, 원문 링크, 390px 너비. 화면·API 응답을 시험 값으로 대체하지 않았다.
+- 실제 논산 행사 조회: HTTP 200·조회 완료·5건. 행사 달력과 CSV 내려받기를 확인했다. CSV 검증용 데이터와 구분한다.
+- 공개 브라우저 오류 0. Python 기본 요청의 Cloudflare 403은 기존 동작이며 정상 Chromium으로 공개 주소를 확인했다.
+- CI는 저장소 전용 ARC `homelab-fest-compass`의 수동 `workflow_dispatch`를 유지한다. GitHub cache/artifact나 배포 트리거를 추가하지 않았다.
+- [ADR-0001](../decisions/0001-public-readonly-sqlite-boundary.md)의 공개 읽기 전용·단일 SQLite 쓰기·RWO PVC 경계를 유지한다.
+- `pick-d-day`의 안내 변경은 `6288436ea9e07bd8f5fa5188bb7d6c533dab0fe0`으로 게시했다. 다른 제품은 수정·이동·삭제하지 않았다.
+- 확인용 문서와 화면은 `D:\download\project\fest-compass\index.html`에서 연다. 프로젝트 원본과 [검증 근거](../validation/evidence/2026-09-23-consolidation.json)는 이 저장소에 남긴다.
+
+![공개 운영의 서산해미읍성축제 연도별 방문 화면](../validation/images/33-consolidation-annual-desktop.png)
+
+![공개 운영의 모바일 수치 표와 원문 확인](../validation/images/33-consolidation-annual-mobile.png)
 
 ## 다음 작업
 
