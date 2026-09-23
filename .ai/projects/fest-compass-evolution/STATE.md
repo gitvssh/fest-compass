@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 39
+revision: 40
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-23T13:59:48.663Z"
+updated_at: "2026-09-23T15:19:14.397Z"
 ---
 
 # Current state
 
 ## Summary
 
-gitvssh/fest-compass에서 기존 축제 개선의 검색·과거 방문 비교·현재 주변 관광자원·개최 시기를 공개 운영에서 사용할 수 있다. 기록 없이 자유롭게 탐색하며 원자료·수치·실제 화면을 직접 검수했다. Claude Opus 5.5 위임, 단위268건·headless17개 스크립트·전용 ARC CI를 통과했고 기존 운영 데이터는 유지됐다. D:\download\project\fest-compass\index.html에 실제 화면과 설계 확인본을 전달했다. 다음 개발은 새 축제 전용 흐름이며 최종 시각 디자인과 담당자 검증은 후속이다.
+pickDday의 기존 축제 개선과 새 축제 기획을 공개 서비스에서 기록 없이 사용할 수 있다. 이름·소개·현재 문서를 정리했고 새 지역 선택·관광자원 두 곳 비교와 실제 소개·월/요일 방문·달력/후보 기간을 구현했다. Claude Opus 5.5 위임 후 직접 검수했으며 단위280건·headless18개 스크립트·ARC CI를 통과했다. D:\download\project\pickDday\index.html에 실제 화면8개와 최신 설계 확인본을 전달했다. 저장소·배포 주소와 기존 자료는 유지했다. 최종 시각 디자인·담당자 검증과 뉴스 검색/원문 연결은 후속이다.
 
 ## Accepted decisions
 
@@ -62,10 +62,11 @@ gitvssh/fest-compass에서 기존 축제 개선의 검색·과거 방문 비교�
 - 2026-09-23 사용자 요청·순차 실행 승인: shlee의 FEST Compass를 다른 프로젝트와 비교해 같은 축제 제품의 자료·기능만 흡수하고 기존 gitvssh/fest-compass를 개발·CI·배포 정본으로 통합한다. 다른 제품과 원본 자료는 보존한다.
 - 2026-09-23 사용자 변경 요청: 위임 모델은 Grok 4.6 대신 Claude Opus 5.5를 사용하고 통합 담당이 직접 검수한다. 실제 claude-opus-5-5 실행으로 자료·문서·기능 작업을 수행했다.
 - 2026-09-23 다음 작업 진행 요청에 따라 기존 축제 개선의 검색·과거 방문·주변 자원·개최 시기를 구현·검증·공개했다. Claude Opus 5.5에 위임하고 통합 담당이 직접 검수하며 선택적 기록·실제 자료와 통제 응답 구분·최종 시각 디자인 후속 원칙을 유지한다.
+- 2026-09-23 사용자 요청: 프로젝트 표시 이름을 정확히 pickDday로 바꾸고 설명·현재 문서를 정리한 뒤 새 축제 전용 흐름을 구현한다. 기존 관광 활성화·지역 공무원·두 목적·선택적 기록 기준과 Claude Opus 5.5 위임·직접 검수를 유지한다.
 
 ## Open questions
 
-- 다음 개발은 새 축제 전용 흐름이다. 기존 축제 UC-FC-009의 AC1~14에 대응하는 자동 시험과 공개 확인을 완료했으며 출처창 열림·전체 스크롤 복원, 320px·200% 확대·보조기술 전반, 실제 담당자 관찰·최종 시각 디자인은 후속이다. 핵심 구현 뒤 뉴스 검색·원문 연결, AI 요약은 나중에 검토한다.
+- 기존 축제·새 축제 두 전용 흐름은 구현·자동 검증·공개 확인 완료다. 최종 시각 디자인·실제 담당자 업무 관찰은 후속이다. 핵심 구현 뒤의 뉴스 검색·원문 연결을 다음 기능 후보로 두고 AI 요약은 나중에 검토한다. 출처창·전체 스크롤 복원, 320px·200% 확대·보조기술 전반도 후속 검증 범위다.
 - 보존한 나머지 278개 CSV의 지표 계약·실제 앱 연결과 Foundry 연계·자료 자동 갱신은 후속이다. 논산딸기축제는 새 26개 연도별 목록에 없고 기존 시군구 방문 이력과 별도로 다룬다.
 - 개편 35개 조회 단위의 최신 공식 경계 확보·버전 교체는 후속이며 2025년 경계를 현재 법정 영역으로 인증하지 않는다.
 - 추가 지역·회차 공개 비용 확보·전국 자동 주변 검색·실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
@@ -105,3 +106,7 @@ gitvssh/fest-compass에서 기존 축제 개선의 검색·과거 방문 비교�
 - docs/validation/evidence/2026-09-23-existing-journey.json
 - docs/sdlc/3-testing/scenarios/TS-FC-009.md
 - apps/web/scripts/existing-journey-e2e.mjs
+- docs/validation/35-pickdday-new-festival.md
+- docs/validation/evidence/2026-09-24-pickdday-new-festival.json
+- docs/sdlc/3-testing/scenarios/TS-FC-010.md
+- apps/web/scripts/new-festival-e2e.mjs

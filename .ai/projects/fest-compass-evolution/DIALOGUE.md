@@ -876,3 +876,27 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-040 · Codex · verifier
+
+- Position: 제품 표시명과 소개를 pickDday로 정리하고 새 축제 전용 지역 선택·관광자원 함께 보기·월/요일 방문·개최 시기를 공개 서비스에 반영했다. 실제 원자료·화면·배포를 직접 검수하고 D 드라이브에 확인 자료를 전달했다.
+- Evidence:
+  - 2026-09-23 사용자: pickDday로 이름·설명 변경 후 새 축제 전용 흐름 진행
+  - docs/validation/35-pickdday-new-festival.md
+  - docs/validation/evidence/2026-09-24-pickdday-new-festival.json
+  - 구현 c8f7c6c, 배포 7bcb6cc, 검토 원본 ff35234
+- Changes:
+  - 제품 표시명·메타데이터·다운로드 이름·저장소 소개·현재 문서를 pickDday로 정리. 저장소/배포 주소와 기존 개인 저장 형식은 유지
+  - /new 지역 선택 → 자원·방문·시기 세 화면, 실제 관광공사 소개와 최대 두 곳 비교, 명시적 위치 기준점, 완전연도의 월/요일 방문, 실제 관측월 달력과 선택적 0~2개 후보
+  - UC010/TS010·화면·흐름·정보구조·자료 계약과 검수 결과 갱신
+  - D:\download\project\pickDday\index.html → 2026-09-24-pickdday-new-journey-reviewed. 프로젝트 원본과 이전 fest-compass 검토 폴더 보존
+- Validation:
+  - 실제 claude-opus-5-5/firstParty 위임 종료 확인, 통합 담당 원자료·코드·실제 화면 직접 검수
+  - Node24.20.0 단위280건·타입·빌드·headless18개 스크립트·인프라40건 통과. 새 축제 AC1~14의37개 항목, 기존 축제28개 항목 통과
+  - 전용 homelab-fest-compass ARC CI35878391672 성공, Actions artifact0. 공개 Synced/Healthy, Deployment·PVC와 업무9개 모델 내용 보존
+  - 실제 논산 관광지61·문화시설7·온빛자연휴양림/논산아트센터 소개. 논산·공주·임실2025 요일 원평균/표시값 대조, 2026 부분 연도 처리, 후보/연도 유지·자원 선택 해제. 390px 넘침·브라우저 오류·API쓰기0
+  - D 드라이브 사본62개 해시 일치, 링크/이미지/앵커371개 정상. HTML29·Mermaid14·1280/390px 오류/깨진 이미지/넘침0
+  - 최종 시각 디자인·담당자 실사용·전체 보조기술·Windows 브라우저 직접 실행은 미평가
+- Questions:
+  - No open question
+- Handoff: Codex

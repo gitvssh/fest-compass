@@ -1,8 +1,8 @@
 ---
 class: Current
 owner: pickDday
-last_verified: 2026-09-23
-version: v4
+last_verified: 2026-09-24
+version: v5
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -109,3 +109,19 @@ Windows 브라우저 직접 실행은 미평가이며, 제품 동작·운영 검
 headless Chromium의 `file://`에서 HTML 28개·Mermaid 14개·이미지 표시를 확인했으며
 1280/390px에서 페이지 오류·가로 넘침이 없었다. 실제 공개 화면 6개는 통합 담당이 직접 검수했다.
 Windows 브라우저 직접 실행은 미평가다. 원본과 이전 검토 묶음은 보존했다.
+
+## pickDday 이름·새 축제 구현 전달 · 2026-09-24
+
+현재 확인 위치는 `D:\download\project\pickDday\index.html`이며
+`2026-09-24-pickdday-new-journey-reviewed` 묶음을 연다. 정본 커밋
+`ff35234ad0371ad9e4547c9cc2616ac1f825de34`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
+첫 항목 [pickDday 실제 화면·검증 결과](../validation/35-pickdday-new-festival.md)에
+첫 화면·지역 선택·자원 상세/함께 보기·방문 흐름·달력의 실제 공개 화면 8개와 실행 근거를 담았다.
+기존 축제 화면과 개발 전 와이어프레임도 함께 읽을 수 있다.
+
+실제 D 드라이브 9p 마운트에 원본 사본 62개·시안 11페이지·문서 17페이지·시작 페이지를 전달했다.
+62개 SHA-256 일치, 로컬 링크·이미지·앵커 371개 정상, 저장소 밖 상대 링크 0개를 확인했다.
+headless Chromium의 `file://`에서 HTML 29개·Mermaid 14개·이미지를 확인했으며 1280/390px의
+페이지 오류·깨진 이미지·전체 가로 넘침은 모두 0이다. 공개 화면 8개는 통합 담당이 직접 검수했다.
+이전 `fest-compass/index.html`의 해시도 전달 전후 일치하며 기존 폴더는 그대로 남겼다.
+Windows 브라우저 직접 실행은 미평가이며 프로젝트 원본과 편집 소스는 저장소에 유지한다.
