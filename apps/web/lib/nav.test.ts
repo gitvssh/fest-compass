@@ -12,6 +12,10 @@ test("menu marks only the exact page as the current page", () => {
 });
 
 test("nested pages mark the parent section without claiming to be it", () => {
+  const existing = navLinks(false).find(link => link.href === "/existing/search")!;
+  assert.equal(currentFor("/existing/archive%3Anonsan-strawberry/visits", existing.href, existing.section), "true");
+  assert.equal(currentFor("/existing/search", existing.href, existing.section), "page");
+  assert.equal(currentFor("/existing-other/search", existing.href, existing.section), undefined);
   assert.equal(currentFor("/compare", "/compare"), "page");
   assert.equal(currentFor("/compare/annual", "/compare"), "true");
   assert.equal(currentFor("/compare/annual/", "/compare"), "true");

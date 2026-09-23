@@ -1,6 +1,8 @@
-export type NavLink = { href: string; label: string };
+// `section` marks a menu whose pages live under a different prefix than its entry page.
+export type NavLink = { href: string; label: string; section?: string };
 export const NAV_LINKS: NavLink[] = [
   { href: "/", label: "홈" },
+  { href: "/existing/search", label: "기존 축제", section: "/existing" },
   { href: "/regions", label: "관광지도" },
   { href: "/compare", label: "축제 비교" },
   { href: "/evidence", label: "담은 근거" },
@@ -23,9 +25,11 @@ export function normalizePath(path: string): string {
   return bare.startsWith("/") ? bare : `/${bare}`;
 }
 // Exact page is "page"; a nested page (for example /compare/annual) marks its section with "true".
-export function currentFor(pathname: string, href: string): "page" | "true" | undefined {
+export function currentFor(pathname: string, href: string, section?: string): "page" | "true" | undefined {
   const path = normalizePath(pathname), target = normalizePath(href);
   if (path === target) return "page";
   if (target !== "/" && path.startsWith(`${target}/`)) return "true";
+  const prefix = section ? normalizePath(section) : "";
+  if (prefix && prefix !== "/" && (path === prefix || path.startsWith(`${prefix}/`))) return "true";
   return undefined;
 }

@@ -36,17 +36,28 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c") }}
       />
-      <div className="mb-8 flex items-end justify-between gap-4">
-        <div>
-          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-blue">축제 의사결정 지원</p>
-          <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">축제 준비부터 결과 보고까지,<br className="hidden sm:block" /> 한곳에서 이어가세요.</h1>
-          <p className="mt-3 max-w-2xl text-muted">
-            과거 자료와 방문 추세 예측을 살펴보고, 근거, 가정, 운영 대안, 승인, 실제 결과를 한 기록으로 남깁니다.
-          </p>
-        </div>
+      <section aria-labelledby="purpose-heading" className="mb-10">
+        <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.16em] text-blue">축제 의사결정 지원</p>
+        <h1 id="purpose-heading" className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">어떤 축제를 준비하시나요?</h1>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+          <li className="flex flex-col rounded-3xl border border-blue/20 bg-blue-soft p-6 sm:p-8">
+            <h2 className="text-2xl font-extrabold">기존 축제 개선</h2>
+            <p className="mt-2 text-sm leading-7 text-muted">지난 개최 때의 지역 방문, 주변 관광자원, 다음 개최 시기를 살펴봅니다.</p>
+            <Link href="/existing/search" className="region-primary mt-5 self-start">기존 축제 찾기 →</Link>
+          </li>
+          <li className="flex flex-col rounded-3xl border border-ink/10 bg-white p-6 shadow-card sm:p-8">
+            <h2 className="text-2xl font-extrabold">새 축제 기획</h2>
+            <p className="mt-2 text-sm leading-7 text-muted">시도와 시군구를 골라 지역의 관광자원·등록 행사·방문 추세를 살펴봅니다.</p>
+            <Link href="/regions" className="region-button mt-5 self-start">지역부터 살펴보기 →</Link>
+          </li>
+        </ul>
+      </section>
+
+      <div className="mb-4 flex items-end justify-between gap-4">
+        <h2 className="text-xl font-extrabold">기획과 기록 도구</h2>
         <EditorOnly>
           <Link href="/festivals/new" className="rounded-full bg-navy px-5 py-3 text-sm font-bold text-white">
-            새 축제
+            새 축제 기록 만들기
           </Link>
         </EditorOnly>
       </div>

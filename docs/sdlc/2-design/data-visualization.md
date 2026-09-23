@@ -3,12 +3,18 @@ class: Current
 owner: fest-compass
 last_verified: 2026-09-23
 version: v7
-summary: "자료·지표·화면 연결에 공급·갱신·자료시점·실패 처리를 보완합니다. 현행 조회 기반과 새 계약을 구별한 개발 전 설계입니다."
+summary: "자료·지표·화면 연결에 공급·갱신·자료시점·실패 처리를 보완합니다. 기존 축제의 현재 연결과 시험은 검증 기록34에 명시하고 나머지 자료 확대와 설계를 구별합니다."
 ---
 
 # 관광 의사결정을 위한 데이터와 시각화
 
-## v7 자료 공급·갱신 계약 · 개발 전 계획
+## 현재 구현 연결
+
+기존 축제는 `lib/existing`의 읽기 전용 조회로 일별·월별 방문, 현재 자원, 공휴일·등록 행사를 연결한다.
+현재 구현과 원자료 대조·실제 API·실행 검증은 [검증 기록34](../../validation/34-existing-festival-journey.md)를 따른다.
+자원 소개(Foundry 상세), 전국 방문 자료 확대와 새 축제 전용 흐름은 후속이다. 아래 현행 기반 표는 설계 시점의 기록이다.
+
+## v7 자료 공급·갱신 계약 · 설계 기준
 
 기능과 화면 전이는 [기능 상세](functional-spec.md)를 따른다. 아래 **현행**은 `52f2975`의
 `apps/web/lib/region/service.ts`, `comparison/model.ts`, [데이터 현황](../../research/2026-09-data-inventory.md)을 대조한 사실이다.

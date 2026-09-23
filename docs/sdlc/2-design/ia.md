@@ -2,8 +2,8 @@
 class: Current
 owner: fest-compass
 last_verified: 2026-09-23
-version: v7
-summary: "두 목적과 세 탐색의 구조를 유지하고 기능 연결·다른 지역 복귀를 구체화합니다. 화면 목표·정보 순서까지만 전달하며 앱 연결은 개발 필요입니다."
+version: v8
+summary: "두 목적과 세 탐색의 구조를 유지하고 기능 연결·다른 지역 복귀를 구체화합니다. 기존 축제 연결은 검증 기록34를 따르고 새 축제 전용 화면은 개발 필요입니다."
 ---
 
 # 정보구조
@@ -16,7 +16,7 @@ summary: "두 목적과 세 탐색의 구조를 유지하고 기능 연결·다�
 
 2026-09-22 [확정 원칙](../../product/planning-principles.md)에 따라 두 목적의 진입을 v6로 연결한다.
 기존 축제는 v5의 세 핵심 기능을 유지하고, 새 축제는 지역 선택만으로 관광자원·방문 흐름·개최 시기를
-살펴본다. 이 문서의 새 화면·경로·상태는 **계획이며 앱에는 아직 구현하지 않았다.**
+살펴보는 목표다. 기존 축제의 현재 구현·검증은 [실행 기록](../../validation/34-existing-festival-journey.md)을 따른다. 새 축제 전용 화면은 계획이며 첫 화면의 새 축제 선택은 현재 `/regions`를 연다.
 
 ## v6 근거와 성격
 
@@ -72,7 +72,7 @@ flowchart TD
 제안 경로는 `/`의 목적 선택 개편, `/existing`의 검색, `/existing/{festivalId}/visits`,
 `/existing/{festivalId}/resources`, `/existing/{festivalId}/timing`이다. 새 축제는 `/new`의 지역 선택과
 `/new/{regionKey}/resources`, `/new/{regionKey}/visits`, `/new/{regionKey}/timing`을 제안한다.
-실제 라우트·API 계약이 아니며 배포된 주소가 아니다. 식별 방식과 URL 조건 직렬화는 구현 단계에서 계약에 맞춘다.
+기존 축제 검색의 실제 경로는 `/existing/search`이며 `/existing`은 이곳으로 이동한다. 세 상세 경로의 ID는 `archive:<festivalId>` 또는 `current:<regionCode>:<contentid>`다. 새 축제 경로는 아직 제안이다.
 
 ## v6 새 축제의 정보 우선순위
 

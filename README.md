@@ -7,7 +7,7 @@ The web application lives in `apps/web`. Start with [the design index](docs/desi
 For the 2026-09-22 review, read the [current feature and flow baseline](docs/review/2026-09-current-state.md)
 and [data inventory](docs/research/2026-09-data-inventory.md). They separate implemented behavior,
 stored data awaiting integration, and future redesign under the [agreed planning principles](docs/product/planning-principles.md).
-The two purpose-based entry flows are not implemented yet; public exploration does not require planning records.
+The home page now separates the two purposes. The existing-festival journey starts at `/existing/search` and connects past regional visits, current tourism resources, and timing exploration without requiring records. The new-festival card currently opens `/regions`; its dedicated journey remains future work. See the [existing-festival implementation and verification](docs/validation/34-existing-festival-journey.md).
 
 The [repository consolidation report](docs/ops/repository-consolidation.md) tracks the return to `gitvssh/fest-compass`, selected imports, and verification. The annual view at `/compare/annual` connects 26 festivals and 147 festival-year observations from preserved Korea Tourism Data Lab CSVs. The region explorer also provides a monthly event calendar with shared map/list selection and event CSV export; current festival comparison exports the filtered list. These additions are available at [the public app](https://pickday.damecasol.com/compare/annual). These are festival-period visitors to the hosting administrative area. The original 304 CSV files and their provenance remain in [the research import](docs/research/imported/hkjin-plan-03/README.md).
 

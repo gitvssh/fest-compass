@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { isPublicReadonly } from "@/lib/app-mode";
-import { NavLinks } from "./NavLinks";
+import { NavLinks, PublicStorageNotice } from "./NavLinks";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const readOnly = isPublicReadonly();
@@ -19,11 +19,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </nav>
         </div>
       </header>
-      {readOnly ? (
-        <aside className="no-print border-b border-blue/20 bg-blue-soft px-5 py-3 text-center text-sm font-bold text-navy" role="status">
-          공개 자료는 읽기 전용입니다. 기획 후보와 내 작업공간의 입력은 이 브라우저에만 저장됩니다.
-        </aside>
-      ) : null}
+      {readOnly ? <PublicStorageNotice /> : null}
       <main className="mx-auto w-full max-w-6xl px-5 py-8">{children}</main>
     </div>
   );
