@@ -1,11 +1,12 @@
 import { dates, day, SOURCE } from "../region/model";
 import { validPoint } from "./distance";
-import type { RegionResult } from "../region/types";
+import type { RegionResult, Resource } from "../region/types";
 import type { Cost, Edition, SearchContext } from "./types";
 export const DAY = 86_400_000;
 export const addDays = (date: string, n: number) => new Date(Date.parse(date) + n * DAY).toISOString().slice(0, 10);
 export const duration = (e: Edition) => e.start && e.end ? Math.round((Date.parse(e.end) - Date.parse(e.start)) / DAY) + 1 : null;
 export const regionKey = (e: Edition) => `${e.region.province}/${e.region.district}`;
+export const currentEditionId = (a: Pick<Resource, "id" | "start" | "end">) => `current-${a.id}-${a.start}-${a.end}`;
 export function overlaps(a: Edition, b: Edition): number | null {
   if (!a.start || !a.end || !b.start || !b.end) return null;
   if (a.status === "취소" || b.status === "취소") return null;
@@ -18,7 +19,7 @@ export function filterEditions(items: Edition[], q: SearchContext): Edition[] {
 }
 export function currentEditions(r: RegionResult): Edition[] {
   if (r.query.kind !== "15" || r.resources.source !== SOURCE || r.resources.status === "unavailable") return [];
-  return r.resources.items.map(a => ({ id: `current-${a.id}-${a.start}-${a.end}`, festivalId: `kto-${a.id}`, name: a.title, year: Number(a.start?.slice(0, 4)), region: { province: r.query.province, district: r.query.district, name: `${r.region.provinceName} ${r.region.districtName}` }, origin: "current", ...(validPoint({latitude:a.latitude,longitude:a.longitude}) ? {point:{latitude:a.latitude!,longitude:a.longitude!}} : {}), start: a.start, end: a.end, status: "현재 등록 정보", statusNote: "실제 개최·취소·변경은 미확인. 현재 조회값이며 과거 회차 보관본이 아닙니다.", themes: [], address: a.address || "주소 미확보", source: { title: "한국관광공사 현재 등록 축제·행사", url: SOURCE, checkedAt: r.resources.collectedAt, publishedAt: null, sha256: null, note: `contentId ${a.id} · 수정 표기 ${a.modifiedAt ?? "미확보"} · 전체 ${r.resources.total}건/${r.resources.pages}페이지 조회. 조회 조건 ${r.query.start}~${r.query.end}와 겹치는 등록 행사` }, visits: null, costs: [], missing: ["회차별 보관 원문", "실제 개최·취소 확인", "회차와 연결한 방문 이력", "전체 예산·결산"] }));
+  return r.resources.items.map(a => ({ id: currentEditionId(a), festivalId: `kto-${a.id}`, name: a.title, year: Number(a.start?.slice(0, 4)), region: { province: r.query.province, district: r.query.district, name: `${r.region.provinceName} ${r.region.districtName}` }, origin: "current", ...(validPoint({latitude:a.latitude,longitude:a.longitude}) ? {point:{latitude:a.latitude!,longitude:a.longitude!}} : {}), start: a.start, end: a.end, status: "현재 등록 정보", statusNote: "실제 개최·취소·변경은 미확인. 현재 조회값이며 과거 회차 보관본이 아닙니다.", themes: [], address: a.address || "주소 미확보", source: { title: "한국관광공사 현재 등록 축제·행사", url: SOURCE, checkedAt: r.resources.collectedAt, publishedAt: null, sha256: null, note: `contentId ${a.id} · 수정 표기 ${a.modifiedAt ?? "미확보"} · 전체 ${r.resources.total}건/${r.resources.pages}페이지 조회. 조회 조건 ${r.query.start}~${r.query.end}와 겹치는 등록 행사` }, visits: null, costs: [], missing: ["회차별 보관 원문", "실제 개최·취소 확인", "회차와 연결한 방문 이력", "전체 예산·결산"] }));
 }
 export function visitReason(e: Edition, reference?: Edition): string | null {
   if (!e.visits || !e.visits.points.some(p => p.value !== null)) return "연속 방문 이력 미확보";

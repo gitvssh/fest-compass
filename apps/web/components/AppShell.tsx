@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { isPublicReadonly } from "@/lib/app-mode";
+import { NavLinks } from "./NavLinks";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const readOnly = isPublicReadonly();
@@ -14,30 +15,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             FEST <span className="text-blue">Compass</span>
           </Link>
           <nav aria-label="주 메뉴" className="flex flex-wrap items-center gap-4 text-xs font-semibold text-muted sm:text-sm">
-            <Link href="/" className="hover:text-ink">
-              홈
-            </Link>
-            <Link href="/regions" className="font-bold text-blue">관광지도</Link>
-            <Link href="/compare" className="hover:text-ink">축제 비교</Link>
-            <Link href="/evidence" className="hover:text-ink">담은 근거</Link>
-            <Link href="/planning/options" className="font-bold text-blue">기획 후보</Link>
-            <Link href="/planning/budget" className="font-bold text-blue">예산·준비</Link>
-            <Link href="/planning/proposal" className="font-bold text-blue">기획안·출력</Link>
-            <Link href="/planning/outcomes" className="font-bold text-blue">비용·결과</Link>
-            <Link href="/workspace" className="font-bold text-blue">내 작업공간</Link>
-            {!readOnly ? (
-              <>
-                <Link href="/festivals/new" className="hover:text-ink">
-                  새로 만들기
-                </Link>
-                <Link href="/logs" className="hover:text-ink">
-                  호출 로그
-                </Link>
-              </>
-            ) : null}
-            <Link href="/privacy" className="hover:text-ink">
-              개인정보·분석
-            </Link>
+            <NavLinks showEditorLinks={!readOnly} />
           </nav>
         </div>
       </header>

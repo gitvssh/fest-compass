@@ -7,22 +7,39 @@ import type { Query, RegionResult, Resource } from "@/lib/region/types";
 import { RegionMap, type Bounds } from "./RegionMap";
 import { RegionHistory } from "./RegionHistory";
 import type { BoundaryReference } from "@/lib/region/boundaries";
+import { EventCalendar } from "./EventCalendar";
+import { koreaDate, monthForSelection, nextMonthView, type MonthView } from "@/lib/region/calendar";
+import { parseRegionState, queryKey, regionSearch, type RegionInitial } from "@/lib/region/url-state";
+import { buildEventCsv, csvFileName, downloadCsv, REGION_EVENT_CONDITION } from "@/lib/export/events-csv";
 
 const emptyResources: Resource[] = [];
 const provinces = [...new Map(REGIONS.map(r => [r.provinceCode, r.provinceName])).entries()];
 const label = (code: string) => provinces.find(p => p[0] === code)?.[1] ?? "";
-export function RegionExplorer({ year }: { year: number }) {
-  const [province, setProvince] = useState(""), [district, setDistrict] = useState("");
-  const [start, setStart] = useState(`${year}-01-01`), [end, setEnd] = useState(`${year}-12-31`), [kind, setKind] = useState<Query["kind"]>("12");
-  const [query, setQuery] = useState<Query | null>(null), [data, setData] = useState<RegionResult | null>(null);
+// Temporary selection for this tab: kept across menu navigation and back, cleared by a reload.
+let rememberedSelection: { key: string; id: string } | null = null;
+export function RegionExplorer({ year, initial = null }: { year: number; initial?: RegionInitial | null }) {
+  const [province, setProvince] = useState(initial?.query.province ?? ""), [district, setDistrict] = useState(initial?.query.district ?? "");
+  const [start, setStart] = useState(initial?.query.start ?? `${year}-01-01`), [end, setEnd] = useState(initial?.query.end ?? `${year}-12-31`), [kind, setKind] = useState<Query["kind"]>(initial?.query.kind ?? "12");
+  const [query, setQuery] = useState<Query | null>(initial?.query ?? null), [data, setData] = useState<RegionResult | null>(null);
   const [loading, setLoading] = useState(false), [error, setError] = useState(""), [notice, setNotice] = useState("");
   const [resourceId, setResourceId] = useState(""), [date, setDate] = useState(""), [note, setNote] = useState("");
   const [home, setHome] = useState<{ province: string; district: string } | null>(null), [bounds, setBounds] = useState<Bounds | null>(null);
   const [districtSearch, setDistrictSearch] = useState(""), [retry, setRetry] = useState(0);
-  const [provinceExpanded, setProvinceExpanded] = useState(true);
+  const [provinceExpanded, setProvinceExpanded] = useState(!initial);
   const [boundary, setBoundary] = useState<BoundaryReference | null>(null);
-  const serial = useRef(0), details = useRef<HTMLDivElement>(null);
+  const serial = useRef(0), details = useRef<HTMLDivElement>(null), detailsHeading = useRef<HTMLHeadingElement>(null), list = useRef<HTMLDivElement>(null), listHeading = useRef<HTMLHeadingElement>(null);
+  const [view, setView] = useState<MonthView | null>(null), [addressReady, setAddressReady] = useState(false);
+  const urlMonth = useRef(initial?.month ?? null), restoreFocus = useRef("");
   useEffect(() => { try { const saved = JSON.parse(localStorage.getItem(HOME_REGION_KEY) ?? "null"); if (REGIONS.some(r => r.provinceCode === saved?.province && r.districtCode === saved?.district)) setHome(saved); } catch { /* The initial view stays nationwide. */ } }, []);
+  // Back navigation can mount a cached page with older props; the address holds the applied condition.
+  useEffect(() => {
+    const fromAddress = parseRegionState(new URLSearchParams(window.location.search));
+    if (fromAddress && (!initial || queryKey(fromAddress.query) !== queryKey(initial.query))) {
+      const q = fromAddress.query; setProvince(q.province); setDistrict(q.district); setStart(q.start); setEnd(q.end); setKind(q.kind); setProvinceExpanded(false); setQuery(q);
+    } else if (!fromAddress && initial) { reset(); setProvince(""); setDistrict(""); setProvinceExpanded(true); }
+    urlMonth.current = fromAddress?.month ?? null;
+    setAddressReady(true);
+  }, []);
   function reset() { serial.current++; setData(null); setQuery(null); setLoading(false); setError(""); setResourceId(""); setDate(""); setBounds(null); setNote(""); }
   function chooseProvince(code: string) { reset(); setProvince(code); setDistrict(""); setProvinceExpanded(!code); setDistrictSearch(""); setNotice(""); }
   function load(p: string, d: string, s = start, e = end, k = kind) {
@@ -36,13 +53,29 @@ export function RegionExplorer({ year }: { year: number }) {
     setLoading(true); setData(null); setError(""); setResourceId(""); setDate(""); setBounds(null);
     fetch(`/api/regions?${new URLSearchParams(query)}`, { signal: controller.signal }).then(async response => {
       const result = await response.json(); if (!response.ok) throw new Error(result.error ?? "자료를 불러오지 못했습니다.");
-      if (current === serial.current) setData(result);
+      if (queryKey(result.query) !== queryKey(query)) throw new Error("다른 조건의 응답입니다.");
+      if (current !== serial.current) return;
+      const remembered = rememberedSelection, restored = remembered?.key === queryKey(query) && (result as RegionResult).resources.items.some(i => i.id === remembered.id) ? remembered.id : "";
+      setData(result); setResourceId(restored); restoreFocus.current = restored;
+      if (query.kind === "15" && result.resources.status !== "unavailable") {
+        const input = { range: query, items: result.resources.items, status: result.resources.status, today: koreaDate(), urlMonth: urlMonth.current, restoredId: restored };
+        urlMonth.current = null; setView(prev => nextMonthView(prev, input));
+      }
     }).catch(err => { if (current === serial.current && err.name !== "AbortError") setError("자료를 불러오지 못했습니다. 다시 조회하세요."); }).finally(() => { if (current === serial.current) setLoading(false); });
     return () => controller.abort();
   }, [query, retry]);
   function setRange(value: string, isStart: boolean) { reset(); if (isStart) setStart(value); else setEnd(value); }
   function saveHome() { try { const value = { province, district }; localStorage.setItem(HOME_REGION_KEY, JSON.stringify(value)); setHome(value); setNotice("우리 지역을 저장했습니다. 다음 방문도 전국에서 시작하며 바로가기로 이동할 수 있습니다."); } catch { setNotice("우리 지역을 저장하지 못했습니다. 브라우저 저장 설정을 확인하세요."); } }
-  function selectResource(id: string) { setResourceId(id); setDate(""); }
+  function selectResource(id: string) {
+    setResourceId(id); setDate("");
+    const item = data?.resources.items.find(r => r.id === id);
+    if (item && data?.query.kind === "15" && view) { const month = monthForSelection(view.month, item, data.query); if (month !== view.month) setView({ month, chosen: true }); }
+  }
+  function exportEvents() {
+    if (!data || !csvReady) return;
+    const key = `${data.query.province}/${data.query.district}`;
+    downloadCsv(buildEventCsv({ start: data.query.start, end: data.query.end, condition: REGION_EVENT_CONDITION, regions: [{ key, name: `${data.region.provinceName} ${data.region.districtName}`, result: data }], events: data.resources.items.map(resource => ({ resource, regionKey: key })) }), csvFileName([key], data.query.start, data.query.end));
+  }
   async function save(allDates = false) {
     if (!data) return;
     try {
@@ -56,6 +89,21 @@ export function RegionExplorer({ year }: { year: number }) {
   const resources = data?.resources.items ?? emptyResources;
   const visible = bounds ? resources.filter(r => r.longitude === null || r.latitude === null || (r.longitude >= bounds[0] && r.longitude <= bounds[2] && r.latitude >= bounds[1] && r.latitude <= bounds[3])) : resources;
   const resource = resources.find(r => r.id === resourceId), point = data?.history.points.find(p => p.date === date);
+  const applied = data && query && queryKey(data.query) === queryKey(query) ? data : null;
+  const calendarReady = applied?.query.kind === "15" && applied.resources.status !== "unavailable";
+  const csvReady = calendarReady && !loading, shownMonth = calendarReady && view ? view.month : urlMonth.current;
+  useEffect(() => { if (data) rememberedSelection = resourceId ? { key: queryKey(data.query), id: resourceId } : null; }, [data, resourceId]);
+  useEffect(() => {
+    const id = restoreFocus.current; if (!id || !data) return;
+    // Source identifiers are arbitrary text, so compare the attribute instead of building a selector from it.
+    restoreFocus.current = ""; [...list.current?.querySelectorAll<HTMLElement>("[data-resource-id]") ?? []].find(el => el.dataset.resourceId === id)?.focus();
+  }, [data]);
+  // Replace, not push: the address follows the applied condition and month without adding history entries.
+  useEffect(() => {
+    if (!addressReady || (!query && district)) return;
+    const url = `${window.location.pathname}${query ? `?${regionSearch(query, shownMonth)}` : ""}`;
+    if (url !== `${window.location.pathname}${window.location.search}`) window.history.replaceState(null, "", url);
+  }, [addressReady, query, district, shownMonth]);
   return <div className="space-y-6">
     <header className="flex flex-wrap items-end justify-between gap-4"><div><p className="mb-2 text-xs font-extrabold tracking-widest text-blue">지역을 이해하는 축제 기획</p><h1 className="text-3xl font-extrabold sm:text-4xl">전국에서 우리 지역으로</h1><p className="mt-3 max-w-2xl text-sm leading-7 text-muted">지역을 좁혀 관광자원과 방문 추세를 살펴보세요. 필요한 자료를 담으면 올해 축제를 준비할 기획 근거가 됩니다.</p></div><Link href="/evidence" className="region-button">담은 근거 보기 →</Link></header>
     <nav aria-label="선택 지역 경로" className="flex flex-wrap items-center gap-2 rounded-2xl bg-white p-4 text-sm shadow-sm"><button className="font-bold text-blue underline" onClick={() => chooseProvince("")}>전국</button><span aria-hidden="true">›</span>{province ? <button className="font-bold text-blue underline" onClick={() => chooseProvince(province)}>{label(province)}</button> : <span className="text-muted">시도 선택</span>}<span aria-hidden="true">›</span><span aria-current={district ? "location" : undefined}>{districtName || "시군구 선택"}</span>{home && <button className="region-button ml-auto" onClick={() => load(home.province, home.district)}>우리 지역 바로가기</button>}</nav>
@@ -76,7 +124,7 @@ export function RegionExplorer({ year }: { year: number }) {
       <div className="min-w-0 space-y-4">
         <section className="region-card space-y-2" aria-label="추가 확보한 방문 이력"><h2 className="font-bold">공주·임실 2023~2025년 방문 이력</h2><p className="text-xs text-muted">보관한 일별 외지인 추정값입니다. 연도별 기간을 선택할 수 있으며 행사장 입장객과 다릅니다.</p><div className="flex flex-wrap gap-2">{[{province:"44",district:"150",name:"공주"},{province:"52",district:"750",name:"임실"}].map(r=><button key={r.name} className="region-button" onClick={()=>{setStart("2024-09-01");setEnd("2024-10-31");setKind("12");load(r.province,r.district,"2024-09-01","2024-10-31","12");}}>{r.name} 2024년 가을 방문 보기</button>)}</div></section>
         <RegionMap province={province} district={district} resources={resources} selected={resourceId} appliedBounds={bounds} onProvince={chooseProvince} onDistrict={code => load(province, code)} onBoundary={setBoundary} onResource={selectResource} onBounds={b => { setBounds(b); setResourceId(""); }} />
-        {resource && <button className="region-button w-full" onClick={() => details.current?.scrollIntoView({ behavior: "smooth", block: "start" })}>{resource.title} · 상세·기획 근거 확인 ↓</button>}
+        {resource && <button className="region-button w-full" onClick={() => { details.current?.scrollIntoView({ behavior: "smooth", block: "start" }); detailsHeading.current?.focus({ preventScroll: true }); }}>{resource.title} · 상세·기획 근거 확인 ↓</button>}
         <section className="region-card"><div className="mb-3 flex flex-wrap items-center justify-between gap-2"><h2 className="font-extrabold"><span className="text-blue">03</span> 자료 조회 조건</h2>{district && <button className="region-button" onClick={saveHome}>우리 지역으로 저장</button>}</div><form onSubmit={e => { e.preventDefault(); if (district) load(province, district); }} className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <label className="text-xs font-bold">통계 시작일<input aria-label="통계 시작일" type="date" min="2000-01-01" max="2035-12-31" className="workspace-input mt-2" value={start} onChange={e => setRange(e.target.value, true)} /></label><label className="text-xs font-bold">통계 종료일<input aria-label="통계 종료일" type="date" min="2000-01-01" max="2035-12-31" className="workspace-input mt-2" value={end} onChange={e => setRange(e.target.value, false)} /></label>
           <label className="text-xs font-bold">지도·목록 자료<select className="workspace-input mt-2" value={kind} onChange={e => { const next = e.target.value as Query["kind"]; setKind(next); reset(); if (district) load(province, district, start, end, next); }}>{Object.entries(TYPES).map(([code, name]) => <option key={code} value={code}>{name}</option>)}</select></label><button type="submit" className="region-primary self-end" disabled={!district || loading}>자료 조회</button>
@@ -86,14 +134,22 @@ export function RegionExplorer({ year }: { year: number }) {
         {!district && <div className="region-card"><h2 className="font-extrabold">시군구를 선택하면 자료가 연결됩니다</h2><p className="mt-2 text-sm leading-7 text-muted">전국 합계나 지역 순위를 임의로 만들지 않습니다. 관광자원은 공공 API로 조회하고, 연속 방문 이력은 현재 논산 자료를 제공합니다.</p></div>}
         {district && !query && !error && <p className="region-card text-sm">조회 조건을 바꿨습니다. ‘자료 조회’를 눌러 새 기간을 확인하세요.</p>}
         {data && <>
-          <section className="region-card space-y-3" aria-label="조회 자료 목록"><div className="flex flex-wrap items-center justify-between gap-2"><h2 className="text-xl font-extrabold">{districtName} · {TYPES[data.query.kind]}</h2><span className="region-tag">{data.resources.status === "unavailable" ? "조회 미확보" : `API 등록 ${data.resources.total}건`}</span></div>
+          {data.query.kind === "15" && <section className="region-card space-y-3" aria-label="행사 달력">
+            <div className="flex flex-wrap items-center justify-between gap-2"><h2 className="text-xl font-extrabold">{districtName} 행사 달력</h2><button className="region-button" disabled={!csvReady} onClick={exportEvents}>{csvReady && resources.length ? `조회된 전체 행사 ${resources.length}건 내려받기 (CSV)` : "조회된 전체 행사 내려받기 (CSV)"}</button></div>
+            {data.resources.status === "unavailable" ? <p role="alert" className="text-sm">행사 일정을 불러오지 못했어요 <button className="region-button ml-2" onClick={() => setRetry(r => r + 1)}>다시 불러오기</button></p> : view && <>
+              {data.resources.status === "empty" && <p className="rounded-xl bg-paper p-3 text-sm">이 기간에 등록된 행사가 없어요</p>}
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted"><p>조회 기간 {data.query.start} ~ {data.query.end}{bounds && <> · 지도 안 {visible.length}건</>}</p><button type="button" className="region-button" onClick={() => { listHeading.current?.scrollIntoView({ behavior: "smooth", block: "start" }); listHeading.current?.focus({ preventScroll: true }); }}>전체 행사 목록</button></div>
+              <EventCalendar region={districtName} items={visible} range={data.query} month={view.month} selectedId={resourceId} onSelect={selectResource} onMonth={month => setView({ month, chosen: true })} />
+            </>}
+          </section>}
+          <section className="region-card space-y-3" aria-label="조회 자료 목록"><div className="flex flex-wrap items-center justify-between gap-2"><h2 ref={listHeading} tabIndex={-1} className="text-xl font-extrabold">{districtName} · {TYPES[data.query.kind]}</h2><span className="region-tag">{data.resources.status === "unavailable" ? "조회 미확보" : `API 등록 ${data.resources.total}건`}</span></div>
             <p className="text-xs leading-6 text-muted">{data.resources.message} · 조회 {new Date(data.resources.collectedAt).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })} · {data.resources.pages}페이지 확인<br />좌표 없는 자료 {resources.filter(r => r.longitude === null).length}건은 목록에 유지합니다.{bounds && " 공간 필터 적용 중 · 좌표 없는 자료는 포함합니다."}</p>
             {data.resources.status === "unavailable" && <button className="region-button" onClick={() => setRetry(r => r + 1)}>자료 다시 조회</button>}
-            <div className="max-h-96 space-y-2 overflow-auto">{visible.map(r => <button key={r.id} className={`block w-full rounded-xl border p-3 text-left text-sm ${r.id === resourceId ? "border-blue bg-blue-soft" : "border-ink/10 hover:bg-paper"}`} onClick={() => selectResource(r.id)}><span className="font-bold">{resources.indexOf(r) + 1}. {r.title}</span><span className="mt-1 block text-xs text-muted">{r.address || "주소 미확보"}{r.longitude === null ? " · 좌표 미확보" : ""}{r.start ? ` · ${r.start} ~ ${r.end}` : ""}</span></button>)}</div>
+            <div ref={list} className="max-h-96 space-y-2 overflow-auto">{visible.map(r => <button key={r.id} aria-pressed={r.id === resourceId} data-resource-id={r.id} className={`block w-full rounded-xl border p-3 text-left text-sm ${r.id === resourceId ? "border-blue bg-blue-soft" : "border-ink/10 hover:bg-paper"}`} onClick={() => selectResource(r.id)}><span className="font-bold">{resources.indexOf(r) + 1}. {r.title}</span><span className="mt-1 block text-xs text-muted">{r.address || "주소 미확보"}{r.longitude === null ? " · 좌표 미확보" : ""}{r.start ? ` · ${r.start} ~ ${r.end}` : ""}</span></button>)}</div>
             {bounds && <p className="text-xs text-muted">공간 필터 안 목록 {visible.length}건 / 조회 목록 {resources.length}건. 지역 방문 통계의 공간 범위는 시군구 전체입니다.</p>}
           </section>
           <RegionHistory history={data.history} region={districtName} selected={date} onSelect={d => { setDate(d); setResourceId(""); }} />
-          <section ref={details} className="region-card space-y-3" aria-label="자료 상세와 근거 담기"><h2 className="text-xl font-extrabold">자료를 확인하고 기획 근거에 담기</h2>
+          <section ref={details} className="region-card space-y-3" aria-label="자료 상세와 근거 담기"><h2 ref={detailsHeading} tabIndex={-1} className="text-xl font-extrabold">자료를 확인하고 기획 근거에 담기</h2>
             {resource ? <div className="rounded-xl bg-paper p-4 text-sm leading-7"><h3 className="font-extrabold">{resource.title}</h3><p>{resource.address || "주소 미확보"}</p><p>{resource.start ? `행사 일정: ${resource.start} ~ ${resource.end}` : "현재 등록 관광자원 · 과거 사용 가능 여부 미확인"}</p><p>원천 수정 표기: {resource.modifiedAt ?? "미확보"} · 관광공사 원문 형식</p><p>원천 항목 번호: {resource.id} · 장소 사용 조건은 담당 기관에 확인 필요</p></div> : point ? <div className="rounded-xl bg-paper p-4 text-sm leading-7"><strong>{districtName} · {point.date}</strong><p>{point.value === null ? "미확보" : `${point.value.toLocaleString("ko-KR")}명 (통신 기반 추정)`}</p><p>시군구 일별 외지인 방문 · 행사장 입장객 아님</p><p>수집 시각: {point.collectedAt ?? "미확보"}</p><p className="break-all">자료 식별자: {point.snapshotId ?? "미확보"}</p></div> : <p className="text-sm text-muted">지도·목록의 항목이나 수치 표의 날짜를 선택하세요. 방문 추세는 기간 전체를 담을 수도 있습니다.</p>}
             <a href={resource ? data.resources.source : data.history.source} className="inline-block text-sm font-bold text-blue underline" target="_blank" rel="noreferrer">선택 자료의 공공데이터 출처 ↗</a>
             <label className="block text-sm font-bold">기획에 참고할 이유<textarea className="workspace-input mt-2" maxLength={2000} rows={2} value={note} onChange={e => setNote(e.target.value)} placeholder="예: 개최 시기와 주변 자원을 조사할 때 참고" /></label>
