@@ -1,11 +1,11 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-08
+last_verified: 2026-09-22
 id: UC-FC-008
-version: v2
+version: v3
 status: active
-summary: "개인 기획을 저장하고 다른 기기로 옮긴다. 구현 전 인수 기준입니다."
+summary: "개인 기획 저장·파일 복원·실패 및 탭 충돌 방어의 첫 구현과 자동 검증 근거가 있습니다. 전체 인수·실무자 검증은 구분합니다."
 covers: ["FR-SAVE-1","FR-SAVE-2"]
 screens: ["SCR-FC-003","SCR-FC-004","SCR-FC-005","SCR-FC-006","SCR-FC-007"]
 apis: []
@@ -22,7 +22,7 @@ acs:
 |---|---|
 | 액터 | 지자체 축제 담당자 |
 | 목적 | 기획 자료를 잃지 않고 저장 위치를 이해한다. |
-| 구현 상태 | 개발 필요. active는 유효한 요구이며 구현 완료가 아님 |
+| 구현 상태 | 첫 기능 구현·부분 자동 검증. 전체 AC 인수·실무자 관찰·정형 실행 연결은 별도 |
 
 ## 사전 조건
 
@@ -56,4 +56,7 @@ acs:
 ## 사후 상태와 검증
 
 사용자가 선택한 기록이 개인 저장 경계 안에 남고 이전 보관본은 유지된다.
-검증: [TS-FC-008](../../3-testing/scenarios/TS-FC-008.md). 미실행이며 실행 API·명세는 구현 단계에서 연결한다.
+검증: [TS-FC-008](../../3-testing/scenarios/TS-FC-008.md)의 구현·실행 근거를 따른다.
+[저장·복원 코드](../../../../apps/web/lib/planning/model.ts), [실패·충돌 처리 화면](../../../../apps/web/components/PlanningWorkspace.tsx),
+[M3 검증 기록](../../../validation/22-planning-options.md)이 있다. 이를 전체 AC 또는 새 두 목적의 인수 완료로 확대하지 않는다.
+지역 근거·비교 근거·개인 운영 작업공간의 파일은 개인 기획 파일과 별도이며 [현행 요약](../../../review/2026-09-current-state.md)을 따른다.

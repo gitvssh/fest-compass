@@ -5,6 +5,8 @@ stages:
   planning:
     artifacts:
       - {path: docs/review/2026-09-planning-review.md, required: true}
+      - {path: docs/review/2026-09-current-state.md, required: true}
+      - {path: docs/product/planning-principles.md, required: true}
       - {path: docs/product/vision-scope.md, required: true}
       - {path: docs/product/non-goals.md, required: true}
       - {path: docs/product/glossary.md, required: true}
@@ -20,11 +22,13 @@ stages:
       - {path: docs/research/2026-09-municipal-requirement-proposals.md, required: true}
       - {path: docs/research/2026-09-historical-comparison-review.md, required: true}
       - {path: docs/research/2026-09-regional-history-costs.md, required: true}
+      - {path: docs/research/2026-09-data-inventory.md, required: true}
   design:
     screens: docs/sdlc/2-design/screens.md
     artifacts:
       - {path: docs/sdlc/2-design/ia.md, required: true}
       - {path: docs/sdlc/2-design/flows.md, required: true}
+      - {path: docs/sdlc/2-design/functional-spec.md, required: true}
       - {path: docs/sdlc/2-design/screens.md, required: true}
       - {path: docs/sdlc/2-design/design-system.md, required: true}
       - {path: docs/sdlc/2-design/architecture.md, required: true}

@@ -1,8 +1,15 @@
 # FEST Compass
 
-FEST Compass is a Korean tourism-data decision workspace for festival planners. It connects source evidence, explicit assumptions, operational scenarios, approvals, field actions, and measured outcomes without presenting visitor counts as admissions or promising demand forecasts.
+FEST Compass is a Korean public-data decision workspace for local government officials who improve existing festivals or plan new ones to boost regional tourism. It connects source evidence, explicit assumptions, operational scenarios, approvals, field actions, and measured outcomes without presenting visitor counts as admissions or promising demand forecasts. Data informs but does not settle the planning judgment, and records are optional.
 
 The web application lives in `apps/web`. Start with [the design index](docs/design/00_INDEX.md) for product behavior and [the documentation map](docs/README.md) for repository authority.
+
+For the 2026-09-22 review, read the [current feature and flow baseline](docs/review/2026-09-current-state.md)
+and [data inventory](docs/research/2026-09-data-inventory.md). They separate implemented behavior,
+stored data awaiting integration, and future redesign under the [agreed planning principles](docs/product/planning-principles.md).
+The two purpose-based entry flows are not implemented yet; public exploration does not require planning records.
+
+The [repository consolidation report](docs/ops/repository-consolidation.md) tracks the return to `gitvssh/fest-compass`, selected imports, and verification. The annual view at `/compare/annual` connects 26 festivals and 147 festival-year observations from preserved Korea Tourism Data Lab CSVs. These are festival-period visitors to the hosting administrative area. The original 304 CSV files and their provenance remain in [the research import](docs/research/imported/hkjin-plan-03/README.md).
 
 The Nonsan sample includes a historical model comparison at `/forecast` and preserved prospective regional forecasts at `/forecast/records`.
 See [collection, issuance, and outcome checks](docs/validation/10-prospective-records.md) for reproducible commands and current limitations.
@@ -10,6 +17,8 @@ Production now collects and checks outcomes daily at 09:00 Asia/Seoul; the recor
 See [deployment and first-run evidence](docs/validation/11-daily-automation.md) and the [automation runbook](docs/ops/forecast-automation.md).
 
 ## Local development
+
+The canonical WSL checkout is `~/dev/side/fest-compass` (GitHub `gitvssh/fest-compass`). Make changes on a dedicated branch in `~/dev/worktrees/fest-compass-<topic>`; see [WSL development](docs/ops/wsl-development.md).
 
 ```powershell
 cd apps/web

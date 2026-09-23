@@ -16,7 +16,7 @@ specs: []
 
 | 항목 | 내용 |
 |---|---|
-| 근거 | [UC-FC-007@v3](../../1-analysis/usecases/UC-FC-007.md) |
+| 근거 | [UC-FC-007@v4](../../1-analysis/usecases/UC-FC-007.md) |
 | 대상 환경 | 격리된 로컬 headless 브라우저 + 공개 원문 표본·별도 가상 입력 |
 | 실행 상태 | 자동 검증 통과. 실무자 인수·정형 Spec/Run은 미실시 |
 

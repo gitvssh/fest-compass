@@ -666,3 +666,165 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-030 · Codex · recorder
+
+- Position: 관광 활성화·두 제품 흐름·공공데이터 의사결정 지원을 기획 기준으로 기록했다. 핵심 질문은 정보 설계 기준이며 사용자 답변·기획·메모 기록은 선택 사항이라는 정정을 정본과 기존 설계 진입점에 반영했다.
+- Evidence:
+  - 2026-09-22 사용자의 두 흐름·관광 중심 전략 확인 및 기준 기록 요청과 필수 기록 금지 정정
+  - docs/product/planning-principles.md
+  - docs/sdlc/0-planning/product-plan.md
+  - docs/sdlc/1-analysis/srs.md
+- Changes:
+  - 기획 기준 신설, 제품 목표·비목표와 기획서·요구사항·설계/문서 진입점에 적용 경계 추가
+  - pick-d-day README 소개를 관광 의사결정 지원 목표로 정렬
+  - CHARTER의 목표·기록 선택성·현재 개발 경로 정렬, STATE의 현재 기획과 후속 과제 갱신
+- Validation:
+  - git diff --check 통과; 문서 전용 변경과 신규 상대 링크 17개 실경로 확인
+  - 앱 시험·운영 재검증 미실행: 코드·배포 변경 없는 기획 기준 기록이며 이전 검증을 새 방향의 인수 실적으로 주장하지 않음
+- Questions:
+  - No open question
+- Handoff: Codex
+
+## T-031 · Codex · recorder
+
+- Position: 최신 코드·보관 CSV·Foundry 직접 조회·공식 자료를 반영한 현행 요약과 데이터 현황을 신설하고 기존 기능·흐름·유스케이스 문서의 불일치를 정정했다. 두 목적의 새 설계와 선택 기록 조건 개편은 후속으로 분리했다.
+- Evidence:
+  - 기준 앱 코드 139dc62와 기존 검증 기록, 2026-09-22 원본 CSV 집계 및 Foundry dw_schema→SELECT 조회
+  - docs/review/2026-09-current-state.md
+  - docs/research/2026-09-data-inventory.md
+  - Cursor Agent cursor-grok-4.6-high 다섯 분야 조사 뒤 코드·파일·공식 문서·DB 대조; 외부 자료 일부는 공식 원문을 공급해 분석
+- Changes:
+  - 현재 경로·기록 조건·세 작업공간 연결과 다음 설계 순서 정리
+  - 앱 소비·보관 CSV 304개·Foundry 실보유·공식 추가 후보를 단위·시점·연결 조건별 정리
+  - M3~M6 구현 상태·저장/복원·지역 이력·참고 경계·행사 기간 겹침·공개 주소 정정
+  - README·문서/설계 인덱스·검수 안내·Traceboard 문서 목록·프로젝트 상태 연결
+- Validation:
+  - 문서 본문 점검: YAML frontmatter 22개·상대 링크 369개·문서 목록 50개·UC/TS 8쌍 참조 검사 통과; git diff --check 통과
+  - CSV 304개를 직접 재집계해 파일·행수와 연 단위 열 확인
+  - 저장소 구조 검사 exit 0(warn): 루트 필수 경로 5개 경고는 변경 전 main에서도 동일. 신규 위반 아님
+  - 앱 시험·운영 API/브라우저·내부 문서 사이트 재게시 미실행: 문서와 문서 목록만 변경. 과거 시험을 새 설계 인수 실적으로 표시하지 않음
+- Questions:
+  - No open question
+- Handoff: Codex
+
+## T-032 · Codex · recorder
+
+- Position: 공공데이터 핵심 기능 구현을 우선하고 뉴스 검색·원문 연결을 후속으로 두는 결정을 기록했다. 보도자료 수치 자동 반영과 AI 요약의 초기 범위를 정리하고 내부 제약을 안내문으로 노출하지 않는 UI 원칙을 반영했다.
+- Evidence:
+  - 2026-09-22 사용자 확정: 첫 버전에서 보도자료 수치 자동 반영 제외, AI 요약 후속 검토, 핵심 데이터 기능 구현 뒤 뉴스 검색·원문 연결
+  - 2026-09-22 사용자 UI 정정: 정보 노출·배치·위계·글자 크기로 전달하고 내부 규약은 노출하지 않음
+  - docs/product/planning-principles.md
+- Changes:
+  - 기획 기준의 구현 순서·첫 버전 제외 범위·뉴스 검색 제공자 미확정·화면 표현 원칙 정리
+  - CHARTER와 프로젝트 상태에 확정 범위·다음 작업 반영
+- Validation:
+  - 기획 기준·CHARTER frontmatter 및 상대 링크 13개 확인, git diff --check 통과
+  - 앱 시험·운영 검증 미실행: 문서 전용 결정 기록이며 기능 구현·공급자 검증 완료를 주장하지 않음
+- Questions:
+  - No open question
+- Handoff: Codex
+
+## T-033 · Codex · recorder
+
+- Position: 사용자가 기존 축제 첫 버전의 핵심 세 기능을 확정해 기획 기준에 반영했다. 전국 기본 탐색·자료 확보 지역부터 과거 분석 확장과 기록 없는 자유 탐색 방향을 함께 기록했다.
+- Evidence:
+  - 2026-09-22 사용자: 과거 방문 흐름 비교·주변 관광자원 연결·다음 개최 시기 검토 제안에 대해 모두 핵심으로 확정
+  - docs/product/planning-principles.md
+- Changes:
+  - 기획 기준에 핵심 세 기능·제공 정보·지역 범위·탐색 우선순위·후속 설계 항목 명시
+  - CHARTER와 프로젝트 상태에 확정한 기능 범위 및 다음 상세 설계 반영
+- Validation:
+  - 기획 기준 frontmatter·기획 기준/CHARTER 상대 링크 13개 및 git diff --check 통과
+  - 앱 시험·운영 검증 미실행: 문서 전용 결정 기록이며 세 기능의 새 설계 구현 완료를 주장하지 않음
+- Questions:
+  - No open question
+- Handoff: Codex
+
+## T-034 · Codex · designer
+
+- Position: 최신 devkit 제품 경험 기준에 따라 기존 축제의 데이터·지표·비교 기준과 세 핵심 화면 및 목적 선택을 구체화했다. 실제 논산 자료와 Foundry 관광자원 표본으로 v5 시안을 만들고 직접 검수했다. 앱 구현과 실행 인수는 후속이다.
+- Evidence:
+  - dev-standard 65c4179 policy/product-experience.md·roles/ui-designer.md·sdlc-doc-rules.md
+  - 기준 앱·자료 main 5bbb559, 논산 회차·지역 방문 JSON 직접 재계산
+  - Foundry dw_schema→SELECT 관광자원 3행 직접 대조, query hash 42dab9c487e1c0e528272da8830c3d98f38c9880c4288ee0e93cbbd39dbe85c1
+  - 실제 cursor-agent cursor-grok-4.6-high 데이터·UI 기준 조사 2회 완료 후 원문 직접 대조
+  - docs/sdlc/2-design/design-system.md의 정성 검수 기록
+- Changes:
+  - IA·흐름·화면 레지스터 v5, SCR-FC-008~011 Excalidraw/SVG 4쌍·9프레임
+  - 일별·개최기간·월별 일평균과 결측·지도 기준점·미래 일정 분리 계약, 역할별 문구·폰트·배치·복구
+  - FR-EXF-1~4와 UC-FC-009 AC10개, 설계/검수/현행·데이터 문서 진입점 갱신
+- Validation:
+  - 주 담당자가 최종 headless 표시본 직접 검수; 평균 단위·폰트·화면번호·결측 범위·후보 재선택 수정 후 대조
+  - Excalidraw 스키마4개·SVG 반복 렌더 동일해시4개·Mermaid10블록 통과; 방문 차트72좌표와 원자료36일 일치
+  - 추적 빌드 화면11개·산출물50개 누락0, lint error0. 신규 AC의 TS미작성 warn10개 유지; 미선언 API/Run은 미평가
+  - 앱 구현·실행 시험·담당자 사용성·운영/내부 문서 사이트 재게시 미수행. 공개API 표본조회 HTTP403은 성공으로 표시하지 않고 Foundry 읽기 표본 사용
+- Questions:
+  - No open question
+- Handoff: Codex
+
+## T-035 · Codex · designer
+
+- Position: 새 축제 기획은 지역만 고르면 관광자원에서 시작하고 방문 흐름·개최 달력을 기록 없이 오가는 v6 상세안으로 구체화했다. 실제 자료·문구·모바일을 직접 검수했고 문서 간 연도 변경·집계 범위·조작 이름을 정렬했다. 기존 축제 v5는 유지하며 두 흐름의 앱 구현은 후속이다.
+- Evidence:
+  - 2026-09-22 사용자: 다음 안도 진행 및 이어서 진행, 추가 PRODUCT-EXPERIENCE 규약 적용
+  - dev-standard 6e6ce25 policy/product-experience.md §5~7, 기준 앱·자료 main 7d6678f
+  - 실제 cursor-agent Grok 4.6 자료·흐름 조사와 최종 문서 교차 검토 후 주 담당자가 원자료·지표·렌더 직접 대조
+  - docs/sdlc/2-design/data-visualization.md의 2025 논산 365일 집계·Foundry 소개 두 건·2026 공휴일 근거
+  - docs/sdlc/2-design/design-system.md의 과업 입력·고객 문구·첫인상 및 직접 검수
+- Changes:
+  - SCR-FC-011 지역 선택·012 관광자원·013 방문 흐름·014 달력 v6 Excalidraw/SVG 4쌍, 10프레임
+  - IA·흐름·화면·가공 규칙 v6, 디자인 시스템 v4, FR-NEW-1~4와 UC-FC-010 AC10개
+  - 설계 인덱스와 기획 검수 v12에 새 축제 진입점·개발 필요 상태 갱신
+- Validation:
+  - 주 담당자 headless 렌더 1280/390px 직접 확인, 012 상세/비교 조작 구분·모바일 비교와 013 축 글자·표 접근 보완 후 재검수
+  - 실제 월별/요일별 평균과 시안 38개 막대 높이 일치. 새 Excalidraw4개 스키마·SVG 반복 렌더 최종해시4개 일치, Mermaid12블록 통과
+  - 추적 빌드 화면14개·산출물50개 누락0, lint error0·warn20(UC009/010 TS미작성). API/Run 미선언은 통과로 환산하지 않음
+  - UC010 전면부/본문 AC10개 일치, 상대 링크228개 누락0, git diff --check 통과
+  - 앱 구현·실행 인수·실제 담당자 관찰·운영/문서 사이트 재게시 미수행
+- Questions:
+  - No open question
+- Handoff: Codex
+
+## T-036 · Codex · implementer
+
+- Position: 사람 확인용 자료를 D:\download\project의 프로젝트·날짜/주제별 사본으로 전달하도록 devkit 0.12.0과 프로젝트 진입점에 등록했다. 원본·편집 소스는 저장소에 유지하고 현재 두 목적의 설계를 브라우저에서 바로 읽는 묶음으로 전달했다.
+- Evidence:
+  - 2026-09-22 사용자: 검토용 임시자료 사본의 공통 경로 지정, 프로젝트 원본 유지, 정책 개선 위임
+  - dev-standard a71fd33 policy/doc-architecture.md §4 사람 확인용 사본, product-experience·역할·AGENTS 라우터 연결
+  - D:\download\project\fest-compass\index.html → 2026-09-22-design-v6-reviewed
+  - 자료 기준 d74eb6c, 실제 D 드라이브 마운트 확인
+- Changes:
+  - docs/ops/review-delivery.md와 tools/export-review.py, 프로젝트 AGENTS·설계 인덱스에 사본 전달 경로·원본 보존 명시
+  - 확인용 시작 페이지·시안8개·문서12개 및 원본35개 사본 생성. 자료 내용·제품 기능은 변경하지 않음
+- Validation:
+  - 원본/사본 SHA-256 35개 일치, 로컬 링크·이미지236개 존재
+  - headless Chromium file://에서 HTML21개·이미지·Mermaid 표시, 시안 선택·모바일 펼치기·390px 시작 페이지·페이지오류0 확인 후 주 담당자 표시본 직접 검수
+  - 별도 임시 폴더로 사용자 첫 페이지와 대체 이름 충돌 파일 보존·새 이름 생성·중복 묶음 거부 검증
+  - devkit 정책 링크·앵커21개, 버전·역할길이·임시 스캐폴드와 기존 AGENTS 보존 확인; 다른 세션의 원장 미커밋 변경 보존
+  - git diff --check 통과. Windows 브라우저 직접 실행·앱 인수는 미평가/이번 범위 밖
+- Questions:
+  - No open question
+- Handoff: Codex
+
+## T-037 · Codex · designer
+
+- Position: 기능·기획에 집중해 두 목적의 검색·식별·조건 전달·자료 공급/갱신·복구와 구현 순서를 구체화했다. 화면 목표와 기본 배치, 부족한 자료/실패 3상태의 PC·모바일 와이어프레임을 전달했다. 최종 시각 디자인은 사용자 작업이며 앱 개편은 개발 필요다.
+- Evidence:
+  - 2026-09-23 사용자: 기능·기획 개선과 화면 목표·와이어프레임·기본 구성까지만 요청
+  - 기반 52f2975의 지역 조회·비교 코드와 데이터 문서, dev-standard a71fd33 제품 경험 기준
+  - docs/sdlc/2-design/functional-spec.md, design-system.md의 직접 검수
+  - 자료 커밋79322d1, D:\download\project\fest-compass\index.html → 2026-09-23-functional-plan-v7
+- Changes:
+  - 기능 상세·자료 공급/시점·필터 밖 선택/원천 삭제·회차 없음/개최일 미확인·후보 없는 달력·조건 복귀 구체화
+  - SRS·IA·흐름·화면 v7, UC009/010 각14개 인수 기준과 디자인 작업 범위 정렬
+  - SCR-FC-008/012/014 v7 Excalidraw/SVG 3쌍·6프레임, 확인용 묶음과 전달 도구 갱신
+- Validation:
+  - 주 담당자가 원문·코드·새 6프레임 직접 검수. 독립 읽기 검토의 충돌3건 수정. Grok 4.6 실제 호출은250초 시간 초과로 결과 미수신, 완료 검토로 인용하지 않음
+  - Excalidraw3개 스키마·반복 SVG해시3개·Mermaid14블록·UC 전면부/본문28개·상대링크282개 및 git diff --check 통과
+  - 추적 산출물51개 누락0·error0·warn28(새 UC 시험 시나리오 미작성). API/실행 명세/Run 미선언은 미평가
+  - 최종 D드라이브 사본42개 SHA 일치·로컬링크/앵커287개·headless HTML25개/이미지/Mermaid14개·모바일 펼치기·390px 넘침없음·페이지오류0 확인
+  - 앱 구현·키보드/보조기술 실행·실제 담당자 관찰·운영/문서 사이트 배포는 미수행
+- Questions:
+  - No open question
+- Handoff: Codex

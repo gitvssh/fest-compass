@@ -1,9 +1,9 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-09
+last_verified: 2026-09-22
 id: UC-FC-007
-version: v3
+version: v4
 status: active
 summary: "운영 결과를 비교하고 다음 회차에 재사용한다. M6 첫 구현과 자동 검증을 연결했습니다. 실무자 관찰은 미실시입니다."
 covers: ["FR-LGR-5","FR-LGR-6","FR-RPT-2","FR-RPT-3"]
@@ -30,7 +30,10 @@ acs:
 
 ## 사전 조건
 
-기획안 보관본과 실제 결과 또는 결측 사유가 있다.
+개인 결과를 시작하려면 기준으로 삼을 기획안 보관본이 필요하다. 결과값은 이후 입력하며 미확인은 그대로 둘 수 있다.
+공개 비용 사례 조회에는 기획안이나 개인 결과 기록이 필요하지 않다.
+기획안의 두 후보·선택 이유 조건이 개인 결과 시작에도 영향을 주는 현행 구조는
+[선택적 기록 원칙](../../../product/planning-principles.md)에 맞춰 후속 검토한다.
 
 ## 기본 흐름
 

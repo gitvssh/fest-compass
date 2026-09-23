@@ -1,14 +1,18 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-09
-version: v1
+last_verified: 2026-09-22
+version: v2
 summary: "후보·선택 이유·공공 근거·예산·준비 기록을 기획안 버전으로 보관하고 사업설명 자료와 준비 목록을 출력하는 M5 구현입니다. 검증·게시 결과는 연결된 보고서를 따릅니다."
 ---
 
 # 근거가 연결된 기획안과 출력
 
-[기획안 화면](https://kto.damecasol.com/planning/proposal)과 기획 화면의 **기획안 보관·출력** 탭에서 같은 개인 초안을 사용한다.
+[기획안 화면](https://pickday.damecasol.com/planning/proposal)과 기획 화면의 **기획안 보관·출력** 탭에서 같은 개인 초안을 사용한다.
+
+2026-09-22 현행 대조: 두 후보·우선 후보·선택 이유 조건은 이 문서의 **기획안으로 보관**에 적용하며,
+지역 조회·축제 비교·일반 초안 저장의 조건이 아니다. [선택적 기록 원칙](../../product/planning-principles.md)에 따른 조건 개편은 후속이고,
+현재 동작은 [현행 점검](../../review/2026-09-current-state.md)을 따른다.
 FR-RPT-2/3의 M5 부분, UC-FC-006/TS-FC-006, SCR-FC-006을 구현했다.
 실제 제공·게시 확인은 [검증 기록](../../validation/24-planning-proposal.md)을 따른다.
 
@@ -74,4 +78,5 @@ PDF는 내려받은 출력물이고 서버 보관/공유 링크는 없다. 기�
 
 ![미산정 비용과 번호가 있는 재원 도넛의 흑백 인쇄 검수](../../assets/SCR-FC-006/implementation/proposal-print-gray.png)
 
-v3 개발 전 와이어프레임은 당시 제안으로 유지한다. 실제 담당자 과제 관찰·정형 Spec/Run 연결·M6 결과 자료는 후속이다.
+v3 개발 전 와이어프레임은 당시 제안으로 유지한다. 실제 담당자 과제 관찰·정형 Spec/Run 연결은 후속이다.
+[M6 결과·다음 회차](outcome-implementation.md)는 이후 구현됐으며 개인 결과의 시작에는 보관한 기획안이 필요하다.

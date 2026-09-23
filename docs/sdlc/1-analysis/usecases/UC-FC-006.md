@@ -1,9 +1,9 @@
 ---
 class: Current
 owner: fest-compass
-last_verified: 2026-09-09
+last_verified: 2026-09-22
 id: UC-FC-006
-version: v3
+version: v4
 status: active
 summary: "근거가 연결된 기획안을 보관하고 출력한다. M5 구현·자동 검증을 연결했으며 실제 담당자 관찰은 후속입니다."
 covers: ["FR-RPT-2","FR-RPT-3"]
@@ -21,6 +21,10 @@ acs:
 # UC-FC-006 · 근거가 연결된 기획안을 보관하고 출력한다
 
 [M5 구현](../../2-design/proposal-implementation.md)과 [검증 결과](../../../validation/24-planning-proposal.md)를 연결했다. 아래 인수 기준은 유지한다.
+
+2026-09-22 구분: 아래 조건은 현행 **기획안으로 보관**의 조건이며 조회·비교·일반 초안 저장의 조건이 아니다.
+[선택적 기록 원칙](../../../product/planning-principles.md)에 따른 조건 개편은 후속 설계다.
+현행 제약을 새 제품의 필수 이용 절차로 확정하지 않는다.
 
 | 항목 | 내용 |
 |---|---|

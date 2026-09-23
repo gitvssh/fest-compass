@@ -7,6 +7,40 @@
 
 ## 문서 구성
 
+사람 확인용 화면·문서는 `D:\download\project\fest-compass\index.html`에서 연다.
+[사본 전달 방법](../ops/review-delivery.md)에 따라 복사하며 이 프로젝트의 원본은 유지한다.
+
+2026-09-23 저장소 통합: [통합 범위와 검증·게시 대기](../ops/repository-consolidation.md)를 먼저 확인한다.
+데이터랩 연도별 방문 추이 26개 축제를 새 화면 `/compare/annual`에 연결했으나 통합 검수 전이다.
+이 연간 자료 연결은 아래 v7 두 목적 전체 흐름의 구현과 별개이며, 전체 흐름은 개발 필요다.
+담당자 확인 질문은 [인터뷰 질문지](../research/festival-officer-interview.md)(예정)에 있다.
+
+2026-09-23 기능·기획 보완: [두 목적의 기능 상세와 디자인 작업 입력](../sdlc/2-design/functional-spec.md)을 먼저 읽는다.
+[화면 목표·기본 배치·상태 와이어프레임 v7](../sdlc/2-design/screens.md), [조건 전달·복귀](../sdlc/2-design/flows.md),
+[자료 공급·갱신 기준](../sdlc/2-design/data-visualization.md)을 연결했다. 최종 시각 디자인은 사용자가 진행하며
+기존 v5·v6 정상 상태 그림은 참고 자료다. 기능 연결은 개발 필요다.
+
+2026-09-22 새 축제 상세안: [지역 선택·관광자원·방문 흐름·개최 시기 v6](../sdlc/2-design/screens.md),
+[실제 데이터와 요일 집계·달력 기준](../sdlc/2-design/data-visualization.md),
+[과업·문구·위계·검수](../sdlc/2-design/design-system.md),
+[기록 없이 지역을 탐색하는 UC-FC-010](../sdlc/1-analysis/usecases/UC-FC-010.md)을 추가했다.
+지역 관광자원부터 시작하는 권장 상세안이며 앱 구현은 개발 필요다. 기존 축제 v5 설계는 유지한다.
+
+2026-09-22 기존 축제 상세 설계: [첫 진입과 세 핵심 화면 시안](../sdlc/2-design/screens.md),
+[실제 데이터·지표·가공·비교 기준](../sdlc/2-design/data-visualization.md),
+[문구·위계·타이포·반응형](../sdlc/2-design/design-system.md),
+[기록 없는 사용자 여정](../sdlc/1-analysis/usecases/UC-FC-009.md)을 연결했다.
+최신 devkit 제품 경험 기준을 적용한 개발 전 설계이며 앱 구현 완료를 뜻하지 않는다.
+
+2026-09-22 현행 확인: [기능·화면·기록 조건 요약](../review/2026-09-current-state.md)과
+[데이터 보유·연결 현황](../research/2026-09-data-inventory.md)을 먼저 읽는다.
+아래의 8월 구현 요약·결정과 개별 개발 전 시안은 당시 이력이며 최신 전체 앱 상태가 아니다.
+
+2026-09-22 사용자 확정: [관광 의사결정 지원 기획 기준](../product/planning-principles.md)을
+이후 제품 기획·설계에 우선 적용한다. 기존 축제 개선·새 축제 기획을 두 흐름으로 설계하고,
+핵심 질문의 답변·메모·기획안 기록은 선택 사항으로 둔다. 아래 기존 입력·보관 중심 설계는
+전체 이용의 필수 절차로 해석하지 않으며 상세 정렬·화면 구현은 후속이다.
+
 2026-09-08 문서 우선 지시: [기획 검수 안내](../review/2026-09-planning-review.md)에서
 개정 기획·요구사항·자료 정의·화면설계·와이어프레임을 검토한다.
 신규 지역 기획 요구는 docs/sdlc/의 정본을 따른다. 아래 01~05는 기존 운영 MVP의 당시 상세로 보존한다.

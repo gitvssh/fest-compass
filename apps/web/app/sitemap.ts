@@ -12,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: canonicalUrl("/planning/budget"), changeFrequency: "weekly", priority: 0.9 },
     { url: canonicalUrl("/planning/options"), changeFrequency: "weekly", priority: 0.9 },
     { url: canonicalUrl("/compare"), changeFrequency: "weekly", priority: 0.9 },
+    { url: canonicalUrl("/compare/annual"), changeFrequency: "monthly", priority: 0.8 },
     { url: canonicalUrl("/regions"), changeFrequency: "weekly", priority: 0.9 },
     { url: canonicalUrl("/workspace"), changeFrequency: "weekly", priority: 0.9 },
     {
