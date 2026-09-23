@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 37
+revision: 38
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-23T02:43:32.820Z"
+updated_at: "2026-09-23T06:15:43.385Z"
 ---
 
 # Current state
 
 ## Summary
 
-두 축제 목적의 기능·기획을 v7로 보완했다. 검색 식별·화면 조건 전달·자료 공급/갱신·실패 복구와 화면 목표·기본 배치, 3상태6프레임을 직접 검수했다. 기능 상세부터 여는 자료를 D:\download\project에 전달했다. 최종 시각 디자인은 사용자 작업이며 앱 개편·28개 인수 기준의 실제 동작 검증은 개발 필요다.
+gitvssh/fest-compass로 최신 설계·원자료·선별 기능 통합을 완료했다. 26개 축제 147행 연도별 방문과 행사 달력·CSV가 공개 운영에서 사용 가능하다. Claude Opus 5.5 위임 후 원자료·코드·모바일·운영을 직접 검수했고 기존 데이터는 보존됐다. D:\download\project\fest-compass\index.html에 확인본을 전달했다. v7 기존 축제 개선 → 새 축제 기획 전체 흐름과 최종 시각 디자인은 개발 필요다.
 
 ## Accepted decisions
 
@@ -59,12 +59,15 @@ updated_at: "2026-09-23T02:43:32.820Z"
 - 2026-09-22 사용자 후속 요청: 다음 안인 새 축제 기획 상세 설계를 이어서 진행한다. 지역·공공데이터 중심 탐색과 선택적 기록 원칙을 유지하며 최신 devkit UI/UX 기준을 적용한다. 구체적인 자원 우선 배치·비교 개수·경로는 검토 가능한 상세 제안이며 앱 구현 완료로 기록하지 않는다.
 - 2026-09-22 사용자 요청: 사람 확인이 필요한 화면설계·시안·임시자료는 D:\download\project에 복사해 쉽게 확인하게 한다. 프로젝트에서 필요한 문서는 프로젝트에도 남긴다. 목적에 맞게 전달 정책을 정리·개선할 수 있으며 devkit 운영지침에 등록한다.
 - 2026-09-23 사용자 요청: 기능·기획 개선에 집중하고 화면 목표·와이어프레임·기본 레이아웃까지만 전달한다. 최종 시각 디자인은 사용자가 개선하며 이전 시안의 색·폰트·간격을 확정값으로 고정하지 않는다.
+- 2026-09-23 사용자 요청·순차 실행 승인: shlee의 FEST Compass를 다른 프로젝트와 비교해 같은 축제 제품의 자료·기능만 흡수하고 기존 gitvssh/fest-compass를 개발·CI·배포 정본으로 통합한다. 다른 제품과 원본 자료는 보존한다.
+- 2026-09-23 사용자 변경 요청: 위임 모델은 Grok 4.6 대신 Claude Opus 5.5를 사용하고 통합 담당이 직접 검수한다. 실제 claude-opus-5-5 실행으로 자료·문서·기능 작업을 수행했다.
 
 ## Open questions
 
-- 두 목적의 기능 상세·검색 식별·조건 전달·자료 공급/갱신·부족한 자료/실패 복구와 기본 배치를 v7로 보완했다. 다음은 공통 자료 연결 → 기존 축제 여정 → 새 축제 여정 → 상태·복귀 → 사용자 시각 디자인 적용·인수 순서의 개발이다. UC-FC-009·010 각14개 기준은 미평가이며 앱 개편·운영 검증은 후속이다. 핵심 구현 뒤 뉴스 검색·원문 연결, AI 요약은 나중에 검토한다.
+- 다음 개발은 공통 자료 연결을 이어 기존 축제 여정 → 새 축제 여정 → 상태·복귀 → 사용자 시각 디자인 적용·인수 순서다. 이번 연도별 방문·달력 보강을 UC-FC-009·010의 28개 인수 기준 전체 완료로 보지 않는다. 핵심 구현 뒤 뉴스 검색·원문 연결, AI 요약은 나중에 검토한다.
+- 보존한 나머지 278개 CSV의 지표 계약·실제 앱 연결과 Foundry 연계·자료 자동 갱신은 후속이다. 논산딸기축제는 새 26개 연도별 목록에 없고 기존 시군구 방문 이력과 별도로 다룬다.
 - 개편 35개 조회 단위의 최신 공식 경계 확보·버전 교체는 후속이며 2025년 경계를 현재 법정 영역으로 인증하지 않는다.
-- 추가 지역·회차 공개 비용 확보와 자료 자동 갱신·전국 자동 주변 검색·실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
+- 추가 지역·회차 공개 비용 확보·전국 자동 주변 검색·실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
 
 ## Artifacts and durable documents
 
@@ -91,3 +94,9 @@ updated_at: "2026-09-23T02:43:32.820Z"
 - docs/ops/review-delivery.md
 - tools/export-review.py
 - docs/sdlc/2-design/functional-spec.md
+- docs/ops/repository-consolidation.md
+- docs/research/imported/hkjin-plan-03/README.md
+- docs/research/festival-officer-interview.md
+- docs/validation/evidence/2026-09-23-consolidation.json
+- apps/web/scripts/annual-trend-e2e.mjs
+- apps/web/scripts/schedule-absorption-e2e.mjs

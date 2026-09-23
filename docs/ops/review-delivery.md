@@ -61,7 +61,7 @@ headless Chromium의 `file://` 열기에서 HTML 21개·본문 이미지·Mermai
 
 ## 기능·기획 보완 전달 · 2026-09-23
 
-`D:\download\project\fest-compass\index.html`은 `2026-09-23-functional-plan-v7`을 연다.
+당시 `D:\download\project\fest-compass\index.html`은 `2026-09-23-functional-plan-v7`을 열었다.
 기준 자료 커밋은 `79322d1`, 선택 자료의 미커밋 변경은 없다. 기능 상세·화면 목표를 먼저 읽고 정상 상태 참고 그림과
 부족한 자료/실패 상태 그림으로 이동한다. 원본은 프로젝트에 유지하며 최종 시각 디자인은 사용자 작업이다.
 
@@ -70,3 +70,17 @@ headless Chromium의 `file://` 열기에서 HTML 21개·본문 이미지·Mermai
 최종 사본을 headless Chromium `file://`로 열어 HTML25개·Mermaid14개·이미지 표시, 기능 상세 바로가기,
 새 상태 화면3개의 모바일 펼치기, 390px 시작/기능 문서/상태 화면의 가로 넘침 없음·페이지 오류0을 확인했다.
 주 담당자는 새 상태 시안의 PC·모바일 6프레임을 직접 검수했다. Windows 브라우저 직접 실행과 제품 기능의 동작은 미평가다.
+
+## 저장소 통합·구현 결과 전달 · 2026-09-23
+
+현재 `D:\download\project\fest-compass\index.html`은 `2026-09-23-consolidated-reviewed`를 연다.
+정본 `gitvssh/fest-compass`의 커밋 `2811b03661eb385cbdc99362904e6becdbd245c8`에서 내보냈고
+선택 자료의 미커밋 변경은 없다. 첫 항목에서 통합 결과와 실제 공개 화면을 확인한 뒤 기능 상세·설계로 이동한다.
+개발 전 와이어프레임과 현재 사용 가능한 기능은 구분해서 표시한다.
+
+원본 사본 46개·시안 11페이지·문서 15페이지·시작 페이지를 전달했다. 실제 D 드라이브 마운트,
+원본·사본 SHA-256 46개 일치, 로컬 링크·이미지·앵커 317개와 저장소 밖 상대 링크 0개를 확인했다.
+한글 제목의 바로가기 오류를 내보내기 도구에서 수정한 뒤 새 묶음을 만들었으며 이전 묶음은 보존했다.
+최종 사본을 headless Chromium으로 열어 HTML 27개·Mermaid 14개·이미지 표시와 1280/390px의 가로 넘침 없음,
+페이지 오류 0을 확인했다. 실제 운영의 PC·모바일 화면은 통합 담당이 직접 검수했다.
+Windows 브라우저 직접 실행은 미평가이며, 제품 동작·운영 검증은 [통합 보고](repository-consolidation.md)에 별도로 남겼다.

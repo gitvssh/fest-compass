@@ -828,3 +828,26 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-038 · Codex · verifier
+
+- Position: FEST Compass의 최신 설계·원자료와 선별 기능을 gitvssh/fest-compass로 통합·게시했다. Claude Opus 5.5 위임 결과를 직접 대조했고 연도별 방문·행사 달력·CSV를 공개 운영에서 확인했다. 확인용 사본을 D 드라이브에 전달했으며 v7 두 목적 전체 흐름은 다음 개발이다.
+- Evidence:
+  - 2026-09-23 사용자: 관련 프로젝트만 선별 통합한 뒤 기존 gitvssh 저장소에서 순서대로 진행, Claude Opus 5.5 위임 및 직접 검수
+  - docs/ops/repository-consolidation.md
+  - docs/validation/evidence/2026-09-23-consolidation.json
+  - 자료 f362e65, 앱 a889be5, 배포 05716b4, 원본 이전 안내 6288436, 검토 사본 2811b03
+- Changes:
+  - 최신 문서·시안 62개와 CSV 304개·원문 문서 5개 이관, 독립 저장소 경로·현행 상태 정리
+  - 26개 축제 147행 연도별 방문, 지도·목록과 연동하는 월별 행사 달력, URL 조건 복원·CSV·현재 메뉴 연결
+  - 원본 저장소의 안내 4개 게시. 다른 제품은 수정·이동·삭제하지 않음
+  - D:\download\project\fest-compass\index.html → 2026-09-23-consolidated-reviewed. 원본은 저장소에 유지
+- Validation:
+  - Node 24.20.0: 단위 239건·인프라 40건·타입·빌드·headless 시나리오 스크립트 16개 통과. 저장소 전용 ARC CI 35824313294 성공
+  - 원본 Git blob 309/309 일치. 공개 운영 Synced·Healthy, 기존 PVC 및 SQLite 업무 9개 테이블 내용 해시 보존
+  - 실제 공개 화면 26개 축제·서산 2018년 수치 대조, 논산 행사 조회 5건·CSV 다운로드·390px·브라우저 오류 0
+  - D 드라이브 사본 46개 SHA 일치, 링크·이미지·앵커 317개 정상, HTML 27개·Mermaid 14개·1280/390px 넘침 및 페이지 오류 0. 한글 바로가기 오류 수정 후 확인
+  - 전체 v7 두 흐름 28개 인수 기준·담당자 실사용·Windows 브라우저 직접 실행은 이번 완료 범위에 포함하지 않음
+- Questions:
+  - No open question
+- Handoff: Codex
