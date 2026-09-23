@@ -1,0 +1,319 @@
+{
+  "verifiedOn": "2026-09-23",
+  "scope": "Existing-festival journey; new-festival dedicated journey remains planned",
+  "baselineCommit": "28c06973ba31db8d132eaedbe6de5b4e09cb3723",
+  "implementationCommit": "66c3b740ac8360a7b324277fc8d7b6af37ad4b0e",
+  "deploymentCommit": "81ce345029e008f6768a2a8cfcea6487ec00e17b",
+  "delegation": {
+    "requestedModel": "Claude Opus 5.5",
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "finalTasks": [
+      "data processing",
+      "UI implementation",
+      "acceptance scenarios"
+    ],
+    "finalTaskResults": "success; root independently reviewed sources, code, numeric results, browser and deployment"
+  },
+  "validation": {
+    "node": "24.20.0",
+    "npm test": {
+      "passed": 268,
+      "failed": 0,
+      "newCoreCases": 29
+    },
+    "npm run typecheck": "passed",
+    "npm run build": "passed",
+    "npm run test:e2e": {
+      "passedScripts": 17,
+      "failed": 0,
+      "headless": true,
+      "journey": {
+        "headless": true,
+        "realArchive": [
+          "history",
+          "monthly",
+          "holidays"
+        ],
+        "fixtures": "검증용 current/resources/events + before=2 history",
+        "passed": [
+          "AC1-purpose-entry-keyboard-search",
+          "AC11-same-name-separate-results",
+          "AC10-keyboard-result-to-title-focus",
+          "AC1-default-2025-2024-no-writing",
+          "AC3-real-archive-means-peaks-19-18-18-shared-axis",
+          "AC10-table-and-dialog-close-focus",
+          "AC14-window-and-selection-keep-original-denominator",
+          "AC6-one-type-failure-keeps-other-and-retry-applies",
+          "AC5-unlocated-stay-listed-no-distance-before-anchor",
+          "AC5-map-move-is-not-anchor-explicit-centre-applies",
+          "AC2-menu-restores-address-and-tab-context-reload-resets-temporary",
+          "AC7-real-2025-monthly-12-values-default-year",
+          "AC14-cross-month-candidate-whole-range-count-after-complete",
+          "AC8-holiday-partial-not-none-and-candidate-cap-2",
+          "AC12-real-yearmonth-link-back-restores-selection-focus",
+          "AC8-holiday-unsupported-range",
+          "AC7-2026-incomplete-no-forecast",
+          "AC2-timing-address-restore-candidates-reset-on-reload",
+          "AC9-late-success-and-late-failure-never-override-latest",
+          "AC4-zero-vs-missing-and-definition-difference(검증용)",
+          "AC4-real-undated-wonju-no-chart-no-mean-no-substitution",
+          "AC11-current-same-name-no-archive-join-resources-still-available",
+          "AC10-390px-no-page-overflow",
+          "AC13-history-same-condition-network-failure-keeps-earlier",
+          "AC13-changed-condition-failure-hides-earlier",
+          "AC13-schedule-block-failure-keeps-earlier-events",
+          "AC13-resources-block-and-network-failure-keep-earlier",
+          "AC2-no-writes-no-storage"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0,
+        "apiRequests": 72,
+        "ignoredFetchFailures": 0
+      }
+    },
+    "python -m unittest infra.scripts.test_validate_argocd_registration": {
+      "passed": 40,
+      "failed": 0
+    },
+    "python infra/scripts/validate_argocd_registration.py --release": {
+      "result": "passed",
+      "resources": 17
+    }
+  },
+  "ci": {
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/35868993176",
+    "headSha": "66c3b740ac8360a7b324277fc8d7b6af37ad4b0e",
+    "conclusion": "success",
+    "runner": "homelab-fest-compass-k8d69-runner-sth6b",
+    "labels": [
+      "homelab-fest-compass"
+    ],
+    "actionsArtifacts": 0
+  },
+  "deployment": {
+    "before": {
+      "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+      "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+      "generation": 25,
+      "ready": 1,
+      "images": {
+        "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:0f2e11eac39bde149f6ee09e3f4a42b666b6115a43daf778f5caae5e82920f88",
+        "web": "registry.damecasol.com/fest-compass/web@sha256:0f2e11eac39bde149f6ee09e3f4a42b666b6115a43daf778f5caae5e82920f88"
+      },
+      "revision": "28c06973ba31db8d132eaedbe6de5b4e09cb3723",
+      "sync": "Synced",
+      "health": "Healthy"
+    },
+    "after": {
+      "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+      "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+      "generation": 26,
+      "ready": 1,
+      "images": {
+        "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:63fa5e1f7a2eaac0571f8955d1ff1ec03131da86c7b9fd4aeb6bee7d95750683",
+        "web": "registry.damecasol.com/fest-compass/web@sha256:63fa5e1f7a2eaac0571f8955d1ff1ec03131da86c7b9fd4aeb6bee7d95750683"
+      },
+      "revision": "81ce345029e008f6768a2a8cfcea6487ec00e17b",
+      "sync": "Synced",
+      "health": "Healthy"
+    },
+    "operationPhase": "Succeeded",
+    "businessDataUnchanged": true,
+    "businessDataFingerprints": {
+      "festival": {
+        "rows": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "rows": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "rows": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "rows": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "rows": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "rows": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "rows": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "rows": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "rows": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    }
+  },
+  "productionRead": {
+    "checkedAt": "2026-09-23T13:50:34.679448+00:00",
+    "headless": true,
+    "base": "https://pickday.damecasol.com",
+    "fixtures": false,
+    "search": {
+      "archive": [
+        "archive:nonsan-strawberry"
+      ],
+      "currentStatus": "complete",
+      "current": [
+        {
+          "id": "current:44230:525292",
+          "name": "논산딸기축제",
+          "datesVerified": false
+        },
+        {
+          "id": "current:44230:1139979",
+          "name": "논산양촌곶감축제",
+          "datesVerified": false
+        }
+      ]
+    },
+    "history": [
+      {
+        "edition": "nonsan-strawberry-2025",
+        "mean": 85212.75,
+        "points": 18,
+        "peak": {
+          "value": 113466.5,
+          "dates": [
+            "2025-03-29"
+          ]
+        }
+      },
+      {
+        "edition": "nonsan-strawberry-2024",
+        "mean": 90412.875,
+        "points": 18,
+        "peak": {
+          "value": 126164.5,
+          "dates": [
+            "2024-03-23"
+          ]
+        }
+      },
+      {
+        "edition": "nonsan-strawberry-2023",
+        "mean": 68590.9,
+        "points": 19,
+        "peak": {
+          "value": 120599.5,
+          "dates": [
+            "2023-03-11"
+          ]
+        }
+      }
+    ],
+    "monthly": {
+      "year": 2025,
+      "rounded": [
+        43616,
+        42853,
+        51620,
+        47321,
+        53956,
+        47779,
+        44142,
+        49821,
+        45212,
+        55910,
+        48046,
+        42882
+      ]
+    },
+    "resources": [
+      {
+        "kind": "12",
+        "status": "complete",
+        "count": 61,
+        "collectedAt": "2026-09-23T13:50:39.554Z"
+      },
+      {
+        "kind": "14",
+        "status": "complete",
+        "count": 7,
+        "collectedAt": "2026-09-23T13:50:39.630Z"
+      }
+    ],
+    "schedule": {
+      "eventsStatus": "complete",
+      "eventsCount": 1,
+      "summary": {
+        "totalDays": 31,
+        "weekendDays": 9,
+        "holidays": {
+          "status": "complete",
+          "coveredDays": 31,
+          "uncovered": [],
+          "dates": [
+            {
+              "date": "2026-03-01",
+              "labels": [
+                "삼일절"
+              ]
+            },
+            {
+              "date": "2026-03-02",
+              "labels": [
+                "삼일절 대체공휴일"
+              ]
+            }
+          ],
+          "holidayDays": 2
+        },
+        "events": {
+          "status": "complete",
+          "count": 1,
+          "overlapping": 1,
+          "cancelled": 0,
+          "undated": 0
+        }
+      }
+    },
+    "verifiedCurrent": {
+      "status": "complete",
+      "lookup": "verified",
+      "items": [
+        {
+          "id": "current:44230:525292",
+          "name": "논산딸기축제",
+          "start": "2026-03-26",
+          "end": "2026-03-29",
+          "datesVerified": true
+        }
+      ]
+    },
+    "browserErrors": [],
+    "sameOriginApiWrites": [],
+    "mobileWidth": 390
+  },
+  "productionMap": {
+    "markers": 68,
+    "tiles": 9,
+    "errors": [],
+    "headless": true,
+    "fixtures": false,
+    "selectedMarker": 1
+  },
+  "limits": [
+    "Controlled-response current resources/events in acceptance tests are distinct from real production reads.",
+    "No claim of nationwide data completeness or observed officer usability.",
+    "Final visual design, full assistive-technology checks, 320px and 200% zoom remain unevaluated.",
+    "Windows native browser execution remains unevaluated; delivery is checked through the actual mounted D drive with headless Chromium.",
+    "Regional non-resident visitor estimates are not festival venue attendance.",
+    "No automatic current/archive identity merge based on names."
+  ]
+}
