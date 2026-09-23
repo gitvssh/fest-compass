@@ -3,13 +3,14 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { REGIONS } from "@/lib/region/model";
 import type { RegionResult } from "@/lib/region/types";
-import { currentEditions, filterEditions, validRange } from "@/lib/comparison/model";
+import { currentEditionId, currentEditions, filterEditions, validRange } from "@/lib/comparison/model";
 import { makeComparison, storeComparisons } from "@/lib/comparison/evidence";
 import type { Edition, SearchContext, Selection } from "@/lib/comparison/types";
 import { DistanceControls, DistanceChart } from "./FestivalDistance";
 import { distanceRows, distanceLabel } from "@/lib/comparison/distance";
 import { ComparisonSearchRange } from "./ComparisonSearchRange";
 import { Availability, CostCharts, ScheduleChart, SourceDetails, VisitComparison } from "./ComparisonCharts";
+import { buildEventCsv, comparisonCondition, csvFileName, downloadCsv, exportReady, type CsvRegion } from "@/lib/export/events-csv";
 const provinces = [...new Map(REGIONS.map(r=>[r.provinceCode,r.provinceName])).entries()];
 const keyName = (key: string) => { const r=REGIONS.find(r=>`${r.provinceCode}/${r.districtCode}`===key);return r?`${r.provinceName} ${r.districtName}`:key; };
 export function FestivalComparison({ catalogue, initial, year }: { catalogue: Edition[]; initial: SearchContext; year: number }) {
@@ -67,9 +68,19 @@ export function FestivalComparison({ catalogue, initial, year }: { catalogue: Ed
   }
   const filtered=filterEditions(applied.mode==="archive"?catalogue:results.flatMap(currentEditions),applied);
   const rows=distanceRows(filtered,applied.distance), found=rows.map(r=>r.edition);
+  // CSV follows the applied condition only: the same rows as the list, plus a state row for each region without rows.
+  const appliedResults=applied.mode==="current"?results.filter(r=>r.query.kind==="15"&&r.query.start===applied.start&&r.query.end===applied.end):[];
+  const csvRegions:CsvRegion[]=applied.mode==="current"?applied.regions.map(k=>({key:k,name:keyName(k),result:appliedResults.find(r=>`${r.query.province}/${r.query.district}`===k)??null})):[];
+  const csvReady=applied.mode==="current"&&!!request&&exportReady(csvRegions,loading), csvPartial=csvReady&&csvRegions.some(r=>!r.result||r.result.resources.status==="unavailable");
+  function exportEvents(){
+    if(!csvReady)return;
+    const byId=new Map(appliedResults.flatMap(r=>r.resources.items.map(resource=>[currentEditionId(resource),{resource,regionKey:`${r.query.province}/${r.query.district}`}] as const)));
+    const events=found.flatMap(e=>{const hit=byId.get(e.id);return hit?[hit]:[];});
+    downloadCsv(buildEventCsv({start:applied.start,end:applied.end,condition:comparisonCondition(applied),regions:csvRegions,events}),csvFileName(applied.regions,applied.start,applied.end));
+  }
   function setDistance(distance:SearchContext["distance"]){setApplied({...applied,distance});setDraft({...draft,distance});}
   const children=REGIONS.filter(r=>r.provinceCode===province);
-  return <div className="space-y-6"><header className="space-y-3"><p className="text-xs font-extrabold text-blue">지역 자료 → 축제 비교 → 기획 근거</p><h1 className="text-3xl font-extrabold">주변·과거 축제 비교</h1><p className="max-w-3xl text-sm leading-7 text-muted">회차를 골라 일정과 방문 흐름, 비용 자료를 비교하세요. 원문이 확인된 과거 자료와 현재 등록 정보를 구분하고, 판단에 쓴 자료를 담아둡니다.</p><div className="no-print flex flex-wrap gap-2"><Link href="/regions" className="region-button">전국 관광지도</Link><Link href="/evidence#comparisons" className="region-button">담은 비교 근거</Link><Link href="/planning/outcomes" className="region-button">공개 비용·개인 과거 회차</Link><button className="region-button" onClick={()=>window.print()}>비교 화면 인쇄</button></div></header>
+  return <div className="space-y-6"><header className="space-y-3"><p className="text-xs font-extrabold text-blue">지역 자료 → 축제 비교 → 기획 근거</p><h1 className="text-3xl font-extrabold">주변·과거 축제 비교</h1><p className="max-w-3xl text-sm leading-7 text-muted">회차를 골라 일정과 방문 흐름, 비용 자료를 비교하세요. 원문이 확인된 과거 자료와 현재 등록 정보를 구분하고, 판단에 쓴 자료를 담아둡니다.</p><div className="no-print flex flex-wrap gap-2"><Link href="/regions" className="region-button">전국 관광지도</Link><Link href="/compare/annual" className="region-button">연도별 방문 보기</Link><Link href="/evidence#comparisons" className="region-button">담은 비교 근거</Link><Link href="/planning/outcomes" className="region-button">공개 비용·개인 과거 회차</Link><button className="region-button" onClick={()=>window.print()}>비교 화면 인쇄</button></div></header>
     <section className="region-card no-print space-y-4"><h2 className="font-extrabold">확보된 자료로 살펴보기</h2><div className="flex flex-wrap gap-2"><button className="region-button" onClick={()=>example(["nonsan-strawberry-2023","nonsan-strawberry-2024","nonsan-strawberry-2025"])}>논산 3회차 방문 비교</button><button className="region-button" onClick={()=>example(["imsil-cheese-2023","imsil-cheese-2024","imsil-cheese-2025"])}>임실 3회차 방문 비교</button><button className="region-button" onClick={()=>example(["baekje-gongju-2024"])}>공주 방문·공개 비용 보기</button><button className="region-button" onClick={()=>example(["wonju-peach-2022-21"])}>원주 계획·집행 보기</button><button className="region-button" onClick={()=>example(["baekje-gongju-2024","imsil-cheese-2024"])}>공주·임실 일정 비교</button></div><p className="text-xs text-muted">논산·임실·공주·원주의 8회차를 연결했습니다. 전국의 모든 과거 개최 기록을 확보한 목록은 아닙니다.</p></section>
     <div className="region-card no-print sticky top-32 z-20 border border-blue/20 shadow-card"><div className="flex flex-wrap items-center gap-2"><strong>비교 {selected.length}/3회차</strong>{selected.map(e=><button key={e.id} className="region-tag" onClick={()=>setSelected(selected.filter(s=>s.id!==e.id))}>{e.year} {e.name} 빼기 ×</button>)}<button className="region-button" disabled={!selected.length} onClick={()=>board.current?.scrollIntoView({behavior:"smooth",block:"start"})}>그래프 보기 ↓</button><button className="region-button" disabled={!selected.length} onClick={()=>setSelected([])}>선택 비우기</button></div></div>
     <section className="region-card no-print space-y-4"><h2 className="text-xl font-extrabold">비교할 회차 찾기</h2><div className="flex flex-wrap gap-2" role="group" aria-label="자료 종류"><button className="region-button" aria-pressed={draft.mode==="archive"} onClick={()=>changeMode("archive")}>출처가 있는 과거 회차</button><button className="region-button" aria-pressed={draft.mode==="current"} onClick={()=>changeMode("current")}>현재 등록 행사 조회</button></div>
@@ -88,6 +99,7 @@ export function FestivalComparison({ catalogue, initial, year }: { catalogue: Ed
       <DistanceChart query={applied} editions={filtered}/>
       <ComparisonSearchRange query={applied} editions={found}/>
       {loading&&<p role="status">등록 행사의 전체 페이지를 지역별로 조회하고 있습니다…</p>}
+      {applied.mode==="current"&&<div className="no-print flex flex-wrap items-center gap-2"><button className="region-button" disabled={!csvReady} onClick={exportEvents}>목록의 행사 내려받기 (CSV)</button>{loading?<span className="text-xs text-muted">모든 지역을 불러온 뒤 내려받을 수 있어요</span>:csvPartial?<span className="text-xs text-muted">불러오지 못한 지역은 파일에 따로 표시돼요</span>:null}</div>}
       {applied.mode==="current"&&<div className="space-y-2">{applied.regions.map(k=>{const r=results.find(r=>`${r.query.province}/${r.query.district}`===k);return <p key={k} className="rounded-xl bg-paper p-3 text-xs leading-6"><strong>{keyName(k)}</strong> · {r?`${r.resources.message} · ${r.resources.total===null?"건수 미확보":`제공처 조회 ${r.resources.total}건`} · ${r.resources.pages}페이지 · 조회 ${r.resources.collectedAt}`:loading?"조회 대기":"미조회 또는 조회 실패"}</p>;})}</div>}
       {!found.length&&!loading&&<p className="rounded-xl bg-paper p-4 text-sm">이 조건에서 확인한 자료가 없습니다. 실제 행사 없음·미개최를 뜻하지 않습니다. 기간이나 지역을 바꾸어 조회하세요.</p>}
       <div className="grid max-h-[38rem] gap-3 overflow-auto sm:grid-cols-2">{rows.map(({edition:e,km})=><article key={e.id} className="rounded-xl border border-ink/10 p-4"><div className="flex flex-wrap gap-2"><span className="region-tag">{e.origin==="archive"?"과거 회차 자료":"현재 등록 정보"}</span><span className="text-xs text-muted">{e.year} · {e.region.name}</span></div><h3 className="mt-3 font-extrabold">{e.name}</h3><p className="my-2 text-sm">{e.start?`${e.start} ~ ${e.end}`:"개최일 미확인"} · {e.status}</p><p className="text-sm font-bold text-blue">{applied.distance?distanceLabel(km):""}</p><p className="text-xs text-muted">방문 {e.visits?"보관 이력 있음":"미확보"} · 비용 {e.costs.length?"원문 금액 있음":"미확보"} · 확인 {e.source.checkedAt.slice(0,10)}</p><button className="region-button no-print mt-3" aria-pressed={selected.some(s=>s.id===e.id)} onClick={()=>select(e)}>{e.year} {e.name} {selected.some(s=>s.id===e.id)?"비교에서 빼기":"비교에 추가"}</button></article>)}</div>
