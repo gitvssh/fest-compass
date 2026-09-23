@@ -851,3 +851,28 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-039 · Codex · verifier
+
+- Position: 기존 축제 개선의 검색·과거 방문·주변 관광자원·개최 시기를 구현해 공개 서비스에 반영했다. Claude Opus 5.5 위임 결과를 직접 대조하고 실제 자료·PC/모바일·배포를 확인했다. D 드라이브에 현재 화면과 갱신된 설계 문서를 전달했으며 다음 대상은 새 축제 전용 흐름이다.
+- Evidence:
+  - 2026-09-23 사용자: 통합 후 다음 작업 진행, Claude Opus 5.5 위임·직접 검수
+  - docs/validation/34-existing-festival-journey.md
+  - docs/validation/evidence/2026-09-23-existing-journey.json
+  - 구현 66c3b74, 배포 81ce345, 검토 사본 d8efc78
+- Changes:
+  - 첫 화면 목적 선택과 /existing/search·visits·resources·timing, 실제 자료 GET API 다섯 개 구현
+  - 회차별 실제 날짜·평균·차트, 현재 관광자원 지도·목록, 월별 관측과 후보 0~2개 기간 비교·달력 연결
+  - 확인 전 지역 연결 방지, 0·결측·취소·정의 차이와 독립 실패·이전 성공값 복구 구분
+  - 기능 상세·요구사항·UC009·TS009·화면/흐름/정보구조와 현재 상태 갱신; 프로젝트 원본·기존 운영 데이터 유지
+  - D:\download\project\fest-compass\index.html → 2026-09-23-existing-journey-reviewed
+- Validation:
+  - Node 24.20.0: 단위 268건·타입·빌드·headless 스크립트 17개·인프라 40건 통과. 기존 축제 AC1~14의 28개 확인 항목 통과
+  - 실제 claude-opus-5-5 최종 세 위임 성공 종료. 통합 담당이 코드·원자료·화면을 직접 검수
+  - ARC CI 35868993176 성공·Actions artifact 0, 공개 Synced/Healthy. 배포 전후 Deployment·PVC 식별자와 업무 9개 모델 행수·내용 해시 동일
+  - 실제 논산 현재 등록 축제 2건·관광지61/문화시설7·지도 표식68·선택, 과거3개 회차·월별12개 수치 확인. 브라우저 오류·API 쓰기0, 390px 페이지 넘침없음
+  - D 드라이브 사본53개 SHA 일치·로컬 링크/이미지/앵커336개 정상·HTML28개/Mermaid14개·1280/390px 오류/넘침0
+  - 새 축제 전용 흐름·최종 시각 디자인·전체 보조기술·담당자 실사용·Windows 브라우저 직접 실행은 완료 범위에 포함하지 않음
+- Questions:
+  - No open question
+- Handoff: Codex
