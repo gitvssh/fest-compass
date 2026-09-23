@@ -13,6 +13,7 @@ from urllib.parse import quote, unquote, urlsplit
 import xml.etree.ElementTree as ET
 
 import markdown
+from markdown.extensions.toc import slugify_unicode
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
@@ -128,7 +129,8 @@ def main():
     for path, title in DOCS.items():
         raw = (ROOT / path).read_text()
         body = re.sub(r'\A---\n.*?\n---\n', '', raw, count=1, flags=re.S)
-        body = markdown.markdown(body, extensions=['tables', 'fenced_code', 'toc', 'sane_lists'])
+        body = markdown.markdown(body, extensions=['tables', 'fenced_code', 'toc', 'sane_lists'],
+                                 extension_configs={'toc': {'slugify': slugify_unicode}})
         body = re.sub(r'<pre><code class="language-mermaid">(.*?)</code></pre>', r'<pre class="mermaid">\1</pre>', body, flags=re.S)
         def link(match):
             attr, value = match.group(1), html.unescape(match.group(2))
