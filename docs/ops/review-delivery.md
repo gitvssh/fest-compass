@@ -112,7 +112,7 @@ Windows 브라우저 직접 실행은 미평가다. 원본과 이전 검토 묶�
 
 ## pickDday 이름·새 축제 구현 전달 · 2026-09-24
 
-현재 확인 위치는 `D:\download\project\pickDday\index.html`이며
+당시 확인 위치는 `D:\download\project\pickDday\index.html`이며
 `2026-09-24-pickdday-new-journey-reviewed` 묶음을 연다. 정본 커밋
 `ff35234ad0371ad9e4547c9cc2616ac1f825de34`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
 첫 항목 [pickDday 실제 화면·검증 결과](../validation/35-pickdday-new-festival.md)에
@@ -125,3 +125,20 @@ headless Chromium의 `file://`에서 HTML 29개·Mermaid 14개·이미지를 확
 페이지 오류·깨진 이미지·전체 가로 넘침은 모두 0이다. 공개 화면 8개는 통합 담당이 직접 검수했다.
 이전 `fest-compass/index.html`의 해시도 전달 전후 일치하며 기존 폴더는 그대로 남겼다.
 Windows 브라우저 직접 실행은 미평가이며 프로젝트 원본과 편집 소스는 저장소에 유지한다.
+
+## 관련 자료 검색 구현 전달 · 2026-09-24
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-24-related-search-reviewed-v2`를 연다.
+정본 커밋 `20cc9b3a17fe494c728570d4fd30611975673b79`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
+시작 페이지의 관련 자료 검색 항목에서 [공개 화면·검증 결과36](../validation/36-related-material-search.md)과
+기능 상세로 이동한다. 실제 축제·지역·자원별 검색창 4개 화면을 추가했으며 이전 두 핵심 흐름의 자료도 유지한다.
+
+실제 D 드라이브 9p 마운트에 원본 사본 67개·시안 11페이지·문서 18페이지·시작 페이지를 전달했다.
+67개 SHA-256 일치, 로컬 링크·이미지·앵커 394개 정상, 저장소 밖 상대 링크 0개를 확인했다.
+headless Chromium으로 HTML 30개를 1280/390px에서 각각 열어 60개 화면·Mermaid 15개·이미지 표시를 확인했다.
+깨진 이미지·페이지 오류·전체 가로 넘침은 모두 0이다. 시작 파일 → 최신 묶음 → 관련 자료 문서 → 기능 상세 §8
+클릭도 통과했고 시작/모바일 문서 화면은 주 담당자가 직접 검수했다.
+
+첫 `2026-09-24-related-search-reviewed` 사본에서 제목의 날짜 구분 기호로 인한 링크 오류를 발견했다.
+원본 제목·링크를 고친 뒤 위 v2를 만들었으며 최신 시작 파일은 검증한 v2만 연다. 이전 사본은 그대로 유지했다.
+옛 `fest-compass/index.html` 해시는 전달 전후 일치한다. 프로젝트 원본은 저장소에 남으며 Windows 브라우저 직접 실행은 미평가다.

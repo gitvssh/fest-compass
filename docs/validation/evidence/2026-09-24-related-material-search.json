@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-09-24T02:44:06.213528+00:00",
+  "verifiedAt": "2026-09-24T02:47:56.957601+00:00",
   "sourceBase": "d121c382afe218dbb3699866001fab79199d765b",
   "appFilesSha256": {
     "apps/web/app/privacy/page.tsx": "eaa6533d291915681d7e0bcd629bf591e4633961844d759f7f6d867cd7bd5c0a",
@@ -192,7 +192,32 @@
       "wait for actual resource list before beginning new-region interactions"
     ]
   },
-  "reviewCopy": null,
+  "reviewCopy": {
+    "start": "D:\\download\\project\\pickDday\\index.html",
+    "bundle": "2026-09-24-related-search-reviewed-v2",
+    "sourceCommit": "20cc9b3a17fe494c728570d4fd30611975673b79",
+    "sourceDirty": false,
+    "mount": "Windows D: via /mnt/d 9p",
+    "manifestSha256": "eed8b771bff05e5d6ca792a387a95d7d075d73d2b3287e2790284843f0edf58b",
+    "sourceFiles": 67,
+    "localLinks": 394,
+    "outsideLinks": 0,
+    "htmlFiles": 30,
+    "headlessRenders": 60,
+    "widths": [
+      1280,
+      390
+    ],
+    "mermaidDiagramsAtDesktop": 15,
+    "browserErrors": 0,
+    "brokenImages": 0,
+    "pageOverflows": 0,
+    "landingAndSection8Navigation": "passed",
+    "rootVisualReview": "index and mobile related document inspected",
+    "previousFestCompassIndex": "hash unchanged",
+    "windowsBrowserDirectlyTested": false,
+    "repair": "section heading and anchor made consistent across Markdown and rendered HTML; verified v2 is current landing target"
+  },
   "limitations": [
     "Prior direct DuckDuckGo query returned HTTP 202 human challenge without bypass; final public app link returned HTTP 200 without detected challenge, title/query/referrer/opener checked; result relevance and original article content not verified",
     "Native IME and broad assistive technology, 200% zoom, final visual design and officer observation not evaluated",

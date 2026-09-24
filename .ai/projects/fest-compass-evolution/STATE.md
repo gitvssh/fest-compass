@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 40
+revision: 41
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-23T15:19:14.397Z"
+updated_at: "2026-09-24T02:48:54.878Z"
 ---
 
 # Current state
 
 ## Summary
 
-pickDday의 기존 축제 개선과 새 축제 기획을 공개 서비스에서 기록 없이 사용할 수 있다. 이름·소개·현재 문서를 정리했고 새 지역 선택·관광자원 두 곳 비교와 실제 소개·월/요일 방문·달력/후보 기간을 구현했다. Claude Opus 5.5 위임 후 직접 검수했으며 단위280건·headless18개 스크립트·ARC CI를 통과했다. D:\download\project\pickDday\index.html에 실제 화면8개와 최신 설계 확인본을 전달했다. 저장소·배포 주소와 기존 자료는 유지했다. 최종 시각 디자인·담당자 검증과 뉴스 검색/원문 연결은 후속이다.
+pickDday의 두 핵심 흐름에서 관련 자료 검색까지 사용할 수 있다. 축제·확인 회차·지역·관광자원별 검색어를 조정해 DuckDuckGo 새 탭을 열고 원래 선택을 유지한다. 실제 Opus 5.5 설계·구현 위임 후 직접 검수했으며 단위289건·headless19개 스크립트·ARC CI·공개 화면 확인을 통과했다. D:\download\project\pickDday\index.html에서 최신 v2 설계·실제 화면4개를 확인한다. 원본과 이전 자료·업무 데이터는 보존했다. 외부 검색 결과의 적합성·원문 내용, 최종 시각 디자인·실무자 관찰과 미연결 공공자료 연결은 후속이다.
 
 ## Accepted decisions
 
@@ -63,10 +63,11 @@ pickDday의 기존 축제 개선과 새 축제 기획을 공개 서비스에서 
 - 2026-09-23 사용자 변경 요청: 위임 모델은 Grok 4.6 대신 Claude Opus 5.5를 사용하고 통합 담당이 직접 검수한다. 실제 claude-opus-5-5 실행으로 자료·문서·기능 작업을 수행했다.
 - 2026-09-23 다음 작업 진행 요청에 따라 기존 축제 개선의 검색·과거 방문·주변 자원·개최 시기를 구현·검증·공개했다. Claude Opus 5.5에 위임하고 통합 담당이 직접 검수하며 선택적 기록·실제 자료와 통제 응답 구분·최종 시각 디자인 후속 원칙을 유지한다.
 - 2026-09-23 사용자 요청: 프로젝트 표시 이름을 정확히 pickDday로 바꾸고 설명·현재 문서를 정리한 뒤 새 축제 전용 흐름을 구현한다. 기존 관광 활성화·지역 공무원·두 목적·선택적 기록 기준과 Claude Opus 5.5 위임·직접 검수를 유지한다.
+- 2026-09-24 사용자 진행 요청: 두 핵심 흐름 뒤의 관련 자료 검색·원문 연결을 Claude Opus 5.5로 설계·구현 위임하고 직접 검수한다. 위임 범위에서 공식 URL 형식을 확인한 DuckDuckGo 새 탭 검색을 축제·회차·지역·자원에 연결했다. 기사 수집·수치 자동 반영·AI 요약은 포함하지 않는다.
 
 ## Open questions
 
-- 기존 축제·새 축제 두 전용 흐름은 구현·자동 검증·공개 확인 완료다. 최종 시각 디자인·실제 담당자 업무 관찰은 후속이다. 핵심 구현 뒤의 뉴스 검색·원문 연결을 다음 기능 후보로 두고 AI 요약은 나중에 검토한다. 출처창·전체 스크롤 복원, 320px·200% 확대·보조기술 전반도 후속 검증 범위다.
+- 두 핵심 흐름과 관련 자료 검색은 구현·자동 검증·공개 확인 완료다. 최종 시각 디자인·실제 담당자 업무 관찰은 후속이다. DuckDuckGo 새 탭의 검색어·제목·전송 경계는 확인했으나 검색 결과 적합성·원문 내용은 검증하지 않았다. AI 요약은 나중에 검토한다. 전체 핵심 화면의 320px·200% 확대·보조기술 전반과 출처창·전체 스크롤 복원 검증은 후속이며 관련 검색창의 320/390/1440px는 확인했다.
 - 보존한 나머지 278개 CSV의 지표 계약·실제 앱 연결과 Foundry 연계·자료 자동 갱신은 후속이다. 논산딸기축제는 새 26개 연도별 목록에 없고 기존 시군구 방문 이력과 별도로 다룬다.
 - 개편 35개 조회 단위의 최신 공식 경계 확보·버전 교체는 후속이며 2025년 경계를 현재 법정 영역으로 인증하지 않는다.
 - 추가 지역·회차 공개 비용 확보·전국 자동 주변 검색·실제 담당자 업무 인수·공동 편집/공식 승인·정형 API/Spec/Run 연결은 후속이다.
@@ -110,3 +111,7 @@ pickDday의 기존 축제 개선과 새 축제 기획을 공개 서비스에서 
 - docs/validation/evidence/2026-09-24-pickdday-new-festival.json
 - docs/sdlc/3-testing/scenarios/TS-FC-010.md
 - apps/web/scripts/new-festival-e2e.mjs
+- docs/validation/36-related-material-search.md
+- docs/validation/evidence/2026-09-24-related-material-search.json
+- docs/sdlc/3-testing/scenarios/TS-FC-011.md
+- apps/web/scripts/related-search-e2e.mjs

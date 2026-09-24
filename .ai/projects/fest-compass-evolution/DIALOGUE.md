@@ -900,3 +900,28 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-041 · Codex · verifier
+
+- Position: 축제·회차·지역·관광자원의 관련 자료 검색을 설계·구현해 공개 서비스에 반영했다. Claude Opus 5.5 위임 결과를 직접 검수하고 실제 공개 화면과 D 드라이브 확인 자료까지 검증했다. 검색 결과의 적합성·원문 내용 확인과 최종 시각 디자인·담당자 관찰은 완료 범위와 구분한다.
+- Evidence:
+  - 2026-09-24 사용자: 진행 요청, Opus 5.5 설계 후 위임·직접 검수
+  - docs/validation/36-related-material-search.md
+  - docs/validation/evidence/2026-09-24-related-material-search.json
+  - 구현 cd8e253, 배포 ee42b44, 검토 사본 원본 20cc9b3
+- Changes:
+  - 기존 축제 머리·새 지역 머리·자원 상세의 관련 자료 검색창. 확인된 연도·주제·검색어 조정과 DuckDuckGo 새 탭 연결, 기록·저장 요구 없음
+  - 검색 입력의 Esc 닫기·초점 복귀와 긴 제목 줄바꿈 보완. 관련 인수 시험 추가, 기존 자원 비교 시험의 초점 복귀 대기 보완
+  - 요구사항·두 유스케이스·기능 상세·화면·흐름·정보구조·현재 상태·개인정보 안내 갱신
+  - D:\download\project\pickDday\index.html → 2026-09-24-related-search-reviewed-v2. 원본과 이전 검토 자료 유지
+- Validation:
+  - 실제 claude-opus-5-5/firstParty의 설계·구현·인수 시험 작성 종료 확인. 설계의 복합 조회 한 번 도구 거부 후 읽기 도구로 완료; 구현·인수 작성 거부 0. 주 담당자가 코드·실제 화면·검증 결과 직접 확인
+  - Node 24.20.0 단위289건·타입·빌드·인프라40건·17개 운영 리소스·전체 headless19개 스크립트 통과. 관련 검색25항목 포함
+  - 전용 homelab-fest-compass ARC CI35947438978 성공·Actions artifact0. 공개 Synced/Healthy, Deployment·PVC와 업무9개 모델 건수·내용 보존
+  - 실제 논산딸기축제2025·논산시·온빛자연휴양림 검색, 320/390/1440px·Esc·선택 유지·브라우저 오류/앱쓰기0. 최초 동의 창과 자원 준비 대기를 확인 스크립트에 반영해 재검증
+  - 사전 DuckDuckGo 직접 검색은 사람 확인 화면, 최종 공개 새 탭은 HTTP200·검색어/제목·referrer/opener 없음 확인. 결과 적합성·원문 내용은 검증하지 않음
+  - 문서 추적52개 누락0·오류/경고0. D 사본67개 해시·링크394개 정상, HTML30개/60개 렌더·Mermaid15개·1280/390px 오류/깨진 이미지/넘침0. 제목 링크 수정 후 v2 재확인, 이전 fest-compass 시작 파일 해시 보존
+  - 최종 시각 디자인·담당자 실사용·실제 IME/전체 보조기술/200% 확대·Windows 브라우저 직접 실행·정형 API/Spec/Run/티켓 연계는 미평가 또는 미선언
+- Questions:
+  - No open question
+- Handoff: Codex
