@@ -110,6 +110,7 @@ try {
   runNode(join(webRoot, "scripts", "annual-trend-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "existing-journey-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "new-festival-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "related-search-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "schedule-absorption-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "overlap-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "distance-e2e.mjs"), []);

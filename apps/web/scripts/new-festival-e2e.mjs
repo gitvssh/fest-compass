@@ -492,12 +492,16 @@ async function resourcesAndIntro({ page }) {
   await visible(intro(page, D));
   await includes(intro(page, D), "다시 불러온 소개예요");
   await detail(page, D).getByRole("button", { name: "상세 닫기", exact: true }).click();
+  await waitFocusAttr(page, "data-resource-id", D.id);
   passed.push("AC13-empty-notfound-mismatch-omit-block-failure-retries-in-place");
 }
 
 async function compareAndAnchor({ page }) {
   // AC2 · AC3 · AC11 (검증용 resources): two at most, third rejected, replace after removal, explicit anchors only.
-  const add = async r => { const t = listToggle(page, r, "함께 보기에 추가"); await t.focus(); await page.keyboard.press("Enter"); };
+  const add = async (r, expected = true) => {
+    const t = listToggle(page, r, "함께 보기에 추가"); await t.focus(); await page.keyboard.press("Enter");
+    if (expected) await visible(listToggle(page, r, "함께 보기에서 빼기"));
+  };
   await add(A); await add(B);
   await visible(page.getByRole("heading", { name: "함께 보기 2/2", exact: true }));
   const names = await compare(page).getByRole("article").evaluateAll(as => as.map(a => a.querySelector("h4")?.textContent?.trim()));
@@ -512,7 +516,7 @@ async function compareAndAnchor({ page }) {
   await includes(ddOf(compareCard(page, A), "소개"), "검증용 소개 가 (가상)");
   assert.equal(await ddOf(compareCard(page, B), "소개").innerText(), "—", "confirmed empty introduction is a dash, not a failure");
   await visible(listToggle(page, A, "함께 보기에서 빼기"));
-  await add(C);
+  await add(C, false);
   await visible(compare(page).getByRole("alert").filter({ hasText: "함께 보기는 2곳까지예요. 한 곳을 빼고 추가해 주세요." }));
   await waitFocusId(page, "new-compare-heading");
   assert.equal(await compare(page).getByRole("article").count(), 2, "nothing silently added or replaced");

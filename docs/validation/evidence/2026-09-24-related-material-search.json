@@ -1,0 +1,166 @@
+{
+  "verifiedAt": "2026-09-24T02:25:31.530457+00:00",
+  "sourceBase": "d121c382afe218dbb3699866001fab79199d765b",
+  "appFilesSha256": {
+    "apps/web/app/privacy/page.tsx": "eaa6533d291915681d7e0bcd629bf591e4633961844d759f7f6d867cd7bd5c0a",
+    "apps/web/components/existing/ExistingShell.tsx": "9cc2e67042516760cef15ae29d7b5631fd1e54336560eb53f81817f0c35fbed1",
+    "apps/web/components/existing/ui.tsx": "429dbba3714c81a8c6233638f4ef6b607c68ace0aa2cd096b31195ea9e0532d1",
+    "apps/web/components/new-festival/NewShell.tsx": "f00b16f982be9f5466ef8334d7ec1eb5d4607fd25151ba2565f64ef6e6c3ceb6",
+    "apps/web/components/new-festival/ResourceDetailPanel.tsx": "3f388843b3cb30b128db48f64485dc2df0f15462aa7492d6fca9ef6e75d9f7b6",
+    "apps/web/components/related/RelatedSearch.tsx": "116490a403ee613c52066219dae500fb4ab57258e3629ea3c9fd8d8a0a3ce4de",
+    "apps/web/lib/related-search/query.ts": "18152e9a469176344ab7331ee83b07333d19c8b13ec40f4cbc039c98dde22a4b",
+    "apps/web/lib/related-search/related-search.test.ts": "5b10c4b1636104083cae896938ba948237193dae7f2695dacba6fabf54fc788b",
+    "apps/web/package.json": "fdaa76a6dc63b5c7d6f65193969725818a43ad1e64e53b9758895ffa5d62bc54",
+    "apps/web/scripts/new-festival-e2e.mjs": "c1bcc6c9b9504ab8b8a815f37b1af9a4d357b98290b5908a9f2629d1c5126768",
+    "apps/web/scripts/related-search-e2e.mjs": "5f451f036105c3f86cc816543519733db3e16b498c489aa14a5793408035184e",
+    "apps/web/scripts/run-demo-e2e.mjs": "cd2971526b3db9e7e0dceeeb5c82fd247ee914acd4f216b0c0e507ce5ed4cebb"
+  },
+  "environment": {
+    "node": "24.20.0",
+    "browser": "headless Chromium",
+    "appMode": "public-readonly for public scenarios",
+    "providerData": "archive pass-through, labelled synthetic current/resource/target fixtures"
+  },
+  "delegation": [
+    {
+      "task": "design",
+      "result": "success",
+      "models": [
+        {
+          "model": "claude-opus-5-5",
+          "provider": "firstParty"
+        }
+      ],
+      "permissionDenials": 1
+    },
+    {
+      "task": "implementation",
+      "result": "success",
+      "models": [
+        {
+          "model": "claude-opus-5-5",
+          "provider": "firstParty"
+        }
+      ],
+      "permissionDenials": 0
+    },
+    {
+      "task": "acceptance",
+      "result": "success",
+      "models": [
+        {
+          "model": "claude-opus-5-5",
+          "provider": "firstParty"
+        }
+      ],
+      "permissionDenials": 0
+    }
+  ],
+  "local": {
+    "unit": {
+      "passed": 289,
+      "tsx": 278,
+      "node": 11
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "infraTests": 40,
+    "prodResources": 17,
+    "e2eScripts": 19,
+    "e2e": "passed",
+    "existingJourneyChecks": 28,
+    "newJourneyChecks": 37,
+    "related": {
+      "headless": true,
+      "scenario": "TS-FC-011",
+      "realArchive": [
+        "archive festival lookup",
+        "history",
+        "monthly",
+        "schedule",
+        "new/visits"
+      ],
+      "fixtures": "검증용 current identities, resources, resource introductions, map tiles, 가로챈 DuckDuckGo 도착지",
+      "providerResultsVerified": false,
+      "passed": [
+        "verified-festival-only-no-button-while-pending-or-failed",
+        "not-found-festival-no-button",
+        "existing-defaults-topics-years-rebuild-query",
+        "existing-reopen-resets",
+        "close-and-escape-return-focus",
+        "full-region-name-once",
+        "single-edition-year-compare-all",
+        "unknown-mixed-duplicate-editions-no-invented-year",
+        "reopen-follows-applied-edition",
+        "timing-and-resources-exclude-observation-month-candidate-years",
+        "editable-query-encodes-amp-hash-plus-korean",
+        "blank-query-no-link-and-reset",
+        "external-only-on-explicit-click-or-enter",
+        "ime-composing-enter-does-not-open",
+        "new-tab-noopener-noreferrer-no-referrer",
+        "source-tab-address-and-selection-kept",
+        "current-festival-confirmed-start-year-only",
+        "new-region-no-year-region-topics",
+        "resource-detail-named-search-resource-topics",
+        "resource-change-discards-search",
+        "region-change-discards-search",
+        "ambiguous-region-full-name",
+        "320-390-desktop-no-page-or-dialog-overflow",
+        "keyboard-tab-cycle-and-arrow-topics",
+        "no-writes-no-leak-of-typed-query"
+      ],
+      "external": [
+        {
+          "label": "link click (custom)",
+          "destination": "검증용 가로챈 DuckDuckGo 도착지 (실제 검색 결과 아님)",
+          "popupUrl": "https://duckduckgo.com/?q=%EA%B2%80%EC%A6%9D%EB%A7%88%EC%BB%A4+%EB%85%BC%EC%82%B0+%26+%EB%94%B8%EA%B8%B0+%232025+%2B+%EC%B2%B4%ED%97%98+%ED%9B%84%EA%B8%B0",
+          "q": "검증마커 논산 & 딸기 #2025 + 체험 후기",
+          "documentReferrer": "",
+          "windowOpener": null,
+          "refererHeader": null,
+          "sourceUrlUnchanged": true
+        },
+        {
+          "label": "Enter in query",
+          "destination": "검증용 가로챈 DuckDuckGo 도착지 (실제 검색 결과 아님)",
+          "popupUrl": "https://duckduckgo.com/?q=%EB%85%BC%EC%82%B0%EB%94%B8%EA%B8%B0%EC%B6%95%EC%A0%9C+%EC%B2%B4%ED%97%98+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8",
+          "q": "논산딸기축제 체험 프로그램",
+          "documentReferrer": "",
+          "windowOpener": null,
+          "refererHeader": null,
+          "sourceUrlUnchanged": true
+        },
+        {
+          "label": "resource link click",
+          "destination": "검증용 가로챈 DuckDuckGo 도착지 (실제 검색 결과 아님)",
+          "popupUrl": "https://duckduckgo.com/?q=%EA%B2%80%EC%A6%9D%EC%9A%A9+%EA%B4%80%EA%B4%91%EC%A7%80+%EA%B0%80+%28%EA%B0%80%EC%83%81%29+%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84+%EB%85%BC%EC%82%B0%EC%8B%9C+%EC%B6%95%EC%A0%9C",
+          "q": "검증용 관광지 가 (가상) 충청남도 논산시 축제",
+          "documentReferrer": "",
+          "windowOpener": null,
+          "refererHeader": null,
+          "sourceUrlUnchanged": true
+        }
+      ],
+      "browserErrors": 0,
+      "clientWrites": 0,
+      "apiRequests": 60
+    },
+    "traceArtifacts": 52,
+    "traceMissing": 0,
+    "traceErrors": 0,
+    "traceWarnings": 0
+  },
+  "repairs": [
+    "Escape in native search input closes dialog and restores focus",
+    "long dialog titles wrap",
+    "input text scrolling distinguished from layout overflow",
+    "existing resource test waits for focus restoration and successful comparison addition"
+  ],
+  "public": null,
+  "reviewCopy": null,
+  "limitations": [
+    "Live DuckDuckGo returned a human challenge; real result/original navigation not verified and not bypassed",
+    "Native IME and broad assistive technology, 200% zoom, final visual design and officer observation not evaluated",
+    "Formal API/Spec/Run and ticket sources not declared"
+  ]
+}

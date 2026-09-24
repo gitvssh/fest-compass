@@ -2,7 +2,9 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { RelatedSearch } from "@/components/related/RelatedSearch";
 import type { RegionRef } from "@/lib/existing/types";
+import { REGION_TOPICS } from "@/lib/related-search/query";
 import { durableParams, viewPath } from "./durable";
 import { regionMemory, tab, type NewView, type RegionMemory } from "./memory";
 import { RegionPicker } from "./RegionPicker";
@@ -68,6 +70,7 @@ export function NewShell({ region, children }: { region: RegionRef; children: Re
           <h1 ref={title} tabIndex={-1} className="text-2xl font-extrabold leading-tight sm:text-3xl">{region.name}</h1>
           <button ref={changeButton} type="button" className="region-button min-h-8 px-2 py-1 text-xs" aria-expanded={changing} aria-controls="new-region-change"
             onClick={() => setChanging(open => !open)}>지역 바꾸기</button>
+          <RelatedSearch key={region.code} target={region.name} region={region} topics={REGION_TOPICS} />
         </div>
         <p className="text-sm text-muted">새 축제 기획</p>
         <div id="new-region-change" hidden={!changing} className="region-card">

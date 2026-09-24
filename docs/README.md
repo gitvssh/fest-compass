@@ -12,6 +12,7 @@ summary: "pickDday의 제품 기준, 두 축제 흐름, 데이터 연결과 구�
 
 ## 현재 기획 기준
 
+- [관련 자료 검색·원문 연결](validation/36-related-material-search.md) — 축제·회차·지역·자원의 검색 연결 설계와 검수 상태
 - [pickDday 이름·새 축제 흐름](validation/35-pickdday-new-festival.md) — 이번 구현·검증의 현재 상태와 실제 화면
 - [기존 축제 개선 흐름](validation/34-existing-festival-journey.md) — 검색·과거 방문·관광자원·개최 시기 구현과 공개 확인
 - [관광 의사결정 지원 기획 기준](product/planning-principles.md) — 2026-09-22 사용자 확정: 관광 활성화, 기존 축제 개선·새 축제 기획, 목적에 맞춘 공공데이터 활용, 선택적 사용자 기록. 이후 기획·설계는 이 기준을 우선하며 아래 구현·검증 이력과 구분한다.

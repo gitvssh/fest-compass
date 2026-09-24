@@ -2,8 +2,10 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { createContext, useContext, useEffect, useRef, type ReactNode, type RefObject } from "react";
+import { RelatedSearch } from "@/components/related/RelatedSearch";
 import { parseFestivalId } from "@/lib/existing/identity";
 import type { ArchiveFestival, CurrentFestival, FestivalSearchResponse, RegionRef } from "@/lib/existing/types";
+import { editionYearOptions, FESTIVAL_TOPICS, selectedEditionYear } from "@/lib/related-search/query";
 import { isStale, keepBlock } from "./blocks";
 import { dateOnly, periodLabel, timeLabel } from "./format";
 import { festivalMemory, shared, viewHref, type View } from "./memory";
@@ -44,7 +46,7 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
   const parsed = parseFestivalId(id)!;
   const pathname = usePathname() ?? "";
   // Re-render on address changes so the view menu links carry each view's latest applied conditions.
-  useSearchParams();
+  const params = useSearchParams();
   const view = VIEWS.find(v => pathname.endsWith(`/${v.view}`))?.view ?? null;
   const lookup = useKeyedRequest<FestivalSearchResponse>(`/api/existing/festivals?${new URLSearchParams({ id })}`, mergeLookup);
   const title = useRef<HTMLHeadingElement>(null);
@@ -67,12 +69,20 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
   }, [name]);
 
   const searchHref = `/existing/search${shared.search ? `?${shared.search}` : ""}`;
+  // Only a verified record (including one kept after a failed refresh) offers a related-material search.
+  const verified = archive ?? current;
+  const related = verified && !confirmedAbsent ? <RelatedSearch key={id} target={verified.name} subject={verified.name} region={verified.region}
+    topics={FESTIVAL_TOPICS} years={editionYearOptions(verified)}
+    defaultYear={params ? selectedEditionYear(archive, params, view === "visits") : null} /> : null;
   return <FestivalContext.Provider value={value}>
     <div className="space-y-3">
       <header className="space-y-1">
         <Link href={searchHref} className="inline-flex text-sm font-bold text-blue underline underline-offset-4">← 다른 축제 찾기</Link>
         <h1 ref={title} tabIndex={-1} className="text-2xl font-extrabold leading-tight sm:text-3xl">{name ?? (confirmedAbsent ? "선택한 축제를 찾지 못했어요" : "축제 정보")}</h1>
-        {archive && <p className="text-sm text-muted">{archive.region.name} · 지난 개최 {archive.editions.map(e => `${e.year}년${e.start ? "" : "(개최일 미확인)"}`).join(" · ")}</p>}
+        {archive && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
+          <p className="min-w-0 break-words">{archive.region.name} · 지난 개최 {archive.editions.map(e => `${e.year}년${e.start ? "" : "(개최일 미확인)"}`).join(" · ")}</p>
+          {related}
+        </div>}
         {current && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
           <p className="min-w-0 break-words">{current.region.name} · 현재 등록 정보 · {current.datesVerified && current.start ? `등록 일정 ${periodLabel(current.start, current.end)}` : "등록 일정 미확인"}</p>
           <InfoDialog label="등록 정보 출처" title="현재 등록 정보 출처" buttonClassName="region-button min-h-8 px-2 py-1 text-xs">
@@ -81,6 +91,7 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
             <p><a className="font-bold text-blue underline" href={current.provenance.url} target="_blank" rel="noreferrer">{current.provenance.title} ↗</a>
               {current.provenance.collectedAt ? ` · ${timeLabel(current.provenance.collectedAt)} 수집` : ""}{current.provenance.checkedAt ? ` · 확인 ${dateOnly(current.provenance.checkedAt)}` : ""}</p>
           </InfoDialog>
+          {related}
         </div>}
         <LoadState loading={lookup.loading} failure={lookup.failure} hasData={!!(archive ?? current)} retrievedAt={lookup.data?.retrievedAt} subject="축제 정보를" onRetry={lookup.retry} />
         {unavailable && !lookup.failure && <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-coral-soft p-3 text-sm">

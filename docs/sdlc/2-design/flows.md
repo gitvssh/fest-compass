@@ -2,11 +2,33 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-24
-version: v8
+version: v9
 summary: "두 목적의 검색·회차·지역·관측연월·달력 연결과 조건 복귀·조회 실패를 구체화합니다. 기존 축제 흐름의 구현·검증은 기록34를 따르고 새 축제 전용 흐름은 사용 가능입니다."
 ---
 
 # 사용자 흐름
+
+## 관련 자료 검색과 원문 확인 · 2026-09-24
+
+```mermaid
+flowchart TD
+  Festival["기존 축제 · 확인된 이름과 지역"] --> Open["관련 자료 검색"]
+  Region["새 축제 · 선택 지역"] --> Open
+  Resource["새 축제 · 연 자원 상세"] --> Open
+  Open --> Query["주제·검색어 확인 또는 수정"]
+  Query -->|기존 축제만| Year["확인된 회차 연도 선택"]
+  Year --> Search["DuckDuckGo에서 검색 · 새 탭"]
+  Query --> Search
+  Search --> Source["외부 검색 결과에서 원문 확인"]
+  Query -->|닫기 또는 Esc| Back["원래 버튼 · 기존 조회 조건 유지"]
+  Source -->|원래 탭으로| Back
+```
+
+회차 하나를 적용한 방문 화면은 해당 연도, 비교 중이거나 다른 화면이면 연도 전체에서 시작한다.
+검색창을 다시 열 때에는 현재 대상과 적용 조건을 다시 읽는다. 지역·자원이 바뀌면 이전 입력을 해제한다.
+외부 사이트의 결과·오류는 그 사이트에서 확인하며, 앱의 조회나 선택을 성공 결과로 덮어쓰지 않는다.
+동작 계약은 [기능 상세 §8](functional-spec.md#8-관련-자료-검색원문-연결--2026-09-24),
+구현·실행 상태는 [기록36](../../validation/36-related-material-search.md)에 남긴다.
 
 ## v7 기능 연결과 복귀
 

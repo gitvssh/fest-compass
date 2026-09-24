@@ -1,6 +1,8 @@
 "use client";
 import type { RefObject } from "react";
+import { RelatedSearch } from "@/components/related/RelatedSearch";
 import type { RegionRef, ResourceItem } from "@/lib/existing/types";
+import { RESOURCE_TOPICS } from "@/lib/related-search/query";
 import { distanceText, KIND_LABEL, sourceDate } from "./resource-labels";
 import { ResourceIntro } from "./ResourceIntro";
 
@@ -29,6 +31,8 @@ export function ResourceDetailPanel({ region, item, heading, distance, anchored,
     <div className="flex flex-wrap gap-2">
       <button type="button" className="region-button" onClick={onCompare}>{compared ? "함께 보기에서 빼기" : "함께 보기에 추가"}</button>
       {item.point && <button type="button" className="region-button" disabled={isAnchor} onClick={onAnchor}>{isAnchor ? "현재 기준점이에요" : "이 자원을 기준점으로"}</button>}
+      {item.title.trim() && <RelatedSearch key={`${region.code}-${item.kind}-${item.id}`} target={item.title} subject={item.title} region={region}
+        topics={RESOURCE_TOPICS} buttonClassName="region-button" />}
     </div>
     <ResourceIntro key={`${item.kind}-${item.id}`} region={region} item={item} />
   </aside>;

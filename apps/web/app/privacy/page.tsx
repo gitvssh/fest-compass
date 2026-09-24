@@ -54,6 +54,12 @@ export default function PrivacyPage() {
       </section>
 
       <section>
+        <h2 className="text-xl font-extrabold">관련 자료 검색</h2>
+        <p className="mt-2 text-sm leading-7 text-muted">‘관련 자료 검색’ 창에서 ‘DuckDuckGo에서 검색’을 누르면 새 탭에서 DuckDuckGo가 열리고, 창에 표시된 검색어가 DuckDuckGo에 전달됩니다. 이때 브라우저가 DuckDuckGo에 접속하면서 IP 주소 등 일반적인 접속 정보도 함께 전달됩니다. 검색어는 이 서비스의 화면 주소·브라우저 저장 공간·서버·선택 분석에 기록하지 않으며, 링크는 보고 있던 페이지 주소(referrer)를 보내지 않도록 설정되어 있습니다. 검색 링크를 누르기 전에는 DuckDuckGo에 검색어가 전달되지 않습니다.</p>
+        <a href="https://duckduckgo.com/privacy" target="_blank" rel="noreferrer" className="text-sm text-blue underline">DuckDuckGo 개인정보 정책</a>
+      </section>
+
+      <section>
         <h2 className="text-xl font-extrabold">선택 분석과 동의 경계</h2>
         <p className="mt-2 text-sm leading-7 text-muted">
           선택 분석은 <strong className="font-bold text-ink">동의하신 경우에만</strong> 실행됩니다. 처음 방문하시면
