@@ -966,3 +966,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-044 · Codex · verifier
+
+- Position: 임실N치즈축제 2023~2025년 자료와 두 회차 비교를 공개했다. 성·연령 비율 차이·목적지 순위 변화·하루 평균 및 외지인 비율을 기록 없이 비교할 수 있다.
+- Evidence:
+  - docs/validation/39-edition-profile-comparison.md
+  - docs/validation/evidence/2026-09-24-edition-profile.json
+  - docs/ops/review-delivery.md
+- Changes:
+  - 2023·2024년 공식 원응답 10개·조회 조건·정의 확인, 회차별 생성/검사와 갱신 실패 시 기존 자료 보존
+  - 선택한 한 회차/두 회차 표시·목적지 합집합과 정확한 ID 비교·현재 관광자원 연결. 기존 세 회차 선택·방문 추이는 유지
+  - 기능·화면·유스케이스·인수·현재 자료 문서와 공개 화면 4장 갱신. D 드라이브 최신 묶음 전달
+- Validation:
+  - 실제 claude-opus-5-5 설계/자료/서버/화면/문서와 문서 정정 실행 확인 후 직접 검수. 원문 모든 비율·순위 일치, 2023 합계100.1% 보존, 2024 재수집5개 바이트 일치
+  - Node24.20.0 단위342·타입·빌드·운영취약점0·인프라40/17리소스·전체 headless22스크립트 통과. 생성기와 읽기 모듈의 장소 연결 조건 차이 및 세 회차 선택 규칙 수정
+  - 구현 d38b84a의 내부 ARC35998517278 성공·artifact0. 배포 bf816cc Succeeded/Synced/Healthy·ready1·Deployment/PVC 유지·업무9종 해시/건수 동일
+  - 공개 실제 목록으로 비교13·단일19항목 재검증, 별도 무응답변조1440/390px·관광지54/문화시설2·초점 복귀·세 회차 출처 정의 확인. 오류/앱쓰기/넘침0, 화면4장 직접 검수
+  - D 검토본 af2781b: 원본82개 해시·링크461·HTML33개2폭·Mermaid16/이미지74·오류/깨짐/넘침0. 옛 시작파일과 이전 묶음 보존. 최종 시각 디자인·실무자 관찰·전체 보조기술/200% 확대·Windows 직접 실행은 미평가
+- Questions:
+  - No open question
+- Handoff: Codex

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T12:31:42.442039+00:00",
+  "checkedAt": "2026-09-24T12:35:20.954682+00:00",
   "baseCommit": "c57d0eeac5180c82fc5a21ce2dd77e2f12419ad2",
   "delegation": [
     {
@@ -436,6 +436,43 @@
     "screenshotsDirectlyReviewed": 4
   },
   "reviewDelivery": {
-    "status": "pending"
+    "status": "passed",
+    "bundle": "D:\\download\\project\\pickDday\\2026-09-24-edition-profile-reviewed",
+    "start": "D:\\download\\project\\pickDday\\index.html",
+    "static": {
+      "bundle": "/mnt/d/download/project/pickDday/2026-09-24-edition-profile-reviewed",
+      "sourceRevision": "af2781b07700fd08e846f7ebd989000c8d9bbe49",
+      "sourceDirty": false,
+      "sourceFiles": 82,
+      "htmlPages": 33,
+      "localReferences": 461,
+      "oldIndexPreserved": true
+    },
+    "browser": {
+      "pages": 33,
+      "widths": [
+        {
+          "width": 1280,
+          "charts": 16,
+          "images": 74,
+          "overflow": false,
+          "brokenImages": 0,
+          "navigation": true
+        },
+        {
+          "width": 390,
+          "charts": 16,
+          "images": 74,
+          "overflow": false,
+          "brokenImages": 0,
+          "navigation": true
+        }
+      ],
+      "errors": []
+    },
+    "allSourceHashesMatch": true,
+    "oldIndexPreserved": true,
+    "directlyReviewed": true,
+    "windowsBrowserDirectlyTested": false
   }
 }
