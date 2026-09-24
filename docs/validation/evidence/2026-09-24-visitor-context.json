@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T07:37:45.918537+00:00",
+  "checkedAt": "2026-09-24T07:40:42.405235+00:00",
   "baseCommit": "d7d387f1373a602f15a7fd500169001a06b3ba14",
   "delegation": [
     {
@@ -257,6 +257,35 @@
     "screenshotsDirectlyReviewed": 4
   },
   "reviewDelivery": {
-    "status": "pending"
+    "status": "verified",
+    "windowsStart": "D:\\download\\project\\pickDday\\index.html",
+    "label": "2026-09-24-visitor-context-reviewed",
+    "sourceDirty": false,
+    "static": {
+      "bundle": "/mnt/d/download/project/pickDday/2026-09-24-visitor-context-reviewed",
+      "revision": "ffd072b3f0ccb89bc29b927fb6aaf7fcc099afe6",
+      "sourceFiles": 72,
+      "links": 415,
+      "html": 31,
+      "outsideProjectLinks": 0
+    },
+    "browser": {
+      "headless": true,
+      "checks": 62,
+      "mermaids": 15,
+      "browserErrors": 0,
+      "widths": [
+        1280,
+        390
+      ],
+      "latestNavigation": true
+    },
+    "allSourceHashesMatch": true,
+    "legacyLandingHashUnchanged": true,
+    "directlyReviewed": [
+      "review-start.png",
+      "review-mobile.png"
+    ],
+    "windowsNativeBrowser": "not evaluated"
   }
 }

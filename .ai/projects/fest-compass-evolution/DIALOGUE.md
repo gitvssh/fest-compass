@@ -925,3 +925,23 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-042 · Codex · implementer/reviewer
+
+- Position: 임실N치즈축제의 개최 행정동 방문 구성과 임실군 연간 추세를 두 핵심 화면에 공개했다. 관측기간이 없는 성·연령·거주지·목적지 순위의 연결은 완료로 주장하지 않는다.
+- Evidence:
+  - docs/validation/37-visitor-context.md: 실제 Opus 5.5 네 작업과 주 담당자의 원본·공식 정의·일별 합계 직접 검수
+  - docs/validation/evidence/2026-09-24-visitor-context.json: 로컬·내부 ARC·공개 응답·업무 자료 보존·D 드라이브 사본 근거
+  - 구현8307da2, 배포a878921, 검토 원본ffd072b; ARC 실행35969926185 성공·artifact0
+- Changes:
+  - 기간·ID를 확인한 임실 회차만 구성/일평균을 연결하고 2018~2025년 지역 연간 추세·표·월별 이동을 추가했다. 원문27개 소비·277개 보존, 자료 원본은 유지한다.
+  - 기능·화면·흐름·요구사항·유스케이스·인수 기준·현재 기능/데이터 문서와 공개 화면4장을 갱신했다.
+  - D:\download\project\pickDday\index.html의 최신 검토 묶음을 전달하고 이전 묶음과 옛 시작 파일을 보존했다.
+- Validation:
+  - Node24.20.0 단위313건·타입·빌드·운영 취약점0·인프라40건/17리소스·전체 headless20스크립트 통과, 방문 자료12항목 추가
+  - 구현 커밋의 내부 ARC CI 성공, 확인 이미지 고정 뒤 기존 앱 Succeeded/Synced/Healthy·ready1; Deployment/PVC 유지·업무9종 건수/내용 해시 동일
+  - 실제 공개 응답의 PC/모바일 수치·연도 이동·출처·빈 월별/다른 지역 동작 확인, 페이지 오류·앱 쓰기0, 실제 화면4장 직접 검수
+  - D 드라이브 원본 사본72개 해시·로컬 링크415개 정상. HTML31개를2크기로62회 확인·Mermaid15개·오류/깨진 이미지/가로 넘침0. 시작/모바일 문서 직접 검수
+- Questions:
+  - No open question
+- Handoff: Codex

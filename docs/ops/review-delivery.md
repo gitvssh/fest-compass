@@ -2,7 +2,7 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-24
-version: v5
+version: v6
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -21,8 +21,8 @@ Windows 검토 폴더에 복사한다. 2026-09-23 제품 이름을 `pickDday`로
 
 - 시작: `D:\download\project\pickDday\index.html`
 - 각 묶음: `index.html`에서 기존 축제/새 축제 화면, 모바일 구성, 읽기용 설계 문서로 이동한다.
-  첫 항목은 새 축제 실제 화면·검증 결과(`docs/validation/35-pickdday-new-festival.md`), 다음은
-  기존 축제 실제 화면·검증 결과(`docs/validation/34-existing-festival-journey.md`)다.
+  최신 임실 방문 구성·연간 추세(`docs/validation/37-visitor-context.md`)와 관련 자료 검색을 먼저 두고,
+  새 축제·기존 축제 실제 화면과 개발 전 와이어프레임으로 이어진다.
 - `sources/`에는 원본과 동일한 Markdown·Excalidraw·SVG를 둔다.
 - `manifest.json`은 원본 경로·커밋·복사 시각·파일 해시를 남긴다. `source_root`는 정본 위치
   `~/dev/side/fest-compass`, `source_checkout`은 실제로 내보낸 작업 위치다. 기준 커밋은 그 위치의 `HEAD`이며
@@ -128,7 +128,7 @@ Windows 브라우저 직접 실행은 미평가이며 프로젝트 원본과 편
 
 ## 관련 자료 검색 구현 전달 · 2026-09-24
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-24-related-search-reviewed-v2`를 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-24-related-search-reviewed-v2`를 열었다.
 정본 커밋 `20cc9b3a17fe494c728570d4fd30611975673b79`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
 시작 페이지의 관련 자료 검색 항목에서 [공개 화면·검증 결과36](../validation/36-related-material-search.md)과
 기능 상세로 이동한다. 실제 축제·지역·자원별 검색창 4개 화면을 추가했으며 이전 두 핵심 흐름의 자료도 유지한다.
@@ -142,3 +142,19 @@ headless Chromium으로 HTML 30개를 1280/390px에서 각각 열어 60개 화�
 첫 `2026-09-24-related-search-reviewed` 사본에서 제목의 날짜 구분 기호로 인한 링크 오류를 발견했다.
 원본 제목·링크를 고친 뒤 위 v2를 만들었으며 최신 시작 파일은 검증한 v2만 연다. 이전 사본은 그대로 유지했다.
 옛 `fest-compass/index.html` 해시는 전달 전후 일치한다. 프로젝트 원본은 저장소에 남으며 Windows 브라우저 직접 실행은 미평가다.
+
+## 임실 방문 구성·연간 추세 전달 · 2026-09-24
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-24-visitor-context-reviewed`를 연다.
+정본 커밋 `ffd072b3f0ccb89bc29b927fb6aaf7fcc099afe6`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
+첫 카드에서 [임실 실제 화면·검증 기록37](../validation/37-visitor-context.md)과 기능 상세 §9로 이동한다.
+축제 방문 구성·지역 연간 추세의 실제 공개 PC·모바일 4장과 현재 기능·자료 확보 문서를 갱신했다.
+
+실제 D 드라이브 9p 마운트에 원본 사본 72개·시안 11페이지·문서 19페이지·시작 페이지를 전달했다.
+72개 SHA-256 일치, 로컬 링크·이미지·앵커 415개 정상, 저장소 밖 상대 링크 0개를 확인했다.
+headless Chromium으로 HTML 31개를 1280/390px에서 각각 열어 62개 화면·Mermaid 15개·이미지 표시를 확인했다.
+깨진 이미지·페이지 오류·전체 가로 넘침은 0이다. 시작 파일 → 최신 묶음 → 임실 자료 문서 → 기능 상세 §9
+클릭을 확인했고 시작/모바일 문서를 주 담당자가 직접 검수했다.
+
+옛 `fest-compass/index.html` 해시는 전달 전후 일치한다. 이전 묶음과 프로젝트 원본은 보존했다.
+Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다. 배포·공개 기능 검증은 기록37을 따른다.
