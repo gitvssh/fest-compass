@@ -1,0 +1,441 @@
+{
+  "checkedAt": "2026-09-24T12:31:42.442039+00:00",
+  "baseCommit": "c57d0eeac5180c82fc5a21ce2dd77e2f12419ad2",
+  "delegation": [
+    {
+      "task": "backend",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "permissionDenials": 0,
+      "error": false
+    },
+    {
+      "task": "data",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "permissionDenials": 0,
+      "error": false
+    },
+    {
+      "task": "design",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "permissionDenials": 0,
+      "error": false
+    },
+    {
+      "task": "docs-correction",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "permissionDenials": 0,
+      "error": false
+    },
+    {
+      "task": "docs",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "permissionDenials": 0,
+      "error": false
+    },
+    {
+      "task": "ui",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "permissionDenials": 0,
+      "error": false
+    }
+  ],
+  "data": {
+    "editions": [
+      2023,
+      2024,
+      2025
+    ],
+    "newOriginalResponses": 10,
+    "periodsAndHostChecked": true,
+    "chartDefinitionHashesMatch2025": true,
+    "repeat2024FiveResponsesIdentical": true,
+    "existingCandidateOverwriteRejected": true,
+    "old2025AndCsvOriginalsUnchanged": true,
+    "rawValueAudit": {
+      "2023": {
+        "publishedPercentSum": 100.1,
+        "groups": [
+          6,
+          6,
+          6
+        ],
+        "rawValuesMatch": true,
+        "outsideShare": 85.0
+      },
+      "2024": {
+        "publishedPercentSum": 100.0,
+        "groups": [
+          7,
+          7,
+          7
+        ],
+        "rawValuesMatch": true,
+        "outsideShare": 86.1
+      },
+      "2025": {
+        "publishedPercentSum": 100.0,
+        "groups": [
+          7,
+          7,
+          7
+        ],
+        "rawValuesMatch": true,
+        "outsideShare": 88.4
+      }
+    },
+    "currentResources": {
+      "touristAttractions": 54,
+      "culturalFacilities": 2
+    },
+    "residenceAvailable": false,
+    "scheduledRefresh": false
+  },
+  "local": {
+    "node": "24.20.0",
+    "unit": {
+      "tsx": 312,
+      "node": 30,
+      "total": 342
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "runtimeDependencyAuditVulnerabilities": 0,
+    "infraTests": 40,
+    "prodResources": 17,
+    "fullHeadlessScripts": 22,
+    "exitCode": 0,
+    "singleEdition": {
+      "headless": true,
+      "realLocalData": [
+        "existing/history"
+      ],
+      "realCurrentResources": [],
+      "resourceMode": "검증용 통제: 검토한 세 장소의 식별자·주소·좌표만 이용한 목록",
+      "controlled": "request gates on real answers; one aborted resource request and one real resource answer without the linked place (검증용 통제)",
+      "syntheticVisitorData": false,
+      "passed": [
+        "demographics-official-shares-chronological-shared-scale-table",
+        "rank-groups-7-each-links-only-reviewed-three",
+        "source-dialog-keyboard-no-count-no-internal-no-residence",
+        "chart-window-independent",
+        "2024-only-single-2024-profile-2025-absent",
+        "late-old-answer-ignored",
+        "other-festival-null",
+        "link-selects-real-resource-focus-detail-param-removed",
+        "back-preserves-conditions-focus-forward-no-target",
+        "explicit-link-overrides-memory-lifts-radius-keeps-center",
+        "back-keeps-group-and-focus",
+        "three-menus-unchanged",
+        "controlled-failure-keeps-target-retry-selects",
+        "user-type-change-cancels-pending-target",
+        "absent-place-message-list-kept-reload-clean",
+        "malformed-duplicate-target-ignored",
+        "direct-address-adds-type-once",
+        "other-festival-never-selects",
+        "320-390-1440-no-page-overflow"
+      ],
+      "blockedOtherHosts": [],
+      "browserErrors": 0,
+      "clientWrites": 0,
+      "platformWrites": 0,
+      "platformBoundary": "Cloudflare measurement/consent transport; ordinary refusal button used when shown"
+    },
+    "comparison": {
+      "headless": true,
+      "realLocalData": [
+        "existing/history"
+      ],
+      "realCurrentResources": [],
+      "resourceMode": "검증용 통제: 검토한 세 장소의 식별자·주소·좌표만 이용한 목록",
+      "oracle": "docs/research/imported/datalab-imsil-2023, -2024, -2025 원본 응답에서 직접 계산",
+      "controlledResourceAnswers": 2,
+      "syntheticVisitorData": false,
+      "passed": [
+        "initial-controls-latest-two-no-three-explanation",
+        "2024-2025-values-shared-axis-differences-rank-order-null-groups-table-source",
+        "host-change-shown-values-foreign-included-rows-kept",
+        "chart-window-independent",
+        "query-order-ascending",
+        "link-selects-resource-back-keeps-editions-and-focus",
+        "keyboard-group-new-place-link-back-keeps-group-and-focus",
+        "three-selected-history-kept-latest-two-compared-picker-focus",
+        "2023-2024-comparison",
+        "2023-2025-comparison",
+        "2023-only-single-profile",
+        "other-festival-no-section",
+        "320-390-1440-bars-values-periods-keyboard-table-no-page-overflow"
+      ],
+      "blockedOtherHosts": [],
+      "browserErrors": 0,
+      "clientWrites": 0,
+      "platformWrites": 0,
+      "platformBoundary": "Cloudflare measurement/consent transport; ordinary refusal button used when shown"
+    },
+    "trace": {
+      "artifacts": 55,
+      "missing": 0,
+      "errors": 0,
+      "warnings": 0,
+      "notEvaluated": [
+        "formal API/Spec/Run",
+        "YouTrack"
+      ]
+    },
+    "clientBundleInternalMarkersAbsent": true,
+    "postSuiteChange": "Host source definition condition aligned for three selected editions; exact commit CI and public check follow"
+  },
+  "publication": {
+    "status": "passed",
+    "implementationCommit": "d38b84a328114b73cd6c588563d6b8efc894e2e4",
+    "workflowRun": "https://github.com/gitvssh/fest-compass/actions/runs/35998517278",
+    "deploymentCommit": "bf816cc9d8464594c361ecfded65af09db6dd7b9",
+    "runnerLabels": [
+      "homelab-fest-compass"
+    ],
+    "artifacts": 0,
+    "digest": "sha256:33a0ea81425716341a8a8f3e4454f06476eb3e6a238be516633cf1b8aabaac4b",
+    "argo": {
+      "sync": "Synced",
+      "health": "Healthy",
+      "revision": "bf816cc9d8464594c361ecfded65af09db6dd7b9",
+      "phase": "Succeeded",
+      "operationRevision": "bf816cc9d8464594c361ecfded65af09db6dd7b9"
+    },
+    "workload": {
+      "deployment": {
+        "uid": "0b216035-cb40-4afc-85d1-655f5089742e",
+        "ready": 1,
+        "images": {
+          "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:33a0ea81425716341a8a8f3e4454f06476eb3e6a238be516633cf1b8aabaac4b",
+          "web": "registry.damecasol.com/fest-compass/web@sha256:33a0ea81425716341a8a8f3e4454f06476eb3e6a238be516633cf1b8aabaac4b"
+        }
+      },
+      "pvc": {
+        "uid": "522b5a04-02b5-44cf-b5cb-9fec534f219b"
+      }
+    },
+    "businessBefore": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessAfter": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessPreserved": true,
+    "comparisonAcceptance": {
+      "headless": true,
+      "realLocalData": [
+        "existing/history"
+      ],
+      "realCurrentResources": [
+        "existing/resources"
+      ],
+      "resourceMode": "현재 공개 서비스의 실제 관광자원 목록",
+      "oracle": "docs/research/imported/datalab-imsil-2023, -2024, -2025 원본 응답에서 직접 계산",
+      "controlledResourceAnswers": 0,
+      "syntheticVisitorData": false,
+      "passed": [
+        "initial-controls-latest-two-no-three-explanation",
+        "2024-2025-values-shared-axis-differences-rank-order-null-groups-table-source",
+        "host-change-shown-values-foreign-included-rows-kept",
+        "chart-window-independent",
+        "query-order-ascending",
+        "link-selects-resource-back-keeps-editions-and-focus",
+        "keyboard-group-new-place-link-back-keeps-group-and-focus",
+        "three-selected-history-kept-latest-two-compared-picker-focus",
+        "2023-2024-comparison",
+        "2023-2025-comparison",
+        "2023-only-single-profile",
+        "other-festival-no-section",
+        "320-390-1440-bars-values-periods-keyboard-table-no-page-overflow"
+      ],
+      "blockedOtherHosts": [],
+      "browserErrors": 0,
+      "clientWrites": 0,
+      "platformWrites": 13,
+      "platformBoundary": "Cloudflare measurement/consent transport; ordinary refusal button used when shown"
+    },
+    "singleAcceptance": {
+      "headless": true,
+      "realLocalData": [
+        "existing/history"
+      ],
+      "realCurrentResources": [
+        "existing/resources"
+      ],
+      "resourceMode": "현재 공개 서비스의 실제 관광자원 목록",
+      "controlled": "request gates on real answers; one aborted resource request and one real resource answer without the linked place (검증용 통제)",
+      "syntheticVisitorData": false,
+      "passed": [
+        "demographics-official-shares-chronological-shared-scale-table",
+        "rank-groups-7-each-links-only-reviewed-three",
+        "source-dialog-keyboard-no-count-no-internal-no-residence",
+        "chart-window-independent",
+        "2024-only-single-2024-profile-2025-absent",
+        "late-old-answer-ignored",
+        "other-festival-null",
+        "link-selects-real-resource-focus-detail-param-removed",
+        "back-preserves-conditions-focus-forward-no-target",
+        "explicit-link-overrides-memory-lifts-radius-keeps-center",
+        "back-keeps-group-and-focus",
+        "three-menus-unchanged",
+        "controlled-failure-keeps-target-retry-selects",
+        "user-type-change-cancels-pending-target",
+        "absent-place-message-list-kept-reload-clean",
+        "malformed-duplicate-target-ignored",
+        "direct-address-adds-type-once",
+        "other-festival-never-selects",
+        "320-390-1440-no-page-overflow"
+      ],
+      "blockedOtherHosts": [],
+      "browserErrors": 0,
+      "clientWrites": 0,
+      "platformWrites": 23,
+      "platformBoundary": "Cloudflare measurement/consent transport; ordinary refusal button used when shown"
+    },
+    "unmodifiedPublicBrowser": {
+      "base": "https://pickday.damecasol.com",
+      "mode": "unmodified live responses",
+      "widths": [
+        {
+          "width": 1440,
+          "comparison": "2024→2025",
+          "rankRows": 8,
+          "resourceNavigationAndFocus": true,
+          "threeEditions": true,
+          "single2023": true,
+          "overflow": false,
+          "resourceTypes": [
+            {
+              "kind": "12",
+              "status": "complete",
+              "count": 54
+            },
+            {
+              "kind": "14",
+              "status": "complete",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "comparison": "2024→2025",
+          "rankRows": 8,
+          "resourceNavigationAndFocus": true,
+          "threeEditions": true,
+          "single2023": true,
+          "overflow": false,
+          "resourceTypes": [
+            {
+              "kind": "12",
+              "status": "complete",
+              "count": 54
+            },
+            {
+              "kind": "14",
+              "status": "complete",
+              "count": 2
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "appWrites": [],
+      "platformWrites": [
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t"
+      ]
+    },
+    "threeEditionSourceDefinitionChecked": true,
+    "screenshotsDirectlyReviewed": 4
+  },
+  "reviewDelivery": {
+    "status": "pending"
+  }
+}
