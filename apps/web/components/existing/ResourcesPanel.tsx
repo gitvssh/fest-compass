@@ -37,6 +37,14 @@ function typesAddress(types: ResourceKind[]): URLSearchParams {
 function merge(previous: ResourcesResponse, next: ResourcesResponse): ResourcesResponse {
   return { ...next, byType: next.byType.map(b => keepBlock(previous.byType.find(p => p.kind === b.kind), b)) };
 }
+// One-shot arrival target `resource=<kind>:<id>`. Anything else (or a repeated key) is ignored and never selects.
+const RESOURCE_TARGET = /^(12|14):(\d{1,20})$/;
+function readTarget(params: URLSearchParams): { kind: ResourceKind; id: string } | null {
+  const m = RESOURCE_TARGET.exec(one(params, "resource") ?? "");
+  return m ? { kind: m[1] as ResourceKind, id: m[2] } : null;
+}
+/** A pending arrival target. `baseline` is the list answer seen when it arrived; only a later answer may resolve it. */
+type Target = { festivalId: string; kind: ResourceKind; id: string; baseline?: ResourcesResponse | null };
 const km = (value: number) => `${value < 10 ? value.toFixed(1) : Math.round(value)}km`;
 const modified = (value: string | null) => value && /^\d{8}/.test(value) ? `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}` : null;
 
@@ -44,10 +52,17 @@ export function ResourcesPanel() {
   const festival = useFestival(), heading = useRef<HTMLHeadingElement>(null);
   useViewHeadingFocus(festival.id, "resources", heading);
   const params = useSearchParams(), address = params.toString();
-  const types = useMemo(() => readTypes(new URLSearchParams(address)), [address]);
+  // Honor the arrival's type from the first render. On an initial page load, history replacement may precede
+  // Next's history subscription; relying on a later URL render alone would leave a types=14 link waiting forever.
+  const types = useMemo(() => {
+    const p = new URLSearchParams(address), chosen = readTypes(p), arrival = readTarget(p);
+    return arrival ? RESOURCE_KINDS.filter(k => k === arrival.kind || chosen.includes(k)) : chosen;
+  }, [address]);
   const noneChosen = types.length === 0;
   const memory = festivalMemory(festival.id).resources;
-  const [picked, setPicked] = useState<ResourceItem | null>(memory.selected), [anchor, setAnchor] = useState<Anchor | null>(memory.anchor);
+  // An explicit arrival target replaces the remembered selection from the first render (no flash, no focus return to it).
+  const [arriving] = useState(() => readTarget(new URLSearchParams(address)) !== null);
+  const [picked, setPicked] = useState<ResourceItem | null>(arriving ? null : memory.selected), [anchor, setAnchor] = useState<Anchor | null>(memory.anchor);
   const [radiusKm, setRadiusKm] = useState(memory.radiusKm), [sort, setSort] = useState(memory.sort), [display, setDisplay] = useState(memory.display);
   const [mapFailed, setMapFailed] = useState(false), [mapKey, setMapKey] = useState(0);
   const list = useRef<HTMLUListElement>(null), detailHeading = useRef<HTMLHeadingElement>(null), focusDetail = useRef(false);
@@ -81,7 +96,7 @@ export function ResourcesPanel() {
   }, [pickedBlock, picked]);
   useEffect(() => { if (focusDetail.current && selectedId) { focusDetail.current = false; detailHeading.current?.focus(); } }, [selectedId]);
   // Coming back (browser history or a link) with a remembered selection: return focus to it.
-  const restoreFocus = useRef(!!memory.selected);
+  const restoreFocus = useRef(!!memory.selected && !arriving);
   useEffect(() => {
     if (!restoreFocus.current || !picked || document.activeElement === heading.current) return;
     const button = [...list.current?.querySelectorAll<HTMLElement>("[data-resource-id]") ?? []].find(el => el.dataset.resourceId === picked.id);
@@ -89,14 +104,63 @@ export function ResourcesPanel() {
     else if (hiddenByFilter) { restoreFocus.current = false; detailHeading.current?.focus(); }
   }, [items, picked, hiddenByFilter]);
 
+  // Arrival link `resource=<kind>:<id>`: read once, then removed from the address with replace (no history entry),
+  // so reloads, back/forward and later address changes never select it again. Its type is added only here, once.
+  const [target, setTarget] = useState<Target | null>(null), [targetMissing, setTargetMissing] = useState(false);
+  const consumed = useRef<string | null>(null);
+  useEffect(() => {
+    const current = new URLSearchParams(address);
+    if (!current.has("resource")) { consumed.current = null; return; }
+    const raw = current.getAll("resource").join("&");
+    if (consumed.current === raw) return;
+    consumed.current = raw;
+    const found = readTarget(current), next = new URLSearchParams(current);
+    next.delete("resource");
+    if (found) {
+      restoreFocus.current = false;
+      setTarget({ festivalId: festival.id, ...found }); setTargetMissing(false); setPicked(null);
+      const chosen = readTypes(next);
+      if (!chosen.includes(found.kind)) {
+        const withKind = typesAddress(RESOURCE_KINDS.filter(k => k === found.kind || chosen.includes(k))).get("types");
+        next.delete("types");
+        if (withKind) next.set("types", withKind);
+      }
+    }
+    writeAddress(next);
+  }, [address, festival.id]);
+
+  // Resolve only against a list answer that arrived after the target (a forced refresh when one was already shown),
+  // succeeded completely for this region and type, and is not a kept earlier copy. Failures keep the target for retry.
+  const slot = target ? states.find(s => s.kind === target.kind) ?? null : null;
+  const targetWaitsForRetry = !!slot && (!!slot.request.failure || slot.block?.status === "unavailable" || (!!slot.block && isStale(slot.block)));
+  useEffect(() => {
+    if (!target) return;
+    if (target.festivalId !== festival.id) { setTarget(null); return; }
+    if (!slot) return;
+    const { request: r, block: b } = slot;
+    if (target.baseline === undefined) {
+      setTarget({ ...target, baseline: r.data });
+      if (r.data && !r.loading) r.retry();
+      return;
+    }
+    if (!r.data || r.data === target.baseline || r.loading || r.failure || !done(b) || isStale(b) || r.data.region.code !== region?.code) return;
+    const item = b.items.find(i => i.id === target.id && i.kind === target.kind) ?? null;
+    setTarget(null);
+    if (!item) { setTargetMissing(true); return; }
+    // Keep the inherited center, but lift a radius that would hide the chosen resource.
+    if (anchor && radiusKm !== null && resourceRows([item], anchor.point, { radiusKm }).rows[0]?.withinRadius === false) setRadiusKm(null);
+    focusDetail.current = true; setPicked(item);
+  }, [target, festival.id, slot?.request.data, slot?.request.loading, slot?.request.failure, slot?.block, region?.code]); // eslint-disable-line react-hooks/exhaustive-deps
+
   function toggleType(kind: ResourceKind) {
+    setTarget(null); setTargetMissing(false);
     const next = RESOURCE_KINDS.filter(k => (k === kind ? !types.includes(k) : types.includes(k)));
     const params = typesAddress(next);
     rememberView(festival.id, "resources", params); shared.types = params.get("types"); writeAddress(params);
   }
   const choose = useCallback((id: string) => {
     const item = items.find(i => i.id === id);
-    if (item) { focusDetail.current = true; setPicked(item); }
+    if (item) { setTarget(null); setTargetMissing(false); focusDetail.current = true; setPicked(item); }
   }, [items]);
   function closeDetail() {
     const id = selectedId; setPicked(null);
@@ -131,6 +195,8 @@ export function ResourcesPanel() {
           : b.status === "empty" ? <span className="text-muted">{LABEL[kind]}: 조회한 등록 결과가 없어요</span>
           : <span>{LABEL[kind]} {b.total ?? b.items.length}건{request.loading ? " · 새 자료를 확인하고 있어요…" : ""}</span>}
       </li>)}</ul>
+      {target && <p role="status" className="text-sm text-muted">{targetWaitsForRetry ? "목록을 다시 불러오면 고른 장소를 열어 드려요." : "고른 장소를 목록에서 찾고 있어요…"}</p>}
+      {targetMissing && <p role="status" className="rounded-xl bg-paper p-3 text-sm">고른 장소를 지금 등록된 관광정보 목록에서 찾지 못했어요. 아래 목록에서 살펴봐 주세요.</p>}
       {(allDone || items.length > 0) && <p className="text-sm text-muted" aria-live="polite">
         {allDone ? `조회 ${counts.returned}건` : `불러온 ${counts.returned}건`} · 좌표 있는 자원 {counts.withCoordinates}건
         {anchor && radiusKm !== null && counts.withinRadius !== null ? ` · 기준점 ${radiusKm}km 안 ${counts.withinRadius}건 (좌표 없는 자원은 거리 미확인으로 함께 표시)` : ""}

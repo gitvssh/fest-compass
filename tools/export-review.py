@@ -23,6 +23,7 @@ PROJECT_ID = 'fest-compass'
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
 MARKER = '<!-- pickDday-review-index -->'
 DOCS = {
+    'docs/validation/38-visitor-profile.md': '임실 방문자 특성·관광자원 연결·실제 화면',
     'docs/validation/37-visitor-context.md': '임실 방문 구성·연간 추세·실제 화면',
     'docs/validation/36-related-material-search.md': '관련 자료 검색·실제 화면·검증 결과',
     'docs/validation/35-pickdday-new-festival.md': '새 축제 실제 화면·검증 결과',
@@ -186,9 +187,11 @@ def main():
         cards[group].append(f'<a class="card" href="{filename}"><strong>{title}</strong><br><span class="meta">SCR-FC-{sid} · {version}</span></a>')
     related_doc = doc_pages['docs/validation/36-related-material-search.md']
     visitor_doc = doc_pages['docs/validation/37-visitor-context.md']
+    profile_doc = doc_pages['docs/validation/38-visitor-profile.md']
     first_doc = doc_pages['docs/validation/35-pickdday-new-festival.md']
     existing_doc = doc_pages['docs/validation/34-existing-festival-journey.md']
     body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>새 축제와 기존 축제의 실제 화면과 검증 결과부터 확인하세요. 기능 상세에는 두 목적의 화면 목표·행동·데이터 연결을 정리했습니다.</p><p>아래 와이어프레임은 개발 전 기본 배치입니다. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 읽을 수 있습니다. 최종 시각 디자인은 별도 작업이며 각 화면에서 모바일 구성을 펼쳐 볼 수 있습니다.</p><nav><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
+    body += f'<section class="card"><h2>임실 방문자 특성·관광자원 연결</h2><p>2025년 성·연령 비율과 목적지 검색순위에서 현재 관광자원으로 이어지는 구성을 확인하세요.</p><a class="button" href="{profile_doc}">방문자 특성·관광자원 연결 보기</a></section>'
     body += f'<section class="card"><h2>임실 방문 구성·연간 추세</h2><p>기존 축제의 회차별 방문 구성과 새 축제 기획에 필요한 지역 장기 추세를 확인하세요.</p><a class="button" href="{visitor_doc}">임실 방문 자료·실제 화면 보기</a></section>'
     body += f'<section class="card"><h2>관련 자료 검색·원문 연결</h2><p>축제·회차·지역·관광자원에서 외부 검색으로 이어지는 기능과 실제 검수 상태를 확인하세요.</p><a class="button" href="{related_doc}">관련 자료 검색 화면·검증 보기</a></section>'
     for group, title in [('existing', '기존 축제 개선 · 정상 상태 참고'), ('new', '새 축제 기획 · 정상 상태 참고'), ('states', '부족한 자료와 조회 실패 · 기본 배치')]:

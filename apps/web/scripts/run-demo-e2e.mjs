@@ -21,6 +21,7 @@ const env = {
   NODE_ENV: "production",
   APP_MODE: "editor",
   TOUR_API_KEY: "",
+  VISITOR_PROFILE_RESOURCES: "fixture",
 };
 
 const prismaCli = join(webRoot, "node_modules", "prisma", "build", "index.js");
@@ -112,6 +113,7 @@ try {
   runNode(join(webRoot, "scripts", "new-festival-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "related-search-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "visitor-context-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "visitor-profile-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "schedule-absorption-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "overlap-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "distance-e2e.mjs"), []);

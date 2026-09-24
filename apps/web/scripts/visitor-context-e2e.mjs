@@ -63,7 +63,7 @@ assert.deepEqual(COMPLETE_DAILY.filter(y => ANNUAL_YEARS.includes(y)).sort(), [2
 const n0 = v => v.toLocaleString("ko-KR"), n1 = v => v.toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const HOST_KEYS = ["allYearsHref", "editions", "festivalName", "source"], EDITION_KEYS = ["days", "dailyMean", "editionId", "end", "foreign", "local", "outside", "outsideShare", "start", "total", "year"];
 const ANNUAL_KEYS = ["regionCode", "source", "years"], INTERNAL = ["sha256", "docs/research", "\"raw\"", "evidence", "commit", "manifest", "/original/"];
-const UNCONFIRMED = /성·연령|성별|연령대|거주지|검색순위|성수면/;
+const UNCONFIRMED = /거주지/; // 2025 sex/age and destination ranks now have a separately verified source.
 
 // ---- API gates on real answers ----
 const queue = [], passed = [], errors = [], consoleErrors = [], writes = [], blocked = [];
@@ -202,7 +202,7 @@ async function existingFestival({ page }) {
   assert.deepEqual((await rowCells(table, editionText(2024, 4))).slice(1), ["14,949", "93,573", "187", "108,709", n1(27177.25)]);
   await keyboardDialog(page, host(page).getByRole("button", { name: "방문 구성 출처 보기", exact: true }), "방문 구성 출처와 계산", "내려받은 날 2026-08-29");
   assert.equal(await host(page).getByRole("link", { name: "모든 개최연도 보기", exact: true }).getAttribute("href"), "/compare/annual?festival=imsil-n-cheese");
-  assert.doesNotMatch(await page.locator("main").innerText(), UNCONFIRMED, "no unconfirmed demographics, ranks or inferred town name");
+  assert.doesNotMatch(await page.locator("main").innerText(), UNCONFIRMED, "no unconfirmed residence data");
   passed.push("festival-2025-2024-counts-daily-share-scale", "festival-table-source-keyboard-close");
 
   // A custom chart window changes only the district chart; the host rows keep the original festival dates.

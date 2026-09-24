@@ -1,0 +1,404 @@
+{
+  "kind": "datalab-festival-visitor-profile",
+  "schemaVersion": 1,
+  "scope": {
+    "population": "내국인 방문자",
+    "method": "이동통신 기반 추정",
+    "area": "축제 개최 행정동",
+    "period": "축제 개최기간",
+    "demographics": "성·연령별 비율(%)은 원문 백분율을 그대로 둔다. 16칸 합계가 100이다. 방문자 수는 싣지 않는다.",
+    "destinations": "축제 기간 내비게이션 목적지 검색순위(음식점·숙박 제외). 방문 수나 동선이 아니다.",
+    "residence": "공식 화면에서 축제 거주지 차트가 숨겨져 있어 포함하지 않는다."
+  },
+  "source": {
+    "title": "한국관광 데이터랩 · 문화관광축제 방문자 특성",
+    "officialUrl": "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do",
+    "collectedAt": "2026-09-24T08:15:07.300Z",
+    "importDir": "docs/research/imported/datalab-imsil-2025",
+    "manifestSha256": "b6db6c024597ab31ea2f4a999e6ec411c334ed58949f9bb7b2d42c58a81d934d",
+    "resourceLinksSha256": "f6e422a3a8d5ad019ab759fa4521ac0c992a50a320de2613cbbfa31a89724c91",
+    "resourceCheckedAt": "2026-09-24T08:16:13.475Z"
+  },
+  "festival": {
+    "archiveFestivalId": "imsil-cheese",
+    "editionId": "imsil-cheese-2025",
+    "datalabFestivalId": "KCTF0061",
+    "name": "임실N치즈축제",
+    "regionCode": "52750",
+    "areaCode": "52750340",
+    "areaName": "임실군 성수면",
+    "year": 2025,
+    "start": "2025-10-08",
+    "end": "2025-10-12",
+    "days": 5
+  },
+  "evidence": {
+    "records": [
+      {
+        "kind": "festival-list",
+        "path": "docs/research/imported/datalab-imsil-2025/original/festival-list.json",
+        "bytes": 1138,
+        "sha256": "684eefec346a6b121e89cbeda5dbcdd10d0d09a7e36feb8d5270120518c11b34",
+        "qid": null,
+        "baseYears": null,
+        "retrievedAt": "2026-09-24T08:15:05.909Z"
+      },
+      {
+        "kind": "festival-periods",
+        "path": "docs/research/imported/datalab-imsil-2025/original/festival-periods.json",
+        "bytes": 4145,
+        "sha256": "097eb677a6feb96b96544fdecb4150626bdc629cfad2892f769721bc38fd6c36",
+        "qid": null,
+        "baseYears": null,
+        "retrievedAt": "2026-09-24T08:15:07.167Z"
+      },
+      {
+        "kind": "trend",
+        "path": "docs/research/imported/datalab-imsil-2025/original/trend.json",
+        "bytes": 425,
+        "sha256": "f3495d3155e1bbe2c2b1d547cd37b32fe15c6b50a7d8bd821450cb4bdf043040",
+        "qid": "FE_01_01_005",
+        "baseYears": [
+          "2025",
+          "2025"
+        ],
+        "retrievedAt": "2026-09-24T08:15:07.167Z"
+      },
+      {
+        "kind": "demographics",
+        "path": "docs/research/imported/datalab-imsil-2025/original/demographics.json",
+        "bytes": 1655,
+        "sha256": "96e89ce31f496a5256d6c3433673106745103bfebe62530f0105857f9e82cfc0",
+        "qid": "FE_01_01_006",
+        "baseYears": [
+          "2025",
+          "2025"
+        ],
+        "retrievedAt": "2026-09-24T08:15:07.300Z"
+      },
+      {
+        "kind": "destinations",
+        "path": "docs/research/imported/datalab-imsil-2025/original/destinations.json",
+        "bytes": 4974,
+        "sha256": "af7659f8fc5ac464298e22120cdeebec8acb3d2163737e76c5ca4db1e60a0928",
+        "qid": "FE_01_01_004_00",
+        "baseYears": [
+          "2025",
+          "2025"
+        ],
+        "retrievedAt": "2026-09-24T08:15:06.157Z"
+      }
+    ],
+    "definitionChecks": [
+      {
+        "file": "fes.html",
+        "sha256": "1c481760af6ccf37b77a2f816037d710093c92295cc57267ec82abe265597a4a",
+        "checkedAt": "2026-09-24"
+      },
+      {
+        "file": "festival.js",
+        "sha256": "b852a43fb8518e866bfa9e4a2474da8ec1012bac60f5e1709580f8d0258dec15",
+        "checkedAt": "2026-09-24"
+      },
+      {
+        "file": "festival_chart.js",
+        "sha256": "95ee664e0cdfb1ca8d5902474160ba4282182e54b2207ec2f5386e984a34582b",
+        "checkedAt": "2026-09-24"
+      }
+    ],
+    "trend": {
+      "local": 16688,
+      "outside": 127842,
+      "foreign": 126,
+      "total": 144656,
+      "dailyMean": 28931.2
+    },
+    "demographicCountGap": -1,
+    "residence": "hidden-on-official-page"
+  },
+  "demographics": [
+    {
+      "ageBand": "0~9세",
+      "order": 1,
+      "malePercent": 0.6,
+      "femalePercent": 0.7,
+      "display": "N"
+    },
+    {
+      "ageBand": "10~19세",
+      "order": 2,
+      "malePercent": 2.5,
+      "femalePercent": 2.4,
+      "display": "N"
+    },
+    {
+      "ageBand": "20~29세",
+      "order": 3,
+      "malePercent": 4.8,
+      "femalePercent": 5,
+      "display": "N"
+    },
+    {
+      "ageBand": "30~39세",
+      "order": 4,
+      "malePercent": 7.3,
+      "femalePercent": 7.6,
+      "display": "N"
+    },
+    {
+      "ageBand": "40~49세",
+      "order": 5,
+      "malePercent": 8.3,
+      "femalePercent": 7.5,
+      "display": "N"
+    },
+    {
+      "ageBand": "50~59세",
+      "order": 6,
+      "malePercent": 10.4,
+      "femalePercent": 11.3,
+      "display": "N"
+    },
+    {
+      "ageBand": "60~69세",
+      "order": 7,
+      "malePercent": 11.4,
+      "femalePercent": 11.2,
+      "display": "N"
+    },
+    {
+      "ageBand": "70세 이상",
+      "order": 8,
+      "malePercent": 4.6,
+      "femalePercent": 4.4,
+      "display": "N"
+    }
+  ],
+  "destinationGroups": [
+    {
+      "group": "outside",
+      "sourceLabel": "외지인",
+      "label": "외지인",
+      "items": [
+        {
+          "id": "2773331",
+          "rank": 1,
+          "name": "임실치즈테마파크",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "테마공원",
+          "resource": {
+            "id": "2718832",
+            "kind": "12",
+            "title": "임실치즈테마파크"
+          }
+        },
+        {
+          "id": "7837938",
+          "rank": 2,
+          "name": "임실N치즈축제",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "기타문화관광지",
+          "resource": null
+        },
+        {
+          "id": "173403",
+          "rank": 3,
+          "name": "성수산왕의숲자연휴양림",
+          "address": "전북 임실군 성수산길 373-0",
+          "category": "자연공원",
+          "resource": null
+        },
+        {
+          "id": "10147587",
+          "rank": 4,
+          "name": "임실치즈테마파크임실치즈역사문화관",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "전시시설",
+          "resource": null
+        },
+        {
+          "id": "3306424",
+          "rank": 5,
+          "name": "상이암",
+          "address": "전북 임실군 성수산길 658-0",
+          "category": "종교성지",
+          "resource": {
+            "id": "317571",
+            "kind": "12",
+            "title": "상이암(임실)"
+          }
+        },
+        {
+          "id": "54277",
+          "rank": 6,
+          "name": "오봉저수지",
+          "address": "전북 임실군",
+          "category": "자연경관(하천/해양)",
+          "resource": null
+        },
+        {
+          "id": "725050",
+          "rank": 7,
+          "name": "소충사",
+          "address": "전북 임실군 산성로 725-23",
+          "category": "종교성지",
+          "resource": {
+            "id": "527279",
+            "kind": "12",
+            "title": "소충사"
+          }
+        }
+      ]
+    },
+    {
+      "group": "local",
+      "sourceLabel": "현지인",
+      "label": "현지인",
+      "items": [
+        {
+          "id": "2773331",
+          "rank": 1,
+          "name": "임실치즈테마파크",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "테마공원",
+          "resource": {
+            "id": "2718832",
+            "kind": "12",
+            "title": "임실치즈테마파크"
+          }
+        },
+        {
+          "id": "7837938",
+          "rank": 2,
+          "name": "임실N치즈축제",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "기타문화관광지",
+          "resource": null
+        },
+        {
+          "id": "173403",
+          "rank": 3,
+          "name": "성수산왕의숲자연휴양림",
+          "address": "전북 임실군 성수산길 373-0",
+          "category": "자연공원",
+          "resource": null
+        },
+        {
+          "id": "10147587",
+          "rank": 4,
+          "name": "임실치즈테마파크임실치즈역사문화관",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "전시시설",
+          "resource": null
+        },
+        {
+          "id": "3306424",
+          "rank": 5,
+          "name": "상이암",
+          "address": "전북 임실군 성수산길 658-0",
+          "category": "종교성지",
+          "resource": {
+            "id": "317571",
+            "kind": "12",
+            "title": "상이암(임실)"
+          }
+        },
+        {
+          "id": "54277",
+          "rank": 6,
+          "name": "오봉저수지",
+          "address": "전북 임실군",
+          "category": "자연경관(하천/해양)",
+          "resource": null
+        },
+        {
+          "id": "725050",
+          "rank": 7,
+          "name": "소충사",
+          "address": "전북 임실군 산성로 725-23",
+          "category": "종교성지",
+          "resource": {
+            "id": "527279",
+            "kind": "12",
+            "title": "소충사"
+          }
+        }
+      ]
+    },
+    {
+      "group": "all",
+      "sourceLabel": "전체",
+      "label": "전체",
+      "items": [
+        {
+          "id": "2773331",
+          "rank": 1,
+          "name": "임실치즈테마파크",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "테마공원",
+          "resource": {
+            "id": "2718832",
+            "kind": "12",
+            "title": "임실치즈테마파크"
+          }
+        },
+        {
+          "id": "7837938",
+          "rank": 2,
+          "name": "임실N치즈축제",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "기타문화관광지",
+          "resource": null
+        },
+        {
+          "id": "173403",
+          "rank": 3,
+          "name": "성수산왕의숲자연휴양림",
+          "address": "전북 임실군 성수산길 373-0",
+          "category": "자연공원",
+          "resource": null
+        },
+        {
+          "id": "10147587",
+          "rank": 4,
+          "name": "임실치즈테마파크임실치즈역사문화관",
+          "address": "전북 임실군 도인2길 50-0",
+          "category": "전시시설",
+          "resource": null
+        },
+        {
+          "id": "3306424",
+          "rank": 5,
+          "name": "상이암",
+          "address": "전북 임실군 성수산길 658-0",
+          "category": "종교성지",
+          "resource": {
+            "id": "317571",
+            "kind": "12",
+            "title": "상이암(임실)"
+          }
+        },
+        {
+          "id": "54277",
+          "rank": 6,
+          "name": "오봉저수지",
+          "address": "전북 임실군",
+          "category": "자연경관(하천/해양)",
+          "resource": null
+        },
+        {
+          "id": "725050",
+          "rank": 7,
+          "name": "소충사",
+          "address": "전북 임실군 산성로 725-23",
+          "category": "종교성지",
+          "resource": {
+            "id": "527279",
+            "kind": "12",
+            "title": "소충사"
+          }
+        }
+      ]
+    }
+  ]
+}

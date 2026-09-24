@@ -15,6 +15,7 @@ import { resourceRows } from "./resources";
 import { holidaySummary, overlapDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
 import { historyKey, festivalsKey, InvalidRequest, parseFestivalSearch, parseHistory, parseResources, parseSchedule } from "./request";
 import { defaultHostVisits } from "../datalab/host-visits";
+import { defaultVisitorProfile } from "../datalab/visitor-profile";
 import { createExistingService, loadHistory as productionHistory, regionObservations } from "./server";
 import { createTourCall, KEYWORD_PAGE_SIZE, type TourCall, type TourOperation, type TourPage } from "./tour";
 import type { CurrentFestival, DataFreshness, ResourceItem } from "./types";
@@ -356,4 +357,38 @@ test("production history wiring uses the verified host-area resolver", async () 
   const r = await productionHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025,imsil-cheese-2024")));
   assert.deepEqual(r.hostVisits?.editions.map(e => e.editionId), ["imsil-cheese-2025", "imsil-cheese-2024"]);
   assert.equal(r.hostVisits?.source.url, "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do");
+  assert.equal(r.visitorProfile?.editionId, "imsil-cheese-2025", "production also injects the verified visitor profile");
+  assert.equal(r.visitorProfile?.source.url, "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do");
+});
+
+test("visitor profile: only while the reviewed 2025 edition is selected, independent of chart windows and daily coverage", async () => {
+  const svc = service({ visitorProfile: defaultVisitorProfile });
+  const both = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2023,imsil-cheese-2025")));
+  assert.equal(both.visitorProfile?.editionId, "imsil-cheese-2025");
+  assert.deepEqual(both.visitorProfile?.destinationGroups.map(g => g.group), ["outside", "local", "all"]);
+  const windowed = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2023,imsil-cheese-2025&windows=imsil-cheese-2025:2025-10-09:2025-10-10&before=30")));
+  assert.deepEqual(windowed.visitorProfile, both.visitorProfile, "chart range never changes the profile");
+  assert.equal((await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2024,imsil-cheese-2023")))).visitorProfile, null, "2025 not selected");
+  assert.equal((await svc.loadHistory(parseHistory(req("festival=nonsan-strawberry")))).visitorProfile, null);
+  const noDaily = await service({ visitorProfile: defaultVisitorProfile, archive: arch(archive.filter(d => d.region.code !== "52750")) }).loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+  assert.notEqual(noDaily.editions[0].state, "available");
+  assert.equal(noDaily.visitorProfile?.editionId, "imsil-cheese-2025", "missing district daily data keeps the reviewed profile");
+  const plain = await service().loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+  assert.equal(plain.visitorProfile, null, "no resolver injected -> null");
+  assert.equal(plain.editions[0].editionId, "imsil-cheese-2025", "original history still works without the profile");
+  const text = JSON.stringify(both.visitorProfile);
+  for (const leak of ["sha256", "docs/research", "KCTF0061", "evidence", "SRCH", "_TOT", "baseYears", "display"]) assert.ok(!text.includes(leak), `${leak} leaked`);
+});
+
+test("a failing visitor-profile resolver omits only its block and logs a fixed category", async () => {
+  const logged: unknown[][] = [], original = console.error;
+  console.error = (...args: unknown[]) => { logged.push(args); };
+  try {
+    const r = await service({ hostVisits: defaultHostVisits, visitorProfile: () => { throw new Error("secret /var/data path"); } })
+      .loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+    assert.equal(r.visitorProfile, null);
+    assert.equal(r.hostVisits?.editions[0].editionId, "imsil-cheese-2025", "the other optional block survives");
+    assert.equal(r.editions[0].editionId, "imsil-cheese-2025");
+  } finally { console.error = original; }
+  assert.deepEqual(logged, [["datalab-visitor-profile: resolver-failed"]]);
 });

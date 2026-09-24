@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-09-24T08:40:35.359384+00:00",
+  "baseCommit": "0e3b7b5d05b4bc2d4fda1bcef00e9596bab72673",
+  "delegation": [
+    {
+      "task": "audit",
+      "model": "claude-opus-5-5",
+      "permissionDenials": 0
+    },
+    {
+      "task": "design",
+      "model": "claude-opus-5-5",
+      "permissionDenials": 0
+    },
+    {
+      "task": "data-implement",
+      "model": "claude-opus-5-5",
+      "permissionDenials": 0
+    },
+    {
+      "task": "ui-implement",
+      "model": "claude-opus-5-5",
+      "permissionDenials": 0
+    }
+  ],
+  "data": {
+    "manifest": "docs/research/imported/datalab-imsil-2025/manifest.json",
+    "observation": {
+      "year": 2025,
+      "start": "2025-10-08",
+      "end": "2025-10-12",
+      "days": 5,
+      "areaCode": "52750340",
+      "areaName": "임실군 성수면",
+      "regionCode": "52750"
+    },
+    "capturedResponses": 5,
+    "repeatCaptureIdentical": true,
+    "existingCandidateOverwriteRejected": true,
+    "officialChartVisuallyChecked": true,
+    "residenceAvailable": false,
+    "resourceLinks": 3
+  },
+  "local": {
+    "node": "24.20.0",
+    "unit": {
+      "tsx": 303,
+      "node": 22,
+      "total": 325
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "runtimeDependencyAuditVulnerabilities": 0,
+    "infraTests": 40,
+    "prodResources": 17,
+    "fullHeadlessScripts": 21,
+    "visitorProfile": {
+      "headless": true,
+      "realLocalData": [
+        "existing/history"
+      ],
+      "realCurrentResources": [],
+      "resourceMode": "검증용 통제: 검토한 세 장소의 식별자·주소·좌표만 이용한 목록",
+      "controlled": "request gates on real answers; one aborted resource request and one real resource answer without the linked place (검증용 통제)",
+      "syntheticVisitorData": false,
+      "passed": [
+        "demographics-official-shares-chronological-shared-scale-table",
+        "rank-groups-7-each-links-only-reviewed-three",
+        "source-dialog-keyboard-no-count-no-internal-no-residence",
+        "chart-window-independent",
+        "2024-only-omitted-no-blank-card",
+        "late-old-answer-ignored",
+        "other-festival-null",
+        "link-selects-real-resource-focus-detail-param-removed",
+        "back-preserves-conditions-focus-forward-no-target",
+        "explicit-link-overrides-memory-lifts-radius-keeps-center",
+        "back-keeps-group-and-focus",
+        "three-menus-unchanged",
+        "controlled-failure-keeps-target-retry-selects",
+        "user-type-change-cancels-pending-target",
+        "absent-place-message-list-kept-reload-clean",
+        "malformed-duplicate-target-ignored",
+        "direct-address-adds-type-once",
+        "other-festival-never-selects",
+        "320-390-1440-no-page-overflow"
+      ],
+      "blockedOtherHosts": [],
+      "browserErrors": 0,
+      "clientWrites": 0
+    },
+    "trace": {
+      "artifacts": 54,
+      "missing": 0,
+      "errors": 0,
+      "warnings": 0,
+      "notEvaluated": [
+        "formal API/Spec/Run",
+        "YouTrack"
+      ]
+    },
+    "diffCheck": "passed"
+  },
+  "publication": {
+    "status": "pending"
+  },
+  "reviewDelivery": {
+    "status": "pending"
+  }
+}

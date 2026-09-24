@@ -14,6 +14,8 @@ export type FestivalMemory = {
   search: Partial<Record<View, string>>;
   resources: { selected: ResourceItem | null; anchor: Anchor | null; radiusKm: number | null; sort: "name" | "distance"; display: "list" | "map" };
   timing: { candidates: Candidate[]; observedMonth: string | null; returnTo: { month: string | null; focusId: string } | null };
+  /** Chosen destination-rank group and the rank link to refocus when coming back from the resources view. */
+  visitorProfile: { group: "outside" | "local" | "all" | null; returnTo: string | null };
   /** Opened tables and source panels, restored when coming back to the same view. */
   open: Record<string, boolean>;
   focusHeading: View | null;
@@ -28,6 +30,7 @@ function fresh(festivalId: string): FestivalMemory {
     festivalId, search: {}, focusHeading: null, open: {},
     resources: { selected: null, anchor: null, radiusKm: null, sort: "name", display: "list" },
     timing: { candidates: [], observedMonth: null, returnTo: null },
+    visitorProfile: { group: null, returnTo: null },
   };
 }
 /** Choosing another festival clears the previous festival's selections, center and candidate periods. */
@@ -46,4 +49,23 @@ export function viewHref(festivalId: string, view: View): string {
     query = params.toString();
   }
   return query ? `${base}?${query}` : base;
+}
+
+/**
+ * Resources address that opens one current resource once (`resource=<kind>:<id>`). Keeps the remembered type
+ * choice and only adds the resource's own type; without a remembered choice it asks for that type alone.
+ */
+export function resourceHref(festivalId: string, resource: { kind: "12" | "14"; id: string }): string {
+  const [path, query = ""] = viewHref(festivalId, "resources").split("?");
+  const params = new URLSearchParams(query), remembered = festivalMemory(festivalId).search.resources !== undefined || shared.types !== null;
+  const raw = params.get("types");
+  if (raw === null && !remembered) params.set("types", resource.kind);
+  else if (raw !== null) {
+    const list = raw === "none" ? [] : raw.split(",");
+    const next = (["12", "14"] as const).filter(k => k === resource.kind || list.includes(k));
+    if (next.length === 2) params.delete("types"); else params.set("types", next.join(","));
+  }
+  params.set("resource", `${resource.kind}:${resource.id}`);
+  params.sort();
+  return `${path}?${params}`;
 }

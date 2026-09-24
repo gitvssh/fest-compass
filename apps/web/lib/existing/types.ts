@@ -1,4 +1,6 @@
 // Response contracts for the existing-festival journey (UC-FC-009). Pure types; safe for client imports.
+import type { VisitorProfile } from "../datalab/visitor-profile-types";
+export type { VisitorProfile, VisitorProfileBand, VisitorProfileDestination, VisitorProfileDestinationGroup, VisitorProfileGroupId, VisitorProfileResource } from "../datalab/visitor-profile-types";
 export type Point = { latitude: number; longitude: number };
 export type Range = { start: string; end: string };
 export type SourceStatus = "complete" | "empty" | "unavailable" | "not-requested";
@@ -67,6 +69,8 @@ export type HistoryResponse = Envelope<HistoryRequest> & {
   metric: { name: string; unit: "명/일"; regionCode: string; estimate: true };
   sharedYMax: number | null; maxWindowDays: number; editions: EditionHistory[]; freshness: DataFreshness;
   hostVisits: HostAreaVisits | null;
+  /** Reviewed festival-period visitor profile; only when its exact edition is among the selected editions, else null. */
+  visitorProfile: VisitorProfile | null;
 };
 
 export type MonthMean = { month: string; days: number; observedDays: number; missingDays: number; zeroDays: number; sum: number | null; mean: number | null; rounded: number | null; status: "complete" | "partial" | "none" };

@@ -4,6 +4,7 @@ import bundled from "../../data/region-history.json";
 import expanded from "../../data/regional-history-expanded.json";
 import calendarData from "../../data/nonsan-calendar.json";
 import { defaultHostVisits, type HostVisitsResolver } from "../datalab/host-visits";
+import { defaultVisitorProfile, type VisitorProfileResolver } from "../datalab/visitor-profile";
 import { loadRuntimeSummary } from "../forecast/runtime";
 import { loadSnapshots } from "../forecast/store";
 import { koreaDate } from "../region/calendar";
@@ -18,7 +19,7 @@ import { festivalsKey, historyKey, InvalidRequest, monthlyKey, resourcesKey, sch
 import { holidaySources, scheduleDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
 import { collectRegionEvents, createTourCall, lookupCurrent, searchKeywordPage, TourChanged, type RegionEvents, type TourCall } from "./tour";
 import type { ArchiveFestival, CurrentBlock, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, HostAreaVisits, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
-  ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef } from "./types";
+  ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef, VisitorProfile } from "./types";
 
 export class NotFound extends Error { constructor(readonly field: string) { super(`not-found:${field}`); } }
 const VISITS_SOURCE: SourceRef = { title: "한국관광공사 지역별 방문자", url: HISTORY_SOURCE, checkedAt: null, publishedAt: null };
@@ -35,6 +36,8 @@ export type ExistingDeps = {
   editions?: Edition[];
   /** Reviewed DataLab host-area visit mix per selected edition; absent -> hostVisits is null. Production injects the verified default. */
   hostVisits?: HostVisitsResolver;
+  /** Reviewed DataLab visitor profile for one exact selected edition; absent -> visitorProfile is null. Production injects the verified default. */
+  visitorProfile?: VisitorProfileResolver;
   now?: () => string;
   today?: () => string;
 };
@@ -82,6 +85,10 @@ export function createExistingService(deps: ExistingDeps) {
   function hostVisits(festival: ArchiveFestival, editionIds: string[]): HostAreaVisits | null {
     if (!deps.hostVisits) return null;
     try { return deps.hostVisits(festival, editionIds); } catch { console.error("datalab-host-visits: resolver-failed"); return null; }
+  }
+  function visitorProfile(festival: ArchiveFestival, editionIds: string[]): VisitorProfile | null {
+    if (!deps.visitorProfile) return null;
+    try { return deps.visitorProfile(festival, editionIds); } catch { console.error("datalab-visitor-profile: resolver-failed"); return null; }
   }
 
   async function current(req: FestivalSearchRequest, target: ReturnType<typeof parseFestivalId>): Promise<CurrentBlock> {
@@ -143,7 +150,7 @@ export function createExistingService(deps: ExistingDeps) {
     });
     return { key: historyKey(req), request: req, retrievedAt: now(), festival, metric: { name: VISIT_DEFINITION.metric, unit: "명/일", regionCode: code, estimate: true },
       sharedYMax: sharedYMax(histories), maxWindowDays: Math.max(0, ...histories.map(e => e.points.length)), editions: histories, freshness: scopedFreshness(state, [code], used),
-      hostVisits: hostVisits(festival, histories.map(h => h.editionId)) };
+      hostVisits: hostVisits(festival, histories.map(h => h.editionId)), visitorProfile: visitorProfile(festival, histories.map(h => h.editionId)) };
   }
 
   async function loadMonthly(req: MonthlyRequest): Promise<MonthlyResponse> {
@@ -181,5 +188,5 @@ export function createExistingService(deps: ExistingDeps) {
   return { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule };
 }
 
-const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(), hostVisits: defaultHostVisits });
+const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(), hostVisits: defaultHostVisits, visitorProfile: defaultVisitorProfile });
 export const { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule } = service;

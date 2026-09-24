@@ -14,6 +14,7 @@ import { festivalMemory, viewHref } from "./memory";
 import { festivalPath, one } from "./route-params";
 import { Disclosure, FreshnessNote, InfoDialog, LoadState, TableScroll } from "./ui";
 import { useKeyedRequest } from "./useKeyedRequest";
+import { VisitorProfile } from "./VisitorProfile";
 
 type Applied = Pads & { editions: string[]; windows: Record<string, Range> };
 const WINDOW_ITEM = /^([a-z0-9-]{1,100}):(\d{4}-\d{2}-\d{2}):(\d{4}-\d{2}-\d{2})$/;
@@ -130,6 +131,9 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
       </div>
       <FreshnessNote freshness={data.freshness} retrievedAt={data.retrievedAt} onRetry={result.retry} />
       {data.hostVisits && data.hostVisits.editions.length > 0 && <HostAreaVisits festivalId={festival.id} data={data.hostVisits} />}
+      {/* Tied to this answer's applied editions only; a profile for an edition not in the answer is never shown. */}
+      {data.visitorProfile && data.editions.some(e => e.editionId === data.visitorProfile?.editionId) &&
+        <VisitorProfile key={data.visitorProfile.editionId} festivalId={festival.id} festivalName={data.festival.name} data={data.visitorProfile} />}
     </>}
   </>;
 }
