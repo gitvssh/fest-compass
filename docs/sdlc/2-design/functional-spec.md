@@ -193,7 +193,7 @@ Foundry 상세는 조사 자료로 남으며 운영 API에서 Foundry를 직접 
 인수 기준은 [UC-FC-009](../1-analysis/usecases/UC-FC-009.md)와 [UC-FC-010](../1-analysis/usecases/UC-FC-010.md)에 둔다.
 검수 결과와 미평가 항목은 [디자인 기준](design-system.md)에 기록한다.
 
-## 8. 관련 자료 검색·원문 연결 · 2026-09-24
+## 8. 관련 자료 검색·원문 연결
 
 사용자가 개발을 요청한 보조 기능이다. Claude Opus 5.5 설계 후 주 담당자가 아래 범위를 정리했다.
 구현·검증 상태는 [기록36](../../validation/36-related-material-search.md)을 따른다.

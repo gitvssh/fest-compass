@@ -14,7 +14,7 @@ specs: []
 
 # TS-FC-011 · 관련 자료 검색·원문 연결
 
-[기능 명세 §8](../../2-design/functional-spec.md#8-관련-자료-검색원문-연결--2026-09-24)의 관련 자료 검색을 확인한다.
+[기능 명세 §8](../../2-design/functional-spec.md#8-관련-자료-검색원문-연결)의 관련 자료 검색을 확인한다.
 별도 유스케이스가 없어 기준 번호 `RS1`~`RS12`는 이 문서 안에서만 쓴다. **상태: 관련 검색 25항목 자동 검증 통과.**
 자동 시험 `apps/web/scripts/related-search-e2e.mjs`(headless)는 저장소 실행기에 등록했다. 실행 대상·결과는
 [검증 기록36](../../../validation/36-related-material-search.md)에 남기며, 이 문서만으로 통과를 주장하지 않는다.
