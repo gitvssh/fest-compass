@@ -2,7 +2,7 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-24
-version: v6
+version: v7
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -21,7 +21,7 @@ Windows 검토 폴더에 복사한다. 2026-09-23 제품 이름을 `pickDday`로
 
 - 시작: `D:\download\project\pickDday\index.html`
 - 각 묶음: `index.html`에서 기존 축제/새 축제 화면, 모바일 구성, 읽기용 설계 문서로 이동한다.
-  최신 임실 방문 구성·연간 추세(`docs/validation/37-visitor-context.md`)와 관련 자료 검색을 먼저 두고,
+  최신 임실 방문자 특성·관광자원 연결(`docs/validation/38-visitor-profile.md`)과 방문 구성·연간 추세·관련 자료 검색을 먼저 두고,
   새 축제·기존 축제 실제 화면과 개발 전 와이어프레임으로 이어진다.
 - `sources/`에는 원본과 동일한 Markdown·Excalidraw·SVG를 둔다.
 - `manifest.json`은 원본 경로·커밋·복사 시각·파일 해시를 남긴다. `source_root`는 정본 위치
@@ -145,7 +145,7 @@ headless Chromium으로 HTML 30개를 1280/390px에서 각각 열어 60개 화�
 
 ## 임실 방문 구성·연간 추세 전달 · 2026-09-24
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-24-visitor-context-reviewed`를 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-24-visitor-context-reviewed`를 열었다.
 정본 커밋 `ffd072b3f0ccb89bc29b927fb6aaf7fcc099afe6`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
 첫 카드에서 [임실 실제 화면·검증 기록37](../validation/37-visitor-context.md)과 기능 상세 §9로 이동한다.
 축제 방문 구성·지역 연간 추세의 실제 공개 PC·모바일 4장과 현재 기능·자료 확보 문서를 갱신했다.
@@ -158,3 +158,19 @@ headless Chromium으로 HTML 31개를 1280/390px에서 각각 열어 62개 화�
 
 옛 `fest-compass/index.html` 해시는 전달 전후 일치한다. 이전 묶음과 프로젝트 원본은 보존했다.
 Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다. 배포·공개 기능 검증은 기록37을 따른다.
+
+## 임실 방문자 특성·관광자원 연결 전달 · 2026-09-24
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-24-visitor-profile-reviewed`를 연다.
+정본 커밋 `c42f7d69a87bfb592b5f7d44b6fc29fc09a06b01`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
+최신 묶음의 첫 카드에서 [방문자 특성·실제 화면·검증 기록38](../validation/38-visitor-profile.md)과 기능 상세 §10으로 이동한다.
+성·연령 비율·목적지 검색순위와 연결된 관광자원의 공개 PC·모바일 화면 4장을 포함한다.
+
+실제 D 드라이브 9p 마운트에 원본 사본 77개·시안 11페이지·문서 20페이지·시작 페이지를 전달했다.
+77개 SHA-256 일치, 로컬 링크·이미지·앵커 436개 정상, 저장소 밖 상대 링크 0개를 확인했다.
+headless Chromium으로 HTML 32개를 1280/390px에서 각각 열어 64개 화면과 각 폭에서 Mermaid 15개·이미지 70개를 확인했다.
+페이지 오류·깨진 이미지·가로 넘침은 0이다. 시작 파일 → 최신 묶음 → 방문자 특성 문서 → 기능 상세 §10 클릭도 통과했다.
+주 담당자가 시작 페이지와 실제 PC·모바일 화면을 직접 검수했다.
+
+옛 `fest-compass/index.html` 해시는 전달 전후 일치하며 이전 묶음과 프로젝트 원본은 보존했다.
+Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다. 공개 기능 검증과 통제 시험의 범위는 기록38을 따른다.

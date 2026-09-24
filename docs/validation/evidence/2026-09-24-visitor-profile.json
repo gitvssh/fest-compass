@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T08:53:53.749171+00:00",
+  "checkedAt": "2026-09-24T08:58:02.959274+00:00",
   "baseCommit": "0e3b7b5d05b4bc2d4fda1bcef00e9596bab72673",
   "delegation": [
     {
@@ -285,6 +285,41 @@
     }
   },
   "reviewDelivery": {
-    "status": "pending"
+    "status": "passed",
+    "bundle": "D:\\download\\project\\pickDday\\2026-09-24-visitor-profile-reviewed",
+    "start": "D:\\download\\project\\pickDday\\index.html",
+    "static": {
+      "sourceFiles": 77,
+      "html": 32,
+      "localReferences": 436,
+      "sourceRevision": "c42f7d69a87bfb592b5f7d44b6fc29fc09a06b01",
+      "sourceDirty": false,
+      "allHashesEqual": true,
+      "outsideLinks": 0
+    },
+    "browser": {
+      "headless": true,
+      "results": [
+        {
+          "width": 1280,
+          "html": 32,
+          "mermaids": 15,
+          "images": 70,
+          "latestNavigation": true,
+          "noOverflow": true
+        },
+        {
+          "width": 390,
+          "html": 32,
+          "mermaids": 15,
+          "images": 70,
+          "latestNavigation": true,
+          "noOverflow": true
+        }
+      ],
+      "browserErrors": []
+    },
+    "legacyIndexUnchanged": true,
+    "windowsBrowserDirectlyTested": false
   }
 }

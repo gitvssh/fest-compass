@@ -945,3 +945,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-043 · Codex · verifier
+
+- Position: 임실N치즈축제 2025년 성·연령 비율과 목적지 검색순위를 공개하고 확인된 관광자원 세 곳에 연결했다. 거주지 자료는 미확보로 제외했다.
+- Evidence:
+  - docs/validation/38-visitor-profile.md
+  - docs/research/imported/datalab-imsil-2025/README.md
+  - docs/validation/evidence/2026-09-24-visitor-profile.json
+- Changes:
+  - 공식 조회 응답 5개·기간/지역·해시 보존, 생성/검사/새 후보 수집 도구
+  - 회차별 비율·순위·관광자원 이동과 복귀/재시도, 잘못된 직접 진입의 유형 선택 수정
+  - 기능/화면/흐름/유스케이스/자료 현황 갱신, 공개 화면과 D 드라이브 새 검토본 전달
+- Validation:
+  - 실제 claude-opus-5-5 감사/설계/데이터/화면 네 작업의 모델·권한 거부 없음 확인 후 직접 검수
+  - 원본 5개 재수집 일치·기존 후보 덮어쓰기 거부, 단위325·타입·빌드·취약점0·인프라40·리소스17 통과
+  - 전체 headless21스크립트·추가19항목, 공개 실제 목록의19항목 재실행·별도 무응답변조 PC/모바일 확인 통과
+  - ARC run35976682362 성공·artifact0, bbb984c 배포 Synced/Healthy·업무 자료9종 유지
+  - D 검토본 c42f7d6: 원본77개 일치·HTML32개 2폭·링크436·Mermaid15·이미지70·오류/넘침0, 옛 검토본 보존
+- Questions:
+  - No open question
+- Handoff: Codex
