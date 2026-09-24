@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T07:29:26.289730+00:00",
+  "checkedAt": "2026-09-24T07:37:45.918537+00:00",
   "baseCommit": "d7d387f1373a602f15a7fd500169001a06b3ba14",
   "delegation": [
     {
@@ -120,7 +120,141 @@
     }
   },
   "production": {
-    "status": "pending"
+    "status": "verified",
+    "implementationCommit": "8307da25b463d23f401bcbba4427e12f75b85277",
+    "deploymentCommit": "a87892138476bff674a70c7991eb3ac6e78c9097",
+    "ci": {
+      "run": 35969926185,
+      "url": "https://github.com/gitvssh/fest-compass/actions/runs/35969926185",
+      "result": "success",
+      "runnerLabel": "homelab-fest-compass",
+      "artifacts": 0
+    },
+    "digest": "sha256:e343919b8b3976448142cddfee99922642d97b5e7337068c466c39220a86df72",
+    "argo": {
+      "phase": "Succeeded",
+      "sync": "Synced",
+      "health": "Healthy",
+      "ready": 1
+    },
+    "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+    "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+    "businessBefore": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessAfter": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessPreserved": true,
+    "public": {
+      "base": "https://pickday.damecasol.com",
+      "checkedAt": "2026-09-24T07:36:04.779Z",
+      "headless": true,
+      "responseInterception": false,
+      "widths": [
+        1440,
+        390
+      ],
+      "festivalValues": [
+        {
+          "year": 2025,
+          "days": 5,
+          "outside": 127842
+        },
+        {
+          "year": 2024,
+          "days": 4,
+          "outside": 93573
+        }
+      ],
+      "annualYears": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "unsupportedMonthlyYear": true,
+      "otherRegionOmission": true,
+      "yearFocus": true,
+      "sourceDialog": true,
+      "browserErrors": 0,
+      "appWrites": 0
+    },
+    "screenshotsDirectlyReviewed": 4
   },
   "reviewDelivery": {
     "status": "pending"
