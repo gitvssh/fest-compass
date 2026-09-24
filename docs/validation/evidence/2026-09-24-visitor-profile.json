@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-24T08:40:35.359384+00:00",
+  "checkedAt": "2026-09-24T08:53:53.749171+00:00",
   "baseCommit": "0e3b7b5d05b4bc2d4fda1bcef00e9596bab72673",
   "delegation": [
     {
@@ -98,10 +98,191 @@
         "YouTrack"
       ]
     },
-    "diffCheck": "passed"
+    "diffCheck": "passed",
+    "clientBundleEvidenceMarkersAbsent": true
   },
   "publication": {
-    "status": "pending"
+    "status": "passed",
+    "implementationCommit": "6c938b51473b00909b323720cf22185450d33888",
+    "deploymentCommit": "bbb984c2019c15157cb83175c375eecf9e4e5b2b",
+    "workflowRun": "https://github.com/gitvssh/fest-compass/actions/runs/35976682362",
+    "runnerLabels": [
+      "homelab-fest-compass"
+    ],
+    "artifacts": 0,
+    "digest": "sha256:8ce8dfa419e431c87df39f4f269c4737c35fa9e3fec46749c303bd5143b3383c",
+    "argo": {
+      "sync": "Synced",
+      "revision": "bbb984c2019c15157cb83175c375eecf9e4e5b2b",
+      "health": "Healthy",
+      "phase": "Succeeded",
+      "operationRevision": "bbb984c2019c15157cb83175c375eecf9e4e5b2b"
+    },
+    "workload": {
+      "Deployment": {
+        "name": "fest-compass",
+        "uid": "0b216035-cb40-4afc-85d1-655f5089742e",
+        "ready": 1,
+        "images": {
+          "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:8ce8dfa419e431c87df39f4f269c4737c35fa9e3fec46749c303bd5143b3383c",
+          "web": "registry.damecasol.com/fest-compass/web@sha256:8ce8dfa419e431c87df39f4f269c4737c35fa9e3fec46749c303bd5143b3383c"
+        }
+      },
+      "PersistentVolumeClaim": {
+        "name": "fest-compass-data",
+        "uid": "522b5a04-02b5-44cf-b5cb-9fec534f219b"
+      }
+    },
+    "businessBefore": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessAfter": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessPreserved": true,
+    "publicBrowser": {
+      "checkedAt": "2026-09-24T08:52:33.916Z",
+      "headless": true,
+      "base": "https://pickday.damecasol.com",
+      "mocks": false,
+      "results": [
+        {
+          "width": 1440,
+          "liveResources": 54,
+          "profile": true,
+          "linkSelected": "2718832",
+          "backFocus": true,
+          "noOverflow": true
+        },
+        {
+          "width": 390,
+          "liveResources": 54,
+          "profile": true,
+          "linkSelected": "2718832",
+          "backFocus": true,
+          "noOverflow": true
+        }
+      ],
+      "browserErrors": [],
+      "clientWrites": [],
+      "platformWrites": [
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t",
+        "POST /cdn-cgi/zaraz/t"
+      ],
+      "platformBoundary": "Cloudflare measurement/consent transport, separate from application writes; consent rejected via visible button"
+    },
+    "publicAcceptance": {
+      "headless": true,
+      "realLocalData": [
+        "existing/history"
+      ],
+      "realCurrentResources": [
+        "existing/resources"
+      ],
+      "resourceMode": "현재 공개 서비스의 실제 관광자원 목록",
+      "controlled": "request gates on real answers; one aborted resource request and one real resource answer without the linked place (검증용 통제)",
+      "syntheticVisitorData": false,
+      "passed": [
+        "demographics-official-shares-chronological-shared-scale-table",
+        "rank-groups-7-each-links-only-reviewed-three",
+        "source-dialog-keyboard-no-count-no-internal-no-residence",
+        "chart-window-independent",
+        "2024-only-omitted-no-blank-card",
+        "late-old-answer-ignored",
+        "other-festival-null",
+        "link-selects-real-resource-focus-detail-param-removed",
+        "back-preserves-conditions-focus-forward-no-target",
+        "explicit-link-overrides-memory-lifts-radius-keeps-center",
+        "back-keeps-group-and-focus",
+        "three-menus-unchanged",
+        "controlled-failure-keeps-target-retry-selects",
+        "user-type-change-cancels-pending-target",
+        "absent-place-message-list-kept-reload-clean",
+        "malformed-duplicate-target-ignored",
+        "direct-address-adds-type-once",
+        "other-festival-never-selects",
+        "320-390-1440-no-page-overflow"
+      ],
+      "blockedOtherHosts": [],
+      "browserErrors": 0,
+      "clientWrites": 0,
+      "platformWrites": 28,
+      "platformBoundary": "Cloudflare measurement/consent transport; ordinary refusal button used when shown"
+    }
   },
   "reviewDelivery": {
     "status": "pending"

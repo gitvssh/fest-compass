@@ -72,7 +72,7 @@ const INTERNAL = ["sha256", "evidence", "docs/research", "/original/", "manifest
 const UNWANTED_TEXT = /방문자 수|함께 방문|\d명|검증|sha256|evidence/;
 
 // ---- API routing: pass-through by default, one-shot controlled answers and request gates ----
-const queue = [], passed = [], errors = [], consoleErrors = [], writes = [], blocked = [], fixtureErrors = [];
+const queue = [], passed = [], errors = [], consoleErrors = [], writes = [], platformWrites = [], blocked = [], fixtureErrors = [];
 let controlledFailures = 0, controlledAnswers = 0;
 function within(promise, label, ms = 30_000) {
   let timer;
@@ -123,10 +123,16 @@ async function openContext(viewport = { width: 1440, height: 1000 }) {
   await mockMapTiles(context); // registered later, so it answers tile requests before the block above
   await context.route(u => u.origin === origin && u.pathname.startsWith("/api/"), onApi);
   const page = await context.newPage();
+  // On the public origin, dismiss the existing analytics consent dialog through its ordinary refusal button.
+  // No consent state is injected and the widget is not hidden or removed.
+  await page.addLocatorHandler(page.getByRole("button", { name: "모두 거부", exact: true }), async button => button.click());
   page.setDefaultTimeout(30_000);
   page.on("pageerror", e => errors.push(e.message));
   page.on("console", m => { if (m.type() === "error" && !/^Failed to load resource/.test(m.text())) consoleErrors.push(m.text()); });
-  page.on("request", r => { if (r.method() !== "GET" && new URL(r.url()).origin === origin) writes.push(`${r.method()} ${new URL(r.url()).pathname}`); });
+  page.on("request", r => {
+    const u = new URL(r.url());
+    if (r.method() !== "GET" && u.origin === origin) (u.pathname.startsWith("/cdn-cgi/zaraz/") ? platformWrites : writes).push(`${r.method()} ${u.pathname}`);
+  });
   return { context, page };
 }
 const served = (page, endpoint, test = () => true) => page.waitForResponse(r => {
@@ -520,7 +526,7 @@ try {
   await layouts();
   assert.equal(queue.length, 0, `unused gates: ${queue.length}`);
   assert.deepEqual(fixtureErrors, [], "controlled answers built");
-  assert.deepEqual(writes, [], "no same-origin non-GET request");
+  assert.deepEqual(writes, [], "no application non-GET request (Cloudflare measurement/consent recorded separately)");
   assert.deepEqual(errors, [], "no page errors");
   assert.deepEqual(consoleErrors, [], "no console errors");
   assert.equal(controlledFailures, 1, "exactly one controlled failure");
@@ -528,7 +534,8 @@ try {
   const summary = { headless: true, realLocalData: ["existing/history"], realCurrentResources: controlledResources ? [] : ["existing/resources"],
     resourceMode: controlledResources ? "검증용 통제: 검토한 세 장소의 식별자·주소·좌표만 이용한 목록" : "현재 공개 서비스의 실제 관광자원 목록",
     controlled: "request gates on real answers; one aborted resource request and one real resource answer without the linked place (검증용 통제)",
-    syntheticVisitorData: false, passed, blockedOtherHosts: [...new Set(blocked)], browserErrors: errors.length, clientWrites: writes.length };
+    syntheticVisitorData: false, passed, blockedOtherHosts: [...new Set(blocked)], browserErrors: errors.length, clientWrites: writes.length,
+    platformWrites: platformWrites.length, platformBoundary: "Cloudflare measurement/consent transport; ordinary refusal button used when shown" };
   writeFileSync(new URL("visitor-profile-e2e.json", outDir), `${JSON.stringify(summary, null, 2)}\n`);
   console.log(JSON.stringify(summary));
 } finally {
