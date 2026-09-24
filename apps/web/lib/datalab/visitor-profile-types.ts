@@ -12,3 +12,5 @@ export type VisitorProfile = {
   destinationGroups: VisitorProfileDestinationGroup[];
   source: { title: string; url: string; collectedAt: string };
 };
+/** Reviewed profiles of the selected editions only: one, or two of the same host area in ascending date order. */
+export type VisitorProfileSelection = { editions: VisitorProfile[] };

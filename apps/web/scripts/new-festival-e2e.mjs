@@ -372,7 +372,15 @@ async function dialogRoundTrip(page, opener, name, check, { scope = page, shown 
   const dialog = page.getByRole("dialog", { name, exact: true });
   await visible(dialog);
   await check(dialog);
+  // The native dialog hides before its queued close event restores focus. Wait for that event before opening the next dialog.
+  const closed = await dialog.evaluateHandle(el => {
+    const state = { closed: false };
+    el.addEventListener("close", () => { state.closed = true; }, { once: true });
+    return state;
+  });
   await page.keyboard.press("Escape");
+  await page.waitForFunction(state => state.closed, closed);
+  await closed.dispose();
   await dialog.waitFor({ state: "hidden" });
   await waitFocusText(page, shown);
 }

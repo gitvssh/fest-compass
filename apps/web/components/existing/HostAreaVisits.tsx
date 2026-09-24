@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useId } from "react";
+import { percentagePointChange } from "@/lib/datalab/visitor-profile-compare";
 import type { HostAreaVisits as HostVisits } from "@/lib/existing/types";
 import { editionLabel, rawNumber } from "./format";
 import { festivalMemory } from "./memory";
@@ -8,6 +9,9 @@ import { Disclosure, InfoDialog, TableScroll } from "./ui";
 
 const oneDecimal = (value: number) => value.toLocaleString("ko-KR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const percent = (ratio: number) => `${(ratio * 100).toFixed(1)}%`;
+/** The value as displayed (one decimal), so a stated change always matches the two numbers beside it. */
+const shown = (value: number) => Number(value.toFixed(1));
+const sign = (value: number) => (value > 0 ? "+" : value < 0 ? "-" : "");
 const PARTS = [
   { key: "local", label: "현지인", swatch: "bg-teal" },
   { key: "outside", label: "외지인", swatch: "bg-blue" },
@@ -49,6 +53,7 @@ export function HostAreaVisits({ festivalId, data }: { festivalId: string; data:
         </li>;
       })}
     </ul>
+    {data.editions.length >= 2 && <HostChange editions={data.editions} />}
     <div className="flex flex-wrap items-start gap-2">
       <Disclosure label="기간 합계 표 보기" open={!!memory.open["host-visits-table"]} onToggle={open => { memory.open["host-visits-table"] = open; }}>
         <TableScroll label="개최기간 방문 합계 표">
@@ -70,9 +75,28 @@ export function HostAreaVisits({ festivalId, data }: { festivalId: string; data:
         <p>축제가 열린 읍·면·동을 개최기간에 찾은 방문을 통신 데이터로 추정한 값이에요. 축제장 입장객 수나 고유 방문객 수가 아니에요.
           위 시군구 전체 방문 추이와 대상 지역이 달라 직접 비교하지 않아요.</p>
         <p>하루 평균 = 개최기간 합계 ÷ 개최 일수. 외지인 비율 = 외지인 ÷ 합계.</p>
+        {data.editions.length >= 2 && <p>두 해 비교는 화면에 보이는 소수 첫째 자리 값끼리의 차이예요. %p는 두 해 외지인 비율의 차이예요.</p>}
         <p>자료: <a className="font-bold text-blue underline" href={data.source.url} target="_blank" rel="noreferrer">{data.source.title} ↗</a> · 내려받은 날 {data.source.downloadedOn}</p>
       </InfoDialog>
       <Link className="region-button" href={data.allYearsHref}>모든 개최연도 보기</Link>
     </div>
+  </section>;
+}
+
+/** Latest two selected editions: daily mean and outside share changes from displayed one-decimal values. */
+function HostChange({ editions }: { editions: HostVisits["editions"] }) {
+  const id = useId(), [before, after] = [...editions].sort((a, b) => a.year - b.year).slice(-2);
+  const dailyShown = (value: number) => Number(oneDecimal(value).replaceAll(",", ""));
+  const daily = (Math.round(dailyShown(after.dailyMean) * 10) - Math.round(dailyShown(before.dailyMean) * 10)) / 10;
+  const share = percentagePointChange(shown(before.outsideShare * 100), shown(after.outsideShare * 100));
+  return <section aria-labelledby={`${id}-heading`} className="space-y-1 rounded-xl bg-paper p-3 text-sm">
+    <h4 id={`${id}-heading`} className="font-extrabold">{before.year}년과 {after.year}년 비교</h4>
+    <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1">
+      <dt className="text-muted">하루 평균</dt>
+      <dd>{before.year}년 {oneDecimal(before.dailyMean)}명/일 → {after.year}년 {oneDecimal(after.dailyMean)}명/일 · <strong>{sign(daily)}{oneDecimal(Math.abs(daily))}명/일</strong></dd>
+      <dt className="text-muted">외지인 비율</dt>
+      <dd>{before.year}년 {percent(before.outsideShare)} → {after.year}년 {percent(after.outsideShare)} · <strong>{sign(share)}{Math.abs(share).toFixed(1)}%p</strong></dd>
+    </dl>
+    <p className="text-xs text-muted">외국인을 포함한 방문 추정이에요.</p>
   </section>;
 }

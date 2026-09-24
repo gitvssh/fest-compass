@@ -132,8 +132,8 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
       <FreshnessNote freshness={data.freshness} retrievedAt={data.retrievedAt} onRetry={result.retry} />
       {data.hostVisits && data.hostVisits.editions.length > 0 && <HostAreaVisits festivalId={festival.id} data={data.hostVisits} />}
       {/* Tied to this answer's applied editions only; a profile for an edition not in the answer is never shown. */}
-      {data.visitorProfile && data.editions.some(e => e.editionId === data.visitorProfile?.editionId) &&
-        <VisitorProfile key={data.visitorProfile.editionId} festivalId={festival.id} festivalName={data.festival.name} data={data.visitorProfile} />}
+      {data.visitorProfile && data.visitorProfile.editions.length > 0 && data.visitorProfile.editions.every(p => data.editions.some(e => e.editionId === p.editionId)) &&
+        <VisitorProfile key={data.visitorProfile.editions.map(p => p.editionId).join(",")} festivalId={festival.id} festivalName={data.festival.name} data={data.visitorProfile} recentPair={data.editions.length > 2} />}
     </>}
   </>;
 }

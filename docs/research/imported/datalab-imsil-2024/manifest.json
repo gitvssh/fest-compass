@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "page": "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do",
+  "headless": true,
+  "method": "public page UI and its own chart responses; no login or download endpoint",
+  "scope": {
+    "name": "임실N치즈축제",
+    "festivalId": "KCTF0061",
+    "startYear": "2024",
+    "endYear": "2024",
+    "demographicYear": "2024",
+    "residenceYear": "2024",
+    "destinationYear": "2024"
+  },
+  "residenceVisible": false,
+  "observation": {
+    "year": 2024,
+    "start": "2024-10-03",
+    "end": "2024-10-06",
+    "days": 4,
+    "areaCode": "52750340",
+    "areaName": "임실군 성수면",
+    "regionCode": "52750"
+  },
+  "records": [
+    {
+      "kind": "festival-list",
+      "path": "original/festival-list.json",
+      "url": "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesList.do",
+      "method": "POST",
+      "parameters": {
+        "sidoAreaSel": "ALL",
+        "sggAreaSel": "ALL",
+        "fesNm": "임실",
+        "currentIndex": 1,
+        "recordCountPerPage": 10,
+        "pageSize": 10
+      },
+      "status": 200,
+      "retrievedAt": "2026-09-24T11:41:41.843Z",
+      "bytes": 1138,
+      "sha256": "684eefec346a6b121e89cbeda5dbcdd10d0d09a7e36feb8d5270120518c11b34"
+    },
+    {
+      "kind": "trend",
+      "path": "original/trend.json",
+      "url": "https://datalab.visitkorea.or.kr/visualize/getTempleteData.do",
+      "method": "POST",
+      "parameters": {
+        "FSTV_ID": "KCTF0061",
+        "BASE_YY1": "2024",
+        "BASE_YY2": "2024",
+        "querySpace": "FesDao",
+        "fileWriteYn": "N",
+        "qid": "FE_01_01_005"
+      },
+      "status": 200,
+      "retrievedAt": "2026-09-24T11:41:43.889Z",
+      "bytes": 425,
+      "sha256": "ddc6dd6e4cfbf781269eb2e26395ffe64ea736adbb00ac8c70fcfa236a597502"
+    },
+    {
+      "kind": "festival-periods",
+      "path": "original/festival-periods.json",
+      "url": "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesInfoList.do",
+      "method": "POST",
+      "parameters": {
+        "fstvId": "KCTF0061",
+        "currentIndex": 1,
+        "recordCountPerPage": 10,
+        "pageSize": 10
+      },
+      "status": 200,
+      "retrievedAt": "2026-09-24T11:41:43.889Z",
+      "bytes": 4145,
+      "sha256": "097eb677a6feb96b96544fdecb4150626bdc629cfad2892f769721bc38fd6c36"
+    },
+    {
+      "kind": "demographics",
+      "path": "original/demographics.json",
+      "url": "https://datalab.visitkorea.or.kr/visualize/getTempleteData.do",
+      "method": "POST",
+      "parameters": {
+        "FSTV_ID": "KCTF0061",
+        "BASE_YY1": "2024",
+        "BASE_YY2": "2024",
+        "querySpace": "FesDao",
+        "fileWriteYn": "N",
+        "qid": "FE_01_01_006"
+      },
+      "status": 200,
+      "retrievedAt": "2026-09-24T11:41:43.889Z",
+      "bytes": 1650,
+      "sha256": "d8e83f571006b9332f7c9eff05d35b140b07ad0418184369b7eec41055d56b20"
+    },
+    {
+      "kind": "destinations",
+      "path": "original/destinations.json",
+      "url": "https://datalab.visitkorea.or.kr/visualize/getTempleteData.do",
+      "method": "POST",
+      "parameters": {
+        "FSTV_ID": "KCTF0061",
+        "BASE_YY1": "2024",
+        "BASE_YY2": "2024",
+        "querySpace": "FesDao",
+        "fileWriteYn": "N",
+        "qid": "FE_01_01_004_00"
+      },
+      "status": 200,
+      "retrievedAt": "2026-09-24T11:41:43.889Z",
+      "bytes": 4891,
+      "sha256": "71f6f85262b1afc00972008e86827a4a59f8a7eb26124fe3731b432b9fbf163f"
+    }
+  ],
+  "definitionChecks": [
+    {
+      "file": "fes.html",
+      "sha256": "fcabd0cbfd4f1978866986af3bc7cc8f0e2e622cfa633cef62ea456c379fe141",
+      "checkedAt": "2026-09-24"
+    },
+    {
+      "file": "festival.js",
+      "sha256": "b852a43fb8518e866bfa9e4a2474da8ec1012bac60f5e1709580f8d0258dec15",
+      "checkedAt": "2026-09-24"
+    },
+    {
+      "file": "festival_chart.js",
+      "sha256": "95ee664e0cdfb1ca8d5902474160ba4282182e54b2207ec2f5386e984a34582b",
+      "checkedAt": "2026-09-24"
+    }
+  ]
+}

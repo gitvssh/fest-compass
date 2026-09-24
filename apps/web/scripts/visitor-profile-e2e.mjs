@@ -1,9 +1,10 @@
-// pickDday 2025 visitor profile acceptance, headless: the 임실N치즈축제 2025 sex/age shares and destination search
-// ranking inside 과거 방문 흐름, and the reviewed links into the current tourism resources view.
+// pickDday single-edition visitor profile acceptance, headless: the 임실N치즈축제 2025 sex/age shares and destination
+// search ranking inside 과거 방문 흐름 when 2025 alone is selected, the 2024 single profile when 2024 alone is selected,
+// and the reviewed links into the current tourism resources view. Two-edition comparison: edition-profile-e2e.mjs.
 //
 // Data provenance is explicit per check:
 //  - REAL LOCAL DATA: /api/existing/history passes through the local server untouched. Expected values are read here
-//    directly from the imported official snapshots (docs/research/imported/datalab-imsil-2025), never through app code.
+//    directly from the imported official snapshots (docs/research/imported/datalab-imsil-2025 and -2024), never through app code.
 //  - RESOURCES: by default, the live server list passes through untouched. Local full regression explicitly sets
 //    VISITOR_PROFILE_RESOURCES=fixture: a controlled list of the three reviewed source identities, never live coverage.
 //  - 검증용 통제 응답 (marked where used): request gates only hold a real answer; one resource request is aborted on
@@ -66,6 +67,24 @@ function km(a, b) {
 assert.ok(km(point(ID.sangiam), point(ID.themepark)) > 5, "oracle: 상이암 and the theme park are more than 5km apart");
 const pct = v => `${v.toFixed(1)}%`;
 const DEMO_LABEL = `성·연령별 비율, 내국인 방문자 전체 중. ${DEMOGRAPHICS.map(d => `${d.ageBand} 남성 ${pct(d.malePercent)}, 여성 ${pct(d.femalePercent)}`).join("; ")}`;
+
+// 2024 alone now gets its own single profile; its oracle is read from its own imported snapshot.
+const SNAPSHOT_2024 = new URL("../../../docs/research/imported/datalab-imsil-2024/", import.meta.url);
+const snapshot2024 = name => JSON.parse(readFileSync(new URL(name, SNAPSHOT_2024), "utf8"));
+const manifest2024 = snapshot2024("manifest.json"), demoRows2024 = snapshot2024("original/demographics.json").list;
+const destRows2024 = snapshot2024("original/destinations.json").list, links2024 = snapshot2024("resource-links.json");
+assert.deepEqual([manifest2024.observation.year, manifest2024.observation.start, manifest2024.observation.end, manifest2024.observation.days, manifest2024.observation.regionCode, manifest2024.observation.areaName],
+  [2024, "2024-10-03", "2024-10-06", 4, "52750", manifest.observation.areaName], "oracle: 2024 festival period, same area");
+assert.ok(demoRows2024.length === 8 && demoRows2024.every(r => r.FSTV_ID === "KCTF0061" && r.DISP_YN === "N"), "oracle: 2024 eight public bands");
+const DEMOGRAPHICS_2024 = [...demoRows2024].sort((a, b) => a.SORT_STR - b.SORT_STR).map(r => ({ ageBand: r.AGEG_DIV_NM, malePercent: r.M_TOU_NUM_RAT, femalePercent: r.W_TOU_NUM_RAT }));
+const LINKED_2024 = new Map(links2024.links.map(l => [l.destinationId, { id: l.resource.id, kind: l.resource.kind, title: l.resource.title }]));
+const RANKS_2024 = Object.fromEntries(Object.entries(GROUP_LABEL).map(([group, label]) => [group, destRows2024.filter(r => r.DIV_NM === label).sort((a, b) => a.ROWNUM - b.ROWNUM)
+  .map(r => ({ rank: r.ROWNUM, name: r.ITS_BRO_NM, address: r.ADDR_ROAD_NM, category: r.KTO_CATE_SCLS_NM, resource: LINKED_2024.get(r.ITS_BRO_ID) ?? null }))]));
+const EXPECT = {
+  2025: { manifest, demographics: DEMOGRAPHICS, ranks: RANKS, counts: [...SEARCH_COUNTS, ...COUNT_PARTS] },
+  2024: { manifest: manifest2024, demographics: DEMOGRAPHICS_2024, ranks: RANKS_2024,
+    counts: [...destRows2024.map(r => r.SRCH_CNT).filter(v => v >= 100), ...demoRows2024.flatMap(r => [r.M_TOT, r.W_TOT]).map(v => Math.trunc(v))].map(String) },
+};
 
 const PROFILE_KEYS = ["areaName", "demographics", "destinationGroups", "editionId", "end", "source", "start", "year"];
 const INTERNAL = ["sha256", "evidence", "docs/research", "/original/", "manifest", "SRCH_CNT", "M_TOT", "W_TOT", "DISP_YN", "\"raw\"", "count", "checkedAt"];
@@ -167,9 +186,11 @@ async function keyboardDialog(page, opener, title, text, whileOpen = async () =>
 
 // ---- Page model ----
 const IMSIL = "archive:imsil-cheese", NONSAN = "archive:nonsan-strawberry", ed = y => `imsil-cheese-${y}`;
-const visitsUrl = (years = [2024, 2025], id = IMSIL) => `${base}/existing/${encodeURIComponent(id)}/visits${years ? `?editions=${years.map(ed).join(",")}` : ""}`;
+// Single-profile regression: 2025 alone by default (two selected editions show the comparison instead).
+const visitsUrl = (years = [2025], id = IMSIL) => `${base}/existing/${encodeURIComponent(id)}/visits${years ? `?editions=${years.map(ed).join(",")}` : ""}`;
 const resourcesUrl = (query, id = IMSIL) => `${base}/existing/${encodeURIComponent(id)}/resources${query}`;
-const profile = page => page.getByRole("region", { name: "2025년 방문자 특성", exact: true });
+const profile = (page, year = 2025) => page.getByRole("region", { name: `${year}년 방문자 특성`, exact: true });
+const anyComparison = page => page.getByRole("region", { name: /^방문자 특성 · \d{4}년과 \d{4}년$/ });
 const demoRegion = page => profile(page).getByRole("region", { name: "성·연령별 비율", exact: true });
 const rankRegion = page => profile(page).getByRole("region", { name: "축제 기간 목적지 검색순위", exact: true });
 const groupButton = (page, label) => rankRegion(page).getByRole("group", { name: "검색한 사람 구분", exact: true }).getByRole("button", { name: label, exact: true });
@@ -192,12 +213,15 @@ async function noTargetMessages(page) {
   for (const text of [PENDING, RETRY_HINT, MISSING]) assert.equal(await page.getByText(text, { exact: true }).count(), 0, `no "${text}"`);
 }
 
-function checkProfile(body) {
-  const vp = body.visitorProfile;
-  assert.ok(vp, "visitorProfile present");
+function checkProfile(body, year = 2025) {
+  const selection = body.visitorProfile, want = EXPECT[year];
+  assert.ok(selection, "visitorProfile present");
+  assert.deepEqual(Object.keys(selection), ["editions"], "selection wrapper only");
+  assert.equal(selection.editions.length, 1, "one selected edition: one single profile");
+  const vp = selection.editions[0];
   assert.deepEqual(Object.keys(vp).sort(), PROFILE_KEYS, "visitorProfile: only the public fields");
-  assert.deepEqual([vp.editionId, vp.year, vp.start, vp.end, vp.areaName], [ed(2025), 2025, manifest.observation.start, manifest.observation.end, manifest.observation.areaName]);
-  assert.deepEqual(vp.demographics, DEMOGRAPHICS, "official shares, source order, no counts");
+  assert.deepEqual([vp.editionId, vp.year, vp.start, vp.end, vp.areaName], [ed(year), year, want.manifest.observation.start, want.manifest.observation.end, want.manifest.observation.areaName]);
+  assert.deepEqual(vp.demographics, want.demographics, "official shares, source order, no counts");
   for (const row of vp.demographics) assert.deepEqual(Object.keys(row).sort(), ["ageBand", "femalePercent", "malePercent"]);
   assert.deepEqual(vp.destinationGroups.map(g => g.group).sort(), ["all", "local", "outside"], "three rank groups, no residence block");
   for (const g of vp.destinationGroups) {
@@ -208,13 +232,13 @@ function checkProfile(body) {
       assert.deepEqual(Object.keys(i).sort(), ["address", "category", "id", "name", "rank", "resource"]);
       if (i.resource) assert.deepEqual(Object.keys(i.resource).sort(), ["id", "kind", "title"]);
     }
-    assert.deepEqual(g.items.map(({ rank, name, address, category, resource }) => ({ rank, name, address, category, resource })), RANKS[g.group], `${g.group}: source rows and reviewed links only`);
+    assert.deepEqual(g.items.map(({ rank, name, address, category, resource }) => ({ rank, name, address, category, resource })), want.ranks[g.group], `${g.group}: source rows and reviewed links only`);
   }
   assert.deepEqual(Object.keys(vp.source).sort(), ["collectedAt", "title", "url"]);
   assert.match(vp.source.url, /^https:\/\/datalab\.visitkorea\.or\.kr\//, "official public source page");
-  const text = JSON.stringify(vp);
+  const text = JSON.stringify(selection);
   for (const word of INTERNAL) assert.ok(!text.includes(word), `visitorProfile: no internal ${word}`);
-  for (const n of [...SEARCH_COUNTS, ...COUNT_PARTS]) assert.doesNotMatch(text, new RegExp(`\\b${n}\\b`), `visitorProfile: no count ${n}`);
+  for (const n of want.counts) assert.doesNotMatch(text, new RegExp(`\\b${n}\\b`), `visitorProfile: no count ${n}`);
   return vp;
 }
 async function checkSectionText(page) {
@@ -240,6 +264,7 @@ async function profileContent({ page }) {
   assert.ok(firstBody.hostVisits, "existing host composition kept");
   await visible(profile(page));
   await visible(host(page));
+  assert.equal(await anyComparison(page).count(), 0, "one selected edition: no comparison");
   assert.equal(await host(page).evaluate((el, next) => !!(el.compareDocumentPosition(next) & Node.DOCUMENT_POSITION_FOLLOWING), await profile(page).elementHandle()), true, "profile follows the host composition");
   await visible(profile(page).getByText("2025.10.8–10.12 · 임실군 성수면 · 내국인 · 통신 기반 추정", { exact: true }));
 
@@ -304,21 +329,29 @@ async function profileContent({ page }) {
   await visible(profile(page).getByText("2025.10.8–10.12 · 임실군 성수면 · 내국인 · 통신 기반 추정", { exact: true }));
   passed.push("chart-window-independent");
 
-  // 2024 only: no profile, and not even while the answer is loading; host composition still shown.
+  // 2024 only: the 2024 single profile replaces 2025 (never shown while the answer is loading); host composition kept.
   const only2024 = gate(is("existing/history", editionsAre([2024])), "history 2024");
   await pick(page, [2024]);
   await only2024.arrived;
   assert.equal(await profile(page).count(), 0, "earlier profile hidden while the new selection loads");
+  assert.equal(await profile(page, 2024).count(), 0, "no profile before its answer arrives");
   body = served(page, "existing/history", editionsAre([2024]));
   await only2024.release();
   const b2024 = await body;
-  assert.equal(b2024.visitorProfile, null, "2024 only: no profile");
+  const p2024 = checkProfile(b2024, 2024);
   assert.deepEqual(b2024.hostVisits?.editions.map(e => e.editionId), [ed(2024)], "2024 host composition unchanged");
   await visible(host(page));
+  await visible(profile(page, 2024));
+  await visible(profile(page, 2024).getByText(`2024.10.3–10.6 · ${p2024.areaName} · 내국인 · 통신 기반 추정`, { exact: true }));
+  assert.equal(await profile(page, 2024).getByRole("region", { name: "성·연령별 비율", exact: true }).getByRole("img").getAttribute("aria-label"),
+    `성·연령별 비율, 내국인 방문자 전체 중. ${DEMOGRAPHICS_2024.map(d => `${d.ageBand} 남성 ${pct(d.malePercent)}, 여성 ${pct(d.femalePercent)}`).join("; ")}`, "2024 published shares");
+  const list2024 = profile(page, 2024).getByRole("list", { name: "외지인 목적지 검색순위", exact: true }).getByRole("listitem");
+  assert.equal(await list2024.count(), RANKS_2024.outside.length, "2024 외지인 rows");
+  for (const [i, want] of RANKS_2024.outside.entries()) await visible(list2024.nth(i).getByText(want.name, { exact: true }));
   await flush(page);
-  assert.equal(await profile(page).count(), 0, "no blank profile card");
-  assert.equal(await page.getByText("방문자 특성", { exact: false }).count(), 0);
-  passed.push("2024-only-omitted-no-blank-card");
+  assert.equal(await profile(page).count(), 0, "2025 profile absent");
+  assert.equal(await anyComparison(page).count(), 0, "no comparison for one edition");
+  passed.push("2024-only-single-2024-profile-2025-absent");
 
   // Late earlier answer that includes 2025 arrives after the user moved back to 2024 only: ignored.
   const late = gate(is("existing/history", editionsAre([2023, 2025])), "history 2023+2025 late");
@@ -330,10 +363,12 @@ async function profileContent({ page }) {
   await late.release();
   await flush(page);
   assert.equal(await profile(page).count(), 0, "late 2025 answer never shows the profile");
-  body = served(page, "existing/history", editionsAre([2025]));
+  assert.equal(await anyComparison(page).count(), 0, "late answer never shows a comparison");
+  await visible(profile(page, 2024));
   await pick(page, [2025]);
-  checkProfile(await body);
+  // This condition was already loaded at the start. Returning may use the valid client cache and issue no request.
   await visible(profile(page));
+  assert.equal(await demoRegion(page).getByRole("img").getAttribute("aria-label"), DEMO_LABEL);
   passed.push("late-old-answer-ignored");
 
   body = served(page, "existing/history");
@@ -342,6 +377,7 @@ async function profileContent({ page }) {
   await visible(page.getByRole("heading", { level: 2, name: "논산시 외지인 방문 추이", exact: true }));
   await flush(page);
   assert.equal(await profile(page).count(), 0);
+  assert.equal(await page.getByRole("region", { name: /방문자 특성/ }).count(), 0, "no profile section at all");
   passed.push("other-festival-null");
 }
 
@@ -363,7 +399,7 @@ async function destinationLinks({ page }) {
   // Back returns to the visits view with its conditions and the followed link focused; forward has no one-shot target.
   await page.goBack();
   await visible(profile(page));
-  assert.equal(param(page, "editions"), [ed(2024), ed(2025)].join(","));
+  assert.equal(param(page, "editions"), ed(2025));
   await page.waitForFunction(() => document.activeElement?.getAttribute("data-rank-link")?.startsWith("outside:"));
   await page.goForward();
   await visible(detail(page));
@@ -379,7 +415,7 @@ async function destinationLinks({ page }) {
   await resourceButton(page, ID.themepark).waitFor({ state: "detached" });
   await menu(page, "과거 방문 흐름").click();
   await visible(profile(page));
-  assert.equal(param(page, "editions"), [ed(2024), ed(2025)].join(","), "menu restores the visit conditions");
+  assert.equal(param(page, "editions"), ed(2025), "menu restores the visit conditions");
   await groupButton(page, "현지인").click();
   list = served(page, "existing/resources", typesOnly("12")); // a fresh list answer, even with a remembered one
   await rankList(page, "현지인").getByRole("link", { name: `${TITLE.themepark} 관광자원에서 보기`, exact: true }).click();

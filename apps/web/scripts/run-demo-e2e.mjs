@@ -114,6 +114,7 @@ try {
   runNode(join(webRoot, "scripts", "related-search-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "visitor-context-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "visitor-profile-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "edition-profile-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "schedule-absorption-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "overlap-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "distance-e2e.mjs"), []);

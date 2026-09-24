@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "festivalId": "KCTF0061",
+  "regionCode": "52750",
+  "areaCode": "52750340",
+  "year": 2023,
+  "checkedAt": "2026-09-24T11:50:31.000Z",
+  "source": "한국관광공사 TourAPI 현재 임실군 관광지·문화시설 목록",
+  "links": [
+    {
+      "destinationId": "2773331",
+      "sourceName": "임실치즈테마파크",
+      "sourceAddress": "전북 임실군 도인2길 50-0",
+      "resource": {
+        "id": "2718832",
+        "kind": "12",
+        "title": "임실치즈테마파크",
+        "address": "전북특별자치도 임실군 성수면 도인2길 50",
+        "point": {
+          "latitude": 35.6331302276,
+          "longitude": 127.3012489235
+        },
+        "modifiedAt": "20260914164503"
+      },
+      "evidence": "이 회차 원응답의 장소 ID·이름·도로명/건물번호를 직접 대조하고 2026-09-24 현재 관광정보 응답의 대상 필드를 재확인했다. Foundry ID 검사는 2025년 연결 검수 기록을 재사용한다."
+    },
+    {
+      "destinationId": "3306424",
+      "sourceName": "상이암",
+      "sourceAddress": "전북 임실군 성수산길 658-0",
+      "resource": {
+        "id": "317571",
+        "kind": "12",
+        "title": "상이암(임실)",
+        "address": "전북특별자치도 임실군 성수면 성수산길 658",
+        "point": {
+          "latitude": 35.6355005343,
+          "longitude": 127.4251585247
+        },
+        "modifiedAt": "20250709132600"
+      },
+      "evidence": "이 회차 원응답의 장소 ID·이름·도로명/건물번호를 직접 대조하고 2026-09-24 현재 관광정보 응답의 대상 필드를 재확인했다. Foundry ID 검사는 2025년 연결 검수 기록을 재사용한다."
+    }
+  ]
+}

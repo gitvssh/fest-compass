@@ -19,7 +19,7 @@ import { festivalsKey, historyKey, InvalidRequest, monthlyKey, resourcesKey, sch
 import { holidaySources, scheduleDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
 import { collectRegionEvents, createTourCall, lookupCurrent, searchKeywordPage, TourChanged, type RegionEvents, type TourCall } from "./tour";
 import type { ArchiveFestival, CurrentBlock, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, HostAreaVisits, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
-  ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef, VisitorProfile } from "./types";
+  ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef, VisitorProfileSelection } from "./types";
 
 export class NotFound extends Error { constructor(readonly field: string) { super(`not-found:${field}`); } }
 const VISITS_SOURCE: SourceRef = { title: "한국관광공사 지역별 방문자", url: HISTORY_SOURCE, checkedAt: null, publishedAt: null };
@@ -36,7 +36,7 @@ export type ExistingDeps = {
   editions?: Edition[];
   /** Reviewed DataLab host-area visit mix per selected edition; absent -> hostVisits is null. Production injects the verified default. */
   hostVisits?: HostVisitsResolver;
-  /** Reviewed DataLab visitor profile for one exact selected edition; absent -> visitorProfile is null. Production injects the verified default. */
+  /** Reviewed DataLab visitor profiles of the exact selected editions; absent -> visitorProfile is null. Production injects the verified default. */
   visitorProfile?: VisitorProfileResolver;
   now?: () => string;
   today?: () => string;
@@ -86,7 +86,7 @@ export function createExistingService(deps: ExistingDeps) {
     if (!deps.hostVisits) return null;
     try { return deps.hostVisits(festival, editionIds); } catch { console.error("datalab-host-visits: resolver-failed"); return null; }
   }
-  function visitorProfile(festival: ArchiveFestival, editionIds: string[]): VisitorProfile | null {
+  function visitorProfile(festival: ArchiveFestival, editionIds: string[]): VisitorProfileSelection | null {
     if (!deps.visitorProfile) return null;
     try { return deps.visitorProfile(festival, editionIds); } catch { console.error("datalab-visitor-profile: resolver-failed"); return null; }
   }

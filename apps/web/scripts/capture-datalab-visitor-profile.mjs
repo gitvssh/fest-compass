@@ -1,4 +1,4 @@
-// Bounded, manual source refresh for the reviewed Imsil 2025 pilot.
+// Bounded, manual source refresh for the reviewed Imsil editions.
 // Uses visible public UI and its own JSON chart responses; no login, private cookies, or download endpoint.
 // Writes a NEW candidate directory, never replaces reviewed application data.
 import { chromium } from 'playwright';
@@ -8,7 +8,9 @@ import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 
 const args = process.argv.slice(2);
-if (args.length !== 2 || args[0] !== '--out' || !args[1]) throw new Error('Usage: node scripts/capture-datalab-visitor-profile.mjs --out <new-candidate-directory>');
+if (![2, 4].includes(args.length) || args[0] !== '--out' || !args[1] || (args.length === 4 && args[2] !== '--year')) throw new Error('Usage: node scripts/capture-datalab-visitor-profile.mjs --out <new-candidate-directory> [--year 2023|2024|2025]');
+const year = args[3] ?? '2025';
+assert.ok(['2023', '2024', '2025'].includes(year), 'reviewed year selection');
 const dir = resolve(args[1]);
 await mkdir(dirname(dir), { recursive: true });
 await mkdir(dir); // EEXIST is intentional: never overwrite an earlier capture.
@@ -27,7 +29,7 @@ page.on('response', response => {
   if (url.pathname === '/visualize/getTempleteData.do') {
     parameters = Object.fromEntries(new URLSearchParams(req.postData()));
     kind = qids[parameters.qid];
-    if (!kind || parameters.FSTV_ID !== selectedId || parameters.BASE_YY1 !== '2025' || parameters.BASE_YY2 !== '2025') return;
+    if (!kind || parameters.FSTV_ID !== selectedId || parameters.BASE_YY1 !== year || parameters.BASE_YY2 !== year) return;
   } else if (url.pathname.endsWith('/getFesList.do')) {
     try { parameters = JSON.parse(req.postData()); } catch { return; }
     if (parameters.fesNm !== '임실') return;
@@ -57,10 +59,10 @@ try {
   await page.getByRole('link', { name: '임실N치즈축제', exact: true }).click();
   selectedId = await page.locator('#fstvId').inputValue();
   assert.equal(selectedId, 'KCTF0061');
-  await page.locator('#srchBgngYear1').selectOption('2025');
-  await page.locator('#srchEndYear1').selectOption('2025');
+  await page.locator('#srchBgngYear1').selectOption(year);
+  await page.locator('#srchEndYear1').selectOption(year);
   await page.getByRole('button', { name: '조회', exact: true }).click();
-  await page.waitForFunction(() => document.querySelector('#age_gender_BASE_YEAR')?.value === '2025' && document.querySelector('#rank_table_BASE_YEAR')?.value === '2025');
+  await page.waitForFunction(y => document.querySelector('#age_gender_BASE_YEAR')?.value === y && document.querySelector('#rank_table_BASE_YEAR')?.value === y, year);
   await page.waitForFunction(() => document.querySelectorAll('#outer_rank_table_list tbody tr').length > 0);
   const until = Date.now() + 45000;
   while (records.size < 5 && Date.now() < until) {
@@ -72,11 +74,22 @@ try {
   assert.equal(results.some(r => r?.error), false, 'capture errors');
   assert.equal(records.size, 5, 'all five public responses are required');
   const scope = await page.evaluate(() => ({ name: document.querySelector('#area-select').textContent.trim(), festivalId: document.querySelector('#fstvId').value, startYear: document.querySelector('#srchBgngYear1').value, endYear: document.querySelector('#srchEndYear1').value, demographicYear: document.querySelector('#age_gender_BASE_YEAR').value, residenceYear: document.querySelector('#festivalMap_BASE_YEAR').value, destinationYear: document.querySelector('#rank_table_BASE_YEAR').value }));
-  assert.equal(scope.startYear, '2025'); assert.equal(scope.endYear, '2025');
+  assert.equal(scope.startYear, year); assert.equal(scope.endYear, year);
   await page.locator('#chart_05').scrollIntoViewIfNeeded();
   await page.waitForFunction(() => document.querySelector('#chart_05 svg')?.textContent.includes('60~69'));
   await page.locator('#chart_05').screenshot({ path: join(dir, 'demographics.png') });
-  const manifest = { schemaVersion: 1, page: officialPage, headless: true, method: 'public page UI and its own chart responses; no login or download endpoint', scope, residenceVisible: await page.locator('#festivalMap_BASE_YEAR').isVisible(), observation: { year: 2025, start: '2025-10-08', end: '2025-10-12', days: 5, areaCode: '52750340', areaName: '임실군 성수면', regionCode: '52750' }, records: [...records.values()] };
+  // Candidate observation comes from the captured period row. Promotion separately verifies geography and definitions.
+  const { readFile } = await import('node:fs/promises');
+  const periods = JSON.parse(await readFile(join(dir, 'original/festival-periods.json'), 'utf8'));
+  const period = periods.info_list.find(row => row.BASE_YEAR === year);
+  assert.ok(period, 'selected year period');
+  const start = period.FSTV_BGNG_YMD, end = period.FSTV_END_YMD;
+  const destinations = JSON.parse(await readFile(join(dir, 'original/destinations.json'), 'utf8')).list;
+  const areas = [...new Set(destinations.map(row => row.EMD_CD))];
+  assert.equal(areas.length, 1, 'single captured host area');
+  assert.equal(areas[0], '52750340', 'reviewed Imsil host area');
+  assert.equal(period.ADONG_NM1, '임실군 성수면', 'captured period host area');
+  const manifest = { schemaVersion: 1, page: officialPage, headless: true, method: 'public page UI and its own chart responses; no login or download endpoint', scope, residenceVisible: await page.locator('#festivalMap_BASE_YEAR').isVisible(), observation: { year: Number(year), start, end, days: (Date.parse(end) - Date.parse(start)) / 86400000 + 1, areaCode: areas[0], areaName: period.ADONG_NM1, regionCode: '52750' }, records: [...records.values()] };
   await writeFile(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', { flag: 'wx' });
-  console.log(JSON.stringify({ candidate: dir, responses: records.size, festivalId: selectedId, year: 2025 }));
+  console.log(JSON.stringify({ candidate: dir, responses: records.size, festivalId: selectedId, year: Number(year) }));
 } finally { await browser.close(); }

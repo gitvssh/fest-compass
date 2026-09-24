@@ -13,86 +13,86 @@
   "source": {
     "title": "한국관광 데이터랩 · 문화관광축제 방문자 특성",
     "officialUrl": "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do",
-    "collectedAt": "2026-09-24T08:15:07.300Z",
-    "importDir": "docs/research/imported/datalab-imsil-2025",
-    "manifestSha256": "b6db6c024597ab31ea2f4a999e6ec411c334ed58949f9bb7b2d42c58a81d934d",
-    "resourceLinksSha256": "f6e422a3a8d5ad019ab759fa4521ac0c992a50a320de2613cbbfa31a89724c91",
-    "resourceCheckedAt": "2026-09-24T08:16:13.475Z"
+    "collectedAt": "2026-09-24T11:41:43.889Z",
+    "importDir": "docs/research/imported/datalab-imsil-2024",
+    "manifestSha256": "29dcc56743757ba689b3d7f79a93eeacf4bd8eaeaa44522799b99ef21ed8dec5",
+    "resourceLinksSha256": "86e0b19f1b80447db68d02614e0942966a160f2f825bdb7675aa6d94b95203e3",
+    "resourceCheckedAt": "2026-09-24T11:50:31.000Z"
   },
   "festival": {
     "archiveFestivalId": "imsil-cheese",
-    "editionId": "imsil-cheese-2025",
+    "editionId": "imsil-cheese-2024",
     "datalabFestivalId": "KCTF0061",
     "name": "임실N치즈축제",
     "regionCode": "52750",
     "areaCode": "52750340",
     "areaName": "임실군 성수면",
-    "year": 2025,
-    "start": "2025-10-08",
-    "end": "2025-10-12",
-    "days": 5
+    "year": 2024,
+    "start": "2024-10-03",
+    "end": "2024-10-06",
+    "days": 4
   },
   "evidence": {
     "records": [
       {
         "kind": "festival-list",
-        "path": "docs/research/imported/datalab-imsil-2025/original/festival-list.json",
+        "path": "docs/research/imported/datalab-imsil-2024/original/festival-list.json",
         "bytes": 1138,
         "sha256": "684eefec346a6b121e89cbeda5dbcdd10d0d09a7e36feb8d5270120518c11b34",
         "qid": null,
         "baseYears": null,
-        "retrievedAt": "2026-09-24T08:15:05.909Z"
+        "retrievedAt": "2026-09-24T11:41:41.843Z"
       },
       {
         "kind": "festival-periods",
-        "path": "docs/research/imported/datalab-imsil-2025/original/festival-periods.json",
+        "path": "docs/research/imported/datalab-imsil-2024/original/festival-periods.json",
         "bytes": 4145,
         "sha256": "097eb677a6feb96b96544fdecb4150626bdc629cfad2892f769721bc38fd6c36",
         "qid": null,
         "baseYears": null,
-        "retrievedAt": "2026-09-24T08:15:07.167Z"
+        "retrievedAt": "2026-09-24T11:41:43.889Z"
       },
       {
         "kind": "trend",
-        "path": "docs/research/imported/datalab-imsil-2025/original/trend.json",
+        "path": "docs/research/imported/datalab-imsil-2024/original/trend.json",
         "bytes": 425,
-        "sha256": "f3495d3155e1bbe2c2b1d547cd37b32fe15c6b50a7d8bd821450cb4bdf043040",
+        "sha256": "ddc6dd6e4cfbf781269eb2e26395ffe64ea736adbb00ac8c70fcfa236a597502",
         "qid": "FE_01_01_005",
         "baseYears": [
-          "2025",
-          "2025"
+          "2024",
+          "2024"
         ],
-        "retrievedAt": "2026-09-24T08:15:07.167Z"
+        "retrievedAt": "2026-09-24T11:41:43.889Z"
       },
       {
         "kind": "demographics",
-        "path": "docs/research/imported/datalab-imsil-2025/original/demographics.json",
-        "bytes": 1655,
-        "sha256": "96e89ce31f496a5256d6c3433673106745103bfebe62530f0105857f9e82cfc0",
+        "path": "docs/research/imported/datalab-imsil-2024/original/demographics.json",
+        "bytes": 1650,
+        "sha256": "d8e83f571006b9332f7c9eff05d35b140b07ad0418184369b7eec41055d56b20",
         "qid": "FE_01_01_006",
         "baseYears": [
-          "2025",
-          "2025"
+          "2024",
+          "2024"
         ],
-        "retrievedAt": "2026-09-24T08:15:07.300Z"
+        "retrievedAt": "2026-09-24T11:41:43.889Z"
       },
       {
         "kind": "destinations",
-        "path": "docs/research/imported/datalab-imsil-2025/original/destinations.json",
-        "bytes": 4974,
-        "sha256": "af7659f8fc5ac464298e22120cdeebec8acb3d2163737e76c5ca4db1e60a0928",
+        "path": "docs/research/imported/datalab-imsil-2024/original/destinations.json",
+        "bytes": 4891,
+        "sha256": "71f6f85262b1afc00972008e86827a4a59f8a7eb26124fe3731b432b9fbf163f",
         "qid": "FE_01_01_004_00",
         "baseYears": [
-          "2025",
-          "2025"
+          "2024",
+          "2024"
         ],
-        "retrievedAt": "2026-09-24T08:15:06.157Z"
+        "retrievedAt": "2026-09-24T11:41:43.889Z"
       }
     ],
     "definitionChecks": [
       {
         "file": "fes.html",
-        "sha256": "1c481760af6ccf37b77a2f816037d710093c92295cc57267ec82abe265597a4a",
+        "sha256": "fcabd0cbfd4f1978866986af3bc7cc8f0e2e622cfa633cef62ea456c379fe141",
         "checkedAt": "2026-09-24"
       },
       {
@@ -107,11 +107,11 @@
       }
     ],
     "trend": {
-      "local": 16688,
-      "outside": 127842,
-      "foreign": 126,
-      "total": 144656,
-      "dailyMean": 28931.2
+      "local": 14949,
+      "outside": 93573,
+      "foreign": 187,
+      "total": 108709,
+      "dailyMean": 27177.25
     },
     "demographicCountGap": -1,
     "residence": "hidden-on-official-page"
@@ -120,57 +120,57 @@
     {
       "ageBand": "0~9세",
       "order": 1,
-      "malePercent": 0.6,
-      "femalePercent": 0.7,
+      "malePercent": 0.5,
+      "femalePercent": 0.8,
       "display": "N"
     },
     {
       "ageBand": "10~19세",
       "order": 2,
-      "malePercent": 2.5,
-      "femalePercent": 2.4,
+      "malePercent": 2.1,
+      "femalePercent": 1.9,
       "display": "N"
     },
     {
       "ageBand": "20~29세",
       "order": 3,
-      "malePercent": 4.8,
-      "femalePercent": 5,
+      "malePercent": 4.3,
+      "femalePercent": 4.7,
       "display": "N"
     },
     {
       "ageBand": "30~39세",
       "order": 4,
-      "malePercent": 7.3,
-      "femalePercent": 7.6,
+      "malePercent": 6.7,
+      "femalePercent": 6.9,
       "display": "N"
     },
     {
       "ageBand": "40~49세",
       "order": 5,
-      "malePercent": 8.3,
+      "malePercent": 8.4,
       "femalePercent": 7.5,
       "display": "N"
     },
     {
       "ageBand": "50~59세",
       "order": 6,
-      "malePercent": 10.4,
-      "femalePercent": 11.3,
+      "malePercent": 11.1,
+      "femalePercent": 13,
       "display": "N"
     },
     {
       "ageBand": "60~69세",
       "order": 7,
-      "malePercent": 11.4,
-      "femalePercent": 11.2,
+      "malePercent": 12.1,
+      "femalePercent": 11.4,
       "display": "N"
     },
     {
       "ageBand": "70세 이상",
       "order": 8,
-      "malePercent": 4.6,
-      "femalePercent": 4.4,
+      "malePercent": 4.4,
+      "femalePercent": 4.2,
       "display": "N"
     }
   ],
@@ -201,24 +201,16 @@
           "resource": null
         },
         {
-          "id": "173403",
-          "rank": 3,
-          "name": "성수산왕의숲자연휴양림",
-          "address": "전북 임실군 성수산길 373-0",
-          "category": "자연공원",
-          "resource": null
-        },
-        {
           "id": "10147587",
-          "rank": 4,
+          "rank": 3,
           "name": "임실치즈테마파크임실치즈역사문화관",
-          "address": "전북 임실군 도인2길 50-0",
+          "address": "전북 임실군",
           "category": "전시시설",
           "resource": null
         },
         {
           "id": "3306424",
-          "rank": 5,
+          "rank": 4,
           "name": "상이암",
           "address": "전북 임실군 성수산길 658-0",
           "category": "종교성지",
@@ -229,6 +221,14 @@
           }
         },
         {
+          "id": "173403",
+          "rank": 5,
+          "name": "성수산자연휴양림",
+          "address": "전북 임실군 성수산길 373-0",
+          "category": "자연공원",
+          "resource": null
+        },
+        {
           "id": "54277",
           "rank": 6,
           "name": "오봉저수지",
@@ -237,16 +237,12 @@
           "resource": null
         },
         {
-          "id": "725050",
+          "id": "8343126",
           "rank": 7,
-          "name": "소충사",
-          "address": "전북 임실군 산성로 725-23",
-          "category": "종교성지",
-          "resource": {
-            "id": "527279",
-            "kind": "12",
-            "title": "소충사"
-          }
+          "name": "수월제",
+          "address": "전북 임실군",
+          "category": "자연경관(하천/해양)",
+          "resource": null
         }
       ]
     },
@@ -276,24 +272,16 @@
           "resource": null
         },
         {
-          "id": "173403",
-          "rank": 3,
-          "name": "성수산왕의숲자연휴양림",
-          "address": "전북 임실군 성수산길 373-0",
-          "category": "자연공원",
-          "resource": null
-        },
-        {
           "id": "10147587",
-          "rank": 4,
+          "rank": 3,
           "name": "임실치즈테마파크임실치즈역사문화관",
-          "address": "전북 임실군 도인2길 50-0",
+          "address": "전북 임실군",
           "category": "전시시설",
           "resource": null
         },
         {
           "id": "3306424",
-          "rank": 5,
+          "rank": 4,
           "name": "상이암",
           "address": "전북 임실군 성수산길 658-0",
           "category": "종교성지",
@@ -304,24 +292,28 @@
           }
         },
         {
-          "id": "54277",
+          "id": "173403",
+          "rank": 5,
+          "name": "성수산자연휴양림",
+          "address": "전북 임실군 성수산길 373-0",
+          "category": "자연공원",
+          "resource": null
+        },
+        {
+          "id": "8343126",
           "rank": 6,
-          "name": "오봉저수지",
+          "name": "수월제",
           "address": "전북 임실군",
           "category": "자연경관(하천/해양)",
           "resource": null
         },
         {
-          "id": "725050",
+          "id": "54277",
           "rank": 7,
-          "name": "소충사",
-          "address": "전북 임실군 산성로 725-23",
-          "category": "종교성지",
-          "resource": {
-            "id": "527279",
-            "kind": "12",
-            "title": "소충사"
-          }
+          "name": "오봉저수지",
+          "address": "전북 임실군",
+          "category": "자연경관(하천/해양)",
+          "resource": null
         }
       ]
     },
@@ -351,24 +343,16 @@
           "resource": null
         },
         {
-          "id": "173403",
-          "rank": 3,
-          "name": "성수산왕의숲자연휴양림",
-          "address": "전북 임실군 성수산길 373-0",
-          "category": "자연공원",
-          "resource": null
-        },
-        {
           "id": "10147587",
-          "rank": 4,
+          "rank": 3,
           "name": "임실치즈테마파크임실치즈역사문화관",
-          "address": "전북 임실군 도인2길 50-0",
+          "address": "전북 임실군",
           "category": "전시시설",
           "resource": null
         },
         {
           "id": "3306424",
-          "rank": 5,
+          "rank": 4,
           "name": "상이암",
           "address": "전북 임실군 성수산길 658-0",
           "category": "종교성지",
@@ -379,24 +363,28 @@
           }
         },
         {
-          "id": "54277",
+          "id": "173403",
+          "rank": 5,
+          "name": "성수산자연휴양림",
+          "address": "전북 임실군 성수산길 373-0",
+          "category": "자연공원",
+          "resource": null
+        },
+        {
+          "id": "8343126",
           "rank": 6,
-          "name": "오봉저수지",
+          "name": "수월제",
           "address": "전북 임실군",
           "category": "자연경관(하천/해양)",
           "resource": null
         },
         {
-          "id": "725050",
+          "id": "54277",
           "rank": 7,
-          "name": "소충사",
-          "address": "전북 임실군 산성로 725-23",
-          "category": "종교성지",
-          "resource": {
-            "id": "527279",
-            "kind": "12",
-            "title": "소충사"
-          }
+          "name": "오봉저수지",
+          "address": "전북 임실군",
+          "category": "자연경관(하천/해양)",
+          "resource": null
         }
       ]
     }

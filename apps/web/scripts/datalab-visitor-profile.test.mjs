@@ -1,12 +1,18 @@
 // node --test scripts/datalab-visitor-profile.test.mjs
 import test from "node:test";
 import assert from "node:assert/strict";
-import { appendFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { appendFileSync, cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
+import { fileURLToPath } from "node:url";
 import { REPO_ROOT, sha256 } from "./build-datalab-festival-trend.mjs";
-import { buildVisitorProfile, CROSS_CHECK_PATHS, PROFILE_DIR, PROFILE_MANIFEST_PATH, PROFILE_OUTPUT_PATH, RESOURCE_LINKS_PATH, serialize } from "./build-datalab-visitor-profile.mjs";
+import {
+  buildVisitorProfile, CHART_KINDS, CROSS_CHECK_PATHS, editionConfig, parseCliArgs, PROFILE_DIR, PROFILE_MANIFEST_PATH, PROFILE_OUTPUT_PATH,
+  RESOURCE_LINKS_PATH, REVIEWED_EDITIONS, REVIEWED_YEARS, runVisitorProfileCli, serialize, verifyProfileImport,
+} from "./build-datalab-visitor-profile.mjs";
 
 const [TREND_PATH, LINKS_PATH, EDITIONS_PATH] = CROSS_CHECK_PATHS;
+const SCRIPT = fileURLToPath(new URL("./build-datalab-visitor-profile.mjs", import.meta.url));
 
 test("generator is deterministic, matches the checked-in artifact and binds every value to the reviewed 2025 capture", () => {
   const a = serialize(buildVisitorProfile()), b = serialize(buildVisitorProfile());
@@ -38,27 +44,37 @@ test("generator is deterministic, matches the checked-in artifact and binds ever
 function sandbox() {
   const dir = mkdtempSync(`${tmpdir()}/datalab-visitor-profile-`) + "/";
   mkdirSync(`${dir}apps/web/data`, { recursive: true });
-  cpSync(`${REPO_ROOT}${PROFILE_DIR}`, `${dir}${PROFILE_DIR}`, { recursive: true });
+  for (const year of REVIEWED_YEARS) { const { importDir } = REVIEWED_EDITIONS[year]; cpSync(`${REPO_ROOT}${importDir}`, `${dir}${importDir}`, { recursive: true }); }
   for (const p of CROSS_CHECK_PATHS) cpSync(`${REPO_ROOT}${p}`, `${dir}${p}`);
   return dir;
 }
 const editJson = (root, path, edit) => { const p = `${root}${path}`, m = JSON.parse(readFileSync(p, "utf8")); edit(m); writeFileSync(p, JSON.stringify(m, null, 2) + "\n"); };
 const record = (m, kind) => m.records.find(r => r.kind === kind);
 // Edit an original response and re-pin its manifest hash, so the content check (not the byte check) must catch it.
-const editOriginal = (root, kind, edit) => {
-  const p = `${root}${PROFILE_DIR}/original/${kind}.json`, d = JSON.parse(readFileSync(p, "utf8"));
+const editOriginal = (root, kind, edit, year = 2025) => {
+  const { importDir, manifestPath } = REVIEWED_EDITIONS[year], p = `${root}${importDir}/original/${kind}.json`, d = JSON.parse(readFileSync(p, "utf8"));
   edit(d);
   const bytes = Buffer.from(JSON.stringify(d));
   writeFileSync(p, bytes);
-  editJson(root, PROFILE_MANIFEST_PATH, m => { const r = record(m, kind); r.sha256 = sha256(bytes); r.bytes = bytes.length; });
+  editJson(root, manifestPath, m => { const r = record(m, kind); r.sha256 = sha256(bytes); r.bytes = bytes.length; });
+};
+// Put another edition's exact response bytes under this edition and re-pin the manifest: only the provenance check can catch it.
+const transplant = (root, kind, from, to) => {
+  const bytes = readFileSync(`${root}${REVIEWED_EDITIONS[from].importDir}/original/${kind}.json`);
+  writeFileSync(`${root}${REVIEWED_EDITIONS[to].importDir}/original/${kind}.json`, bytes);
+  editJson(root, REVIEWED_EDITIONS[to].manifestPath, m => { const r = record(m, kind); r.sha256 = sha256(bytes); r.bytes = bytes.length; });
 };
 const withSandbox = fn => { const root = sandbox(); try { return fn(root); } finally { rmSync(root, { recursive: true, force: true }); } };
 const rowOf = (d, group, name) => d.list.find(r => r.DIV_NM === group && r.ITS_BRO_NM === name);
+const repoJson = path => JSON.parse(readFileSync(`${REPO_ROOT}${path}`, "utf8"));
+const tempFiles = root => readdirSync(`${root}apps/web/data`).filter(n => n.endsWith(".tmp"));
 
 test("sandbox copy builds identically, and re-pinned originals still build (so each mutation below reaches its content check)", () => {
-  const fresh = serialize(buildVisitorProfile());
-  withSandbox(root => assert.equal(serialize(buildVisitorProfile(root)), fresh));
-  withSandbox(root => { for (const k of ["festival-list", "festival-periods", "trend", "demographics", "destinations"]) editOriginal(root, k, () => {}); assert.doesNotThrow(() => buildVisitorProfile(root)); });
+  for (const year of REVIEWED_YEARS) {
+    const fresh = serialize(buildVisitorProfile(REPO_ROOT, year));
+    withSandbox(root => assert.equal(serialize(buildVisitorProfile(root, year)), fresh, `${year}`));
+    withSandbox(root => { for (const k of ["festival-list", "festival-periods", "trend", "demographics", "destinations"]) editOriginal(root, k, () => {}, year); assert.doesNotThrow(() => buildVisitorProfile(root, year), `${year}`); });
+  }
 });
 
 test("valid variations: rank ties and DISP_YN=Y are kept as published", () => withSandbox(root => {
@@ -157,4 +173,193 @@ test("provenance, byte, period, identity, shape, rank, trend and resource-link d
     ["no evidence", root => editJson(root, RESOURCE_LINKS_PATH, l => { delete l.links[0].evidence; }), /evidence/],
   ];
   for (const [name, mutate, error] of cases) withSandbox(root => { mutate(root); assert.throws(() => buildVisitorProfile(root), error, name); });
+});
+
+// Reviewed 2023/2024 captures: values read from the byte-pinned originals, never derived from the 2025 edition.
+const SAME_RANKING_2023 = ["2773331", "7837938", "10147587", "173403", "3306424", "54277"];
+const EDITION_EXPECTATIONS = {
+  2023: {
+    output: "apps/web/data/datalab-visitor-profile-2023.json", period: ["2023-10-06", "2023-10-09", 4], collectedAt: "2026-09-24T11:41:56.074Z",
+    trend: { local: 13923, outside: 79355, foreign: 40, total: 93318, dailyMean: 23329.5 }, gap: 1, // source counts 93278.5 vs domestic trend 93278
+    shares: [[0.6, 0.7], [1.9, 2.1], [4.5, 5.2], [6.9, 7], [8.3, 7.7], [10.8, 12.3], [12.3, 11.6], [4.3, 3.9]],
+    ids: { outside: SAME_RANKING_2023, local: SAME_RANKING_2023, all: SAME_RANKING_2023 }, leaks: ["11526", "12792", "93278.5"],
+  },
+  2024: {
+    output: "apps/web/data/datalab-visitor-profile-2024.json", period: ["2024-10-03", "2024-10-06", 4], collectedAt: "2026-09-24T11:41:43.889Z",
+    trend: { local: 14949, outside: 93573, foreign: 187, total: 108709, dailyMean: 27177.25 }, gap: -1, // 108521 vs 108522
+    shares: [[0.5, 0.8], [2.1, 1.9], [4.3, 4.7], [6.7, 6.9], [8.4, 7.5], [11.1, 13], [12.1, 11.4], [4.4, 4.2]],
+    ids: {
+      outside: ["2773331", "7837938", "10147587", "3306424", "173403", "54277", "8343126"],
+      local: ["2773331", "7837938", "10147587", "3306424", "173403", "8343126", "54277"],
+      all: ["2773331", "7837938", "10147587", "3306424", "173403", "8343126", "54277"],
+    },
+    leaks: ["13988", "16232", "108521"],
+  },
+};
+
+test("2023 and 2024 build deterministically, match their checked-in artifacts and keep their own period, trend, shares and ranking", () => {
+  for (const [year, x] of Object.entries(EDITION_EXPECTATIONS).map(([y, v]) => [Number(y), v])) {
+    const a = serialize(buildVisitorProfile(REPO_ROOT, year)), [start, end, days] = x.period;
+    assert.equal(serialize(buildVisitorProfile(REPO_ROOT, year)), a);
+    assert.equal(editionConfig(year).outputPath, x.output);
+    assert.equal(readFileSync(`${REPO_ROOT}${x.output}`, "utf8"), a, `${year} checked-in artifact`);
+    const d = JSON.parse(a);
+    assert.deepEqual(d.festival, { archiveFestivalId: "imsil-cheese", editionId: `imsil-cheese-${year}`, datalabFestivalId: "KCTF0061", name: "임실N치즈축제", regionCode: "52750", areaCode: "52750340", areaName: "임실군 성수면", year, start, end, days });
+    assert.deepEqual([d.source.importDir, d.source.collectedAt], [`docs/research/imported/datalab-imsil-${year}`, x.collectedAt]);
+    assert.equal(d.source.manifestSha256, sha256(readFileSync(`${REPO_ROOT}${editionConfig(year).manifestPath}`)));
+    assert.equal(d.source.resourceLinksSha256, sha256(readFileSync(`${REPO_ROOT}${editionConfig(year).resourceLinksPath}`)));
+    assert.equal(d.evidence.records.length, 5);
+    for (const r of d.evidence.records) {
+      assert.ok(r.path.startsWith(`${d.source.importDir}/original/`), r.path);
+      assert.equal(sha256(readFileSync(`${REPO_ROOT}${r.path}`)), r.sha256, `${year} ${r.kind}`);
+      assert.deepEqual(r.baseYears, CHART_KINDS.includes(r.kind) ? [String(year), String(year)] : null, `${year} ${r.kind} period evidence`);
+    }
+    assert.deepEqual(d.evidence.definitionChecks.map(c => c.file), ["fes.html", "festival.js", "festival_chart.js"]);
+    assert.deepEqual(d.evidence.trend, x.trend);
+    assert.equal(d.evidence.demographicCountGap, x.gap);
+    assert.deepEqual(d.demographics.map(b => b.ageBand), ["0~9세", "10~19세", "20~29세", "30~39세", "40~49세", "50~59세", "60~69세", "70세 이상"]);
+    assert.deepEqual(d.demographics.map(b => [b.malePercent, b.femalePercent]), x.shares);
+    assert.ok(d.demographics.every(b => b.display === "N"), "DISP_YN=N is a valid percentage mode");
+    assert.deepEqual(Object.fromEntries(d.destinationGroups.map(g => [g.group, g.items.map(i => i.id)])), x.ids);
+    for (const g of d.destinationGroups) {
+      assert.deepEqual(g.items.map(i => i.rank), g.items.map((_, i) => i + 1));
+      assert.ok(g.items.every(i => i.address.startsWith("전북 임실군")), "host county");
+      assert.deepEqual(g.items.filter(i => i.resource).map(i => [i.id, i.resource.id, i.resource.title]), [["2773331", "2718832", "임실치즈테마파크"], ["3306424", "317571", "상이암(임실)"]], `${year} ${g.group}: 소충사 is not ranked`);
+    }
+    for (const leak of ["SRCH_CNT", "M_TOT", "W_TOT", "\"count\"", "527279", ...x.leaks]) assert.ok(!a.includes(leak), `${year} must not carry ${leak}`);
+  }
+});
+
+test("each edition carries only its own year and every edition differs in period, trend, shares, ranking and provenance", () => {
+  const built = REVIEWED_YEARS.map(year => [year, serialize(buildVisitorProfile(REPO_ROOT, year))]);
+  for (const [year, a] of built) for (const other of REVIEWED_YEARS.filter(y => y !== year)) {
+    for (const mark of [`"${other}"`, `${other}-`, `datalab-imsil-${other}`, `imsil-cheese-${other}`]) assert.ok(!a.includes(mark), `${year} artifact must not carry ${mark}`);
+  }
+  const profiles = built.map(([, a]) => JSON.parse(a));
+  for (const key of [d => `${d.festival.start}/${d.festival.end}`, d => JSON.stringify(d.evidence.trend), d => JSON.stringify(d.demographics),
+    d => JSON.stringify(d.destinationGroups), d => d.source.manifestSha256, d => d.evidence.records.find(r => r.kind === "destinations").sha256]) {
+    assert.equal(new Set(profiles.map(key)).size, REVIEWED_YEARS.length);
+  }
+  assert.equal(new Set(REVIEWED_YEARS.map(y => editionConfig(y).outputPath)).size, REVIEWED_YEARS.length);
+});
+
+test("unknown years are rejected and the reviewed allowlist cannot be mutated at runtime", () => {
+  for (const year of [2022, 2026, "2024", 2024.5, null]) {
+    assert.throws(() => editionConfig(year), /not a reviewed edition/, String(year));
+    assert.throws(() => buildVisitorProfile(REPO_ROOT, year), /not a reviewed edition/, String(year));
+  }
+  assert.throws(() => verifyProfileImport(REPO_ROOT, 2019), /not a reviewed edition/);
+  assert.deepEqual([...REVIEWED_YEARS], [2023, 2024, 2025]);
+  assert.ok(Object.isFrozen(REVIEWED_EDITIONS) && Object.isFrozen(REVIEWED_EDITIONS[2024].reviewed) && Object.isFrozen(REVIEWED_EDITIONS[2024].records.trend.parameters));
+  assert.throws(() => { REVIEWED_EDITIONS[2022] = REVIEWED_EDITIONS[2025]; }, TypeError);
+  assert.throws(() => { REVIEWED_EDITIONS[2024].records.trend.parameters.BASE_YY1 = "2023"; }, TypeError);
+  assert.deepEqual(parseCliArgs([]), { year: 2025, verify: false });
+  assert.deepEqual(parseCliArgs(["--year", "2023", "--verify"]), { year: 2023, verify: true });
+  assert.deepEqual(parseCliArgs(["--verify", "--year", "2024"]), { year: 2024, verify: true });
+  for (const bad of [["--year"], ["--year", "23"], ["--year", "--verify"], ["--year", "2024", "--year", "2023"], ["--verify", "--verify"], ["--write"], ["2024"]]) {
+    assert.throws(() => parseCliArgs(bad), /Usage/, bad.join(" "));
+  }
+  assert.throws(() => parseCliArgs(["--year", "2026"]), /not a reviewed edition/);
+});
+
+test("provenance, period and geography of 2023/2024 are checked against their own reviewed edition", () => {
+  const demographics2023 = repoJson(`${REVIEWED_EDITIONS[2023].importDir}/original/demographics.json`);
+  const links2025 = repoJson(REVIEWED_EDITIONS[2025].resourceLinksPath);
+  const cases = [
+    // year mix in provenance
+    [2024, "chart request of another year", root => editJson(root, REVIEWED_EDITIONS[2024].manifestPath, m => { const p = record(m, "destinations").parameters; p.BASE_YY1 = p.BASE_YY2 = "2023"; }), /request parameters differ from the reviewed 2024 selection/],
+    [2024, "one-sided range", root => editJson(root, REVIEWED_EDITIONS[2024].manifestPath, m => { record(m, "trend").parameters.BASE_YY2 = "2025"; }), /request parameters differ/],
+    [2023, "scope of another year", root => editJson(root, REVIEWED_EDITIONS[2023].manifestPath, m => { m.scope.demographicYear = "2024"; }), /scope demographicYear is not 2023/],
+    [2024, "observation of another year", root => editJson(root, REVIEWED_EDITIONS[2024].manifestPath, m => { m.observation = repoJson(REVIEWED_EDITIONS[2023].manifestPath).observation; }), /manifest observation/],
+    [2024, "record path into another edition", root => editJson(root, REVIEWED_EDITIONS[2024].manifestPath, m => { record(m, "trend").path = "../../datalab-imsil-2023/original/trend.json"; }), /trend path/],
+    [2024, "2023 destinations bytes", root => transplant(root, "destinations", 2023, 2024), /reviewed 2023 response \(mixed provenance\)/],
+    [2023, "2025 trend bytes", root => transplant(root, "trend", 2025, 2023), /reviewed 2025 response \(mixed provenance\)/],
+    [2025, "2024 demographics bytes", root => transplant(root, "demographics", 2024, 2025), /reviewed 2024 response \(mixed provenance\)/],
+    [2024, "2023 demographics re-serialized", root => editOriginal(root, "demographics", d => { d.list = [...demographics2023.list].reverse(); }, 2024), /2024 domestic trend \(another period\?\)/],
+    [2024, "trend row of another year", root => editOriginal(root, "trend", d => { d.list[0].BASE_YEAR = "2023"; }, 2024), /trend row is not 임실N치즈축제 2024/],
+    [2023, "resource links of another year", root => editJson(root, REVIEWED_EDITIONS[2023].resourceLinksPath, l => { l.year = 2025; }), /scope differs/],
+    [2024, "definition script drift", root => editJson(root, REVIEWED_EDITIONS[2024].manifestPath, m => { m.definitionChecks.find(c => c.file === "festival.js").sha256 = "0".repeat(64); }), /festival\.js differs from the reviewed page definition/],
+    [2023, "definition check missing", root => editJson(root, REVIEWED_EDITIONS[2023].manifestPath, m => { m.definitionChecks = m.definitionChecks.filter(c => c.file !== "festival_chart.js"); }), /exactly the reviewed page definition checks/],
+    [2023, "definition check repeated", root => editJson(root, REVIEWED_EDITIONS[2023].manifestPath, m => { m.definitionChecks[0] = { ...m.definitionChecks[1] }; }), /exactly the reviewed page definition checks/],
+    [2023, "unlisted original", root => writeFileSync(`${root}${REVIEWED_EDITIONS[2023].importDir}/original/residence.json`, "{}"), /unlisted original file/],
+    [2024, "tampered bytes", root => appendFileSync(`${root}${REVIEWED_EDITIONS[2024].importDir}/original/destinations.json`, " "), /hash mismatch/],
+    // period
+    [2024, "2025 dates under 2024", root => editOriginal(root, "festival-periods", d => { Object.assign(d.info_list.find(r => r.BASE_YEAR === "2024"), { FSTV_BGNG_YMD: "2025-10-08", FSTV_END_YMD: "2025-10-12" }); }, 2024), /info_list 2024 dates differ/],
+    [2023, "five-day 2023", root => editOriginal(root, "festival-periods", d => { d.info_list.find(r => r.BASE_YEAR === "2023").FSTV_END_YMD = "2023-10-10"; }, 2023), /info_list 2023 dates differ/],
+    [2023, "2023 total list missing", root => editOriginal(root, "festival-periods", d => { d.info_listTot = d.info_listTot.filter(r => r.BASE_YEAR !== "2023"); }, 2023), /info_listTot must hold 2023 exactly once/],
+    [2024, "trend days", root => editOriginal(root, "trend", d => { d.list[0].FSTV_PERD_CNT = 5; }, 2024), /trend days/],
+    [2023, "verified trend revised", root => editJson(root, TREND_PATH, t => { t.festivals.find(f => f.id === "imsil-n-cheese").years.find(y => y.year === 2023).local += 1; }), /source revised/],
+    [2023, "archive period", root => editJson(root, EDITIONS_PATH, e => { e.editions.find(x => x.id === "imsil-cheese-2023").start = "2023-10-05"; }), /archive edition differs/],
+    [2024, "link days", root => editJson(root, LINKS_PATH, l => { l.links.find(x => x.archiveFestivalId === "imsil-cheese").editions.find(x => x.editionId === "imsil-cheese-2024").days = 5; }), /reviewed link edition/],
+    [2024, "list without 2024", root => editOriginal(root, "festival-list", d => { d.list[0].BASE_YEAR_STR = "2018,2019,2022,2023,2025"; }, 2024), /does not offer 2024/],
+    // geography
+    [2024, "period host area", root => editOriginal(root, "festival-periods", d => { d.info_list.find(r => r.BASE_YEAR === "2024").ADONG_NM1 = "임실군 임실읍"; }, 2024), /host area differs/],
+    [2023, "list host area", root => editOriginal(root, "festival-list", d => { for (const k of Object.keys(d.list[0])) if (/^ADONG_NM\d$/.test(k)) d.list[0][k] = "임실군 임실읍"; }, 2023), /festival list host area differs/],
+    [2023, "destination in another dong", root => editOriginal(root, "destinations", d => { d.list[3].EMD_CD = "52750250"; }, 2023), /outside the reviewed host area/],
+    [2024, "destination dong name", root => editOriginal(root, "destinations", d => { rowOf(d, "현지인", "수월제").EMD_NM = "임실읍"; }, 2024), /outside the reviewed host area/],
+    [2024, "other building", root => editJson(root, REVIEWED_EDITIONS[2024].resourceLinksPath, l => { l.links[1].resource.address = "전북특별자치도 임실군 성수면 성수산길 373"; }), /not the same place/],
+    // resource mappings are the reviewed set this edition ranks
+    [2023, "소충사 link without its ranking", root => editJson(root, REVIEWED_EDITIONS[2023].resourceLinksPath, l => { l.links.push({ ...links2025.links.find(x => x.destinationId === "725050") }); }), /exactly the 2 reviewed mappings ranked in 2023/],
+    [2024, "소충사 instead of 상이암", root => editJson(root, REVIEWED_EDITIONS[2024].resourceLinksPath, l => { l.links[1] = { ...links2025.links.find(x => x.destinationId === "725050") }; }), /unreviewed destination/],
+    [2023, "ranked 상이암 left unlinked", root => editJson(root, REVIEWED_EDITIONS[2023].resourceLinksPath, l => { l.links = l.links.filter(x => x.destinationId !== "3306424"); }), /exactly the 2 reviewed mappings/],
+    [2024, "수월제 is not reviewed", root => editJson(root, REVIEWED_EDITIONS[2024].resourceLinksPath, l => { l.links[1].destinationId = "8343126"; }), /unreviewed destination/],
+    [2025, "소충사 dropped from the ranking, link kept", root => editOriginal(root, "destinations", d => { d.list = d.list.filter(r => r.ITS_BRO_ID !== "725050"); }), /reviewed resource is missing/],
+  ];
+  for (const [year, name, mutate, error] of cases) withSandbox(root => { mutate(root); assert.throws(() => buildVisitorProfile(root, year), error, `${year} ${name}`); });
+});
+
+test("a removed reviewed place cannot replace an artifact that the runtime expects to keep", () => withSandbox(root => {
+  runVisitorProfileCli([], root);
+  const out = `${root}${PROFILE_OUTPUT_PATH}`, previous = readFileSync(out);
+  editOriginal(root, "destinations", d => { d.list = d.list.filter(r => r.ITS_BRO_ID !== "725050"); });
+  editJson(root, RESOURCE_LINKS_PATH, l => { l.links = l.links.filter(x => x.destinationId !== "725050"); });
+  assert.throws(() => runVisitorProfileCli([], root), /reviewed resource is missing/);
+  assert.deepEqual(readFileSync(out), previous);
+}));
+
+test("CLI refresh writes only a fully validated artifact; a stale, revised or mixed candidate keeps the previous snapshot", () => withSandbox(root => {
+  const out = `${root}${REVIEWED_EDITIONS[2024].outputPath}`, fresh = serialize(buildVisitorProfile(REPO_ROOT, 2024));
+  assert.equal(runVisitorProfileCli(["--year", "2024"], root), "Built apps/web/data/datalab-visitor-profile-2024.json (2024: 8 age bands, 7/7/7 ranked places)");
+  assert.equal(readFileSync(out, "utf8"), fresh);
+  assert.match(runVisitorProfileCli(["--verify", "--year", "2024"], root), /^Verified .*datalab-visitor-profile-2024\.json/);
+  // --verify reports a stale artifact and never rewrites it.
+  writeFileSync(out, "{}\n");
+  assert.throws(() => runVisitorProfileCli(["--year", "2024", "--verify"], root), /datalab-visitor-profile-2024\.json differs from a fresh build/);
+  assert.equal(readFileSync(out, "utf8"), "{}\n");
+  runVisitorProfileCli(["--year", "2024"], root);
+  const snapshot = readFileSync(out);
+  assert.equal(snapshot.toString(), fresh);
+  // A refreshed 2024 candidate whose trend was revised must not replace the verified snapshot.
+  editOriginal(root, "trend", d => { const r = d.list[0]; r.TOT_OUT += 10; r.TOTAL_COL += 10; r.TOTAL_AVG = r.TOTAL_COL / 4; }, 2024);
+  assert.throws(() => runVisitorProfileCli(["--year", "2024"], root), /source revised/);
+  assert.deepEqual(readFileSync(out), snapshot);
+  // The default edition keeps its checked-in bytes when its candidate mixes in another year's response.
+  const defaultOut = `${root}${PROFILE_OUTPUT_PATH}`, defaultSnapshot = readFileSync(`${REPO_ROOT}${PROFILE_OUTPUT_PATH}`);
+  writeFileSync(defaultOut, defaultSnapshot);
+  transplant(root, "destinations", 2023, 2025);
+  assert.throws(() => runVisitorProfileCli([], root), /mixed provenance/);
+  assert.deepEqual(readFileSync(defaultOut), defaultSnapshot);
+  // Failed or rejected refreshes create no other artifact and leave no temp file.
+  assert.equal(existsSync(`${root}${REVIEWED_EDITIONS[2023].outputPath}`), false);
+  assert.throws(() => runVisitorProfileCli(["--year", "2022"], root), /not a reviewed edition/);
+  assert.equal(existsSync(`${root}apps/web/data/datalab-visitor-profile-2022.json`), false);
+  assert.deepEqual(tempFiles(root), []);
+}));
+
+test("a failed atomic replace removes its temp file and leaves the target untouched", () => withSandbox(root => {
+  const out = `${root}${REVIEWED_EDITIONS[2023].outputPath}`;
+  mkdirSync(out);
+  writeFileSync(`${out}/keep`, "x");
+  assert.throws(() => runVisitorProfileCli(["--year", "2023"], root));
+  assert.equal(readFileSync(`${out}/keep`, "utf8"), "x");
+  assert.deepEqual(tempFiles(root), []);
+}));
+
+test("CLI entry exits non-zero for an unknown year or stray argument before reading or writing anything", () => {
+  for (const [args, error] of [[["--year", "2022"], /not a reviewed edition/], [["--year", "2025", "--force"], /Usage/]]) {
+    const r = spawnSync(process.execPath, [SCRIPT, ...args], { encoding: "utf8" });
+    assert.equal(r.status, 1, args.join(" "));
+    assert.match(r.stderr, error);
+    assert.equal(r.stdout, "");
+  }
 });
