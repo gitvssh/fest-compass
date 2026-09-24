@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, appendFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { CsvError, parseCsv, parseSourceNumber, parseTable } from "./datalab-csv.mjs";
-import { buildDataset, classify, EXPECTED_COUNTS, gitBlobId, IDS_PATH, IMPORT_DIR, MANIFEST_PATH, ORIGINAL_DIR, OUTPUT_PATH, originalUrl, REPO_ROOT, serialize, SOURCE, verifyImport } from "./build-datalab-festival-trend.mjs";
+import { buildDataset, classify, CONSUMED_REGION_PATHS, EXPECTED_COUNTS, gitBlobId, IDS_PATH, IMPORT_DIR, MANIFEST_PATH, ORIGINAL_DIR, OUTPUT_PATH, originalUrl, REPO_ROOT, serialize, SOURCE, verifyImport } from "./build-datalab-festival-trend.mjs";
 
 test("CSV parser handles BOM, quotes, embedded newlines, CRLF and trailing empty cells", () => {
   assert.deepEqual(parseCsv("\uFEFFa,b,c\n1,,\n"), [["a", "b", "c"], ["1", "", ""]]);
@@ -50,7 +50,12 @@ test("all 304 CSVs and 5 source docs are manifest-listed with matching bytes and
   assert.equal(trend.length, 26);
   assert.ok(trend.every(f => f.use === "consumed" && f.header.length === 16 && f.header[2] === "축체기간(일)"));
   assert.equal(trend.reduce((n, f) => n + f.rowCount, 0), 147);
-  assert.ok(manifest.files.filter(f => f.use === "consumed").every(f => f.group === "festival"));
+  // The one extra consumed file is the reviewed region annual source, by exact path; the festival build ignores it.
+  const consumed = manifest.files.filter(f => f.use === "consumed");
+  assert.deepEqual(consumed.filter(f => f.group !== "festival").map(f => f.path), CONSUMED_REGION_PATHS);
+  assert.deepEqual(CONSUMED_REGION_PATHS, ["data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv"]);
+  assert.equal(consumed.filter(f => f.group === "festival").length, 26);
+  assert.ok(manifest.files.filter(f => f.group === "region" || f.table !== "방문자 수 추이" && f.group === "region_visitor").every(f => f.use === "preserved-only"));
 });
 
 test("unknown source classifications are rejected", () => {

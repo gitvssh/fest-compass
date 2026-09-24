@@ -13,9 +13,13 @@ export type WeekdayMean = {
 /** complete: year fully observed, means present. incomplete-year: some days observed, all means withheld. none: no observed day. */
 export type WeekdayBlock = { status: "complete" | "incomplete-year" | "none" | "not-selected"; yearComplete: boolean; items: WeekdayMean[] };
 export type NewVisitsRequest = MonthlyRequest;
+/** DataLab annual totals for the whole district, independent of the requested monthly year. Missing stays null, never 0. */
+export type RegionAnnualYear = { year: number; outside: number | null; local: number | null; total: number | null };
+export type RegionAnnual = { regionCode: string; years: RegionAnnualYear[]; source: { title: string; url: string; downloadedOn: string } };
 export type NewVisitsResponse = MonthlyResponse & {
   metric: { name: string; unit: "명/일"; basis: "통신 기반 추정"; estimate: true; regionCode: string };
   weekdays: WeekdayBlock;
+  annual: RegionAnnual | null;
 };
 
 export type ResourceDetailRequest = { province: string; district: string; kind: ResourceKind; id: string };

@@ -13,6 +13,7 @@ import { readYear } from "./durable";
 import { tab } from "./memory";
 import { MonthDaily } from "./MonthDaily";
 import { useNewRegion, useViewHeadingFocus } from "./NewShell";
+import { RegionAnnual } from "./RegionAnnual";
 import { mondayFirst, WeekdayMeans } from "./WeekdayMeans";
 
 const YEAR_SELECT = "new-visits-year";
@@ -72,8 +73,8 @@ export function VisitsView() {
     setObservedMonth(null);
     setAddressParam("year", draft);
   }
-  const focusYear = () => document.getElementById(YEAR_SELECT)?.focus();
-  const changeYear = years.length > 0 ? <button type="button" className="region-button" onClick={focusYear}>연도 바꾸기</button> : null;
+  const focusYearSelect = () => document.getElementById(YEAR_SELECT)?.focus();
+  const changeYear = years.length > 0 ? <button type="button" className="region-button" onClick={focusYearSelect}>연도 바꾸기</button> : null;
   const otherViews = <>
     <Link className="region-button" href={href("resources")}>지역 관광자원 보기</Link>
     <Link className="region-button" href={href("timing")}>개최 시기 보기</Link>
@@ -84,10 +85,30 @@ export function VisitsView() {
   const hasValues = !!data && (data.status === "complete" || data.status === "partial") && months.length > 0;
   const weekdays = data?.weekdays;
 
+  // Yearly totals and year coverage do not depend on the observation year: while another year of this region loads
+  // or fails, keep this region's last answer for them (never another region's).
+  const regionAnswer = data ?? (kept && kept.region.code === region.code ? kept : null);
+  const annual = regionAnswer?.annual && regionAnswer.annual.regionCode === region.code ? regionAnswer.annual : null;
+  // An annual year button applies that year; focus moves to the monthly heading once that year's answer is shown.
+  const [focusYear, setFocusYear] = useState<{ code: string; year: number } | null>(null);
+  useEffect(() => {
+    if (!focusYear) return;
+    if (focusYear.code !== region.code || result.failure) { setFocusYear(null); return; }
+    if (result.data && result.data.year === focusYear.year && result.data.region.code === focusYear.code) {
+      setFocusYear(null);
+      document.getElementById("new-monthly-heading")?.focus();
+    }
+  }, [focusYear, result.data, result.failure, region.code]);
+  function chooseAnnualYear(next: number) {
+    setObservedMonth(null);
+    setFocusYear({ code: region.code, year: next });
+    if (next !== year) setAddressParam("year", String(next));
+  }
+
   return <section aria-labelledby="new-visits-heading" className="space-y-4">
     <div>
       <h2 id="new-visits-heading" ref={heading} tabIndex={-1} className="text-xl font-extrabold">{region.districtName} 방문 흐름</h2>
-      <p className="text-sm text-muted">{region.name} 전체 외지인 방문 · 일평균 명/일 · 통신 기반 추정 · 지난 관측값</p>
+      <p className="text-sm text-muted">{region.name} 전체 외지인 방문 · {annual ? "" : "일평균 명/일 · "}통신 기반 추정 · 지난 관측값</p>
     </div>
     {options.length > 0 && <form onSubmit={submitYear} className="flex flex-wrap items-end gap-2">
       <label className="text-sm font-bold" htmlFor={YEAR_SELECT}>관측연도
@@ -102,14 +123,14 @@ export function VisitsView() {
 
     {data && !hasValues && <div className="region-card space-y-2 text-sm">
       <p>{data.status === "not-selected" ? "모든 날짜의 값이 있는 연도가 없어요. 볼 관측연도를 골라 주세요."
-        : data.year !== null ? `${data.year}년 ${region.districtName} 방문 자료가 없어요.` : `${region.districtName}의 방문 자료가 없어요.`}</p>
+        : data.year !== null ? (annual ? `${data.year}년 월·요일별 방문 자료가 없어요.` : `${data.year}년 ${region.districtName} 방문 자료가 없어요.`) : `${region.districtName}의 방문 자료가 없어요.`}</p>
       <div className="flex flex-wrap gap-2">{changeYear}{otherViews}</div>
     </div>}
 
     {data && hasValues && shownYear !== null && <>
       <section aria-labelledby="new-monthly-heading" className="region-card space-y-3">
         <div>
-          <h3 id="new-monthly-heading" className="text-lg font-extrabold">{shownYear}년 월별 일평균</h3>
+          <h3 id="new-monthly-heading" tabIndex={-1} className="text-lg font-extrabold">{shownYear}년 월별 일평균</h3>
           <p className="text-sm text-muted">{region.districtName} 외지인 방문 · 명/일 · 추정{data.status === "partial" ? " · 값이 없는 날이 있는 연도" : ""}</p>
         </div>
         <MonthChart months={months} selected={observedMonth} onSelect={m => setObservedMonth(m)} />
@@ -146,6 +167,9 @@ export function VisitsView() {
         {otherViews}
       </div>
     </>}
+    {annual && <RegionAnnual annual={annual} districtName={region.districtName} selectedYear={shownYear} viewedYear={hasValues ? shownYear : null}
+      monthlyYears={(regionAnswer?.years ?? []).filter(y => y.complete).map(y => y.year)} onYear={chooseAnnualYear}
+      tableOpen={!!open["annual-table"]} onTable={v => setOpen(o => ({ ...o, "annual-table": v }))} />}
     {data && <FreshnessNote freshness={data.freshness} retrievedAt={data.retrievedAt} onRetry={result.retry} />}
   </section>;
 }

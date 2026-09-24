@@ -2,11 +2,17 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-24
-version: v9
+version: v10
 summary: "pickDday의 기존·새 축제 기능 상세와 각 14개 인수 기준을 연결합니다. 기존 축제의 구현·자동 검증은 기록34를 따르고 새 축제 전용 흐름은 사용 가능입니다."
 ---
 
 # 요구사항 정의와 기능목록
+
+2026-09-24 방문 자료 보강은 FR-EXF-2·FR-NEW-3의 별도 집계 영역이다. 임실의 확인된 회차에 한해
+개최 행정동 방문 구성을 시군구 일별 자료와 분리해 제공하고, 임실군의 2018~2025년 연간 추세는 월·요일 평균과
+별도 단위로 보여준다. 기록·전략 답변은 요구하지 않으며 기간 없는 성·연령·거주지·목적지 순위를 추정하지 않는다.
+[기능 상세 §9](../2-design/functional-spec.md#9-방문-구성과-지역-연간-추세),
+[추가 인수 기준 TS-FC-012](../3-testing/scenarios/TS-FC-012.md), [실행 기록37](../../validation/37-visitor-context.md)을 따른다.
 
 제품 표시명은 **pickDday**다(2026-09-23 확정, 이전 이름 FEST Compass). 요구 ID(FR-*·NFR-*)와 UC/TS/SCR ID의 `FC` 접두사는 그대로 유지한다.
 

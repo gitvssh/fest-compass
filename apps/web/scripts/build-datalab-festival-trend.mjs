@@ -25,7 +25,9 @@ const DOCS = ["data/README.md", "data/CHECKLIST.md", "data/COLLECT-REGION.md", "
 const FESTIVAL_TABLES = ["목적지 검색순위", "문화관광축제 주요 지표", "성-연령별 내국인 방문자", "연도별 방문자 추이"];
 const REGION_TABLES = ["관광소비 추이", "관광소비 히트맵", "업종별 지출액", "지역별 지출액"];
 const VISITOR_TABLES = ["방문자 거주지", "방문자 수 추이", "방문자수 히트맵", "지역별 방문자 수"];
-export const EXPECTED_COUNTS = { csv: 304, festival: 104, region: 104, region_visitor: 96, doc: 5, consumed: 26 };
+// Reviewed 2026-09-24: exact region files read by build-datalab-region-annual.mjs. Never widen to a whole group or table.
+export const CONSUMED_REGION_PATHS = ["data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv"];
+export const EXPECTED_COUNTS = { csv: 304, festival: 104, region: 104, region_visitor: 96, doc: 5, consumed: 27 };
 
 export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 export const gitBlobId = bytes => createHash("sha1").update(Buffer.concat([Buffer.from(`blob ${bytes.length}\0`), bytes])).digest("hex");
@@ -41,7 +43,7 @@ export function classify(path) {
   throw new Error(`Unknown source file classification: ${path}`);
 }
 
-function describe(bytes) {
+export function describe(bytes) {
   let text;
   try { text = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes); } catch { throw new Error("Source file is not UTF-8"); }
   const bom = bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
@@ -54,7 +56,8 @@ function manifestEntry(path, bytes, gitBlob) {
   const base = { path, group: c.group, table: c.table, bytes: bytes.length, sha256: sha256(bytes), gitBlob, encoding: d.encoding, lineEnding: d.lineEnding };
   if (c.group === "doc") return { ...base, use: "preserved-only", url: originalUrl(path) };
   const { header, rows } = parseTable(d.text);
-  return { ...base, header, rowCount: rows.length, use: c.group === "festival" && c.table === "연도별 방문자 추이" ? "consumed" : "preserved-only", url: originalUrl(path) };
+  const consumed = (c.group === "festival" && c.table === "연도별 방문자 추이") || (c.group === "region_visitor" && CONSUMED_REGION_PATHS.includes(path));
+  return { ...base, header, rowCount: rows.length, use: consumed ? "consumed" : "preserved-only", url: originalUrl(path) };
 }
 
 export function initManifest(sourceRepo, root = REPO_ROOT) {
@@ -109,7 +112,7 @@ const req = (v, what) => { if (v === null) throw new Error(`Missing required val
 export function buildDataset(root = REPO_ROOT) {
   const { manifest, manifestSha256, files } = verifyImport(root);
   const ids = JSON.parse(readFileSync(`${root}${IDS_PATH}`, "utf8"));
-  const consumed = manifest.files.filter(f => f.use === "consumed").map(f => f.path);
+  const consumed = manifest.files.filter(f => f.use === "consumed" && f.group === "festival").map(f => f.path);
   const mapped = ids.festivals.map(f => f.sourceFile);
   if (new Set(ids.festivals.map(f => f.id)).size !== ids.festivals.length || ids.festivals.some(f => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(f.id))) throw new Error("Festival IDs must be unique slugs");
   if (new Set(mapped).size !== mapped.length || mapped.length !== consumed.length || consumed.some(p => !mapped.includes(p))) throw new Error("ID mapping does not cover consumed files exactly");

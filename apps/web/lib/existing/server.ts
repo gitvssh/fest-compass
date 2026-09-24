@@ -3,6 +3,7 @@ import editionsData from "../../data/festival-editions.json";
 import bundled from "../../data/region-history.json";
 import expanded from "../../data/regional-history-expanded.json";
 import calendarData from "../../data/nonsan-calendar.json";
+import { defaultHostVisits, type HostVisitsResolver } from "../datalab/host-visits";
 import { loadRuntimeSummary } from "../forecast/runtime";
 import { loadSnapshots } from "../forecast/store";
 import { koreaDate } from "../region/calendar";
@@ -16,7 +17,7 @@ import { dailyValues, datesBetween, defaultYear, editionHistory, editionWindow, 
 import { festivalsKey, historyKey, InvalidRequest, monthlyKey, resourcesKey, scheduleKey } from "./request";
 import { holidaySources, scheduleDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
 import { collectRegionEvents, createTourCall, lookupCurrent, searchKeywordPage, TourChanged, type RegionEvents, type TourCall } from "./tour";
-import type { ArchiveFestival, CurrentBlock, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
+import type { ArchiveFestival, CurrentBlock, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, HostAreaVisits, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
   ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef } from "./types";
 
 export class NotFound extends Error { constructor(readonly field: string) { super(`not-found:${field}`); } }
@@ -32,6 +33,8 @@ export type ExistingDeps = {
   /** Read-only TourAPI adapter: keyword search, identity lookup and the verified regional event collector. */
   tour: TourCall;
   editions?: Edition[];
+  /** Reviewed DataLab host-area visit mix per selected edition; absent -> hostVisits is null. Production injects the verified default. */
+  hostVisits?: HostVisitsResolver;
   now?: () => string;
   today?: () => string;
 };
@@ -75,6 +78,11 @@ export function createExistingService(deps: ExistingDeps) {
   async function list(q: Query): Promise<ResourceResult | null> { try { return await deps.regionList(q); } catch { return null; } }
   async function events(region: RegionRef, range: Range): Promise<RegionEvents | null> { try { return await collectRegionEvents(deps.tour, region, range); } catch { return null; } }
   const block = (r: ResourceResult | null): SourceBlock => !r || r.status === "unavailable" ? unavailable : { status: r.status, error: null, collectedAt: r.collectedAt };
+  // Optional block: a resolver failure omits only hostVisits and logs a fixed category.
+  function hostVisits(festival: ArchiveFestival, editionIds: string[]): HostAreaVisits | null {
+    if (!deps.hostVisits) return null;
+    try { return deps.hostVisits(festival, editionIds); } catch { console.error("datalab-host-visits: resolver-failed"); return null; }
+  }
 
   async function current(req: FestivalSearchRequest, target: ReturnType<typeof parseFestivalId>): Promise<CurrentBlock> {
     const none: CurrentBlock = { status: "not-requested", error: null, collectedAt: null, mode: null, range: null, page: null, next: null, continuity: null, total: null, omitted: 0, lookup: null, items: [] };
@@ -134,7 +142,8 @@ export function createExistingService(deps: ExistingDeps) {
       return editionHistory(input, [...new Map(obs.map(o => [o.date, o])).values()], { before: req.before, after: req.after, window: custom, visits: VISITS_SOURCE });
     });
     return { key: historyKey(req), request: req, retrievedAt: now(), festival, metric: { name: VISIT_DEFINITION.metric, unit: "명/일", regionCode: code, estimate: true },
-      sharedYMax: sharedYMax(histories), maxWindowDays: Math.max(0, ...histories.map(e => e.points.length)), editions: histories, freshness: scopedFreshness(state, [code], used) };
+      sharedYMax: sharedYMax(histories), maxWindowDays: Math.max(0, ...histories.map(e => e.points.length)), editions: histories, freshness: scopedFreshness(state, [code], used),
+      hostVisits: hostVisits(festival, histories.map(h => h.editionId)) };
   }
 
   async function loadMonthly(req: MonthlyRequest): Promise<MonthlyResponse> {
@@ -172,5 +181,5 @@ export function createExistingService(deps: ExistingDeps) {
   return { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule };
 }
 
-const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall() });
+const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(), hostVisits: defaultHostVisits });
 export const { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule } = service;

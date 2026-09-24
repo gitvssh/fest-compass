@@ -12,7 +12,8 @@ import type { DataFreshness } from "../existing/types";
 import { loadResourceDetail, DETAIL_SOURCE_TITLE } from "./detail";
 import { decodeEntities, OVERVIEW_MAX, overviewText } from "./overview";
 import { newVisitsKey, parseNewVisits, parseResourceDetail, resourceDetailKey } from "./request";
-import { createNewFestivalService } from "./server";
+import { defaultRegionAnnual } from "../datalab/region-annual";
+import { createNewFestivalService, loadVisits as productionVisits } from "./server";
 import { weekdayMeans } from "./weekday";
 
 const FRESH: DataFreshness = { mode: "archive-only", collectedAt: null, runtimeCollectedAt: null, refresh: { status: "not-configured", retryable: false } };
@@ -66,8 +67,9 @@ test("Nonsan default year is 2025; weekday means equal an independent raw-data r
 test("new visits keeps every existing monthly field and value; only the key differs", async () => {
   const s = services(), req = parseMonthly(q("province=44&district=230&year=2025"));
   const [m, n] = await Promise.all([s.existing.loadMonthly(req), s.fresh.loadVisits(req)]);
-  const { key: mk, ...mRest } = m, { key: nk, weekdays, metric, ...nRest } = n;
+  const { key: mk, ...mRest } = m, { key: nk, weekdays, metric, annual, ...nRest } = n;
   assert.deepEqual(nRest, mRest);
+  assert.equal(annual, null, "annual is a separate optional block (null without an injected resolver)");
   assert.notEqual(mk, nk);
   assert.equal(nk, newVisitsKey(req));
   assert.deepEqual(metric, { name: "시군구 일별 외지인 방문", unit: "명/일", basis: "통신 기반 추정", estimate: true, regionCode: "44230" });
@@ -232,4 +234,41 @@ test("new-festival modules and routes are GET-only and never touch the database,
     const src = readFileSync(route, "utf8");
     assert.ok(/export function GET\(/.test(src) && !/export (async )?function (POST|PUT|PATCH|DELETE)/.test(src), route);
   }
+});
+
+test("annual totals follow the selected region, not the requested monthly year; monthly and weekday contract unchanged", async () => {
+  const { existing } = services(), fresh = createNewFestivalService({ monthly: existing.loadMonthly, tour: noTour, now: () => NOW, annual: defaultRegionAnnual });
+  const [y2019, y2025, plain] = await Promise.all([fresh.loadVisits(parseNewVisits(q("province=52&district=750&year=2019"))), fresh.loadVisits(parseNewVisits(q("province=52&district=750&year=2025"))),
+    visits("province=52&district=750&year=2025")]);
+  assert.ok(y2019.annual && y2019.annual.regionCode === "52750");
+  assert.deepEqual(y2019.annual, y2025.annual);
+  assert.deepEqual(y2019.annual.years.map(y => y.year), [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]);
+  assert.deepEqual([y2019.status, y2019.year, y2019.months.every(m => m.mean === null)], ["empty", 2019, true], "no daily 2019 data; annual 2019 still present");
+  assert.equal(plain.annual, null, "no resolver injected -> null");
+  const { annual, ...rest } = y2025, { annual: none, ...plainRest } = plain;
+  assert.deepEqual([rest, none], [plainRest, null], "annual adds one field and changes nothing else");
+  assert.equal((await fresh.loadVisits(parseNewVisits(q("province=44&district=230")))).annual, null, "other regions get no annual block");
+  const text = JSON.stringify(y2025.annual);
+  for (const leak of ["sha256", "docs/research", "commit", "\"raw\"", "E7"]) assert.ok(!text.includes(leak), `${leak} leaked`);
+});
+
+test("annual resolver failures or a region mismatch omit only the annual block; monthly failures still propagate", async () => {
+  const { existing } = services(), logged: unknown[][] = [], original = console.error;
+  const other = defaultRegionAnnual("52750")!;
+  console.error = (...args: unknown[]) => { logged.push(args); };
+  try {
+    const broken = await createNewFestivalService({ monthly: existing.loadMonthly, tour: noTour, now: () => NOW, annual: () => { throw new Error("bad /tmp/x"); } }).loadVisits(parseNewVisits(q("province=52&district=750&year=2025")));
+    assert.deepEqual([broken.annual, broken.status], [null, "complete"]);
+    const wrong = await createNewFestivalService({ monthly: existing.loadMonthly, tour: noTour, now: () => NOW, annual: () => other }).loadVisits(parseNewVisits(q("province=44&district=230")));
+    assert.equal(wrong.annual, null);
+  } finally { console.error = original; }
+  assert.deepEqual(logged, [["datalab-region-annual: resolver-failed"], ["datalab-region-annual: region-mismatch"]]);
+  const failing = createNewFestivalService({ monthly: async () => { throw new Error("monthly down"); }, tour: noTour, annual: defaultRegionAnnual });
+  await assert.rejects(failing.loadVisits(parseNewVisits(q("province=52&district=750"))), /monthly down/);
+});
+
+test("production visits wiring uses the verified annual resolver", async () => {
+  const r = await productionVisits(parseNewVisits(q("province=52&district=750&year=2025")));
+  assert.equal(r.annual?.regionCode, "52750");
+  assert.equal(r.annual?.source.url, "https://datalab.visitkorea.or.kr/datalab/portal/loc/getAreaDataForm.do");
 });

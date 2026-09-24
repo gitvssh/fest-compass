@@ -14,7 +14,7 @@
     "region": 104,
     "region_visitor": 96,
     "doc": 5,
-    "consumed": 26
+    "consumed": 27
   },
   "files": [
     {
@@ -4473,7 +4473,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132526_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132526_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {

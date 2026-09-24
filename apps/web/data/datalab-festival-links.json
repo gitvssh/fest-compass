@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-09-24",
+  "note": "이름 유사도로 잇지 않는다. 이 표의 축제·지역·회차만 연결하며 evidence는 서버 밖으로 내보내지 않는다.",
+  "links": [
+    {
+      "archiveFestivalId": "imsil-cheese",
+      "datalabFestivalId": "imsil-n-cheese",
+      "regionCode": "52750",
+      "editions": [
+        { "editionId": "imsil-cheese-2023", "year": 2023, "start": "2023-10-06", "end": "2023-10-09", "days": 4 },
+        { "editionId": "imsil-cheese-2024", "year": 2024, "start": "2024-10-03", "end": "2024-10-06", "days": 4 },
+        { "editionId": "imsil-cheese-2025", "year": 2025, "start": "2025-10-08", "end": "2025-10-12", "days": 5 }
+      ],
+      "evidence": "원문 축제명 임실N치즈축제 일치, 2023·2024·2025 개최일수 4·4·5가 회차 원래 기간과 일치"
+    }
+  ]
+}

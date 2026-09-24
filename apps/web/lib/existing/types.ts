@@ -54,10 +54,19 @@ export type EditionHistory = {
   source: { edition: SourceRef; visits: PublicSource | null };
 };
 export type HistoryRequest = { festival: string; editions: string[]; before: number; after: number; windows: Record<string, Range> };
+/** DataLab festival-period counts for the festival's host area over the edition's original dates (not the district daily series). */
+export type HostAreaEdition = {
+  editionId: string; year: number; start: string; end: string; days: number;
+  local: number; outside: number; foreign: number; total: number; dailyMean: number;
+  /** outside ÷ total from the counts (ratio 0..1), not the source's rounded percent column. */
+  outsideShare: number;
+};
+export type HostAreaVisits = { festivalName: string; editions: HostAreaEdition[]; allYearsHref: string; source: { title: string; url: string; downloadedOn: string } };
 export type HistoryResponse = Envelope<HistoryRequest> & {
   festival: ArchiveFestival;
   metric: { name: string; unit: "명/일"; regionCode: string; estimate: true };
   sharedYMax: number | null; maxWindowDays: number; editions: EditionHistory[]; freshness: DataFreshness;
+  hostVisits: HostAreaVisits | null;
 };
 
 export type MonthMean = { month: string; days: number; observedDays: number; missingDays: number; zeroDays: number; sum: number | null; mean: number | null; rounded: number | null; status: "complete" | "partial" | "none" };

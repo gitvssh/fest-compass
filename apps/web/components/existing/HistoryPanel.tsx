@@ -9,6 +9,7 @@ import { DEFAULT_PAD, EditionPicker, WindowForm, type Pads } from "./EditionCont
 import { EditionChart, niceMax } from "./EditionChart";
 import { useFestival, useViewHeadingFocus } from "./ExistingShell";
 import { dateOnly, daysBetween, dayWithWeekday, editionLabel, fullDate, number, rawNumber, timeLabel, validDay, WEEKDAY_SHORT } from "./format";
+import { HostAreaVisits } from "./HostAreaVisits";
 import { festivalMemory, viewHref } from "./memory";
 import { festivalPath, one } from "./route-params";
 import { Disclosure, FreshnessNote, InfoDialog, LoadState, TableScroll } from "./ui";
@@ -128,6 +129,7 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
         </InfoDialog>
       </div>
       <FreshnessNote freshness={data.freshness} retrievedAt={data.retrievedAt} onRetry={result.retry} />
+      {data.hostVisits && data.hostVisits.editions.length > 0 && <HostAreaVisits festivalId={festival.id} data={data.hostVisits} />}
     </>}
   </>;
 }

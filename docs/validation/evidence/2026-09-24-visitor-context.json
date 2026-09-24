@@ -1,0 +1,128 @@
+{
+  "checkedAt": "2026-09-24T07:29:26.289730+00:00",
+  "baseCommit": "d7d387f1373a602f15a7fd500169001a06b3ba14",
+  "delegation": [
+    {
+      "task": "data-audit",
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "provider": "firstParty",
+      "permissionDenials": 0
+    },
+    {
+      "task": "visitor-design",
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "provider": "firstParty",
+      "permissionDenials": 0
+    },
+    {
+      "task": "visitor-data-implement",
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "provider": "firstParty",
+      "permissionDenials": 0
+    },
+    {
+      "task": "visitor-ui-implement",
+      "model": [
+        "claude-opus-5-5"
+      ],
+      "provider": "firstParty",
+      "permissionDenials": 0
+    }
+  ],
+  "dataCrossCheck": {
+    "checkedAt": "2026-09-24",
+    "regionCode": "52750",
+    "source": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv",
+    "sha256": "e36cc998f14454db0f9349356076d60815c83f245a13c808c8f29f5f69457e6d",
+    "annualRows": 24,
+    "crossCheck": [
+      {
+        "year": 2023,
+        "observedDays": 365,
+        "complete": true,
+        "dailySum": 8522745.0,
+        "csvAnnual": 8522745.0,
+        "difference": 0.0
+      },
+      {
+        "year": 2024,
+        "observedDays": 366,
+        "complete": true,
+        "dailySum": 8875772.5,
+        "csvAnnual": 8875772.0,
+        "difference": -0.5
+      },
+      {
+        "year": 2025,
+        "observedDays": 365,
+        "complete": true,
+        "dailySum": 9183132.0,
+        "csvAnnual": 9183132.0,
+        "difference": 0.0
+      }
+    ]
+  },
+  "local": {
+    "node": "24.20.0",
+    "unit": {
+      "tsx": 295,
+      "node": 18,
+      "total": 313
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "runtimeDependencyAuditVulnerabilities": 0,
+    "infraTests": 40,
+    "prodResources": 17,
+    "fullHeadlessScripts": 20,
+    "visitorContext": {
+      "headless": true,
+      "realLocalData": [
+        "existing/history",
+        "new/visits"
+      ],
+      "controlled": "request gates on real answers; one aborted request (검증용 통제 실패)",
+      "syntheticData": false,
+      "passed": [
+        "festival-2025-2024-counts-daily-share-scale",
+        "festival-table-source-keyboard-close",
+        "chart-window-does-not-change-festival-dates",
+        "selection-change-and-stale-answer-isolated",
+        "controlled-failure-recovers-with-real-answer",
+        "unmapped-nonsan-gongju-omitted",
+        "annual-2018-2025-source-values-total-kept-table-source",
+        "annual-buttons-2023-2025-apply-year-reset-month-focus-after-answer",
+        "year-2019-keeps-annual-only",
+        "region-change-and-late-year-answer-isolated",
+        "unsupported-region-no-annual",
+        "320-390-desktop-no-page-overflow"
+      ],
+      "blockedOtherHosts": [],
+      "browserErrors": 0,
+      "clientWrites": 0
+    },
+    "traceDocs": 53,
+    "traceMissing": 0,
+    "traceLint": {
+      "total": 0,
+      "by_rule": {},
+      "by_severity": {
+        "info": 0,
+        "warn": 0,
+        "error": 0
+      }
+    }
+  },
+  "production": {
+    "status": "pending"
+  },
+  "reviewDelivery": {
+    "status": "pending"
+  }
+}

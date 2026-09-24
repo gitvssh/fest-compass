@@ -67,6 +67,7 @@ stages:
       - {path: docs/validation/31-venue-evidence.md, required: true}
       - {path: docs/validation/32-regional-history-costs.md, required: true}
       - {path: docs/validation/36-related-material-search.md, required: true}
+      - {path: docs/validation/37-visitor-context.md, required: true}
   operations:
     artifacts:
       - {path: docs/ops/planning-outcomes-release.md, required: true}

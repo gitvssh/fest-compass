@@ -33,7 +33,8 @@
 
 ## 앱에서 쓰는 범위
 
-앱은 `연도별 방문자 추이` 26개 파일(147행)만 쓴다(`use: consumed`). 나머지 278개 CSV와 문서는 출처 보관용이다.
+앱은 `연도별 방문자 추이` 26개 파일(147행)과 임실군 `방문자 수 추이` 1개 파일(24행)을 쓴다(`use: consumed`).
+나머지 277개 CSV와 문서는 출처 보관용이다. 2026-09-24 추가 범위·검증은 [기록37](../../../validation/37-visitor-context.md)을 따른다.
 
 - 값의 뜻: 축제가 열린 행정동에서 통신 데이터로 추정한 방문자 수의 **개최기간 합계**와 **일평균**. 개최기간이
   짧으면 합계가 줄 수 있다. 행사장 입장객, 연간 방문객, 시군구 일별 방문 이력(`Edition.visits`)과 다르다.
@@ -46,6 +47,17 @@
   평창 2018·2022, 포항 2022). 주요 지표, `region_visitor`, 원본 `work/` 산출물로 이 빈칸을 채우지 않는다.
 - 논산 축제는 26개에 없다.
 - 원문에 축제 코드가 없어 고정 ID는 `apps/web/data/datalab-festival-ids.json`의 검토된 대응표로 정한다.
+
+### 임실군 연간 방문 추이와 축제 회차 연결
+
+- 지역 원본은 `data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv`다.
+  각 행에 명시된 2018~2025년을 사용한다. 현지인·외지인·전체 각 8행이며 `기준년월`이라는 헤더와 달리 실제 값은 연도다.
+- `apps/web/data/datalab-region-ids.json`이 이 파일과 임실군 코드 52750을 명시적으로 연결한다. 다른 23개 지역으로 자동 확장하지 않는다.
+- 과학적 숫자 표기를 해석하되 원문 문자열을 보존한다. 전체는 제공값을 유지하며 2021·2024년 구분별 합과 1 차이가 있다.
+- 축제 ID 대응은 `datalab-festival-links.json`이다. 같은 이름·개최일수가 대조된 임실 2023~2025 회차에만 구성 자료를 연결한다.
+  지역 전체 일별 값과 축제 개최 행정동 값은 다른 공간이며 같은 차트로 합치지 않는다.
+- 성·연령·거주지·목적지 순위에는 관측기간을 확정할 열·수집 메모가 없다. 폴더 범위를 그대로 적용하지 않으며,
+  후속 공식 다운로드에서 선택한 연도·대상·공간을 함께 확보한 뒤 연결한다.
 
 ## 시각 정보
 
@@ -70,6 +82,8 @@
 node scripts/build-datalab-festival-trend.mjs --verify   # 목록·해시·분류 확인 후 체크인 JSON과 재생성 결과 비교
 node scripts/build-datalab-festival-trend.mjs            # apps/web/data/datalab-festival-trend.json 재생성
 node --test scripts/datalab-festival-trend.test.mjs
+node scripts/build-datalab-region-annual.mjs --verify  # 임실 지역 추이·원문·생성 파일 확인
+node scripts/build-datalab-region-annual.mjs           # 지역 추이 재생성
 # 원본 체크아웃이 있을 때만: 목록 재작성
 node scripts/build-datalab-festival-trend.mjs --init-manifest --source-repo <pick-d-day 체크아웃>
 ```

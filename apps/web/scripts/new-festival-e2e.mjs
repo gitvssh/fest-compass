@@ -945,7 +945,7 @@ async function refreshKeepsOrReleases() {
   await listToggle(page, D, "함께 보기에 추가").click();
   await visible(page.getByRole("heading", { name: "함께 보기 2/2", exact: true }));
   await waitServed("new/resource-detail", p => p.get("id") === D.id, "compare intro D");
-  await compareCard(page, D).getByText("불러오고 있어요…").waitFor({ state: "detached" });
+  await ddOf(compareCard(page, D), "소개").filter({ hasText: /^—$/ }).waitFor({ state: "visible" });
   assert.equal(await ddOf(compareCard(page, D), "소개").innerText(), "—", "confirmed empty before the refresh");
   await detail(page, A).getByRole("button", { name: "상세 닫기", exact: true }).click();
   await context.clock.fastForward("11:00");
@@ -965,6 +965,7 @@ async function refreshKeepsOrReleases() {
   detailOutcome.set(D.id, "empty"); detailOutcome.delete(A.id);
   await failedD.getByRole("button", { name: `${D.title} 소개 다시 불러오기`, exact: true }).click();
   await failedD.waitFor({ state: "detached" });
+  await ddOf(compareCard(page, D), "소개").filter({ hasText: /^—$/ }).waitFor({ state: "visible" });
   assert.equal(await ddOf(compareCard(page, D), "소개").innerText(), "—", "retry restores the confirmed empty state");
   await staleA.getByRole("button", { name: `${A.title} 소개 다시 불러오기`, exact: true }).click();
   await staleA.waitFor({ state: "detached" });

@@ -14,7 +14,8 @@ import { defaultYear, editionHistory, monthlyMeans, periodSummary, yearCoverage,
 import { resourceRows } from "./resources";
 import { holidaySummary, overlapDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
 import { historyKey, festivalsKey, InvalidRequest, parseFestivalSearch, parseHistory, parseResources, parseSchedule } from "./request";
-import { createExistingService, regionObservations } from "./server";
+import { defaultHostVisits } from "../datalab/host-visits";
+import { createExistingService, loadHistory as productionHistory, regionObservations } from "./server";
 import { createTourCall, KEYWORD_PAGE_SIZE, type TourCall, type TourOperation, type TourPage } from "./tour";
 import type { CurrentFestival, DataFreshness, ResourceItem } from "./types";
 
@@ -322,4 +323,37 @@ test("client-safe modules never reach server-only, node built-ins, DB, forecast 
   for (const m of ["types", "identity", "history", "resources", "schedule", "request"]) visit(join(root, `${m}.ts`));
   assert.deepEqual(banned, []);
   assert.ok(seen.size >= 6);
+});
+
+test("host-area visit mix: selected verified editions only, independent of chart windows and district daily coverage", async () => {
+  const svc = service({ hostVisits: defaultHostVisits });
+  const two = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2023,imsil-cheese-2025")));
+  assert.deepEqual(two.hostVisits?.editions.map(e => e.editionId), two.editions.map(e => e.editionId));
+  assert.deepEqual(two.hostVisits?.editions.map(e => [e.editionId, e.days, e.outside]), [["imsil-cheese-2025", 5, 127842], ["imsil-cheese-2023", 4, 79355]]);
+  const windowed = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2023,imsil-cheese-2025&windows=imsil-cheese-2025:2025-10-09:2025-10-10&before=30")));
+  assert.deepEqual(windowed.hostVisits, two.hostVisits, "chart range never changes the festival-period block");
+  const noDaily = await service({ hostVisits: defaultHostVisits, archive: arch(archive.filter(d => d.region.code !== "52750")) }).loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+  assert.notEqual(noDaily.editions[0].state, "available");
+  assert.deepEqual(noDaily.hostVisits?.editions.map(e => e.editionId), ["imsil-cheese-2025"], "missing district daily data keeps the verified festival-period block");
+  assert.equal((await svc.loadHistory(parseHistory(req("festival=nonsan-strawberry")))).hostVisits, null);
+  assert.equal((await service().loadHistory(parseHistory(req("festival=imsil-cheese")))).hostVisits, null, "no resolver injected -> null");
+  const text = JSON.stringify(two);
+  for (const leak of ["sha256", "docs/research", "commit", "\"raw\"", "evidence", "github.com"]) assert.ok(!text.includes(leak), `${leak} leaked`);
+});
+
+test("a failing host-visits resolver omits only its block and logs a fixed category", async () => {
+  const logged: unknown[][] = [], original = console.error;
+  console.error = (...args: unknown[]) => { logged.push(args); };
+  try {
+    const r = await service({ hostVisits: () => { throw new Error("secret /var/data path"); } }).loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+    assert.equal(r.hostVisits, null);
+    assert.equal(r.editions[0].editionId, "imsil-cheese-2025");
+  } finally { console.error = original; }
+  assert.deepEqual(logged, [["datalab-host-visits: resolver-failed"]]);
+});
+
+test("production history wiring uses the verified host-area resolver", async () => {
+  const r = await productionHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025,imsil-cheese-2024")));
+  assert.deepEqual(r.hostVisits?.editions.map(e => e.editionId), ["imsil-cheese-2025", "imsil-cheese-2024"]);
+  assert.equal(r.hostVisits?.source.url, "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do");
 });
