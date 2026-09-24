@@ -7,6 +7,10 @@
 
 ## 문서 구성
 
+2026-09-24 관련 자료 검색: [기능 상세 §8](../sdlc/2-design/functional-spec.md#8-관련-자료-검색원문-연결--2026-09-24)에서
+축제·회차·지역·자원별 보조 검색창의 목표·배치·기본값을 확인한다. [검증 기록36](../validation/36-related-material-search.md)에
+실제 동작·화면과 외부 검색 검증의 범위를 정리한다.
+
 사람 확인용 화면·문서의 새 사본은 `D:\download\project\pickDday\index.html`에서 시작한다.
 이전 `D:\download\project\fest-compass\` 사본은 전달 당시 그대로 둔다.
 [사본 전달 방법](../ops/review-delivery.md)에 따라 복사하며 이 프로젝트의 원본은 유지한다.

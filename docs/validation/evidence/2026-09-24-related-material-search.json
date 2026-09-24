@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-09-24T02:25:31.530457+00:00",
+  "verifiedAt": "2026-09-24T02:44:06.213528+00:00",
   "sourceBase": "d121c382afe218dbb3699866001fab79199d765b",
   "appFilesSha256": {
     "apps/web/app/privacy/page.tsx": "eaa6533d291915681d7e0bcd629bf591e4633961844d759f7f6d867cd7bd5c0a",
@@ -156,11 +156,170 @@
     "input text scrolling distinguished from layout overflow",
     "existing resource test waits for focus restoration and successful comparison addition"
   ],
-  "public": null,
+  "public": {
+    "time": "2026-09-24T02:42:16.651Z",
+    "headless": true,
+    "appResponses": "unmodified public production",
+    "checks": [
+      "fresh-browser analytics consent declined through visible control",
+      "actual archive festival and selected 2025 edition query",
+      "actual external new tab retains source address",
+      "Escape from search input closes and returns focus",
+      "actual selected region search without edition year",
+      "actual TourAPI resource search with public title and full region",
+      "resource detail retained after closing search"
+    ],
+    "screens": [
+      "36-related-festival-desktop.png",
+      "36-related-festival-mobile.png",
+      "36-related-region-desktop.png",
+      "36-related-resource-mobile.png"
+    ],
+    "provider": {
+      "url": "https://duckduckgo.com/?q=%EB%85%BC%EC%82%B0%EB%94%B8%EA%B8%B0%EC%B6%95%EC%A0%9C+%EC%B6%A9%EC%B2%AD%EB%82%A8%EB%8F%84+%EB%85%BC%EC%82%B0%EC%8B%9C+2025+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8",
+      "title": "논산딸기축제 충청남도 논산시 2025 프로그램 at DuckDuckGo",
+      "referrer": "",
+      "opener": true,
+      "challenge": false,
+      "status": 200,
+      "resultsVerified": false
+    },
+    "browserErrors": [],
+    "clientWrites": [],
+    "visualReview": "root directly inspected all four public screenshots",
+    "scriptRepairs": [
+      "fresh-browser analytics consent declined using visible Reject All control; Cloudflare consent transport excluded from application writes",
+      "wait for actual resource list before beginning new-region interactions"
+    ]
+  },
   "reviewCopy": null,
   "limitations": [
-    "Live DuckDuckGo returned a human challenge; real result/original navigation not verified and not bypassed",
+    "Prior direct DuckDuckGo query returned HTTP 202 human challenge without bypass; final public app link returned HTTP 200 without detected challenge, title/query/referrer/opener checked; result relevance and original article content not verified",
     "Native IME and broad assistive technology, 200% zoom, final visual design and officer observation not evaluated",
     "Formal API/Spec/Run and ticket sources not declared"
-  ]
+  ],
+  "sourceCommit": "cd8e25393269b38c4d1a77ce3b4aea56297e4089",
+  "publication": {
+    "ci": {
+      "conclusion": "success",
+      "createdAt": "2026-09-24T02:29:04Z",
+      "databaseId": 35947438978,
+      "headSha": "cd8e25393269b38c4d1a77ce3b4aea56297e4089",
+      "status": "completed",
+      "updatedAt": "2026-09-24T02:35:39Z",
+      "url": "https://github.com/gitvssh/fest-compass/actions/runs/35947438978"
+    },
+    "runner": {
+      "runner_name": "homelab-fest-compass-k8d69-runner-7zc4w",
+      "labels": [
+        "homelab-fest-compass"
+      ],
+      "conclusion": "success"
+    },
+    "artifacts": 0,
+    "deployment": {
+      "revision": "ee42b4485faeb6863231225eb4ebdfafefefc3a7",
+      "sync": "Synced",
+      "health": "Healthy",
+      "operationPhase": "Succeeded",
+      "operationRevision": "ee42b4485faeb6863231225eb4ebdfafefefc3a7",
+      "finishedAt": "2026-09-24T02:38:00Z",
+      "deployment": {
+        "uid": "0b216035-cb40-4afc-85d1-655f5089742e",
+        "generation": 28,
+        "readyReplicas": 1,
+        "observedGeneration": 28,
+        "containers": [
+          {
+            "name": "forecast-worker",
+            "image": "registry.damecasol.com/fest-compass/web@sha256:5c2072c74cfc5d9f605d5de8460ca5f4e8a355545d87e636ba817dc7f20f8810"
+          },
+          {
+            "name": "web",
+            "image": "registry.damecasol.com/fest-compass/web@sha256:5c2072c74cfc5d9f605d5de8460ca5f4e8a355545d87e636ba817dc7f20f8810"
+          }
+        ]
+      },
+      "pvc": {
+        "uid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+        "phase": "Bound"
+      },
+      "businessDataBefore": {
+        "festival": {
+          "count": 1,
+          "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+        },
+        "evidenceSnapshot": {
+          "count": 6,
+          "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+        },
+        "assumption": {
+          "count": 4,
+          "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+        },
+        "capacityRule": {
+          "count": 1,
+          "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+        },
+        "scenario": {
+          "count": 3,
+          "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+        },
+        "decision": {
+          "count": 1,
+          "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+        },
+        "operationTrigger": {
+          "count": 1,
+          "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+        },
+        "fieldAction": {
+          "count": 1,
+          "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+        },
+        "outcome": {
+          "count": 2,
+          "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+        }
+      },
+      "businessDataAfter": {
+        "festival": {
+          "count": 1,
+          "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+        },
+        "evidenceSnapshot": {
+          "count": 6,
+          "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+        },
+        "assumption": {
+          "count": 4,
+          "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+        },
+        "capacityRule": {
+          "count": 1,
+          "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+        },
+        "scenario": {
+          "count": 3,
+          "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+        },
+        "decision": {
+          "count": 1,
+          "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+        },
+        "operationTrigger": {
+          "count": 1,
+          "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+        },
+        "fieldAction": {
+          "count": 1,
+          "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+        },
+        "outcome": {
+          "count": 2,
+          "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+        }
+      }
+    }
+  }
 }
