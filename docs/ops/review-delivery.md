@@ -1,8 +1,8 @@
 ---
 class: Current
 owner: pickDday
-last_verified: 2026-09-26
-version: v9
+last_verified: 2026-09-27
+version: v10
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -21,7 +21,7 @@ Windows 검토 폴더에 복사한다. 2026-09-23 제품 이름을 `pickDday`로
 
 - 시작: `D:\download\project\pickDday\index.html`
 - 각 묶음: `index.html`에서 기존 축제/새 축제 화면, 모바일 구성, 읽기용 설계 문서로 이동한다.
-  최신 음식점·숙박·소개(`docs/validation/41-tourism-resources.md`)와 공통 관광자원 설계(`docs/design/19-tourism-resources.md`)를 먼저 두고,
+  최신 관광자원 지도·화면 검수(`docs/validation/42-resource-experience.md`)와 시각 설계·이미지 원본(`docs/design/20-resource-experience.md`)을 먼저 두고,
   새 축제·기존 축제 실제 화면과 개발 전 와이어프레임으로 이어진다.
 - `sources/`에는 원본과 동일한 Markdown·Excalidraw·SVG를 둔다.
 - `manifest.json`은 원본 경로·커밋·복사 시각·파일 해시를 남긴다. `source_root`는 정본 위치

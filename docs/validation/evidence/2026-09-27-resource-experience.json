@@ -1,0 +1,964 @@
+{
+  "finalImplementationCommit": "1dddaa0c37541144c6551c9ae5f901a065d3d39b",
+  "localBaseline": {
+    "implementationCommit": "cbf15018c6d073d286283aa1cf364aafc5048d26",
+    "node": "24.20.0",
+    "unit": {
+      "pretest": 26,
+      "main": 323,
+      "scripts": 30,
+      "fail": 0
+    },
+    "headlessScripts": 24,
+    "headlessResults": [
+      {
+        "script": "regions-e2e.mjs",
+        "checks": 14,
+        "result": {
+          "headless": true,
+          "passed": [
+            "national-entry",
+            "visible-province-district-expansion",
+            "coordinate-missing",
+            "source-detail",
+            "actual-52671.5",
+            "snapshot-and-dedup",
+            "export-import",
+            "corrupt-import-preserves",
+            "explicit-home-only",
+            "different-region-clears",
+            "out-of-order-request",
+            "390px-no-overflow",
+            "missing-key-keeps-history",
+            "read-only-api"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "map-e2e.mjs",
+        "checks": 12,
+        "result": {
+          "headless": true,
+          "background": "synthetic test tiles; zero requests forwarded to OSMF",
+          "passed": [
+            "national-first-attribution-no-resource-query",
+            "province-district-cluster-selection-and-missing-coordinate-numbering",
+            "keyboard-pan-does-not-change-query",
+            "drag-pan-keeps-query-explicit",
+            "applied-area-shown-without-extra-api-call",
+            "applied-bounds-and-missing-coordinate-evidence-preserved",
+            "wheel-scroll-does-not-zoom-map",
+            "simple-map-unmounts-external-background",
+            "tile-failure-keeps-fallback-and-list",
+            "390px-region-select-and-map-no-overflow",
+            "two-finger-touch-zoom",
+            "tile-only-url-no-personal-payload-or-cache-bypass"
+          ],
+          "browserErrors": [],
+          "appWrites": [],
+          "interceptedTileRequests": 152
+        }
+      },
+      {
+        "script": "boundary-e2e.mjs",
+        "checks": 11,
+        "result": {
+          "passed": [
+            "national-15-dated-provinces",
+            "keyboard-province-district-query",
+            "displayed-boundary-evidence-preserved",
+            "hidden-boundary-not-attached",
+            "ordinary-city-aggregate-only-on-selection",
+            "changed-district-has-list-without-old-boundary",
+            "merged-province-not-invented",
+            "boundary-failure-keeps-resource-list",
+            "late-region-response-discarded",
+            "simple-map-does-not-claim-boundary",
+            "390px-boundary-controls"
+          ],
+          "errors": [],
+          "writes": []
+        }
+      },
+      {
+        "script": "comparison-e2e.mjs",
+        "checks": 21,
+        "result": {
+          "headless": true,
+          "passed": [
+            "nationwide-label",
+            "eight-independent-archives",
+            "three-edition-selection",
+            "actual-45-values",
+            "actual-calendar-axis",
+            "selected-point-snapshot",
+            "dedup",
+            "filter-keeps-selection",
+            "unknown-date-retained",
+            "cost-scope-hold",
+            "funding-denominator",
+            "four-day-calendar-overlap",
+            "empty-not-absence",
+            "three-region-partial-failure",
+            "current-not-archive",
+            "stale-response-cancelled",
+            "reopen-saved-values",
+            "export-import-corruption",
+            "390px-no-overflow",
+            "print-sources",
+            "missing-key-keeps-archive"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "annual-trend-e2e.mjs",
+        "checks": 23,
+        "result": {
+          "headless": true,
+          "passed": [
+            "entry-list",
+            "intro-copy",
+            "nonsan-no-match",
+            "keyboard-select",
+            "url-festival",
+            "default-daily-mean",
+            "exact-table-values",
+            "missing-years-not-zero",
+            "line-breaks-at-gaps",
+            "year-detail-no-hover",
+            "foreign-zero-raw",
+            "metric-url-restore",
+            "raw-disclosure-typo-preserved",
+            "previous-year-note",
+            "source-links",
+            "metric-definition",
+            "download-date-only",
+            "no-sha256",
+            "yeongam-gaps",
+            "desktop-screenshot",
+            "unknown-deeplink",
+            "390px-no-overflow",
+            "raw-table-own-scroll"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "existing-journey-e2e.mjs",
+        "checks": 28,
+        "result": {
+          "headless": true,
+          "realArchive": [
+            "history",
+            "monthly",
+            "holidays"
+          ],
+          "fixtures": "검증용 current/resources/events + before=2 history",
+          "passed": [
+            "AC1-purpose-entry-keyboard-search",
+            "AC11-same-name-separate-results",
+            "AC10-keyboard-result-to-title-focus",
+            "AC1-default-2025-2024-no-writing",
+            "AC3-real-archive-means-peaks-19-18-18-shared-axis",
+            "AC10-table-and-dialog-close-focus",
+            "AC14-window-and-selection-keep-original-denominator",
+            "AC6-one-type-failure-keeps-other-and-retry-applies",
+            "AC5-unlocated-stay-listed-no-distance-before-anchor",
+            "AC5-map-move-is-not-anchor-explicit-centre-applies",
+            "AC2-menu-restores-address-and-tab-context-reload-resets-temporary",
+            "AC7-real-2025-monthly-12-values-default-year",
+            "AC14-cross-month-candidate-whole-range-count-after-complete",
+            "AC8-holiday-partial-not-none-and-candidate-cap-2",
+            "AC12-real-yearmonth-link-back-restores-selection-focus",
+            "AC8-holiday-unsupported-range",
+            "AC7-2026-incomplete-no-forecast",
+            "AC2-timing-address-restore-candidates-reset-on-reload",
+            "AC9-late-success-and-late-failure-never-override-latest",
+            "AC4-zero-vs-missing-and-definition-difference(검증용)",
+            "AC4-real-undated-wonju-no-chart-no-mean-no-substitution",
+            "AC11-current-same-name-no-archive-join-resources-still-available",
+            "AC10-390px-no-page-overflow",
+            "AC13-history-same-condition-network-failure-keeps-earlier",
+            "AC13-changed-condition-failure-hides-earlier",
+            "AC13-schedule-block-failure-keeps-earlier-events",
+            "AC13-resources-block-and-network-failure-keep-earlier",
+            "AC2-no-writes-no-storage"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0,
+          "apiRequests": 75,
+          "ignoredFetchFailures": 0
+        }
+      },
+      {
+        "script": "unified-festival-e2e.mjs",
+        "checks": 16,
+        "result": {
+          "headless": true,
+          "realArchive": [
+            "festivals archive block",
+            "history (linked)"
+          ],
+          "fixtures": "검증용 registrations/periods, 안동시·강릉시 monthly/daily, resources",
+          "passed": [
+            "search-no-query-starting-choices",
+            "search-linked-identity-single-card",
+            "search-unlinked-same-name-separate",
+            "search-paging-continuity",
+            "search-keyboard-first-result",
+            "search-isolated-source-failure-retry",
+            "current-pending-no-false-no-history",
+            "current-visits-district-monthly-daily",
+            "current-registration-shortcut",
+            "current-daily-gap-and-table",
+            "current-visits-dedicated-conditions-memory",
+            "current-visits-calendar-link",
+            "current-visits-empty-state-independent-links",
+            "current-visits-isolated-failure-retry",
+            "current-visits-390px-no-page-overflow",
+            "linked-archive-inline-same-identity"
+          ],
+          "skipped": [],
+          "browserErrors": 0,
+          "apiRequests": 23
+        }
+      },
+      {
+        "script": "new-festival-e2e.mjs",
+        "checks": 37,
+        "result": {
+          "headless": true,
+          "realArchive": [
+            "new/visits",
+            "holidays"
+          ],
+          "fixtures": "검증용 resources/introductions/events/map tiles + Imsil 2023 zero/missing + one duplicate holiday label",
+          "passed": [
+            "AC1-no-preselected-region-keyboard-choice-enters-resources",
+            "AC10-keyboard-region-choice-title-focus",
+            "AC9-one-type-failure-not-zero-retry-applies",
+            "AC3-no-distance-or-distance-sort-before-anchor",
+            "AC2-map-marker-and-list-row-same-resource",
+            "AC13-intro-plain-text-own-source-and-time",
+            "AC10-dialogs-and-detail-close-return-focus",
+            "AC13-empty-notfound-mismatch-omit-block-failure-retries-in-place",
+            "AC2-compare-max-two-third-rejected-replace-after-removal",
+            "AC3-compare-does-not-set-anchor",
+            "AC3-explicit-resource-anchor-distances-radius-unlocated-listed",
+            "AC11-filtered-out-compared-kept-and-removable",
+            "AC3-map-centre-anchor-explicit-only",
+            "AC6-calendar-and-events-without-candidates",
+            "AC14-cross-month-whole-range-count-only-after-complete",
+            "AC7-invalid-dates-fixed-in-place-others-kept",
+            "AC14-identical-not-duplicated-same-day-allowed-cap-two",
+            "AC6-one-candidate-no-second-or-reason-required",
+            "AC14-partial-overlap-own-results-holiday-date-dedup(검증용 label)",
+            "AC14-cross-year-whole-range",
+            "AC7-holiday-unknown-distinct-from-zero-events",
+            "AC9-events-failure-keeps-calendar-late-retry-ignored",
+            "AC4-real-2025-default-month-weekday-oracle-wed53-others52",
+            "AC10-table-close-and-dialog-focus",
+            "AC12-real-2025-10-daily-link-back-restores-month-and-focus",
+            "AC5-real-2026-months-1-7-kept-all-weekday-means-withheld-missing-not-zero",
+            "AC1-three-views-any-order-without-writing-or-saving",
+            "AC5-zero-kept-missing-dash-and-no-mean(검증용 Imsil 2023 variant)",
+            "AC8-late-previous-visits-ignored-year-kept-no-auto-fallback",
+            "AC8-late-resources-and-events-ignored-selections-reset-candidates-month-kept",
+            "AC11-failed-refresh-keeps-success-without-id-releases",
+            "AC13-same-resource-intro-refresh-failure-keeps-earlier",
+            "AC13-compare-only-empty-then-failed-refresh-shows-retry-and-stale-source",
+            "AC9-map-failure-list-usable-no-visit-archive-keeps-resources-and-calendar",
+            "AC10-390px-no-page-overflow-all-views",
+            "AC10-no-writes-no-storage-no-page-errors",
+            "AC1-sejong-route-36110-api-36110-36110"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0,
+          "apiRequests": 81,
+          "ignoredFetchFailures": 0
+        }
+      },
+      {
+        "script": "tourism-resources-e2e.mjs",
+        "checks": 46,
+        "result": {
+          "headless": true,
+          "data": "검증용 controlled fixtures for tourism lists and introductions (not official-data verification)",
+          "zoom": "200% = CSS layout zoom (html zoom: 2) at 1440px only; not real browser page zoom, not deviceScaleFactor",
+          "mapSelection": "real pointer clicks and key presses only (no force, dispatchEvent or synthetic DOM click)",
+          "passed": [
+            "existing-default-12-14-only-no-39-32-requests",
+            "existing-toggle-four-peers-all-four-explicit-address",
+            "existing-non-default-pair-kept-across-reload",
+            "existing-none-invalid-duplicate-legacy-addresses",
+            "existing-menu-return-keeps-four-kinds",
+            "existing-independent-kind-failure-delay-and-retry",
+            "existing-restaurant-intro-plain-text-fold-own-source",
+            "existing-lodging-intro-empty-omitted-failure-retry-close-focus",
+            "existing-no-compare",
+            "existing-rapid-selection-late-intro-never-overlays",
+            "existing-other-region-answer-hidden-retryable-never-reused-and-recovers",
+            "existing-all-types-off-keeps-detail-intro-anchor-and-distance",
+            "existing-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks",
+            "existing-cluster-lists-same-point-and-nearby-places-opening-changes-nothing-close-returns-focus",
+            "existing-cluster-each-same-point-and-nearby-place-by-real-click-focuses-detail",
+            "existing-reselecting-open-place-focuses-detail-again",
+            "existing-cluster-enter-space-tab-shift-tab-escape-restore-cluster-focus",
+            "existing-zoom-splits-nearby-never-same-point-keeps-conditions",
+            "existing-390-map-view-cluster-close-and-detail-close-never-focus-hidden-list",
+            "new-default-12-14-only-no-39-32-requests",
+            "new-toggle-four-peers-all-four-explicit-address",
+            "new-non-default-pair-kept-across-reload",
+            "new-none-invalid-duplicate-legacy-addresses",
+            "new-type-change-keeps-year",
+            "new-independent-kind-failure-delay-and-retry",
+            "new-restaurant-intro-plain-text-fold-own-source",
+            "new-lodging-intro-empty-omitted-failure-retry-close-focus",
+            "new-rapid-selection-late-intro-never-overlays",
+            "new-other-region-answer-hidden-retryable-never-reused-and-recovers",
+            "new-all-types-off-keeps-detail-intro-anchor-and-distance",
+            "new-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks",
+            "new-cluster-lists-same-point-and-nearby-places-opening-changes-nothing-close-returns-focus",
+            "new-cluster-each-same-point-and-nearby-place-by-real-click-focuses-detail",
+            "new-reselecting-open-place-focuses-detail-again",
+            "new-cluster-enter-space-tab-shift-tab-escape-restore-cluster-focus",
+            "new-cluster-name-states-compared-member",
+            "new-zoom-splits-nearby-never-same-point-keeps-conditions",
+            "new-390-map-view-cluster-close-and-detail-close-never-focus-hidden-list",
+            "existing-arrival-restaurant-adds-kind-once-waits-full-list-focus",
+            "existing-filter-keeps-detail-and-anchor-reload-does-not-reselect",
+            "existing-arrival-lodging-failure-then-retry-opens",
+            "existing-arrival-missing-invalid-and-legacy-link",
+            "new-compare-detail-anchor-independent-filter-keeps-all",
+            "layout-320-390-1440-no-overflow-focus-to-detail-and-back",
+            "css-layout-zoom-200-at-1440-no-sideways-scroll-long-title-wraps",
+            "home-purpose-cards-cta-hrefs-decorative-images-loaded-first-cta-in-view"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0,
+          "apiRequests": 208
+        }
+      },
+      {
+        "script": "related-search-e2e.mjs",
+        "checks": 25,
+        "result": {
+          "headless": true,
+          "scenario": "TS-FC-011",
+          "realArchive": [
+            "archive festival lookup",
+            "history",
+            "monthly",
+            "schedule",
+            "new/visits"
+          ],
+          "fixtures": "검증용 current identities, resources, resource introductions, map tiles, 가로챈 DuckDuckGo 도착지",
+          "providerResultsVerified": false,
+          "passed": [
+            "verified-festival-only-no-button-while-pending-or-failed",
+            "not-found-festival-no-button",
+            "existing-defaults-topics-years-rebuild-query",
+            "existing-reopen-resets",
+            "close-and-escape-return-focus",
+            "full-region-name-once",
+            "single-edition-year-compare-all",
+            "unknown-mixed-duplicate-editions-no-invented-year",
+            "reopen-follows-applied-edition",
+            "timing-and-resources-exclude-observation-month-candidate-years",
+            "editable-query-encodes-amp-hash-plus-korean",
+            "blank-query-no-link-and-reset",
+            "external-only-on-explicit-click-or-enter",
+            "ime-composing-enter-does-not-open",
+            "new-tab-noopener-noreferrer-no-referrer",
+            "source-tab-address-and-selection-kept",
+            "current-festival-confirmed-start-year-only",
+            "new-region-no-year-region-topics",
+            "resource-detail-named-search-resource-topics",
+            "resource-change-discards-search",
+            "region-change-discards-search",
+            "ambiguous-region-full-name",
+            "320-390-desktop-no-page-or-dialog-overflow",
+            "keyboard-tab-cycle-and-arrow-topics",
+            "no-writes-no-leak-of-typed-query"
+          ],
+          "external": 3,
+          "browserErrors": 0,
+          "clientWrites": 0,
+          "apiRequests": 64
+        }
+      },
+      {
+        "script": "visitor-context-e2e.mjs",
+        "checks": 12,
+        "result": {
+          "headless": true,
+          "realLocalData": [
+            "existing/history",
+            "new/visits"
+          ],
+          "controlled": "request gates on real answers; one aborted request (검증용 통제 실패)",
+          "syntheticData": false,
+          "passed": [
+            "festival-2025-2024-counts-daily-share-scale",
+            "festival-table-source-keyboard-close",
+            "chart-window-does-not-change-festival-dates",
+            "selection-change-and-stale-answer-isolated",
+            "controlled-failure-recovers-with-real-answer",
+            "unmapped-nonsan-gongju-omitted",
+            "annual-2018-2025-source-values-total-kept-table-source",
+            "annual-buttons-2023-2025-apply-year-reset-month-focus-after-answer",
+            "year-2019-keeps-annual-only",
+            "region-change-and-late-year-answer-isolated",
+            "unsupported-region-no-annual",
+            "320-390-desktop-no-page-overflow"
+          ],
+          "blockedOtherHosts": [],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "visitor-profile-e2e.mjs",
+        "checks": 19,
+        "result": {
+          "headless": true,
+          "realLocalData": [
+            "existing/history"
+          ],
+          "realCurrentResources": [],
+          "resourceMode": "검증용 통제: 검토한 세 장소의 식별자·주소·좌표만 이용한 목록",
+          "controlled": "request gates on real answers; one aborted resource request and one real resource answer without the linked place (검증용 통제)",
+          "syntheticVisitorData": false,
+          "passed": [
+            "demographics-official-shares-chronological-shared-scale-table",
+            "rank-groups-7-each-links-only-reviewed-three",
+            "source-dialog-keyboard-no-count-no-internal-no-residence",
+            "chart-window-independent",
+            "2024-only-single-2024-profile-2025-absent",
+            "late-old-answer-ignored",
+            "other-festival-null",
+            "link-selects-real-resource-focus-detail-param-removed",
+            "back-preserves-conditions-focus-forward-no-target",
+            "explicit-link-overrides-memory-lifts-radius-keeps-center",
+            "back-keeps-group-and-focus",
+            "three-menus-unchanged",
+            "controlled-failure-keeps-target-retry-selects",
+            "user-type-change-cancels-pending-target",
+            "absent-place-message-list-kept-reload-clean",
+            "malformed-duplicate-target-ignored",
+            "direct-address-adds-type-once",
+            "other-festival-never-selects",
+            "320-390-1440-no-page-overflow"
+          ],
+          "blockedOtherHosts": [],
+          "browserErrors": 0,
+          "clientWrites": 0,
+          "platformWrites": 0,
+          "platformBoundary": "Cloudflare measurement/consent transport; ordinary refusal button used when shown"
+        }
+      },
+      {
+        "script": "edition-profile-e2e.mjs",
+        "checks": 13,
+        "result": {
+          "headless": true,
+          "realLocalData": [
+            "existing/history"
+          ],
+          "realCurrentResources": [],
+          "resourceMode": "검증용 통제: 검토한 세 장소의 식별자·주소·좌표만 이용한 목록",
+          "oracle": "docs/research/imported/datalab-imsil-2023, -2024, -2025 원본 응답에서 직접 계산",
+          "controlledResourceAnswers": 2,
+          "syntheticVisitorData": false,
+          "passed": [
+            "initial-controls-latest-two-no-three-explanation",
+            "2024-2025-values-shared-axis-differences-rank-order-null-groups-table-source",
+            "host-change-shown-values-foreign-included-rows-kept",
+            "chart-window-independent",
+            "query-order-ascending",
+            "link-selects-resource-back-keeps-editions-and-focus",
+            "keyboard-group-new-place-link-back-keeps-group-and-focus",
+            "three-selected-history-kept-latest-two-compared-picker-focus",
+            "2023-2024-comparison",
+            "2023-2025-comparison",
+            "2023-only-single-profile",
+            "other-festival-no-section",
+            "320-390-1440-bars-values-periods-keyboard-table-no-page-overflow"
+          ],
+          "blockedOtherHosts": [],
+          "browserErrors": 0,
+          "clientWrites": 0,
+          "platformWrites": 0,
+          "platformBoundary": "Cloudflare measurement/consent transport; ordinary refusal button used when shown"
+        }
+      },
+      {
+        "script": "schedule-absorption-e2e.mjs",
+        "checks": 16,
+        "result": {
+          "headless": true,
+          "fixtures": "synthetic-events",
+          "passed": [
+            "first-event-month-and-out-of-range-days-empty",
+            "calendar-list-detail-share-selection",
+            "list-selection-opens-event-month",
+            "month-change-no-request-no-range-change",
+            "region-csv-original-schedule-formula-safe",
+            "back-restores-condition-month-selection-focus",
+            "reload-keeps-condition-month-clears-selection",
+            "chosen-month-kept-after-requery",
+            "past-range-opens-first-event-month",
+            "empty-result-state-row-not-zero",
+            "unavailable-no-calendar-no-csv",
+            "late-response-rejected",
+            "compare-csv-waits-and-keeps-failed-region",
+            "compare-csv-follows-applied-filter",
+            "menu-current-page-and-keyboard",
+            "390px-month-header-24px-events-list-jump"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "overlap-e2e.mjs",
+        "checks": 10,
+        "result": {
+          "checkedAt": "2026-09-26T14:49:04.166Z",
+          "headless": true,
+          "data": "synthetic current festival responses",
+          "passed": [
+            "legacy-starts-within",
+            "continuing-boundary-day-and-ended-filter",
+            "provider-total-and-overlap-chart",
+            "selected-original-context-after-new-search",
+            "saved-scope-chart-and-limit",
+            "planning-retains-original-overlap-chart",
+            "over-limit-no-request",
+            "failed-region-not-zero-claim",
+            "late-current-response-after-mode-switch",
+            "390px-range-chart"
+          ],
+          "errors": [],
+          "writes": []
+        }
+      },
+      {
+        "script": "distance-e2e.mjs",
+        "checks": 10,
+        "result": {
+          "checkedAt": "2026-09-26T14:49:05.794Z",
+          "headless": true,
+          "data": "synthetic registered festivals and coordinates",
+          "passed": [
+            "only-located-current-events-can-be-anchors",
+            "distance-order-and-numeric-chart",
+            "radius-keeps-unknown-separate",
+            "distance-controls-make-no-additional-api-calls",
+            "selected-original-anchor-survives-new-reference",
+            "download-import-original-distance-chart",
+            "planning-keeps-distance-snapshot",
+            "requery-does-not-replace-anchor-snapshot",
+            "clear-and-archive-remove-distance-controls",
+            "390px-distance-chart"
+          ],
+          "errors": [],
+          "writes": []
+        }
+      },
+      {
+        "script": "planning-e2e.mjs",
+        "checks": 27,
+        "result": {
+          "headless": true,
+          "passed": [
+            "real-comparison-deep-link",
+            "evidence-and-judgment-separated",
+            "duplicate-link-preserved",
+            "owner-region-independent",
+            "multiple-delivery-relations",
+            "invalid-date-keeps-storage",
+            "venue-confirmation-requires-basis",
+            "three-stage-confirmations-independent",
+            "reference-is-not-completion",
+            "cycle-rejected",
+            "dependency-exception-reason",
+            "not-applicable-requires-reason-date",
+            "external-review-independent",
+            "copy-resets-confirmations",
+            "two-options-and-differences",
+            "same-calendar-timeline",
+            "immutable-snapshot-created",
+            "date-change-rechecks-preparation",
+            "unlink-keeps-archived-evidence",
+            "archived-real-value-reopened",
+            "file-roundtrip-keeps-both-histories",
+            "corrupt-file-keeps-storage",
+            "two-tab-conflict-preserves-both-inputs",
+            "unsaved-navigation-keeps-input",
+            "quota-failure-keeps-input",
+            "390px-no-page-overflow",
+            "exploration-keeps-owner-region"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "venue-e2e.mjs",
+        "checks": 9,
+        "result": {
+          "headless": true,
+          "fixture": true,
+          "passed": [
+            "map-evidence-planning-deep-link",
+            "source-preview-without-overwrite",
+            "atomic-venue-and-source-copy",
+            "owner-and-archive-unchanged",
+            "tourism-is-not-permission",
+            "existing-link-reason-kept",
+            "source-survives-library-removal",
+            "planning-file-roundtrip",
+            "390px-no-overflow"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "history-costs-e2e.mjs",
+        "checks": 11,
+        "result": {
+          "checkedAt": "2026-09-26T14:49:14.571Z",
+          "headless": true,
+          "realBundledData": true,
+          "passed": [
+            "gongju-real-daily-value",
+            "imsil-real-value-and-region-isolation",
+            "map-value-source-saved",
+            "imsil-three-actual-editions",
+            "relative-day-values-saved",
+            "three-distinct-official-cost-stages",
+            "expense-donut-and-leaf-sum",
+            "unconfirmed-denominator-not-charted",
+            "cost-file-preserves-definition-and-source",
+            "planning-keeps-expense-chart-and-interpretation",
+            "390px-cost-chart-and-source"
+          ],
+          "browserErrors": 0,
+          "appWrites": 0
+        }
+      },
+      {
+        "script": "budget-e2e.mjs",
+        "checks": 23,
+        "result": {
+          "headless": true,
+          "passed": [
+            "legacy-v1-keeps-immutable-history",
+            "quantity-and-included-duration",
+            "missing-budget-and-minimum-excess",
+            "planned-funds-not-secured",
+            "complete-funding-donut-with-incomplete-costs",
+            "duplicate-funding-blocks-composition",
+            "zero-is-distinct-from-missing",
+            "exact-per-line-rounding",
+            "invalid-input-keeps-prior-save",
+            "unknown-tax-blocks-total",
+            "source-and-preparation-links",
+            "immutable-budget-baseline-difference",
+            "department-scope-blocks-comparison",
+            "unfinished-source-record-survives-navigation",
+            "source-record-needs-reference",
+            "amount-stages-not-added-or-overwritten",
+            "copy-resets-funding-and-records",
+            "comparable-candidates-zero-axis-and-total-labels",
+            "whole-planning-and-budget-snapshot",
+            "390px-no-page-overflow",
+            "new-year-rechecks-funding-and-classification",
+            "budget-file-roundtrip-keeps-all-history",
+            "invalid-file-keeps-budget"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "proposal-e2e.mjs",
+        "checks": 14,
+        "result": {
+          "headless": true,
+          "passed": [
+            "single-candidate-blocks-proposal-but-saves-draft",
+            "blank-selection-reason-blocks-proposal",
+            "measurement-plan-survives-reload",
+            "source-budget-preparation-archived-together",
+            "missing-cost-does-not-become-zero-or-approval",
+            "same-version-business-and-preparation-pdf",
+            "closed-records-and-sources-print-and-restore",
+            "real-source-d0-and-query-preserved",
+            "390px-no-page-overflow",
+            "new-draft-preserves-previous-draft-and-all-legacy-revisions",
+            "p2-changes-never-change-p1",
+            "archived-chart-selection-is-read-only",
+            "v3-file-roundtrip-keeps-proposals",
+            "conflicting-proposal-import-keeps-stored-data"
+          ],
+          "browserErrors": 0,
+          "clientWrites": 0
+        }
+      },
+      {
+        "script": "outcome-e2e.mjs",
+        "checks": 14,
+        "result": {
+          "headless": true,
+          "passed": [
+            "public-original-costs-and-composition-scope",
+            "tender-and-missing-not-actual-spending",
+            "missing-proposal-guides-to-planning",
+            "metric-definitions-units-periods-zero-gates",
+            "fund-totals-35000000-35118200-and-unknown-versus-zero",
+            "draft-reload-preserves-sources-and-improvements",
+            "contract-reference-is-not-settlement-approval",
+            "fixed-plan-result-pdf-with-original-evidence",
+            "390px-result-no-overflow",
+            "r2-changes-never-change-p1-r1",
+            "personal-edition-search-is-local-and-separate",
+            "next-edition-resets-and-links-improvements",
+            "v4-file-roundtrip-keeps-lineage-and-results",
+            "conflicting-result-import-preserves-data"
+          ],
+          "browserErrors": [],
+          "appWrites": []
+        }
+      }
+    ],
+    "headlessOther": [
+      "demo-e2e.mjs",
+      "workspace-e2e.mjs"
+    ],
+    "method": "Same final product build; first 10 succeeded, remaining 14 resumed after test-only CSP and selector corrections.",
+    "typecheck": "passed after inert correction",
+    "build": "production build passed; E2E rebuilt final application after visual and inert corrections",
+    "auditVulnerabilities": 0,
+    "infraTests": 41,
+    "prepareResources": 17,
+    "trace": {
+      "total": 0,
+      "by_rule": {},
+      "by_severity": {
+        "info": 0,
+        "warn": 0,
+        "error": 0
+      }
+    }
+  },
+  "finalTourismRegression": {
+    "headless": true,
+    "data": "검증용 controlled fixtures for tourism lists and introductions (not official-data verification)",
+    "zoom": "200% = CSS layout zoom (html zoom: 2) at 1440px only; not real browser page zoom, not deviceScaleFactor",
+    "mapSelection": "real pointer clicks and key presses only (no force, dispatchEvent or synthetic DOM click)",
+    "passed": [
+      "existing-default-12-14-only-no-39-32-requests",
+      "existing-toggle-four-peers-all-four-explicit-address",
+      "existing-non-default-pair-kept-across-reload",
+      "existing-none-invalid-duplicate-legacy-addresses",
+      "existing-menu-return-keeps-four-kinds",
+      "existing-independent-kind-failure-delay-and-retry",
+      "existing-restaurant-intro-plain-text-fold-own-source",
+      "existing-lodging-intro-empty-omitted-failure-retry-close-focus",
+      "existing-no-compare",
+      "existing-rapid-selection-late-intro-never-overlays",
+      "existing-other-region-answer-hidden-retryable-never-reused-and-recovers",
+      "existing-all-types-off-keeps-detail-intro-anchor-and-distance",
+      "existing-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks",
+      "existing-cluster-lists-same-point-and-nearby-places-opening-changes-nothing-close-returns-focus",
+      "existing-cluster-each-same-point-and-nearby-place-by-real-click-focuses-detail",
+      "existing-reselecting-open-place-focuses-detail-again",
+      "existing-cluster-enter-space-tab-shift-tab-escape-restore-cluster-focus",
+      "existing-zoom-splits-nearby-never-same-point-keeps-conditions",
+      "existing-390-map-view-cluster-close-and-detail-close-never-focus-hidden-list",
+      "existing-resize-hidden-map-preserves-geographic-centre",
+      "new-default-12-14-only-no-39-32-requests",
+      "new-toggle-four-peers-all-four-explicit-address",
+      "new-non-default-pair-kept-across-reload",
+      "new-none-invalid-duplicate-legacy-addresses",
+      "new-type-change-keeps-year",
+      "new-independent-kind-failure-delay-and-retry",
+      "new-restaurant-intro-plain-text-fold-own-source",
+      "new-lodging-intro-empty-omitted-failure-retry-close-focus",
+      "new-rapid-selection-late-intro-never-overlays",
+      "new-other-region-answer-hidden-retryable-never-reused-and-recovers",
+      "new-all-types-off-keeps-detail-intro-anchor-and-distance",
+      "new-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks",
+      "new-cluster-lists-same-point-and-nearby-places-opening-changes-nothing-close-returns-focus",
+      "new-cluster-each-same-point-and-nearby-place-by-real-click-focuses-detail",
+      "new-reselecting-open-place-focuses-detail-again",
+      "new-cluster-enter-space-tab-shift-tab-escape-restore-cluster-focus",
+      "new-cluster-name-states-compared-member",
+      "new-zoom-splits-nearby-never-same-point-keeps-conditions",
+      "new-390-map-view-cluster-close-and-detail-close-never-focus-hidden-list",
+      "new-resize-hidden-map-preserves-geographic-centre",
+      "existing-arrival-restaurant-adds-kind-once-waits-full-list-focus",
+      "existing-filter-keeps-detail-and-anchor-reload-does-not-reselect",
+      "existing-arrival-lodging-failure-then-retry-opens",
+      "existing-arrival-missing-invalid-and-legacy-link",
+      "new-compare-detail-anchor-independent-filter-keeps-all",
+      "layout-320-390-1440-no-overflow-focus-to-detail-and-back",
+      "css-layout-zoom-200-at-1440-no-sideways-scroll-long-title-wraps",
+      "home-purpose-cards-cta-hrefs-decorative-images-loaded-first-cta-in-view"
+    ],
+    "browserErrors": 0,
+    "clientWrites": 0,
+    "apiRequests": 211
+  },
+  "actualDataLocalBrowser": {
+    "checkedAt": "2026-09-26T15:18:59.599Z",
+    "base": "http://127.0.0.1:3147",
+    "headless": true,
+    "mockedResponses": 0,
+    "browserErrors": [],
+    "appWrites": [],
+    "samples": [
+      {
+        "flow": "new",
+        "code": "51150",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 478
+          },
+          {
+            "kind": "32",
+            "total": 178
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      },
+      {
+        "flow": "existing",
+        "code": "50110",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 426
+          },
+          {
+            "kind": "32",
+            "total": 89
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      }
+    ],
+    "checks": [
+      "two-optimized-decorative-images-and-purpose-links",
+      "home-320-390-640-1440-and-real-200-percent-zoom",
+      "new-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "new-official-source-full-list-identity-detail-mobile-real-zoom",
+      "existing-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "existing-official-source-full-list-identity-detail-mobile-real-zoom"
+    ],
+    "zoom": [
+      {
+        "label": "home",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "home reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      }
+    ],
+    "images": [
+      {
+        "alt": "",
+        "width": 264,
+        "src": "/_next/image",
+        "renderedWidth": 264
+      },
+      {
+        "alt": "",
+        "width": 264,
+        "src": "/_next/image",
+        "renderedWidth": 264
+      }
+    ],
+    "status": "passed"
+  },
+  "finalBuild": "passed incl. TypeScript, frozen forecast evidence and standalone environment check",
+  "production": {
+    "status": "pending-image-capacity-decision",
+    "failedRun": 36250279743,
+    "failedCommit": "6592de78cdc077bde46fde7cf3085a5506c5fae6",
+    "stage": "Harbor push quota",
+    "candidateCleanupCount": 3,
+    "protectedCount": 2,
+    "dryRun": 5165,
+    "deleted": false
+  },
+  "limits": [
+    "Public activation and public final-build validation pending",
+    "Baseline 24 scripts ran on cbf1501; affected tourism script rerun on final source",
+    "Opus 7 successful claude-opus-5-5 calls; later resize-review attempt did not execute due weekly limit",
+    "Actual local app responses; independent source comparison reused from report41",
+    "No complete assistive-technology certification or officer observation"
+  ]
+}

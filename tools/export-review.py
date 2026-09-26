@@ -222,7 +222,7 @@ def main():
     (bundle / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
     landing = project / 'index.html'
     landing_hash = project / '.review-index.sha256'
-    content = MARKER + page('최신 검토 자료', f'<h1>{BRAND} 검토 자료</h1><p>{stamp[:10]} · 두 목적의 기능 상세·화면 목표·기본 배치</p><a class="button" href="{quote(args.label)}/index.html">최신 기능·설계 문서 열기</a>')
+    content = MARKER + page('최신 검토 자료', f'<h1>{BRAND} 검토 자료</h1><p>{stamp[:10]} · 관광자원 지도·개선 화면·목적 이미지</p><a class="button" href="{quote(args.label)}/index.html">최신 화면·설계 문서 열기</a>')
     if landing.exists() and (not landing_hash.exists() or hashlib.sha256(landing.read_bytes()).hexdigest() != landing_hash.read_text().strip()):
         print('Existing user index preserved:', landing)
         suffix = ''
