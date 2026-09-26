@@ -1036,3 +1036,25 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-047 · Codex · 설계·위임·직접 검수
+
+- Position: 관광자원 시각화·목적 이미지 구현과 D 검토 사본 전달을 완료했다. 공개 배포는 이미지 저장소 용량과 정확한 수동 정리 결정만 남았다.
+- Evidence:
+  - docs/design/20-resource-experience.md
+  - docs/validation/42-resource-experience.md
+  - docs/ops/resource-experience-release.md
+  - docs/ops/review-delivery.md
+- Changes:
+  - 실제 claude-opus-5-5 CLI 7회 구현 위임 후 직접 검수; 추가 확대 검토 호출은 한도로 실행되지 않아 완료로 세지 않음.
+  - 유형 건수·선택 위계·목록/지도/상세 공통화, 겹친/동일 좌표 군집 선택과 초점 복귀, 두 목적 장식 이미지 적용.
+  - 직접 실증한 숨김/크기 변경 후 지도 중심 이동을1dddaa0에서 보완.
+  - 2475522 원본에서 D 드라이브107개 사본과 로컬 실제 자료 화면10장 전달.
+- Validation:
+  - 기존 단위379·전체 headless24 완료. 최종 지도 보완은 타입 포함 빌드·관광자원48항목 재검증.
+  - 강릉478/178·제주426/89 실제 앱 응답, 실제 Chrome 탭 확대2.0·모바일·오류0·앱쓰기0. 공개 최종 버전 검증은 대기.
+  - D사본107개 해시·39HTML·556로컬참조·Mermaid17·이미지93,1280/390px 오류/넘침0.
+  - ARC36250279743은6592de7 검증/빌드 후 Harbor push quota 실패. 비삭제 시험5165 성공·후보3/보호2·삭제미실행. 기존 앱 Synced Healthy 3/3.
+- Questions:
+  - 이전 이미지3개 즉시 정리 또는03:30 예약 정리 후 최신 main 배포 재개 결정이 필요하다.
+- Handoff: Codex

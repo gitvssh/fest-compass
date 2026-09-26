@@ -209,7 +209,7 @@ headless Chromium에서 1280/390px 각각 HTML35개·Mermaid17개·이미지77�
 
 ## 관광자원 공통 소개·음식점·숙박 전달 · 2026-09-26
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-26-tourism-resources-reviewed`를 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-26-tourism-resources-reviewed`를 열었다.
 원본 커밋 `bad17a08d116a159a57679018aeb813efe7f6bd5`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
 첫 카드에 [실제 공개 화면·검증41](../validation/41-tourism-resources.md)과 [화면 목표·기본 배치19](../design/19-tourism-resources.md)를 둔다.
 강릉 음식점·숙박 목록/지도, 숙박 소개, 기존 제주 축제 음식점 소개 PC·모바일 4장을 포함한다.
@@ -222,3 +222,17 @@ headless Chromium에서 1280/390px 각각 HTML 37개·Mermaid 17개·이미지 8
 
 옛 `fest-compass/index.html`의 해시가 전달 전후 일치하며 이전 묶음과 프로젝트 원본은 보존했다.
 Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다. 공개 기능과 통제 시험의 범위는 기록41을 따른다.
+
+## 관광자원 시각화·목적 이미지 전달 · 2026-09-27
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-27-resource-experience-reviewed`를 연다.
+원본 커밋 `24755229ea9a90a38d35736649f73705bc0a90ca`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
+첫 카드에 [개선 화면·검수42](../validation/42-resource-experience.md)와 [시각 설계·이미지 원본20](../design/20-resource-experience.md)을 둔다.
+두 목적 이미지 원본·프롬프트와 로컬 실제 자료 화면10장을 담았다. 공개 배포가 대기 중임을 결과 문서 첫머리에 표시한다.
+
+실제 D 드라이브 9p 마운트에 원본 사본107개·시안11페이지·문서27페이지·시작 페이지를 전달했다.
+원본·사본 SHA-256 107개 일치, HTML39개·로컬 링크/이미지/앵커556개 정상, 저장소 밖 상대 링크0개다.
+headless Chromium에서 HTML39개·Mermaid17개·이미지93개 표시와 1280/390px의 가로 넘침 없음을 확인했다.
+페이지 오류·깨진 이미지0, 시작 파일→최신 묶음 이동도 확인했다. 주 담당자가 개선 화면과 D 사본 시작/모바일 문서를 직접 검수했다.
+옛 `fest-compass/index.html`의 해시는 전달 전후 일치하며 이전 묶음과 프로젝트 원본을 보존했다.
+Windows 브라우저 직접 실행과 새 버전 공개 사이트 검수는 미평가다. 배포 재개 절차는 [용량 점검 기록](resource-experience-release.md)을 따른다.
