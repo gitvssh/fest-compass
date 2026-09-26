@@ -740,7 +740,8 @@ async function currentSameName({ page }) {
   await visible(page.getByText("충청남도 논산시 · 현재 등록 정보 · 등록 일정 2026.4.10(금) ~ 2026.4.12(일)", { exact: true }));
   await excludes(page.locator("main header"), "지난 개최 기록");
   await excludes(page.locator("main header"), "지난 개최");
-  await visible(page.getByText("이 축제의 지난 개최 기록이 없어요.", { exact: true }));
+  await visible(page.getByRole("heading", {name:"논산시 외지인 방문 흐름",exact:true}));
+  await excludes(page.locator("main"), "이 축제의 지난 개최 기록이 없어요.");
   for (const e of NONSAN) assert.equal(await editionHeading(page, e.label).count(), 0);
   assert.equal(calls.filter(c => c.endpoint === "history" && (c.params.festival ?? "").startsWith("current")).length, 0, "no archive history requested for a current identity");
   await page.getByRole("button", { name: "등록 정보 출처", exact: true }).click();

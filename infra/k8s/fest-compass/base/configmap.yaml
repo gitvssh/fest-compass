@@ -10,3 +10,4 @@ data:
   APP_MODE: public-readonly
   DATABASE_URL: file:/data/fest-compass.db
   FORECAST_DATA_DIR: /data/forecast
+  SOURCE_DATA_DIR: /data/festival-sources

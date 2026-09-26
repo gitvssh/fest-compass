@@ -151,7 +151,9 @@ test("national keyword search: optional region, verified lDong only, dates null,
   const c = first.current;
   assert.deepEqual([c.mode, c.status, c.page, c.next, c.total, c.omitted, c.continuity], ["keyword", "complete", 1, { page: 2, total: 45 }, 45, 1, null]);
   assert.equal(c.items.filter(i => i.contentId === "525292").length, 1, "identical ids collapse");
-  assert.ok(c.items.every(i => i.start === null && i.end === null && !i.datesVerified && i.linkedArchiveId === null));
+  assert.ok(c.items.every(i => i.start === null && i.end === null && !i.datesVerified));
+  assert.equal(c.items[0].linkedArchiveId, "archive:nonsan-strawberry");
+  assert.ok(c.items.slice(1).every(i => i.linkedArchiveId === null));
   assert.deepEqual(c.items.slice(0, 3).map(i => i.id), ["current:44230:525292", "current:3611036110:1", "current:44230:2"]);
   assert.deepEqual(first.archive.items.map(f => f.id), ["archive:nonsan-strawberry"], "archive stays independent of current ids with the same name");
   assert.deepEqual(tour.calls[0][1], { keyword: "딸기", contentTypeId: "15", numOfRows: String(KEYWORD_PAGE_SIZE), pageNo: "1", arrange: "A" });
@@ -177,7 +179,8 @@ test("current id restore is verified server-side and never trusts URL metadata",
   const common = (r: Record<string, unknown>) => () => page(1, 1, [r]);
   const ok = fakeTour({ detailCommon2: common(row("525292", "논산딸기축제", "44", "230")), detailIntro2: () => page(1, 1, [{ contentid: "525292", contenttypeid: "15", eventstartdate: "20260326", eventenddate: "20260329" }]) });
   const verified = await service({ tour: ok.call }).loadFestivals(parseFestivalSearch(req("id=current:44230:525292"), "2026-09-23"));
-  assert.deepEqual([verified.current.mode, verified.current.lookup, verified.current.status, verified.archive.status], ["lookup", "verified", "complete", "not-requested"]);
+  assert.deepEqual([verified.current.mode, verified.current.lookup, verified.current.status, verified.archive.status], ["lookup", "verified", "complete", "complete"]);
+  assert.equal(verified.archive.items[0].id, "archive:nonsan-strawberry");
   assert.deepEqual([verified.current.items[0].name, verified.current.items[0].start, verified.current.items[0].end, verified.current.items[0].datesVerified], ["논산딸기축제", "2026-03-26", "2026-03-29", true]);
   assert.deepEqual(ok.calls.map(c => c[0]), ["detailCommon2", "detailIntro2"]);
   const introFails = fakeTour({ detailCommon2: common(row("525292", "논산딸기축제", "44", "230")), detailIntro2: () => new Error("down") });
@@ -286,7 +289,6 @@ test("pure period, monthly and catalogue rules", () => {
   assert.deepEqual([years.map(y => [y.year, y.complete]), defaultYear(years)], [[[2025, true], [2026, false]], 2025]);
   const cat = archiveCatalogue(editions, () => true);
   assert.deepEqual(cat.map(f => f.festivalId).sort(), ["baekje-gongju", "imsil-cheese", "nonsan-strawberry", "wonju-peach"]);
-  assert.equal(IDENTITY_LINKS.length, 0);
   const cur: CurrentFestival = currentFestival(regionRef("44", "230")!, { id: "9", title: "논산딸기축제", address: "", latitude: 36.2, longitude: 127.1, start: "2026-03-26", end: "2026-03-29", modifiedAt: null }, false, null);
   assert.deepEqual([cur.start, cur.linkedArchiveId, cur.provenance.collectedAt], [null, null, null], "unverified dates are not published");
 });

@@ -17,6 +17,7 @@ export type FestivalContextValue = {
   source: "archive" | "current";
   /** Region of the verified festival record only (archive record or server-verified current registration). */
   region: RegionRef | null;
+  /** The archive record itself, or for a current festival the reviewed archive record it is linked to. */
   archive: ArchiveFestival | null;
   current: CurrentFestival | null;
   /** The lookup finished and this id is not a known festival. */
@@ -36,6 +37,7 @@ const VIEWS: { view: View; label: string }[] = [
   { view: "resources", label: "주변 관광자원" },
   { view: "timing", label: "개최 시기" },
 ];
+const pastYears = (archive: ArchiveFestival) => `지난 개최 ${archive.editions.map(e => `${e.year}년${e.start ? "" : "(개최일 미확인)"}`).join(" · ")}`;
 
 // A failed refresh of the same id keeps the earlier verified record (and marks it) instead of dropping it.
 function mergeLookup(previous: FestivalSearchResponse, next: FestivalSearchResponse): FestivalSearchResponse {
@@ -52,13 +54,16 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
   const title = useRef<HTMLHeadingElement>(null);
   festivalMemory(id);
 
-  const archive = parsed.source === "archive" ? lookup.data?.archive.items.find(f => f.id === id) ?? null : null;
   const current = parsed.source === "current" ? lookup.data?.current.items.find(f => f.id === id) ?? null : null;
+  // A current festival carries its reviewed archive record only through its explicit link, never by name.
+  const archiveId = parsed.source === "archive" ? id : current?.linkedArchiveId ?? null;
+  const archive = archiveId ? lookup.data?.archive.items.find(f => f.id === archiveId) ?? null : null;
+  const own = parsed.source === "archive" ? archive : current;
   const block = parsed.source === "archive" ? lookup.data?.archive : lookup.data?.current;
   // Absence is confirmed only by a completed lookup of this id; a failed or skipped lookup is not absence.
-  const confirmedAbsent = !!block && (block.status === "complete" || block.status === "empty") && !(archive ?? current);
-  const region = archive?.region ?? current?.region ?? null;
-  const name = archive?.name ?? current?.name ?? null;
+  const confirmedAbsent = !!block && (block.status === "complete" || block.status === "empty") && !own;
+  const region = own?.region ?? null;
+  const name = own?.name ?? null;
   const unavailable = block?.status === "unavailable";
   const value: FestivalContextValue = { id, source: parsed.source, region, archive, current, notFound: confirmedAbsent, name,
     lookup: { loading: lookup.loading, failure: lookup.failure, retry: lookup.retry, unavailable } };
@@ -70,21 +75,22 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
 
   const searchHref = `/existing/search${shared.search ? `?${shared.search}` : ""}`;
   // Only a verified record (including one kept after a failed refresh) offers a related-material search.
-  const verified = archive ?? current;
+  const verified = own;
+  const years = [...new Set([...editionYearOptions(verified), ...(parsed.source === "current" ? editionYearOptions(archive) : [])])].sort((a, b) => b - a);
   const related = verified && !confirmedAbsent ? <RelatedSearch key={id} target={verified.name} subject={verified.name} region={verified.region}
-    topics={FESTIVAL_TOPICS} years={editionYearOptions(verified)}
+    topics={FESTIVAL_TOPICS} years={years}
     defaultYear={params ? selectedEditionYear(archive, params, view === "visits") : null} /> : null;
   return <FestivalContext.Provider value={value}>
     <div className="space-y-3">
       <header className="space-y-1">
         <Link href={searchHref} className="inline-flex text-sm font-bold text-blue underline underline-offset-4">← 다른 축제 찾기</Link>
         <h1 ref={title} tabIndex={-1} className="text-2xl font-extrabold leading-tight sm:text-3xl">{name ?? (confirmedAbsent ? "선택한 축제를 찾지 못했어요" : "축제 정보")}</h1>
-        {archive && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
-          <p className="min-w-0 break-words">{archive.region.name} · 지난 개최 {archive.editions.map(e => `${e.year}년${e.start ? "" : "(개최일 미확인)"}`).join(" · ")}</p>
+        {parsed.source === "archive" && archive && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
+          <p className="min-w-0 break-words">{archive.region.name} · {pastYears(archive)}</p>
           {related}
         </div>}
         {current && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
-          <p className="min-w-0 break-words">{current.region.name} · 현재 등록 정보 · {current.datesVerified && current.start ? `등록 일정 ${periodLabel(current.start, current.end)}` : "등록 일정 미확인"}</p>
+          <p className="min-w-0 break-words">{current.region.name} · 현재 등록 정보 · {current.datesVerified && current.start ? `등록 일정 ${periodLabel(current.start, current.end)}` : "등록 일정 미확인"}{archive ? ` · ${pastYears(archive)}` : ""}</p>
           <InfoDialog label="등록 정보 출처" title="현재 등록 정보 출처" buttonClassName="region-button min-h-8 px-2 py-1 text-xs">
             <p>한국관광공사에 현재 등록된 축제·행사 정보예요.</p>
             {current.address && <p>등록 주소: {current.address}</p>}
@@ -93,7 +99,7 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
           </InfoDialog>
           {related}
         </div>}
-        <LoadState loading={lookup.loading} failure={lookup.failure} hasData={!!(archive ?? current)} retrievedAt={lookup.data?.retrievedAt} subject="축제 정보를" onRetry={lookup.retry} />
+        <LoadState loading={lookup.loading} failure={lookup.failure} hasData={!!own} retrievedAt={lookup.data?.retrievedAt} subject="축제 정보를" onRetry={lookup.retry} />
         {unavailable && !lookup.failure && <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-coral-soft p-3 text-sm">
           축제 등록 정보를 불러오지 못했어요.
           <button type="button" className="region-button" onClick={lookup.retry}>다시 불러오기</button>

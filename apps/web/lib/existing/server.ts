@@ -1,4 +1,5 @@
 import "server-only";
+import { join } from "node:path";
 import editionsData from "../../data/festival-editions.json";
 import bundled from "../../data/region-history.json";
 import expanded from "../../data/regional-history-expanded.json";
@@ -7,12 +8,13 @@ import { defaultHostVisits, type HostVisitsResolver } from "../datalab/host-visi
 import { defaultVisitorProfile, type VisitorProfileResolver } from "../datalab/visitor-profile";
 import { loadRuntimeSummary } from "../forecast/runtime";
 import { loadSnapshots } from "../forecast/store";
+import { readNationalDatasets, readRegistrationPeriods } from "../festival-sources";
 import { koreaDate } from "../region/calendar";
 import { HISTORY_SOURCE, selectHistory, TYPES, type Dataset } from "../region/model";
 import { getRegionData } from "../region/service";
 import type { Edition } from "../comparison/types";
 import type { Query, ResourceResult } from "../region/types";
-import { createArchiveLoader, scopedFreshness, type ArchiveState, type RuntimeRead } from "./archive";
+import { combineArchiveStates, createArchiveLoader, scopedFreshness, type ArchiveState, type RuntimeRead } from "./archive";
 import { archiveCatalogue, currentFestival, parseFestivalId, regionRef, searchArchive } from "./identity";
 import { dailyValues, datesBetween, defaultYear, editionHistory, editionWindow, linkedVisitsCompatible, monthlyMeans, sharedYMax, VISIT_DEFINITION, type LinkedVisits, type Observed, yearCoverage } from "./history";
 import { festivalsKey, historyKey, InvalidRequest, monthlyKey, resourcesKey, scheduleKey } from "./request";
@@ -38,6 +40,7 @@ export type ExistingDeps = {
   hostVisits?: HostVisitsResolver;
   /** Reviewed DataLab visitor profiles of the exact selected editions; absent -> visitorProfile is null. Production injects the verified default. */
   visitorProfile?: VisitorProfileResolver;
+  registrationPeriods?: (contentId: string, regionCode: string) => Promise<{ id: string; start: string; end: string; collectedAt: string; name?: string }[]>;
   now?: () => string;
   today?: () => string;
 };
@@ -53,7 +56,17 @@ async function readRuntime(): Promise<RuntimeRead> {
     points: d.days.map(p => ({ date: p.date, quality: p.quality, value: p.quality === "complete" ? p.values["2"] : null })) })) };
 }
 // The runtime daily collector covers Nonsan only; its state never labels other districts.
-export const archiveState = createArchiveLoader({ bundles: [...bundled, ...expanded.datasets], readRuntime, runtimeTargets: ["44230"] });
+const forecastArchive = createArchiveLoader({ bundles: [...bundled, ...expanded.datasets], readRuntime, runtimeTargets: ["44230"] });
+export const festivalSourceDir = () => process.env.SOURCE_DATA_DIR || (process.env.FORECAST_DATA_DIR ? join(process.env.FORECAST_DATA_DIR, "festival-sources") : null);
+const nationalArchive = createArchiveLoader({ bundles: [], readRuntime: async () => {
+  const dir = festivalSourceDir();
+  if (!dir) return { kind: "not-configured" };
+  const datasets = await readNationalDatasets(dir);
+  return datasets.length ? { kind: "ok", datasets } : { kind: "not-configured" };
+} });
+export async function archiveState(): Promise<ArchiveState> {
+  return combineArchiveStates(await Promise.all([forecastArchive(), nationalArchive()]));
+}
 
 /** Latest-collected row per date wins, including an explicit missing/invalid row (never revives older values). */
 export function regionObservations(all: Dataset[], province: string, district: string, range: Range): Observed[] {
@@ -99,6 +112,11 @@ export function createExistingService(deps: ExistingDeps) {
       try {
         const found = await lookupCurrent(deps.tour, target.contentId, expected);
         const items = found.festival ? [currentFestival(found.festival.region, found.festival.fields, found.festival.datesVerified, found.collectedAt)] : [];
+        if (items[0] && deps.registrationPeriods) {
+          try {
+            items[0].periods = (await deps.registrationPeriods(items[0].contentId, items[0].region.code)).filter(p => !p.name || p.name === items[0].name).map(p => ({ id: p.id, start: p.start, end: p.end, collectedAt: p.collectedAt }));
+          } catch { /* A registration archive failure never hides current identity or district observations. */ }
+        }
         return { ...none, status: items.length ? "complete" : "empty", collectedAt: found.collectedAt, mode: "lookup", lookup: found.result, items };
       } catch { return { ...none, ...unavailable, mode: "lookup" }; }
     }
@@ -122,8 +140,8 @@ export function createExistingService(deps: ExistingDeps) {
   async function loadFestivals(req: FestivalSearchRequest): Promise<FestivalSearchResponse> {
     const target = req.id ? parseFestivalId(req.id) : null;
     const [{ state, festivals }, cur] = await Promise.all([catalogue(), current(req, target)]);
-    const archive: FestivalSearchResponse["archive"] = target?.source === "current" ? { status: "not-requested", error: null, collectedAt: null, items: [], freshness: null } : (() => {
-      const items = target ? festivals.filter(f => f.festivalId === target.festivalId) : searchArchive(festivals, req.q, req.province && req.district ? regionRef(req.province, req.district) : null);
+    const archive: FestivalSearchResponse["archive"] = (() => {
+      const items = target?.source === "current" ? festivals.filter(f => f.id === cur.items[0]?.linkedArchiveId) : target?.source === "archive" ? festivals.filter(f => f.festivalId === target.festivalId) : searchArchive(festivals, req.q, req.province && req.district ? regionRef(req.province, req.district) : null);
       const codes = [...new Set(items.map(f => f.region.code))];
       return { status: items.length ? "complete" as const : "empty" as const, error: null, collectedAt: null, items, freshness: codes.length ? scopedFreshness(state, codes) : null };
     })();
@@ -131,7 +149,15 @@ export function createExistingService(deps: ExistingDeps) {
   }
 
   async function loadHistory(req: HistoryRequest): Promise<HistoryResponse> {
-    const { state, festivals } = await catalogue(), festival = festivals.find(f => f.festivalId === req.festival);
+    const { state, festivals } = await catalogue();
+    const parsed = parseFestivalId(req.festival);
+    let archiveFestivalId = req.festival;
+    if (parsed?.source === "current") {
+      const cur = await current({ id: req.festival, q: "", province: null, district: null, start: today(), end: today(), page: 1, total: null }, parsed);
+      if (cur.status === "unavailable") throw new Error("source-unavailable");
+      archiveFestivalId = cur.items[0]?.linkedArchiveId?.replace(/^archive:/, "") ?? "";
+    }
+    const festival = festivals.find(f => f.festivalId === archiveFestivalId);
     if (!festival) throw new NotFound("festival");
     const ids = req.editions.length ? req.editions : festival.defaultEditionIds.length ? festival.defaultEditionIds : festival.editions.slice(0, 1).map(e => e.editionId);
     const refs = ids.map(id => festival.editions.find(e => e.editionId === id));
@@ -188,5 +214,6 @@ export function createExistingService(deps: ExistingDeps) {
   return { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule };
 }
 
-const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(), hostVisits: defaultHostVisits, visitorProfile: defaultVisitorProfile });
+const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(), hostVisits: defaultHostVisits, visitorProfile: defaultVisitorProfile,
+  registrationPeriods: async (contentId, code) => { const dir = festivalSourceDir(); return dir ? readRegistrationPeriods(dir, contentId, code) : []; } });
 export const { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule } = service;

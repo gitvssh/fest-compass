@@ -1,0 +1,18 @@
+[
+  {
+    "archiveFestivalId": "imsil-cheese",
+    "contentId": "2031318",
+    "region": "52750",
+    "evidence": "2026-09-26 TourAPI detailCommon2: contentId2031318, lDong52/750, 제전위원회 홈페이지 https://www.imsilfestival.com/; 보관 2023~2025년 회차의 같은 주최 홈페이지와 대조",
+    "verifiedAt": "2026-09-26",
+    "version": "tour-archive-identity-v1"
+  },
+  {
+    "archiveFestivalId": "nonsan-strawberry",
+    "contentId": "525292",
+    "region": "44230",
+    "evidence": "2026-09-26 TourAPI detailCommon2: contentId525292, lDong44/230, 주최 논산시와 홈페이지 https://www.nonsan.go.kr/nsfestival/intro.html; 보관 2023~2025년 논산시 축제 회차 원문과 대조",
+    "verifiedAt": "2026-09-26",
+    "version": "tour-archive-identity-v1"
+  }
+]

@@ -32,6 +32,9 @@ fi
 if [ "${FORECAST_DATA_DIR:-}" = /data/forecast ]; then
   mkdir -p /data/forecast
 fi
+if [ "${SOURCE_DATA_DIR:-}" = /data/festival-sources ]; then
+  mkdir -p /data/festival-sources
+fi
 
 database_path="${DATABASE_URL#file:}"
 database_path="${database_path%%\?*}"

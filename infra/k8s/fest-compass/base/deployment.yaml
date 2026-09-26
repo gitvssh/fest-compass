@@ -68,6 +68,40 @@ spec:
             - name: tmp
               mountPath: /tmp
       containers:
+        - name: festival-source-worker
+          image: registry.damecasol.com/fest-compass/web:prepare
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "/app/scripts/festival-source-worker.sh"]
+          env:
+            - name: SOURCE_DATA_DIR
+              value: /data/festival-sources
+          envFrom:
+            - secretRef:
+                name: fest-compass-runtime
+          livenessProbe:
+            exec:
+              command: ["node", "/app/festival-source-worker.cjs", "--health"]
+            initialDelaySeconds: 60
+            periodSeconds: 60
+            timeoutSeconds: 5
+            failureThreshold: 3
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          resources:
+            requests:
+              cpu: 25m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 384Mi
+          volumeMounts:
+            - name: data
+              mountPath: /data/festival-sources
+              subPath: festival-sources
         - name: forecast-worker
           image: registry.damecasol.com/fest-compass/web:prepare
           imagePullPolicy: IfNotPresent

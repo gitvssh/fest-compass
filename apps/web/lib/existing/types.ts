@@ -25,6 +25,8 @@ export type CurrentFestival = {
   id: string; source: "current"; contentId: string; name: string; region: RegionRef;
   start: string | null; end: string | null; datesVerified: boolean;
   address: string; point: Point | null; modifiedAt: string | null; linkedArchiveId: string | null; provenance: PublicSource;
+  /** Observed provider registration dates, never inferred festival editions. */
+  periods?: { id: string; start: string; end: string; collectedAt: string }[];
 };
 
 export type FestivalSearchRequest = { q: string; province: string | null; district: string | null; start: string; end: string; page: number; total: number | null; id: string | null };

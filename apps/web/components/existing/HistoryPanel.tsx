@@ -7,11 +7,12 @@ import type { EditionHistory, HistoryResponse, Range } from "@/lib/existing/type
 import { rememberView, writeAddress } from "./address";
 import { DEFAULT_PAD, EditionPicker, WindowForm, type Pads } from "./EditionControls";
 import { EditionChart, niceMax } from "./EditionChart";
+import { CurrentVisits } from "./CurrentVisits";
 import { useFestival, useViewHeadingFocus } from "./ExistingShell";
 import { dateOnly, daysBetween, dayWithWeekday, editionLabel, fullDate, number, rawNumber, timeLabel, validDay, WEEKDAY_SHORT } from "./format";
 import { HostAreaVisits } from "./HostAreaVisits";
 import { festivalMemory, viewHref } from "./memory";
-import { festivalPath, one } from "./route-params";
+import { one } from "./route-params";
 import { Disclosure, FreshnessNote, InfoDialog, LoadState, TableScroll } from "./ui";
 import { useKeyedRequest } from "./useKeyedRequest";
 import { VisitorProfile } from "./VisitorProfile";
@@ -43,21 +44,17 @@ function addressOf(a: Applied): URLSearchParams {
 export function HistoryPanel() {
   const festival = useFestival(), heading = useRef<HTMLHeadingElement>(null);
   useViewHeadingFocus(festival.id, "visits", heading);
-  const linked = festival.current?.linkedArchiveId ?? null;
+  // A registered festival with a reviewed past-edition record shows that record here, under its own name and address.
   return <section aria-labelledby="visits-heading" className="space-y-4">
-    {festival.source === "current" ? <>
-      <h2 id="visits-heading" ref={heading} tabIndex={-1} className="text-xl font-extrabold">과거 방문 흐름</h2>
-      <NoHistory id={festival.id} linkedArchiveId={linked} />
-    </> : <ArchiveHistory heading={heading} />}
+    {festival.source === "archive" || festival.archive ? <ArchiveHistory heading={heading} /> : <CurrentVisits heading={heading} />}
   </section>;
 }
 
-function NoHistory({ id, linkedArchiveId }: { id: string; linkedArchiveId: string | null }) {
+function NoHistory({ id }: { id: string }) {
   return <div className="region-card space-y-3">
     <p className="font-bold">이 축제의 지난 개최 기록이 없어요.</p>
     <p className="text-sm text-muted">현재 등록된 정보로 주변 관광자원과 개최 시기를 살펴볼 수 있어요.</p>
     <div className="flex flex-wrap gap-2">
-      {linkedArchiveId && <Link className="region-primary" href={festivalPath(linkedArchiveId, "visits")}>지난 개최 기록 보기</Link>}
       <Link className="region-button" href={viewHref(id, "resources")}>주변 관광자원 보기</Link>
       <Link className="region-button" href={viewHref(id, "timing")}>개최 시기 보기</Link>
       <Link className="region-button" href="/existing/search">다른 축제 찾기</Link>
@@ -94,7 +91,7 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
     <h2 id="visits-heading" ref={heading} tabIndex={-1} className="text-xl font-extrabold">{region ? `${region.districtName} 외지인 방문 추이` : "지역 외지인 방문 추이"}</h2>
     <p className="text-sm text-muted">{region ? `${region.name} 전체` : "시군구 전체"} · 명/일 · 통신 기반 추정 · 축제장 입장객 수 아님</p>
   </div>;
-  if (result.failure === "notfound" && !data) return <>{title}<NoHistory id={festival.id} linkedArchiveId={null} /></>;
+  if (result.failure === "notfound" && !data) return festival.source === "current" ? <CurrentVisits heading={heading} /> : <>{title}<NoHistory id={festival.id} /></>;
   return <>
     {title}
     <EditionPicker key={`${appliedIds.join(",")}/${applied.before}/${applied.after}`} editions={editions} applied={appliedIds} pads={{ before: applied.before, after: applied.after }}

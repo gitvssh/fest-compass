@@ -1,4 +1,6 @@
 import "server-only";
+import { join } from "node:path";
+import { readNationalDatasets } from "../festival-sources";
 import { isKtoSuccessCode, parseKtoWire } from "../kto/wire";
 import { loadRuntimeSummary } from "../forecast/runtime";
 import { loadSnapshots } from "../forecast/store";
@@ -68,6 +70,10 @@ async function historyDatasets() {
   if (runtimeHistory && runtimeHistory.expires > Date.now()) return runtimeHistory.value;
   const value = (async () => {
     const datasets: Dataset[] = [...bundled, ...expanded.datasets];
+    const sourceDir = process.env.SOURCE_DATA_DIR || (process.env.FORECAST_DATA_DIR ? join(process.env.FORECAST_DATA_DIR, "festival-sources") : null);
+    if (sourceDir) {
+      try { datasets.push(...await readNationalDatasets(sourceDir)); } catch { /* Other validated sources remain independent. */ }
+    }
     try {
       const { summary, source } = await loadRuntimeSummary();
       const snapshot = summary.automation?.snapshot;

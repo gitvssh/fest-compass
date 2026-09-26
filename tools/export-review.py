@@ -23,6 +23,8 @@ PROJECT_ID = 'fest-compass'
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
 MARKER = '<!-- pickDday-review-index -->'
 DOCS = {
+    'docs/validation/40-unified-festival-analysis.md': '고른 축제의 공통 분석·실제 화면·검증',
+    'docs/design/18-unified-festival-analysis.md': '모든 등록 축제의 화면 목표·기본 배치',
     'docs/validation/39-edition-profile-comparison.md': '임실 회차별 방문자 특성 비교·실제 화면',
     'docs/validation/38-visitor-profile.md': '임실 방문자 특성·관광자원 연결·실제 화면',
     'docs/validation/37-visitor-context.md': '임실 방문 구성·연간 추세·실제 화면',

@@ -9,7 +9,7 @@ export type RuntimeRead = { kind: "not-configured" } | { kind: "ok"; datasets: D
  * `freshness` is the loader-wide state; responses must use `scopedFreshness()`. `runtime`/`runtimeRegions` are
  * internal: the runtime rows in use and the districts the runtime collector covers (targets + validated rows).
  */
-export type ArchiveState = { datasets: Dataset[]; freshness: DataFreshness; runtime: Dataset[]; runtimeRegions: string[] };
+export type ArchiveState = { datasets: Dataset[]; freshness: DataFreshness; runtime: Dataset[]; runtimeRegions: string[]; byRegion?: Record<string, DataFreshness> };
 export type ArchiveLoaderOptions = { bundles: Dataset[]; readRuntime: () => Promise<RuntimeRead>; runtimeTargets?: string[]; now?: () => number; successMs?: number; failureMs?: number };
 
 const QUALITIES = new Set(["complete", "missing", "invalid"]);
@@ -22,6 +22,7 @@ export function validRuntimeDataset(d: Dataset, nowMs: number): boolean {
   for (const p of d.points) {
     if (!p || !day(p.date) || dates.has(p.date) || !QUALITIES.has(p.quality)) return false;
     dates.add(p.date);
+    if (p.collectedAt !== undefined && (!Number.isFinite(Date.parse(p.collectedAt)) || Date.parse(p.collectedAt) > at)) return false;
     if (p.value !== null && !(typeof p.value === "number" && Number.isFinite(p.value) && p.value >= 0)) return false;
     if (p.quality === "complete" && p.value === null) return false;
   }
@@ -36,10 +37,27 @@ const newestTime = (list: (string | null)[]) => list.filter((v): v is string => 
  * other districts are archive-only with their own bundle times.
  */
 export function scopedFreshness(state: ArchiveState, codes: string[], collected: (string | null)[] | null = null): DataFreshness {
+  if (state.byRegion) {
+    const candidates = codes.map(c => state.byRegion?.[c]).filter((f): f is DataFreshness => !!f);
+    const selected = candidates.sort((a, b) => (b.collectedAt ?? "").localeCompare(a.collectedAt ?? ""))[0];
+    if (selected) return { ...selected, collectedAt: newestTime(collected ?? state.datasets.filter(d => codes.includes(d.region.code)).map(d => d.collectedAt)), refresh: { ...selected.refresh } };
+  }
   const inScope = (d: Dataset) => codes.includes(d.region.code);
   const collectedAt = newestTime(collected ?? state.datasets.filter(inScope).map(d => d.collectedAt));
   if (!codes.some(c => state.runtimeRegions.includes(c))) return { mode: "archive-only", collectedAt, runtimeCollectedAt: null, refresh: { status: "not-configured", retryable: false } };
   return { mode: state.freshness.mode, collectedAt, runtimeCollectedAt: newest(state.runtime.filter(inScope)), refresh: { ...state.freshness.refresh } };
+}
+
+/** Independent sources keep their own failures and collection times; one collector cannot erase another. */
+export function combineArchiveStates(states: ArchiveState[]): ArchiveState {
+  const datasets = states.flatMap(s => s.datasets), codes = [...new Set(datasets.map(d => d.region.code))];
+  const byRegion: Record<string, DataFreshness> = {};
+  for (const code of codes) {
+    const candidates = states.filter(s => s.datasets.some(d => d.region.code === code)).map(s => scopedFreshness(s, [code]));
+    byRegion[code] = candidates.sort((a, b) => (b.collectedAt ?? "").localeCompare(a.collectedAt ?? ""))[0];
+  }
+  return { datasets, runtime: states.flatMap(s => s.runtime), runtimeRegions: [...new Set(states.flatMap(s => s.runtimeRegions))],
+    freshness: states[0].freshness, byRegion };
 }
 
 /**

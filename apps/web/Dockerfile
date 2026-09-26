@@ -44,13 +44,16 @@ COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 COPY --from=builder --chown=node:node /app/public ./public
 COPY --from=builder --chown=node:node /app/.next/seed.cjs ./prisma/seed.cjs
 COPY --from=builder --chown=node:node /app/.next/forecast-worker.cjs ./forecast-worker.cjs
+COPY --from=builder --chown=node:node /app/.next/festival-source-worker.cjs ./festival-source-worker.cjs
+COPY --from=builder --chown=node:node /app/.next/collect-festival-sources.cjs ./collect-festival-sources.cjs
 COPY --chown=node:node data/forecast-seed.json.gz data/forecast-plan.json data/calendar-trial-plan.json ./data/
 COPY --chmod=0555 --chown=node:node docker/forecast-worker.sh ./scripts/forecast-worker.sh
+COPY --chmod=0555 --chown=node:node docker/festival-source-worker.sh ./scripts/festival-source-worker.sh
 COPY --from=builder --chown=node:node /app/prisma/schema.prisma ./prisma/schema.prisma
 COPY --from=builder --chown=node:node /app/prisma/migrations ./prisma/migrations
 COPY --chown=node:node scripts/migrate-sqlite.mjs ./scripts/migrate-sqlite.mjs
 COPY --chmod=0555 --chown=node:node docker/entrypoint.sh /usr/local/bin/fest-compass-entrypoint
-RUN sed -i 's/\r$//' /usr/local/bin/fest-compass-entrypoint /app/scripts/forecast-worker.sh && command -v flock
+RUN sed -i 's/\r$//' /usr/local/bin/fest-compass-entrypoint /app/scripts/forecast-worker.sh /app/scripts/festival-source-worker.sh && command -v flock
 
 USER node
 

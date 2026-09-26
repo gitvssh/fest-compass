@@ -52,7 +52,7 @@ export function parseWindows(raw: string | null): Record<string, { start: string
 }
 export function parseHistory(p: URLSearchParams): HistoryRequest {
   const festival = (p.get("festival") ?? "").trim().replace(/^archive:/, "");
-  if (!/^[a-z0-9-]{1,80}$/.test(festival)) throw new InvalidRequest("festival");
+  if (!/^[a-z0-9-]{1,80}$/.test(festival) && parseFestivalId(festival)?.source !== "current") throw new InvalidRequest("festival");
   const raw = p.get("editions"), editions = raw === null || raw.trim() === "" ? [] : [...new Set(raw.split(",").map(s => s.trim()).filter(Boolean))];
   if (editions.length > MAX_EDITIONS || editions.some(e => !/^[a-z0-9-]{1,100}$/.test(e))) throw new InvalidRequest("editions");
   const pad = (name: string) => {

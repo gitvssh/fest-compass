@@ -187,6 +187,15 @@ metadata:
             with self.subTest(old=old):
                 self.assert_contract_rejects(self.rendered.replace(old, new), message)
 
+    def test_source_worker_cannot_mount_the_sqlite_root_or_skip_its_lock(self) -> None:
+        for old, new, message in (
+            ("subPath: festival-sources", "subPath: other", "source-only PVC subdirectory"),
+            ("/app/scripts/festival-source-worker.sh", "/app/festival-source-worker.cjs", "kernel-locked source worker"),
+            ("SOURCE_DATA_DIR: /data/festival-sources", "SOURCE_DATA_DIR: /tmp/sources", "runtime source directory"),
+        ):
+            with self.subTest(message=message):
+                self.assert_contract_rejects(self.rendered.replace(old, new), message)
+
     def test_forecast_worker_cannot_mount_the_sqlite_root_or_skip_its_lock(self) -> None:
         for old, new, message in (
             ("subPath: forecast", "subPath: other", "forecast-only PVC subdirectory"),

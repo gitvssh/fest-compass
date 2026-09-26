@@ -36,14 +36,17 @@ export function mapResource(row: Record<string, unknown>, q: Query): Resource {
     longitude: latitude === null ? null : longitude, latitude: longitude === null ? null : latitude,
     start, end, modifiedAt: /^\d{14}$/.test(String(row.modifiedtime)) ? String(row.modifiedtime) : null };
 }
-export type Dataset = { snapshotId: string; collectedAt: string; source: string; region: { code: string; name: string }; points: { date: string; value: number | null; quality: string }[] };
+export type Dataset = { snapshotId: string; collectedAt: string; source: string; region: { code: string; name: string }; points: { date: string; value: number | null; quality: string; collectedAt?: string }[] };
 export function selectHistory(q: Query, datasets: Dataset[], warning = ""): History {
   const points: Observation[] = dates(q.start, q.end).map(date => ({ date, value: null, quality: "missing", snapshotId: null, collectedAt: null }));
   const matching = datasets.filter(d => d.region.code === `${q.province}${q.district}` && d.region.name === regionOf(q)?.districtName);
   const selected = matching.length > 0;
   if (selected) for (const d of [...matching].sort((a, b) => a.collectedAt.localeCompare(b.collectedAt))) {
     const byDate = new Map(d.points.map(p => [p.date, p]));
-    for (const p of points) { const v = byDate.get(p.date); if (v) Object.assign(p, { value: v.quality === "complete" && v.value !== null && Number.isFinite(v.value) && v.value >= 0 ? v.value : null, quality: v.quality, snapshotId: d.snapshotId, collectedAt: d.collectedAt }); }
+    for (const p of points) {
+      const v = byDate.get(p.date), at = v?.collectedAt ?? d.collectedAt;
+      if (v && at >= (p.collectedAt ?? "")) Object.assign(p, { value: v.quality === "complete" && v.value !== null && Number.isFinite(v.value) && v.value >= 0 ? v.value : null, quality: v.quality, snapshotId: d.snapshotId, collectedAt: at });
+    }
   }
   return { status: points.some(p => p.value !== null) ? "available" : "unavailable", source: HISTORY_SOURCE, unit: "명 (통신 기반 추정)", metric: "시군구 일별 외지인 방문",
     message: `${selected ? `${regionOf(q).districtName} 보관 관측 자료` : "선택 지역의 연속 방문 이력 미확보"}. 행사장 입장객·혼잡도가 아니며 날짜별 합계를 고유 방문객으로 해석할 수 없습니다.${warning ? ` ${warning}` : ""}`, points };

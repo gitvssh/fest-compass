@@ -1,4 +1,5 @@
 import { REGIONS, SOURCE } from "../region/model";
+import reviewedLinks from "../../data/festival-identity-links.json";
 import { validPoint } from "../comparison/distance";
 import type { Edition, Source } from "../comparison/types";
 import type { Resource } from "../region/types";
@@ -7,10 +8,7 @@ import type { ArchiveEditionRef, ArchiveFestival, CurrentFestival, PublicSource,
 // Archive festivalId/editionId and TourAPI contentid are independent identifier systems.
 // Only a reviewed row here may join them; name, year or coordinate similarity never does.
 export type IdentityLink = { archiveFestivalId: string; contentId: string; region: string; evidence: string; verifiedAt: string; version: string };
-export const IDENTITY_LINKS: readonly IdentityLink[] = [];
-
-// Regions whose daily visit archive exists today (region-history.json + regional-history-expanded.json).
-export const HISTORY_REGIONS = ["44230", "44150", "52750"] as const;
+export const IDENTITY_LINKS: readonly IdentityLink[] = reviewedLinks;
 export const MAX_EDITIONS = 3;
 
 const toRef = (r: (typeof REGIONS)[number]): RegionRef => ({ province: r.provinceCode, district: r.districtCode, code: `${r.provinceCode}${r.districtCode}`, name: `${r.provinceName} ${r.districtName}`, districtName: r.districtName });
@@ -43,7 +41,8 @@ export function parseFestivalId(id: string): { source: "archive"; festivalId: st
   return c && region ? { source: "current", province: region.province, district: region.district, contentId: c[2] } : null;
 }
 export function linkedArchiveId(region: RegionRef, contentId: string, links: readonly IdentityLink[] = IDENTITY_LINKS): string | null {
-  const link = links.find(l => l.contentId === contentId && l.region === region.code);
+  const candidates = links.filter(l => l.contentId === contentId && l.region === region.code);
+  const link = candidates.length === 1 && links.filter(l => l.archiveFestivalId === candidates[0].archiveFestivalId).length === 1 ? candidates[0] : null;
   return link ? archiveId(link.archiveFestivalId) : null;
 }
 
