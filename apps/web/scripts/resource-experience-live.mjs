@@ -27,6 +27,21 @@ try {
   const overflow = async label => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), label);
   const shot = async name => {
     await page.evaluate(() => window.scrollTo(0, 0));
+    if (name.endsWith("zoom-200")) {
+      // Native tab zoom and Playwright fullPage clipping use different coordinate spaces.
+      // Capture the real viewport with CDP; keep the zoom factor and CSS metrics in the report.
+      if (!name.startsWith("home")) await page.locator(".rmap-root").evaluate(el => {
+        const header = document.querySelector('header')?.getBoundingClientRect().height ?? 120;
+        window.scrollTo(0, el.getBoundingClientRect().top + scrollY - header - 12);
+      });
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const session = await context.newCDPSession(page);
+      try {
+        const result = await session.send("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
+        writeFileSync(join(output, `${name}.png`), Buffer.from(result.data, "base64"));
+      } finally { await session.detach(); }
+      return;
+    }
     return page.screenshot({ path: join(output, `${name}.png`), fullPage: true });
   };
   const zoom = async (factor, label) => {
@@ -76,8 +91,9 @@ try {
     const ratios = { button: contrast(rgb(colors.text), background), count: contrast(rgb(colors.pillText), pillBackground) };
     assert.ok(ratios.button >= 4.5 && ratios.count >= 4.5, `${sample.flow} selected type/count contrast`);
     report.samples.at(-1).selectedContrast = { ...colors, ratios };
-    await shot(`${sample.flow}-resources-desktop`);
     const group = page.locator(".rmap-group").first(); await group.waitFor();
+    await page.waitForFunction(() => [...document.querySelectorAll('.rmap-canvas img.leaflet-tile')].some(i => i.complete && i.naturalWidth > 0));
+    await shot(`${sample.flow}-resources-desktop`);
     await group.click();
     const chooser = page.getByRole("dialog", { name: /^가까운 장소 / }); await chooser.waitFor();
     const firstMember = chooser.locator(".rmap-item").first();
@@ -97,7 +113,7 @@ try {
     await group.click(); await chooser.waitFor(); await shot(`${sample.flow}-cluster-chooser`);
     await page.getByRole("button", { name: "가까운 장소 목록 닫기", exact: true }).click();
     report.checks.push(`${sample.flow}-dense-cluster-real-pointer-list-detail-identity-keyboard-escape`);
-    const item = expected.find(r => r.point); assert.ok(item);
+    const item = expected.find(r => r.id === memberId); assert.ok(item?.point);
     await rows.locator(`[data-resource-id="${item.id}"]`).click();
     await page.locator(`#${sample.heading}`).waitFor();
     assert.equal(await page.locator(`#${sample.heading}`).innerText(), item.title);
@@ -105,7 +121,12 @@ try {
     for (const width of [390, 320]) { await page.setViewportSize({ width, height: 900 }); await overflow(`${sample.flow} ${width}`); if (width === 390) await shot(`${sample.flow}-detail-mobile`); }
     await page.setViewportSize({ width: 1440, height: 1000 }); await zoom(2, sample.flow); await overflow(`${sample.flow} zoom 200%`);
     await page.getByRole("group", { name: "보기 방식" }).getByRole("button", { name: "지도", exact: true }).click();
-    await page.locator(".rmap-group").first().click(); await chooser.waitFor();
+    try { await page.locator(".rmap-group").first().click(); }
+    catch (error) {
+      report.mapFailure = await page.evaluate(() => ({ text: document.querySelector('[data-resource-area=map]')?.textContent, markers: document.querySelectorAll('.rmap-marker').length, groups: document.querySelectorAll('.rmap-group').length, size: document.querySelector('.rmap-canvas')?.getBoundingClientRect().toJSON() }));
+      await shot(`${sample.flow}-failed-zoom-200`); throw error;
+    }
+    await chooser.waitFor();
     await page.keyboard.press("Shift+Tab");
     assert.ok(await page.evaluate(() => document.activeElement !== document.body && !document.activeElement?.closest("[inert]")), `${sample.flow} zoom focus avoids covered map`);
     await page.getByRole("button", { name: "가까운 장소 목록 닫기", exact: true }).click();
@@ -114,7 +135,8 @@ try {
     await page.waitForFunction(id => document.activeElement?.id === id, sample.heading);
     await shot(`${sample.flow}-zoom-200`);
     await page.getByRole("button", { name: "상세 닫기", exact: true }).click();
-    assert.ok(await page.evaluate(() => document.activeElement !== document.body && !document.activeElement?.closest("[inert]")));
+    await page.waitForFunction(() => document.activeElement !== document.body && !document.activeElement?.closest("[inert]"));
+    assert.equal(await page.evaluate(() => document.activeElement?.getAttribute("aria-label")), "가까운 장소 목록 닫기");
     await page.getByRole("button", { name: "가까운 장소 목록 닫기", exact: true }).click();
     await page.getByRole("group", { name: "보기 방식" }).getByRole("button", { name: "목록", exact: true }).click();
     await zoom(1, `${sample.flow} reset`);

@@ -66,7 +66,7 @@ export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSele
     const placed = markers.current;
     import("leaflet").then(L => {
       if (cancelled || !element.current) return;
-      const map = L.map(element.current, { center: [36, 127.5], zoom: 7, minZoom: 5, maxZoom: 18, zoomControl: true, scrollWheelZoom: false, attributionControl: true, maxBounds: [[30, 120], [41, 136]] });
+      const map = L.map(element.current, { center: [36, 127.5], zoom: 7, minZoom: 5, maxZoom: 18, zoomControl: true, scrollWheelZoom: false, attributionControl: true, trackResize: false, maxBounds: [[30, 120], [41, 136]] });
       instance = map;
       map.createPane(PANE).style.zIndex = "610";
       const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, noWrap: true, keepBuffer: 0,
@@ -89,13 +89,17 @@ export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSele
     if (!engine || !el || !el.clientWidth || !el.clientHeight || (!p.bounds && !p.reveal)) return;
     const { bounds, reveal } = p;
     pending.current = { bounds: null, reveal: null };
-    engine.map.invalidateSize({ pan: false });
+    engine.map.invalidateSize({ pan: true, animate: false });
     if (bounds) engine.map.fitBounds(bounds, { padding: [24, 24], maxZoom: 14, animate: false });
     if (reveal) engine.map.panInside([reveal.latitude, reveal.longitude], { padding: [40, 40], animate: false });
   };
   useEffect(() => {
     if (!engine || !element.current) return;
-    const observer = new ResizeObserver(() => { engine.map.invalidateSize({ pan: false }); settle.current(); });
+    // One resize owner: ignore hidden tabs and preserve the geographic centre when visible size changes.
+    const observer = new ResizeObserver(() => {
+      if (!element.current?.clientWidth || !element.current.clientHeight) return;
+      engine.map.invalidateSize({ pan: true, animate: false }); settle.current();
+    });
     observer.observe(element.current);
     return () => observer.disconnect();
   }, [engine]);

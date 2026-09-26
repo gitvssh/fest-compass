@@ -841,6 +841,39 @@ async function clusterSmallScreen(flow) {
   }
 }
 
+async function resizeKeepsMapCentre(flow) {
+  const saved = RESOURCES["12"];
+  // Centred nearby members stay in view at every tested width; edge clipping is a different contract.
+  RESOURCES["12"] = [SAME1, SAME2, NEAR12];
+  const { context, page } = await openContext({ width: 1440, height: 1000 });
+  try {
+    await page.goto(FLOW[flow].url("?types=12"));
+    await settled(page, ["12"]); await waitMapPlaces(page, 3);
+    const cluster = clusterOf(page, 3);
+    const offset = () => cluster.evaluate(el => {
+      const r = el.getBoundingClientRect(), c = el.closest('.rmap-root').querySelector('.rmap-canvas').getBoundingClientRect();
+      return { x: r.x + r.width / 2 - c.x - c.width / 2, y: r.y + r.height / 2 - c.y - c.height / 2 };
+    });
+    const before = await offset();
+    for (const width of [390, 320, 1440, 720]) {
+      await page.setViewportSize({ width, height: 1000 });
+      if (width < 1024) await page.getByRole('group', { name: '보기 방식' }).getByRole('button', { name: '지도', exact: true }).click();
+      await visible(cluster);
+      await page.waitForFunction(before => {
+        const el = document.querySelector('.rmap-group[data-resource-count="3"]');
+        if (!el) return false;
+        const r = el.getBoundingClientRect(), c = el.closest('.rmap-root').querySelector('.rmap-canvas').getBoundingClientRect();
+        return Math.abs(r.x + r.width / 2 - c.x - c.width / 2 - before.x) <= 2 && Math.abs(r.y + r.height / 2 - c.y - c.height / 2 - before.y) <= 2;
+      }, before).catch(error => { throw Error(`${flow} ${width} resize centre: ${error.message}`); });
+      const after = await offset();
+      assert.ok(Math.abs(after.x - before.x) <= 2 && Math.abs(after.y - before.y) <= 2,
+        `${flow} ${width}: geographic centre survives hidden and visible resizing: ${JSON.stringify({before,after})}`);
+      if (width < 1024) await page.getByRole('group', { name: '보기 방식' }).getByRole('button', { name: '목록', exact: true }).click();
+    }
+    passed.push(`${flow}-resize-hidden-map-preserves-geographic-centre`);
+  } finally { RESOURCES["12"] = saved; await context.close(); }
+}
+
 async function rapidSelection(flow) {
   // The earlier resource's late introduction never replaces the current one, in either arrival order.
   const { context, page } = await openContext();
@@ -1096,6 +1129,7 @@ try {
     await largeList(flow);
     await clusterSelection(flow);
     await clusterSmallScreen(flow);
+    await resizeKeepsMapCentre(flow);
   }
   await arrival();
   await compareIndependently();
