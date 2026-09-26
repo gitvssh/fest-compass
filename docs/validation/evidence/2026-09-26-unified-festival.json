@@ -373,6 +373,43 @@
     "directlyReviewedScreenshots": 3
   },
   "reviewDelivery": {
-    "status": "pending"
+    "status": "passed",
+    "bundle": "D:\\download\\project\\pickDday\\2026-09-26-unified-festival-reviewed-v2",
+    "start": "D:\\download\\project\\pickDday\\index.html",
+    "static": {
+      "sourceRevision": "e257efdb6dbdacc4f875824651d2f8732c10d7e5",
+      "sourceDirty": false,
+      "sourceFiles": 87,
+      "htmlPages": 35,
+      "localReferences": 498,
+      "oldIndexPreserved": true
+    },
+    "browser": {
+      "pages": 35,
+      "widths": [
+        {
+          "width": 1280,
+          "charts": 17,
+          "images": 77,
+          "overflow": false,
+          "brokenImages": 0,
+          "navigation": true
+        },
+        {
+          "width": 390,
+          "charts": 17,
+          "images": 77,
+          "overflow": false,
+          "brokenImages": 0,
+          "navigation": true
+        }
+      ],
+      "errors": []
+    },
+    "allSourceHashesMatch": true,
+    "oldIndexPreserved": true,
+    "directlyReviewed": true,
+    "windowsBrowserDirectlyTested": false,
+    "initialFailure": "One internal anchor still used the development-status title; source corrected and fresh v2 exported. Prior bundle preserved."
   }
 }

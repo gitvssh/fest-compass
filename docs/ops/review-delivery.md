@@ -178,7 +178,7 @@ Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은
 
 ## 임실 회차별 방문자 특성 비교 전달 · 2026-09-24
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-24-edition-profile-reviewed`를 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-24-edition-profile-reviewed`를 열었다.
 정본 커밋 `af2781b07700fd08e846f7ebd989000c8d9bbe49`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
 첫 카드의 [회차별 비교·실제 화면](../validation/39-edition-profile-comparison.md)에서 공개 PC·모바일 4장과
 기능 상세 §11로 이동한다. 임실 2023·2024·2025년 한 회차 표시와 두 회차 비교는 공개 사용 가능이다.
@@ -191,3 +191,18 @@ headless Chromium으로 HTML 33개를 1280/390px에서 각각 열어 66개 화�
 
 옛 `fest-compass/index.html` 해시는 전달 전후 일치하며 이전 묶음과 프로젝트 원본은 보존했다.
 Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다. 공개·통제 시험의 구분은 기록39를 따른다.
+
+## 모든 등록 축제의 공통 분석 전달 · 2026-09-26
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-26-unified-festival-reviewed-v2`를 연다.
+원본 커밋 `e257efdb6dbdacc4f875824651d2f8732c10d7e5`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
+첫 카드에 [공통 분석 실제 화면·검증40](../validation/40-unified-festival-analysis.md)과
+[공통 화면 목표·기본 배치18](../design/18-unified-festival-analysis.md)을 배치했다. 강릉·장흥·임실 공개 화면을 포함하고 프로젝트 원본은 유지한다.
+
+실제 D 드라이브에 원본 사본87개·시안11페이지·문서23페이지·시작 페이지를 전달했다. 원본·사본 SHA-256 87개 일치,
+HTML35개·로컬 링크/이미지/앵커498개 정상, 옛 fest-compass 시작 파일 보존을 확인했다.
+headless Chromium에서 1280/390px 각각 HTML35개·Mermaid17개·이미지77개를 열고 시작→최신 묶음→공통 분석 문서 이동을 확인했다.
+페이지 오류·깨진 이미지·페이지 가로 넘침은 0이다. 주 담당자가 실제 공개 화면과 사본 시작 페이지를 직접 검수했다.
+
+첫 사본은 제목 변경 뒤 남은 문서 내부 앵커 한 곳이 잘못돼 원본을 고치고 v2를 새로 만들었다. 이전 묶음은 보존하고
+최신 시작 페이지는 검증한 v2를 연다. Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다.
