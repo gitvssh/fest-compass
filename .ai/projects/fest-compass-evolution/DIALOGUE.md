@@ -1012,3 +1012,27 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-046 · Codex · designer, implementation delegator and verifier
+
+- Position: 기존·새 축제에 음식점·숙박 선택과 공통 장소 소개를 연결하고 공개했다. 설계 후 실제 Opus 5.5 구현 위임·직접 검수, 공식 자료 대조, D 드라이브 검토본 전달을 완료했다.
+- Evidence:
+  - docs/design/19-tourism-resources.md
+  - docs/validation/41-tourism-resources.md
+  - docs/validation/evidence/2026-09-26-tourism-resources.json
+  - docs/ops/review-delivery.md
+- Changes:
+  - 관광지·문화시설·음식점·숙박을 두 흐름의 목록·지도·거리·소개에 공통 연결. 기본 선택12/14 유지, 기존 상세 도착 링크와 새 축제 두 곳 함께 보기 유지
+  - 유형별 전체 목록 최대2000건, 축제15 기존600건. 명시 유형·지역·ID·총수·페이지 검증. 내부 실패 사유는 공통 짧은 조회 실패로 변경
+  - 검수에서 필터 후 상세·거리 보존, 다른 지역·블록 누락 응답 복구 및 잘못된 캐시 재사용 방지 보완
+  - 화면 목표·기본 배치·기능·흐름·유스케이스·인수·데이터 현황과 실제 공개 화면4장 갱신
+- Validation:
+  - 실제 claude-opus-5-5 네 CLI 작업 완료, 주 담당자가 공식 API5지역 목록10·소개4 응답과 코드 직접 대조
+  - Node24.20.0 단위368·타입·빌드·운영취약점0·인프라41/배포선언17 통과. 동일 제품 빌드의 전체 headless24스크립트 완료, 신규 관광자원31항목·오류0·앱쓰기0
+  - 구현956a849의 ARC36245474007 성공·artifact/cache0. 검증 이미지c27d06af를 6fe8675에서 배포, Synced/Healthy/Succeeded·3/3준비·Deployment/PVC 유지·업무9종 건수/해시 동일
+  - 공개 응답변조0: 강릉/제주/논산/강남 음식점·숙박 전체 건수, 소개4건 원천 일치. 강릉 새 축제 두 곳 비교/기준점·기존 제주 도착 상세/필터 유지, 320/390/1440 넘침0·오류0·앱쓰기0. 정상 동의창 조작으로 시험 정정 후 완료
+  - D 검토본 bad17a0: 원본93해시·참조530·HTML37×2폭·Mermaid17/이미지81·오류/깨짐/넘침0. 이전 묶음/옛 시작파일 보존, 실제 공개/사본 화면 직접 검수
+  - 650가상 목록·마커·반경·상세 시험은 통제 응답. 겹친 마커 이벤트 호출은 실제 포인터 편의성 검증으로 확대하지 않음. 최종 시각 디자인·실무자 관찰·전체 보조기술/200%·Windows 직접 실행은 미평가
+- Questions:
+  - No open question
+- Handoff: Codex

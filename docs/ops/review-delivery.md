@@ -2,7 +2,7 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-26
-version: v8
+version: v9
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -21,7 +21,7 @@ Windows 검토 폴더에 복사한다. 2026-09-23 제품 이름을 `pickDday`로
 
 - 시작: `D:\download\project\pickDday\index.html`
 - 각 묶음: `index.html`에서 기존 축제/새 축제 화면, 모바일 구성, 읽기용 설계 문서로 이동한다.
-  최신 공통 분석(`docs/validation/40-unified-festival-analysis.md`)과 모든 등록 축제의 화면 목표·기본 배치(`docs/design/18-unified-festival-analysis.md`)를 먼저 두고,
+  최신 음식점·숙박·소개(`docs/validation/41-tourism-resources.md`)와 공통 관광자원 설계(`docs/design/19-tourism-resources.md`)를 먼저 두고,
   새 축제·기존 축제 실제 화면과 개발 전 와이어프레임으로 이어진다.
 - `sources/`에는 원본과 동일한 Markdown·Excalidraw·SVG를 둔다.
 - `manifest.json`은 원본 경로·커밋·복사 시각·파일 해시를 남긴다. `source_root`는 정본 위치
@@ -194,7 +194,7 @@ Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은
 
 ## 모든 등록 축제의 공통 분석 전달 · 2026-09-26
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-26-unified-festival-reviewed-v2`를 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-26-unified-festival-reviewed-v2`를 열었다.
 원본 커밋 `e257efdb6dbdacc4f875824651d2f8732c10d7e5`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
 첫 카드에 [공통 분석 실제 화면·검증40](../validation/40-unified-festival-analysis.md)과
 [공통 화면 목표·기본 배치18](../design/18-unified-festival-analysis.md)을 배치했다. 강릉·장흥·임실 공개 화면을 포함하고 프로젝트 원본은 유지한다.
@@ -206,3 +206,19 @@ headless Chromium에서 1280/390px 각각 HTML35개·Mermaid17개·이미지77�
 
 첫 사본은 제목 변경 뒤 남은 문서 내부 앵커 한 곳이 잘못돼 원본을 고치고 v2를 새로 만들었다. 이전 묶음은 보존하고
 최신 시작 페이지는 검증한 v2를 연다. Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다.
+
+## 관광자원 공통 소개·음식점·숙박 전달 · 2026-09-26
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-26-tourism-resources-reviewed`를 연다.
+원본 커밋 `bad17a08d116a159a57679018aeb813efe7f6bd5`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
+첫 카드에 [실제 공개 화면·검증41](../validation/41-tourism-resources.md)과 [화면 목표·기본 배치19](../design/19-tourism-resources.md)를 둔다.
+강릉 음식점·숙박 목록/지도, 숙박 소개, 기존 제주 축제 음식점 소개 PC·모바일 4장을 포함한다.
+
+실제 D 드라이브 9p 마운트에 원본 사본 93개·시안 11페이지·문서 25페이지·시작 페이지를 전달했다.
+원본·사본 SHA-256 93개 일치, HTML 37개·로컬 링크/이미지/앵커 530개 정상, 저장소 밖 상대 링크 0개다.
+headless Chromium에서 1280/390px 각각 HTML 37개·Mermaid 17개·이미지 81개를 열고
+시작 파일→최신 묶음→관광자원 실제 화면 문서 이동을 확인했다. 페이지 오류·깨진 이미지·전체 가로 넘침은 0이다.
+주 담당자가 실제 공개 화면 4장과 사본 시작/모바일 문서를 직접 검수했다.
+
+옛 `fest-compass/index.html`의 해시가 전달 전후 일치하며 이전 묶음과 프로젝트 원본은 보존했다.
+Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은 미평가다. 공개 기능과 통제 시험의 범위는 기록41을 따른다.
