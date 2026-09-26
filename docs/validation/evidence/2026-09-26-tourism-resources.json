@@ -1,0 +1,421 @@
+{
+  "checkedAt": "2026-09-26T13:43:53.425128+00:00",
+  "status": "passed",
+  "implementationCommit": "956a849e87c356ebf743fc9d11b9a4ba9f92541c",
+  "imagePinCommit": "6fe8675bec6d697398e96c148db58e0eabb19e8b",
+  "delegation": {
+    "model": "claude-opus-5-5",
+    "actualCLIExecutions": 4,
+    "work": [
+      "backend implementation",
+      "backend wording correction",
+      "UI implementation",
+      "UI detail-state correction"
+    ],
+    "directReview": "Root reviewed source, official responses, required checks and public screenshots."
+  },
+  "local": {
+    "node": "24.20.0",
+    "unit": {
+      "pretest": 15,
+      "main": 323,
+      "scripts": 30,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "productionBuild": "passed; CI rebuilt final application commit",
+    "runtimeAuditVulnerabilities": 0,
+    "infraTests": 41,
+    "releaseResources": 17,
+    "trace": {
+      "artifacts": 60,
+      "missing": 0,
+      "error": 0,
+      "warn": 0,
+      "info": 0,
+      "undeclaredSkipped": [
+        "API",
+        "Specs",
+        "Runs",
+        "YouTrack"
+      ]
+    },
+    "headless": {
+      "scripts": [
+        "demo-e2e.mjs",
+        "workspace-e2e.mjs",
+        "regions-e2e.mjs",
+        "map-e2e.mjs",
+        "boundary-e2e.mjs",
+        "comparison-e2e.mjs",
+        "annual-trend-e2e.mjs",
+        "existing-journey-e2e.mjs",
+        "unified-festival-e2e.mjs",
+        "new-festival-e2e.mjs",
+        "tourism-resources-e2e.mjs",
+        "related-search-e2e.mjs",
+        "visitor-context-e2e.mjs",
+        "visitor-profile-e2e.mjs",
+        "edition-profile-e2e.mjs",
+        "schedule-absorption-e2e.mjs",
+        "overlap-e2e.mjs",
+        "distance-e2e.mjs",
+        "planning-e2e.mjs",
+        "venue-e2e.mjs",
+        "history-costs-e2e.mjs",
+        "budget-e2e.mjs",
+        "proposal-e2e.mjs",
+        "outcome-e2e.mjs"
+      ],
+      "completed": 24,
+      "method": "Initial unchanged-build stages passed; after old message assertions were corrected, remaining stages resumed against the same product build. No product source changed between these completed stages.",
+      "results": [
+        {
+          "script": "regions-e2e.mjs",
+          "checks": 14,
+          "browserErrors": 0
+        },
+        {
+          "script": "map-e2e.mjs",
+          "checks": 12,
+          "browserErrors": []
+        },
+        {
+          "script": "boundary-e2e.mjs",
+          "checks": 11,
+          "browserErrors": []
+        },
+        {
+          "script": "comparison-e2e.mjs",
+          "checks": 21,
+          "browserErrors": 0
+        },
+        {
+          "script": "annual-trend-e2e.mjs",
+          "checks": 23,
+          "browserErrors": 0
+        },
+        {
+          "script": "existing-journey-e2e.mjs",
+          "checks": 28,
+          "browserErrors": 0
+        },
+        {
+          "script": "unified-festival-e2e.mjs",
+          "checks": 16,
+          "browserErrors": 0
+        },
+        {
+          "script": "new-festival-e2e.mjs",
+          "checks": 37,
+          "browserErrors": 0
+        },
+        {
+          "script": "tourism-resources-e2e.mjs",
+          "checks": 31,
+          "browserErrors": 0
+        },
+        {
+          "script": "related-search-e2e.mjs",
+          "checks": 25,
+          "browserErrors": 0
+        },
+        {
+          "script": "visitor-context-e2e.mjs",
+          "checks": 12,
+          "browserErrors": 0
+        },
+        {
+          "script": "visitor-profile-e2e.mjs",
+          "checks": 19,
+          "browserErrors": 0
+        },
+        {
+          "script": "edition-profile-e2e.mjs",
+          "checks": 13,
+          "browserErrors": 0
+        },
+        {
+          "script": "schedule-absorption-e2e.mjs",
+          "checks": 16,
+          "browserErrors": 0
+        },
+        {
+          "script": "overlap-e2e.mjs",
+          "checks": 10,
+          "browserErrors": []
+        },
+        {
+          "script": "distance-e2e.mjs",
+          "checks": 10,
+          "browserErrors": []
+        },
+        {
+          "script": "planning-e2e.mjs",
+          "checks": 27,
+          "browserErrors": 0
+        },
+        {
+          "script": "venue-e2e.mjs",
+          "checks": 9,
+          "browserErrors": 0
+        },
+        {
+          "script": "history-costs-e2e.mjs",
+          "checks": 11,
+          "browserErrors": 0
+        },
+        {
+          "script": "budget-e2e.mjs",
+          "checks": 23,
+          "browserErrors": 0
+        },
+        {
+          "script": "proposal-e2e.mjs",
+          "checks": 14,
+          "browserErrors": 0
+        },
+        {
+          "script": "outcome-e2e.mjs",
+          "checks": 14,
+          "browserErrors": []
+        }
+      ],
+      "tourismChecks": {
+        "headless": true,
+        "data": "검증용 controlled fixtures for tourism lists and introductions (not official-data verification)",
+        "passed": [
+          "existing-default-12-14-only-no-39-32-requests",
+          "existing-toggle-four-peers-all-four-explicit-address",
+          "existing-non-default-pair-kept-across-reload",
+          "existing-none-invalid-duplicate-legacy-addresses",
+          "existing-menu-return-keeps-four-kinds",
+          "existing-independent-kind-failure-delay-and-retry",
+          "existing-restaurant-intro-plain-text-fold-own-source",
+          "existing-lodging-intro-empty-omitted-failure-retry-close-focus",
+          "existing-no-compare",
+          "existing-rapid-selection-late-intro-never-overlays",
+          "existing-other-region-answer-hidden-retryable-never-reused-and-recovers",
+          "existing-all-types-off-keeps-detail-intro-anchor-and-distance",
+          "existing-650-places-list-map-radius-and-detail",
+          "new-default-12-14-only-no-39-32-requests",
+          "new-toggle-four-peers-all-four-explicit-address",
+          "new-non-default-pair-kept-across-reload",
+          "new-none-invalid-duplicate-legacy-addresses",
+          "new-type-change-keeps-year",
+          "new-independent-kind-failure-delay-and-retry",
+          "new-restaurant-intro-plain-text-fold-own-source",
+          "new-lodging-intro-empty-omitted-failure-retry-close-focus",
+          "new-rapid-selection-late-intro-never-overlays",
+          "new-other-region-answer-hidden-retryable-never-reused-and-recovers",
+          "new-all-types-off-keeps-detail-intro-anchor-and-distance",
+          "new-650-places-list-map-radius-and-detail",
+          "existing-arrival-restaurant-adds-kind-once-waits-full-list-focus",
+          "existing-filter-keeps-detail-and-anchor-reload-does-not-reselect",
+          "existing-arrival-lodging-failure-then-retry-opens",
+          "existing-arrival-missing-invalid-and-legacy-link",
+          "new-compare-detail-anchor-independent-filter-keeps-all",
+          "layout-320-390-1440-no-overflow-focus-to-detail-and-back"
+        ],
+        "browserErrors": 0,
+        "clientWrites": 0,
+        "apiRequests": 190
+      }
+    }
+  },
+  "officialProbe": "2026-09-26-tourism-resource-probe.json",
+  "release": {
+    "run": {
+      "conclusion": "success",
+      "createdAt": "2026-09-26T13:31:48Z",
+      "headSha": "956a849e87c356ebf743fc9d11b9a4ba9f92541c",
+      "status": "completed",
+      "updatedAt": "2026-09-26T13:36:53Z",
+      "url": "https://github.com/gitvssh/fest-compass/actions/runs/36245474007"
+    },
+    "jobs": [
+      {
+        "conclusion": "success",
+        "labels": [
+          "homelab-fest-compass"
+        ],
+        "name": "image",
+        "runner_name": "homelab-fest-compass-k8d69-runner-wdnp2",
+        "status": "completed"
+      }
+    ],
+    "actionsArtifacts": 0,
+    "actionsCaches": 0
+  },
+  "operation": {
+    "deploymentUID": "0b216035-cb40-4afc-85d1-655f5089742e",
+    "pvcUID": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+    "pod": "fest-compass-84bddddcf9-jv8mt",
+    "image": "registry.damecasol.com/fest-compass/web@sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed",
+    "ready": 3,
+    "businessTables": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessUnchanged": true
+  },
+  "originHealth": [
+    {
+      "path": "/health/livez",
+      "status": 200,
+      "body": {
+        "status": "alive"
+      }
+    },
+    {
+      "path": "/health/readyz",
+      "status": 200,
+      "body": {
+        "status": "ready"
+      }
+    }
+  ],
+  "public": {
+    "checkedAt": "2026-09-26T13:40:06.236Z",
+    "base": "https://pickday.damecasol.com",
+    "headless": true,
+    "mockedResponses": 0,
+    "appWrites": [],
+    "browserErrors": [],
+    "samples": [
+      {
+        "name": "강릉시",
+        "code": "51150",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 478
+          },
+          {
+            "kind": "32",
+            "total": 178
+          }
+        ]
+      },
+      {
+        "name": "제주시",
+        "code": "50110",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 426
+          },
+          {
+            "kind": "32",
+            "total": 89
+          }
+        ]
+      },
+      {
+        "name": "논산시",
+        "code": "44230",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 28
+          },
+          {
+            "kind": "32",
+            "total": 3
+          }
+        ]
+      },
+      {
+        "name": "강남구",
+        "code": "11680",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 260
+          },
+          {
+            "kind": "32",
+            "total": 32
+          }
+        ]
+      }
+    ],
+    "checks": [
+      "four-districts-two-kinds-complete-match-official-probe",
+      "four-food-lodging-descriptions-match-independent-official-samples",
+      "common-description-matches-official-sample-and-compatible-route",
+      "new-food-lodging-details-and-two-resource-comparison-independent-anchor",
+      "existing-jeju-arrival-detail-common-intro-320-390-1440",
+      "all-types-off-keeps-selected-detail",
+      "initial-types-stay-attractions-culture"
+    ],
+    "health": [
+      {
+        "path": "/health/livez",
+        "status": 200,
+        "body": {
+          "status": "alive"
+        }
+      },
+      {
+        "path": "/health/readyz",
+        "status": 200,
+        "body": {
+          "status": "ready"
+        }
+      }
+    ],
+    "status": "passed"
+  },
+  "screenshots": {
+    "docs/validation/evidence/2026-09-26-tourism/new-gangneung-desktop.png": "58af783a4d91caaf0bc2d86954b5a77618a3791e3e3796fe31764863625a5a11",
+    "docs/validation/evidence/2026-09-26-tourism/existing-jeju-mobile.png": "dbee9dd9cb3ddba2fd6fc37c950f6163cbf876e69639220ca990f3985bc56275",
+    "docs/validation/evidence/2026-09-26-tourism/new-lodging-detail.png": "9c71dccfb31c41bef67c6cb259ccb2966d64fca99757ed43b4d91ea43f14f24d",
+    "docs/validation/evidence/2026-09-26-tourism/existing-food-detail.png": "992623ce271dbbc54dd6e497bdb31ba9548de3822d87b29a8ca8031f6d005eb9"
+  },
+  "verificationCorrections": [
+    "Initial Python urllib health request received 403; normal browser HTTP and origin health both returned 200. Platform settings unchanged.",
+    "Initial browser run could not match the English consent button. Normal Reject All interaction and Korean browser locale were used, then the full public run passed. No consent or application setting changed."
+  ],
+  "notAssessed": [
+    "final visual design",
+    "officer observation",
+    "full assistive technology and 200% zoom",
+    "Windows browser direct execution",
+    "dense-map pointer accessibility for each overlapping marker"
+  ]
+}
