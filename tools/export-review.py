@@ -194,8 +194,11 @@ def main():
     profile_doc = doc_pages['docs/validation/38-visitor-profile.md']
     first_doc = doc_pages['docs/validation/35-pickdday-new-festival.md']
     existing_doc = doc_pages['docs/validation/34-existing-festival-journey.md']
+    unified_doc = doc_pages['docs/validation/40-unified-festival-analysis.md']
+    unified_design = doc_pages['docs/design/18-unified-festival-analysis.md']
     body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>새 축제와 기존 축제의 실제 화면과 검증 결과부터 확인하세요. 기능 상세에는 두 목적의 화면 목표·행동·데이터 연결을 정리했습니다.</p><p>아래 와이어프레임은 개발 전 기본 배치입니다. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 읽을 수 있습니다. 최종 시각 디자인은 별도 작업이며 각 화면에서 모바일 구성을 펼쳐 볼 수 있습니다.</p><nav><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
-    body += f'<section class="card"><h2>임실 회차별 방문자 특성 비교</h2><p>2023~2025년 중 두 회차를 골라 성·연령 비율, 외지인 구성, 목적지 순위 변화를 살펴보세요.</p><a class="button" href="{comparison_doc}">회차별 비교·실제 화면 보기</a></section>'
+    body += f'<section class="card"><h2>고른 축제 모두의 공통 분석</h2><p>원하는 축제를 찾아 그 지역의 방문 흐름·관광자원·개최 시기를 살펴보세요. 강릉·안동·장흥·제주의 실제 화면과 공통 화면 목표를 확인할 수 있습니다.</p><a class="button" href="{unified_doc}">공통 분석·실제 화면 보기</a> <a class="button" href="{unified_design}">화면 목표·기본 배치 보기</a></section>'
+    body += f'<section class="card"><h2>확보한 보조 자료 · 임실 회차별 방문자 특성 비교</h2><p>2023~2025년 중 두 회차를 골라 성·연령 비율, 외지인 구성, 목적지 순위 변화를 살펴보세요.</p><a class="button" href="{comparison_doc}">회차별 비교·실제 화면 보기</a></section>'
     body += f'<section class="card"><h2>임실 방문자 특성·관광자원 연결</h2><p>2025년 한 회차의 성·연령 비율과 목적지 검색순위, 현재 관광자원 연결을 확인하세요.</p><a class="button" href="{profile_doc}">방문자 특성·관광자원 연결 보기</a></section>'
     body += f'<section class="card"><h2>임실 방문 구성·연간 추세</h2><p>기존 축제의 회차별 방문 구성과 새 축제 기획에 필요한 지역 장기 추세를 확인하세요.</p><a class="button" href="{visitor_doc}">임실 방문 자료·실제 화면 보기</a></section>'
     body += f'<section class="card"><h2>관련 자료 검색·원문 연결</h2><p>축제·회차·지역·관광자원에서 외부 검색으로 이어지는 기능과 실제 검수 상태를 확인하세요.</p><a class="button" href="{related_doc}">관련 자료 검색 화면·검증 보기</a></section>'

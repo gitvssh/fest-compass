@@ -29,6 +29,7 @@ stages:
       - {path: docs/sdlc/2-design/ia.md, required: true}
       - {path: docs/sdlc/2-design/flows.md, required: true}
       - {path: docs/sdlc/2-design/functional-spec.md, required: true}
+      - {path: docs/design/18-unified-festival-analysis.md, required: true}
       - {path: docs/sdlc/2-design/screens.md, required: true}
       - {path: docs/sdlc/2-design/design-system.md, required: true}
       - {path: docs/sdlc/2-design/architecture.md, required: true}
@@ -70,9 +71,11 @@ stages:
       - {path: docs/validation/37-visitor-context.md, required: true}
       - {path: docs/validation/38-visitor-profile.md, required: true}
       - {path: docs/validation/39-edition-profile-comparison.md, required: true}
+      - {path: docs/validation/40-unified-festival-analysis.md, required: true}
   operations:
     artifacts:
       - {path: docs/ops/planning-outcomes-release.md, required: true}
+      - {path: docs/ops/festival-sources.md, required: true}
     links:
       - {label: 현재 사용 가능한 pickDday, url: "https://pickday.damecasol.com"}
 # 새로운 API 계약·실행 기록·티켓 원천은 미선언이다. 미평가를 통과로 만들지 않는다.

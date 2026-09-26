@@ -9,7 +9,7 @@ summary: "담당자가 고른 등록 축제에 같은 방문 흐름·관광자�
 
 # 고른 축제 모두에 같은 분석 흐름 제공
 
-**상태: 구현·로컬 검증 완료, 공개 반영 대기.** 실행 결과와 공개 상태는 [기록40](../validation/40-unified-festival-analysis.md)을 따른다.
+**상태: 사용 가능 — 구현·공개 검증 완료.** 실행 결과와 공개 상태는 [기록40](../validation/40-unified-festival-analysis.md)을 따른다.
 인수 기준은 [TS-FC-015](../sdlc/3-testing/scenarios/TS-FC-015.md), 기존 흐름은 [UC-FC-009](../sdlc/1-analysis/usecases/UC-FC-009.md)를 따른다.
 
 ## 1. 사용자 정정과 목표

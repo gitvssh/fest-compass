@@ -1,12 +1,31 @@
 ---
 class: Current
 owner: pickDday
-last_verified: 2026-09-24
-version: v12
+last_verified: 2026-09-26
+version: v13
 summary: "두 목적의 검색·회차·지역·관측연월·달력 연결과 조건 복귀·조회 실패를 구체화합니다. 기존 축제 흐름의 구현·검증은 기록34를 따르고 새 축제 전용 흐름은 사용 가능입니다. 임실 두 회차 방문자 특성 비교는 사용 가능합니다."
 ---
 
 # 사용자 흐름
+
+## 어떤 축제를 골라도 같은 세 메뉴 · 2026-09-26
+
+```mermaid
+flowchart TD
+  Search["축제 이름·지역으로 찾기"] --> Pick["축제 선택"]
+  Pick --> Visits["해당 시군구 월별·일별 방문"]
+  Pick --> History["확보한 실제 회차가 있으면 같은 자리에서 비교"]
+  Visits <--> Resources["주변 관광자원"]
+  History <--> Resources
+  Resources <--> Timing["개최 시기"]
+  Visits <--> Timing
+  History <--> Timing
+  Visits --> Month["연도·월 선택 또는 등록 일정 바로가기"]
+```
+
+기록·기획안 제출 없이 탐색을 끝낼 수 있다. 같은 축제로 검토된 현재 등록·보관 결과만 합치고 이름만 같은 축제는 구별한다.
+과거 회차가 없어도 지역 방문 흐름으로 이어진다. 방문 연월과 시기 달력의 조건은 따로 기억하며 조회 중·실패는 해당 영역 안에서 처리한다.
+[설계18](../../design/18-unified-festival-analysis.md)·[검증40](../../validation/40-unified-festival-analysis.md)을 따른다.
 
 ## 방문 구성과 장기 추세 탐색
 

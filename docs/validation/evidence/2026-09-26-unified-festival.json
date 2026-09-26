@@ -1,0 +1,378 @@
+{
+  "checkedAt": "2026-09-26T09:04:23.002571+00:00",
+  "baseCommit": "489a33e1b461c792b35fcfabf610c6818c0af121",
+  "implementationCommit": "bf08b7cc59f71f47f5f99f2514f99e4d39d4aad4",
+  "delegation": [
+    {
+      "task": "crosswalk",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "error": false,
+      "permissionDenials": 0
+    },
+    {
+      "task": "design",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "error": false,
+      "permissionDenials": 3
+    },
+    {
+      "task": "docs",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "error": false,
+      "permissionDenials": 0
+    },
+    {
+      "task": "source-design",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "error": false,
+      "permissionDenials": 2
+    },
+    {
+      "task": "sources",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "error": false,
+      "permissionDenials": 0
+    },
+    {
+      "task": "ui",
+      "models": [
+        "claude-opus-5-5"
+      ],
+      "error": false,
+      "permissionDenials": 0
+    }
+  ],
+  "data": {
+    "officialApisOnly": true,
+    "historicalWindow": [
+      "2023-01",
+      "2026-08"
+    ],
+    "monthsWithObservations": 44,
+    "latestObservation": "2026-08-27",
+    "currentCatalogueUnits": 269,
+    "registrations": 867,
+    "initialCollection": {
+      "event": "festival-sources",
+      "mode": "backfill",
+      "status": "success",
+      "calls": 141,
+      "regions": 269,
+      "registrations": 867,
+      "national": "ok",
+      "registry": "ok"
+    },
+    "currentMonthRefresh": {
+      "event": "festival-sources",
+      "mode": "standard",
+      "status": "success",
+      "calls": 1,
+      "regions": 269,
+      "registrations": 867,
+      "national": "ok",
+      "registry": "fresh"
+    },
+    "completeAllMonths": false,
+    "oneToOneOfficialCrosswalk": 27,
+    "splitOldIncheonCodesExcluded": [
+      "28110",
+      "28140",
+      "28260"
+    ],
+    "crosswalkOriginalSha256": "37773eb11137b6b298c431cfa9020f1d78a2360ec9c9c3396aae69774a921b00"
+  },
+  "local": {
+    "node": "24.20.0",
+    "tests": {
+      "sourceAndIntegration": 15,
+      "existingUnit": 312,
+      "scripts": 30,
+      "total": 357
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "postSuiteChange": "Shared bootstrap/recent 180-call daily ceiling; all 10 source tests rerun and exact implementation CI validates final code.",
+    "existingHeadlessScripts": 22,
+    "newControlledHeadlessChecks": 16,
+    "controlledLinkedIdentity": "Actual archived edition values with remapped fixture identity; separate real API checks below.",
+    "real": {
+      "base": "http://127.0.0.1:33122",
+      "headless": true,
+      "mockedResponses": 0,
+      "samples": [
+        {
+          "id": "531391",
+          "code": "51150",
+          "p": "51",
+          "d": "150",
+          "name": "강릉단오제",
+          "district": "강릉시",
+          "firstDay": 69744.5,
+          "septemberMean": 74202.1,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        },
+        {
+          "id": "506670",
+          "code": "47170",
+          "p": "47",
+          "d": "170",
+          "name": "안동국제탈춤페스티벌",
+          "district": "안동시",
+          "firstDay": 37124.5,
+          "septemberMean": 52286.73333333333,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        },
+        {
+          "id": "767114",
+          "code": "12770",
+          "p": "12",
+          "d": "770",
+          "name": "정남진 장흥 물축제",
+          "district": "장흥군",
+          "firstDay": 9562,
+          "septemberMean": 13424.016666666666,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        },
+        {
+          "id": "667418",
+          "code": "50110",
+          "p": "50",
+          "d": "110",
+          "name": "제주들불축제",
+          "district": "제주시",
+          "firstDay": 145400.5,
+          "septemberMean": 166596.5,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        }
+      ],
+      "browserErrors": [],
+      "appWrites": [],
+      "checks": [
+        "current-archive-identical-editions-and-profile",
+        "four-unseen-festivals-exact-30-daily-values-and-monthly-mean",
+        "new-festival-shares-observations",
+        "new-incheon-district-has-own-observations-without-invented-past",
+        "real-search-to-all-three-views-four-regions",
+        "320-390-1440-no-page-overflow",
+        "reviewed-history-inline-keeps-current-identity"
+      ]
+    },
+    "directlyReviewedScreenshots": [
+      "12770-visits-desktop.png",
+      "51150-visits-mobile.png",
+      "linked-imsil.png"
+    ],
+    "trace": {
+      "artifacts": 58,
+      "missing": 0,
+      "errors": 0,
+      "warnings": 0,
+      "notEvaluated": [
+        "formal API/Spec/Run",
+        "YouTrack"
+      ]
+    }
+  },
+  "publication": {
+    "status": "passed",
+    "implementationCommit": "bf08b7cc59f71f47f5f99f2514f99e4d39d4aad4",
+    "deploymentCommit": "b53e7080a8a8e50d8982e9dc046084c62a05ea15",
+    "workflowRun": "https://github.com/gitvssh/fest-compass/actions/runs/36231323372",
+    "runnerLabels": [
+      "homelab-fest-compass"
+    ],
+    "artifacts": 0,
+    "infraTests": 41,
+    "digest": "sha256:e38b924a8bf778b6a03f23aa040558c1ff15547ef1737dcb34c378ff46261891",
+    "argo": {
+      "sync": "Synced",
+      "health": "Healthy",
+      "phase": "Succeeded",
+      "revision": "b53e7080a8a8e50d8982e9dc046084c62a05ea15"
+    },
+    "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+    "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+    "readyContainers": 3,
+    "productionBootstrap": {
+      "calls": 141,
+      "status": "success",
+      "regions": 269,
+      "registrations": 867
+    },
+    "productionRecent": {
+      "calls": 1,
+      "status": "success"
+    },
+    "businessBefore": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessAfter": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessPreserved": true,
+    "realPublic": {
+      "base": "https://pickday.damecasol.com",
+      "headless": true,
+      "mockedResponses": 0,
+      "samples": [
+        {
+          "id": "531391",
+          "code": "51150",
+          "p": "51",
+          "d": "150",
+          "name": "강릉단오제",
+          "district": "강릉시",
+          "firstDay": 69744.5,
+          "septemberMean": 74202.1,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        },
+        {
+          "id": "506670",
+          "code": "47170",
+          "p": "47",
+          "d": "170",
+          "name": "안동국제탈춤페스티벌",
+          "district": "안동시",
+          "firstDay": 37124.5,
+          "septemberMean": 52286.73333333333,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        },
+        {
+          "id": "767114",
+          "code": "12770",
+          "p": "12",
+          "d": "770",
+          "name": "정남진 장흥 물축제",
+          "district": "장흥군",
+          "firstDay": 9562,
+          "septemberMean": 13424.016666666666,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        },
+        {
+          "id": "667418",
+          "code": "50110",
+          "p": "50",
+          "d": "110",
+          "name": "제주들불축제",
+          "district": "제주시",
+          "firstDay": 145400.5,
+          "septemberMean": 166596.5,
+          "observed2025": 365,
+          "registeredPeriods": 1
+        }
+      ],
+      "browserErrors": [],
+      "appWrites": [],
+      "checks": [
+        "current-archive-identical-editions-and-profile",
+        "four-unseen-festivals-exact-30-daily-values-and-monthly-mean",
+        "new-festival-shares-observations",
+        "new-incheon-district-has-own-observations-without-invented-past",
+        "real-search-to-all-three-views-four-regions",
+        "320-390-1440-no-page-overflow",
+        "reviewed-history-inline-keeps-current-identity"
+      ]
+    },
+    "publicHealth": {
+      "/": 200,
+      "/robots.txt": 200,
+      "/sitemap.xml": 200,
+      "/health/readyz": 200,
+      "/existing/search": 200,
+      "/new": 200
+    },
+    "initialBrowserFailure": "Late Cloudflare consent dialog blocked click; test updated to use ordinary 모두 거부 handler, final rerun passed without mocking.",
+    "initialHttpFailure": "Python urllib 403; Node HTTP and Chromium succeeded; no platform setting changed.",
+    "directlyReviewedScreenshots": 3
+  },
+  "reviewDelivery": {
+    "status": "pending"
+  }
+}
