@@ -1,12 +1,16 @@
 // 관광자원 네 유형(관광지·문화시설·음식점·숙박)과 공통 소개 — both festival journeys, headless.
-// Design: docs/design/19-tourism-resources.md.
+// Design: docs/design/19-tourism-resources.md, docs/design/20-resource-experience.md (map clusters, home purpose cards).
 //
 // Data provenance: 검증용 CONTROLLED FIXTURES only. Every tourism list (/api/existing/resources) and every shared
 // introduction (/api/resources/detail) is synthetic, titled "검증용"/"(가상)". They prove UI semantics (type choice,
-// independent loading, arrival, detail, comparison, layout) and never that the public provider returns such rows.
-// Official-data verification is a separate step. Festival lookup, archive and calendar requests pass through untouched.
-// The ~650-place list is a deterministic grid that exercises rendering, radius filtering and detail reachability at that
-// size; it does not show that the provider returns complete lists for any region.
+// independent loading, arrival, detail, comparison, map clusters, layout) and never that the public provider returns
+// such rows. Official-data verification is a separate step. Festival lookup, archive and calendar requests pass through
+// untouched. The home page and its purpose images are the real build output, not fixtures.
+// The ~650-place list is a deterministic grid that exercises rendering, clustering, radius filtering and detail
+// reachability at that size; it does not show that the provider returns complete lists for any region.
+// Every map selection uses a real pointer click or real key presses: no force click, dispatchEvent or synthetic DOM click.
+// The 200% check in layouts() is CSS layout zoom (`html { zoom: 2 }`) only. It is neither real browser page zoom (media
+// queries still see the unzoomed viewport) nor a deviceScaleFactor check, and is never reported as either.
 // Protocol keys mirror the server's canonical keys (lib/existing/request.ts, lib/new-festival/request.ts).
 // Race ordering uses request gates (hold → release); no sleeps decide ordering.
 import assert from "node:assert/strict";
@@ -46,6 +50,16 @@ const S32 = res("9411", "32", "검증용 숙박 사 (가상)", pt(36.195, 127.11
 const R32 = res("9412", "32", "검증용 숙박 아 · 좌표 없음 (가상)", null);
 const Z32 = res("9413", "32", "검증용 숙박 자 (가상)", pt(36.23, 127.14));
 const RESOURCES = { "12": [A12, B12], "14": [C14], "39": [F39, E39, G39, LONG39], "32": [S32, R32, Z32] };
+// Cluster set (swapped in for 관광지 by the cluster scenarios only): two places on exactly the same coordinates and one
+// place ~0.2 km away. At any fitted zoom (≤ 14) the three fit inside one marker slot, so they always share a
+// cluster; A12 stays far enough away to remain a single marker and B12 stays list-only (no coordinates).
+const SAME_POINT = pt(36.2305, 127.1605);
+const SAME1 = res("9121", "12", "검증용 관광지 같은 자리 가 (가상)", SAME_POINT);
+const SAME2 = res("9122", "12", "검증용 관광지 같은 자리 나 (가상)", SAME_POINT);
+const NEAR12 = res("9123", "12", "검증용 관광지 같은 자리 옆 (가상)", pt(36.2315, 127.1625));
+const CLUSTER_SET = [A12, B12, SAME1, SAME2, NEAR12];
+const CLUSTER_ORDER = [A12, SAME1, SAME2, NEAR12, B12]; // name order: 가 < 같은 자리 가/나/옆 < 나 · 좌표 없음
+const CLUSTER_MEMBERS = [[2, SAME1], [3, SAME2], [4, NEAR12]]; // [list number, place]
 
 // Expected distances are computed here from the fixture coordinates with the same spherical formula as
 // lib/comparison/distance.ts, independently of the page.
@@ -169,8 +183,15 @@ const FLOW = {
 };
 const section = (page, flow) => page.locator(`section[aria-labelledby="${FLOW[flow].section}"]`);
 const typeGroup = page => page.getByRole("group", { name: "자원 유형" });
-const typeButton = (page, kind) => typeGroup(page).getByRole("button", { name: KIND_LABEL[kind], exact: true });
+// A type toggle's accessible name starts with the plain type name; a registered count may follow it.
+const typeButton = (page, kind) => typeGroup(page).getByRole("button", { name: new RegExp(`^${KIND_LABEL[kind]}(?![가-힣])`) });
 const pressed = page => typeGroup(page).getByRole("button").evaluateAll(bs => bs.map(b => b.getAttribute("aria-pressed") === "true"));
+const countWord = n => `${n.toLocaleString("ko-KR")}건`;
+// A verified count belongs to its type toggle; the type name stays the accessible name and the count is its description.
+const kindCount = (page, kind, n = RESOURCES[kind].length) => typeButton(page, kind).getByText(countWord(n), { exact: true });
+/** The toggle's accessible name plus its aria-describedby text: where a screen reader hears the type and its count. */
+const toggleSpeech = (page, kind) => typeButton(page, kind).evaluate(b => [b.getAttribute("aria-label") ?? b.textContent ?? "",
+  ...(b.getAttribute("aria-describedby") ?? "").split(/\s+/).filter(Boolean).map(id => document.getElementById(id)?.textContent ?? "")].join(" ").replace(/\s+/g, " ").trim());
 const resourceList = page => page.getByRole("list", { name: "관광자원 목록" });
 const rowButton = (page, r) => resourceList(page).getByRole("button", { name: new RegExp(`^\\d+\\. ${escapeRe(r.title)}`) });
 const listToggle = (page, r, action) => resourceList(page).getByRole("button", { name: `${r.title} ${action}`, exact: true });
@@ -180,8 +201,100 @@ const ddOf = (scope, term) => scope.locator("dt").filter({ hasText: new RegExp(`
 const compare = page => page.getByRole("region", { name: /^함께 보기 \d\/2$/ });
 const compareCard = (page, r) => compare(page).getByRole("article", { name: r.title, exact: true });
 const anchorLabel = (page, r) => page.locator("p", { hasText: new RegExp(`^기준점\\s*${escapeRe(r.title)}$`) });
-const countText = (page, kind) => page.getByText(`${KIND_LABEL[kind]} ${RESOURCES[kind].length}건`, { exact: true });
-async function settled(page, kinds) { for (const k of kinds) await visible(countText(page, k)); await flush(page); }
+async function settled(page, kinds) { for (const k of kinds) await visible(kindCount(page, k).first()); await flush(page); }
+const listTitles = page => resourceList(page).locator("[data-resource-id]").evaluateAll(bs => bs.map(b => b.querySelector("span")?.textContent?.replace(/\s+/g, " ").trim()));
+
+// ---- Map contract (design 20 · 군집 지도 행동). Every map selector assumption lives in this block. ----
+// · A single place is a map button named "지도에서 N. TITLE 상세 보기" (optionally followed by ", <state>").
+// · A cluster is a map button whose accessible name states its real member count "N곳" and does not start like a
+//   single place. Its selected / 함께 보기 state is part of that name.
+// · An opened cluster shows one real button per member, named "N. TITLE…" (optionally prefixed "지도에서 "), outside the
+//   place list, and an explicit close button whose name ends in "닫기" (never the detail's "상세 닫기").
+// Names are read from aria-label, falling back to the text content.
+// Canvas is inert while its chooser is open. includeHidden permits DOM identity assertions in that state only;
+// clicks still use normal hit testing and only run after closing the chooser.
+const mapArea = page => page.getByRole("group", { name: /^관광자원 지도/, includeHidden: true });
+const CLUSTER_NAME = /^(?!지도에서 \d+\. ).*?(?<![\d,])\d[\d,]*곳/;
+const placesIn = name => Number(name.match(/(\d[\d,]*)곳/)[1].replaceAll(",", ""));
+const clusterButtons = page => mapArea(page).getByRole("button", { name: CLUSTER_NAME, includeHidden: true });
+// The first number in a cluster's name is its member count (a later "함께 보기 중 N곳 포함" is not).
+const clusterOf = (page, n) => mapArea(page).getByRole("button", { name: new RegExp(`^(?!지도에서 \\d+\\. )\\D*(?<![\\d,])${countWord(n).replace("건", "곳")}`), includeHidden: true });
+const markerFor = (page, n, r) => mapArea(page).getByRole("button", { name: new RegExp(`^지도에서 ${n}\\. ${escapeRe(r.title)} 상세 보기`), includeHidden: true });
+const outsideList = page => page.locator("xpath=//button[not(ancestor::*[@aria-label='관광자원 목록'])]");
+// Member state tags (e.g. "✓ 상세 보는 중") may follow the title directly; fixture titles never prefix one another.
+const memberName = (n, r) => new RegExp(`^(?:지도에서 )?${n}\\. ${escapeRe(r.title)}`);
+const memberButton = (page, n, r) => outsideList(page).and(page.getByRole("button", { name: memberName(n, r) }));
+const placeButtons = page => outsideList(page).and(page.getByRole("button", { name: /^(?:지도에서 )?\d+\. / }));
+const clusterClose = page => page.getByRole("button", { name: "가까운 장소 목록 닫기", exact: true });
+const nameOf = locator => locator.evaluate(el => (el.getAttribute("aria-label") ?? el.textContent ?? "").replace(/\s+/g, " ").trim());
+const namesOf = locator => locator.evaluateAll(els => els.map(el => (el.getAttribute("aria-label") ?? el.textContent ?? "").replace(/\s+/g, " ").trim()));
+const waitFocusName = (page, pattern) => page.waitForFunction(([source, flags]) => {
+  const el = document.activeElement;
+  return !!el && el !== document.body && new RegExp(source, flags).test((el.getAttribute("aria-label") ?? el.textContent ?? "").replace(/\s+/g, " ").trim());
+}, typeof pattern === "string" ? [`^${escapeRe(pattern)}$`, ""] : [pattern.source, pattern.flags]);
+const focusedId = page => page.evaluate(() => document.activeElement?.id ?? "");
+async function openCluster(page, cluster) {
+  if (!(await clusterClose(page).isVisible())) await cluster.click();
+  await visible(clusterClose(page));
+}
+async function closeCluster(page) {
+  await clusterClose(page).click();
+  await clusterClose(page).waitFor({ state: "hidden" });
+}
+async function closeClusterIfOpen(page) { if (await clusterClose(page).isVisible()) await closeCluster(page); }
+/** In-page snapshot of the map buttons (no open cluster): singles, cluster counts, and the first pair of overlapping boxes. */
+function MAP_STATE() {
+  const map = document.querySelector('[role="group"][aria-label^="관광자원 지도"]');
+  const name = b => (b.getAttribute("aria-label") ?? b.textContent ?? "").replace(/\s+/g, " ").trim();
+  const buttons = map ? [...map.querySelectorAll("button")].filter(b => b.getClientRects().length > 0) : [];
+  const singles = buttons.filter(b => /^지도에서 \d+\. .+ 상세 보기/.test(name(b)));
+  const clusters = buttons.filter(b => !/^지도에서 \d+\. /.test(name(b)) && /(?<![\d,])\d[\d,]*곳/.test(name(b)));
+  const counts = clusters.map(b => Number(name(b).match(/(\d[\d,]*)곳/)[1].replaceAll(",", "")));
+  const membership = [...singles, ...clusters].map(b => ({
+    ids: b.dataset.resourceIds ? JSON.parse(b.dataset.resourceIds) : [b.dataset.resourceId],
+    count: Number(b.dataset.resourceCount),
+    spoken: /^지도에서 /.test(name(b)) ? 1 : Number(name(b).match(/(\d[\d,]*)곳/)[1].replaceAll(",", "")),
+  }));
+  const frame = map?.getBoundingClientRect();
+  const boxes = frame ? [...singles, ...clusters].map(b => ({ label: name(b), r: b.getBoundingClientRect() }))
+    .filter(({ r }) => r.right > frame.left && r.left < frame.right && r.bottom > frame.top && r.top < frame.bottom) : [];
+  let overlap = null;
+  for (let i = 0; i < boxes.length && !overlap; i++) for (let j = i + 1; j < boxes.length; j++) {
+    const a = boxes[i].r, b = boxes[j].r;
+    if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) { overlap = [boxes[i].label, boxes[j].label]; break; }
+  }
+  return { singles: singles.length, singleNames: singles.map(name), clusters: counts, places: singles.length + counts.reduce((s, c) => s + c, 0),
+    ids: membership.flatMap(m => m.ids), membershipMatches: membership.every(m => m.ids.length === m.count && m.count === m.spoken), overlap };
+}
+const mapState = page => page.evaluate(MAP_STATE);
+/** Waits until the map shows exactly `n` places: single markers plus the member counts of clusters. */
+const waitMapPlaces = (page, n) => page.waitForFunction(expected => {
+  const map = document.querySelector('[role="group"][aria-label^="관광자원 지도"]');
+  return !!map && [...map.querySelectorAll("button[data-resource-count]")]
+    .filter(b => b.getClientRects().length > 0)
+    .reduce((sum, b) => sum + Number(b.dataset.resourceCount), 0) === expected;
+}, n);
+/** The cluster nearest the map centre (no map control covers it). Returns its index among clusterButtons(page). */
+async function centralCluster(page) {
+  const centres = await clusterButtons(page).evaluateAll(bs => {
+    const f = bs[0]?.closest('[role="group"]')?.getBoundingClientRect();
+    return bs.map(b => { const r = b.getBoundingClientRect(); return f ? Math.hypot(r.x + r.width / 2 - (f.x + f.width / 2), r.y + r.height / 2 - (f.y + f.height / 2)) : Infinity; });
+  });
+  assert.ok(centres.length > 0, "a cluster is on the map");
+  return centres.indexOf(Math.min(...centres));
+}
+/** Selects place n on the map with real pointer clicks: its own marker, or the member button of the cluster that holds it. */
+async function selectOnMap(page, n, r) {
+  await closeClusterIfOpen(page);
+  if (await markerFor(page, n, r).count()) { await markerFor(page, n, r).click(); return "marker"; }
+  const clusters = clusterButtons(page), total = await clusters.count();
+  for (let i = 0; i < total; i++) {
+    await openCluster(page, clusters.nth(i));
+    if (await memberButton(page, n, r).count()) { await memberButton(page, n, r).click(); return "cluster"; }
+    await closeCluster(page);
+  }
+  throw new Error(`place ${n}. ${r.title} is neither a marker nor a cluster member`);
+}
 async function openDetail(page, flow, r) {
   await rowButton(page, r).click();
   await waitFocusId(page, FLOW[flow].detailHeading);
@@ -204,8 +317,16 @@ async function typeChoice(flow) {
   let mark = calls.length;
   await page.goto(FLOW[flow].url());
   await settled(page, ["12", "14"]);
-  assert.deepEqual(await typeGroup(page).getByRole("button").allInnerTexts(), ["관광지", "문화시설", "음식점", "숙박"], `${flow}: peer order`);
+  const toggles = typeGroup(page).getByRole("button");
+  assert.equal(await toggles.count(), KINDS.length, `${flow}: four peer type toggles`);
+  for (const [i, kind] of KINDS.entries()) assert.equal(await toggles.nth(i).and(typeButton(page, kind)).count(), 1, `${flow}: toggle ${i + 1} is ${KIND_LABEL[kind]}`);
   assert.deepEqual(await pressed(page), [true, true, false, false], `${flow}: default choice`);
+  for (const kind of ["12", "14"]) {
+    assert.ok(await kindCount(page, kind).count() > 0, `${flow}: ${KIND_LABEL[kind]} states ${countWord(RESOURCES[kind].length)}`);
+    assert.match(await toggleSpeech(page, kind), new RegExp(`^${KIND_LABEL[kind]}(?![가-힣]).*(?<![\\d,])${countWord(RESOURCES[kind].length)}`),
+      `${flow}: the ${KIND_LABEL[kind]} toggle's name or description carries its count`);
+  }
+  for (const kind of ["39", "32"]) assert.equal(await kindCount(page, kind).count(), 0, `${flow}: no count for an unchosen ${KIND_LABEL[kind]}`);
   assert.deepEqual([...new Set(listTypes(mark))].sort(), ["12", "14"], `${flow}: default asks only 12 and 14`);
   assert.equal(typesParam(page), null, `${flow}: default address has no types`);
   await visible(rowButton(page, A12));
@@ -290,7 +411,9 @@ async function independentLoading(flow) {
   await visible(failed);
   await visible(page.getByText("숙박 목록을 불러오고 있어요…", { exact: true }));
   await excludes(section(page, flow), /음식점 0건|음식점: 조회한 등록 결과가 없어요/, `${flow}: a failed kind is not zero`);
-  await visible(page.getByText(/^불러온 3건 · /));
+  assert.equal(await kindCount(page, "39", 0).count(), 0, `${flow}: a failed kind never states 0건`);
+  assert.equal(await kindCount(page, "32", 0).count(), 0, `${flow}: a loading kind never states 0건`);
+  await visible(page.getByText("현재 목록 3건 · 지도 2건", { exact: true }));
   await held.release();
   await settled(page, ["32"]);
   await visible(rowButton(page, S32));
@@ -298,7 +421,7 @@ async function independentLoading(flow) {
   const mark = calls.length;
   await failed.getByRole("button", { name: "다시 불러오기", exact: true }).click();
   await settled(page, ["39"]);
-  await visible(page.getByText(/^조회 10건 · /));
+  await visible(page.getByText("현재 목록 10건 · 지도 8건", { exact: true }));
   assert.deepEqual(listTypes(mark), ["39"], `${flow}: retry asks only the failed kind`);
   await visible(rowButton(page, A12));
   passed.push(`${flow}-independent-kind-failure-delay-and-retry`);
@@ -378,11 +501,11 @@ async function regionGuard(flow) {
   const failed = page.getByRole("alert").filter({ hasText: "음식점 목록을 불러오지 못했어요." });
   await visible(failed);
   await flush(page);
-  assert.equal(await countText(page, "39").count(), 0, `${flow}: no count from another region's answer`);
+  assert.equal(await kindCount(page, "39").count(), 0, `${flow}: no count from another region's answer`);
   assert.equal(await rowButton(page, F39).count(), 0, `${flow}: no row from another region's answer`);
   assert.equal(await rowButton(page, foreign).count(), 0, `${flow}: the foreign row is never shown`);
-  assert.equal(await page.getByText("음식점 1건", { exact: true }).count(), 0, `${flow}: the foreign count is never shown`);
-  await visible(page.getByText(/^불러온 2건 · /));
+  assert.equal(await kindCount(page, "39", 1).count(), 0, `${flow}: the foreign count is never shown`);
+  await visible(page.getByText("현재 목록 2건 · 지도 1건", { exact: true }));
   await visible(rowButton(page, A12));
 
   const mark = calls.length, retryFailed = gate(listOf("39"), `${flow} failed retry after foreign answer`);
@@ -392,7 +515,7 @@ async function regionGuard(flow) {
   await visible(failed);
   await flush(page);
   assert.equal(await rowButton(page, foreign).count(), 0, `${flow}: failed refresh never revives a cached foreign row`);
-  assert.equal(await page.getByText("음식점 1건", { exact: true }).count(), 0, `${flow}: failed refresh never revives a foreign count`);
+  assert.equal(await kindCount(page, "39", 1).count(), 0, `${flow}: failed refresh never revives a foreign count`);
   await visible(rowButton(page, A12));
 
   const malformed = gate(listOf("39"), `${flow} response without type blocks`);
@@ -450,19 +573,47 @@ async function allTypesOff(flow) {
 }
 
 async function largeList(flow) {
-  // One kind with 650 places: every row and marker renders, the radius filter follows the fixture geometry,
-  // and a detail opens from the end of the list and from a marker.
+  // One kind with 650 places: every row is listed, every located place is on the map exactly once (single markers plus
+  // cluster member counts) without overlapping buttons, the radius filter follows the fixture geometry, and a detail
+  // opens from the end of the list, through a cluster and from the filtered map — all by real pointer clicks.
   const saved = RESOURCES["39"];
   RESOURCES["39"] = BULK;
   const { context, page } = await openContext();
   try {
     const rows = resourceList(page).locator("[data-resource-id]");
-    const markerCount = n => page.waitForFunction(count => document.querySelectorAll(".map-resource").length === count, n);
     await page.goto(FLOW[flow].url("?types=39"));
     await settled(page, ["39"]);
     assert.equal(await rows.count(), BULK.length, `${flow}: every place listed`);
-    await visible(page.getByText(new RegExp(`^조회 ${BULK.length}건 · (좌표|지도 위치) 있는 자원 ${BULK.length}건`)));
-    await markerCount(BULK.length);
+    await visible(page.getByText(`현재 목록 ${countWord(BULK.length)} · 지도 ${countWord(BULK.length)}`, { exact: true }));
+    await waitMapPlaces(page, BULK.length);
+    const dense = await mapState(page);
+    assert.deepEqual([...dense.ids].sort(), BULK.map(r => r.id).sort(), `${flow}: every located ID occurs exactly once across map buttons`);
+    assert.equal(dense.membershipMatches, true, `${flow}: map membership and spoken place counts agree`);
+    assert.ok(dense.clusters.length > 0 && dense.singles + dense.clusters.length < BULK.length,
+      `${flow}: the dense grid is grouped (${dense.singles} single, ${dense.clusters.length} clusters)`);
+    assert.equal(dense.overlap, null, `${flow}: no two map buttons overlap (${dense.overlap})`);
+
+    // Through a cluster: a real click on the central cluster lists exactly its N places as real buttons in list order,
+    // numbered as in the list; a real click on one of them opens that place and focuses its detail.
+    const cluster = clusterButtons(page).nth(await centralCluster(page)), count = placesIn(await nameOf(cluster));
+    const before = await namesOf(placeButtons(page));
+    await openCluster(page, cluster);
+    const members = (await namesOf(placeButtons(page))).filter(n => !before.includes(n)).map(n => {
+      const m = n.match(/^(?:지도에서 )?(\d+)\. (.+?\(가상\))/);
+      assert.ok(m, `${flow}: member name ${JSON.stringify(n)}`);
+      return { number: Number(m[1]), place: BULK.find(r => r.title === m[2]) };
+    });
+    assert.equal(members.length, count, `${flow}: the cluster states ${count}곳 and lists exactly ${count} places`);
+    assert.ok(count > 1, `${flow}: a real cluster holds more than one place`);
+    for (const m of members) assert.equal(m.number, BULK.indexOf(m.place) + 1, `${flow}: member number follows the list order`);
+    assert.deepEqual(members.map(m => m.number), members.map(m => m.number).sort((a, b) => a - b), `${flow}: members in list order`);
+    const viaCluster = members[1];
+    assert.equal(await markerFor(page, viaCluster.number, viaCluster.place).count(), 0, `${flow}: a clustered place has no separate marker`);
+    await memberButton(page, viaCluster.number, viaCluster.place).click();
+    await waitFocusId(page, FLOW[flow].detailHeading);
+    await visible(detail(page, viaCluster.place));
+    assert.equal(await rowButton(page, viaCluster.place).getAttribute("aria-pressed"), "true", `${flow}: cluster member and row are the same place`);
+    await closeClusterIfOpen(page);
 
     await openDetail(page, flow, BULK_ANCHOR);
     await detail(page, BULK_ANCHOR).getByRole("button", { name: "이 자원을 기준점으로", exact: true }).click();
@@ -472,25 +623,220 @@ async function largeList(flow) {
     assert.equal(await farDistance.innerText(), farText, `${flow}: far place distance`);
 
     await page.getByLabel("반경").selectOption(String(BULK_RADIUS));
-    await visible(page.getByText(new RegExp(`기준점 ${BULK_RADIUS}km 안 ${BULK_INSIDE.length}건`)));
-    await markerCount(BULK_INSIDE.length);
+    await visible(page.getByText(`현재 목록 ${countWord(BULK_INSIDE.length)} · 지도 ${countWord(BULK_INSIDE.length)} · 기준점 ${BULK_RADIUS}km 안 ${countWord(BULK_INSIDE.length)}`, { exact: true }));
+    await waitMapPlaces(page, BULK_INSIDE.length);
+    const filteredMap = await mapState(page);
+    assert.equal(filteredMap.overlap, null, `${flow}: no overlapping map buttons inside the radius`);
+    assert.deepEqual([...filteredMap.ids].sort(), BULK_INSIDE.map(r => r.id).sort(), `${flow}: each filtered located ID occurs exactly once`);
+    assert.equal(filteredMap.membershipMatches, true, `${flow}: filtered map membership and spoken place counts agree`);
     assert.equal(await rows.count(), BULK_INSIDE.length, `${flow}: rows inside the radius`);
     assert.equal(await rowButton(page, BULK_FAR).count(), 0, `${flow}: the far place leaves the list`);
     await visible(detail(page, BULK_FAR));
     assert.equal(await farDistance.innerText(), farText, `${flow}: the radius keeps the open detail and its distance`);
     if (flow === "new") await visible(detail(page, BULK_FAR).getByText(FLOW.new.hiddenDetail, { exact: true }));
 
-    // Marker numbers follow the filtered name order. Neighbouring markers may overlap at this zoom, so the
-    // marker's own click action is dispatched directly instead of relying on hit-testing.
+    // Map numbers follow the filtered name order. The place is chosen with a real pointer click on its own marker or,
+    // when it shares a cluster, on its member button — never by dispatching the click.
     const target = BULK_INSIDE[BULK_INSIDE.length - 1], number = BULK_INSIDE.indexOf(target) + 1;
-    await page.getByRole("button", { name: `지도에서 ${number}. ${target.title} 상세 보기`, exact: true }).dispatchEvent("click");
+    await selectOnMap(page, number, target);
     await waitFocusId(page, FLOW[flow].detailHeading);
     await visible(detail(page, target));
     assert.equal(await ddOf(detail(page, target), FLOW[flow].distanceTerm).innerText(), FLOW[flow].distanceText(distanceKm(BULK_ANCHOR.point, target.point)));
-    assert.equal(await rowButton(page, target).getAttribute("aria-pressed"), "true", `${flow}: marker and row are the same place`);
-    passed.push(`${flow}-650-places-list-map-radius-and-detail`);
+    assert.equal(await rowButton(page, target).getAttribute("aria-pressed"), "true", `${flow}: map place and row are the same place`);
+    await closeClusterIfOpen(page);
+    passed.push(`${flow}-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks`);
   } finally {
     RESOURCES["39"] = saved;
+    await context.close();
+  }
+}
+
+async function clusterSelection(flow) {
+  // Two places on the same coordinates and one nearby place share one cluster; every one of them is chosen with a real
+  // pointer click, the cluster works by Enter / Space / Tab / Shift+Tab / Escape / explicit close, and choosing the
+  // already open place again moves focus to its detail again.
+  const saved = RESOURCES["12"];
+  RESOURCES["12"] = CLUSTER_SET;
+  const { context, page } = await openContext();
+  try {
+    await page.goto(FLOW[flow].url("?types=12"));
+    await settled(page, ["12"]);
+    assert.deepEqual(await listTitles(page), CLUSTER_ORDER.map((r, i) => `${i + 1}. ${r.title}`), `${flow}: list numbers in name order`);
+    await waitMapPlaces(page, 4);
+    const shown = await mapState(page);
+    assert.deepEqual({ singles: shown.singles, clusters: shown.clusters }, { singles: 1, clusters: [3] }, `${flow}: one single marker and one cluster of 3`);
+    assert.equal(shown.overlap, null, `${flow}: no overlapping map buttons (${shown.overlap})`);
+    await visible(markerFor(page, 1, A12));
+    for (const [n, r] of CLUSTER_MEMBERS) assert.equal(await markerFor(page, n, r).count(), 0, `${flow}: ${r.title} is only in the cluster`);
+    assert.equal(await markerFor(page, 5, B12).count(), 0, `${flow}: a place without coordinates is list-only`);
+    const cluster = clusterOf(page, 3);
+    await visible(cluster);
+
+    // A single marker by a real click.
+    await markerFor(page, 1, A12).click();
+    await waitFocusId(page, FLOW[flow].detailHeading);
+    await visible(detail(page, A12));
+
+    // Opening the cluster (real click) lists its three places in list order and changes nothing else.
+    const address = page.url(), originName = await nameOf(cluster);
+    const before = await namesOf(placeButtons(page));
+    await cluster.click();
+    await visible(clusterClose(page));
+    const members = (await namesOf(placeButtons(page))).filter(n => !before.includes(n));
+    assert.equal(members.length, 3, `${flow}: the cluster lists its 3 places: ${JSON.stringify(members)}`);
+    CLUSTER_MEMBERS.forEach(([n, r], i) => assert.match(members[i], memberName(n, r), `${flow}: member ${i + 1}`));
+    assert.equal(page.url(), address, `${flow}: opening a cluster keeps the address`);
+    await visible(detail(page, A12)); // opening a cluster never replaces the open detail
+    assert.equal(await page.getByRole("button", { name: "기준점 해제", exact: true }).count(), 0, `${flow}: opening a cluster never sets an anchor`);
+    // Explicit close returns focus to the cluster button.
+    await closeCluster(page);
+    await waitFocusName(page, originName);
+    passed.push(`${flow}-cluster-lists-same-point-and-nearby-places-opening-changes-nothing-close-returns-focus`);
+
+    // Each member (both same-coordinate places and the nearby one) by a real pointer click; focus moves to the detail.
+    for (const [n, r] of CLUSTER_MEMBERS) {
+      await openCluster(page, cluster);
+      await memberButton(page, n, r).click();
+      await waitFocusId(page, FLOW[flow].detailHeading);
+      await visible(detail(page, r));
+      assert.equal(await rowButton(page, r).getAttribute("aria-pressed"), "true", `${flow}: member ${n} and its row are the same place`);
+      assert.equal(await markerFor(page, n, r).count(), 0, `${flow}: selecting ${n} never adds a duplicate marker`);
+      assert.equal(await clusterOf(page, 3).count(), 1, `${flow}: the cluster keeps its 3 places while one is selected`);
+    }
+    passed.push(`${flow}-cluster-each-same-point-and-nearby-place-by-real-click-focuses-detail`);
+
+    // Choosing the already open place again (cluster member, then list row) moves focus to its detail again.
+    await closeClusterIfOpen(page);
+    await cluster.focus();
+    assert.notEqual(await focusedId(page), FLOW[flow].detailHeading);
+    await openCluster(page, cluster);
+    await memberButton(page, 4, NEAR12).click();
+    await waitFocusId(page, FLOW[flow].detailHeading);
+    await closeClusterIfOpen(page);
+    await rowButton(page, NEAR12).click();
+    await waitFocusId(page, FLOW[flow].detailHeading);
+    await visible(detail(page, NEAR12));
+    passed.push(`${flow}-reselecting-open-place-focuses-detail-again`);
+
+    // Keyboard: Enter opens; Tab / Shift+Tab walk the members in order; Escape closes back to the same cluster; Space opens.
+    const keyOrigin = await nameOf(cluster);
+    await cluster.focus();
+    await page.keyboard.press("Enter");
+    await visible(memberButton(page, 2, SAME1));
+    // The chooser heading is the initial focus target. Shift+Tab must not enter map controls obscured by it.
+    const chooserHeading = page.getByRole("dialog", { name: "가까운 장소 3곳", exact: true }).getByRole("heading");
+    assert.equal(await chooserHeading.evaluate(el => el === document.activeElement), true, `${flow}: opening focuses the chooser heading`);
+    await page.keyboard.press("Shift+Tab");
+    assert.equal(await page.evaluate(() => !!document.activeElement?.closest('[role="group"][aria-label^="관광자원 지도"]')), false,
+      `${flow}: reverse Tab skips the obscured map canvas`);
+    await chooserHeading.focus();
+    let steps = 0;
+    while (!memberName(2, SAME1).test(await page.evaluate(() => (document.activeElement?.getAttribute("aria-label") ?? document.activeElement?.textContent ?? "").replace(/\s+/g, " ").trim()))) {
+      assert.ok(++steps <= 4, `${flow}: Tab reaches the first member within 4 steps`);
+      await page.keyboard.press("Tab");
+    }
+    await page.keyboard.press("Tab"); await waitFocusName(page, memberName(3, SAME2));
+    await page.keyboard.press("Tab"); await waitFocusName(page, memberName(4, NEAR12));
+    await page.keyboard.press("Shift+Tab"); await waitFocusName(page, memberName(3, SAME2));
+    await page.keyboard.press("Shift+Tab"); await waitFocusName(page, memberName(2, SAME1));
+    await page.keyboard.press("Escape");
+    await clusterClose(page).waitFor({ state: "hidden" });
+    await waitFocusName(page, keyOrigin);
+    await page.keyboard.press("Space");
+    await visible(memberButton(page, 2, SAME1));
+    await page.keyboard.press("Escape");
+    await clusterClose(page).waitFor({ state: "hidden" });
+    await waitFocusName(page, keyOrigin);
+    // Enter on a member chooses it like a click.
+    await page.keyboard.press("Enter");
+    await visible(memberButton(page, 3, SAME2));
+    await memberButton(page, 3, SAME2).focus();
+    await page.keyboard.press("Enter");
+    await waitFocusId(page, FLOW[flow].detailHeading);
+    await visible(detail(page, SAME2));
+    await closeClusterIfOpen(page);
+    passed.push(`${flow}-cluster-enter-space-tab-shift-tab-escape-restore-cluster-focus`);
+
+    if (flow === "new") { // 함께 보기 is part of the cluster's accessible name, never a colour alone
+      await listToggle(page, SAME1, "함께 보기에 추가").click();
+      await visible(listToggle(page, SAME1, "함께 보기에서 빼기"));
+      await visible(clusterOf(page, 3).and(mapArea(page).getByRole("button", { name: /함께 보기/ })));
+      await listToggle(page, SAME1, "함께 보기에서 빼기").click();
+      await visible(listToggle(page, SAME1, "함께 보기에 추가"));
+      passed.push("new-cluster-name-states-compared-member");
+    }
+
+    // Zooming in (real double clicks beside the cluster) splits the nearby place off but never the same-coordinate pair,
+    // and never changes the list, anchor or address conditions.
+    await mapArea(page).scrollIntoViewIfNeeded();
+    const frame = await mapArea(page).boundingBox();
+    for (let i = 0; i < 6 && !(await markerFor(page, 4, NEAR12).count()); i++) {
+      const box = await clusterButtons(page).first().boundingBox();
+      // Up-right of the cluster, so each zoom moves the cluster toward the map centre and it stays in view.
+      const x = Math.min(frame.x + frame.width - 6, box.x + box.width + 16), y = Math.max(frame.y + 6, box.y - 16);
+      await page.mouse.dblclick(x, y);
+      await markerFor(page, 4, NEAR12).waitFor({ state: "visible", timeout: 1_500 }).catch(() => {});
+    }
+    await visible(markerFor(page, 4, NEAR12));
+    const pair = clusterOf(page, 2);
+    await visible(pair);
+    for (const [n, r] of CLUSTER_MEMBERS.slice(0, 2)) assert.equal(await markerFor(page, n, r).count(), 0, `${flow}: zooming never splits the same coordinates`);
+    assert.equal(page.url(), address, `${flow}: zooming keeps the address conditions`);
+    assert.equal(await page.getByRole("button", { name: "기준점 해제", exact: true }).count(), 0, `${flow}: zooming never sets an anchor`);
+    assert.equal(await resourceList(page).locator("[data-resource-id]").count(), CLUSTER_SET.length, `${flow}: zooming keeps the list`);
+    assert.equal((await mapState(page)).overlap, null, `${flow}: no overlapping map buttons after zooming`);
+    await markerFor(page, 4, NEAR12).click();
+    await waitFocusId(page, FLOW[flow].detailHeading);
+    await visible(detail(page, NEAR12));
+    for (const [n, r] of CLUSTER_MEMBERS.slice(0, 2)) {
+      await openCluster(page, pair);
+      await memberButton(page, n, r).click();
+      await waitFocusId(page, FLOW[flow].detailHeading);
+      await visible(detail(page, r));
+    }
+    await closeClusterIfOpen(page);
+    passed.push(`${flow}-zoom-splits-nearby-never-same-point-keeps-conditions`);
+    await noInternalWording(page, flow, `${flow} clusters`);
+  } finally {
+    RESOURCES["12"] = saved;
+    await context.close();
+  }
+}
+
+async function clusterSmallScreen(flow) {
+  // 390px map view: the cluster works by pointer and closes back to itself; closing the detail never sends focus into
+  // the hidden list.
+  const saved = RESOURCES["12"];
+  RESOURCES["12"] = CLUSTER_SET;
+  const { context, page } = await openContext({ width: 390, height: 844 });
+  try {
+    await page.goto(FLOW[flow].url("?types=12"));
+    await settled(page, ["12"]);
+    await page.getByRole("group", { name: "보기 방식" }).getByRole("button", { name: "지도", exact: true }).click();
+    await resourceList(page).waitFor({ state: "hidden" });
+    await waitMapPlaces(page, 4);
+    const cluster = clusterOf(page, 3), originName = await nameOf(cluster);
+    await cluster.click();
+    await visible(memberButton(page, 2, SAME1));
+    await closeCluster(page);
+    await waitFocusName(page, originName);
+    await openCluster(page, cluster);
+    await memberButton(page, 3, SAME2).click();
+    await waitFocusId(page, FLOW[flow].detailHeading);
+    await visible(detail(page, SAME2));
+    await noPageOverflow(page, `${flow} 390 map detail`);
+    await detail(page, SAME2).getByRole("button", { name: "상세 닫기", exact: true }).click();
+    await detail(page, SAME2).waitFor({ state: "detached" });
+    await page.waitForFunction(() => { const el = document.activeElement; return !!el && el !== document.body && el.isConnected; });
+    const focus = await page.evaluate(() => {
+      const el = document.activeElement;
+      return { inList: !!el.closest('[aria-label="관광자원 목록"]'), visible: el.getClientRects().length > 0 && el.checkVisibility() };
+    });
+    assert.deepEqual(focus, { inList: false, visible: true }, `${flow}: closing the detail in map view focuses a visible control, never the hidden list`);
+    await resourceList(page).waitFor({ state: "hidden" }); // the map view stays
+    passed.push(`${flow}-390-map-view-cluster-close-and-detail-close-never-focus-hidden-list`);
+  } finally {
+    RESOURCES["12"] = saved;
     await context.close();
   }
 }
@@ -658,13 +1004,85 @@ async function layouts() {
         await visible(page.getByRole("heading", { name: "함께 보기 2/2", exact: true }));
         await noPageOverflow(page, `${flow} ${width} compare`);
       }
+      if (width === 1440) await cssLayoutZoom(page, flow, `${flow} ${width}`);
       await detail(page, LONG39).getByRole("button", { name: "상세 닫기", exact: true }).click();
       await waitFocusAttr(page, "data-resource-id", LONG39.id);
       if (width === 320) await page.screenshot({ path: `output/playwright/tourism-resources-${flow}-320.png`, fullPage: true });
     }
     await context.close();
   }
-  passed.push("layout-320-390-1440-no-overflow-focus-to-detail-and-back");
+  passed.push("layout-320-390-1440-no-overflow-focus-to-detail-and-back", "css-layout-zoom-200-at-1440-no-sideways-scroll-long-title-wraps");
+}
+
+async function cssLayoutZoom(page, flow, label) {
+  // CSS LAYOUT ZOOM ONLY: `html { zoom: 2 }` doubles every CSS length inside the 1440px viewport (~720px of layout).
+  // Media queries still see 1440px, so this is not real browser page zoom and not a deviceScaleFactor check; real 200%
+  // page zoom is verified separately. It proves the resource screen reflows without sideways page scrolling and the long
+  // Korean title wraps inside its heading, list row, type group and (new) comparison card.
+  await page.evaluate(() => { document.documentElement.style.zoom = "2"; });
+  try {
+    await flush(page);
+    const sideways = await page.evaluate(() => { window.scrollTo(1e6, window.scrollY); const x = window.scrollX; window.scrollTo(0, window.scrollY); return x; });
+    assert.equal(sideways, 0, `${label}: CSS layout zoom 200% must not scroll the page sideways`);
+    const clipped = await section(page, flow).evaluate(root => {
+      const wide = el => el && el.scrollWidth > el.clientWidth + 1;
+      const checks = [["detail heading", root.querySelector("aside h3")], ["type group", root.querySelector("fieldset")],
+        ...[...root.querySelectorAll("[data-resource-id]")].filter(el => !el.closest('[role="group"][aria-label^="관광자원 지도"]')).map(el => ["row " + el.dataset.resourceId, el]),
+        ...[...root.querySelectorAll("article")].map(el => ["comparison card", el])];
+      return checks.filter(([, el]) => wide(el)).map(([name]) => name);
+    });
+    assert.deepEqual(clipped, [], `${label}: CSS layout zoom 200% keeps content inside its box`);
+    await visible(detail(page, LONG39).getByRole("button", { name: "상세 닫기", exact: true }));
+  } finally {
+    await page.evaluate(() => { document.documentElement.style.zoom = ""; });
+    await flush(page);
+  }
+}
+
+async function purposeCards() {
+  // Home: both purpose cards keep their heading and CTA href, and each shows one decorative (empty alt) purpose image that
+  // loaded from a successful, non-empty image response. On a phone the first CTA stays in the first screen.
+  const PURPOSES = [
+    { heading: "기존 축제 개선", cta: "기존 축제 찾기 →", href: "/existing/search", file: "/images/purpose/existing-festival.png" },
+    { heading: "새 축제 기획", cta: "지역부터 살펴보기 →", href: "/new", file: "/images/purpose/new-festival.png" },
+  ];
+  for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
+    const { context, page } = await openContext(viewport);
+    const images = [];
+    page.on("response", r => { if (PURPOSES.some(p => decodeURIComponent(r.url()).includes(p.file))) images.push(r); });
+    await page.goto(`${base}/`);
+    const cards = page.locator('section[aria-labelledby="purpose-heading"]').getByRole("listitem");
+    assert.equal(await cards.count(), PURPOSES.length, `${viewport.width}: two purpose cards`);
+    for (const [i, p] of PURPOSES.entries()) {
+      const card = cards.nth(i), label = `${viewport.width} ${p.heading}`;
+      await visible(card.getByRole("heading", { level: 2, name: p.heading, exact: true }));
+      assert.equal(await card.getByRole("link", { name: p.cta, exact: true }).getAttribute("href"), p.href, `${label}: CTA href kept`);
+      const img = card.locator("img");
+      assert.equal(await img.count(), 1, `${label}: one purpose image`);
+      assert.equal(await img.getAttribute("alt"), "", `${label}: decorative image has an empty alt`);
+      assert.equal(await card.getByRole("img").count(), 0, `${label}: the image stays out of the accessibility tree`);
+      await img.scrollIntoViewIfNeeded();
+      await page.waitForFunction(el => el.complete && el.naturalWidth > 0 && el.naturalHeight > 0, await img.elementHandle());
+      assert.ok(decodeURIComponent(await img.evaluate(el => el.currentSrc)).includes(p.file), `${label}: shows its own purpose image`);
+      const box = await img.boundingBox();
+      assert.ok(box && box.width > 0 && box.height > 0, `${label}: the image is laid out`);
+    }
+    for (const p of PURPOSES) {
+      const served = [];
+      for (const r of images.filter(r => decodeURIComponent(r.url()).includes(p.file))) {
+        served.push({ status: r.status(), type: r.headers()["content-type"] ?? "", bytes: (await r.body().catch(() => Buffer.alloc(0))).length });
+      }
+      assert.ok(served.some(s => s.status === 200 && s.type.startsWith("image/") && s.bytes > 0), `${viewport.width} ${p.file}: successful non-empty image response ${JSON.stringify(served)}`);
+    }
+    if (viewport.width === 390) {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      const cta = await cards.nth(0).getByRole("link", { name: PURPOSES[0].cta, exact: true }).boundingBox();
+      assert.ok(cta && cta.y + cta.height <= viewport.height, `390: the first CTA stays in the first screen (bottom ${cta && cta.y + cta.height})`);
+    }
+    await noPageOverflow(page, `home ${viewport.width}`);
+    await context.close();
+  }
+  passed.push("home-purpose-cards-cta-hrefs-decorative-images-loaded-first-cta-in-view");
 }
 
 // ---- Run ----
@@ -676,16 +1094,21 @@ try {
     await regionGuard(flow);
     await allTypesOff(flow);
     await largeList(flow);
+    await clusterSelection(flow);
+    await clusterSmallScreen(flow);
   }
   await arrival();
   await compareIndependently();
   await layouts();
+  await purposeCards();
   assert.equal(calls.filter(c => c.endpoint === "new/resource-detail").length, 0, "both journeys use the shared introduction address");
   assert.deepEqual(writes, [], "no same-origin non-GET request");
   assert.deepEqual(errors, []);
   assert.deepEqual(fixtureErrors, []);
   assert.equal(queue.length, 0, `unused overrides: ${queue.length}`);
   console.log(JSON.stringify({ headless: true, data: "검증용 controlled fixtures for tourism lists and introductions (not official-data verification)",
+    zoom: "200% = CSS layout zoom (html zoom: 2) at 1440px only; not real browser page zoom, not deviceScaleFactor",
+    mapSelection: "real pointer clicks and key presses only (no force, dispatchEvent or synthetic DOM click)",
     passed, browserErrors: errors.length, clientWrites: writes.length, apiRequests: calls.length }));
 } finally {
   await browser.close();

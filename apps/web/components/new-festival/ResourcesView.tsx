@@ -7,8 +7,9 @@ import { isStale } from "@/components/existing/blocks";
 import { timeLabel } from "@/components/existing/format";
 import type { Anchor } from "@/components/existing/memory";
 import type { MapRow } from "@/components/existing/ResourceMap";
-import { InfoDialog, LoadState } from "@/components/existing/ui";
+import { InfoDialog } from "@/components/existing/ui";
 import { useResourceLists } from "@/components/resources/useResourceLists";
+import { AreaNote, CountLine, focusAfterDetail, KindPicker, KindStatusList, ListMapGrid, ViewToggle, WORKSPACE_ROOT } from "@/components/resources/ResourceWorkspace";
 import { distanceKm, validPoint } from "@/lib/comparison/distance";
 import { RESOURCE_KINDS } from "@/lib/existing/request";
 import { resourceRows } from "@/lib/existing/resources";
@@ -47,6 +48,7 @@ export function ResourcesView() {
   const lists = useResourceLists(region, types);
   const states = RESOURCE_KINDS.filter(kind => types.includes(kind))
     .map(kind => { const result = lists[kind]; return { kind, result, block: result.data?.region.code === region.code ? result.data.byType.find(b => b.kind === kind) ?? null : null }; });
+  const kindStates = states.map(({ kind, result, block }) => ({ kind, request: result, block }));
   const items = useMemo(() => states.flatMap(s => done(s.block) ? s.block.items : []), [lists["12"].data, lists["14"].data, lists["39"].data, lists["32"].data, types, region.code]); // eslint-disable-line react-hooks/exhaustive-deps
   const allDone = states.length > 0 && states.every(s => done(s.block) && !isStale(s.block));
   const { rows, counts } = useMemo(() => resourceRows(items, anchor?.point ?? null, { radiusKm: anchor ? radiusKm : null, sort: anchor ? sort : "name" }), [items, anchor, radiusKm, sort]);
@@ -77,14 +79,15 @@ export function ResourcesView() {
     const next = RESOURCE_KINDS.filter(k => (k === kind ? !types.includes(k) : types.includes(k)));
     setAddressParam("types", typesValue(next));
   }
-  function open(item: ResourceItem) { focusDetail.current = true; setDetail(item); }
+  function open(item: ResourceItem) {
+    // Choosing the place that is already open again (list, map or comparison) still takes the reader to its detail.
+    if (detail && detail.id === item.id && detail.kind === item.kind) { setDetail(item); detailHeading.current?.focus(); return; }
+    focusDetail.current = true; setDetail(item);
+  }
   function openById(id: string) { const item = items.find(i => i.id === id); if (item) open(item); }
   function closeDetail() {
     const id = detail?.id; setDetail(null);
-    requestAnimationFrame(() => {
-      const button = [...list.current?.querySelectorAll<HTMLElement>("[data-resource-id]") ?? []].find(el => el.dataset.resourceId === id);
-      (button && button.offsetParent !== null ? button : heading.current)?.focus();
-    });
+    requestAnimationFrame(() => focusAfterDetail(heading.current, id));
   }
   function toggleCompare(item: ResourceItem) {
     if (compared.some(c => c.id === item.id)) { setCompared(compared.filter(c => c.id !== item.id)); setNotice(null); return; }
@@ -102,55 +105,35 @@ export function ResourcesView() {
   function anchorOn(item: ResourceItem) { if (item.point) setAnchor({ point: item.point, label: item.title, source: "resource", resourceId: item.id }); }
   function anchorMap(point: Point) { setAnchor({ point, label: `지도에서 고른 위치 (${point.latitude.toFixed(4)}, ${point.longitude.toFixed(4)})`, source: "map" }); }
 
-  return <section aria-labelledby="new-resources-heading" className="space-y-4">
-    <div>
-      <h2 id="new-resources-heading" ref={heading} tabIndex={-1} className="min-w-0 break-words text-xl font-extrabold">{region.districtName} 관광자원</h2>
+  return <section aria-labelledby="new-resources-heading" className={WORKSPACE_ROOT}>
+    <div className="space-y-1">
+      <h2 id="new-resources-heading" ref={heading} tabIndex={-1} className="min-w-0 break-words text-xl font-extrabold sm:text-2xl">{region.districtName} 관광자원</h2>
       <p className="text-sm text-muted">{region.name} 전체 · 현재 등록된 관광지·문화시설·음식점·숙박</p>
     </div>
     <div className="region-card space-y-3">
-      <fieldset className="flex flex-wrap items-center gap-2">
-        <legend className="sr-only">자원 유형</legend>
-        {RESOURCE_KINDS.map(k => <button key={k} type="button" className="region-button" aria-pressed={types.includes(k)} onClick={() => toggleType(k)}>{KIND_LABEL[k]}</button>)}
-      </fieldset>
+      <KindPicker types={types} states={kindStates} onToggle={toggleType} />
+      {types.length === 0 ? <p className="text-[15px]">볼 유형을 하나 이상 골라 주세요.</p>
+        : <KindStatusList states={kindStates} />}
       <AnchorControls anchor={anchor} radiusKm={radiusKm} sort={sort} onRadius={setRadiusKm} onSort={setSort}
         onClear={() => { setAnchor(null); setRadiusKm(null); setSort("name"); }} />
+      {states.length > 0 && (allDone || items.length > 0) && <CountLine listed={numbered.length} mapped={mapRows.length}
+        radius={anchor && radiusKm !== null && counts.withinRadius !== null ? { km: radiusKm, inside: counts.withinRadius, unknown: numbered.length - counts.withinRadius } : null} />}
     </div>
 
-    {types.length === 0 && <p className="region-card text-sm">볼 유형을 하나 이상 골라 주세요.</p>}
     {states.length > 0 && <>
-      <ul className="space-y-1 text-sm">{states.map(({ kind, result, block: b }) => <li key={kind}>
-        {!b ? <LoadState loading={result.loading} failure={result.failure} hasData={false} subject={`${KIND_LABEL[kind]} 목록을`} onRetry={result.retry} />
-          : b.status === "unavailable" ? <span role="alert" className="inline-flex flex-wrap items-center gap-2 rounded-xl bg-coral-soft px-3 py-2">{KIND_LABEL[kind]} 목록을 불러오지 못했어요.<button type="button" className="region-button" onClick={result.retry}>다시 불러오기</button></span>
-          : isStale(b) || (result.failure && result.data) ? <span role="alert" className="inline-flex flex-wrap items-center gap-2 rounded-xl bg-amber-50 px-3 py-2 text-amber-950">{KIND_LABEL[kind]} 새 목록을 불러오지 못했어요. {timeLabel(b.collectedAt ?? result.data?.retrievedAt ?? null)} 목록이에요.<button type="button" className="region-button" onClick={result.retry}>다시 불러오기</button></span>
-          : b.status === "empty" ? <span className="text-muted">{KIND_LABEL[kind]}: 조회한 등록 결과가 없어요</span>
-          : <span>{KIND_LABEL[kind]} {b.total ?? b.items.length}건{result.loading ? " · 새 자료를 확인하고 있어요…" : ""}</span>}
-      </li>)}</ul>
-      {(allDone || items.length > 0) && <p className="text-sm text-muted" aria-live="polite">
-        {allDone ? `조회 ${counts.returned}건` : `불러온 ${counts.returned}건`} · 지도 위치 있는 자원 {counts.withCoordinates}건
-        {anchor && radiusKm !== null && counts.withinRadius !== null ? ` · 기준점 ${radiusKm}km 안 ${counts.withinRadius}건` : ""}
-      </p>}
-      <div className="flex gap-2 lg:hidden" role="group" aria-label="보기 방식">
-        <button type="button" className="region-button" aria-pressed={display === "list"} onClick={() => setDisplay("list")}>목록</button>
-        <button type="button" className="region-button" aria-pressed={display === "map"} onClick={() => setDisplay("map")}>지도</button>
-      </div>
-      <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        <div className={`min-w-0 ${display === "map" ? "hidden lg:block" : ""}`}>
-          {numbered.length > 0 ? <ResourceList rows={numbered} listRef={list} detailId={shownDetail?.id ?? null} comparedIds={new Set(compared.map(c => c.id))} anchored={!!anchor} onOpen={open} onCompare={toggleCompare} />
-            : items.length > 0 ? <div className="region-card space-y-2 text-sm"><p>기준점 반경 안에 있는 자원이 없어요.</p>
-              <button type="button" className="region-button" onClick={() => setRadiusKm(null)}>반경 해제</button></div>
-            : allDone ? <div className="region-card space-y-2 text-sm"><p>선택한 유형에 조회된 자원이 없어요.</p>
-              <Link className="region-button" href={chooseHref}>다른 지역 고르기</Link></div> : null}
-        </div>
-        <div className={`min-w-0 ${display === "list" ? "hidden lg:block" : ""}`}>
-          {mapFailed ? <div role="alert" className="region-card space-y-2 text-sm"><p>지도를 불러오지 못했어요. 목록은 계속 볼 수 있어요.</p>
-            <button type="button" className="region-button" onClick={() => { setMapFailed(false); setMapKey(k => k + 1); }}>지도 다시 열기</button></div>
+      <ViewToggle display={display} onChange={setDisplay} />
+      <ListMapGrid display={display}
+        list={numbered.length > 0 ? <ResourceList rows={numbered} listRef={list} detailId={shownDetail?.id ?? null} comparedIds={new Set(compared.map(c => c.id))} anchored={!!anchor} onOpen={open} onCompare={toggleCompare} />
+          : items.length > 0 ? <AreaNote action={<button type="button" className="region-button min-h-11" onClick={() => setRadiusKm(null)}>반경 해제</button>}>기준점 반경 안에 있는 자원이 없어요.</AreaNote>
+          : allDone ? <AreaNote action={<Link className="region-button min-h-11" href={chooseHref}>다른 지역 고르기</Link>}>선택한 유형에 조회된 자원이 없어요.</AreaNote> : null}
+        map={<>
+          {mapFailed ? <AreaNote alert action={<button type="button" className="region-button min-h-11" onClick={() => { setMapFailed(false); setMapKey(k => k + 1); }}>지도 다시 열기</button>}>지도를 불러오지 못했어요. 목록은 계속 볼 수 있어요.</AreaNote>
             : mapRows.length ? <ResourceMap key={mapKey} rows={mapRows} selectedId={shownDetail?.id ?? null} anchor={anchor?.point ?? null} radiusKm={anchor ? radiusKm : null}
               highlightedIds={compared.map(c => c.id)} highlightLabel="함께 보기 중"
               onSelect={openById} onCenter={anchorMap} onFailure={() => setMapFailed(true)} />
-            : allDone || items.length > 0 ? <p className="region-card text-sm text-muted">지도에 표시할 위치가 있는 자원이 없어요. 목록에서 확인해 주세요.</p> : null}
-          {!mapFailed && mapRows.length > 0 && compared.some(c => visibleIds.has(c.id) && c.point) && <p className="mt-1 text-xs text-muted">굵은 테두리 번호: 함께 보기 중인 자원</p>}
-        </div>
-      </div>
+            : allDone || items.length > 0 ? <AreaNote muted>지도에 표시할 위치가 있는 자원이 없어요. 목록에서 확인해 주세요.</AreaNote> : null}
+          {!mapFailed && mapRows.length > 0 && compared.some(c => visibleIds.has(c.id) && c.point) && <p className="mt-2 text-[13px] text-muted">굵은 테두리 번호: 함께 보기 중인 자원</p>}
+        </>} />
     </>}
     {shownDetail && <ResourceDetailPanel region={region} item={shownDetail} heading={detailHeading} distance={distance(shownDetail)} anchored={!!anchor}
       hidden={hidden(shownDetail)} isAnchor={anchor?.resourceId === shownDetail.id} compared={compared.some(c => c.id === shownDetail.id)}
@@ -158,14 +141,14 @@ export function ResourcesView() {
     <CompareResources region={region} items={shownCompared} hiddenIds={new Set(shownCompared.filter(hidden).map(i => i.id))} anchored={!!anchor} distances={new Map(shownCompared.map(i => [i.id, distance(i)]))}
       notice={notice} heading={compareHeading} onRemove={removeCompared} onOpen={open} />
     <div className="flex flex-wrap items-center gap-2">
-      <InfoDialog label="관광자원 출처 보기" title="관광자원 출처">
+      <InfoDialog label="관광자원 출처 보기" title="관광자원 출처" buttonClassName="region-button min-h-11">
         <p>한국관광공사 국문 관광정보 서비스의 지역 기반 목록(관광지·문화시설·음식점·숙박)이에요. 현재 등록 정보이며 운영 여부나 이용 조건은 각 시설에 확인해 주세요.</p>
         <ul className="list-disc pl-5">{states.map(({ kind, result, block: b }) => <li key={kind}>{KIND_LABEL[kind]} 목록: {!b || b.status === "unavailable" ? "불러오지 못함" : `${timeLabel(b.collectedAt)} 수집 · ${timeLabel(result.data?.retrievedAt ?? null)} 조회`}</li>)}</ul>
         <p>거리는 고른 기준점에서 잰 직선거리예요. 이동 시간이나 경로가 아니에요.</p>
         <p><a className="font-bold text-blue underline" href={SOURCE} target="_blank" rel="noreferrer">공공데이터포털 관광정보 서비스 ↗</a></p>
       </InfoDialog>
-      <Link className="region-button" href={href("visits")}>지역 방문 흐름 보기</Link>
-      <Link className="region-button" href={href("timing")}>개최 시기 보기</Link>
+      <Link className="region-button min-h-11" href={href("visits")}>지역 방문 흐름 보기</Link>
+      <Link className="region-button min-h-11" href={href("timing")}>개최 시기 보기</Link>
     </div>
   </section>;
 }

@@ -329,8 +329,41 @@ const compareCard = (page, r) => compare(page).getByRole("article", { name: r.ti
 const detail = (page, r) => page.getByRole("complementary", { name: r.title, exact: true });
 const intro = (page, r) => detail(page, r).getByRole("region", { name: `${r.title} 소개`, exact: true });
 const ddOf = (scope, term) => scope.locator("dt").filter({ hasText: new RegExp(`^${escapeRe(term)}$`) }).locator("xpath=following-sibling::dd[1]");
-const typeButton = (page, label) => page.getByRole("group", { name: "자원 유형" }).getByRole("button", { name: label, exact: true });
-const marker = (page, n, r) => page.getByRole("button", { name: `지도에서 ${n}. ${r.title} 상세 보기`, exact: true });
+// A type toggle's accessible name starts with the plain type name; a registered count may follow it.
+const typeGroup = page => page.getByRole("group", { name: "자원 유형" });
+const typeButton = (page, label) => typeGroup(page).getByRole("button", { name: new RegExp(`^${escapeRe(label)}(?![가-힣])`) });
+// A verified registered count is inside its type toggle, distinct from the current filtered list count.
+const kindCount = (page, label, n) => typeButton(page, label).getByText(`${n.toLocaleString("ko-KR")}건`, { exact: true });
+// Map contract (design 20, same as tourism-resources-e2e.mjs): a single place is "지도에서 N. TITLE 상세 보기"; places close
+// together share a cluster whose name states "N곳" and which opens real member buttons "N. TITLE…" outside the list with
+// an explicit "…닫기" close. Selection always uses real pointer clicks.
+const mapArea = page => page.getByRole("group", { name: /^관광자원 지도/ });
+const marker = (page, n, r) => mapArea(page).getByRole("button", { name: new RegExp(`^지도에서 ${n}\\. ${escapeRe(r.title)} 상세 보기`) });
+const clusterButtons = page => mapArea(page).getByRole("button", { name: /^(?!지도에서 \d+\. ).*?(?<![\d,])\d[\d,]*곳/ });
+const memberButton = (page, n, r) => page.locator("xpath=//button[not(ancestor::*[@aria-label='관광자원 목록'])]")
+  .and(page.getByRole("button", { name: new RegExp(`^(?:지도에서 )?${n}\\. ${escapeRe(r.title)}`) }));
+const clusterClose = page => page.getByRole("button", { name: "가까운 장소 목록 닫기", exact: true });
+/** Located places on the map: single markers plus the stated member counts of clusters (no cluster open). */
+function MAP_PLACES() {
+  const map = document.querySelector('[role="group"][aria-label^="관광자원 지도"]');
+  const names = [...map?.querySelectorAll("button") ?? []].filter(b => b.getClientRects().length > 0).map(b => (b.getAttribute("aria-label") ?? b.textContent ?? "").replace(/\s+/g, " ").trim());
+  return names.filter(n => /^지도에서 \d+\. .+ 상세 보기/.test(n)).length
+    + names.filter(n => !/^지도에서 \d+\. /.test(n) && /(?<![\d,])\d[\d,]*곳/.test(n)).reduce((s, n) => s + Number(n.match(/(\d[\d,]*)곳/)[1].replaceAll(",", "")), 0);
+}
+const waitMapPlaces = (page, n) => page.waitForFunction(`(${MAP_PLACES})() === ${n}`);
+/** Chooses place n on the map by real pointer clicks: its own marker, or its member button in the cluster holding it. */
+async function selectOnMap(page, n, r) {
+  if (await marker(page, n, r).count()) { await marker(page, n, r).click(); return "marker"; }
+  const clusters = clusterButtons(page), total = await clusters.count();
+  for (let i = 0; i < total; i++) {
+    await clusters.nth(i).click();
+    await visible(clusterClose(page));
+    if (await memberButton(page, n, r).count()) { await memberButton(page, n, r).click(); return "cluster"; }
+    await clusterClose(page).click();
+    await clusterClose(page).waitFor({ state: "hidden" });
+  }
+  throw new Error(`place ${n}. ${r.title} is neither a marker nor a cluster member`);
+}
 async function listTitles(page) {
   return (await resourceList(page).locator("button[data-resource-id]").evaluateAll(bs => bs.map(b => b.querySelector("span")?.textContent?.trim())));
 }
@@ -430,25 +463,30 @@ async function entry({ page }) {
 async function resourcesAndIntro({ page }) {
   // AC9 · AC2 · AC13 (검증용 resources and introductions).
   await visible(page.getByRole("alert").filter({ hasText: "문화시설 목록을 불러오지 못했어요." }));
-  await visible(page.getByText("관광지 3건", { exact: true }));
-  await visible(page.getByText(/^불러온 3건 · 지도 위치 있는 자원 2건/));
+  await visible(kindCount(page, "관광지", 3).first());
+  await visible(page.getByText("현재 목록 3건 · 지도 2건", { exact: true }));
   await excludes(main(page), /문화시설 0건|조회한 등록 결과가 없어요/, "a failed type is not zero");
+  assert.equal(await kindCount(page, "문화시설", 0).count(), 0, "a failed type never states 0건");
   await page.getByRole("alert").filter({ hasText: "문화시설 목록을 불러오지 못했어요." }).getByRole("button", { name: "다시 불러오기" }).click();
-  await visible(page.getByText("문화시설 2건", { exact: true }));
-  await visible(page.getByText(/^조회 5건 · 지도 위치 있는 자원 4건/));
+  await visible(kindCount(page, "문화시설", 2).first());
+  const toggles = typeGroup(page).getByRole("button");
+  for (const [i, label] of ["관광지", "문화시설", "음식점", "숙박"].entries()) assert.equal(await toggles.nth(i).and(typeButton(page, label)).count(), 1, `type toggle ${i + 1} is ${label}`);
+  await visible(page.getByText("현재 목록 5건 · 지도 4건", { exact: true }));
   assert.deepEqual(await listTitles(page), [`1. ${A.title}`, `2. ${U.title}`, `3. ${C.title}`, `4. ${B.title}`, `5. ${D.title}`], "name order");
   await includes(rowButton(page, U), "지도 위치 없음");
   await noAnchor(page);
   passed.push("AC9-one-type-failure-not-zero-retry-applies", "AC3-no-distance-or-distance-sort-before-anchor");
 
-  // Map and list share the source id: a marker opens the same resource the list marks.
-  await visible(marker(page, 1, A));
-  for (const [n, r] of [[3, C], [4, B], [5, D]]) await visible(marker(page, n, r));
-  assert.equal(await page.getByRole("button", { name: /^지도에서 \d+\. .+ 상세 보기$/ }).count(), 4, "only located resources get markers");
-  await marker(page, 1, A).click();
+  // Map and list share the source id: every located place is on the map exactly once (its own marker, or a member of a
+  // cluster when places are close at the fitted zoom), and a real click opens the same resource the list marks.
+  await waitMapPlaces(page, 4); // only located resources are on the map, each once
+  assert.equal(await marker(page, 2, U).count(), 0, "a resource without a map position has no marker");
+  const via = await selectOnMap(page, 1, A);
+  await waitFocusId(page, "new-resource-detail-heading");
   await visible(detail(page, A));
   assert.equal(await rowButton(page, A).getAttribute("aria-pressed"), "true");
-  assert.equal(await marker(page, 1, A).getAttribute("aria-pressed"), "true");
+  if (via === "marker") assert.equal(await marker(page, 1, A).getAttribute("aria-pressed"), "true");
+  if (await clusterClose(page).isVisible()) { await clusterClose(page).click(); await clusterClose(page).waitFor({ state: "hidden" }); }
   passed.push("AC2-map-marker-and-list-row-same-resource");
 
   // AC13: introduction text is a separate request with its own collection time; plain text only.
@@ -546,7 +584,7 @@ async function compareAndAnchor({ page }) {
   await includes(rowButton(page, U), "거리 미확인");
   assert.equal(await ddOf(compareCard(page, B), "기준점").innerText(), `기준점에서 직선거리 약 ${kmText(haversineKm(C.point, B.point))}`);
   await combo(page, "반경").selectOption("5");
-  await visible(page.getByText(/ · 기준점 5km 안 2건$/));
+  await visible(page.getByText("현재 목록 3건 · 지도 2건 · 기준점 5km 안 2건 · 거리 미확인 1건", { exact: true }));
   await visible(rowButton(page, U)); // unlocated stays listed, not counted inside the radius
   assert.equal(await rowButton(page, B).count(), 0, "outside the radius is hidden from the list");
   await visible(compareCard(page, B).getByText("지금 목록 조건에서는 보이지 않아요.", { exact: true }));
@@ -925,7 +963,7 @@ async function refreshKeepsOrReleases() {
   const { context, page } = await openContext();
   await context.clock.install();
   await page.goto(`${base}/new/44230/resources`);
-  await visible(page.getByText(/^조회 5건/));
+  await visible(page.getByText("현재 목록 5건 · 지도 4건", { exact: true }));
   for (const r of [A, B]) await listToggle(page, r, "함께 보기에 추가").click();
   await rowButton(page, A).click();
   await visible(intro(page, A));

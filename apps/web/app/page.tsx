@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { AnalyticsView } from "@/components/AnalyticsView";
 import { EditorOnly } from "@/components/EditorOnly";
@@ -41,14 +42,32 @@ export default async function HomePage() {
         <h1 id="purpose-heading" className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">어떤 축제를 준비하시나요?</h1>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           <li className="flex flex-col rounded-3xl border border-ink/10 bg-white p-6 shadow-card sm:p-8">
+            <Image
+              src="/images/purpose/existing-festival.png"
+              alt=""
+              width={1536}
+              height={1024}
+              quality={75}
+              sizes="(min-width: 640px) 264px, 168px"
+              className="mb-4 h-28 w-auto max-w-full self-start rounded-2xl object-contain sm:mb-5 sm:h-44"
+            />
             <h2 className="text-2xl font-extrabold">기존 축제 개선</h2>
-            <p className="mt-2 text-sm leading-7 text-muted">지난 개최 때의 지역 방문, 주변 관광자원, 다음 개최 시기를 살펴봅니다.</p>
-            <Link href="/existing/search" className="region-primary mt-5 self-start">기존 축제 찾기 →</Link>
+            <p className="mb-5 mt-2 text-sm leading-7 text-muted">지난 개최 때의 지역 방문, 주변 관광자원, 다음 개최 시기를 살펴봅니다.</p>
+            <Link href="/existing/search" className="region-primary mt-auto min-h-11 self-start px-4">기존 축제 찾기 →</Link>
           </li>
           <li className="flex flex-col rounded-3xl border border-ink/10 bg-white p-6 shadow-card sm:p-8">
+            <Image
+              src="/images/purpose/new-festival.png"
+              alt=""
+              width={1536}
+              height={1024}
+              quality={75}
+              sizes="(min-width: 640px) 264px, 168px"
+              className="mb-4 h-28 w-auto max-w-full self-start rounded-2xl object-contain sm:mb-5 sm:h-44"
+            />
             <h2 className="text-2xl font-extrabold">새 축제 기획</h2>
-            <p className="mt-2 text-sm leading-7 text-muted">지역을 골라 관광자원을 확인하고, 방문 추세와 개최 시기를 자유롭게 살펴봅니다.</p>
-            <Link href="/new" className="region-primary mt-5 self-start">지역부터 살펴보기 →</Link>
+            <p className="mb-5 mt-2 text-sm leading-7 text-muted">지역을 골라 관광자원을 확인하고, 방문 추세와 개최 시기를 자유롭게 살펴봅니다.</p>
+            <Link href="/new" className="region-primary mt-auto min-h-11 self-start px-4">지역부터 살펴보기 →</Link>
           </li>
         </ul>
       </section>

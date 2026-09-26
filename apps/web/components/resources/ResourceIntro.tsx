@@ -53,7 +53,7 @@ export function IntroText({ text, truncated, name }: { text: string; truncated: 
   return <div className="space-y-1">
     <p id={id} className="whitespace-pre-line break-words leading-6">{shown}</p>
     {open && truncated && <p className="text-xs text-muted">소개가 길어 앞부분만 보여드려요.</p>}
-    {long && <button type="button" className="text-sm font-bold text-blue underline underline-offset-4" aria-expanded={open} aria-controls={id}
+    {long && <button type="button" className="inline-flex min-h-11 items-center text-sm font-bold text-blue underline underline-offset-4" aria-expanded={open} aria-controls={id}
       aria-label={`${name} 소개 ${open ? "접기" : "더 보기"}`} onClick={() => setOpen(v => !v)}>{open ? "소개 접기" : "소개 더 보기"}</button>}
   </div>;
 }
