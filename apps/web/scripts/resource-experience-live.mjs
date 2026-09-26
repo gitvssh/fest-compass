@@ -14,6 +14,9 @@ const extension = mkdtempSync(join(tmpdir(), "pickdday-zoom-"));
 writeFileSync(join(extension, "manifest.json"), JSON.stringify({ manifest_version: 3, name: "Isolated zoom verification", version: "1.0", permissions: ["tabs"], background: { service_worker: "background.js" } }));
 writeFileSync(join(extension, "background.js"), "chrome.runtime.onInstalled.addListener(() => {});\n");
 const report = { checkedAt: new Date().toISOString(), base, headless: true, mockedResponses: 0, browserErrors: [], appWrites: [], samples: [], checks: [], zoom: [] };
+const rgb = text => text.match(/[\d.]+/g).map(Number);
+const luminance = channels => channels.slice(0, 3).map(c => c / 255).map(c => c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4).reduce((s, c, i) => s + c * [0.2126, 0.7152, 0.0722][i], 0);
+const contrast = (a, b) => { const l = [luminance(a), luminance(b)].sort((a, b) => b - a); return (l[0] + 0.05) / (l[1] + 0.05); };
 const context = await chromium.launchPersistentContext("", { channel: "chromium", headless: true, viewport: { width: 1440, height: 1000 }, locale: "ko-KR", args: [`--disable-extensions-except=${extension}`, `--load-extension=${extension}`] });
 try {
   const worker = context.serviceWorkers()[0] ?? await context.waitForEvent("serviceworker");
@@ -22,7 +25,10 @@ try {
   page.on("request", r => { if (r.method() !== "GET" && new URL(r.url()).origin === new URL(base).origin && new URL(r.url()).pathname.startsWith("/api/")) report.appWrites.push(`${r.method()} ${new URL(r.url()).pathname}`); });
   await page.addLocatorHandler(page.getByRole("button", { name: "모두 거부", exact: true }), async b => b.click());
   const overflow = async label => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), label);
-  const shot = name => page.screenshot({ path: join(output, `${name}.png`), fullPage: true });
+  const shot = async name => {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    return page.screenshot({ path: join(output, `${name}.png`), fullPage: true });
+  };
   const zoom = async (factor, label) => {
     const tab = (await worker.evaluate(() => chrome.tabs.query({}))).find(t => t.url?.startsWith(base));
     assert.ok(tab, "isolated application tab");
@@ -61,6 +67,15 @@ try {
     const ids = await rows.locator("[data-resource-id]").evaluateAll(els => els.map(e => e.dataset.resourceId));
     assert.deepEqual([...ids].sort(), expected.map(r => r.id).sort());
     report.samples.push({ flow: sample.flow, code: sample.code, counts: blocks.map(b => ({ kind: b.kind, total: b.total })) });
+    const colors = await page.getByRole("group", { name: "자원 유형", exact: true }).getByRole("button", { name: "음식점", exact: true }).evaluate(b => {
+      const s = getComputedStyle(b), pill = getComputedStyle(b.querySelector("span[id]"));
+      return { text: s.color, background: s.backgroundColor, pillText: pill.color, pillBackground: pill.backgroundColor };
+    });
+    const background = rgb(colors.background), pill = rgb(colors.pillBackground), alpha = pill[3] ?? 1;
+    const pillBackground = pill.slice(0, 3).map((c, i) => c * alpha + background[i] * (1 - alpha));
+    const ratios = { button: contrast(rgb(colors.text), background), count: contrast(rgb(colors.pillText), pillBackground) };
+    assert.ok(ratios.button >= 4.5 && ratios.count >= 4.5, `${sample.flow} selected type/count contrast`);
+    report.samples.at(-1).selectedContrast = { ...colors, ratios };
     await shot(`${sample.flow}-resources-desktop`);
     const group = page.locator(".rmap-group").first(); await group.waitFor();
     await group.click();

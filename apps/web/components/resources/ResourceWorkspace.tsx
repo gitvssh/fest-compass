@@ -51,7 +51,7 @@ export function KindPicker({ types, states, onToggle }: { types: readonly Resour
     <legend className="sr-only">자원 유형</legend>
     {RESOURCE_KINDS.map(k => {
       const on = types.includes(k), state = on ? states.find(s => s.kind === k) : undefined, n = state ? verifiedCount(state) : null;
-      return <button key={k} type="button" className="region-button min-h-11 gap-2 px-4 text-[15px]" aria-label={LABEL[k]} aria-pressed={on}
+      return <button key={k} type="button" className="region-button min-h-11 gap-2 px-4 text-[15px] aria-pressed:text-[#164ea1]" aria-label={LABEL[k]} aria-pressed={on}
         aria-describedby={n === null ? undefined : `${id}-${k}`} onClick={() => onToggle(k)}>
         <Check on={on} />{LABEL[k]}
         {n !== null && <span id={`${id}-${k}`} className="rounded-full bg-ink/[0.06] px-2 text-sm font-bold tabular-nums">{count(n)}건</span>}
@@ -112,8 +112,8 @@ export function AnchorControls({ anchor, radiusKm, sort, onClear, onRadius, onSo
 /** Small screens switch between list and map; wide screens show both. */
 export function ViewToggle({ display, onChange }: { display: "list" | "map"; onChange: (display: "list" | "map") => void }) {
   return <div className="flex gap-2 lg:hidden" role="group" aria-label="보기 방식">
-    <button type="button" className="region-button min-h-11 flex-1" aria-pressed={display === "list"} onClick={() => onChange("list")}>목록</button>
-    <button type="button" className="region-button min-h-11 flex-1" aria-pressed={display === "map"} onClick={() => onChange("map")}>지도</button>
+    <button type="button" className="region-button min-h-11 flex-1 aria-pressed:text-[#164ea1]" aria-pressed={display === "list"} onClick={() => onChange("list")}>목록</button>
+    <button type="button" className="region-button min-h-11 flex-1 aria-pressed:text-[#164ea1]" aria-pressed={display === "map"} onClick={() => onChange("map")}>지도</button>
   </div>;
 }
 
