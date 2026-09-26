@@ -90,6 +90,13 @@ function resourceFixture(p) {
     byType: types.map(kind => ({ kind, label: kind === "12" ? "관광지" : "문화시설", error: null, collectedAt: checkedAt,
       status: kind === "12" ? "complete" : "empty", total: kind === "12" ? REVIEWED.length : 0, items: kind === "12" ? REVIEWED.map(l => l.resource) : [] })) };
 }
+/** Local regression only: the shared introduction of a controlled place is answered as "no introduction" (block omitted). */
+function introFixture(p) {
+  if (p.get("province") !== "52" || p.get("district") !== "750") return null;
+  const request = { province: "52", district: "750", kind: p.get("kind"), id: p.get("id") };
+  return { key: JSON.stringify(["new-resource-detail", "52", "750", request.kind, request.id]), request, retrievedAt: ORACLE[2025].links.checkedAt,
+    region: { province: "52", district: "750", code: "52750", name: "전북특별자치도 임실군", districtName: "임실군" }, status: "empty", error: null, detail: null, source: null };
+}
 
 const PROFILE_KEYS = ["areaName", "demographics", "destinationGroups", "editionId", "end", "source", "start", "year"];
 const INTERNAL = ["sha256", "evidence", "docs/research", "/original/", "manifest", "SRCH_CNT", "M_TOT", "W_TOT", "DISP_YN", "\"raw\"", "count", "checkedAt"];
@@ -101,9 +108,11 @@ const THREE_EDITIONS = /세 (개|회차)|최대 ?3|3개까지|3개 이상|셋째
 const passed = [], errors = [], consoleErrors = [], writes = [], platformWrites = [], blocked = [];
 let controlledAnswers = 0;
 async function onApi(route) {
-  const url = new URL(route.request().url()), fixture = controlledResources && url.pathname === "/api/existing/resources" ? resourceFixture(url.searchParams) : null;
+  const url = new URL(route.request().url());
+  const fixture = !controlledResources ? null : url.pathname === "/api/existing/resources" ? resourceFixture(url.searchParams)
+    : url.pathname === "/api/resources/detail" ? introFixture(url.searchParams) : null;
   try {
-    if (fixture) { controlledAnswers += 1; await route.fulfill({ json: fixture }); } else await route.continue();
+    if (fixture) { if (url.pathname === "/api/existing/resources") controlledAnswers += 1; await route.fulfill({ json: fixture }); } else await route.continue();
   } catch { /* the page superseded or left this request */ }
 }
 const browser = await chromium.launch({ headless: true });

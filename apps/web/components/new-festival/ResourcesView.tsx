@@ -3,16 +3,16 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { isStale, keepBlock } from "@/components/existing/blocks";
+import { isStale } from "@/components/existing/blocks";
 import { timeLabel } from "@/components/existing/format";
 import type { Anchor } from "@/components/existing/memory";
 import type { MapRow } from "@/components/existing/ResourceMap";
 import { InfoDialog, LoadState } from "@/components/existing/ui";
-import { useKeyedRequest } from "@/components/existing/useKeyedRequest";
+import { useResourceLists } from "@/components/resources/useResourceLists";
 import { distanceKm, validPoint } from "@/lib/comparison/distance";
-import { parseResources, RESOURCE_KINDS, resourcesKey } from "@/lib/existing/request";
+import { RESOURCE_KINDS } from "@/lib/existing/request";
 import { resourceRows } from "@/lib/existing/resources";
-import type { Point, ResourceItem, ResourceKind, ResourcesResponse, ResourceTypeBlock } from "@/lib/existing/types";
+import type { Point, ResourceItem, ResourceKind, ResourceTypeBlock } from "@/lib/existing/types";
 import { SOURCE } from "@/lib/region/model";
 import { CompareResources } from "./CompareResources";
 import { setAddressParam } from "./address";
@@ -24,14 +24,11 @@ import { AnchorControls, ResourceList } from "./ResourceList";
 
 const ResourceMap = dynamic(() => import("@/components/existing/ResourceMap"), { ssr: false, loading: () => <p role="status" className="region-card text-sm">지도를 준비하고 있어요. 목록은 바로 볼 수 있어요.</p> });
 
-function merge(previous: ResourcesResponse, next: ResourcesResponse): ResourcesResponse {
-  return { ...next, byType: next.byType.map(b => keepBlock(previous.byType.find(p => p.kind === b.kind), b)) };
-}
 const done = (b: ResourceTypeBlock | null): b is ResourceTypeBlock => !!b && (b.status === "complete" || b.status === "empty");
 
 /**
- * Current attractions and cultural facilities of the whole selected district. Detail, `함께 보기` and the
- * distance anchor are separate, explicit, temporary choices; none of them is saved or becomes a venue.
+ * Current attractions, cultural facilities, restaurants and lodging of the whole selected district. Detail, `함께 보기`
+ * and the distance anchor are separate, explicit, temporary choices; none of them is saved or becomes a venue.
  */
 export function ResourcesView() {
   const { region, memory, href, chooseHref } = useNewRegion(), saved = memory.resources;
@@ -46,17 +43,11 @@ export function ResourcesView() {
   const [notice, setNotice] = useState<string | null>(null), [mapFailed, setMapFailed] = useState(false), [mapKey, setMapKey] = useState(0);
   useEffect(() => { Object.assign(saved, { compared, detail, anchor, radiusKm, sort, display }); }, [saved, compared, detail, anchor, radiusKm, sort, display]);
 
-  // Each type is its own full district request, so one type's failure or delay never holds back the other.
-  const request = (kind: ResourceKind) => {
-    if (!types.includes(kind)) return { url: null, key: null };
-    const p = new URLSearchParams({ province: region.province, district: region.district, types: kind });
-    return { url: `/api/existing/resources?${p}`, key: resourcesKey(parseResources(p)) };
-  };
-  const r12 = request("12"), r14 = request("14");
-  const attractions = useKeyedRequest<ResourcesResponse>(r12.url, merge, r12.key), culture = useKeyedRequest<ResourcesResponse>(r14.url, merge, r14.key);
-  const states = ([["12", attractions], ["14", culture]] as const).filter(([kind]) => types.includes(kind))
-    .map(([kind, result]) => ({ kind, result, block: result.data?.region.code === region.code ? result.data.byType.find(b => b.kind === kind) ?? null : null }));
-  const items = useMemo(() => states.flatMap(s => done(s.block) ? s.block.items : []), [attractions.data, culture.data, types]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Each type is its own full district request, so one type's failure or delay never holds back the others.
+  const lists = useResourceLists(region, types);
+  const states = RESOURCE_KINDS.filter(kind => types.includes(kind))
+    .map(kind => { const result = lists[kind]; return { kind, result, block: result.data?.region.code === region.code ? result.data.byType.find(b => b.kind === kind) ?? null : null }; });
+  const items = useMemo(() => states.flatMap(s => done(s.block) ? s.block.items : []), [lists["12"].data, lists["14"].data, lists["39"].data, lists["32"].data, types, region.code]); // eslint-disable-line react-hooks/exhaustive-deps
   const allDone = states.length > 0 && states.every(s => done(s.block) && !isStale(s.block));
   const { rows, counts } = useMemo(() => resourceRows(items, anchor?.point ?? null, { radiusKm: anchor ? radiusKm : null, sort: anchor ? sort : "name" }), [items, anchor, radiusKm, sort]);
   const numbered = rows.filter(r => r.withinRadius !== false).map((r, i) => ({ ...r, number: i + 1 }));
@@ -113,8 +104,8 @@ export function ResourcesView() {
 
   return <section aria-labelledby="new-resources-heading" className="space-y-4">
     <div>
-      <h2 id="new-resources-heading" ref={heading} tabIndex={-1} className="text-xl font-extrabold">{region.districtName} 관광자원</h2>
-      <p className="text-sm text-muted">{region.name} 전체 · 현재 등록된 관광지·문화시설</p>
+      <h2 id="new-resources-heading" ref={heading} tabIndex={-1} className="min-w-0 break-words text-xl font-extrabold">{region.districtName} 관광자원</h2>
+      <p className="text-sm text-muted">{region.name} 전체 · 현재 등록된 관광지·문화시설·음식점·숙박</p>
     </div>
     <div className="region-card space-y-3">
       <fieldset className="flex flex-wrap items-center gap-2">
@@ -125,7 +116,7 @@ export function ResourcesView() {
         onClear={() => { setAnchor(null); setRadiusKm(null); setSort("name"); }} />
     </div>
 
-    {types.length === 0 && <p className="region-card text-sm">관광지 또는 문화시설을 골라 주세요.</p>}
+    {types.length === 0 && <p className="region-card text-sm">볼 유형을 하나 이상 골라 주세요.</p>}
     {states.length > 0 && <>
       <ul className="space-y-1 text-sm">{states.map(({ kind, result, block: b }) => <li key={kind}>
         {!b ? <LoadState loading={result.loading} failure={result.failure} hasData={false} subject={`${KIND_LABEL[kind]} 목록을`} onRetry={result.retry} />
@@ -168,7 +159,7 @@ export function ResourcesView() {
       notice={notice} heading={compareHeading} onRemove={removeCompared} onOpen={open} />
     <div className="flex flex-wrap items-center gap-2">
       <InfoDialog label="관광자원 출처 보기" title="관광자원 출처">
-        <p>한국관광공사 국문 관광정보 서비스의 지역 기반 목록(관광지·문화시설)이에요. 현재 등록 정보이며 운영 여부나 이용 조건은 각 시설에 확인해 주세요.</p>
+        <p>한국관광공사 국문 관광정보 서비스의 지역 기반 목록(관광지·문화시설·음식점·숙박)이에요. 현재 등록 정보이며 운영 여부나 이용 조건은 각 시설에 확인해 주세요.</p>
         <ul className="list-disc pl-5">{states.map(({ kind, result, block: b }) => <li key={kind}>{KIND_LABEL[kind]} 목록: {!b || b.status === "unavailable" ? "불러오지 못함" : `${timeLabel(b.collectedAt)} 수집 · ${timeLabel(result.data?.retrievedAt ?? null)} 조회`}</li>)}</ul>
         <p>거리는 고른 기준점에서 잰 직선거리예요. 이동 시간이나 경로가 아니에요.</p>
         <p><a className="font-bold text-blue underline" href={SOURCE} target="_blank" rel="noreferrer">공공데이터포털 관광정보 서비스 ↗</a></p>

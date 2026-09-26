@@ -1,5 +1,7 @@
+import type { ResourceKind } from "../existing/types";
 export type Region = { provinceCode: string; provinceName: string; districtCode: string; districtName: string };
-export type Query = { province: string; district: string; start: string; end: string; kind: "12" | "14" | "15" };
+/** Tourism resource kinds (12/14/39/32, areaBasedList2) or festivals/events (15, searchFestival2). */
+export type Query = { province: string; district: string; start: string; end: string; kind: ResourceKind | "15" };
 export type Resource = { id: string; title: string; address: string; longitude: number | null; latitude: number | null; start: string | null; end: string | null; modifiedAt: string | null };
 export type ResourceResult = { status: "complete" | "empty" | "unavailable"; message: string; items: Resource[]; total: number | null; pages: number; collectedAt: string; source: string };
 export type Observation = { date: string; value: number | null; quality: string; snapshotId: string | null; collectedAt: string | null };

@@ -230,7 +230,7 @@ function scheduleWith(outcome = "fixture", holidayExtra = null) {
 }
 const fixtureJson = make => (route, p) => ({ kind: "fulfill", options: { json: make(p) } });
 const resourcesWith = override => fixtureJson(p => resourcesBody(p, override));
-const DEFAULTS = { "new/visits": visitsReal, "new/resource-detail": fixtureJson(detailBody), "existing/resources": resourcesWith(), "existing/schedule": scheduleWith() };
+const DEFAULTS = { "new/visits": visitsReal, "resources/detail": fixtureJson(detailBody), "existing/resources": resourcesWith(), "existing/schedule": scheduleWith() };
 
 async function onApi(route) {
   const url = new URL(route.request().url()), endpoint = url.pathname.slice("/api/".length), p = url.searchParams;
@@ -279,7 +279,7 @@ const errors = [], writes = [], passed = [];
 async function openContext({ mapFail = false, ...options } = {}) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, locale: "ko-KR", ...options });
   await mockMapTiles(context, { fail: mapFail });
-  await context.route(u => u.pathname.startsWith("/api/new/") || u.pathname.startsWith("/api/existing/"), onApi);
+  await context.route(u => u.pathname.startsWith("/api/new/") || u.pathname.startsWith("/api/existing/") || u.pathname.startsWith("/api/resources/"), onApi);
   const page = await context.newPage();
   page.setDefaultTimeout(20_000);
   page.on("pageerror", e => errors.push(e.message));
@@ -342,7 +342,7 @@ async function noAnchor(page) {
 async function openIntroSettled(page, r) {
   await rowButton(page, r).click();
   await waitFocusId(page, "new-resource-detail-heading");
-  await waitServed("new/resource-detail", p => p.get("id") === r.id, `detail ${r.id}`);
+  await waitServed("resources/detail", p => p.get("id") === r.id, `detail ${r.id}`);
   await detail(page, r).getByText("소개를 불러오고 있어요…").waitFor({ state: "detached" });
   await flush(page);
 }
@@ -452,7 +452,7 @@ async function resourcesAndIntro({ page }) {
   passed.push("AC2-map-marker-and-list-row-same-resource");
 
   // AC13: introduction text is a separate request with its own collection time; plain text only.
-  await waitServed("new/resource-detail", p => p.get("id") === A.id, "detail A");
+  await waitServed("resources/detail", p => p.get("id") === A.id, "detail A");
   const d = detail(page, A);
   assert.equal(await ddOf(d, "유형").innerText(), "관광지");
   assert.equal(await ddOf(d, "주소").innerText(), A.address);
@@ -952,7 +952,7 @@ async function refreshKeepsOrReleases() {
   detailOutcome.set(D.id, "empty");
   await listToggle(page, D, "함께 보기에 추가").click();
   await visible(page.getByRole("heading", { name: "함께 보기 2/2", exact: true }));
-  await waitServed("new/resource-detail", p => p.get("id") === D.id, "compare intro D");
+  await waitServed("resources/detail", p => p.get("id") === D.id, "compare intro D");
   await ddOf(compareCard(page, D), "소개").filter({ hasText: /^—$/ }).waitFor({ state: "visible" });
   assert.equal(await ddOf(compareCard(page, D), "소개").innerText(), "—", "confirmed empty before the refresh");
   await detail(page, A).getByRole("button", { name: "상세 닫기", exact: true }).click();

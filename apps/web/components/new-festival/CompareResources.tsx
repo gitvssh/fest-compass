@@ -1,7 +1,7 @@
 "use client";
 import type { RefObject } from "react";
+import { introKey, IntroCell } from "@/components/resources/ResourceIntro";
 import type { RegionRef, ResourceItem } from "@/lib/existing/types";
-import { IntroCell } from "./ResourceIntro";
 import { distanceText, KIND_LABEL, MAX_COMPARED } from "./resource-labels";
 
 /**
@@ -28,7 +28,7 @@ export function CompareResources({ region, items, hiddenIds, anchored, distances
             <dt className="text-muted">주소</dt><dd className="break-words">{item.address || "— 주소 정보 없음"}</dd>
             <dt className="text-muted">지도 위치</dt><dd>{item.point ? "있음" : "— 없음"}</dd>
             {anchored && <><dt className="text-muted">기준점</dt><dd>{distanceText(distances.get(item.id) ?? null)}</dd></>}
-            <dt className="text-muted">소개</dt><dd className="min-w-0"><IntroCell region={region} item={item} /></dd>
+            <dt className="text-muted">소개</dt><dd className="min-w-0"><IntroCell key={introKey(region, item)} region={region} item={item} /></dd>
           </dl>
           <button type="button" className="text-sm font-bold text-blue underline underline-offset-4" aria-label={`${item.title} 상세 보기`} onClick={() => onOpen(item)}>상세 보기</button>
         </article>)}

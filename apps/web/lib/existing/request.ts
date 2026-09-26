@@ -2,7 +2,9 @@ import { day } from "../region/model";
 import { koreaDate } from "../region/calendar";
 import { MAX_EDITIONS, normalizeKeyword, parseFestivalId, regionRef } from "./identity";
 import { CUSTOM_WINDOW_MAX, datesBetween, PAD_DEFAULT, PAD_MAX } from "./history";
-import type { FestivalSearchRequest, HistoryRequest, MonthlyRequest, ResourceKind, ResourcesRequest, ScheduleRequest } from "./types";
+import { DEFAULT_RESOURCE_KINDS, isResourceKind, RESOURCE_KINDS } from "./types";
+import type { FestivalSearchRequest, HistoryRequest, MonthlyRequest, ResourcesRequest, ScheduleRequest } from "./types";
+export { DEFAULT_RESOURCE_KINDS, RESOURCE_KINDS } from "./types";
 
 export class InvalidRequest extends Error { constructor(readonly field: string) { super(`invalid-request:${field}`); } }
 const MAX_RANGE_DAYS = 366;
@@ -69,12 +71,13 @@ export function parseMonthly(p: URLSearchParams): MonthlyRequest {
   if (raw && (!/^\d{4}$/.test(raw) || Number(raw) < 2000 || Number(raw) > 2035)) throw new InvalidRequest("year");
   return { ...where, year: raw ? Number(raw) : null };
 }
-export const RESOURCE_KINDS: readonly ResourceKind[] = ["12", "14"];
+/** Absent `types` = the default kinds; otherwise every listed part must be one of the four kinds (display order, no empty list). */
 export function parseResources(p: URLSearchParams): ResourcesRequest {
   const where = region(p)!, raw = p.get("types");
-  const types = raw === null ? [...RESOURCE_KINDS] : RESOURCE_KINDS.filter(k => raw.split(",").map(s => s.trim()).includes(k));
-  if (!types.length || (raw !== null && raw.split(",").map(s => s.trim()).some(s => !(RESOURCE_KINDS as readonly string[]).includes(s)))) throw new InvalidRequest("types");
-  return { ...where, types };
+  if (raw === null) return { ...where, types: [...DEFAULT_RESOURCE_KINDS] };
+  const parts = raw.split(",").map(s => s.trim());
+  if (parts.some(s => !isResourceKind(s))) throw new InvalidRequest("types");
+  return { ...where, types: RESOURCE_KINDS.filter(k => parts.includes(k)) };
 }
 export function parseSchedule(p: URLSearchParams): ScheduleRequest {
   return { ...region(p)!, ...range(p.get("start") ?? "", p.get("end") ?? "") };

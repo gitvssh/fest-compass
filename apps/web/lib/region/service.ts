@@ -10,25 +10,40 @@ import { mapResource, regionOf, selectHistory, SOURCE, type Dataset } from "./mo
 import type { Query, RegionResult, ResourceResult } from "./types";
 
 export type PageLoader = (page: number) => Promise<{ total: number; rows: Record<string, unknown>[] }>;
+export const RESOURCE_PAGE_SIZE = 100;
+/** Festivals (15) keep the original 6 pages/600 rows; tourism kinds collect up to 20 pages/2,000 rows per kind. */
+export const resourceMaxPages = (kind: Query["kind"]) => kind === "15" ? 6 : 20;
+/** Public ResourceResult.message wording. Internal failure reasons (caps, verification rules, provider errors) never reach it. */
+export const RESOURCE_MESSAGES = {
+  complete: "등록된 관광정보",
+  empty: "이 조건에 등록된 관광정보가 없어요.",
+  unavailable: "관광정보 목록을 불러오지 못했어요. 잠시 후 다시 조회해 주세요.",
+} as const satisfies Record<ResourceResult["status"], string>;
+/**
+ * Whole-list collection: every page must report the same total within the cap, carry exactly the expected row count,
+ * unique ids and the requested region (and explicit type for tourism kinds). Any failure rejects the whole list.
+ * Failure reasons stay internal; the public result carries only the generic recoverable message.
+ */
 export async function collectResources(q: Query, load: PageLoader, now = () => new Date().toISOString()): Promise<ResourceResult> {
-  const items: ResourceResult["items"] = [], ids = new Set<string>(); let total: number | null = null, pages = 0;
+  const items: ResourceResult["items"] = [], ids = new Set<string>(), maxPages = resourceMaxPages(q.kind), cap = maxPages * RESOURCE_PAGE_SIZE;
+  let total: number | null = null, pages = 0;
   try {
-    for (let page = 1; page <= 6; page++) {
+    for (let page = 1; page <= maxPages; page++) {
       const result = await load(page); pages++;
       if (!Number.isSafeInteger(result.total) || result.total < 0 || (total !== null && total !== result.total)) throw new Error("조회 중 전체 건수가 변경되어 부분 자료를 표시하지 않았습니다.");
       total = result.total;
-      if (total > 600) throw new Error("한 지역 600건 조회 한도를 넘어 전체 자료를 확보하지 못했습니다.");
-      if (result.rows.length !== Math.min(100, Math.max(0, total - items.length))) throw new Error("페이지가 누락되어 부분 자료를 표시하지 않았습니다.");
+      if (total > cap) throw new Error(`한 지역 ${cap.toLocaleString("ko-KR")}건 조회 한도를 넘어 전체 자료를 확보하지 못했습니다.`);
+      if (result.rows.length !== Math.min(RESOURCE_PAGE_SIZE, Math.max(0, total - items.length))) throw new Error("페이지가 누락되어 부분 자료를 표시하지 않았습니다.");
       for (const row of result.rows) {
         const item = mapResource(row, q);
         if (ids.has(item.id)) throw new Error("중복 항목이 있어 전체 조회를 확인하지 못했습니다.");
         ids.add(item.id); items.push(item);
       }
-      if (items.length === total) return { status: total ? "complete" : "empty", message: total ? "전체 페이지 확인 완료" : "이 조건의 API 등록 결과가 없습니다. 실제 행사·자원 부재를 뜻하지 않습니다.", items, total, pages, source: SOURCE, collectedAt: now() };
+      if (items.length === total) { const status = total ? "complete" : "empty"; return { status, message: RESOURCE_MESSAGES[status], items, total, pages, source: SOURCE, collectedAt: now() }; }
     }
     throw new Error("전체 페이지를 확보하지 못했습니다.");
-  } catch (e) {
-    return { status: "unavailable", message: e instanceof Error ? e.message : "자료 조회에 실패했습니다.", items: [], total: null, pages, source: SOURCE, collectedAt: now() };
+  } catch {
+    return { status: "unavailable", message: RESOURCE_MESSAGES.unavailable, items: [], total: null, pages, source: SOURCE, collectedAt: now() };
   }
 }
 
@@ -47,7 +62,7 @@ async function getResources(q: Query): Promise<ResourceResult> {
     try {
       let decoded = secret; try { decoded = decodeURIComponent(secret); } catch { /* raw key */ }
       const url = new URL(`https://apis.data.go.kr/B551011/KorService2/${q.kind === "15" ? "searchFestival2" : "areaBasedList2"}`);
-      const params: Record<string, string> = { serviceKey: decoded, MobileOS: "ETC", MobileApp: "pickDday", _type: "json", numOfRows: "100", pageNo: String(page), arrange: "C", lDongRegnCd: q.province, lDongSignguCd: q.district };
+      const params: Record<string, string> = { serviceKey: decoded, MobileOS: "ETC", MobileApp: "pickDday", _type: "json", numOfRows: String(RESOURCE_PAGE_SIZE), pageNo: String(page), arrange: "C", lDongRegnCd: q.province, lDongSignguCd: q.district };
       if (q.kind === "15") { params.eventStartDate = q.start.replaceAll("-", ""); params.eventEndDate = q.end.replaceAll("-", ""); }
       else params.contentTypeId = q.kind;
       Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));

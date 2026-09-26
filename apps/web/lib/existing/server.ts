@@ -31,7 +31,7 @@ const unavailable: SourceBlock = { status: "unavailable", error: { code: "source
 export type ExistingDeps = {
   /** Visit archive + freshness (internal lineage such as snapshot ids stays inside and never reaches responses). */
   archive: () => Promise<ArchiveState>;
-  /** Tourist resources (types 12/14) through the existing read-only region service. */
+  /** Tourism resources (types 12/14/39/32) through the existing read-only region service. */
   regionList: (q: Query) => Promise<ResourceResult>;
   /** Read-only TourAPI adapter: keyword search, identity lookup and the verified regional event collector. */
   tour: TourCall;

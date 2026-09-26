@@ -13,12 +13,12 @@ import { archiveCatalogue, currentFestival, currentId, IDENTITY_LINKS, mergeCurr
 import { defaultYear, editionHistory, monthlyMeans, periodSummary, yearCoverage, type EditionInput } from "./history";
 import { resourceRows } from "./resources";
 import { holidaySummary, overlapDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
-import { historyKey, festivalsKey, InvalidRequest, parseFestivalSearch, parseHistory, parseResources, parseSchedule } from "./request";
+import { historyKey, festivalsKey, InvalidRequest, parseFestivalSearch, parseHistory, parseResources, parseSchedule, RESOURCE_KINDS as REQUEST_KINDS, resourcesKey } from "./request";
 import { defaultHostVisits } from "../datalab/host-visits";
 import { defaultVisitorProfile } from "../datalab/visitor-profile";
 import { createExistingService, loadHistory as productionHistory, regionObservations } from "./server";
 import { createTourCall, KEYWORD_PAGE_SIZE, type TourCall, type TourOperation, type TourPage } from "./tour";
-import type { CurrentFestival, DataFreshness, ResourceItem } from "./types";
+import { DEFAULT_RESOURCE_KINDS, parseResourceTarget, readResourceTypes, RESOURCE_KIND_LABELS, RESOURCE_KINDS, resourceTypesValue, type CurrentFestival, type DataFreshness, type ResourceItem } from "./types";
 
 const editions = catalogue.editions as Edition[], archive: Dataset[] = [...bundled, ...expanded.datasets], cal = calendar as HolidayCalendar;
 // Root's independent recalculation (days, observed days, raw mean, peak date, peak value, chart days start-7..end+7).
@@ -311,6 +311,50 @@ test("request parsing: pages, windows, regions and canonical keys", () => {
   assert.equal(parseFestivalSearch(req("id=current:3611036110:1"), "2026-09-23").id, "current:3611036110:1");
   assert.deepEqual(parseResources(req("province=44&district=230&types=14")).types, ["14"]);
   assert.throws(() => parseResources(req("province=44&district=230&types=")), InvalidRequest);
+});
+
+test("four resource kinds: display order, default pair, strict API types and address round trips", () => {
+  assert.deepEqual(RESOURCE_KINDS, ["12", "14", "39", "32"]);
+  assert.deepEqual(DEFAULT_RESOURCE_KINDS, ["12", "14"]);
+  assert.equal(REQUEST_KINDS, RESOURCE_KINDS, "request re-exports the same list");
+  assert.deepEqual(RESOURCE_KINDS.map(k => RESOURCE_KIND_LABELS[k]), ["관광지", "문화시설", "음식점", "숙박"]);
+  const types = (s: string) => parseResources(req(`province=44&district=230${s}`)).types;
+  assert.deepEqual(types(""), ["12", "14"], "absent types keeps the existing default");
+  assert.deepEqual(types("&types=12,14,39,32"), ["12", "14", "39", "32"]);
+  assert.deepEqual(types("&types=32,39"), ["39", "32"], "display order, independent of the address order");
+  assert.deepEqual(types("&types=39"), ["39"]);
+  assert.deepEqual(types("&types=32"), ["32"]);
+  assert.notEqual(resourcesKey(parseResources(req("province=44&district=230&types=39"))), resourcesKey(parseResources(req("province=44&district=230&types=32"))));
+  for (const bad of ["none", "15", "12,15", "12,99", "12,", "38"]) assert.throws(() => parseResources(req(`province=44&district=230&types=${bad}`)), InvalidRequest, bad);
+  // Page address: absent or invalid -> default pair, `none` -> nothing chosen, all four stay explicit.
+  assert.deepEqual(readResourceTypes(null), ["12", "14"]);
+  assert.deepEqual(readResourceTypes("none"), []);
+  for (const bad of ["", "15", "12,99", "12,", "39;32", " 39"]) assert.deepEqual(readResourceTypes(bad), ["12", "14"], bad);
+  assert.deepEqual(readResourceTypes("32,12"), ["12", "32"]);
+  assert.deepEqual(readResourceTypes("12,14,39,32"), ["12", "14", "39", "32"]);
+  assert.equal(resourceTypesValue(["14", "12"]), null);
+  assert.equal(resourceTypesValue([]), "none");
+  assert.equal(resourceTypesValue(["32", "39", "14", "12"]), "12,14,39,32");
+  assert.equal(resourceTypesValue(["39"]), "39");
+  assert.equal(resourceTypesValue(["12"]), "12");
+  for (const chosen of [[], ["12"], ["39", "32"], ["12", "14"], ["12", "14", "39", "32"]] as const) assert.deepEqual(readResourceTypes(resourceTypesValue(chosen)), [...chosen]);
+  // One-shot arrival targets accept all four kinds only.
+  assert.deepEqual(parseResourceTarget("39:126508"), { kind: "39", id: "126508" });
+  assert.deepEqual(parseResourceTarget("32:1"), { kind: "32", id: "1" });
+  assert.deepEqual(parseResourceTarget("12:5"), { kind: "12", id: "5" });
+  for (const bad of [null, "", "15:1", "39:", "39:1a", "39:123456789012345678901", " 39:1", "39:1 "]) assert.equal(parseResourceTarget(bad), null, String(bad));
+});
+
+test("restaurant and accommodation lists use the same service, labels and independent failure", async () => {
+  const asked: string[] = [];
+  const svc = service({ regionList: async q => { asked.push(q.kind); return q.kind === "32" ? empty(q, "unavailable") : { ...empty(q, "complete"), total: 1, items: [
+    { id: `${q.kind}1`, title: "식당", address: "a", longitude: 127.1, latitude: 36.2, start: null, end: null, modifiedAt: null }] }; } });
+  const r = await svc.loadResources(parseResources(req("province=44&district=230&types=12,14,39,32")));
+  assert.deepEqual(asked.sort(), ["12", "14", "32", "39"]);
+  assert.deepEqual(r.byType.map(b => [b.kind, b.label, b.status, b.total, b.items.map(i => [i.id, i.kind])]), [
+    ["12", "관광지", "complete", 1, [["121", "12"]]], ["14", "문화시설", "complete", 1, [["141", "14"]]],
+    ["39", "음식점", "complete", 1, [["391", "39"]]], ["32", "숙박", "unavailable", null, []]]);
+  assert.ok(!JSON.stringify(r).includes("internal upstream text"));
 });
 
 test("client-safe modules never reach server-only, node built-ins, DB, forecast or kto history code", () => {

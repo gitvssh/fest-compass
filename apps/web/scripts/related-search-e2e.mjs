@@ -90,7 +90,7 @@ function festivals(route, p) {
     archive: { status: "not-requested", error: null, collectedAt: null, items: [], freshness: null },
     current: currentBlock(found, found.length ? "verified" : "not-found") } } };
 }
-const DEFAULTS = { "existing/festivals": festivals, "existing/resources": fixtureJson(resourcesBody), "new/resource-detail": fixtureJson(detailBody) };
+const DEFAULTS = { "existing/festivals": festivals, "existing/resources": fixtureJson(resourcesBody), "resources/detail": fixtureJson(detailBody) };
 async function onApi(route) {
   const url = new URL(route.request().url()), endpoint = url.pathname.slice("/api/".length), p = url.searchParams;
   calls.push({ endpoint, params: Object.fromEntries(p) });
@@ -142,7 +142,7 @@ const errors = [], writes = [], passed = [];
 async function openContext(options = {}) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, locale: "ko-KR", ...options });
   await mockMapTiles(context);
-  await context.route(u => u.origin === origin && (u.pathname.startsWith("/api/new/") || u.pathname.startsWith("/api/existing/")), onApi);
+  await context.route(u => u.origin === origin && (u.pathname.startsWith("/api/new/") || u.pathname.startsWith("/api/existing/") || u.pathname.startsWith("/api/resources/")), onApi);
   await context.route(u => isDdg(u), interceptDdg);
   context.on("request", r => { if (!isDdg(new URL(r.url()))) outbound.push({ url: r.url(), body: r.postData() ?? "" }); });
   context.on("page", p => popups.push(p));

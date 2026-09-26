@@ -1,6 +1,6 @@
-import type { ResourceKind } from "@/lib/existing/types";
+import { RESOURCE_KIND_LABELS } from "@/lib/existing/types";
 
-export const KIND_LABEL: Record<ResourceKind, string> = { "12": "관광지", "14": "문화시설" };
+export const KIND_LABEL = RESOURCE_KIND_LABELS;
 export const RADII = [1, 3, 5, 10, 20];
 export const MAX_COMPARED = 2;
 export const km = (value: number) => `${value < 10 ? value.toFixed(1) : Math.round(value)}km`;

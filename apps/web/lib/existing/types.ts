@@ -1,4 +1,4 @@
-// Response contracts for the existing-festival journey (UC-FC-009). Pure types; safe for client imports.
+// Response contracts for the existing-festival journey (UC-FC-009). Pure types and constants; safe for client imports.
 import type { VisitorProfileSelection } from "../datalab/visitor-profile-types";
 export type { VisitorProfile, VisitorProfileBand, VisitorProfileDestination, VisitorProfileDestinationGroup, VisitorProfileGroupId, VisitorProfileResource, VisitorProfileSelection } from "../datalab/visitor-profile-types";
 export type Point = { latitude: number; longitude: number };
@@ -85,7 +85,31 @@ export type MonthlyResponse = Envelope<MonthlyRequest> & {
   months: MonthMean[]; daily: DailyValue[]; source: PublicSource | null; freshness: DataFreshness;
 };
 
-export type ResourceKind = "12" | "14";
+export type ResourceKind = "12" | "14" | "39" | "32";
+/** Display and request order: 관광지, 문화시설, 음식점, 숙박. */
+export const RESOURCE_KINDS: readonly ResourceKind[] = ["12", "14", "39", "32"];
+/** Initial choice when the address carries no (or an invalid) `types` value. */
+export const DEFAULT_RESOURCE_KINDS: readonly ResourceKind[] = ["12", "14"];
+export const RESOURCE_KIND_LABELS: Readonly<Record<ResourceKind, string>> = { "12": "관광지", "14": "문화시설", "39": "음식점", "32": "숙박" };
+export const isResourceKind = (value: unknown): value is ResourceKind => typeof value === "string" && (RESOURCE_KINDS as readonly string[]).includes(value);
+/** Address `types`: absent or any invalid part -> defaults, `none` -> none chosen, otherwise the listed kinds in display order. */
+export function readResourceTypes(raw: string | null): ResourceKind[] {
+  if (raw === "none") return [];
+  const parts = raw === null ? [] : raw.split(",");
+  if (!parts.length || parts.some(p => !isResourceKind(p))) return [...DEFAULT_RESOURCE_KINDS];
+  return RESOURCE_KINDS.filter(k => parts.includes(k));
+}
+/** Canonical address value: defaults -> null (omit), none -> `none`, otherwise the explicit display-order list (e.g. all four). */
+export function resourceTypesValue(types: readonly ResourceKind[]): string | null {
+  const list = RESOURCE_KINDS.filter(k => types.includes(k));
+  if (list.length === DEFAULT_RESOURCE_KINDS.length && DEFAULT_RESOURCE_KINDS.every(k => list.includes(k))) return null;
+  return list.length ? list.join(",") : "none";
+}
+/** One-shot arrival target `resource=<kind>:<id>` for any of the four kinds; anything else is ignored. */
+export function parseResourceTarget(raw: string | null): { kind: ResourceKind; id: string } | null {
+  const m = /^(12|14|39|32):(\d{1,20})$/.exec(raw ?? "");
+  return m ? { kind: m[1] as ResourceKind, id: m[2] } : null;
+}
 export type ResourceItem = { id: string; kind: ResourceKind; title: string; address: string; point: Point | null; modifiedAt: string | null };
 export type ResourceTypeBlock = SourceBlock & { kind: ResourceKind; label: string; total: number | null; items: ResourceItem[] };
 export type ResourcesRequest = { province: string; district: string; types: ResourceKind[] };

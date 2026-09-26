@@ -1,6 +1,5 @@
 import { validMonth } from "@/components/existing/format";
-import { RESOURCE_KINDS } from "@/lib/existing/request";
-import type { ResourceKind } from "@/lib/existing/types";
+import { readResourceTypes, resourceTypesValue, type ResourceKind } from "@/lib/existing/types";
 import type { NewView } from "./memory";
 
 // Pure helpers (server- and client-safe). Durable conditions live in the address: region (path), resource types,
@@ -20,16 +19,13 @@ export function readMonth(params: URLSearchParams): string | null {
   const raw = single(params, "month");
   return validMonth(raw) ? raw : null;
 }
-/** absent = both types, `12` or `14` = one type, `none` = none chosen. */
+/** absent or invalid = the default kinds (관광지·문화시설), `none` = none chosen, otherwise the listed kinds in display order. */
 export function readTypes(params: URLSearchParams): ResourceKind[] {
-  const raw = single(params, "types");
-  if (raw === null) return [...RESOURCE_KINDS];
-  if (raw === "none") return [];
-  const list = RESOURCE_KINDS.filter(k => raw.split(",").includes(k));
-  return list.length ? list : [...RESOURCE_KINDS];
+  return readResourceTypes(single(params, "types"));
 }
+/** null only for exactly the default set; all four kinds stay explicit (`12,14,39,32`). */
 export function typesValue(types: ResourceKind[]): string | null {
-  return types.length === RESOURCE_KINDS.length ? null : types.length ? types.join(",") : "none";
+  return resourceTypesValue(types);
 }
 
 /** Only valid durable values; anything else in the address is dropped. */

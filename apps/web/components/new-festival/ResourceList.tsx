@@ -16,7 +16,7 @@ export function ResourceList({ rows, listRef, detailId, comparedIds, anchored, o
       const inCompare = comparedIds.has(r.item.id), open = r.item.id === detailId;
       return <li key={r.item.id} className={`rounded-xl border ${open ? "border-blue bg-blue-soft" : "border-ink/10 bg-white"}`}>
         <button type="button" data-resource-id={r.item.id} aria-pressed={open} onClick={() => onOpen(r.item)} className="block w-full rounded-xl p-3 pb-1 text-left text-sm hover:bg-paper/60">
-          <span className="font-bold">{r.number}. {r.item.title}</span>
+          <span className="break-words font-bold">{r.number}. {r.item.title}</span>
           <span className="mt-1 block break-words text-xs text-muted">{KIND_LABEL[r.item.kind]} · {r.item.address || "주소 정보 없음"}{r.item.point ? "" : " · 지도 위치 없음"}</span>
           {anchored && <span className="mt-1 block text-xs font-bold">{distanceText(r.distanceKm)}</span>}
         </button>

@@ -2,7 +2,7 @@ import catalogue from "../../data/region-catalogue.json";
 import type { History, Observation, Query, Region, Resource } from "./types";
 export const REGIONS: Region[] = catalogue.rows;
 export const CATALOGUE = { ...catalogue, rows: undefined };
-export const TYPES = { "12": "관광지", "14": "문화시설", "15": "축제·행사" } as const;
+export const TYPES = { "12": "관광지", "14": "문화시설", "39": "음식점", "32": "숙박", "15": "축제·행사" } as const;
 export const SOURCE = "https://www.data.go.kr/data/15101578/openapi.do";
 export const HISTORY_SOURCE = "https://www.data.go.kr/data/15101972/openapi.do";
 export function day(value: string): boolean {
@@ -16,7 +16,7 @@ export function parseQuery(params: URLSearchParams): Query {
   const province = params.get("province") ?? "", district = params.get("district") ?? "", start = params.get("start") ?? "", end = params.get("end") ?? "", kind = params.get("kind") ?? "";
   if (!REGIONS.some(r => r.provinceCode === province && r.districtCode === district)) throw new Error("지역 목록에서 시도와 시군구를 선택하세요.");
   dates(start, end);
-  if (start < "2000-01-01" || end > "2035-12-31" || !["12", "14", "15"].includes(kind)) throw new Error("지원하는 기간과 자료 종류를 선택하세요.");
+  if (start < "2000-01-01" || end > "2035-12-31" || !Object.hasOwn(TYPES, kind)) throw new Error("지원하는 기간과 자료 종류를 선택하세요.");
   return { province, district, start, end, kind: kind as Query["kind"] };
 }
 export function regionOf(q: Query): Region { return REGIONS.find(r => r.provinceCode === q.province && r.districtCode === q.district)!; }
@@ -27,6 +27,8 @@ export function coordinate(value: unknown, min: number, max: number): number | n
 export function mapResource(row: Record<string, unknown>, q: Query): Resource {
   // Preserve KTO's own code system, including Sejong's verified 36110/36110 pair.
   if (String(row.lDongRegnCd) !== q.province || String(row.lDongSignguCd) !== q.district) throw new Error("다른 지역의 응답이 섞여 자료를 표시하지 않았습니다.");
+  // Tourism lists are queried with one contentTypeId; each row must state that same type explicitly.
+  if (q.kind !== "15" && (row.contenttypeid === undefined || row.contenttypeid === null || String(row.contenttypeid).trim() !== q.kind)) throw new Error("다른 종류의 응답이 섞여 자료를 표시하지 않았습니다.");
   if (!/^\d+$/.test(String(row.contentid)) || typeof row.title !== "string" || !row.title.trim()) throw new Error("자료 식별자를 확인하지 못했습니다.");
   const date = (v: unknown) => { const s = String(v ?? "").replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"); return day(s) ? s : null; };
   const start = date(row.eventstartdate), end = date(row.eventenddate);

@@ -26,3 +26,12 @@ test("a month is kept only for event results and only in YYYY-MM form", () => {
   assert.equal(parseRegionState({ ...ok, kind: "15", month: "2026-3" })?.month, null);
   assert.equal(regionSearch({ ...ok, kind: "12" }, "2026-03"), "province=44&district=230&start=2026-01-01&end=2026-12-31&kind=12");
 });
+
+test("restaurant and accommodation lists restore from the address like other tourism kinds", () => {
+  const ok = { province: "44", district: "230", start: "2026-01-01", end: "2026-12-31" };
+  for (const kind of ["39", "32"] as const) {
+    const state = parseRegionState({ ...ok, kind, month: "2026-03" });
+    assert.deepEqual(state, { query: { ...ok, kind }, month: null });
+    assert.deepEqual(parseRegionState(new URLSearchParams(regionSearch(state!.query))), state);
+  }
+});

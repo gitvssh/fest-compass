@@ -10,6 +10,10 @@ summary: "M1~M6과 기존 축제 탐색 TS-FC-009의 자동 검증을 연결합�
 
 ## 현재 판정
 
+2026-09-26 관광자원 공통 상세·음식점·숙박은 [TS-FC-016](scenarios/TS-FC-016.md)의 9개 기준으로 검증한다.
+실제 공식 응답과 통제 시험을 분리하며 최신 결과는 [기록41](../../validation/41-tourism-resources.md)에 둔다.
+고른 모든 등록 축제의 공통 방문·자원·시기 흐름은 [TS-FC-015](scenarios/TS-FC-015.md)와 [기록40](../../validation/40-unified-festival-analysis.md)을 따른다.
+
 기존 축제를 선택해 방문·자원·시기를 기록 없이 살펴보는 14개 기준은
 [TS-FC-009](scenarios/TS-FC-009.md)와 [검증 기록34](../../validation/34-existing-festival-journey.md)에 연결했다.
 실제 보관 수치와 통제한 실패·응답 경합을 구분해 시험한다. 실무자 관찰은 후속이다.

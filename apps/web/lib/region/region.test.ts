@@ -4,8 +4,8 @@ import bundled from "../../data/region-history.json";
 import expanded from "../../data/regional-history-expanded.json";
 import { fetchRegionalPage, regionalDatasets } from "./history-collection";
 import { hash, monthWindows } from "../kto/history";
-import { collectResources } from "./service";
-import { dates, lineSegments, mapResource, parseQuery, regionOf, REGIONS, selectHistory, SOURCE } from "./model";
+import { collectResources, RESOURCE_MESSAGES, resourceMaxPages, type PageLoader } from "./service";
+import { dates, lineSegments, mapResource, parseQuery, regionOf, REGIONS, selectHistory, SOURCE, TYPES } from "./model";
 import { encodeEvidence, makeEvidence, parseEvidence } from "./evidence";
 import type { Query, RegionResult } from "./types";
 import { groupResources, hasPosition, NATIONAL_BOUNDS, resourceBounds } from "./map-view";
@@ -13,7 +13,8 @@ import { BOUNDARIES, boundaryBounds, boundaryReference } from "./boundaries";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 const q: Query = { province: "44", district: "230", start: "2025-03-01", end: "2025-03-31", kind: "12" };
-const row = (id = "123") => ({ contentid: id, title: "자료", lDongRegnCd: "44", lDongSignguCd: "230", mapx: "127.1", mapy: "36.2" });
+// Tourism list rows state the requested type explicitly (areaBasedList2 contenttypeid).
+const row = (id = "123", kind = "12") => ({ contentid: id, contenttypeid: kind, title: "자료", lDongRegnCd: "44", lDongSignguCd: "230", mapx: "127.1", mapy: "36.2" });
 
 test("expanded source snapshots preserve all 2192 regional dates and reviewed identities without mixing populations", () => {
   assert.equal(expanded.calls, 108); assert.equal(expanded.pages.length, 108);
@@ -125,13 +126,28 @@ test("coordinates stay missing instead of mapping zero; wrong-region rows are re
   assert.throws(() => mapResource({ ...row(), lDongRegnCd: "11" }, q));
   assert.throws(() => mapResource({ ...row(), eventstartdate: "20260201", eventenddate: "20260204" }, { ...q, kind: "15" }));
 });
+test("tourism rows must state the requested type explicitly; festival rows keep the legacy date checks only", () => {
+  for (const kind of ["12", "14", "39", "32"] as const) assert.equal(mapResource(row("1", kind), { ...q, kind }).id, "1");
+  assert.throws(() => mapResource(row("1", "32"), { ...q, kind: "39" }));
+  assert.throws(() => mapResource(row("1", "15"), { ...q, kind: "12" }));
+  for (const contenttypeid of [undefined, null, ""]) assert.throws(() => mapResource({ ...row(), contenttypeid }, q));
+  const festival: Query = { ...q, kind: "15", start: "2026-09-05", end: "2026-09-06" };
+  assert.equal(mapResource({ ...row(), contenttypeid: undefined, eventstartdate: "20260905", eventenddate: "20260905" }, festival).start, "2026-09-05");
+});
+test("all four tourism kinds and festivals are supported query kinds with their labels", () => {
+  const base = { province: "44", district: "230", start: "2026-09-01", end: "2026-09-30" };
+  for (const kind of ["12", "14", "39", "32", "15"]) assert.equal(parseQuery(new URLSearchParams({ ...base, kind })).kind, kind);
+  for (const kind of ["", "13", "38", "99"]) assert.throws(() => parseQuery(new URLSearchParams({ ...base, kind })), kind);
+  assert.deepEqual([TYPES["12"], TYPES["14"], TYPES["39"], TYPES["32"], TYPES["15"]], ["관광지", "문화시설", "음식점", "숙박", "축제·행사"]);
+  assert.deepEqual([resourceMaxPages("12"), resourceMaxPages("14"), resourceMaxPages("39"), resourceMaxPages("32"), resourceMaxPages("15")], [20, 20, 20, 20, 6]);
+});
 test("all pages complete, missing coordinates kept in the list", async () => {
   const result = await collectResources(q, async page => ({ total: 101, rows: page === 1 ? Array.from({ length: 100 }, (_, i) => row(String(i))) : [{ ...row("100"), mapx: "" }] }));
   assert.equal(result.status, "complete"); assert.equal(result.pages, 2); assert.equal(result.items.length, 101); assert.equal(result.items[100].longitude, null);
 });
 test("festival API accepts continuing events including either boundary and rejects disjoint or reversed schedules", async () => {
   const query:Query={...q,kind:"15",start:"2026-09-05",end:"2026-09-06"};
-  const sample={...row(),eventstartdate:"20260904",eventenddate:"20260906"};
+  const sample={...row("123","15"),eventstartdate:"20260904",eventenddate:"20260906"};
   assert.equal(mapResource(sample,query).start,"2026-09-04");
   assert.equal(mapResource({...sample,eventenddate:"20260905"},query).end,"2026-09-05");
   assert.equal(mapResource({...sample,eventstartdate:"20260906",eventenddate:"20261001"},query).start,"2026-09-06");
@@ -144,10 +160,90 @@ test("partial, duplicate, drifted, wrong-region and capped results never masquer
     async () => ({ total: 2, rows: [row(), row()] }),
     async (page: number) => ({ total: page === 1 ? 101 : 100, rows: Array.from({ length: 100 }, (_, i) => row(String(i))) }),
     async () => ({ total: 1, rows: [{ ...row(), lDongSignguCd: "150" }] }),
-    async () => ({ total: 601, rows: [] }),
+    async () => ({ total: 2001, rows: [] }),
     async () => { throw new Error("unavailable"); },
   ]) { const result = await collectResources(q, load); assert.equal(result.status, "unavailable"); assert.deepEqual(result.items, []); assert.equal(result.total, null); }
   assert.equal((await collectResources(q, async () => ({ total: 0, rows: [] }))).status, "empty");
+});
+// A consistent multi-page listing of `total` rows; `tamper` may replace one page's answer.
+function listing(kind: Query["kind"], total: number, tamper: (page: number, rows: Record<string, unknown>[]) => { total?: number; rows?: Record<string, unknown>[] } | null = () => null) {
+  const calls: number[] = [];
+  const load: PageLoader = async page => {
+    calls.push(page);
+    const rows = Array.from({ length: Math.max(0, Math.min(100, total - (page - 1) * 100)) }, (_, i) => {
+      const r: Record<string, unknown> = row(String((page - 1) * 100 + i + 1), kind);
+      return kind === "15" ? { ...r, eventstartdate: "20260905", eventenddate: "20260905" } : r;
+    });
+    return { total, rows, ...tamper(page, rows) };
+  };
+  return { load, calls };
+}
+const range = (n: number) => Array.from({ length: n }, (_, i) => i + 1);
+test("tourism kinds collect every page beyond 600 rows up to the 2,000-row boundary", async () => {
+  for (const [kind, total, pages] of [["12", 601, 7], ["39", 1234, 13], ["32", 1999, 20], ["14", 2000, 20], ["39", 100, 1], ["32", 0, 1]] as const) {
+    const { load, calls } = listing(kind, total), result = await collectResources({ ...q, kind }, load);
+    assert.equal(result.status, total ? "complete" : "empty", `${kind}/${total}`);
+    assert.deepEqual([result.total, result.items.length, result.pages, new Set(result.items.map(i => i.id)).size], [total, total, pages, total]);
+    assert.deepEqual(calls, range(pages), "exact page count, in order");
+  }
+});
+test("more than 2,000 tourism rows or 600 festival rows fail the whole kind without partial rows", async () => {
+  for (const [kind, total] of [["12", 2001], ["39", 2500], ["32", 5000]] as const) {
+    const { load, calls } = listing(kind, total), result = await collectResources({ ...q, kind }, load);
+    assert.deepEqual([result.status, result.items, result.total, calls], ["unavailable", [], null, [1]], `${kind}/${total}`);
+  }
+  const festival: Query = { ...q, kind: "15", start: "2026-09-05", end: "2026-09-06" };
+  const kept = listing("15", 600), ok = await collectResources(festival, kept.load);
+  assert.deepEqual([ok.status, ok.items.length, ok.pages], ["complete", 600, 6], "festival cap unchanged");
+  const over = await collectResources(festival, listing("15", 601).load);
+  assert.deepEqual([over.status, over.items, over.total], ["unavailable", [], null], "festival 601 still exceeds its 600 cap");
+});
+test("a late page that drifts, shortens, repeats, changes type or region, or fails rejects the whole tourism list", async () => {
+  const cases: [string, Query["kind"], number, Parameters<typeof listing>[2]][] = [
+    ["total changed on page 12", "39", 1500, p => p === 12 ? { total: 1501 } : null],
+    ["total shrank on last page", "32", 2000, p => p === 20 ? { total: 1999 } : null],
+    ["short page 9", "39", 1500, (p, rows) => p === 9 ? { rows: rows.slice(1) } : null],
+    ["missing final page", "12", 1450, p => p === 15 ? { rows: [] } : null],
+    ["extra row on final page", "14", 1450, (p, rows) => p === 15 ? { rows: [...rows, row("9999", "14")] } : null],
+    ["duplicate id across pages", "39", 1500, (p, rows) => p === 11 ? { rows: [row("1", "39"), ...rows.slice(1)] } : null],
+    ["wrong type on page 10", "39", 1500, (p, rows) => p === 10 ? { rows: [row("901", "32"), ...rows.slice(1)] } : null],
+    ["missing type on page 7", "32", 800, (p, rows) => p === 7 ? { rows: [{ ...rows[0], contenttypeid: undefined }, ...rows.slice(1)] } : null],
+    ["wrong region on page 14", "12", 1500, (p, rows) => p === 14 ? { rows: [{ ...rows[0], lDongSignguCd: "150" }, ...rows.slice(1)] } : null],
+    ["upstream failure on page 20", "14", 2000, p => { if (p === 20) throw new Error("unavailable"); return null; }],
+  ];
+  for (const [name, kind, total, tamper] of cases) {
+    const result = await collectResources({ ...q, kind }, listing(kind, total, tamper).load);
+    assert.deepEqual([result.status, result.items, result.total], ["unavailable", [], null], name);
+  }
+});
+test("public resource messages never expose caps, verification rules or raw upstream errors", async () => {
+  const failure = "관광정보 목록을 불러오지 못했어요. 잠시 후 다시 조회해 주세요.";
+  const raw = "HTTP 500 https://apis.data.go.kr/B551011/KorService2/areaBasedList2?serviceKey=secret-probe-key SERVICE_KEY_IS_NOT_REGISTERED_ERROR";
+  const festival: Query = { ...q, kind: "15", start: "2026-09-05", end: "2026-09-06" };
+  const cases: [string, Query, PageLoader, number][] = [
+    ["tourism over cap", q, listing("12", 2001).load, 1],
+    ["festival over cap", festival, listing("15", 601).load, 1],
+    ["partial first page", q, async () => ({ total: 101, rows: [row()] }), 1],
+    ["missing final page", { ...q, kind: "12" }, listing("12", 1450, p => p === 15 ? { rows: [] } : null).load, 15],
+    ["total drift", { ...q, kind: "39" }, listing("39", 1500, p => p === 12 ? { total: 1501 } : null).load, 12],
+    ["duplicate id", { ...q, kind: "39" }, listing("39", 1500, (p, rows) => p === 11 ? { rows: [row("1", "39"), ...rows.slice(1)] } : null).load, 11],
+    ["type mismatch", { ...q, kind: "39" }, listing("39", 1500, (p, rows) => p === 10 ? { rows: [row("901", "32"), ...rows.slice(1)] } : null).load, 10],
+    ["region mismatch", q, async () => ({ total: 1, rows: [{ ...row(), lDongSignguCd: "150" }] }), 1],
+    ["raw upstream error", { ...q, kind: "14" }, listing("14", 2000, p => { if (p === 3) throw new Error(raw); return null; }).load, 2],
+    ["non-Error throw", q, async () => { throw raw; }, 0],
+  ];
+  for (const [name, query, load, pages] of cases) {
+    const result = await collectResources(query, load, () => "2026-09-26T00:00:00.000Z");
+    assert.deepEqual(result, { status: "unavailable", message: failure, items: [], total: null, pages, source: SOURCE, collectedAt: "2026-09-26T00:00:00.000Z" }, name);
+    const text = JSON.stringify(result);
+    for (const leak of ["2,000", "600", "한도", "전체 페이지", "전체 건수", "중복", "누락", "API", "apis.data.go.kr", "serviceKey", "secret-probe-key", "SERVICE_KEY", "HTTP 500"]) assert.ok(!text.includes(leak), `${name}: ${leak}`);
+  }
+  const complete = await collectResources({ ...q, kind: "32" }, listing("32", 1999).load);
+  assert.deepEqual([complete.status, complete.message, complete.total, complete.items.length, complete.pages], ["complete", "등록된 관광정보", 1999, 1999, 20]);
+  const empty = await collectResources(q, async () => ({ total: 0, rows: [] }));
+  assert.deepEqual([empty.status, empty.message, empty.total, empty.items, empty.pages], ["empty", "이 조건에 등록된 관광정보가 없어요.", 0, [], 1]);
+  assert.deepEqual(RESOURCE_MESSAGES, { complete: complete.message, empty: empty.message, unavailable: failure });
+  for (const message of Object.values(RESOURCE_MESSAGES)) assert.ok(!/\d|API|페이지|확인 완료|한도/.test(message), message);
 });
 test("actual historical value is retained; switching municipality removes Nonsan numbers", () => {
   const history = selectHistory(q, bundled); assert.equal(history.points.find(p => p.date === "2025-03-27")?.value, 52671.5);

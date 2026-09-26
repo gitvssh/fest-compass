@@ -94,7 +94,8 @@ try {
   await page.goto(`${base}/regions`);
   await page.getByRole("button", { name: "논산 2025년 3월 자료로 살펴보기 →", exact: true }).filter({ visible: true }).click();
   await visible(page.getByRole("heading", { name: "논산시 방문 추세", exact: true }));
-  await visible(page.getByText(/공공데이터 연결이 준비되지 않았습니다/));
+  await visible(page.getByText(/관광정보 목록을 불러오지 못했어요\. 잠시 후 다시 조회해 주세요\./));
+  assert.equal(await page.getByText(/공공데이터 연결이 준비되지 않았습니다/).count(), 0, "internal connection reason is not shown");
   assert.equal((await page.request.post(`${base}/api/regions`)).status(), 405);
   assert.equal((await page.request.get(`${base}/api/regions?province=44&district=230&start=2025-02-30&end=2025-03-31&kind=12`)).status(), 400);
   assert.deepEqual(errors, []); assert.deepEqual(writes, []);

@@ -145,6 +145,15 @@ async function festivals(route, p) {
   return { kind: "fulfill", options: { response, json: body } }; // the archive block stays exactly as served
 }
 const DEFAULTS = { history: REAL, monthly: REAL, festivals, resources: resourcesWith("ok"), schedule: scheduleWith("fixture") };
+/** 검증용: the shared introduction of a listed resource is answered as "no introduction", so the detail keeps only list facts. */
+async function introAbsent(route) {
+  const p = new URL(route.request().url()).searchParams, region = regions.get(`${p.get("province")}${p.get("district")}`) ?? null;
+  const request = { province: p.get("province"), district: p.get("district"), kind: p.get("kind"), id: p.get("id") };
+  try {
+    await route.fulfill({ json: { key: JSON.stringify(["new-resource-detail", request.province, request.district, request.kind, request.id]), request,
+      retrievedAt: new Date().toISOString(), region, status: "empty", error: null, detail: null, source: null } });
+  } catch { /* the page superseded or left this request */ }
+}
 
 async function onApi(route) {
   const url = new URL(route.request().url()), endpoint = url.pathname.slice("/api/existing/".length), p = url.searchParams;
@@ -185,6 +194,7 @@ async function openContext(options = {}) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, locale: "ko-KR", ...options });
   await mockMapTiles(context);
   await context.route(u => u.pathname.startsWith("/api/existing/"), onApi);
+  await context.route(u => u.pathname === "/api/resources/detail", introAbsent);
   const page = await context.newPage();
   page.setDefaultTimeout(20_000);
   page.on("pageerror", e => errors.push(e.message));
@@ -387,7 +397,7 @@ async function resourcesAnchor({ page }) {
   await page.waitForURL(u => u.pathname === path(NONSAN_ID, "resources"));
   await waitFocusId(page, "resources-heading");
   await visible(page.getByRole("heading", { level: 2, name: "논산시 전체 주변 관광자원", exact: true }));
-  await visible(page.getByText("현재 등록 관광지·문화시설", { exact: true }));
+  await visible(page.getByText("현재 등록 관광지·문화시설·음식점·숙박", { exact: true }));
   const failed = page.getByRole("alert").filter({ hasText: "문화시설 목록을 불러오지 못했어요." });
   await visible(failed);
   await visible(page.getByText("관광지 2건", { exact: true }));
@@ -446,10 +456,10 @@ async function contextRestore({ page }) {
   await menu(page, "주변 관광자원").click(); await waitFocusId(page, "resources-heading");
   await typeButton(page, "관광지").click();
   await waitParam(page, "types", "none");
-  await visible(page.getByText("관광지 또는 문화시설을 골라 주세요.", { exact: true }));
+  await visible(page.getByText("볼 유형을 하나 이상 골라 주세요.", { exact: true }));
   assert.equal(await resourceList(page).count(), 0);
   await page.reload();
-  await visible(page.getByText("관광지 또는 문화시설을 골라 주세요.", { exact: true }));
+  await visible(page.getByText("볼 유형을 하나 이상 골라 주세요.", { exact: true }));
   assert.equal(params(page).get("types"), "none");
   assert.equal(await typeButton(page, "관광지").getAttribute("aria-pressed"), "false");
   await typeButton(page, "관광지").click();

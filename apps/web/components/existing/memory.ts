@@ -1,5 +1,5 @@
 "use client";
-import type { Point, ResourceItem } from "@/lib/existing/types";
+import { DEFAULT_RESOURCE_KINDS, readResourceTypes, RESOURCE_KINDS, resourceTypesValue, type Point, type ResourceItem, type ResourceKind } from "@/lib/existing/types";
 
 // Temporary exploration memory for this browser tab. It survives menu moves and back/forward because it
 // lives in the loaded client module, and it disappears on a reload, which then restores only the address.
@@ -55,15 +55,16 @@ export function viewHref(festivalId: string, view: View): string {
  * Resources address that opens one current resource once (`resource=<kind>:<id>`). Keeps the remembered type
  * choice and only adds the resource's own type; without a remembered choice it asks for that type alone.
  */
-export function resourceHref(festivalId: string, resource: { kind: "12" | "14"; id: string }): string {
+export function resourceHref(festivalId: string, resource: { kind: ResourceKind; id: string }): string {
   const [path, query = ""] = viewHref(festivalId, "resources").split("?");
   const params = new URLSearchParams(query), remembered = festivalMemory(festivalId).search.resources !== undefined || shared.types !== null;
   const raw = params.get("types");
   if (raw === null && !remembered) params.set("types", resource.kind);
-  else if (raw !== null) {
-    const list = raw === "none" ? [] : raw.split(",");
-    const next = (["12", "14"] as const).filter(k => k === resource.kind || list.includes(k));
-    if (next.length === 2) params.delete("types"); else params.set("types", next.join(","));
+  else {
+    // A remembered address without `types` means the default kinds; the resource's own kind is added to it.
+    const list = raw === null ? [...DEFAULT_RESOURCE_KINDS] : readResourceTypes(raw);
+    const next = resourceTypesValue(RESOURCE_KINDS.filter(k => k === resource.kind || list.includes(k)));
+    if (next === null) params.delete("types"); else params.set("types", next);
   }
   params.set("resource", `${resource.kind}:${resource.id}`);
   params.sort();

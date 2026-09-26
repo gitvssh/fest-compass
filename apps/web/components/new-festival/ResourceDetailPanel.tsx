@@ -1,10 +1,10 @@
 "use client";
 import type { RefObject } from "react";
 import { RelatedSearch } from "@/components/related/RelatedSearch";
+import { introKey, ResourceIntro } from "@/components/resources/ResourceIntro";
 import type { RegionRef, ResourceItem } from "@/lib/existing/types";
 import { RESOURCE_TOPICS } from "@/lib/related-search/query";
 import { distanceText, KIND_LABEL, sourceDate } from "./resource-labels";
-import { ResourceIntro } from "./ResourceIntro";
 
 /**
  * Facts of one listed resource. Name/type/address/position come from the list; the introduction is a separate
@@ -34,6 +34,6 @@ export function ResourceDetailPanel({ region, item, heading, distance, anchored,
       {item.title.trim() && <RelatedSearch key={`${region.code}-${item.kind}-${item.id}`} target={item.title} subject={item.title} region={region}
         topics={RESOURCE_TOPICS} buttonClassName="region-button" />}
     </div>
-    <ResourceIntro key={`${item.kind}-${item.id}`} region={region} item={item} />
+    <ResourceIntro key={introKey(region, item)} region={region} item={item} />
   </aside>;
 }

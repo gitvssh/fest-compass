@@ -23,6 +23,8 @@ PROJECT_ID = 'fest-compass'
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
 MARKER = '<!-- pickDday-review-index -->'
 DOCS = {
+    'docs/validation/41-tourism-resources.md': '음식점·숙박·공통 소개 실제 화면과 검증',
+    'docs/design/19-tourism-resources.md': '관광자원 공통 상세·음식점·숙박 화면 설계',
     'docs/validation/40-unified-festival-analysis.md': '고른 축제의 공통 분석·실제 화면·검증',
     'docs/design/18-unified-festival-analysis.md': '모든 등록 축제의 화면 목표·기본 배치',
     'docs/validation/39-edition-profile-comparison.md': '임실 회차별 방문자 특성 비교·실제 화면',
@@ -196,7 +198,10 @@ def main():
     existing_doc = doc_pages['docs/validation/34-existing-festival-journey.md']
     unified_doc = doc_pages['docs/validation/40-unified-festival-analysis.md']
     unified_design = doc_pages['docs/design/18-unified-festival-analysis.md']
+    tourism_doc = doc_pages['docs/validation/41-tourism-resources.md']
+    tourism_design = doc_pages['docs/design/19-tourism-resources.md']
     body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>새 축제와 기존 축제의 실제 화면과 검증 결과부터 확인하세요. 기능 상세에는 두 목적의 화면 목표·행동·데이터 연결을 정리했습니다.</p><p>아래 와이어프레임은 개발 전 기본 배치입니다. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 읽을 수 있습니다. 최종 시각 디자인은 별도 작업이며 각 화면에서 모바일 구성을 펼쳐 볼 수 있습니다.</p><nav><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
+    body += f'<section class="card"><h2>음식점·숙박과 장소 소개</h2><p>기존·새 축제에서 관광지·문화시설·음식점·숙박을 살펴보고 같은 방식으로 장소 소개를 확인하세요. 실제 화면과 선택·거리·소개 연결을 확인할 수 있습니다.</p><a class="button" href="{tourism_doc}">관광자원·실제 화면 보기</a> <a class="button" href="{tourism_design}">관광자원 화면 설계 보기</a></section>'
     body += f'<section class="card"><h2>고른 축제 모두의 공통 분석</h2><p>원하는 축제를 찾아 그 지역의 방문 흐름·관광자원·개최 시기를 살펴보세요. 강릉·안동·장흥·제주의 실제 화면과 공통 화면 목표를 확인할 수 있습니다.</p><a class="button" href="{unified_doc}">공통 분석·실제 화면 보기</a> <a class="button" href="{unified_design}">화면 목표·기본 배치 보기</a></section>'
     body += f'<section class="card"><h2>확보한 보조 자료 · 임실 회차별 방문자 특성 비교</h2><p>2023~2025년 중 두 회차를 골라 성·연령 비율, 외지인 구성, 목적지 순위 변화를 살펴보세요.</p><a class="button" href="{comparison_doc}">회차별 비교·실제 화면 보기</a></section>'
     body += f'<section class="card"><h2>임실 방문자 특성·관광자원 연결</h2><p>2025년 한 회차의 성·연령 비율과 목적지 검색순위, 현재 관광자원 연결을 확인하세요.</p><a class="button" href="{profile_doc}">방문자 특성·관광자원 연결 보기</a></section>'

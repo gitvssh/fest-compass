@@ -59,6 +59,13 @@ function resourceFixture(p) {
       status: kind === "12" ? "complete" : "empty", total: kind === "12" ? links.links.length : 0,
       items: kind === "12" ? links.links.map(l => l.resource) : [] })) };
 }
+/** Local regression only: the shared introduction of a controlled place is answered as "no introduction" (block omitted). */
+function introFixture(p) {
+  if (p.get("province") !== "52" || p.get("district") !== "750") return null;
+  const request = { province: "52", district: "750", kind: p.get("kind"), id: p.get("id") };
+  return { key: JSON.stringify(["new-resource-detail", "52", "750", request.kind, request.id]), request, retrievedAt: links.checkedAt,
+    region: { province: "52", district: "750", code: "52750", name: "전북특별자치도 임실군", districtName: "임실군" }, status: "empty", error: null, detail: null, source: null };
+}
 function km(a, b) {
   const rad = d => d * Math.PI / 180, dLat = rad(b.latitude - a.latitude), dLon = rad(b.longitude - a.longitude);
   const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.latitude)) * Math.cos(rad(b.latitude)) * Math.sin(dLon / 2) ** 2;
@@ -117,6 +124,7 @@ async function onApi(route) {
     if (plan.kind === "abort") { controlledFailures += 1; await route.abort("failed"); }
     else if (plan.kind === "fulfill") { controlledAnswers += 1; await route.fulfill(plan.options); }
     else if (controlledResources && endpoint === "existing/resources" && resourceFixture(p)) await route.fulfill({ json: resourceFixture(p) });
+    else if (controlledResources && endpoint === "resources/detail" && introFixture(p)) await route.fulfill({ json: introFixture(p) });
     else await route.continue();
   } catch { /* the page superseded or left this request */ }
   entry?.done?.();

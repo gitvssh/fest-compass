@@ -150,6 +150,9 @@ test("request parsing and canonical keys isolate region, year, kind and id", () 
   assert.notEqual(resourceDetailKey(d), resourceDetailKey({ ...d, province: "44", district: "230" }));
   const field = (s: string) => { try { parseResourceDetail(q(s)); return null; } catch (e) { return (e as InvalidRequest).field; } };
   assert.equal(field("province=44&district=230&kind=15&id=1"), "kind");
+  for (const kind of ["39", "32"] as const) assert.deepEqual(parseResourceDetail(q(`province=51&district=150&kind=${kind}&id=2733967`)), { province: "51", district: "150", kind, id: "2733967" });
+  assert.notEqual(resourceDetailKey(parseResourceDetail(q("province=44&district=230&kind=39&id=1"))), resourceDetailKey(parseResourceDetail(q("province=44&district=230&kind=32&id=1"))));
+  for (const kind of ["", "13", "38", "12,14", "all"]) assert.equal(field(`province=44&district=230&kind=${kind}&id=1`), "kind", kind);
   assert.equal(field("province=44&district=230&kind=12&id=12a"), "id");
   assert.equal(field("province=44&district=230&kind=12&id="), "id");
   assert.equal(field("province=44&district=230&kind=12&id=123456789012345678901"), "id");
@@ -206,6 +209,37 @@ test("resource detail: empty, not-found, mismatches and provider failures stay d
   assert.deepEqual(await status({ rows: [row({ modifiedtime: "2026-08-01" })] }).then(s => (s[1] as { modifiedAt: string | null }).modifiedAt), null);
 });
 
+test("restaurant and accommodation details reuse the same verified loader with contentId only", async () => {
+  for (const [kind, other] of [["39", "32"], ["32", "39"]] as const) {
+    const req = { province: "51", district: "150", kind, id: "2733967" };
+    const t = tour({ rows: [row({ contentid: "2733967", contenttypeid: kind, lDongRegnCd: "51", lDongSignguCd: "150", overview: "<p>바다 &amp; 숲<br>산책로</p><script>x()</script>" })] });
+    const r = await loadResourceDetail(t.call, req, () => NOW);
+    assert.deepEqual(t.calls, [["detailCommon2", { contentId: "2733967" }]], "no contentTypeId sent upstream");
+    assert.deepEqual([r.status, r.region.code, r.detail], ["complete", "51150", { id: "2733967", kind, overview: "바다 & 숲\n산책로", truncated: false, modifiedAt: "20260801120000" }]);
+    assert.deepEqual(r.source, { title: DETAIL_SOURCE_TITLE, url: "https://www.data.go.kr/data/15101578/openapi.do", checkedAt: null, publishedAt: null, collectedAt: DETAIL_AT });
+    const status = async (extra: Record<string, unknown>, page: Partial<TourPage> = {}) => (await loadResourceDetail(tour({ rows: [row({ contentid: "2733967", contenttypeid: kind, lDongRegnCd: "51", lDongSignguCd: "150", ...extra })], ...page }).call, req, () => NOW));
+    assert.deepEqual([(await status({ contenttypeid: other })).status, (await status({ contenttypeid: other })).detail], ["type-mismatch", null]);
+    assert.equal((await status({ contenttypeid: "12" })).status, "type-mismatch");
+    assert.equal((await status({ lDongSignguCd: "130" })).status, "region-mismatch");
+    assert.equal((await status({ contentid: "2733968" })).status, "unavailable");
+    assert.equal((await status({}, { total: 2 })).status, "unavailable");
+    assert.equal((await status({ overview: "" })).status, "empty");
+    const long = await status({ overview: `<p>${"가".repeat(OVERVIEW_MAX + 5)}</p>` });
+    assert.deepEqual([long.status, Array.from(long.detail!.overview).length, long.detail!.truncated], ["complete", OVERVIEW_MAX, true]);
+  }
+});
+
+test("the shared resource detail route and the compatible new-festival alias serve the same parser and loader", () => {
+  const root = join(__dirname, "..", "..");
+  const shared = readFileSync(join(root, "app/api/resources/detail/route.ts"), "utf8"), alias = readFileSync(join(root, "app/api/new/resource-detail/route.ts"), "utf8");
+  for (const src of [shared, alias]) {
+    assert.match(src, /import \{ parseResourceDetail \} from "@\/lib\/new-festival\/request"/);
+    assert.match(src, /import \{ loadDetail \} from "@\/lib\/new-festival\/server"/);
+    assert.match(src, /respond\(request, parseResourceDetail, loadDetail\)/);
+    assert.match(src, /export const dynamic = "force-dynamic"/);
+  }
+});
+
 test("overview plain text drops script/style/hidden content, decodes entities once and removes link schemes", () => {
   const html = "<div>첫 줄<br>둘째 줄</div><script type=\"text/javascript\">steal(document.cookie)</script><STYLE>.a{}</STYLE>"
     + "<!-- internal note --><p onclick=\"x()\">&lt;b&gt;굵게&lt;/b&gt; &amp;lt; &#54620;&#xAE00; &#0; &#x110000; &bogus;</p>"
@@ -225,7 +259,7 @@ test("overview plain text drops script/style/hidden content, decodes entities on
 test("new-festival modules and routes are GET-only and never touch the database, filesystem or logged KTO client", () => {
   const root = join(__dirname, "..", "..");
   const sources = [...readdirSync(__dirname).filter(f => f.endsWith(".ts") && !f.endsWith(".test.ts")).map(f => join(__dirname, f)),
-    join(root, "app/api/new/visits/route.ts"), join(root, "app/api/new/resource-detail/route.ts")];
+    join(root, "app/api/new/visits/route.ts"), join(root, "app/api/new/resource-detail/route.ts"), join(root, "app/api/resources/detail/route.ts")];
   for (const file of sources) {
     const src = readFileSync(file, "utf8");
     assert.ok(!/from "(node:)?fs|prisma|\.\.\/db"|@\/lib\/db"|kto\/client|loggedGet|writeFile|appendFile/.test(src), file);
