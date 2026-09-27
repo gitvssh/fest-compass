@@ -1080,3 +1080,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-049 · Codex · 설계·구현·공개 검수
+
+- Position: PC 중심 조사·기획 화면을 공개 배포했다. 두 목적 이미지를 서로 다른 장면으로 키우고 헤더·홈 위계·목록/지도/상세·방문 병렬 분석을 정리했으며 D 드라이브 사본도 검수했다.
+- Evidence:
+  - docs/design/21-desktop-research-experience.md
+  - docs/validation/43-desktop-research-experience.md
+  - docs/validation/evidence/2026-09-27-desktop-research.json
+  - docs/ops/review-delivery.md
+- Changes:
+  - 설계21·기획 기준에 사용자 PC 중심 결정 기록. 내장 imagegen 두 원본 편집과 프롬프트 보존. Opus 사용량 한도 거부를 성공으로 세지 않고 native 협업·직접 검수로 진행.
+  - 주 메뉴4개+기획 도구·보조 영역의 강조 조정·1400px 이상 선택 상세3열·48px 짧아진 조건 영역·월/요일 및 월/일별 병렬 분석. 데이터 계산·선택·주소·선택적 기록 보존.
+  - 48cc50f 소스의 검증 이미지e33197a4를7994db4에서 고정·정상 sync. 8fc0ac2 원본으로 D 검토 묶음 전달.
+- Validation:
+  - 단위381·타입·배포 빌드·headless26회·관광자원49항목·인프라41 통과. ARC36290156260 성공, 전용 runner·의존성 취약점0·Actions artifact/cache0.
+  - Synced Healthy Succeeded·3/3·livez/readyz200. Deployment/PVC UID 보존·업무9테이블20행 개수/해시 일치.
+  - 공개 실제 응답 대체0: 강릉478/178·제주426/89 전체 ID·군집·상세·키보드·1366/1440/1920px·좁은 창·실제 Chrome 탭2.0. 2025 방문 병렬 표시와 공개 기획 도구 경로, 페이지 오류0·앱API쓰기0.
+  - D 원본/사본/커밋120해시·HTML41·로컬참조585·앵커60·Mermaid17·이미지104.1280/390px 오류/깨짐/넘침0. 이전 묶음148파일·옛 시작파일 보존·주 담당 직접 시각 검수.
+- Questions:
+  - No open question
+- Handoff: Codex

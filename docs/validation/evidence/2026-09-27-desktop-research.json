@@ -1144,5 +1144,71 @@
       "monthly/daily and detail table grouping"
     ],
     "practitionerStudy": false
+  },
+  "reviewDelivery": {
+    "integrity": {
+      "checkedAt": "2026-09-27T03:10:18.727698+00:00",
+      "bundle": "/mnt/d/download/project/pickDday/2026-09-27-desktop-research-reviewed",
+      "status": "passed",
+      "mount": {
+        "source": "D:\\",
+        "fstype": "9p",
+        "target": "/mnt/d"
+      },
+      "sourceRevision": "8fc0ac201099488316eba0b649b5666e23e1eb76",
+      "sourceFiles": 120,
+      "sourceDirty": false,
+      "htmlPages": 41,
+      "documentPages": 29,
+      "screenPages": 11,
+      "localReferencesIncludingLanding": 585,
+      "localAnchors": 60,
+      "externalReferences": 296,
+      "linksOutsideProject": 0,
+      "allSourceCopyCommitHashesMatch": true,
+      "priorBundlePreserved": true,
+      "priorBundleFiles": 148,
+      "legacyIndexPreserved": true,
+      "startPageHashAndLatestTargetVerified": true
+    },
+    "browser": {
+      "status": "passed",
+      "headless": true,
+      "viewports": [
+        {
+          "width": 1280,
+          "htmlPages": 41,
+          "images": 104,
+          "mermaid": 17
+        },
+        {
+          "width": 390,
+          "htmlPages": 41,
+          "images": 104,
+          "mermaid": 17
+        }
+      ],
+      "browserErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "navigation": [
+        {
+          "width": 1280,
+          "start": "file:///mnt/d/download/project/pickDday/index.html",
+          "bundle": "file:///mnt/d/download/project/pickDday/2026-09-27-desktop-research-reviewed/index.html",
+          "latestReport": "file:///mnt/d/download/project/pickDday/2026-09-27-desktop-research-reviewed/doc-01.html",
+          "status": "passed"
+        },
+        {
+          "width": 390,
+          "start": "file:///mnt/d/download/project/pickDday/index.html",
+          "bundle": "file:///mnt/d/download/project/pickDday/2026-09-27-desktop-research-reviewed/index.html",
+          "latestReport": "file:///mnt/d/download/project/pickDday/2026-09-27-desktop-research-reviewed/doc-01.html",
+          "status": "passed"
+        }
+      ]
+    },
+    "rootVisualReview": true,
+    "windowsBrowserDirectlyRun": false
   }
 }

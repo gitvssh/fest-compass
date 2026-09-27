@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 48
+revision: 49
 status: active
 next_actor: codex
 last_actor: codex
 current_question: "No open question recorded"
-updated_at: "2026-09-27T02:19:26.561Z"
+updated_at: "2026-09-27T03:13:16.284Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제에서 공통 방문 흐름·관광자원·개최 시기를 이용할 수 있다. 관광자원 군집 선택·목록/상세 위계·첫 화면 목적 이미지도 공개 배포했고 실제 자료·모바일·실제200%·업무자료 보존을 검수했다. 승인 대상 이미지3개는 예약 정리에서 이미 제거되어 수동 삭제를 반복하지 않았다. D:\download\project\pickDday\index.html에서 최신 공개 화면과 설계를 확인한다.
+기존·새 축제에서 공통 방문·관광자원·시기 자료를 기록 없이 조회할 수 있다. PC 중심 메뉴·홈 위계·서로 다른 큰 목적 이미지·목록/지도/상세3열·방문 병렬 분석을 공개 배포하고 실제 자료·키보드·200% 확대·업무자료 보존을 확인했다. D:\download\project\pickDday\index.html에서 최신 공개 화면과 설계를 확인한다.
 
 ## Accepted decisions
 
@@ -71,12 +71,14 @@ updated_at: "2026-09-27T02:19:26.561Z"
 - 2026-09-26 사용자 진행 승인: 관광자원 공통 상세와 음식점·숙박 연결을 먼저 설계한 뒤 실제 Claude Opus 5.5에 구현을 위임하고 주 담당자가 직접 검수한다. 기존·새 축제의 네 유형 선택·공통 소개를 구현·공개했다. 기본 관광지·문화시설과 선택적 기록을 유지하며 특정 축제 전용 조건을 추가하지 않는다. 최종 시각 디자인은 후속이다.
 - 2026-09-27 사용자 승인: devkit 제품 경험 기준으로 두 관광자원 화면의 위계·군집 지도·첫 화면 목적 이미지를 설계·구현한다. 주 담당자가 설계 후 실제 Opus5.5에 구현을 위임하고 직접 검수하며 프로젝트 원본과 D 드라이브 확인용 사본을 함께 유지한다.
 - 2026-09-27 사용자가 배포 기록의 구 이미지3개 정리와 배포 재개를 승인했다. 실행 전 예약 정리5177 완료와 세 digest 부재를 확인하여 추가 수동 삭제 없이 최종 버전을 발행·공개 검수했다. 기존 운영 이미지는 복구본으로 보존했다.
+- 2026-09-27 사용자 요청: PC에서 자료 조사·비교·기획을 주목적으로 두고 두 목적 이미지의 구도 차별화·확대, 과밀 헤더·하단 강조·자료 작업 배치를 개선한다. 설계21의 범위에서 기존 와이어프레임까지만 작업하는 제한을 대체하며 좁은 창·확대 접근성과 선택적 기록은 유지한다. 이번 Opus5.5 호출은 사용 한도로 실행되지 않아 협업 에이전트 분담·주 담당자 직접 검수로 진행했다.
 
 ## Open questions
 
 - 공통 지역 방문·자원·시기, 기존 회차 비교·선택적 기록은 사용 가능하다. 축제 입장객·효과·성/연령·거주지 전국 확대, 미확보 과거 개최일·공개 비용·나머지277CSV/Foundry연계는 후속이다. 비공식 데이터랩 차트 자동 수집은 원천으로 쓰지 않고 공식 API/다운로드만 사용한다.
-- 최종 시각 디자인·실제 담당자 관찰·전체 보조기술·다른 화면의200% 확대·개편35조회단위 공식 경계 교체·공동편집/공식승인·정형 API/Spec/Run 연결은 후속이다. 뉴스 AI요약은 나중에 검토한다.
+- 이번 개편 범위 밖의 기획·운영 화면 상세 디자인·실제 담당자 관찰·전체 보조기술·다른 화면의200% 확대·개편35조회단위 공식 경계 교체·공동편집/공식승인·정형 API/Spec/Run 연결은 후속이다. 뉴스 AI요약은 나중에 검토한다.
 - 관광자원 군집 지도·목록/상세 위계·목적 이미지는 공개 사용 가능하며 실제 자료·모바일·200%와 D 사본 검수를 완료했다. 운영시간·메뉴·객실·예약 가능 여부 구조화는 후속이다.
+- PC 전역 메뉴·홈·관광자원3열·방문 병렬 분석은 공개 사용 가능하며 실제 자료·200%·D 사본 검수를 완료했다. 실무자 관찰에 따른 추가 밀도·배치 조정은 후속이다.
 
 ## Artifacts and durable documents
 
@@ -160,3 +162,8 @@ updated_at: "2026-09-27T02:19:26.561Z"
 - docs/sdlc/3-testing/scenarios/TS-FC-017.md
 - docs/ops/resource-experience-release.md
 - apps/web/scripts/resource-experience-live.mjs
+- docs/design/21-desktop-research-experience.md
+- docs/validation/43-desktop-research-experience.md
+- docs/validation/evidence/2026-09-27-desktop-research.json
+- docs/sdlc/3-testing/scenarios/TS-FC-018.md
+- apps/web/scripts/desktop-experience-e2e.mjs

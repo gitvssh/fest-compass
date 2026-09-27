@@ -2,7 +2,7 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-27
-version: v11
+version: v12
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -21,7 +21,7 @@ Windows 검토 폴더에 복사한다. 2026-09-23 제품 이름을 `pickDday`로
 
 - 시작: `D:\download\project\pickDday\index.html`
 - 각 묶음: `index.html`에서 기존 축제/새 축제 화면, 모바일 구성, 읽기용 설계 문서로 이동한다.
-  최신 관광자원 지도·화면 검수(`docs/validation/42-resource-experience.md`)와 시각 설계·이미지 원본(`docs/design/20-resource-experience.md`)을 먼저 두고,
+  최신 PC 조사·기획 화면 검수(`docs/validation/43-desktop-research-experience.md`)와 PC 설계·이미지 원본(`docs/design/21-desktop-research-experience.md`)을 먼저 두고,
   새 축제·기존 축제 실제 화면과 개발 전 와이어프레임으로 이어진다.
 - `sources/`에는 원본과 동일한 Markdown·Excalidraw·SVG를 둔다.
 - `manifest.json`은 원본 경로·커밋·복사 시각·파일 해시를 남긴다. `source_root`는 정본 위치
@@ -239,7 +239,7 @@ Windows 브라우저 직접 실행과 새 버전 공개 사이트 검수는 미�
 
 ## 관광자원 공개 배포 완료본 전달 · 2026-09-27
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-27-resource-experience-public`을 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-27-resource-experience-public`을 열었다.
 원본 커밋 `21e70b3911948254592c0a5b726279da56f1f43c`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
 첫 카드의 [개선 화면·검수42](../validation/42-resource-experience.md)에 공개 배포 완료 상태와 실제 공개 화면10장을 담았다.
 이전 로컬 검수 묶음은 그대로 유지하며 목적 이미지 원본·프롬프트·프로젝트 문서도 보존한다.
@@ -254,3 +254,20 @@ headless Chromium에서 1280/390px 각각 HTML39개·Mermaid17개·이미지93�
 Windows 브라우저 직접 실행·실무자 관찰·전체 보조기술 인증은 미평가다.
 공개 배포와 업무자료 보존은 [배포 기록](resource-experience-release.md), 상세 수치는
 [실행 근거](../validation/evidence/2026-09-27-resource-experience.json)의 `reviewDelivery`를 따른다.
+
+## PC 중심 조사·기획 화면 전달 · 2026-09-27
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-27-desktop-research-reviewed`를 연다.
+원본 커밋 `8fc0ac201099488316eba0b649b5666e23e1eb76`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
+첫 카드의 [PC 실제 화면·검수43](../validation/43-desktop-research-experience.md)와 [설계·이미지 원본21](../design/21-desktop-research-experience.md)에
+구도가 다른 두 목적 이미지·간결한 메뉴·목록/지도/상세3열·방문 자료 병렬 배치를 담았다. 최종 공개 화면9장과 생성 프롬프트를 포함한다.
+
+실제 D 드라이브 9p 마운트에 원본 사본120개·시안11페이지·문서29페이지·시작 페이지를 전달했다.
+원본·사본·기록된 커밋120개 SHA-256 일치, HTML41개·시작 파일 포함 로컬 참조585개·앵커60개를 확인했다.
+저장소 밖 상대 링크0개이며 최신 시작 파일·기록 해시·대상 묶음의 연결이 일치한다.
+headless Chromium에서 1280/390px 각각 HTML41개·Mermaid17개·이미지104개와 시작→최신 묶음→검수43 이동을 확인했다.
+페이지/콘솔 오류·리소스 실패·깨진 이미지·가로 넘침은0이다. 주 담당자가 실제 공개 화면과 D 목록/모바일 문서를 직접 검수했다.
+
+이전 공개 검토 묶음148개 파일과 옛 `fest-compass/index.html`의 해시를 전후 대조해 보존을 확인했다.
+프로젝트 원본은 저장소에 유지한다. Windows 브라우저 직접 실행·실무자 관찰·전체 보조기술 인증은 미평가다.
+세부 근거는 [실행 기록](../validation/evidence/2026-09-27-desktop-research.json)의 `reviewDelivery`를 따른다.
