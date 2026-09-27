@@ -11,7 +11,7 @@ resources:
 images:
   - name: registry.damecasol.com/fest-compass/web
     newName: registry.damecasol.com/fest-compass/web
-    digest: sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed
+    digest: sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b
 
 patches:
   - target:
@@ -23,4 +23,4 @@ patches:
       - op: add
         path: /spec/template/metadata/annotations
         value:
-          observability.damecasol.com/service-version: sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed
+          observability.damecasol.com/service-version: sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b
