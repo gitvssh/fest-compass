@@ -44,6 +44,7 @@ export default async function HomePage() {
           <li className="flex min-w-0 flex-col rounded-2xl border border-ink/10 bg-white p-5 lg:p-7">
             <Image
               src="/images/purpose/existing-festival-v2.png"
+              loading="eager"
               alt=""
               width={1536}
               height={1024}
@@ -58,6 +59,7 @@ export default async function HomePage() {
           <li className="flex min-w-0 flex-col rounded-2xl border border-ink/10 bg-white p-5 lg:p-7">
             <Image
               src="/images/purpose/new-festival-v2.png"
+              loading="eager"
               alt=""
               width={1536}
               height={1024}

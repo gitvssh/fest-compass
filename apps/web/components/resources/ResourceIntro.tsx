@@ -10,9 +10,21 @@ import type { ResourceDetailResponse } from "@/lib/new-festival/types";
 
 const SHORT = 280;
 const retrievable = (s: ResourceDetailResponse["status"]) => s === "complete" || s === "empty";
+type ResourceDetailState = ResourceDetailResponse & { retainedInfoAt?: string; retainedGalleryAt?: string };
 /** Same resource refresh: a provider failure keeps the earlier answer for this exact resource, marked as not refreshed. */
-function merge(previous: ResourceDetailResponse, next: ResourceDetailResponse): ResourceDetailResponse {
-  return next.status === "unavailable" && retrievable(previous.status) ? { ...previous, refreshFailed: true } as ResourceDetailResponse : next;
+function merge(previous: ResourceDetailState, next: ResourceDetailState): ResourceDetailState {
+  if (next.status === "unavailable" && retrievable(previous.status)) return { ...previous, refreshFailed: true } as ResourceDetailState;
+  if (!previous.detail || !next.detail) return next;
+  const keepPhotos = next.detail.galleryStatus === "unavailable" && !!previous.detail.photos?.length;
+  const keepInfo = next.detail.infoStatus === "unavailable" && !!(previous.detail.facts?.length || (!next.detail.phone && previous.detail.phone));
+  if (!keepPhotos && !keepInfo) return next;
+  const photos = [...(next.detail.photos ?? [])], seen = new Set(photos.map(photo => photo.url));
+  if (keepPhotos) for (const photo of previous.detail.photos) if (!seen.has(photo.url)) { photos.push(photo); seen.add(photo.url); }
+  return { ...next, detail: { ...next.detail, photos: photos.slice(0, 20),
+    facts: keepInfo ? previous.detail.facts ?? [] : next.detail.facts,
+    phone: keepInfo ? next.detail.phone ?? previous.detail.phone ?? null : next.detail.phone },
+    ...(keepPhotos ? { retainedGalleryAt: previous.retainedGalleryAt ?? previous.detail.galleryCollectedAt ?? undefined } : {}),
+    ...(keepInfo ? { retainedInfoAt: previous.retainedInfoAt ?? previous.detail.infoCollectedAt ?? undefined } : {}) };
 }
 
 /**
@@ -20,10 +32,10 @@ function merge(previous: ResourceDetailResponse, next: ResourceDetailResponse): 
  * Independent of the list request; the URL and the echoed key both carry region, type and id, so a late answer
  * for an earlier selection never replaces the current one.
  */
-export function useResourceIntro(region: RegionRef, item: ResourceItem): KeyedState<ResourceDetailResponse> {
+export function useResourceIntro(region: RegionRef, item: ResourceItem): KeyedState<ResourceDetailState> {
   const params = new URLSearchParams({ province: region.province, district: region.district, kind: item.kind, id: item.id });
   const key = (() => { try { return resourceDetailKey(parseResourceDetail(params)); } catch { return null; } })();
-  return useKeyedRequest<ResourceDetailResponse>(key ? `/api/resources/detail?${params}` : null, merge, key);
+  return useKeyedRequest<ResourceDetailState>(key ? `/api/resources/detail?${params}` : null, merge, key);
 }
 
 export type IntroView =
@@ -74,7 +86,13 @@ function RetryIntro({ name, onRetry, compact = false }: { name: string; onRetry:
 
 /** Introduction block in the resource detail. Absence omits the block; failure retries only here. */
 export function ResourceIntro({ region, item }: { region: RegionRef; item: ResourceItem }) {
-  const result = useResourceIntro(region, item), view = introView(result);
+  const result = useResourceIntro(region, item);
+  return <ResourceIntroContent item={item} result={result} />;
+}
+
+/** Presentation can share an already requested detail with photos and practical information. */
+export function ResourceIntroContent({ item, result }: { item: ResourceItem; result: KeyedState<ResourceDetailResponse> }) {
+  const view = introView(result);
   if (view.kind === "absent") return null;
   if (view.kind === "loading") return <p role="status" className="text-sm text-muted">소개를 불러오고 있어요…</p>;
   if (view.kind === "failed") return <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-coral-soft p-3 text-sm">

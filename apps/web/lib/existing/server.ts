@@ -198,7 +198,7 @@ export function createExistingService(deps: ExistingDeps) {
     const byType = await Promise.all(req.types.map(async (kind: ResourceKind) => {
       const result = await list({ province: req.province, district: req.district, kind, start: day, end: day }), b = block(result);
       const items: ResourceItem[] = b.status === "unavailable" ? [] : result!.items.map(r => ({ id: r.id, kind, title: r.title, address: r.address,
-        point: r.latitude !== null && r.longitude !== null ? { latitude: r.latitude, longitude: r.longitude } : null, modifiedAt: r.modifiedAt }));
+        point: r.latitude !== null && r.longitude !== null ? { latitude: r.latitude, longitude: r.longitude } : null, modifiedAt: r.modifiedAt, photo: r.photo ?? null }));
       return { ...b, kind, label: TYPES[kind], total: b.status === "unavailable" ? null : result!.total, items };
     }));
     return { key: resourcesKey(req), request: req, retrievedAt: now(), region, byType };

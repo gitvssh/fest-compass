@@ -1,8 +1,9 @@
 import type { ResourceKind } from "../existing/types";
+import type { ResourcePhoto } from "../resources/types";
 export type Region = { provinceCode: string; provinceName: string; districtCode: string; districtName: string };
 /** Tourism resource kinds (12/14/39/32, areaBasedList2) or festivals/events (15, searchFestival2). */
 export type Query = { province: string; district: string; start: string; end: string; kind: ResourceKind | "15" };
-export type Resource = { id: string; title: string; address: string; longitude: number | null; latitude: number | null; start: string | null; end: string | null; modifiedAt: string | null };
+export type Resource = { id: string; title: string; address: string; longitude: number | null; latitude: number | null; start: string | null; end: string | null; modifiedAt: string | null; photo?: ResourcePhoto | null };
 export type ResourceResult = { status: "complete" | "empty" | "unavailable"; message: string; items: Resource[]; total: number | null; pages: number; collectedAt: string; source: string };
 export type Observation = { date: string; value: number | null; quality: string; snapshotId: string | null; collectedAt: string | null };
 export type History = { status: "available" | "unavailable"; message: string; source: string; unit: string; metric: string; points: Observation[] };

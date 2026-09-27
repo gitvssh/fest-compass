@@ -1,0 +1,170 @@
+{
+  "checkedAt": "2026-09-27T03:57:17.673Z",
+  "source": "https://www.data.go.kr/data/15101578/openapi.do",
+  "method": "강릉 유형별 수정일순 첫10건; 임의추출·전국 제공률 아님",
+  "region": "강릉시",
+  "lists": [
+    {
+      "kind": "12",
+      "total": 148,
+      "sampled": 10,
+      "withPhoto": 9,
+      "withKnownLicense": 9
+    },
+    {
+      "kind": "14",
+      "total": 32,
+      "sampled": 10,
+      "withPhoto": 8,
+      "withKnownLicense": 8
+    },
+    {
+      "kind": "39",
+      "total": 478,
+      "sampled": 10,
+      "withPhoto": 7,
+      "withKnownLicense": 7
+    },
+    {
+      "kind": "32",
+      "total": 178,
+      "sampled": 10,
+      "withPhoto": 9,
+      "withKnownLicense": 9
+    }
+  ],
+  "details": [
+    {
+      "kind": "12",
+      "id": "2775508",
+      "title": "순포습지",
+      "common": "complete",
+      "gallery": "complete",
+      "photoCount": 7,
+      "photoLicenseTypes": [
+        "Type3"
+      ],
+      "intro": "complete",
+      "nonemptyIntroFields": [
+        "contentid",
+        "contenttypeid",
+        "heritage1",
+        "heritage2",
+        "heritage3",
+        "infocenter",
+        "restdate",
+        "usetime",
+        "parking"
+      ],
+      "representative": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "license": "Type3",
+      "imageGet": {
+        "status": 200,
+        "type": "image/jpg"
+      }
+    },
+    {
+      "kind": "14",
+      "id": "2774692",
+      "title": "강릉자동차극장",
+      "common": "complete",
+      "gallery": "complete",
+      "photoCount": 5,
+      "photoLicenseTypes": [
+        "Type3"
+      ],
+      "intro": "complete",
+      "nonemptyIntroFields": [
+        "contentid",
+        "contenttypeid",
+        "scale",
+        "usefee",
+        "spendtime",
+        "parkingfee",
+        "infocenterculture",
+        "usetimeculture",
+        "restdateculture",
+        "chkbabycarriageculture"
+      ],
+      "representative": "https://tong.visitkorea.or.kr/cms/resource/45/3393445_image2_1.JPG",
+      "license": "Type3",
+      "imageGet": {
+        "status": 200,
+        "type": "image/jpg"
+      }
+    },
+    {
+      "kind": "39",
+      "id": "2774694",
+      "title": "강릉전복해물뚝배기",
+      "common": "complete",
+      "gallery": "complete",
+      "photoCount": 6,
+      "photoLicenseTypes": [
+        "Type3"
+      ],
+      "intro": "complete",
+      "nonemptyIntroFields": [
+        "contentid",
+        "contenttypeid",
+        "kidsfacility",
+        "firstmenu",
+        "treatmenu",
+        "infocenterfood",
+        "parkingfood",
+        "opentimefood",
+        "restdatefood",
+        "lcnsno"
+      ],
+      "representative": "https://tong.visitkorea.or.kr/cms/resource/60/3567160_image2_1.jpg",
+      "license": "Type3",
+      "imageGet": {
+        "status": 200,
+        "type": "image/jpg"
+      }
+    },
+    {
+      "kind": "32",
+      "id": "139223",
+      "title": "모텔힐",
+      "common": "complete",
+      "gallery": "complete",
+      "photoCount": 14,
+      "photoLicenseTypes": [
+        "Type1"
+      ],
+      "intro": "complete",
+      "nonemptyIntroFields": [
+        "contentid",
+        "contenttypeid",
+        "roomcount",
+        "refundregulation",
+        "checkintime",
+        "checkouttime",
+        "chkcooking",
+        "seminar",
+        "sports",
+        "sauna",
+        "beauty",
+        "beverage",
+        "karaoke",
+        "barbecue",
+        "campfire",
+        "bicycle",
+        "fitness",
+        "publicpc",
+        "publicbath",
+        "pickup",
+        "infocenterlodging",
+        "parkinglodging",
+        "scalelodging"
+      ],
+      "representative": "https://tong.visitkorea.or.kr/cms/resource/12/2992512_image2_1.jpg",
+      "license": "Type1",
+      "imageGet": {
+        "status": 200,
+        "type": "image/jpg"
+      }
+    }
+  ]
+}

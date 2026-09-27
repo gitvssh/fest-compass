@@ -7,7 +7,7 @@ import type { LookupResult, Range, RegionRef } from "./types";
 
 // Read-only TourAPI adapter for the journey. It never writes (unlike kto/client.ts loggedGet, which logs to the DB),
 // never returns upstream messages or the service key, and bounds calls, concurrency, size and time.
-export type TourOperation = "searchKeyword2" | "searchFestival2" | "detailCommon2" | "detailIntro2";
+export type TourOperation = "searchKeyword2" | "searchFestival2" | "detailCommon2" | "detailIntro2" | "detailImage2";
 export type TourPage = { total: number; pageNo: number | null; rows: Record<string, unknown>[]; collectedAt: string };
 export type TourCall = (operation: TourOperation, params: Record<string, string>) => Promise<TourPage>;
 export class TourUnavailable extends Error { constructor() { super("tour-unavailable"); } }
@@ -15,7 +15,7 @@ export class TourUnavailable extends Error { constructor() { super("tour-unavail
 export class TourChanged extends TourUnavailable {}
 
 const BASE = "https://apis.data.go.kr/B551011/KorService2";
-const TTL: Record<TourOperation, number> = { searchKeyword2: 600_000, searchFestival2: 600_000, detailCommon2: 3_600_000, detailIntro2: 3_600_000 };
+const TTL: Record<TourOperation, number> = { searchKeyword2: 600_000, searchFestival2: 600_000, detailCommon2: 3_600_000, detailIntro2: 3_600_000, detailImage2: 3_600_000 };
 export type TourDeps = { fetch?: typeof fetch; key?: () => string | undefined; now?: () => number; maxCalls?: number; windowMs?: number; maxActive?: number };
 
 export function createTourCall(deps: TourDeps = {}): TourCall {

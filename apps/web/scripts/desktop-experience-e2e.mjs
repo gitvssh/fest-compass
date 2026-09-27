@@ -61,9 +61,13 @@ try {
       `${mode}: ${href} is rendered only in editor mode`);
   };
 
+  // Load once, then exercise real responsive changes. Reloading immediately after a resize cancels the freshly
+  // requested srcset candidate while Next's cold image optimization is still in flight; that cancellation race is
+  // unrelated to the layout contract. Every viewport still requires both images to finish and decode below.
+  await page.setViewportSize({ width: 1366, height: 1000 });
+  await page.goto(`${base}/`);
   for (const width of [1366, 1440, 1920]) {
     await page.setViewportSize({ width, height: 1000 });
-    await page.goto(`${base}/`);
     await visible(purpose.getByRole("heading", { level: 1 }));
     assert.equal(await toolsButton().getAttribute("aria-expanded"), "false");
     assert.equal(await nav.locator("a:visible").count(), 4, `${width}: exactly four visible primary links`);
@@ -80,7 +84,11 @@ try {
     const cards = purpose.getByRole("listitem");
     assert.equal(await cards.count(), 2);
     // Each responsive width can request a cold optimized image on the production build.
-    await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].every(img => img.complete && img.naturalWidth > 0), undefined, { timeout: 60000 });
+    await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].every(img => img.complete && img.naturalWidth > 0), undefined, { timeout: 60000 }).catch(async error => {
+      const images = await purpose.locator("img").evaluateAll(elements => elements.map(img => ({ src: img.currentSrc, complete: img.complete, naturalWidth: img.naturalWidth, rect: img.getBoundingClientRect().toJSON() })));
+      await shot(`home-image-failure-${width}`);
+      throw new Error(`Purpose images did not load at ${width}px: ${JSON.stringify(images)}`, { cause: error });
+    });
     const images = await purpose.locator("img").evaluateAll(elements => elements.map(img => ({ width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height, source: decodeURIComponent(img.currentSrc), alt: img.alt })));
     assert.equal(images.length, 2);
     assert.ok(images.every(image => image.width >= 390 && image.height >= 260 && image.alt === ""), `${width}: larger decorative purpose art ${JSON.stringify(images)}`);
@@ -142,7 +150,8 @@ try {
   report.checks.push("reference-research-and-examples-remain-reachable-behind-summary", "privacy-remains-reachable-in-footer");
 
   for (const width of [320, 390]) {
-    await page.setViewportSize({ width, height: 900 }); await page.goto(`${base}/`);
+    await page.goto(`${base}/`); await page.setViewportSize({ width, height: 900 });
+    await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].every(img => img.complete && img.naturalWidth > 0));
     await visible(menuButton()); await expanded(menuButton(), false);
     await noOverflow(`home ${width}`);
     await menuButton().click(); await expanded(menuButton(), true); await assertRoutes(nav, PRIMARY);

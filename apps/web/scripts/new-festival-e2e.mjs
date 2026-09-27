@@ -326,6 +326,7 @@ const rowButton = (page, r) => resourceList(page).getByRole("button", { name: ne
 const listToggle = (page, r, action) => resourceList(page).getByRole("button", { name: `${r.title} ${action}`, exact: true });
 const compare = page => page.getByRole("region", { name: /^함께 보기 \d\/2$/ });
 const compareCard = (page, r) => compare(page).getByRole("article", { name: r.title, exact: true });
+const compareIntro = (page, r) => compareCard(page, r).getByRole("region", { name: `${r.title} 소개`, exact: true });
 const detail = (page, r) => page.getByRole("complementary", { name: r.title, exact: true });
 const intro = (page, r) => detail(page, r).getByRole("region", { name: `${r.title} 소개`, exact: true });
 const ddOf = (scope, term) => scope.locator("dt").filter({ hasText: new RegExp(`^${escapeRe(term)}$`) }).locator("xpath=following-sibling::dd[1]");
@@ -365,7 +366,11 @@ async function selectOnMap(page, n, r) {
   throw new Error(`place ${n}. ${r.title} is neither a marker nor a cluster member`);
 }
 async function listTitles(page) {
-  return (await resourceList(page).locator("button[data-resource-id]").evaluateAll(bs => bs.map(b => b.querySelector("span")?.textContent?.trim())));
+  // Find the visible number token's title line, independent of any image/text layout wrappers.
+  return resourceList(page).locator("button[data-resource-id]").evaluateAll(bs => bs.map(b => {
+    const number = [...b.querySelectorAll("span")].find(span => /^\d+\.$/.test(span.textContent?.trim() ?? ""));
+    return number?.parentElement?.textContent?.replace(/\s+/g, " ").trim();
+  }));
 }
 async function noAnchor(page) {
   assert.equal(await page.getByRole("button", { name: "기준점 해제", exact: true }).count(), 0, "no anchor controls before an explicit anchor");
@@ -554,13 +559,15 @@ async function compareAndAnchor({ page }) {
   assert.deepEqual(names, [A.title, B.title]);
   for (const r of [A, B]) {
     const card = compareCard(page, r);
-    assert.deepEqual(await card.locator("dt").allInnerTexts(), ["유형", "주소", "지도 위치", "소개"], "same fields, same order, no distance before anchor");
+    assert.deepEqual(await card.locator(":scope > dl dt").allInnerTexts(), ["유형", "주소", "지도 위치"], "same base facts, same order, no distance before anchor");
     assert.equal(await ddOf(card, "유형").innerText(), KIND_LABEL[r.kind]);
     assert.equal(await ddOf(card, "주소").innerText(), r.address);
     assert.equal(await ddOf(card, "지도 위치").innerText(), "있음");
   }
-  await includes(ddOf(compareCard(page, A), "소개"), "검증용 소개 가 (가상)");
-  assert.equal(await ddOf(compareCard(page, B), "소개").innerText(), "—", "confirmed empty introduction is a dash, not a failure");
+  await visible(compareIntro(page, A));
+  await includes(compareIntro(page, A), "검증용 소개 가 (가상)");
+  await compareCard(page, B).getByText("소개를 불러오고 있어요…").waitFor({ state: "detached" });
+  assert.equal(await compareIntro(page, B).count(), 0, "confirmed empty introduction is omitted, not invented");
   await visible(listToggle(page, A, "함께 보기에서 빼기"));
   await add(C, false);
   await visible(compare(page).getByRole("alert").filter({ hasText: "함께 보기는 2곳까지예요. 한 곳을 빼고 추가해 주세요." }));
@@ -985,34 +992,35 @@ async function refreshKeepsOrReleases() {
   await stale.getByRole("button", { name: `${A.title} 소개 다시 불러오기`, exact: true }).click();
   await stale.waitFor({ state: "detached" });
 
-  // Compare-only view (no detail open): an earlier EMPTY introduction whose refresh fails shows a failure and an
-  // in-place retry instead of a silent dash; a compared text introduction shows its stale notice, retry and source.
+  // Compare-only view (no detail open): an earlier empty introduction stays omitted. A failed whole-resource
+  // refresh remains visible and retryable in practical information; known introduction text retains its source.
   detailOutcome.set(D.id, "empty");
   await listToggle(page, D, "함께 보기에 추가").click();
   await visible(page.getByRole("heading", { name: "함께 보기 2/2", exact: true }));
   await waitServed("resources/detail", p => p.get("id") === D.id, "compare intro D");
-  await ddOf(compareCard(page, D), "소개").filter({ hasText: /^—$/ }).waitFor({ state: "visible" });
-  assert.equal(await ddOf(compareCard(page, D), "소개").innerText(), "—", "confirmed empty before the refresh");
+  await compareCard(page, D).getByText("소개를 불러오고 있어요…").waitFor({ state: "detached" });
+  assert.equal(await compareIntro(page, D).count(), 0, "confirmed empty introduction is omitted before the refresh");
   await detail(page, A).getByRole("button", { name: "상세 닫기", exact: true }).click();
   await context.clock.fastForward("11:00");
   detailOutcome.set(D.id, "unavailable"); detailOutcome.set(A.id, "unavailable");
   await go(page, "지역 방문 흐름", "new-visits-heading");
   await go(page, "지역 관광자원", "new-resources-heading");
   assert.equal(await page.locator("#new-resource-detail-heading").count(), 0, "compare-only view");
-  const failedD = compareCard(page, D).getByRole("alert").filter({ hasText: "불러오지 못했어요." });
+  const failedD = compareCard(page, D).getByRole("region", { name: `${D.title} 이용정보`, exact: true })
+    .getByRole("alert").filter({ hasText: "이용정보를 새로 확인하지 못했어요." });
   await visible(failedD);
-  assert.notEqual(await ddOf(compareCard(page, D), "소개").innerText(), "—", "a failed refresh is not a silent absence");
-  const staleA = compareCard(page, A).getByRole("alert").filter({ hasText: /새 소개를 불러오지 못해 2026\. 9\. 15\./ });
+  assert.equal(await compareIntro(page, D).count(), 0, "a failed refresh preserves the confirmed absence of introductory text");
+  const staleA = compareCard(page, A).getByRole("alert").filter({ hasText: /새 소개를 불러오지 못했어요\. 2026\. 9\. 15\./ });
   await visible(staleA);
-  await includes(ddOf(compareCard(page, A), "소개"), "검증용 소개 가 (가상)", "earlier text kept in the compare card");
+  await includes(compareIntro(page, A), "검증용 소개 가 (가상)", "earlier text kept in the compare card");
   await dialogRoundTrip(page, `${A.title} 소개 출처 보기`, `${A.title} 소개 출처`, async dialog => {
     assert.match(await dialog.innerText(), /소개 수집 2026\. 9\. 15\./);
   }, { scope: compareCard(page, A), shown: "소개 출처" });
   detailOutcome.set(D.id, "empty"); detailOutcome.delete(A.id);
-  await failedD.getByRole("button", { name: `${D.title} 소개 다시 불러오기`, exact: true }).click();
+  await failedD.getByRole("button", { name: `${D.title} 이용정보 다시 불러오기`, exact: true }).click();
   await failedD.waitFor({ state: "detached" });
-  await ddOf(compareCard(page, D), "소개").filter({ hasText: /^—$/ }).waitFor({ state: "visible" });
-  assert.equal(await ddOf(compareCard(page, D), "소개").innerText(), "—", "retry restores the confirmed empty state");
+  assert.equal(await compareIntro(page, D).count(), 0, "successful retry restores the confirmed empty state");
+  assert.equal(await compareCard(page, D).getByRole("alert").count(), 0, "confirmed empty refresh clears the recovery notices");
   await staleA.getByRole("button", { name: `${A.title} 소개 다시 불러오기`, exact: true }).click();
   await staleA.waitFor({ state: "detached" });
   detailOutcome.delete(D.id);

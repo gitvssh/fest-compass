@@ -1,4 +1,5 @@
 import catalogue from "../../data/region-catalogue.json";
+import { resourcePhoto } from "../resources/media";
 import type { History, Observation, Query, Region, Resource } from "./types";
 export const REGIONS: Region[] = catalogue.rows;
 export const CATALOGUE = { ...catalogue, rows: undefined };
@@ -36,7 +37,8 @@ export function mapResource(row: Record<string, unknown>, q: Query): Resource {
   const longitude = coordinate(row.mapx, 124, 132), latitude = coordinate(row.mapy, 32, 39);
   return { id: String(row.contentid), title: row.title.slice(0, 300), address: String(row.addr1 ?? "").slice(0, 500),
     longitude: latitude === null ? null : longitude, latitude: longitude === null ? null : latitude,
-    start, end, modifiedAt: /^\d{14}$/.test(String(row.modifiedtime)) ? String(row.modifiedtime) : null };
+    start, end, modifiedAt: /^\d{14}$/.test(String(row.modifiedtime)) ? String(row.modifiedtime) : null,
+    photo: resourcePhoto(row, "common") };
 }
 export type Dataset = { snapshotId: string; collectedAt: string; source: string; region: { code: string; name: string }; points: { date: string; value: number | null; quality: string; collectedAt?: string }[] };
 export function selectHistory(q: Query, datasets: Dataset[], warning = ""): History {

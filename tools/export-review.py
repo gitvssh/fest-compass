@@ -23,6 +23,8 @@ PROJECT_ID = 'fest-compass'
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
 MARKER = '<!-- pickDday-review-index -->'
 DOCS = {
+    'docs/validation/44-tourism-media.md': '관광지도·자원 사진과 이용정보 실제 화면·검수',
+    'docs/design/22-tourism-media.md': '관광자원 사진·이용정보 화면과 데이터 설계',
     'docs/validation/43-desktop-research-experience.md': 'PC 조사·기획 화면과 목적 이미지 개선·실제 검수',
     'docs/design/21-desktop-research-experience.md': 'PC 메뉴·자료 작업 배치와 목적 이미지 설계',
     'docs/validation/42-resource-experience.md': '관광자원 지도·화면 개선과 목적 이미지 검수',
@@ -206,9 +208,12 @@ def main():
     tourism_design = doc_pages['docs/design/19-tourism-resources.md']
     experience_doc = doc_pages['docs/validation/42-resource-experience.md']
     experience_design = doc_pages['docs/design/20-resource-experience.md']
+    media_doc = doc_pages['docs/validation/44-tourism-media.md']
+    media_design = doc_pages['docs/design/22-tourism-media.md']
     desktop_doc = doc_pages['docs/validation/43-desktop-research-experience.md']
     desktop_design = doc_pages['docs/design/21-desktop-research-experience.md']
-    body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>PC에서 자료를 조사하고 비교하는 새 화면부터 확인하세요. 메뉴·첫 화면의 두 목적과 관광자원·방문 분석의 배치를 정리했습니다.</p><p>최신 설계와 실제 화면은 맨 위 자료에 있습니다. 아래 와이어프레임은 개발 전 기본 배치 참고이며 현재 PC 화면과 구별해 읽어 주세요. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 보존합니다.</p><nav><a href="{desktop_doc}">최신 개선 화면·검수 결과</a><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
+    body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>관광지도와 두 축제 흐름에서 실제 장소 사진·이용정보를 조사하고 비교하는 화면부터 확인하세요.</p><p>최신 설계와 실제 화면은 맨 위 자료에 있습니다. 아래 와이어프레임은 개발 전 기본 배치 참고이며 현재 PC 화면과 구별해 읽어 주세요. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 보존합니다.</p><nav><a href="{media_doc}">최신 개선 화면·검수 결과</a><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
+    body += f'<section class="card"><h2>관광지도·자원 사진과 이용정보</h2><p>실제 장소 사진, 사진 모음, 이용시간·주차·유형별 정보와 세 화면의 연결을 확인하세요.</p><a class="button" href="{media_doc}">사진·이용정보 실제 화면과 검수 보기</a> <a class="button" href="{media_design}">사진·이용정보 설계 보기</a></section>'
     body += f'<section class="card"><h2>PC 중심 자료 조사·비교·기획</h2><p>구도가 다른 두 목적 이미지, 간결한 메뉴, 목록·지도·상세의 세 열과 방문 자료 병렬 분석을 확인하세요.</p><a class="button" href="{desktop_doc}">PC 실제 화면·검수 결과 보기</a> <a class="button" href="{desktop_design}">PC 화면 설계·이미지 원본 보기</a></section>'
     body += f'<section class="card"><h2>관광자원 지도·화면과 첫 화면 이미지</h2><p>유형과 건수, 장소 목록과 지도, 선택 상세를 함께 확인하세요. 가까운 장소 묶음에서 각 장소를 고르는 화면과 두 목적의 새 이미지를 담았습니다.</p><a class="button" href="{experience_doc}">개선 화면·검수 결과 보기</a> <a class="button" href="{experience_design}">시각 설계·이미지 원본 보기</a></section>'
     body += f'<section class="card"><h2>음식점·숙박과 장소 소개</h2><p>기존·새 축제에서 관광지·문화시설·음식점·숙박을 살펴보고 같은 방식으로 장소 소개를 확인하세요. 실제 화면과 선택·거리·소개 연결을 확인할 수 있습니다.</p><a class="button" href="{tourism_doc}">관광자원·실제 화면 보기</a> <a class="button" href="{tourism_design}">관광자원 화면 설계 보기</a></section>'
@@ -227,7 +232,7 @@ def main():
     (bundle / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
     landing = project / 'index.html'
     landing_hash = project / '.review-index.sha256'
-    content = MARKER + page('최신 검토 자료', f'<h1>{BRAND} 검토 자료</h1><p>{stamp[:10]} · PC 자료 조사·비교 화면·두 목적 이미지</p><a class="button" href="{quote(args.label)}/index.html">최신 화면·설계 문서 열기</a>')
+    content = MARKER + page('최신 검토 자료', f'<h1>{BRAND} 검토 자료</h1><p>{stamp[:10]} · 관광지도·자원 사진과 이용정보</p><a class="button" href="{quote(args.label)}/index.html">최신 화면·설계 문서 열기</a>')
     if landing.exists() and (not landing_hash.exists() or hashlib.sha256(landing.read_bytes()).hexdigest() != landing_hash.read_text().strip()):
         print('Existing user index preserved:', landing)
         suffix = ''

@@ -1,5 +1,6 @@
 // Response contracts for the new-festival journey (UC-FC-010). Pure types; safe for client imports.
 import type { MonthlyRequest, MonthlyResponse, PublicSource, RegionRef, ResourceKind, SourceError } from "../existing/types";
+import type { ResourceFact, ResourcePhoto, ResourceSectionStatus } from "../resources/types";
 
 export type WeekdayCoverage = "complete" | "partial" | "none";
 /**
@@ -24,7 +25,13 @@ export type NewVisitsResponse = MonthlyResponse & {
 
 export type ResourceDetailRequest = { province: string; district: string; kind: ResourceKind; id: string };
 export type ResourceDetailStatus = "complete" | "empty" | "unavailable" | "not-found" | "type-mismatch" | "region-mismatch";
-export type ResourceDetail = { id: string; kind: ResourceKind; overview: string; truncated: boolean; modifiedAt: string | null };
+export type ResourceDetail = {
+  id: string; kind: ResourceKind; overview: string; truncated: boolean; modifiedAt: string | null;
+  photos: ResourcePhoto[]; galleryStatus: ResourceSectionStatus;
+  facts: ResourceFact[]; infoStatus: ResourceSectionStatus; phone: string | null; website: string | null;
+  /** Verified optional source timestamps; failed sections have no collection time. */
+  galleryCollectedAt?: string | null; infoCollectedAt?: string | null;
+};
 export type ResourceDetailResponse = {
   key: string; request: ResourceDetailRequest; retrievedAt: string; region: RegionRef;
   status: ResourceDetailStatus; error: SourceError | null; detail: ResourceDetail | null;

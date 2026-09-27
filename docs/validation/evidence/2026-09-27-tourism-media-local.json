@@ -1,0 +1,459 @@
+{
+  "checkedAt": "2026-09-27T04:11:57.139Z",
+  "base": "http://127.0.0.1:38503",
+  "origin": "http://127.0.0.1:38503",
+  "headless": true,
+  "mockedResponses": 0,
+  "dataProvenance": "Actual application responses backed by official public tourism data; no API or image interception",
+  "record": {
+    "id": "2775508",
+    "title": "순포습지",
+    "province": "51",
+    "district": "150",
+    "code": "51150"
+  },
+  "checks": [
+    "actual-Gangneung-record-identity-licensed-gallery-hours-and-parking",
+    "existing: real-list-image-detail-gallery-facts-and-390-1440-1920-reflow",
+    "existing: real-200-percent-tab-zoom-photo-facts-navigation-no-overflow",
+    "new: real-list-image-detail-gallery-facts-and-390-1440-1920-reflow",
+    "new: real-200-percent-tab-zoom-photo-facts-navigation-no-overflow",
+    "regions: real-list-image-detail-gallery-facts-and-390-1440-1920-reflow",
+    "regions: real-200-percent-tab-zoom-photo-facts-navigation-no-overflow"
+  ],
+  "samples": [
+    {
+      "flow": "existing",
+      "path": "/existing/current%3A51150%3A825295/resources?types=12",
+      "title": "순포습지",
+      "id": "2775508",
+      "displayedPhotoUrls": [
+        "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/41/3562141_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/42/3562142_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/43/3562143_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/44/3562144_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/45/3562145_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/46/3562146_image2_1.jpg"
+      ]
+    },
+    {
+      "flow": "new",
+      "path": "/new/51150/resources?types=12",
+      "title": "순포습지",
+      "id": "2775508",
+      "displayedPhotoUrls": [
+        "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg"
+      ]
+    },
+    {
+      "flow": "regions",
+      "path": "/regions?province=51&district=150&start=2026-01-01&end=2026-12-31&kind=12",
+      "title": "순포습지",
+      "id": "2775508",
+      "displayedPhotoUrls": [
+        "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+        "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg"
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "flow": "existing",
+      "width": 390,
+      "viewport": 390,
+      "scroll": 390
+    },
+    {
+      "flow": "existing",
+      "width": 1440,
+      "viewport": 1440,
+      "scroll": 1440
+    },
+    {
+      "flow": "existing",
+      "width": 1920,
+      "viewport": 1920,
+      "scroll": 1920
+    },
+    {
+      "flow": "new",
+      "width": 390,
+      "viewport": 390,
+      "scroll": 390
+    },
+    {
+      "flow": "new",
+      "width": 1440,
+      "viewport": 1440,
+      "scroll": 1440
+    },
+    {
+      "flow": "new",
+      "width": 1920,
+      "viewport": 1920,
+      "scroll": 1920
+    },
+    {
+      "flow": "regions",
+      "width": 390,
+      "viewport": 390,
+      "scroll": 390
+    },
+    {
+      "flow": "regions",
+      "width": 1440,
+      "viewport": 1440,
+      "scroll": 1440
+    },
+    {
+      "flow": "regions",
+      "width": 1920,
+      "viewport": 1920,
+      "scroll": 1920
+    }
+  ],
+  "zoom": [
+    {
+      "flow": "existing",
+      "factor": 2,
+      "innerWidth": 720,
+      "devicePixelRatio": 2,
+      "cssZoom": "1",
+      "scrollWidth": 720
+    },
+    {
+      "flow": "new",
+      "factor": 2,
+      "innerWidth": 720,
+      "devicePixelRatio": 2,
+      "cssZoom": "1",
+      "scrollWidth": 720
+    },
+    {
+      "flow": "regions",
+      "factor": 2,
+      "innerWidth": 720,
+      "devicePixelRatio": 2,
+      "cssZoom": "1",
+      "scrollWidth": 720
+    }
+  ],
+  "imageLoads": [
+    {
+      "label": "existing: actual list representative photo",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image3_1.jpg",
+      "naturalWidth": 300,
+      "naturalHeight": 168,
+      "width": 64,
+      "height": 64,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 1",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 2",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 3",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/41/3562141_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 515,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 4",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/42/3562142_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 541,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 5",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/43/3562143_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 539,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 6",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/44/3562144_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 540,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 7",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/45/3562145_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 528,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: actual detail photo 8",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/46/3562146_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 545,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: representative restored",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: real 200% visible photo",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 638,
+      "height": 192,
+      "objectFit": "contain"
+    },
+    {
+      "label": "existing: real 200% photo navigation",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 638,
+      "height": 192,
+      "objectFit": "contain"
+    },
+    {
+      "label": "new: actual list representative photo",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image3_1.jpg",
+      "naturalWidth": 300,
+      "naturalHeight": 168,
+      "width": 64,
+      "height": 64,
+      "objectFit": "contain"
+    },
+    {
+      "label": "new: actual detail photo 1",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "new: actual detail photo 2",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "new: representative restored",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 303,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "new: real 200% visible photo",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 638,
+      "height": 192,
+      "objectFit": "contain"
+    },
+    {
+      "label": "new: real 200% photo navigation",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 638,
+      "height": 192,
+      "objectFit": "contain"
+    },
+    {
+      "label": "regions: actual list representative photo",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image3_1.jpg",
+      "naturalWidth": 300,
+      "naturalHeight": 168,
+      "width": 64,
+      "height": 64,
+      "objectFit": "contain"
+    },
+    {
+      "label": "regions: actual detail photo 1",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 1024,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "regions: actual detail photo 2",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 1024,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "regions: representative restored",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 1024,
+      "height": 288,
+      "objectFit": "contain"
+    },
+    {
+      "label": "regions: real 200% visible photo",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 638,
+      "height": 192,
+      "objectFit": "contain"
+    },
+    {
+      "label": "regions: real 200% photo navigation",
+      "src": "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+      "naturalWidth": 940,
+      "naturalHeight": 529,
+      "width": 638,
+      "height": 192,
+      "objectFit": "contain"
+    }
+  ],
+  "browserErrors": [],
+  "appWrites": [],
+  "list": {
+    "status": "complete",
+    "count": 148,
+    "photo": {
+      "url": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+      "thumbnailUrl": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image3_1.jpg",
+      "title": "순포습지",
+      "license": "Type3",
+      "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+    },
+    "collectedAt": "2026-09-27T04:11:23.889Z"
+  },
+  "detail": {
+    "status": "complete",
+    "galleryStatus": "complete",
+    "infoStatus": "complete",
+    "photoCount": 8,
+    "photos": [
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image2_1.jpg",
+        "thumbnailUrl": "https://tong.visitkorea.or.kr/cms/resource/40/3562140_image3_1.jpg",
+        "title": "순포습지",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      },
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/39/3562139_image2_1.jpg",
+        "thumbnailUrl": null,
+        "title": "강릉_순포습지 (1)",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      },
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/41/3562141_image2_1.jpg",
+        "thumbnailUrl": null,
+        "title": "강릉_순포습지 (3)",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      },
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/42/3562142_image2_1.jpg",
+        "thumbnailUrl": null,
+        "title": "강릉_순포습지 (4)",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      },
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/43/3562143_image2_1.jpg",
+        "thumbnailUrl": null,
+        "title": "강릉_순포습지 (5)",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      },
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/44/3562144_image2_1.jpg",
+        "thumbnailUrl": null,
+        "title": "강릉_순포습지 (6)",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      },
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/45/3562145_image2_1.jpg",
+        "thumbnailUrl": null,
+        "title": "강릉_순포습지 (7)",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      },
+      {
+        "url": "https://tong.visitkorea.or.kr/cms/resource/46/3562146_image2_1.jpg",
+        "thumbnailUrl": null,
+        "title": "강릉_순포습지 (8)",
+        "license": "Type3",
+        "sourceUrl": "https://www.data.go.kr/data/15101578/openapi.do"
+      }
+    ],
+    "facts": [
+      {
+        "label": "이용시간",
+        "value": "상시 개방"
+      },
+      {
+        "label": "휴무일",
+        "value": "연중무휴"
+      },
+      {
+        "label": "주차",
+        "value": "가능"
+      }
+    ],
+    "overviewCharacters": 438,
+    "phonePresent": true,
+    "websitePresent": true,
+    "collectedAt": "2026-09-27T04:11:23.972Z"
+  },
+  "status": "passed"
+}

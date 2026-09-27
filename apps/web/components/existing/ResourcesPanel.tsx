@@ -3,7 +3,8 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
-import { introKey, ResourceIntro } from "@/components/resources/ResourceIntro";
+import { introKey } from "@/components/resources/ResourceIntro";
+import { ResourceDetails } from "@/components/resources/ResourceDetails";
 import { AnchorControls, AreaNote, CountLine, DetailFrame, Facts, focusAfterDetail, KindPicker, KindStatusList, ListMapGrid, ResourceRows, ViewToggle, WORKSPACE_ROOT } from "@/components/resources/ResourceWorkspace";
 import { useResourceLists } from "@/components/resources/useResourceLists";
 import { distanceKm, validPoint } from "@/lib/comparison/distance";
@@ -214,6 +215,8 @@ function ResourceDetail({ region, item, heading, distance, anchored, hidden, isA
 }) {
   return <DetailFrame id="resource-detail-heading" heading={heading} title={item.title} onClose={onClose}
     note={hidden ? "지금 고른 유형 목록에는 보이지 않는 자원이에요." : null}>
+    <ResourceDetails key={introKey(region, item)} region={region} item={item}
+      actions={item.point && <div className="flex flex-wrap gap-2"><button type="button" className="region-button min-h-11" disabled={isAnchor} onClick={onAnchor}>{isAnchor ? "현재 기준점이에요" : "이 자원을 기준점으로"}</button></div>}>
     <Facts>
       <dt className="text-muted">유형</dt><dd>{LABEL[item.kind]}</dd>
       <dt className="text-muted">주소</dt><dd>{item.address || "주소 정보 없음"}</dd>
@@ -221,7 +224,6 @@ function ResourceDetail({ region, item, heading, distance, anchored, hidden, isA
       {anchored && <><dt className="text-muted">기준점에서</dt><dd className="font-bold tabular-nums">{distance === null ? "거리 미확인" : `직선거리 약 ${km(distance)}`}</dd></>}
       {modified(item.modifiedAt) && <><dt className="text-muted">목록 원천 수정일</dt><dd className="tabular-nums">{modified(item.modifiedAt)}</dd></>}
     </Facts>
-    {item.point && <div className="flex flex-wrap gap-2"><button type="button" className="region-button min-h-11" disabled={isAnchor} onClick={onAnchor}>{isAnchor ? "현재 기준점이에요" : "이 자원을 기준점으로"}</button></div>}
-    <ResourceIntro key={introKey(region, item)} region={region} item={item} />
+    </ResourceDetails>
   </DetailFrame>;
 }

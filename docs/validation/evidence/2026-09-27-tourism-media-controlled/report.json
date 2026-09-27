@@ -1,0 +1,483 @@
+{
+  "checkedAt": "2026-09-27T04:29:29.689Z",
+  "base": "http://127.0.0.1:45753",
+  "headless": true,
+  "dataProvenance": "CONTROLLED SYNTHETIC FIXTURES: API responses and photos, not evidence of real provider records",
+  "checks": [
+    "existing: representative-photo, authoritative-detail-license, original-photo-link, uncropped-gallery, practical-info, keyboard-controls",
+    "existing: detail-close-restores-selected-list-row-focus",
+    "existing: absent-photo-omits-gallery-with-introduction-preserved",
+    "existing: image404-removes-broken-image-and-preserves-selection-and-intro",
+    "existing: information-failure-and-retry-preserve-photo-intro-selection-and-list",
+    "existing: gallery-provider-failure-keeps-representative-photo-and-retries",
+    "existing: late-previous-selection-cannot-replace-current-photo-or-intro",
+    "new: representative-photo, authoritative-detail-license, original-photo-link, uncropped-gallery, practical-info, keyboard-controls",
+    "new: detail-close-restores-selected-list-row-focus",
+    "new: absent-photo-omits-gallery-with-introduction-preserved",
+    "new: image404-removes-broken-image-and-preserves-selection-and-intro",
+    "new: information-failure-and-retry-preserve-photo-intro-selection-and-list",
+    "new: gallery-provider-failure-keeps-representative-photo-and-retries",
+    "new: late-previous-selection-cannot-replace-current-photo-or-intro",
+    "new: empty-overview-unavailable-refresh-keeps-photos-facts-with-freshness-and-own-retries",
+    "new: empty-overview-network-refresh-keeps-photos-facts-with-freshness-and-own-retries",
+    "new: two-candidate-authoritative-photos-and-distinct-facts-shared-request-or-cache-independent-gallery-detail-open-and-remove",
+    "regions: representative-photo, authoritative-detail-license, original-photo-link, uncropped-gallery, practical-info, keyboard-controls",
+    "regions: absent-photo-omits-gallery-with-introduction-preserved",
+    "regions: image404-removes-broken-image-and-preserves-selection-and-intro",
+    "regions: information-failure-and-retry-preserve-photo-intro-selection-and-list",
+    "regions: gallery-provider-failure-keeps-representative-photo-and-retries",
+    "regions: late-previous-selection-cannot-replace-current-photo-or-intro"
+  ],
+  "layouts": [
+    {
+      "flow": "existing",
+      "width": 390,
+      "viewport": 390,
+      "scroll": 390,
+      "image": {
+        "x": 37,
+        "y": 897,
+        "width": 316,
+        "height": 192
+      }
+    },
+    {
+      "flow": "existing",
+      "width": 1440,
+      "viewport": 1440,
+      "scroll": 1440,
+      "image": {
+        "x": 1069,
+        "y": 549,
+        "width": 303,
+        "height": 288
+      }
+    },
+    {
+      "flow": "existing",
+      "width": 1920,
+      "viewport": 1920,
+      "scroll": 1920,
+      "image": {
+        "x": 1469,
+        "y": 549,
+        "width": 303,
+        "height": 352
+      }
+    },
+    {
+      "flow": "new",
+      "width": 390,
+      "viewport": 390,
+      "scroll": 390,
+      "image": {
+        "x": 37,
+        "y": 1239,
+        "width": 316,
+        "height": 192
+      }
+    },
+    {
+      "flow": "new",
+      "width": 1440,
+      "viewport": 1440,
+      "scroll": 1440,
+      "image": {
+        "x": 1069,
+        "y": 545,
+        "width": 303,
+        "height": 288
+      }
+    },
+    {
+      "flow": "new",
+      "width": 1920,
+      "viewport": 1920,
+      "scroll": 1920,
+      "image": {
+        "x": 1469,
+        "y": 545,
+        "width": 303,
+        "height": 352
+      }
+    },
+    {
+      "flow": "regions",
+      "width": 390,
+      "viewport": 390,
+      "scroll": 390,
+      "image": {
+        "x": 37,
+        "y": 844,
+        "width": 316,
+        "height": 192
+      }
+    },
+    {
+      "flow": "regions",
+      "width": 1440,
+      "viewport": 1440,
+      "scroll": 1440,
+      "image": {
+        "x": 363,
+        "y": 2707,
+        "width": 1024,
+        "height": 288
+      }
+    },
+    {
+      "flow": "regions",
+      "width": 1920,
+      "viewport": 1920,
+      "scroll": 1920,
+      "image": {
+        "x": 443,
+        "y": 2707,
+        "width": 1344,
+        "height": 352
+      }
+    }
+  ],
+  "apiRequests": [
+    {
+      "flow": "existing",
+      "path": "/api/existing/resources",
+      "id": null
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98001"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98002"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98003"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98004"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98004"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98005"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98005"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98006"
+    },
+    {
+      "flow": "existing",
+      "path": "/api/resources/detail",
+      "id": "98007"
+    },
+    {
+      "flow": "new",
+      "path": "/api/existing/resources",
+      "id": null
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98001"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98002"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98003"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98004"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98004"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98005"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98005"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98006"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98007"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98008"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98008"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98009"
+    },
+    {
+      "flow": "new",
+      "path": "/api/resources/detail",
+      "id": "98009"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/regions",
+      "id": null
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98001"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98002"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98003"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98004"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98004"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98005"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98005"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98006"
+    },
+    {
+      "flow": "regions",
+      "path": "/api/resources/detail",
+      "id": "98007"
+    }
+  ],
+  "imageRequests": [
+    {
+      "flow": "existing",
+      "fixture": 8,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 1,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 4,
+      "status": 404
+    },
+    {
+      "flow": "existing",
+      "fixture": 9,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 10,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 5,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 7,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 6,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 2,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 3,
+      "status": 200
+    },
+    {
+      "flow": "existing",
+      "fixture": 4,
+      "status": 404
+    },
+    {
+      "flow": "new",
+      "fixture": 8,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 1,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 4,
+      "status": 404
+    },
+    {
+      "flow": "new",
+      "fixture": 9,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 10,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 5,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 7,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 6,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 2,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 3,
+      "status": 200
+    },
+    {
+      "flow": "new",
+      "fixture": 4,
+      "status": 404
+    },
+    {
+      "flow": "regions",
+      "fixture": 1,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 4,
+      "status": 404
+    },
+    {
+      "flow": "regions",
+      "fixture": 5,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 6,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 7,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 8,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 9,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 10,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 2,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 3,
+      "status": 200
+    },
+    {
+      "flow": "regions",
+      "fixture": 4,
+      "status": 404
+    }
+  ],
+  "browserErrors": [],
+  "appWrites": [],
+  "status": "passed"
+}

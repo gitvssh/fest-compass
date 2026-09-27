@@ -9,6 +9,7 @@ import { distanceText, RADII } from "@/components/new-festival/resource-labels";
 import { RESOURCE_KINDS } from "@/lib/existing/request";
 import { RESOURCE_KIND_LABELS as LABEL } from "@/lib/existing/types";
 import type { ResourceItem, ResourceKind, ResourceRow, ResourcesResponse, ResourceTypeBlock } from "@/lib/existing/types";
+import { ResourcePhotoCredit, ResourceThumbnail } from "./ResourceGallery";
 import styles from "./ResourceWorkspace.module.css";
 
 /**
@@ -146,14 +147,18 @@ export function ResourceRows({ rows, listRef, openId, anchored, onOpen, compare 
       const open = r.item.id === openId, inCompare = !!compare?.ids.has(r.item.id);
       return <li key={r.item.id} className={`min-w-0 border-b border-ink/10 last:border-b-0 ${open ? "bg-[#f7faff] shadow-[inset_4px_0_0_#2667e8]" : ""}`}>
         <button type="button" data-resource-id={r.item.id} aria-pressed={open} onClick={() => onOpen(r.item)}
-          className={`relative block min-h-11 w-full rounded-lg py-2.5 pl-4 pr-10 text-left hover:bg-paper/70 ${compare ? "pb-2" : ""}`}>
-          <span className="block break-words text-base font-bold leading-snug"><span className="tabular-nums text-[#164ea1]">{r.number}.</span> {r.item.title}</span>
-          <span className="mt-1 block break-words text-sm leading-5 text-muted">{LABEL[r.item.kind]} · {r.item.address || "주소 정보 없음"}{r.item.point ? "" : " · 지도 위치 없음"}</span>
-          {anchored && <span className="mt-1 block text-sm font-bold tabular-nums">{distanceText(r.distanceKm)}</span>}
+          className={`relative flex min-h-11 w-full items-start gap-3 rounded-lg py-2.5 pl-4 pr-10 text-left hover:bg-paper/70 ${compare ? "pb-2" : ""}`}>
+          <ResourceThumbnail photo={r.item.photo} />
+          <span className="min-w-0 flex-1">
+            <span className="block break-words text-base font-bold leading-snug"><span className="tabular-nums text-[#164ea1]">{r.number}.</span> {r.item.title}</span>
+            <span className="mt-1 block break-words text-sm leading-5 text-muted">{LABEL[r.item.kind]} · {r.item.address || "주소 정보 없음"}{r.item.point ? "" : " · 지도 위치 없음"}</span>
+            {anchored && <span className="mt-1 block text-sm font-bold tabular-nums">{distanceText(r.distanceKm)}</span>}
+          </span>
           {open && <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16" className="absolute right-3 top-3.5 h-5 w-5 text-blue">
             <circle cx="8" cy="8" r="7.25" fill="currentColor" /><path d="M4.6 8.2 7 10.5l4.4-4.9" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>}
         </button>
+        {r.item.photo && <ResourcePhotoCredit photo={r.item.photo} className="px-4 pb-2" />}
         {compare && <div className="flex flex-wrap items-center gap-2 px-4 pb-2.5">
           <button type="button" className={`region-button min-h-11 text-sm ${inCompare ? "border-blue font-extrabold text-blue" : ""}`}
             aria-label={`${r.item.title} ${inCompare ? "함께 보기에서 빼기" : "함께 보기에 추가"}`} onClick={() => compare.onToggle(r.item)}>

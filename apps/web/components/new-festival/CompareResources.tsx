@@ -1,6 +1,7 @@
 "use client";
 import type { RefObject } from "react";
-import { introKey, IntroCell } from "@/components/resources/ResourceIntro";
+import { introKey } from "@/components/resources/ResourceIntro";
+import { ResourceDetails } from "@/components/resources/ResourceDetails";
 import { Facts } from "@/components/resources/ResourceWorkspace";
 import type { RegionRef, ResourceItem } from "@/lib/existing/types";
 import { distanceText, KIND_LABEL, MAX_COMPARED } from "./resource-labels";
@@ -24,14 +25,15 @@ export function CompareResources({ region, items, hiddenIds, anchored, distances
             <button type="button" className="region-button min-h-11 shrink-0" aria-label={`${item.title} 함께 보기에서 빼기`} onClick={() => onRemove(item)}>빼기</button>
           </div>
           {hiddenIds.has(item.id) && <p className="text-[13px] text-muted">지금 목록 조건에서는 보이지 않아요.</p>}
-          <Facts>
-            <dt className="text-muted">유형</dt><dd>{KIND_LABEL[item.kind]}</dd>
-            <dt className="text-muted">주소</dt><dd>{item.address || "— 주소 정보 없음"}</dd>
-            <dt className="text-muted">지도 위치</dt><dd>{item.point ? "있음" : "— 없음"}</dd>
-            {anchored && <><dt className="text-muted">기준점</dt><dd className="font-bold tabular-nums">{distanceText(distances.get(item.id) ?? null)}</dd></>}
-            <dt className="text-muted">소개</dt><dd><IntroCell key={introKey(region, item)} region={region} item={item} /></dd>
-          </Facts>
-          <button type="button" className="inline-flex min-h-11 items-center text-sm font-bold text-blue underline underline-offset-4" aria-label={`${item.title} 상세 보기`} onClick={() => onOpen(item)}>상세 보기</button>
+          <ResourceDetails key={introKey(region, item)} region={region} item={item}
+            actions={<button type="button" className="inline-flex min-h-11 items-center text-sm font-bold text-blue underline underline-offset-4" aria-label={`${item.title} 상세 보기`} onClick={() => onOpen(item)}>상세 보기</button>}>
+            <Facts>
+              <dt className="text-muted">유형</dt><dd>{KIND_LABEL[item.kind]}</dd>
+              <dt className="text-muted">주소</dt><dd>{item.address || "— 주소 정보 없음"}</dd>
+              <dt className="text-muted">지도 위치</dt><dd>{item.point ? "있음" : "— 없음"}</dd>
+              {anchored && <><dt className="text-muted">기준점</dt><dd className="font-bold tabular-nums">{distanceText(distances.get(item.id) ?? null)}</dd></>}
+            </Facts>
+          </ResourceDetails>
         </article>)}
       </div>}
   </section>;

@@ -1,5 +1,6 @@
 // Response contracts for the existing-festival journey (UC-FC-009). Pure types and constants; safe for client imports.
 import type { VisitorProfileSelection } from "../datalab/visitor-profile-types";
+import type { ResourcePhoto } from "../resources/types";
 export type { VisitorProfile, VisitorProfileBand, VisitorProfileDestination, VisitorProfileDestinationGroup, VisitorProfileGroupId, VisitorProfileResource, VisitorProfileSelection } from "../datalab/visitor-profile-types";
 export type Point = { latitude: number; longitude: number };
 export type Range = { start: string; end: string };
@@ -110,7 +111,7 @@ export function parseResourceTarget(raw: string | null): { kind: ResourceKind; i
   const m = /^(12|14|39|32):(\d{1,20})$/.exec(raw ?? "");
   return m ? { kind: m[1] as ResourceKind, id: m[2] } : null;
 }
-export type ResourceItem = { id: string; kind: ResourceKind; title: string; address: string; point: Point | null; modifiedAt: string | null };
+export type ResourceItem = { id: string; kind: ResourceKind; title: string; address: string; point: Point | null; modifiedAt: string | null; photo?: ResourcePhoto | null };
 export type ResourceTypeBlock = SourceBlock & { kind: ResourceKind; label: string; total: number | null; items: ResourceItem[] };
 export type ResourcesRequest = { province: string; district: string; types: ResourceKind[] };
 export type ResourcesResponse = Envelope<ResourcesRequest> & { region: RegionRef; byType: ResourceTypeBlock[] };

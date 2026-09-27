@@ -166,18 +166,21 @@ function tour(page: Partial<TourPage> | Error) {
   const calls: [TourOperation, Record<string, string>][] = [];
   const call: TourCall = async (op, params) => {
     calls.push([op, params]);
+    if (op !== "detailCommon2") return { total: 0, pageNo: 1, rows: [], collectedAt: DETAIL_AT };
     if (page instanceof Error) throw page;
     return { total: 1, pageNo: 1, rows: [row()], collectedAt: DETAIL_AT, ...page };
   };
   return { call, calls };
 }
 const detailReq = { province: "44", district: "230", kind: "12" as const, id: "126508" };
+const emptyExtras = { photos: [], galleryStatus: "empty", facts: [], infoStatus: "empty", phone: null, website: null, galleryCollectedAt: DETAIL_AT, infoCollectedAt: DETAIL_AT };
+const detailCalls = (id: string, kind: string) => [["detailCommon2", { contentId: id }], ["detailImage2", { contentId: id, numOfRows: "20", pageNo: "1" }], ["detailIntro2", { contentId: id, contentTypeId: kind }]];
 
-test("resource detail: verified identity returns only a plain-text overview with the detail fetch time", async () => {
+test("resource detail: verified identity returns plain text and separate optional content with the detail fetch time", async () => {
   const t = tour({}), r = await loadResourceDetail(t.call, detailReq, () => NOW);
-  assert.deepEqual(t.calls, [["detailCommon2", { contentId: "126508" }]]);
+  assert.deepEqual(t.calls, detailCalls("126508", "12"));
   assert.deepEqual([r.status, r.error, r.key, r.request, r.retrievedAt, r.region.code], ["complete", null, resourceDetailKey(detailReq), detailReq, NOW, "44230"]);
-  assert.deepEqual(r.detail, { id: "126508", kind: "12", overview: "강경의 근대역사문화거리.", truncated: false, modifiedAt: "20260801120000" });
+  assert.deepEqual(r.detail, { id: "126508", kind: "12", overview: "강경의 근대역사문화거리.", truncated: false, modifiedAt: "20260801120000", ...emptyExtras });
   assert.deepEqual(r.source, { title: DETAIL_SOURCE_TITLE, url: "https://www.data.go.kr/data/15101578/openapi.do", checkedAt: null, publishedAt: null, collectedAt: DETAIL_AT });
   assert.notEqual(r.source!.collectedAt, LIST_AT);
   assert.ok(!JSON.stringify(r).includes("URL 제목과 무관") && !JSON.stringify(r).includes("javascript") && !JSON.stringify(r).includes("주소"));
@@ -205,17 +208,17 @@ test("resource detail: empty, not-found, mismatches and provider failures stay d
   assert.equal(failed.source, null);
   assert.ok(!JSON.stringify(failed).includes("secret"));
   const sejong = { province: "36110", district: "36110", kind: "14" as const, id: "5" };
-  assert.deepEqual(await status({ rows: [row({ contentid: "5", contenttypeid: "14", lDongRegnCd: "36110", lDongSignguCd: "36110" })] }, sejong), ["complete", { id: "5", kind: "14", overview: "강경의 근대역사문화거리.", truncated: false, modifiedAt: "20260801120000" }, null]);
+  assert.deepEqual(await status({ rows: [row({ contentid: "5", contenttypeid: "14", lDongRegnCd: "36110", lDongSignguCd: "36110" })] }, sejong), ["complete", { id: "5", kind: "14", overview: "강경의 근대역사문화거리.", truncated: false, modifiedAt: "20260801120000", ...emptyExtras }, null]);
   assert.deepEqual(await status({ rows: [row({ modifiedtime: "2026-08-01" })] }).then(s => (s[1] as { modifiedAt: string | null }).modifiedAt), null);
 });
 
-test("restaurant and accommodation details reuse the same verified loader with contentId only", async () => {
+test("restaurant and accommodation details reuse the verified common loader and matching intro kind", async () => {
   for (const [kind, other] of [["39", "32"], ["32", "39"]] as const) {
     const req = { province: "51", district: "150", kind, id: "2733967" };
     const t = tour({ rows: [row({ contentid: "2733967", contenttypeid: kind, lDongRegnCd: "51", lDongSignguCd: "150", overview: "<p>바다 &amp; 숲<br>산책로</p><script>x()</script>" })] });
     const r = await loadResourceDetail(t.call, req, () => NOW);
-    assert.deepEqual(t.calls, [["detailCommon2", { contentId: "2733967" }]], "no contentTypeId sent upstream");
-    assert.deepEqual([r.status, r.region.code, r.detail], ["complete", "51150", { id: "2733967", kind, overview: "바다 & 숲\n산책로", truncated: false, modifiedAt: "20260801120000" }]);
+    assert.deepEqual(t.calls, detailCalls("2733967", kind), "contentTypeId is sent only for the intro");
+    assert.deepEqual([r.status, r.region.code, r.detail], ["complete", "51150", { id: "2733967", kind, overview: "바다 & 숲\n산책로", truncated: false, modifiedAt: "20260801120000", ...emptyExtras }]);
     assert.deepEqual(r.source, { title: DETAIL_SOURCE_TITLE, url: "https://www.data.go.kr/data/15101578/openapi.do", checkedAt: null, publishedAt: null, collectedAt: DETAIL_AT });
     const status = async (extra: Record<string, unknown>, page: Partial<TourPage> = {}) => (await loadResourceDetail(tour({ rows: [row({ contentid: "2733967", contenttypeid: kind, lDongRegnCd: "51", lDongSignguCd: "150", ...extra })], ...page }).call, req, () => NOW));
     assert.deepEqual([(await status({ contenttypeid: other })).status, (await status({ contenttypeid: other })).detail], ["type-mismatch", null]);

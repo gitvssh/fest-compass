@@ -7,7 +7,7 @@ const contentSecurityPolicy = [
   "form-action 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
-  "img-src 'self' data: https://tile.openstreetmap.org",
+  "img-src 'self' data: https://tile.openstreetmap.org https://tong.visitkorea.or.kr",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
   `script-src 'self' 'unsafe-inline'${production ? "" : " 'unsafe-eval'"}`,

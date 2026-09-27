@@ -201,9 +201,14 @@ const intro = (page, r) => detail(page, r).getByRole("region", { name: `${r.titl
 const ddOf = (scope, term) => scope.locator("dt").filter({ hasText: new RegExp(`^${escapeRe(term)}$`) }).locator("xpath=following-sibling::dd[1]");
 const compare = page => page.getByRole("region", { name: /^함께 보기 \d\/2$/ });
 const compareCard = (page, r) => compare(page).getByRole("article", { name: r.title, exact: true });
+const compareIntro = (page, r) => compareCard(page, r).getByRole("region", { name: `${r.title} 소개`, exact: true });
 const anchorLabel = (page, r) => page.locator("p", { hasText: new RegExp(`^기준점\\s*${escapeRe(r.title)}$`) });
 async function settled(page, kinds) { for (const k of kinds) await visible(kindCount(page, k).first()); await flush(page); }
-const listTitles = page => resourceList(page).locator("[data-resource-id]").evaluateAll(bs => bs.map(b => b.querySelector("span")?.textContent?.replace(/\s+/g, " ").trim()));
+const listTitles = page => resourceList(page).locator("[data-resource-id]").evaluateAll(bs => bs.map(b => {
+  // The number token belongs to the title line; outer wrappers may also contain address, type and distance.
+  const number = [...b.querySelectorAll("span")].find(span => /^\d+\.$/.test(span.textContent?.trim() ?? ""));
+  return number?.parentElement?.textContent?.replace(/\s+/g, " ").trim();
+}));
 
 // ---- Map contract (design 20 · 군집 지도 행동). Every map selector assumption lives in this block. ----
 // · A single place is a map button named "지도에서 N. TITLE 상세 보기" (optionally followed by ", <state>").
@@ -1028,8 +1033,9 @@ async function compareIndependently() {
   assert.equal(await page.getByRole("button", { name: "기준점 해제", exact: true }).count(), 0, "comparing never sets an anchor");
   assert.equal(await ddOf(compareCard(page, F39), "유형").innerText(), "음식점");
   assert.equal(await ddOf(compareCard(page, S32), "유형").innerText(), "숙박");
-  await includes(ddOf(compareCard(page, F39), "소개"), "검증용 소개 라 (가상)");
-  await includes(ddOf(compareCard(page, S32), "소개"), INTRO[S32.id]);
+  await visible(compareIntro(page, F39)); await visible(compareIntro(page, S32));
+  await includes(compareIntro(page, F39), "검증용 소개 라 (가상)");
+  await includes(compareIntro(page, S32), INTRO[S32.id]);
   await listToggle(page, E39, "함께 보기에 추가").click();
   await visible(compare(page).getByRole("alert").filter({ hasText: "함께 보기는 2곳까지예요. 한 곳을 빼고 추가해 주세요." }));
   await waitFocusId(page, "new-compare-heading");
