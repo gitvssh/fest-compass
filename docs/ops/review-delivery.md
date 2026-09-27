@@ -2,7 +2,7 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-27
-version: v12
+version: v13
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -257,7 +257,7 @@ Windows 브라우저 직접 실행·실무자 관찰·전체 보조기술 인증
 
 ## PC 중심 조사·기획 화면 전달 · 2026-09-27
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-27-desktop-research-reviewed`를 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-27-desktop-research-reviewed`를 열었다.
 원본 커밋 `8fc0ac201099488316eba0b649b5666e23e1eb76`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
 첫 카드의 [PC 실제 화면·검수43](../validation/43-desktop-research-experience.md)와 [설계·이미지 원본21](../design/21-desktop-research-experience.md)에
 구도가 다른 두 목적 이미지·간결한 메뉴·목록/지도/상세3열·방문 자료 병렬 배치를 담았다. 최종 공개 화면9장과 생성 프롬프트를 포함한다.
@@ -271,3 +271,20 @@ headless Chromium에서 1280/390px 각각 HTML41개·Mermaid17개·이미지104�
 이전 공개 검토 묶음148개 파일과 옛 `fest-compass/index.html`의 해시를 전후 대조해 보존을 확인했다.
 프로젝트 원본은 저장소에 유지한다. Windows 브라우저 직접 실행·실무자 관찰·전체 보조기술 인증은 미평가다.
 세부 근거는 [실행 기록](../validation/evidence/2026-09-27-desktop-research.json)의 `reviewDelivery`를 따른다.
+
+## 관광지도·자원 사진과 이용정보 전달 · 2026-09-27
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-27-tourism-media-reviewed`를 연다.
+원본 커밋 `d1662908c5c88123bf8dff222780acbec0d6b53a`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
+첫 카드에 [사진·이용정보 실제 화면과 검수44](../validation/44-tourism-media.md), [설계22](../design/22-tourism-media.md)를 배치했다.
+공개 실제 사진·이용정보 화면5장과 통제된 가상 자료의 비교·실패 복구 화면2장을 구분해 담았다.
+
+실제 D 드라이브9p 마운트에 원본 사본129개·시안11페이지·문서31페이지·시작 페이지를 전달했다.
+원본·사본 SHA-256129개 일치, 로컬 링크·이미지·앵커614개 정상, 저장소 밖 상대 링크0개를 확인했다.
+headless Chromium으로 HTML43개를1280/390px에서 열어 이미지와 Mermaid17개를 확인했다.
+깨진 이미지·페이지 오류·전체 가로 넘침은0이다. 시작→최신 묶음→검수44 클릭을 확인했고
+주 담당자가 전달된 시작 페이지와 실제 화면 문서를 직접 검수했다.
+
+이전 PC 검토 묶음과 옛 `fest-compass/index.html`164개 파일의 해시가 전달 전후 일치한다.
+프로젝트 문서·원본 화면은 저장소에 유지한다. Windows 브라우저 직접 실행은 미평가다.
+세부 근거는 [전달 검사](../validation/evidence/2026-09-27-tourism-media-delivery.json)를 따른다.

@@ -1,0 +1,37 @@
+{
+  "bundle": "/mnt/d/download/project/pickDday/2026-09-27-tourism-media-reviewed",
+  "start": "/mnt/d/download/project/pickDday/index.html",
+  "copiedAt": "2026-09-27T13:42:54+09:00",
+  "mount": {
+    "source": "D:\\",
+    "fstype": "9p",
+    "target": "/mnt/d"
+  },
+  "integrity": {
+    "source_revision": "d1662908c5c88123bf8dff222780acbec0d6b53a",
+    "source_dirty": false,
+    "sources": 129,
+    "local_links_images_anchors": 614,
+    "links_outside_project": [],
+    "broken": []
+  },
+  "browser": {
+    "headless": true,
+    "pages": 43,
+    "viewports": [
+      1280,
+      390
+    ],
+    "errors": [],
+    "mermaid": 17,
+    "overflow": [],
+    "preservedPreviousFiles": 164,
+    "status": "passed"
+  },
+  "directVisualReview": [
+    "delivered start page",
+    "delivered actual-screen document"
+  ],
+  "nativeWindowsBrowser": "not evaluated",
+  "projectOriginalsRetained": true
+}

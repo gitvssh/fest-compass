@@ -1101,3 +1101,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-050 · Codex · 설계·구현·공개 검수
+
+- Position: 관광지도와 기존·새 축제의 대표사진·상세사진·유형별 이용정보를 공개 연결했다. 두 후보의 사진·조건도 나란히 비교하며 출처·이용조건과 부분 실패 복구를 유지한다. 실제 공개 자료와 D 확인용 사본을 검수했다.
+- Evidence:
+  - docs/validation/44-tourism-media.md
+  - docs/validation/evidence/2026-09-27-tourism-media.json
+  - docs/validation/evidence/2026-09-27-tourism-media-delivery.json
+- Changes:
+  - 공통 사진·이용정보 정규화와 TourAPI 상세 연결, 세 흐름 및 두 후보 비교
+  - 설계22·인수TS-FC-019·현행 기능·화면/흐름·자료 목록 갱신
+  - 소스2bf1f8a 발행36294562405 성공, pin476ad7a 정상 sync
+  - D:\download\project\pickDday\index.html에서 최신 확인 자료 연결
+- Validation:
+  - 단위397·타입·배포빌드·headless27회·관광자원49항목·미디어23항목·인프라41 통과
+  - 공개3흐름의 순포습지8장·이용정보·390/1440/1920px·실제200% 확대·사진 조작 통과. 업무9표20행과Deployment/PVC 식별자 보존
+  - D 원본사본129개해시·참조614개·HTML43개2폭·Mermaid17개 정상. 이전164개파일 보존
+  - Opus5.5 호출은 제공자 사용한도로 실패. native협업 구현·독립코드검토 후 주 담당자 실제자료/화면 직접검수
+- Questions:
+  - No open question
+- Handoff: Codex
