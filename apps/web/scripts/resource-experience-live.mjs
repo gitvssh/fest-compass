@@ -60,6 +60,9 @@ try {
   await page.waitForFunction(() => [...document.querySelectorAll('#purpose-heading + ul img')].length === 2 && [...document.querySelectorAll('#purpose-heading + ul img')].every(img => img.complete && img.naturalWidth > 0));
   const images = await purpose.locator("img").evaluateAll(imgs => imgs.map(img => ({ alt: img.alt, width: img.naturalWidth, src: new URL(img.currentSrc).pathname, renderedWidth: img.getBoundingClientRect().width })));
   assert.ok(images.every(i => i.alt === "" && i.width > 0 && i.src === "/_next/image")); report.images = images;
+  // Trial action runs the consent handler and verifies that the actual CTA is unobscured.
+  // DOM reads and screenshots alone do not invoke locator handlers.
+  await purpose.getByRole("link", { name: "기존 축제 찾기 →", exact: true }).click({ trial: true });
   await shot("home-desktop");
   for (const width of [640, 390, 320]) { await page.setViewportSize({ width, height: 900 }); await overflow(`home ${width}`); if (width === 390) await shot("home-mobile"); }
   await page.setViewportSize({ width: 1440, height: 1000 }); await zoom(2, "home"); await overflow("home zoom 200%"); await shot("home-zoom-200"); await zoom(1, "home reset");

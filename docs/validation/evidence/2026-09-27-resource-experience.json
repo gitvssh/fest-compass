@@ -945,20 +945,330 @@
   },
   "finalBuild": "passed incl. TypeScript, frozen forecast evidence and standalone environment check",
   "production": {
-    "status": "pending-image-capacity-decision",
-    "failedRun": 36250279743,
-    "failedCommit": "6592de78cdc077bde46fde7cf3085a5506c5fae6",
-    "stage": "Harbor push quota",
-    "candidateCleanupCount": 3,
-    "protectedCount": 2,
-    "dryRun": 5165,
-    "deleted": false
+    "status": "deployed-and-publicly-verified",
+    "release": {
+      "run": 36287323772,
+      "sourceCommit": "11c9513875dc7a8044d23d8df630a143182f7a32",
+      "digest": "sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b",
+      "conclusion": "success"
+    },
+    "pinCommit": "dadf3a7d6a6b4f35545cca64dca0f6cee13dedf1",
+    "runnerLabel": "homelab-fest-compass",
+    "actionsArtifacts": 0,
+    "actionsCaches": 0,
+    "previousAttempt": {
+      "status": "pending-image-capacity-decision",
+      "failedRun": 36250279743,
+      "failedCommit": "6592de78cdc077bde46fde7cf3085a5506c5fae6",
+      "stage": "Harbor push quota",
+      "candidateCleanupCount": 3,
+      "protectedCount": 2,
+      "dryRun": 5165,
+      "deleted": false
+    },
+    "cleanup": {
+      "approval": "2026-09-27 user approved the three exact image digests in docs/ops/resource-experience-release.md",
+      "outcome": "approved three digests already absent when rechecked; scheduled retention 5177 succeeded at 2026-09-27 03:30 KST",
+      "manualImageDeletes": 0,
+      "protectedImagesPreserved": 2,
+      "quotaAfterRetentionBytes": 419406028,
+      "quotaAfterReleaseBytes": 594856893,
+      "quotaLimitBytes": 1073741824,
+      "artifactsAfterRelease": 3
+    },
+    "markerRecovery": {
+      "before": {
+        "deploy-current": "sha256:27f35aa82f76d914653c50d090882bd8bd7e5c82f7d43f383b0e8e6ca626f607",
+        "deploy-rollback": "sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed"
+      },
+      "after": {
+        "deploy-current": "sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed",
+        "deploy-rollback": "sha256:27f35aa82f76d914653c50d090882bd8bd7e5c82f7d43f383b0e8e6ca626f607"
+      },
+      "mode": "rotated",
+      "imageDeletes": 0
+    },
+    "runtime": {
+      "sync": "Synced",
+      "health": "Healthy",
+      "operation": "Succeeded",
+      "finishedAt": "2026-09-27T02:09:28Z",
+      "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+      "deploymentUidPreserved": true,
+      "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+      "pvcUidPreserved": true,
+      "containers": [
+        {
+          "name": "festival-source-worker",
+          "ready": true,
+          "image": "sha256:346e02c8e29ffb331c6d5ade647170414c999fd24ee9668b9b1c9377417b1db3",
+          "imageID": "registry.damecasol.com/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
+        },
+        {
+          "name": "forecast-worker",
+          "ready": true,
+          "image": "sha256:346e02c8e29ffb331c6d5ade647170414c999fd24ee9668b9b1c9377417b1db3",
+          "imageID": "registry.damecasol.com/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
+        },
+        {
+          "name": "web",
+          "ready": true,
+          "image": "sha256:346e02c8e29ffb331c6d5ade647170414c999fd24ee9668b9b1c9377417b1db3",
+          "imageID": "registry.damecasol.com/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
+        }
+      ],
+      "originHealth": [
+        {
+          "name": "livez",
+          "status": 200
+        },
+        {
+          "name": "readyz",
+          "status": 200
+        }
+      ]
+    },
+    "businessPreservation": {
+      "tables": 9,
+      "rows": 20,
+      "beforeEqualsAfter": true,
+      "digestByTable": {
+        "festival": {
+          "count": 1,
+          "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+        },
+        "evidenceSnapshot": {
+          "count": 6,
+          "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+        },
+        "assumption": {
+          "count": 4,
+          "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+        },
+        "capacityRule": {
+          "count": 1,
+          "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+        },
+        "scenario": {
+          "count": 3,
+          "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+        },
+        "decision": {
+          "count": 1,
+          "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+        },
+        "operationTrigger": {
+          "count": 1,
+          "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+        },
+        "fieldAction": {
+          "count": 1,
+          "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+        },
+        "outcome": {
+          "count": 2,
+          "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+        }
+      }
+    },
+    "harborMarkers": [
+      {
+        "digest": "sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b",
+        "tags": [
+          "deploy-current",
+          "11c9513875dc7a8044d23d8df630a143182f7a32"
+        ]
+      },
+      {
+        "digest": "sha256:27f35aa82f76d914653c50d090882bd8bd7e5c82f7d43f383b0e8e6ca626f607",
+        "tags": [
+          "cbf15018c6d073d286283aa1cf364aafc5048d26"
+        ]
+      },
+      {
+        "digest": "sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed",
+        "tags": [
+          "deploy-rollback",
+          "956a849e87c356ebf743fc9d11b9a4ba9f92541c"
+        ]
+      }
+    ]
   },
   "limits": [
-    "Public activation and public final-build validation pending",
     "Baseline 24 scripts ran on cbf1501; affected tourism script rerun on final source",
     "Opus 7 successful claude-opus-5-5 calls; later resize-review attempt did not execute due weekly limit",
-    "Actual local app responses; independent source comparison reused from report41",
+    "Actual local and public app responses; independent source comparison reused from report41",
     "No complete assistive-technology certification or officer observation"
+  ],
+  "actualDataPublicBrowser": {
+    "checkedAt": "2026-09-27T02:13:35.771Z",
+    "base": "https://pickday.damecasol.com",
+    "headless": true,
+    "mockedResponses": 0,
+    "browserErrors": [],
+    "appWrites": [],
+    "samples": [
+      {
+        "flow": "new",
+        "code": "51150",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 478
+          },
+          {
+            "kind": "32",
+            "total": 178
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      },
+      {
+        "flow": "existing",
+        "code": "50110",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 426
+          },
+          {
+            "kind": "32",
+            "total": 89
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      }
+    ],
+    "checks": [
+      "two-optimized-decorative-images-and-purpose-links",
+      "home-320-390-640-1440-and-real-200-percent-zoom",
+      "new-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "new-official-source-full-list-identity-detail-mobile-real-zoom",
+      "existing-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "existing-official-source-full-list-identity-detail-mobile-real-zoom"
+    ],
+    "zoom": [
+      {
+        "label": "home",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "home reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      }
+    ],
+    "images": [
+      {
+        "alt": "",
+        "width": 264,
+        "src": "/_next/image",
+        "renderedWidth": 264
+      },
+      {
+        "alt": "",
+        "width": 264,
+        "src": "/_next/image",
+        "renderedWidth": 264
+      }
+    ],
+    "status": "passed"
+  },
+  "publicScreenshots": [
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/existing-cluster-chooser.png",
+      "sha256": "04f2158450f3bd90dfb3d66a1dbaef04a26cf3d435cb6c155c30e9383bd91e6c"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/existing-detail-mobile.png",
+      "sha256": "31132b0fd479c2f5a6894d9e90a9bfa34a862c503c4ef0f408dd8cadc97a2269"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/existing-resources-desktop.png",
+      "sha256": "901ee44a87a9d0731042de2758a073adafe858b5140ae7da03f032ac17c425c6"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/existing-zoom-200.png",
+      "sha256": "6c108ea8299f0c90aefabfb17bb7e52f9353a0571c0788cc333174043e62d77e"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/home-desktop.png",
+      "sha256": "6ebd20103b14cf18e28dffc6ee5415906507057bfc10136243cab0bea95e3a94"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/home-mobile.png",
+      "sha256": "034bd913b2885437f8623f4ee5168496b2ce26f71fabf0b1a345273be1eab4bd"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/home-zoom-200.png",
+      "sha256": "854f04c6ae648c7644e9072b00a3ef09975ae0433e1fe64659db998cbf976925"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/new-cluster-chooser.png",
+      "sha256": "645a5455c8e040c9c164985287e07f8e5eb505a234d830b992ad0563b51f8ec0"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/new-detail-mobile.png",
+      "sha256": "33908e0d739e7e645ac856e495285823aabcc427d032c6e6e2897a0515b86228"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/new-resources-desktop.png",
+      "sha256": "a47d01d1b7d54b27011ada60ae7c8b476c865774c03f2c9f314a761a68329b6d"
+    },
+    {
+      "path": "docs/validation/evidence/2026-09-27-resource-experience-public/new-zoom-200.png",
+      "sha256": "d4dc6304360108188a281b8ab51239aea55a73d01a0460d01de24052003da0d8"
+    }
   ]
 }

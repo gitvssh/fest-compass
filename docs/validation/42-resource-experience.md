@@ -2,13 +2,13 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-27
-version: v1
+version: v2
 summary: "관광자원 유형·목록·군집 지도·상세와 첫 화면 목적 이미지의 구현·직접 검수 기록입니다."
 ---
 
 # 관광자원 시각화와 첫 화면 목적 이미지
 
-상태: **구현·실제 자료를 연결한 로컬 검수 완료, 공개 배포 대기.** [설계20](../design/20-resource-experience.md)과
+상태: **사용 가능. 공개 배포·실제 자료·모바일·200% 확대 검수 완료.** [설계20](../design/20-resource-experience.md)과
 [TS-FC-017](../sdlc/3-testing/scenarios/TS-FC-017.md)에 따른 개선이다.
 
 두 관광자원 화면에서 선택 유형의 건수와 목록·지도·상세의 관계를 명확히 한다.
@@ -59,7 +59,7 @@ Node 24.20.0에서 단위·스크립트 시험 **379건(26+323+30)**, 타입 검
 
 ## 실제 자료를 연결한 화면 확인
 
-로컬 배포 빌드에서 강릉시 음식점478·숙박178, 제주시 음식점426·숙박89건의 실제 앱 응답을 사용했다.
+로컬 배포 빌드와 최종 공개 사이트에서 각각 강릉시 음식점478·숙박178, 제주시 음식점426·숙박89건의 실제 앱 응답을 사용했다.
 응답을 가로채거나 가상 자료를 넣지 않았다. 원천 API 독립 대조는 [이전 기록41](41-tourism-resources.md)의 근거를 유지한다.
 전체 목록 ID·상세 이름·군집 선택·키보드 복귀·320/390/1440px를 확인했고 페이지 오류·앱 API 쓰기는0이다.
 실제 Chrome 탭 확대2.0을 읽어 확인했으며 1440px 창에서 CSS 폭720px·DPR2·CSS zoom1을 기록했다.
@@ -67,45 +67,55 @@ CSS 확대 통제 시험과 구분하며 첫 화면·기존 축제·새 축제 �
 상세 닫기 후 초점 복귀는 화면 반영을 기다린 뒤 확인한다. 확대 캡처는 전체 페이지 좌표 잘림을 피하려고
 실제 viewport를 저장한다. [실행 근거](evidence/2026-09-27-resource-experience.json)에 대상·범위를 남긴다.
 
-## 공개 배포 상태
+## 공개 배포와 업무자료 보존
 
-`6592de7`의 ARC 이미지 작업은 검증·빌드 후 Harbor 업로드에서 용량 한도로 실패했다.
-최종 지도 보완까지 포함한 새 버전은 아직 공개 서비스에 적용되지 않았다. 기존 서비스는 정상 운영 중이다.
-[정확한 정리 후보와 재개 절차](../ops/resource-experience-release.md)에 보존할 이미지2개와 후보3개를 기록했다.
-수동 삭제 결정 또는 예정된 자동 정리 완료 후 최신 main 이미지 생성·정상 sync·공개 응답·업무자료 보존을 확인한다.
-이 문서의 아래 캡처는 **로컬 검수 화면**이며 공개 배포 완료 증거가 아니다.
+`6592de7`의 이전 ARC 작업은 Harbor 용량 한도로 실패했다. 사용자가 이미지3개 정리를 승인한 뒤
+재조회하니 예정된 자동 정리5177이 이미 완료되어 있었다. 추가 수동 삭제 없이 배포를 재개했다.
+[정리·보호 표식 복구 기록](../ops/resource-experience-release.md)에 정확한 대상과 결과를 남겼다.
+
+최종 지도 보완을 포함한 소스 `11c9513`의 [ARC 작업36287323772](https://github.com/gitvssh/fest-compass/actions/runs/36287323772)이
+검증·빌드·발행을 통과했다. 전용 `homelab-fest-compass` runner를 사용했고 Actions artifact/cache는0이다.
+이미지 `sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b`를
+배포 선언 `dadf3a7`에 고정하고 정상 sync 후 **Synced·Healthy, 컨테이너3/3 준비 완료**를 확인했다.
+기존 운영 이미지는 복구본으로 보존했다. Deployment·PVC 식별자는 같고 업무9개 테이블20행의
+건수·내용 해시가 배포 전후 일치했다. livez·readyz는 각각200이다.
+
+[공개 서비스](https://pickday.damecasol.com)에서 응답 대체 없이 두 흐름의 전체 목록과 실제 응답 ID를 대조하고
+군집→목록→상세, 키보드 복귀, 모바일·실제200% 확대를 확인했다. 페이지 오류·앱 API 쓰기는0이다.
+첫 화면 촬영은 정상 쿠키 선택창의 ‘모두 거부’를 누른 뒤 핵심 링크를 조작할 수 있는 상태에서 수행했다.
+아래는 **최종 공개 서비스 캡처**다. 이전 로컬 실행 근거는 별도로 보존한다.
 
 ## 개선 화면
 
-![목적별 이미지가 있는 첫 화면](evidence/2026-09-27-resource-experience/home-desktop.png)
+![목적별 이미지가 있는 첫 화면](evidence/2026-09-27-resource-experience-public/home-desktop.png)
 
-![새 축제 강릉 목록과 군집 지도](evidence/2026-09-27-resource-experience/new-resources-desktop.png)
+![새 축제 강릉 목록과 군집 지도](evidence/2026-09-27-resource-experience-public/new-resources-desktop.png)
 
-![기존 제주 축제 목록과 군집 지도](evidence/2026-09-27-resource-experience/existing-resources-desktop.png)
+![기존 제주 축제 목록과 군집 지도](evidence/2026-09-27-resource-experience-public/existing-resources-desktop.png)
 
-![새 축제에서 가까운 장소 선택](evidence/2026-09-27-resource-experience/new-cluster-chooser.png)
+![새 축제에서 가까운 장소 선택](evidence/2026-09-27-resource-experience-public/new-cluster-chooser.png)
 
-![기존 축제에서 가까운 장소 선택](evidence/2026-09-27-resource-experience/existing-cluster-chooser.png)
+![기존 축제에서 가까운 장소 선택](evidence/2026-09-27-resource-experience-public/existing-cluster-chooser.png)
 
-![첫 화면 모바일](evidence/2026-09-27-resource-experience/home-mobile.png)
+![첫 화면 모바일](evidence/2026-09-27-resource-experience-public/home-mobile.png)
 
-![새 축제 상세 모바일](evidence/2026-09-27-resource-experience/new-detail-mobile.png)
+![새 축제 상세 모바일](evidence/2026-09-27-resource-experience-public/new-detail-mobile.png)
 
-![기존 축제 상세 모바일](evidence/2026-09-27-resource-experience/existing-detail-mobile.png)
+![기존 축제 상세 모바일](evidence/2026-09-27-resource-experience-public/existing-detail-mobile.png)
 
-![새 축제 실제200% 확대](evidence/2026-09-27-resource-experience/new-zoom-200.png)
+![새 축제 실제200% 확대](evidence/2026-09-27-resource-experience-public/new-zoom-200.png)
 
-![기존 축제 실제200% 확대](evidence/2026-09-27-resource-experience/existing-zoom-200.png)
+![기존 축제 실제200% 확대](evidence/2026-09-27-resource-experience-public/existing-zoom-200.png)
 
 ## 제품 경험 직접 검수
 
 | 항목 | 결과 | 확인 근거·범위 |
 |---|---|---|
-| 목표·흐름 | 충족 · 로컬 | 두 흐름의 선택→군집/목록→상세와 기존 기록 선택 원칙 보존 |
-| 시각적 위계 | 충족 · 로컬 | 유형+건수, 16px 이름·14px 주소, 40/60 배치, 번호/개수, 선택 표식과 상세. 실제 강릉 PC/모바일 화면 직접 확인 |
+| 목표·흐름 | 충족 | 공개 두 흐름의 선택→군집/목록→상세와 기존 기록 선택 원칙 보존 |
+| 시각적 위계 | 충족 | 유형+건수, 16px 이름·14px 주소, 40/60 배치, 번호/개수, 선택 표식과 상세. 실제 강릉·제주 공개 PC/모바일 화면 직접 확인 |
 | 문구 경계 | 충족 | 내부 규칙 노출 없음. 불필요한 거리 조작 안내를 줄이고 실제 상태·출처 유지 |
 | 상태·복구 | 충족 · 로컬 | 24개 회귀에서 유형별 실패·재시도·결측·필터·주소 조건 보존 |
-| 키보드·반응형 | 충족 · 로컬 | 동일 좌표 실제 클릭, 650건 누락 없음, 패널 뒤 초점 차단·복귀, 320/390/1440px·CSS/실제 브라우저200% 확대·숨김/크기 변경 후 지도 중심 유지 |
+| 키보드·반응형 | 충족 | 공개 실제 자료로 패널 뒤 초점 차단·복귀, 320/390/1440px·실제 브라우저200% 확대 확인. 동일 좌표·650건·지도 중심 보존은 별도 로컬 통제 시험 |
 | 출처·고지 | 충족 | 관광자료 출처·직선거리·지도 귀속 유지, 장식 이미지에 실제 성과·장소를 암시하는 이름/수치 없음 |
 
 실무자 관찰, 전체 보조기술 인증, 전역 메뉴·차트·달력 개편은 이번 결과에 포함하지 않는다.
