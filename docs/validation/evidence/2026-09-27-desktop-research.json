@@ -599,5 +599,550 @@
     "Controlled fixtures are not evidence of provider availability.",
     "No practitioner observation or assistive-technology certification.",
     "Opus5.5 call refused by provider usage limit; native collaborators and root review used."
-  ]
+  ],
+  "production": {
+    "checkedAt": "2026-09-27T03:07:56.740564+00:00",
+    "sourceCommit": "48cc50ff7359950d71d8324e9a16a4f9b74572a2",
+    "pinCommit": "7994db4ca0c55e493019bbaecaaa8e02b3700f61",
+    "run": 36290156260,
+    "url": "https://github.com/gitvssh/fest-compass/actions/runs/36290156260",
+    "runnerLabel": "homelab-fest-compass",
+    "image": "registry.damecasol.com/fest-compass/web@sha256:e33197a4801ece680843dbfcbcc720e993d87c3d70961ba82f40f65f70cffa6f",
+    "deploymentUID": "0b216035-cb40-4afc-85d1-655f5089742e",
+    "pvcUID": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+    "sync": "Synced",
+    "health": "Healthy",
+    "phase": "Succeeded",
+    "revision": "7994db4ca0c55e493019bbaecaaa8e02b3700f61",
+    "healthHTTP": {
+      "livez": 200,
+      "readyz": 200
+    },
+    "businessBefore": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "businessAfter": {
+      "festival": {
+        "count": 1,
+        "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+      },
+      "evidenceSnapshot": {
+        "count": 6,
+        "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+      },
+      "assumption": {
+        "count": 4,
+        "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+      },
+      "capacityRule": {
+        "count": 1,
+        "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+      },
+      "scenario": {
+        "count": 3,
+        "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+      },
+      "decision": {
+        "count": 1,
+        "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+      },
+      "operationTrigger": {
+        "count": 1,
+        "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+      },
+      "fieldAction": {
+        "count": 1,
+        "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+      },
+      "outcome": {
+        "count": 2,
+        "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+      }
+    },
+    "actionsArtifacts": 0,
+    "actionsCaches": 0,
+    "dependencyVulnerabilities": 0
+  },
+  "publicOfficialSource": {
+    "checkedAt": "2026-09-27T03:07:29.646Z",
+    "base": "https://pickday.damecasol.com",
+    "headless": true,
+    "mockedResponses": 0,
+    "browserErrors": [],
+    "appWrites": [],
+    "samples": [
+      {
+        "flow": "new",
+        "code": "51150",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 478
+          },
+          {
+            "kind": "32",
+            "total": 178
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      },
+      {
+        "flow": "existing",
+        "code": "50110",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 426
+          },
+          {
+            "kind": "32",
+            "total": 89
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      }
+    ],
+    "checks": [
+      "two-optimized-decorative-images-and-purpose-links",
+      "home-320-390-640-1440-and-real-200-percent-zoom",
+      "new-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "new-official-source-full-list-identity-detail-mobile-real-zoom",
+      "existing-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "existing-official-source-full-list-identity-detail-mobile-real-zoom"
+    ],
+    "zoom": [
+      {
+        "label": "home",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "home reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      }
+    ],
+    "images": [
+      {
+        "alt": "",
+        "width": 648,
+        "src": "/_next/image",
+        "renderedWidth": 618
+      },
+      {
+        "alt": "",
+        "width": 648,
+        "src": "/_next/image",
+        "renderedWidth": 618
+      }
+    ],
+    "desktop": [
+      {
+        "width": 1366,
+        "header": 73,
+        "main": 1366,
+        "imageWidths": [
+          581,
+          581
+        ]
+      },
+      {
+        "width": 1440,
+        "header": 73,
+        "main": 1440,
+        "imageWidths": [
+          618,
+          618
+        ]
+      },
+      {
+        "width": 1920,
+        "header": 73,
+        "main": 1760,
+        "imageWidths": [
+          650,
+          650
+        ]
+      },
+      {
+        "flow": "new",
+        "width": 1440,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 32,
+            "y": 432,
+            "width": 384,
+            "height": 768,
+            "top": 432,
+            "right": 416,
+            "bottom": 1200,
+            "left": 32
+          },
+          {
+            "area": "map",
+            "x": 432,
+            "y": 432,
+            "width": 600,
+            "height": 762,
+            "top": 432,
+            "right": 1032,
+            "bottom": 1194,
+            "left": 432
+          },
+          {
+            "area": "detail",
+            "x": 1048,
+            "y": 432,
+            "width": 360,
+            "height": 768,
+            "top": 432,
+            "right": 1408,
+            "bottom": 1200,
+            "left": 1048
+          }
+        ]
+      },
+      {
+        "flow": "new",
+        "width": 1920,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 112,
+            "y": 432,
+            "width": 384,
+            "height": 768,
+            "top": 432,
+            "right": 496,
+            "bottom": 1200,
+            "left": 112
+          },
+          {
+            "area": "map",
+            "x": 512,
+            "y": 432,
+            "width": 920,
+            "height": 762,
+            "top": 432,
+            "right": 1432,
+            "bottom": 1194,
+            "left": 512
+          },
+          {
+            "area": "detail",
+            "x": 1448,
+            "y": 432,
+            "width": 360,
+            "height": 768,
+            "top": 432,
+            "right": 1808,
+            "bottom": 1200,
+            "left": 1448
+          }
+        ]
+      },
+      {
+        "flow": "existing",
+        "width": 1440,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 32,
+            "y": 436,
+            "width": 384,
+            "height": 768,
+            "top": 436,
+            "right": 416,
+            "bottom": 1204,
+            "left": 32
+          },
+          {
+            "area": "map",
+            "x": 432,
+            "y": 436,
+            "width": 600,
+            "height": 762,
+            "top": 436,
+            "right": 1032,
+            "bottom": 1198,
+            "left": 432
+          },
+          {
+            "area": "detail",
+            "x": 1048,
+            "y": 436,
+            "width": 360,
+            "height": 357,
+            "top": 436,
+            "right": 1408,
+            "bottom": 793,
+            "left": 1048
+          }
+        ]
+      },
+      {
+        "flow": "existing",
+        "width": 1920,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 112,
+            "y": 436,
+            "width": 384,
+            "height": 768,
+            "top": 436,
+            "right": 496,
+            "bottom": 1204,
+            "left": 112
+          },
+          {
+            "area": "map",
+            "x": 512,
+            "y": 436,
+            "width": 920,
+            "height": 762,
+            "top": 436,
+            "right": 1432,
+            "bottom": 1198,
+            "left": 512
+          },
+          {
+            "area": "detail",
+            "x": 1448,
+            "y": 436,
+            "width": 360,
+            "height": 742,
+            "top": 436,
+            "right": 1808,
+            "bottom": 1178,
+            "left": 1448
+          }
+        ]
+      },
+      {
+        "flow": "new",
+        "view": "visits",
+        "width": 1440,
+        "boxes": [
+          {
+            "x": 32,
+            "y": 418,
+            "width": 816,
+            "height": 636,
+            "top": 418,
+            "right": 848,
+            "bottom": 1054,
+            "left": 32
+          },
+          {
+            "x": 864,
+            "y": 418,
+            "width": 544,
+            "height": 428.875,
+            "top": 418,
+            "right": 1408,
+            "bottom": 846.875,
+            "left": 864
+          }
+        ]
+      },
+      {
+        "flow": "existing",
+        "view": "visits",
+        "width": 1440,
+        "boxes": [
+          {
+            "x": 32,
+            "y": 464,
+            "width": 680,
+            "height": 708.4375,
+            "top": 464,
+            "right": 712,
+            "bottom": 1172.4375,
+            "left": 32
+          },
+          {
+            "x": 728,
+            "y": 464,
+            "width": 680,
+            "height": 1400.140625,
+            "top": 464,
+            "right": 1408,
+            "bottom": 1864.140625,
+            "left": 728
+          }
+        ]
+      }
+    ],
+    "status": "passed"
+  },
+  "publicNavigation": {
+    "checkedAt": "2026-09-27T03:07:49.757Z",
+    "base": "https://pickday.damecasol.com",
+    "mode": "public-readonly",
+    "headless": true,
+    "mockedResponses": 0,
+    "checks": [
+      "1366-1440-1920-single-row-header-four-primary-links-and-larger-distinct-purpose-art",
+      "planning-menu-keyboard-escape-focus-outside-click-and-focus-close",
+      "all-planning-tools-retain-real-destinations-current-location-and-close-on-route-change",
+      "public-readonly-editor-link-boundary",
+      "pc-planning-frame-width",
+      "reference-research-and-examples-remain-reachable-behind-summary",
+      "privacy-remains-reachable-in-footer",
+      "320-390-reflow-and-nested-menu-escape-focus-route-close",
+      "real-200-percent-page-zoom-reflows-menu-and-keeps-purpose-actions-usable"
+    ],
+    "layouts": [
+      {
+        "width": 1366,
+        "headerHeight": 73,
+        "imageSizes": [
+          {
+            "width": 581,
+            "height": 300
+          },
+          {
+            "width": 581,
+            "height": 300
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "headerHeight": 73,
+        "imageSizes": [
+          {
+            "width": 618,
+            "height": 300
+          },
+          {
+            "width": 618,
+            "height": 300
+          }
+        ]
+      },
+      {
+        "width": 1920,
+        "headerHeight": 73,
+        "imageSizes": [
+          {
+            "width": 650,
+            "height": 300
+          },
+          {
+            "width": 650,
+            "height": 300
+          }
+        ]
+      }
+    ],
+    "zoom": [
+      {
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      }
+    ],
+    "browserErrors": [],
+    "appWrites": [],
+    "status": "passed"
+  },
+  "rootVisualReview": {
+    "reviewed": true,
+    "scope": [
+      "home purpose differentiation and hierarchy",
+      "resource three columns and48px shorter condition toolbar",
+      "monthly/weekday comparison",
+      "monthly/daily and detail table grouping"
+    ],
+    "practitionerStudy": false
+  }
 }

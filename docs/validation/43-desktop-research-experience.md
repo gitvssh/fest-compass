@@ -8,7 +8,7 @@ summary: "PC에서 관광자료를 조사·비교·기획하는 메뉴·첫 화�
 
 # PC 중심 조사·기획 화면
 
-상태: **구현·로컬 검증 완료·공개 배포 대기.** [설계21](../design/21-desktop-research-experience.md)과
+상태: **사용 가능. 공개 배포·실제 자료·PC·실제200% 확대 검수 완료.** [설계21](../design/21-desktop-research-experience.md)과
 [TS-FC-018](../sdlc/3-testing/scenarios/TS-FC-018.md)에 따른 변경이다.
 
 ## 사용자에게 달라지는 점
@@ -49,7 +49,51 @@ Node24.20.0에서 단위·스크립트 시험381건(26+325+30), 타입 검사와
 통제 응답 회귀와 실제 자료 검수, 로컬과 공개 결과는 구분해 남긴다.
 [실행 근거 JSON](evidence/2026-09-27-desktop-research.json)에 검사 범위·실제 표시 폭·자료 건수·확대 배율을 보존한다.
 
-## 공개 배포·자료 전달
+## 제품 경험 판정
 
-최종 검증 후 기존 등록 앱의 배포 절차와 공개 검수, D 드라이브 사본 검수를 이어서 수행한다.
-현재 이 문서의 구현 완료를 공개 배포 완료로 해석하지 않는다.
+| 항목 | 결과 | 확인 범위 |
+|---|---|---|
+| 목표·흐름 | 충족 | 두 목적 진입과 모든 기획 도구 경로, 조회 조건·선택·일정 연결 보존 |
+| 시각적 위계 | 충족 | 홈1440/1920px, 자원1440/1920px, 두 방문 화면 직접 확인. 유형 도구막대를48px 압축하고 일별 표를 그래프 옆이 아닌 해당 그래프 아래에 배치 |
+| 문구 경계 | 충족 | 내부 검수 규칙을 제품에 노출하지 않음. 저장 안내는 기록 도구 맥락, 실제 자료의 단위·출처·결측은 보존 |
+| 상태·복구 | 충족 · 로컬 | 유형별·상세·지도 실패와 재시도, 숨긴 유형의 선택 상세 보존 회귀 |
+| 키보드·반응형 | 충족 | 메뉴·군집·상세 초점, 긴 이름·650건,320/390px·실제200% 탭 확대, 기획안·결과 인쇄 회귀 |
+| 출처·고지 | 충족 | 개인정보 푸터 접근, 지도 귀속·직선거리·지역 방문 추정의 의미 유지 |
+
+실무자 관찰·전체 보조기술 인증은 미평가다. 이번 개선은 전역 탐색·홈·관광자원·방문 분석과 공통 폭에 적용하며
+기존 모든 기획·운영 화면을 새로 설계했다는 뜻은 아니다.
+
+## 공개 배포와 실제 자료
+
+소스 `48cc50f`의 [ARC 작업36290156260](https://github.com/gitvssh/fest-compass/actions/runs/36290156260)이 성공했다.
+전용 `homelab-fest-compass`에서 단위381·타입·전체 배포 빌드·인프라41을 확인했고 의존성 취약점·Actions artifact/cache는0이다.
+확인된 이미지 `sha256:e33197a4801ece680843dbfcbcc720e993d87c3d70961ba82f40f65f70cffa6f`를
+`7994db4`에 고정하고 정상 sync 후 Synced·Healthy·Succeeded, 컨테이너3/3과 livez/readyz200을 확인했다.
+Deployment·PVC 식별자가 같고 업무9개 테이블20행의 개수·내용 해시가 배포 전후 일치한다. 이전 운영 이미지는 복구본으로 보존했다.
+
+[공개 서비스](https://pickday.damecasol.com)에서 응답 대체 없이 강릉478/178·제주426/89건을 조회해
+전체 목록 ID·군집 선택·상세·키보드 복귀·3열 배치를 확인했다. 두 지역의2025년 방문 자료도 월/요일·월/일별로 나란히 표시됐다.
+별도 공개 메뉴 검사로4개 주 메뉴·6개 도구·참고 자료·개인정보 경로와1366/1440/1920px를 확인했다.
+320/390px와 실제 탭 확대2.0을 검사했고 두 공개 검사 모두 페이지 오류·앱 API 쓰기는0이다.
+아래는 최종 공개 서비스 캡처다. 원본 문서·이미지·생성 프롬프트는 프로젝트에 유지하며 D 드라이브 확인용 사본은
+[자료 전달 기록](../ops/review-delivery.md)에 별도로 남긴다.
+
+## 실제 화면
+
+![1440px 첫 화면·서로 다른 두 목적 이미지](evidence/2026-09-27-desktop-research-public/home-desktop.png)
+
+![1920px PC 첫 화면](evidence/2026-09-27-desktop-research-public/home-wide.png)
+
+![필요할 때 여는 기획 도구](evidence/2026-09-27-desktop-research-public/planning-tools-open.png)
+
+![1440px 강릉 목록·지도·상세](evidence/2026-09-27-desktop-research-public/new-detail-desktop-1440.png)
+
+![1920px 강릉 목록·지도·상세](evidence/2026-09-27-desktop-research-public/new-detail-desktop-1920.png)
+
+![1440px 제주 기존 축제 목록·지도·상세](evidence/2026-09-27-desktop-research-public/existing-detail-desktop-1440.png)
+
+![강릉 월별·요일별 방문 분석](evidence/2026-09-27-desktop-research-public/new-visits-desktop.png)
+
+![제주 월별·일별 방문 분석과 수치 표](evidence/2026-09-27-desktop-research-public/existing-visits-desktop.png)
+
+![관광자원 실제200% 확대](evidence/2026-09-27-desktop-research-public/new-zoom-200.png)
