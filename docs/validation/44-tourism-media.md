@@ -8,7 +8,7 @@ summary: "관광지도와 두 축제 흐름의 실제 장소 사진·이용정�
 
 # 관광지도·자원 사진과 이용정보
 
-상태: 구현·로컬 검증 완료, 공개 반영 전이다. [설계22](../design/22-tourism-media.md)와
+상태: **사용 가능 — 공개 반영·실제 공공데이터·PC·200% 확대 검증 완료.** [설계22](../design/22-tourism-media.md)와
 [인수 기준 TS-FC-019](../sdlc/3-testing/scenarios/TS-FC-019.md)에 따른 변경이다.
 
 ## 사용자에게 달라지는 점
@@ -47,7 +47,60 @@ Opus5.5 검토 호출은 사용 한도로 실행되지 않았다. 협업 에이�
   첫 화면 이미지는 즉시 로딩하고, 화면 크기 검사는 한 번 연 화면을 변경하며 각 폭의 실제 이미지 완료·경로·크기를
   계속 확인한다. 프레임워크의 모든 요청 취소 경우를 해결했다는 뜻은 아니다. 검사 중 공유 빌드와 겹친 실행은
   근거로 사용하지 않고 독립 전체 실행으로 대체했다.
-- 공개 배포·실제 공개 자료·D 사본 결과는 반영 뒤 이어 기록한다.
+- 배포와 실제 공개 자료는 아래 결과를 따르며, D 사본 검증은 [전달 기록](../ops/review-delivery.md)에 남긴다.
+
+## 제품 경험 판정
+
+devkit 제품 경험 기준과 기존 PC 설계21을 적용했다. 주 담당자가 실제 자료 화면과 통제된 상태 화면을 직접 검수했다.
+
+| 항목 | 결과 | 확인 범위 |
+|---|---|---|
+| 목표·흐름 | 충족 | 공개3흐름의 사진·이용정보와 통제된 두 후보 비교. 작성 없이 조회, 기존 기준점·조건·열기·제거 동작 유지 |
+| 시각적 위계 | 충족 | 공개 실제 화면의 작은 사진+이름 행과 목록·지도·상세3열 유지. 큰 사진은 선택 상세·후보 비교에 배치 |
+| 문구 경계 | 충족 | 자료 없는 사진·소개 영역 생략. 내부 허용 규칙·모델·개발 절차를 제품에 노출하지 않음 |
+| 상태·복구 | 충족 · 통제 시험 | 사진404·부분 실패·전체 재조회 실패·이전 장소의 늦은 응답·재시도. 기존 확인 자료와 각 수집시각 유지 |
+| 키보드·반응형 | 충족 | 통제된 목록·상세 초점 복귀와 공개 이전/다음 사진,390/1440/1920px·실제200% 탭 확대·가로 넘침 없음 |
+| 출처·고지 | 충족 | 사진별 공공누리1/3·출처·원본 링크. 전체 사진 비율을 유지하고 최신 상세의 이용조건 우선 |
 
 실무자 관찰, 사진 저작자와의 별도 확인, 모든 보조기술 인증과 Windows 브라우저 직접 실행은 미평가다.
 포토코리아의 지역 경관 검색과 AI 생성 사진·요약은 이번 구현에 포함하지 않는다.
+
+## 공개 배포·실제 자료 확인
+
+소스 `2bf1f8ac5b78939211ed9b549d66dd4c0af70d05`의 [발행 작업36294562405](https://github.com/gitvssh/fest-compass/actions/runs/36294562405)이
+전용 `homelab-fest-compass`에서 attempt1로 성공했다. 단위397·타입·전체 배포 빌드·인프라41과 원격 이미지 검증을 수행했다.
+검증한 이미지 `sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875`를
+`476ad7ac59d6c4c4f686468dbe8bdade9cc62687`에 고정해 정상 sync했다. 앱은 Synced·Healthy·Succeeded,
+컨테이너3/3 준비, 내부 `/health/livez`·`/health/readyz`는200이다. Actions artifact/cache와 이미지 수동 삭제는0이다.
+
+Deployment·PVC 식별자가 같고 업무9개 테이블20행의 건수·내용 해시가 배포 전후 일치한다
+([전](evidence/2026-09-27-tourism-media-before.json), [후](evidence/2026-09-27-tourism-media-after.json)).
+[실행 근거](evidence/2026-09-27-tourism-media.json)에 소스·배포·검증 대상과 결과를 모았다.
+
+[공개 실제 자료 검사](evidence/2026-09-27-tourism-media-public/report.json)는 응답 대체 없이
+강릉커피축제의 주변 관광자원·새 축제 강릉 지역·관광지도에서 순포습지2775508을 확인했다.
+목록148건, 대표사진을 포함한8장 모두 실제 로딩, 이용시간 ‘상시 개방’·휴무 ‘연중무휴’·주차 ‘가능’을 확인했다.
+각 흐름의390/1440/1920px·실제 탭 확대2.0(innerWidth720, CSS zoom1), 사진 넘기기·선택 유지가 통과했다.
+브라우저 오류·앱 API 쓰기·대체 응답은 모두0이다. 표본1곳의 공개 화면 검수이며 전국 시설의 제공량·현재 영업을 보장하지 않는다.
+
+## 실제 공개 화면
+
+![기존 축제의 사진 목록·지도·선택 상세](evidence/2026-09-27-tourism-media-public/existing-sunpo-wetland-1440.png)
+
+![새 축제 PC1920px의 사진·지도·상세3열](evidence/2026-09-27-tourism-media-public/new-sunpo-wetland-1920.png)
+
+![선택 상세 아래에 연결된 실제 이용정보](evidence/2026-09-27-tourism-media-public/existing-sunpo-wetland-info-1920.png)
+
+![관광지도의 목록 사진과 선택 자원 상세](evidence/2026-09-27-tourism-media-public/regions-sunpo-wetland-1440.png)
+
+[관광지도 긴 화면 원본 열기](evidence/2026-09-27-tourism-media-public/regions-sunpo-wetland-1440.png)
+
+![실제200% 확대에서도 원본 비율·출처·사진 넘기기 유지](evidence/2026-09-27-tourism-media-public/new-sunpo-wetland-real-zoom-200.png)
+
+## 통제된 상태 확인 화면
+
+아래는 검증용 가상 자료다. 실제 관광지 사진이나 운영 조건의 근거로 사용하지 않는다.
+
+![가상 자료로 확인한 두 후보의 사진·서로 다른 이용정보](evidence/2026-09-27-tourism-media-controlled/new-two-candidates-1440.png)
+
+![가상 자료로 확인한 조회 실패 뒤 사진·정보 유지](evidence/2026-09-27-tourism-media-controlled/new-retained-media-unavailable.png)

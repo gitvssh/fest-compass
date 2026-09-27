@@ -21,7 +21,7 @@ Windows 검토 폴더에 복사한다. 2026-09-23 제품 이름을 `pickDday`로
 
 - 시작: `D:\download\project\pickDday\index.html`
 - 각 묶음: `index.html`에서 기존 축제/새 축제 화면, 모바일 구성, 읽기용 설계 문서로 이동한다.
-  최신 PC 조사·기획 화면 검수(`docs/validation/43-desktop-research-experience.md`)와 PC 설계·이미지 원본(`docs/design/21-desktop-research-experience.md`)을 먼저 두고,
+  최신 관광지도·자원 사진/이용정보 검수(`docs/validation/44-tourism-media.md`)와 설계(`docs/design/22-tourism-media.md`)를 먼저 두고,
   새 축제·기존 축제 실제 화면과 개발 전 와이어프레임으로 이어진다.
 - `sources/`에는 원본과 동일한 Markdown·Excalidraw·SVG를 둔다.
 - `manifest.json`은 원본 경로·커밋·복사 시각·파일 해시를 남긴다. `source_root`는 정본 위치

@@ -1,0 +1,159 @@
+{
+  "checkedAt": "2026-09-27T04:42:20.572097+00:00",
+  "sourceRevision": "2bf1f8ac5b78939211ed9b549d66dd4c0af70d05",
+  "deploymentRevision": "476ad7ac59d6c4c4f686468dbe8bdade9cc62687",
+  "imageDigest": "sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875",
+  "release": {
+    "runId": 36294562405,
+    "attempt": 1,
+    "runnerLabel": "homelab-fest-compass",
+    "status": "success",
+    "artifacts": 0,
+    "actionsCache": 0
+  },
+  "local": {
+    "node": "24.20.0",
+    "unitTests": 397,
+    "unitGroups": [
+      42,
+      325,
+      30
+    ],
+    "typecheck": "passed",
+    "build": "passed",
+    "browserExecutions": 27,
+    "resourceChecks": 49,
+    "mediaChecks": 23,
+    "infraTests": 41,
+    "prodResources": 17,
+    "status": "passed"
+  },
+  "production": {
+    "base": "https://pickday.damecasol.com",
+    "status": "passed",
+    "flows": 3,
+    "photoCount": 8,
+    "checks": [
+      "actual-Gangneung-record-identity-licensed-gallery-hours-and-parking",
+      "existing: real-list-image-detail-gallery-facts-and-390-1440-1920-reflow",
+      "existing: real-200-percent-tab-zoom-photo-facts-navigation-no-overflow",
+      "new: real-list-image-detail-gallery-facts-and-390-1440-1920-reflow",
+      "new: real-200-percent-tab-zoom-photo-facts-navigation-no-overflow",
+      "regions: real-list-image-detail-gallery-facts-and-390-1440-1920-reflow",
+      "regions: real-200-percent-tab-zoom-photo-facts-navigation-no-overflow"
+    ],
+    "layouts": [
+      {
+        "flow": "existing",
+        "width": 390,
+        "viewport": 390,
+        "scroll": 390
+      },
+      {
+        "flow": "existing",
+        "width": 1440,
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      {
+        "flow": "existing",
+        "width": 1920,
+        "viewport": 1920,
+        "scroll": 1920
+      },
+      {
+        "flow": "new",
+        "width": 390,
+        "viewport": 390,
+        "scroll": 390
+      },
+      {
+        "flow": "new",
+        "width": 1440,
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      {
+        "flow": "new",
+        "width": 1920,
+        "viewport": 1920,
+        "scroll": 1920
+      },
+      {
+        "flow": "regions",
+        "width": 390,
+        "viewport": 390,
+        "scroll": 390
+      },
+      {
+        "flow": "regions",
+        "width": 1440,
+        "viewport": 1440,
+        "scroll": 1440
+      },
+      {
+        "flow": "regions",
+        "width": 1920,
+        "viewport": 1920,
+        "scroll": 1920
+      }
+    ],
+    "zoom": [
+      {
+        "flow": "existing",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1",
+        "scrollWidth": 720
+      },
+      {
+        "flow": "new",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1",
+        "scrollWidth": 720
+      },
+      {
+        "flow": "regions",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1",
+        "scrollWidth": 720
+      }
+    ],
+    "browserErrors": [],
+    "appWrites": [],
+    "mockedResponses": 0,
+    "healthy": "Healthy",
+    "synced": "Synced",
+    "operation": "Succeeded",
+    "readyContainers": 3,
+    "internalHealth": {
+      "/health/livez": 200,
+      "/health/readyz": 200
+    },
+    "businessTables": 9,
+    "businessRows": 20,
+    "businessAndStoragePreserved": true
+  },
+  "review": {
+    "independentCodeReview": "3 findings corrected and reviewed; no remaining material findings",
+    "rootVisualReview": [
+      "existing1440",
+      "new1920",
+      "regions1440",
+      "practical-information",
+      "real200%-zoom",
+      "controlled-two-candidates"
+    ],
+    "limitations": [
+      "One live place across three flows; four tourism types sampled through official API",
+      "No nationwide photo-coverage claim or live business/booking availability claim",
+      "Actual staff observation, full assistive-technology audit and native Windows browser execution not evaluated"
+    ],
+    "delegation": "Opus5.5 unavailable due provider usage limit; native collaborating agents with direct root review"
+  }
+}
