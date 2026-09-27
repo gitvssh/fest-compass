@@ -1270,5 +1270,88 @@
       "path": "docs/validation/evidence/2026-09-27-resource-experience-public/new-zoom-200.png",
       "sha256": "d4dc6304360108188a281b8ab51239aea55a73d01a0460d01de24052003da0d8"
     }
-  ]
+  ],
+  "reviewDelivery": {
+    "integrity": {
+      "checkedAt": "2026-09-27T02:17:27.316364+00:00",
+      "bundle": "/mnt/d/download/project/pickDday/2026-09-27-resource-experience-public",
+      "status": "passed",
+      "mount": {
+        "source": "D:\\",
+        "fstype": "9p",
+        "target": "/mnt/d"
+      },
+      "sourceRevision": "21e70b3911948254592c0a5b726279da56f1f43c",
+      "sourceDirty": false,
+      "sourceFiles": 107,
+      "htmlPages": 39,
+      "linksOutsideProject": 0,
+      "startPageHashVerified": true,
+      "mermaidHashVerified": true,
+      "sourceAndCopyAndCommitHashesVerified": true,
+      "bundleLocalReferences": 556,
+      "landingLocalReferences": 1,
+      "anchors": 60,
+      "externalReferences": 287
+    },
+    "browser": {
+      "checkedAt": "2026-09-27T02:17:54.177Z",
+      "bundle": "/mnt/d/download/project/pickDday/2026-09-27-resource-experience-public",
+      "sourceRevision": "21e70b3911948254592c0a5b726279da56f1f43c",
+      "headless": true,
+      "windowsBrowserDirectlyTested": false,
+      "status": "passed",
+      "browserErrors": [],
+      "consoleErrors": [],
+      "failedRequests": [],
+      "externalRequests": [],
+      "screenshots": [
+        "latest-report-desktop.png",
+        "design-desktop.png",
+        "bundle-desktop.png",
+        "landing-desktop.png",
+        "latest-report-mobile.png",
+        "design-mobile.png",
+        "bundle-mobile.png",
+        "landing-mobile.png"
+      ],
+      "navigation": [
+        {
+          "width": 1280,
+          "start": "file:///mnt/d/download/project/pickDday/index.html",
+          "bundle": "file:///mnt/d/download/project/pickDday/2026-09-27-resource-experience-public/index.html",
+          "latestReport": "file:///mnt/d/download/project/pickDday/2026-09-27-resource-experience-public/doc-01.html",
+          "status": "passed"
+        },
+        {
+          "width": 390,
+          "start": "file:///mnt/d/download/project/pickDday/index.html",
+          "bundle": "file:///mnt/d/download/project/pickDday/2026-09-27-resource-experience-public/index.html",
+          "latestReport": "file:///mnt/d/download/project/pickDday/2026-09-27-resource-experience-public/doc-01.html",
+          "status": "passed"
+        }
+      ]
+    },
+    "viewports": [
+      {
+        "width": 1280,
+        "htmlPages": 39,
+        "images": 93,
+        "mermaid": 17,
+        "mobileDetailsOpened": 12
+      },
+      {
+        "width": 390,
+        "htmlPages": 39,
+        "images": 93,
+        "mermaid": 17,
+        "mobileDetailsOpened": 12
+      }
+    ],
+    "previousReviewHashesPreserved": {
+      "/mnt/d/download/project/fest-compass/index.html": "8a5faca033131eb422c08da160e8cf366a4f8dbd1079fddb589763c531717bd3",
+      "/mnt/d/download/project/pickDday/2026-09-27-resource-experience-reviewed/manifest.json": "f7b89b11fc4a025cdfba3301cd52acb1bc5b423477e3205a648dd0945f44fde3"
+    },
+    "directVisualReview": "root reviewed public home, both resource flows, mobile, zoom, D landing/bundle desktop and report mobile"
+  }
 }

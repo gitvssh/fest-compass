@@ -2,7 +2,7 @@
 class: Current
 owner: pickDday
 last_verified: 2026-09-27
-version: v10
+version: v11
 summary: "사람이 확인할 시안·화면설계는 Windows D:\\download\\project\\pickDday 검토 폴더에 사본으로 전달하고 프로젝트 원본과 이전 fest-compass 검토 폴더는 유지합니다."
 ---
 
@@ -225,7 +225,7 @@ Windows 브라우저 직접 실행·최종 시각 디자인·실무자 관찰은
 
 ## 관광자원 시각화·목적 이미지 전달 · 2026-09-27
 
-현재 `D:\download\project\pickDday\index.html`은 `2026-09-27-resource-experience-reviewed`를 연다.
+당시 `D:\download\project\pickDday\index.html`은 `2026-09-27-resource-experience-reviewed`를 열었다.
 원본 커밋 `24755229ea9a90a38d35736649f73705bc0a90ca`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
 첫 카드에 [개선 화면·검수42](../validation/42-resource-experience.md)와 [시각 설계·이미지 원본20](../design/20-resource-experience.md)을 둔다.
 두 목적 이미지 원본·프롬프트와 로컬 실제 자료 화면10장을 담았다. 공개 배포가 대기 중임을 결과 문서 첫머리에 표시한다.
@@ -236,3 +236,21 @@ headless Chromium에서 HTML39개·Mermaid17개·이미지93개 표시와 1280/3
 페이지 오류·깨진 이미지0, 시작 파일→최신 묶음 이동도 확인했다. 주 담당자가 개선 화면과 D 사본 시작/모바일 문서를 직접 검수했다.
 옛 `fest-compass/index.html`의 해시는 전달 전후 일치하며 이전 묶음과 프로젝트 원본을 보존했다.
 Windows 브라우저 직접 실행과 새 버전 공개 사이트 검수는 미평가다. 배포 재개 절차는 [용량 점검 기록](resource-experience-release.md)을 따른다.
+
+## 관광자원 공개 배포 완료본 전달 · 2026-09-27
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-09-27-resource-experience-public`을 연다.
+원본 커밋 `21e70b3911948254592c0a5b726279da56f1f43c`에서 내보냈으며 선택 자료에 미커밋 변경은 없다.
+첫 카드의 [개선 화면·검수42](../validation/42-resource-experience.md)에 공개 배포 완료 상태와 실제 공개 화면10장을 담았다.
+이전 로컬 검수 묶음은 그대로 유지하며 목적 이미지 원본·프롬프트·프로젝트 문서도 보존한다.
+
+실제 D 드라이브 9p 마운트에 원본 사본107개·시안11페이지·문서27페이지·시작 페이지를 전달했다.
+원본·사본·기록된 커밋의 SHA-256 107개가 일치한다. HTML39개·로컬 링크/이미지/앵커556개 정상,
+저장소 밖 상대 링크0개이며 시작 파일이 이 묶음으로 연결됨을 확인했다.
+headless Chromium에서 1280/390px 각각 HTML39개·Mermaid17개·이미지93개를 확인했다.
+페이지/콘솔 오류·리소스 실패·깨진 이미지·가로 넘침은0이다. 주 담당자가 공개 화면과 D 시작/목록/모바일 문서를 직접 검수했다.
+
+옛 `fest-compass/index.html`과 이전 `2026-09-27-resource-experience-reviewed/manifest.json`의 해시는 전달 전후 일치한다.
+Windows 브라우저 직접 실행·실무자 관찰·전체 보조기술 인증은 미평가다.
+공개 배포와 업무자료 보존은 [배포 기록](resource-experience-release.md), 상세 수치는
+[실행 근거](../validation/evidence/2026-09-27-resource-experience.json)의 `reviewDelivery`를 따른다.

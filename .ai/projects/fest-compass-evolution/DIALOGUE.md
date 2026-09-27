@@ -1058,3 +1058,25 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - 이전 이미지3개 즉시 정리 또는03:30 예약 정리 후 최신 main 배포 재개 결정이 필요하다.
 - Handoff: Codex
+
+## T-048 · Codex · 배포·공개 검수
+
+- Position: 관광자원 화면 개선을 공개 배포하고 실제 자료·모바일·200% 확대와 업무자료 보존을 확인했다. D 드라이브의 최신 화면·설계 사본도 갱신·검수했다.
+- Evidence:
+  - docs/validation/42-resource-experience.md
+  - docs/validation/evidence/2026-09-27-resource-experience.json
+  - docs/ops/resource-experience-release.md
+  - docs/ops/review-delivery.md
+- Changes:
+  - 승인된 세 이미지가 예약 정리5177에서 이미 제거된 것을 확인하여 추가 수동 삭제 없이 배포 재개. 실제 운영에 맞게 기존 보호 표식 복구 후 정상 발행.
+  - 11c9513 소스의 검증 이미지3eb37842를 dadf3a7에서 고정·정상 sync. 배포·시나리오·설계 문서의 대기 상태를 사용 가능으로 갱신.
+  - 공개 캡처11개와 실행 근거 보존. D 사본은 21e70b3 기준 107개 원본·공개 화면10장을 전달하고 이전 묶음 유지.
+- Validation:
+  - ARC36287323772 성공: 전용 homelab-fest-compass, 단위379·타입·빌드·취약점0·인프라41, artifact/cache0. release 선언17개 검증 통과.
+  - Synced Healthy Succeeded·3/3 준비·livez/readyz200. Deployment/PVC UID 보존, 업무9테이블20행 개수·내용 해시 전후 동일.
+  - 공개 응답변조0: 강릉478/178·제주426/89 전수 ID 대조·군집 선택·상세·키보드 복귀·320/390/1440px·실제 Chrome 탭2.0. 오류0·앱쓰기0. 첫 화면 정상 쿠키 거부 후 촬영하도록 검증 스크립트 보완.
+  - D 원본/사본/커밋107해시·HTML39·로컬참조556·Mermaid17·이미지93,1280/390px 오류/깨짐/넘침0. 이전 사본/옛 시작파일 해시 보존, 주 담당 직접 시각 검수.
+  - 문서 trace 누락0. 정형 API/Spec/Run/YouTrack 연결과 Windows 브라우저 직접 실행·전체 보조기술 인증·실무자 관찰은 미평가.
+- Questions:
+  - No open question
+- Handoff: Codex
