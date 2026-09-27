@@ -32,7 +32,7 @@ export function MonthDaily({ month, daily, calendarHref, onCalendar }: { month: 
       <Link className="region-button" href={calendarHref} onClick={onCalendar}>{title} 일정 보기</Link>
     </div>
     <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="block w-full min-w-[300px] max-w-2xl" role="img"
+      <svg viewBox={`0 0 ${W} ${H}`} className="block w-full min-w-[300px] max-w-4xl" role="img"
         aria-label={`${title} 일별 외지인 방문 꺾은선그래프. ${missing ? "값이 없는 날은 선을 끊었어요. " : ""}날짜별 값은 아래 수치 표에서 볼 수 있어요.`}>
         {[0, 0.5, 1].map(r => <g key={r}><line x1={L} x2={W - R} y1={y(max * r)} y2={y(max * r)} stroke="#d5dce3" /><text x={L - 4} y={y(max * r) + 4} fontSize={10} textAnchor="end" fill="#4b5b6d">{compact.format(max * r)}</text></g>)}
         {segments.map((d, i) => <path key={i} d={d} fill="none" stroke="#071a33" strokeWidth={2} />)}

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useId, useMemo, useRef, useState, type RefObject } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import { monthlyKey, parseMonthly } from "@/lib/existing/request";
 import type { CurrentFestival, DailyValue, MonthlyResponse, RegionRef } from "@/lib/existing/types";
 import { rememberView, writeAddress } from "./address";
@@ -9,7 +9,7 @@ import { niceMax } from "./EditionChart";
 import { FestivalPending, useFestival } from "./ExistingShell";
 import { dayWithWeekday, koreaToday, monthRange, monthTitle, periodLabel, rawNumber, shortDate, validDay, validMonth, weekdayOf, WEEKDAY_SHORT } from "./format";
 import { festivalMemory, viewHref } from "./memory";
-import { ObservedMonths } from "./ObservedMonths";
+import { MonthDetail, ObservedMonths } from "./ObservedMonths";
 import { one } from "./route-params";
 import { useKeyedRequest } from "./useKeyedRequest";
 
@@ -113,18 +113,21 @@ function DistrictVisits({ region }: { region: RegionRef }) {
     router.push(`${path}?${next}`);
   }
   const noData = !!data && data.years.length === 0;
+  const selectedMonth = data?.months.find(item => item.month === month);
 
   return <>
     {registered.length > 0 && <RegisteredDates items={registered} selected={month} available={hasMonth} onShow={showMonth} />}
     {noData ? <div className="region-card space-y-2">
       <p className="font-bold">{region.districtName}의 외지인 방문 자료가 아직 없어요.</p>
       <p className="text-sm text-muted">주변 관광자원과 개최 시기는 지금 살펴볼 수 있어요.</p>
-    </div> : <>
+    </div> : <div data-visit-analysis="monthly-daily" className={`grid min-w-0 items-start gap-4 ${data && month && data.months.length > 0 ? "xl:grid-cols-2" : ""}`}>
       <ObservedMonths region={region} result={monthly} year={applied.year ?? (data?.year ?? null)} onYear={year => apply({ year, month: null })}
         selectedMonth={month} onSelectMonth={m => apply({ year: shownYear, month: m })} onOpenCalendar={openCalendar}
-        tableOpen={tableOpen} onTable={open => { setTableOpen(open); memory.open["current-monthly-table"] = open; }} />
-      {data && month && data.months.length > 0 && <DailyLine region={region} month={month} daily={data.daily.filter(d => d.date.startsWith(month))} heading={dailyHeading} />}
-    </>}
+        showDailyDetails={false} tableOpen={tableOpen} onTable={open => { setTableOpen(open); memory.open["current-monthly-table"] = open; }} />
+      {data && month && data.months.length > 0 && <DailyLine region={region} month={month} daily={data.daily.filter(d => d.date.startsWith(month))} heading={dailyHeading}>
+        {selectedMonth && <MonthDetail month={selectedMonth} daily={data.daily.filter(d => d.date.startsWith(month))} onOpenCalendar={openCalendar} />}
+      </DailyLine>}
+    </div>}
     <div className="flex flex-wrap gap-2">
       <Link className="region-button" href={viewHref(festival.id, "resources")}>주변 관광자원 보기</Link>
       <Link className="region-button" href={viewHref(festival.id, "timing")}>개최 시기 보기</Link>
@@ -154,7 +157,7 @@ const H = 214, L = 44, R = 8, T = 24, B = 42, PLOT_H = H - T - B, DAY_W = 16;
 const compact = new Intl.NumberFormat("ko-KR", { notation: "compact", maximumFractionDigits: 1 });
 
 /** Every day of the chosen month on its own slot; missing days break the line and are never drawn as zero. */
-function DailyLine({ region, month, daily, heading }: { region: RegionRef; month: string; daily: DailyValue[]; heading: RefObject<HTMLHeadingElement | null> }) {
+function DailyLine({ region, month, daily, heading, children }: { region: RegionRef; month: string; daily: DailyValue[]; heading: RefObject<HTMLHeadingElement | null>; children?: ReactNode }) {
   const id = useId(), { end } = monthRange(month), days = Number(end.slice(8, 10));
   const byDate = new Map(daily.map(d => [d.date, d.value]));
   const points = Array.from({ length: days }, (_, i) => { const date = `${month}-${String(i + 1).padStart(2, "0")}`; return { date, weekday: weekdayOf(date), value: byDate.get(date) ?? null }; });
@@ -182,7 +185,7 @@ function DailyLine({ region, month, daily, heading }: { region: RegionRef; month
     </div>
     {values.length === 0 ? <p className="text-sm">이 달의 방문 자료가 없어요.</p> : <figure className="min-w-0">
       <div role="region" aria-label={`${monthTitle(month)} 일별 그래프`} tabIndex={0} className="overflow-x-auto rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue/40">
-        <svg viewBox={`0 0 ${W} ${H}`} style={{ minWidth: W }} className="block w-full max-w-3xl" role="img" aria-labelledby={`${id}-t`} aria-describedby={`${id}-d`}>
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ minWidth: W }} className="block w-full max-w-4xl" role="img" aria-labelledby={`${id}-t`} aria-describedby={`${id}-d`}>
           <title id={`${id}-t`}>{`${title} 선그래프`}</title>
           <desc id={`${id}-d`}>{desc}</desc>
           {[0, 0.5, 1].map(r => <g key={r}>
@@ -199,5 +202,6 @@ function DailyLine({ region, month, daily, heading }: { region: RegionRef; month
         {missing && <p>선이 끊긴 날: 값 없음</p>}
       </figcaption>
     </figure>}
+    {children}
   </section>;
 }

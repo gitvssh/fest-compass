@@ -23,6 +23,8 @@ PROJECT_ID = 'fest-compass'
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
 MARKER = '<!-- pickDday-review-index -->'
 DOCS = {
+    'docs/validation/43-desktop-research-experience.md': 'PC 조사·기획 화면과 목적 이미지 개선·실제 검수',
+    'docs/design/21-desktop-research-experience.md': 'PC 메뉴·자료 작업 배치와 목적 이미지 설계',
     'docs/validation/42-resource-experience.md': '관광자원 지도·화면 개선과 목적 이미지 검수',
     'docs/design/20-resource-experience.md': '유형·목록·군집 지도·상세 시각 설계와 이미지 원본',
     'docs/validation/41-tourism-resources.md': '음식점·숙박·공통 소개 실제 화면과 검증',

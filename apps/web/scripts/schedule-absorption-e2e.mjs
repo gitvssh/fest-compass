@@ -127,12 +127,16 @@ try {
   assert.equal(filteredCsv.raw.split("\r\n").filter(l => l.startsWith('"행사"')).length, 1);
   assert.ok(filteredCsv.raw.includes("이름: 딸기")); assert.match(filteredCsv.raw, /"충청남도 부여군".*"조건에 맞는 행사 없음"/);
   passed.push("compare-csv-follows-applied-filter");
-  for (const [path, label] of [["/", "홈"], ["/regions", "관광지도"], ["/compare?province=44&district=230&mode=current", "축제 비교"], ["/planning/options", "기획 후보"], ["/privacy", "개인정보·분석"]]) {
+  for (const [path, label] of [["/regions", "관광지도"], ["/compare?province=44&district=230&mode=current", "축제 비교"], ["/planning/options", "기획 후보"]]) {
     await page.goto(`${base}${path}`);
+    if (path === "/planning/options") await page.getByRole("button", { name: "기획 도구", exact: true }).click();
     const current = page.getByRole("navigation", { name: "주 메뉴" }).locator('[aria-current="page"]');
     assert.equal(await current.count(), 1, path); assert.equal(await current.textContent(), label);
   }
+  await page.goto(`${base}/privacy`);
+  assert.equal(await page.getByRole("contentinfo").getByRole("link", { name: "개인정보·분석", exact: true }).getAttribute("href"), "/privacy");
   await page.goto(`${base}/`);
+  assert.equal(await page.getByRole("banner").getByRole("link", { name: "pickDday 홈", exact: true }).getAttribute("href"), "/");
   for (let i = 0; i < 20 && await page.evaluate(() => document.activeElement?.textContent) !== "관광지도"; i++) await page.keyboard.press("Tab");
   await page.keyboard.press("Enter"); await page.waitForURL(/\/regions$/);
   passed.push("menu-current-page-and-keyboard");

@@ -16,7 +16,7 @@ export function WeekdayMeans({ year, items, tableOpen, onTable }: { year: number
   const slot = (W - L - R) / 7, y = (v: number) => T + (1 - v / max) * PLOT_H;
   return <div className="space-y-2">
     <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="block w-full min-w-[300px] max-w-2xl" role="img"
+      <svg viewBox={`0 0 ${W} ${H}`} className="block w-full min-w-[300px]" role="img"
         aria-label={`${year}년 요일별 일평균 막대그래프, 월요일부터 일요일 순. 요일별 값과 날짜 수는 수치 표에서 볼 수 있어요.`}>
         {[0, 0.5, 1].map(r => <g key={r}><line x1={L} x2={W - R} y1={y(max * r)} y2={y(max * r)} stroke="#d5dce3" /><text x={L - 4} y={y(max * r) + 4} fontSize={10} textAnchor="end" fill="#4b5b6d">{compact.format(max * r)}</text></g>)}
         {ordered.map((w, i) => {

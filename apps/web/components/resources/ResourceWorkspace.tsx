@@ -9,6 +9,7 @@ import { distanceText, RADII } from "@/components/new-festival/resource-labels";
 import { RESOURCE_KINDS } from "@/lib/existing/request";
 import { RESOURCE_KIND_LABELS as LABEL } from "@/lib/existing/types";
 import type { ResourceItem, ResourceKind, ResourceRow, ResourcesResponse, ResourceTypeBlock } from "@/lib/existing/types";
+import styles from "./ResourceWorkspace.module.css";
 
 /**
  * Shared presentation of the tourism resource workspace used by the existing- and new-festival journeys.
@@ -47,7 +48,7 @@ export function verifiedCount({ request, block: b }: KindState): number | null {
  */
 export function KindPicker({ types, states, onToggle }: { types: readonly ResourceKind[]; states: readonly KindState[]; onToggle: (kind: ResourceKind) => void }) {
   const id = useId();
-  return <fieldset className="flex min-w-0 flex-wrap items-center gap-2">
+  return <fieldset className="flex min-w-0 flex-wrap items-center gap-2 lg:shrink-0">
     <legend className="sr-only">자원 유형</legend>
     {RESOURCE_KINDS.map(k => {
       const on = types.includes(k), state = on ? states.find(s => s.kind === k) : undefined, n = state ? verifiedCount(state) : null;
@@ -64,7 +65,7 @@ export function KindPicker({ types, states, onToggle }: { types: readonly Resour
  * Loading, refresh, failure with its own retry, and confirmed empty result of each chosen type, right under the
  * type toggles (outside their group). A settled type with nothing to report adds no line; its count is on its button.
  */
-export function KindStatusList({ states }: { states: KindState[] }) {
+export function KindStatusList({ states, className = "" }: { states: KindState[]; className?: string }) {
   const lines = states.flatMap(({ kind, request, block: b }) => {
     const retry = <button type="button" className="region-button" onClick={request.retry}>다시 불러오기</button>;
     // Failures take a full row with their retry; loading, refresh and empty notes sit side by side.
@@ -76,7 +77,7 @@ export function KindStatusList({ states }: { states: KindState[] }) {
     return line ? [<li key={kind} className={wide ? "min-w-0 basis-full" : "min-w-0"}>{line}</li>] : [];
   });
   if (!lines.length) return null;
-  return <ul className="flex min-w-0 flex-wrap items-start gap-2 text-sm leading-6">{lines}</ul>;
+  return <ul className={`flex min-w-0 flex-wrap items-start gap-2 text-sm leading-6 ${className}`}>{lines}</ul>;
 }
 
 /**
@@ -117,11 +118,14 @@ export function ViewToggle({ display, onChange }: { display: "list" | "map"; onC
   </div>;
 }
 
-/** List about 40% and map about 60% on wide screens; one natural column when narrow or zoomed. */
-export function ListMapGrid({ display, list, map }: { display: "list" | "map"; list: ReactNode; map: ReactNode }) {
-  return <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-    <div data-resource-area="list" className={`min-w-0 ${display === "map" ? "hidden lg:block" : ""}`}>{list}</div>
-    <div data-resource-area="map" className={`min-w-0 ${display === "list" ? "hidden lg:block" : ""}`}>{map}</div>
+/** One selected detail stays mounted beside results on a large desktop, below them in a narrower window. */
+export function ListMapGrid({ display, list, map, detail, showResults = true }: {
+  display: "list" | "map"; list: ReactNode; map: ReactNode; detail?: ReactNode; showResults?: boolean;
+}) {
+  return <div className={`${styles.grid} ${showResults ? styles.withResults : styles.detailOnly} ${detail ? styles.withDetail : ""}`}>
+    {showResults && <div key="list" data-resource-area="list" className={`${styles.list} min-w-0 ${display === "map" ? "hidden lg:block" : ""}`}>{list}</div>}
+    {showResults && <div key="map" data-resource-area="map" className={`${styles.map} min-w-0 ${display === "list" ? "hidden lg:block" : ""}`}>{map}</div>}
+    {detail && <div key="detail" data-resource-area="detail" className={`${styles.detail} min-w-0`}>{detail}</div>}
   </div>;
 }
 
@@ -137,12 +141,12 @@ export function ResourceRows({ rows, listRef, openId, anchored, onOpen, compare 
   rows: NumberedRow[]; listRef: RefObject<HTMLUListElement | null>; openId: string | null; anchored: boolean; onOpen: (item: ResourceItem) => void;
   compare?: { ids: ReadonlySet<string>; onToggle: (item: ResourceItem) => void };
 }) {
-  return <ul ref={listRef} aria-label="관광자원 목록" tabIndex={-1} className="max-h-[36rem] space-y-2 overflow-y-auto overscroll-contain pr-1 lg:max-h-[44rem]">
+  return <ul ref={listRef} aria-label="관광자원 목록" tabIndex={-1} className={`${styles.rows} max-h-[36rem] overflow-y-auto overscroll-contain rounded-xl border border-ink/10 bg-white`}>
     {rows.map(r => {
       const open = r.item.id === openId, inCompare = !!compare?.ids.has(r.item.id);
-      return <li key={r.item.id} className={`min-w-0 rounded-xl border ${open ? "border-blue bg-[#f7faff] shadow-[inset_4px_0_0_#2667e8]" : "border-ink/10 bg-white"}`}>
+      return <li key={r.item.id} className={`min-w-0 border-b border-ink/10 last:border-b-0 ${open ? "bg-[#f7faff] shadow-[inset_4px_0_0_#2667e8]" : ""}`}>
         <button type="button" data-resource-id={r.item.id} aria-pressed={open} onClick={() => onOpen(r.item)}
-          className={`relative block min-h-11 w-full rounded-xl py-3 pl-4 pr-10 text-left hover:bg-paper/70 ${compare ? "pb-2" : ""}`}>
+          className={`relative block min-h-11 w-full rounded-lg py-2.5 pl-4 pr-10 text-left hover:bg-paper/70 ${compare ? "pb-2" : ""}`}>
           <span className="block break-words text-base font-bold leading-snug"><span className="tabular-nums text-[#164ea1]">{r.number}.</span> {r.item.title}</span>
           <span className="mt-1 block break-words text-sm leading-5 text-muted">{LABEL[r.item.kind]} · {r.item.address || "주소 정보 없음"}{r.item.point ? "" : " · 지도 위치 없음"}</span>
           {anchored && <span className="mt-1 block text-sm font-bold tabular-nums">{distanceText(r.distanceKm)}</span>}
@@ -150,7 +154,7 @@ export function ResourceRows({ rows, listRef, openId, anchored, onOpen, compare 
             <circle cx="8" cy="8" r="7.25" fill="currentColor" /><path d="M4.6 8.2 7 10.5l4.4-4.9" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           </svg>}
         </button>
-        {compare && <div className="flex flex-wrap items-center gap-2 px-4 pb-3">
+        {compare && <div className="flex flex-wrap items-center gap-2 px-4 pb-2.5">
           <button type="button" className={`region-button min-h-11 text-sm ${inCompare ? "border-blue font-extrabold text-blue" : ""}`}
             aria-label={`${r.item.title} ${inCompare ? "함께 보기에서 빼기" : "함께 보기에 추가"}`} onClick={() => compare.onToggle(r.item)}>
             {inCompare ? "✓ 함께 보기에서 빼기" : "함께 보기에 추가"}
@@ -165,9 +169,9 @@ export function ResourceRows({ rows, listRef, openId, anchored, onOpen, compare 
 export function DetailFrame({ id, heading, title, note, onClose, children }: {
   id: string; heading: RefObject<HTMLHeadingElement | null>; title: string; note?: string | null; onClose: () => void; children: ReactNode;
 }) {
-  return <aside aria-labelledby={id} className="region-card space-y-4 border-blue/30 text-[15px] leading-6">
-    <div className="flex items-start justify-between gap-3">
-      <h3 id={id} ref={heading} tabIndex={-1} className="min-w-0 break-words text-xl font-extrabold leading-snug">{title}</h3>
+  return <aside aria-labelledby={id} className={`${styles.detailFrame} region-card space-y-4 border-blue/30 text-[15px] leading-6`}>
+    <div className={`${styles.detailHeader} flex items-start justify-between gap-3`}>
+      <h3 id={id} ref={heading} tabIndex={-1} className="min-w-0 flex-1 break-words text-xl font-extrabold leading-snug">{title}</h3>
       <button type="button" className="region-button min-h-11 shrink-0" onClick={onClose}>상세 닫기</button>
     </div>
     {note && <p className="text-[13px] text-muted">{note}</p>}

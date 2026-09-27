@@ -172,31 +172,28 @@ export function ResourcesPanel() {
       <h2 id="resources-heading" ref={heading} tabIndex={-1} className="min-w-0 break-words text-xl font-extrabold sm:text-2xl">{region ? `${region.districtName} 전체` : ""} 주변 관광자원</h2>
       <p className="text-sm text-muted">현재 등록 관광지·문화시설·음식점·숙박</p>
     </div>
-    <div className="region-card space-y-3">
+    <div className="region-card flex flex-col gap-3 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-6 lg:gap-y-2 lg:px-4 lg:py-3">
       <KindPicker types={types} states={states} onToggle={toggleType} />
-      {noneChosen ? <p className="text-[15px]">볼 유형을 하나 이상 골라 주세요.</p>
-        : region && <KindStatusList states={states} />}
-      {region && target && <p role="status" className="text-sm text-muted">{targetWaitsForRetry ? "목록을 다시 불러오면 고른 장소를 열어 드려요." : "고른 장소를 목록에서 찾고 있어요…"}</p>}
-      {region && targetMissing && <p role="status" className="rounded-xl bg-paper px-3 py-2 text-sm">고른 장소를 지금 등록된 관광정보 목록에서 찾지 못했어요. 아래 목록에서 살펴봐 주세요.</p>}
-      <AnchorControls anchor={anchor} radiusKm={radiusKm} sort={sort} onClear={() => { setAnchor(null); setRadiusKm(null); setSort("name"); }} onRadius={setRadiusKm} onSort={setSort} />
-      {region && states.length > 0 && (allDone || items.length > 0) && <CountLine listed={numbered.length} mapped={mapRows.length}
-        radius={anchor && radiusKm !== null && counts.withinRadius !== null ? { km: radiusKm, inside: counts.withinRadius, unknown: numbered.length - counts.withinRadius } : null} />}
+      {noneChosen ? <p className="text-[15px] lg:order-2 lg:basis-full">볼 유형을 하나 이상 골라 주세요.</p>
+        : region && <KindStatusList states={states} className="lg:order-2 lg:basis-full" />}
+      {region && target && <p role="status" className="text-sm text-muted lg:order-2 lg:basis-full">{targetWaitsForRetry ? "목록을 다시 불러오면 고른 장소를 열어 드려요." : "고른 장소를 목록에서 찾고 있어요…"}</p>}
+      {region && targetMissing && <p role="status" className="rounded-xl bg-paper px-3 py-2 text-sm lg:order-2 lg:basis-full">고른 장소를 지금 등록된 관광정보 목록에서 찾지 못했어요. 아래 목록에서 살펴봐 주세요.</p>}
+      {anchor && <div className="min-w-0 lg:order-2 lg:basis-full"><AnchorControls anchor={anchor} radiusKm={radiusKm} sort={sort} onClear={() => { setAnchor(null); setRadiusKm(null); setSort("name"); }} onRadius={setRadiusKm} onSort={setSort} /></div>}
+      {region && states.length > 0 && (allDone || items.length > 0) && <div className="min-w-0 lg:order-1 lg:ml-auto"><CountLine listed={numbered.length} mapped={mapRows.length}
+        radius={anchor && radiusKm !== null && counts.withinRadius !== null ? { km: radiusKm, inside: counts.withinRadius, unknown: numbered.length - counts.withinRadius } : null} /></div>}
     </div>
 
     {!region && <FestivalPending />}
-    {region && states.length > 0 && <>
-      <ViewToggle display={display} onChange={setDisplay} />
-      <ListMapGrid display={display}
+    {region && states.length > 0 && <ViewToggle display={display} onChange={setDisplay} />}
+    {region && (states.length > 0 || selected) && <ListMapGrid display={display} showResults={states.length > 0}
         list={visible.length === 0 ? (items.length > 0 ? <AreaNote action={<button type="button" className="region-button min-h-11" onClick={() => setRadiusKm(null)}>반경 해제</button>}>기준점 반경 안에 있는 자원이 없어요.</AreaNote>
           : allDone ? <AreaNote>선택한 유형에 조회된 자원이 없어요.</AreaNote> : null)
           : <ResourceRows rows={numbered} listRef={list} openId={selectedId} anchored={!!anchor} onOpen={item => choose(item.id)} />}
         map={mapFailed ? <AreaNote alert action={<button type="button" className="region-button min-h-11" onClick={() => { setMapFailed(false); setMapKey(k => k + 1); }}>지도 다시 열기</button>}>지도를 불러오지 못했어요. 목록은 계속 볼 수 있어요.</AreaNote>
           : mapRows.length ? <ResourceMap key={mapKey} rows={mapRows} selectedId={selectedId} anchor={anchor?.point ?? null} radiusKm={anchor ? radiusKm : null} onSelect={choose} onCenter={setMapCenter} onFailure={() => setMapFailed(true)} />
-          : allDone || items.length > 0 ? <AreaNote muted>지도에 표시할 위치가 있는 자원이 없어요. 목록에서 확인해 주세요.</AreaNote> : null} />
-    </>}
-    {/* The open detail stays even when every type is switched off. */}
-    {region && selected && <ResourceDetail region={region} item={selected} heading={detailHeading} distance={selectedDistance} anchored={!!anchor}
-      hidden={hiddenByFilter} isAnchor={anchor?.resourceId === selected.id} onAnchor={() => setAnchorFrom(selected)} onClose={closeDetail} />}
+          : allDone || items.length > 0 ? <AreaNote muted>지도에 표시할 위치가 있는 자원이 없어요. 목록에서 확인해 주세요.</AreaNote> : null}
+        detail={selected && <ResourceDetail region={region} item={selected} heading={detailHeading} distance={selectedDistance} anchored={!!anchor}
+          hidden={hiddenByFilter} isAnchor={anchor?.resourceId === selected.id} onAnchor={() => setAnchorFrom(selected)} onClose={closeDetail} />} />}
     {region && states.length > 0 && <>
       <div className="flex flex-wrap items-center gap-2">
         <InfoDialog label="출처 보기" title="관광자원 출처" buttonClassName="region-button min-h-11">

@@ -1,0 +1,603 @@
+{
+  "checkedAt": "2026-09-27T03:00:05.211192+00:00",
+  "scope": "PC research navigation, purpose images, list/map/detail workspace and visit analysis layout",
+  "baseCommit": "05421b9c11b609ef6963dc7d2f9a6310eefc908a",
+  "node": "24.20.0",
+  "localValidation": {
+    "unitTests": [
+      26,
+      325,
+      30
+    ],
+    "unitTotal": 381,
+    "typecheck": "passed",
+    "productionBuild": "passed; final Next build repeated by full E2E runner",
+    "infrastructureTests": 41,
+    "declarations": 17,
+    "e2eExecutions": 26,
+    "e2eStatus": "passed",
+    "realPageZoom": true
+  },
+  "desktopControlled": [
+    {
+      "checkedAt": "2026-09-27T02:55:48.375Z",
+      "base": "http://127.0.0.1:37081",
+      "mode": "editor",
+      "headless": true,
+      "mockedResponses": 0,
+      "checks": [
+        "1366-1440-1920-single-row-header-four-primary-links-and-larger-distinct-purpose-art",
+        "planning-menu-keyboard-escape-focus-outside-click-and-focus-close",
+        "all-planning-tools-retain-real-destinations-current-location-and-close-on-route-change",
+        "editor-editor-link-boundary",
+        "pc-planning-frame-width",
+        "reference-research-and-examples-remain-reachable-behind-summary",
+        "privacy-remains-reachable-in-footer",
+        "320-390-reflow-and-nested-menu-escape-focus-route-close",
+        "real-200-percent-page-zoom-reflows-menu-and-keeps-purpose-actions-usable"
+      ],
+      "layouts": [
+        {
+          "width": 1366,
+          "headerHeight": 73,
+          "imageSizes": [
+            {
+              "width": 581,
+              "height": 300
+            },
+            {
+              "width": 581,
+              "height": 300
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "headerHeight": 73,
+          "imageSizes": [
+            {
+              "width": 618,
+              "height": 300
+            },
+            {
+              "width": 618,
+              "height": 300
+            }
+          ]
+        },
+        {
+          "width": 1920,
+          "headerHeight": 73,
+          "imageSizes": [
+            {
+              "width": 650,
+              "height": 300
+            },
+            {
+              "width": 650,
+              "height": 300
+            }
+          ]
+        }
+      ],
+      "zoom": [
+        {
+          "factor": 2,
+          "innerWidth": 720,
+          "devicePixelRatio": 2,
+          "cssZoom": "1"
+        }
+      ],
+      "browserErrors": [],
+      "appWrites": [],
+      "status": "passed"
+    },
+    {
+      "checkedAt": "2026-09-27T02:56:11.901Z",
+      "base": "http://127.0.0.1:37081",
+      "mode": "public-readonly",
+      "headless": true,
+      "mockedResponses": 0,
+      "checks": [
+        "1366-1440-1920-single-row-header-four-primary-links-and-larger-distinct-purpose-art",
+        "planning-menu-keyboard-escape-focus-outside-click-and-focus-close",
+        "all-planning-tools-retain-real-destinations-current-location-and-close-on-route-change",
+        "public-readonly-editor-link-boundary",
+        "pc-planning-frame-width",
+        "reference-research-and-examples-remain-reachable-behind-summary",
+        "privacy-remains-reachable-in-footer",
+        "320-390-reflow-and-nested-menu-escape-focus-route-close",
+        "real-200-percent-page-zoom-reflows-menu-and-keeps-purpose-actions-usable"
+      ],
+      "layouts": [
+        {
+          "width": 1366,
+          "headerHeight": 73,
+          "imageSizes": [
+            {
+              "width": 581,
+              "height": 300
+            },
+            {
+              "width": 581,
+              "height": 300
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "headerHeight": 73,
+          "imageSizes": [
+            {
+              "width": 618,
+              "height": 300
+            },
+            {
+              "width": 618,
+              "height": 300
+            }
+          ]
+        },
+        {
+          "width": 1920,
+          "headerHeight": 73,
+          "imageSizes": [
+            {
+              "width": 650,
+              "height": 300
+            },
+            {
+              "width": 650,
+              "height": 300
+            }
+          ]
+        }
+      ],
+      "zoom": [
+        {
+          "factor": 2,
+          "innerWidth": 720,
+          "devicePixelRatio": 2,
+          "cssZoom": "1"
+        }
+      ],
+      "browserErrors": [],
+      "appWrites": [],
+      "status": "passed"
+    }
+  ],
+  "tourismControlled": {
+    "headless": true,
+    "data": "검증용 controlled fixtures for tourism lists and introductions (not official-data verification)",
+    "zoom": "720px viewport reflow only; real 200% tab zoom is verified separately by desktop-experience-e2e.mjs and resource-experience-live.mjs",
+    "mapSelection": "real pointer clicks and key presses only (no force, dispatchEvent or synthetic DOM click)",
+    "passed": [
+      "existing-default-12-14-only-no-39-32-requests",
+      "existing-toggle-four-peers-all-four-explicit-address",
+      "existing-non-default-pair-kept-across-reload",
+      "existing-none-invalid-duplicate-legacy-addresses",
+      "existing-menu-return-keeps-four-kinds",
+      "existing-independent-kind-failure-delay-and-retry",
+      "existing-restaurant-intro-plain-text-fold-own-source",
+      "existing-lodging-intro-empty-omitted-failure-retry-close-focus",
+      "existing-no-compare",
+      "existing-rapid-selection-late-intro-never-overlays",
+      "existing-other-region-answer-hidden-retryable-never-reused-and-recovers",
+      "existing-all-types-off-keeps-detail-intro-anchor-and-distance",
+      "existing-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks",
+      "existing-1366-two-columns-1400-1440-1920-three-columns-keep-selection-radius-and-focus",
+      "existing-cluster-lists-same-point-and-nearby-places-opening-changes-nothing-close-returns-focus",
+      "existing-cluster-each-same-point-and-nearby-place-by-real-click-focuses-detail",
+      "existing-reselecting-open-place-focuses-detail-again",
+      "existing-cluster-enter-space-tab-shift-tab-escape-restore-cluster-focus",
+      "existing-zoom-splits-nearby-never-same-point-keeps-conditions",
+      "existing-390-map-view-cluster-close-and-detail-close-never-focus-hidden-list",
+      "existing-detail-open-and-two-three-column-hidden-map-resize-preserves-geographic-centre",
+      "new-default-12-14-only-no-39-32-requests",
+      "new-toggle-four-peers-all-four-explicit-address",
+      "new-non-default-pair-kept-across-reload",
+      "new-none-invalid-duplicate-legacy-addresses",
+      "new-type-change-keeps-year",
+      "new-independent-kind-failure-delay-and-retry",
+      "new-restaurant-intro-plain-text-fold-own-source",
+      "new-lodging-intro-empty-omitted-failure-retry-close-focus",
+      "new-rapid-selection-late-intro-never-overlays",
+      "new-other-region-answer-hidden-retryable-never-reused-and-recovers",
+      "new-all-types-off-keeps-detail-intro-anchor-and-distance",
+      "new-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks",
+      "new-1366-two-columns-1400-1440-1920-three-columns-keep-selection-radius-and-focus",
+      "new-cluster-lists-same-point-and-nearby-places-opening-changes-nothing-close-returns-focus",
+      "new-cluster-each-same-point-and-nearby-place-by-real-click-focuses-detail",
+      "new-reselecting-open-place-focuses-detail-again",
+      "new-cluster-enter-space-tab-shift-tab-escape-restore-cluster-focus",
+      "new-cluster-name-states-compared-member",
+      "new-zoom-splits-nearby-never-same-point-keeps-conditions",
+      "new-390-map-view-cluster-close-and-detail-close-never-focus-hidden-list",
+      "new-detail-open-and-two-three-column-hidden-map-resize-preserves-geographic-centre",
+      "existing-arrival-restaurant-adds-kind-once-waits-full-list-focus",
+      "existing-filter-keeps-detail-and-anchor-reload-does-not-reselect",
+      "existing-arrival-lodging-failure-then-retry-opens",
+      "existing-arrival-missing-invalid-and-legacy-link",
+      "new-compare-detail-anchor-independent-filter-keeps-all",
+      "layout-320-390-720-1440-no-overflow-long-title-wraps-focus-to-detail-and-back",
+      "home-purpose-cards-cta-hrefs-distinct-v2-decorative-images-loaded-and-enlarged-for-pc"
+    ],
+    "browserErrors": 0,
+    "clientWrites": 0,
+    "apiRequests": 225
+  },
+  "localOfficialSource": {
+    "checkedAt": "2026-09-27T02:59:02.724Z",
+    "base": "http://127.0.0.1:43127",
+    "headless": true,
+    "mockedResponses": 0,
+    "browserErrors": [],
+    "appWrites": [],
+    "samples": [
+      {
+        "flow": "new",
+        "code": "51150",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 478
+          },
+          {
+            "kind": "32",
+            "total": 178
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      },
+      {
+        "flow": "existing",
+        "code": "50110",
+        "counts": [
+          {
+            "kind": "39",
+            "total": 426
+          },
+          {
+            "kind": "32",
+            "total": 89
+          }
+        ],
+        "selectedContrast": {
+          "text": "rgb(22, 78, 161)",
+          "background": "rgb(220, 232, 255)",
+          "pillText": "rgb(22, 78, 161)",
+          "pillBackground": "rgba(16, 35, 61, 0.06)",
+          "ratios": {
+            "button": 6.454309502519873,
+            "count": 5.772109956210545
+          }
+        }
+      }
+    ],
+    "checks": [
+      "two-optimized-decorative-images-and-purpose-links",
+      "home-320-390-640-1440-and-real-200-percent-zoom",
+      "new-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "new-official-source-full-list-identity-detail-mobile-real-zoom",
+      "existing-dense-cluster-real-pointer-list-detail-identity-keyboard-escape",
+      "existing-official-source-full-list-identity-detail-mobile-real-zoom"
+    ],
+    "zoom": [
+      {
+        "label": "home",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "home reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "new reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing",
+        "factor": 2,
+        "innerWidth": 720,
+        "devicePixelRatio": 2,
+        "cssZoom": "1"
+      },
+      {
+        "label": "existing reset",
+        "factor": 1,
+        "innerWidth": 1440,
+        "devicePixelRatio": 1,
+        "cssZoom": "1"
+      }
+    ],
+    "images": [
+      {
+        "alt": "",
+        "width": 648,
+        "src": "/_next/image",
+        "renderedWidth": 618
+      },
+      {
+        "alt": "",
+        "width": 648,
+        "src": "/_next/image",
+        "renderedWidth": 618
+      }
+    ],
+    "desktop": [
+      {
+        "width": 1366,
+        "header": 73,
+        "main": 1366,
+        "imageWidths": [
+          581,
+          581
+        ]
+      },
+      {
+        "width": 1440,
+        "header": 73,
+        "main": 1440,
+        "imageWidths": [
+          618,
+          618
+        ]
+      },
+      {
+        "width": 1920,
+        "header": 73,
+        "main": 1760,
+        "imageWidths": [
+          650,
+          650
+        ]
+      },
+      {
+        "flow": "new",
+        "width": 1440,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 32,
+            "y": 432,
+            "width": 384,
+            "height": 768,
+            "top": 432,
+            "right": 416,
+            "bottom": 1200,
+            "left": 32
+          },
+          {
+            "area": "map",
+            "x": 432,
+            "y": 432,
+            "width": 600,
+            "height": 762,
+            "top": 432,
+            "right": 1032,
+            "bottom": 1194,
+            "left": 432
+          },
+          {
+            "area": "detail",
+            "x": 1048,
+            "y": 432,
+            "width": 360,
+            "height": 768,
+            "top": 432,
+            "right": 1408,
+            "bottom": 1200,
+            "left": 1048
+          }
+        ]
+      },
+      {
+        "flow": "new",
+        "width": 1920,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 112,
+            "y": 432,
+            "width": 384,
+            "height": 768,
+            "top": 432,
+            "right": 496,
+            "bottom": 1200,
+            "left": 112
+          },
+          {
+            "area": "map",
+            "x": 512,
+            "y": 432,
+            "width": 920,
+            "height": 762,
+            "top": 432,
+            "right": 1432,
+            "bottom": 1194,
+            "left": 512
+          },
+          {
+            "area": "detail",
+            "x": 1448,
+            "y": 432,
+            "width": 360,
+            "height": 768,
+            "top": 432,
+            "right": 1808,
+            "bottom": 1200,
+            "left": 1448
+          }
+        ]
+      },
+      {
+        "flow": "existing",
+        "width": 1440,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 32,
+            "y": 436,
+            "width": 384,
+            "height": 768,
+            "top": 436,
+            "right": 416,
+            "bottom": 1204,
+            "left": 32
+          },
+          {
+            "area": "map",
+            "x": 432,
+            "y": 436,
+            "width": 600,
+            "height": 762,
+            "top": 436,
+            "right": 1032,
+            "bottom": 1198,
+            "left": 432
+          },
+          {
+            "area": "detail",
+            "x": 1048,
+            "y": 436,
+            "width": 360,
+            "height": 742,
+            "top": 436,
+            "right": 1408,
+            "bottom": 1178,
+            "left": 1048
+          }
+        ]
+      },
+      {
+        "flow": "existing",
+        "width": 1920,
+        "boxes": [
+          {
+            "area": "list",
+            "x": 112,
+            "y": 436,
+            "width": 384,
+            "height": 768,
+            "top": 436,
+            "right": 496,
+            "bottom": 1204,
+            "left": 112
+          },
+          {
+            "area": "map",
+            "x": 512,
+            "y": 436,
+            "width": 920,
+            "height": 762,
+            "top": 436,
+            "right": 1432,
+            "bottom": 1198,
+            "left": 512
+          },
+          {
+            "area": "detail",
+            "x": 1448,
+            "y": 436,
+            "width": 360,
+            "height": 742,
+            "top": 436,
+            "right": 1808,
+            "bottom": 1178,
+            "left": 1448
+          }
+        ]
+      },
+      {
+        "flow": "new",
+        "view": "visits",
+        "width": 1440,
+        "boxes": [
+          {
+            "x": 32,
+            "y": 418,
+            "width": 816,
+            "height": 636,
+            "top": 418,
+            "right": 848,
+            "bottom": 1054,
+            "left": 32
+          },
+          {
+            "x": 864,
+            "y": 418,
+            "width": 544,
+            "height": 428.875,
+            "top": 418,
+            "right": 1408,
+            "bottom": 846.875,
+            "left": 864
+          }
+        ]
+      },
+      {
+        "flow": "existing",
+        "view": "visits",
+        "width": 1440,
+        "boxes": [
+          {
+            "x": 32,
+            "y": 464,
+            "width": 680,
+            "height": 708.4375,
+            "top": 464,
+            "right": 712,
+            "bottom": 1172.4375,
+            "left": 32
+          },
+          {
+            "x": 728,
+            "y": 464,
+            "width": 680,
+            "height": 1400.140625,
+            "top": 464,
+            "right": 1408,
+            "bottom": 1864.140625,
+            "left": 728
+          }
+        ]
+      }
+    ],
+    "status": "passed"
+  },
+  "localSourceCopy": {
+    "origin": "existing production official-source files copied read-only",
+    "files": 51,
+    "checksumEvidence": "temporary local copy; no production writes"
+  },
+  "limitations": [
+    "Controlled fixtures are not evidence of provider availability.",
+    "No practitioner observation or assistive-technology certification.",
+    "Opus5.5 call refused by provider usage limit; native collaborators and root review used."
+  ]
+}

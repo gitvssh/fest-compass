@@ -1,27 +1,32 @@
 import Link from "next/link";
 import { isPublicReadonly } from "@/lib/app-mode";
 import { siteConfig } from "@/lib/site";
-import { NavLinks, PublicStorageNotice } from "./NavLinks";
+import { FooterPrivacyLink, NavLinks, PublicStorageNotice } from "./NavLinks";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const readOnly = isPublicReadonly();
   return (
-    <div className="min-h-screen">
-      <header className="no-print sticky top-0 z-30 border-b border-ink/10 bg-paper/90 backdrop-blur-xl">
-        <div className="mx-auto flex min-h-16 w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-3">
-          <Link href="/" className="flex items-center gap-2.5 text-sm font-extrabold tracking-[0.08em]">
+    <div className="flex min-h-screen flex-col">
+      <a href="#main-content" className="no-print sr-only z-50 rounded-lg bg-navy px-4 py-3 font-bold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-3">본문 바로가기</a>
+      <header className="no-print sticky top-0 z-30 border-b border-ink/10 bg-white/95 backdrop-blur-xl">
+        <div className="mx-auto flex h-[72px] w-full max-w-[1760px] items-center justify-between gap-5 px-5 lg:gap-10 lg:px-8">
+          <Link href="/" className="flex min-h-11 shrink-0 items-center gap-2.5 text-base font-extrabold tracking-[0.04em]" aria-label={`${siteConfig.name} 홈`}>
             <span aria-hidden="true" className="relative h-6 w-6 rounded-full border border-current">
               <i className="absolute left-[10px] top-[4px] h-3 w-1.5 rotate-[24deg] bg-coral [clip-path:polygon(50%_0,100%_100%,50%_72%,0_100%)]" />
             </span>
             <span>{siteConfig.name}</span>
           </Link>
-          <nav aria-label="주 메뉴" className="flex flex-wrap items-center gap-4 text-xs font-semibold text-muted sm:text-sm">
-            <NavLinks showEditorLinks={!readOnly} />
-          </nav>
+          <NavLinks showEditorLinks={!readOnly} />
         </div>
       </header>
       {readOnly ? <PublicStorageNotice /> : null}
-      <main className="mx-auto w-full max-w-6xl px-5 py-8">{children}</main>
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-[1760px] flex-1 scroll-mt-24 px-5 py-8 lg:px-8">{children}</main>
+      <footer className="no-print mt-10 border-t border-ink/10">
+        <div className="mx-auto flex min-h-[72px] w-full max-w-[1760px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-3 text-sm text-muted lg:px-8">
+          <span className="font-bold text-ink">{siteConfig.name}</span>
+          <FooterPrivacyLink />
+        </div>
+      </footer>
     </div>
   );
 }

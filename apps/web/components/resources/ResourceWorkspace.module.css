@@ -1,0 +1,93 @@
+.grid {
+  display: grid;
+  align-items: start;
+  gap: 1rem;
+}
+
+.rows {
+  scrollbar-gutter: stable;
+  scroll-padding-block: 0.5rem;
+}
+
+.detailOnly {
+  max-width: 56rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    --resource-workspace-height: clamp(30rem, calc(100dvh - 13rem), 48rem);
+  }
+
+  .withResults {
+    grid-template-columns: minmax(20rem, 24rem) minmax(0, 1fr);
+  }
+
+  .list .rows {
+    max-height: var(--resource-workspace-height);
+  }
+
+  .map {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .map :global(.rmap-canvas) {
+    height: calc(var(--resource-workspace-height) - 6.5rem);
+  }
+
+  .detail {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1400px) {
+  .withResults.withDetail {
+    grid-template-columns: minmax(20rem, 24rem) minmax(0, 1fr) minmax(20rem, 22.5rem);
+  }
+
+  .withResults .detail {
+    position: sticky;
+    top: 6rem;
+    grid-column: 3;
+  }
+
+  .withResults .detailFrame {
+    max-height: var(--resource-workspace-height);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    scroll-padding-block: 1.25rem;
+  }
+
+  .withResults .detailHeader {
+    position: sticky;
+    z-index: 1;
+    top: -1.25rem;
+    margin: -1.25rem -1.25rem 0;
+    border-bottom: 1px solid rgb(16 35 61 / 10%);
+    padding: 1.25rem;
+    background: white;
+  }
+}
+
+@media print {
+  .grid {
+    display: block;
+  }
+
+  .grid .rows,
+  .grid .detailFrame {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .grid .map,
+  .grid .detail,
+  .grid .detailHeader {
+    position: static;
+  }
+
+  .detail {
+    margin-top: 1rem;
+  }
+}

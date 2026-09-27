@@ -13,10 +13,11 @@ const W = 360, H = 200, L = 40, R = 6, T = 12, B = 26, PLOT_H = H - T - B;
  * Observed monthly daily means of the festival's district for one year. Only months with every day
  * observed get a bar; partial months stay in the table with their observed-day counts.
  */
-export function ObservedMonths({ region, result, year, onYear, selectedMonth, onSelectMonth, onOpenCalendar, tableOpen, onTable }: {
+export function ObservedMonths({ region, result, year, onYear, selectedMonth, onSelectMonth, onOpenCalendar, tableOpen, onTable, showDailyDetails = true }: {
   region: RegionRef; result: KeyedState<MonthlyResponse>; year: number | null; onYear: (year: number) => void;
   selectedMonth: string | null; onSelectMonth: (month: string | null) => void; onOpenCalendar: (month: string) => void;
   tableOpen: boolean; onTable: (open: boolean) => void;
+  showDailyDetails?: boolean;
 }) {
   const data = result.data;
   const shownYear = data?.year ?? year;
@@ -45,7 +46,7 @@ export function ObservedMonths({ region, result, year, onYear, selectedMonth, on
         {months.map(m => <button key={m.month} id={`observed-month-${m.month}`} type="button" className="region-button min-w-12 px-2" aria-pressed={m.month === selectedMonth}
           onClick={() => onSelectMonth(m.month === selectedMonth ? null : m.month)}>{Number(m.month.slice(5))}월</button>)}
       </div>
-      {selected && <MonthDetail month={selected} daily={data.daily.filter(d => d.date.startsWith(selected.month))} onOpenCalendar={onOpenCalendar} />}
+      {showDailyDetails && selected && <MonthDetail month={selected} daily={data.daily.filter(d => d.date.startsWith(selected.month))} onOpenCalendar={onOpenCalendar} />}
       <div className="flex flex-wrap items-start gap-2">
         <Disclosure label="월별 수치 표 보기" open={tableOpen} onToggle={onTable}><MonthTable months={months} /></Disclosure>
         <InfoDialog label="출처·산식 보기" title="월별 방문 자료 출처와 계산">
@@ -65,7 +66,7 @@ export function MonthChart({ months, selected, onSelect }: { months: MonthMean[]
   const slot = (W - L - R) / 12, y = (v: number) => T + (1 - v / max) * PLOT_H;
   const title = `${months[0]?.month.slice(0, 4) ?? ""}년 월별 일평균 막대그래프. 값이 없는 달은 막대를 그리지 않았어요. 월별 값은 수치 표에서 볼 수 있어요.`;
   return <div className="overflow-x-auto">
-    <svg viewBox={`0 0 ${W} ${H}`} className="block w-full min-w-[300px] max-w-2xl" role="img" aria-label={title}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="block w-full min-w-[300px] max-w-4xl" role="img" aria-label={title}>
       {[0, 0.5, 1].map(r => <g key={r}><line x1={L} x2={W - R} y1={y(max * r)} y2={y(max * r)} stroke="#d5dce3" /><text x={L - 4} y={y(max * r) + 4} fontSize={10} textAnchor="end" fill="#4b5b6d">{compact.format(max * r)}</text></g>)}
       {months.map(m => {
         const i = Number(m.month.slice(5)) - 1, x = L + i * slot, active = m.month === selected;
@@ -95,7 +96,7 @@ export function MonthTable({ months }: { months: MonthMean[] }) {
   </TableScroll>;
 }
 
-function MonthDetail({ month, daily, onOpenCalendar }: { month: MonthMean; daily: { date: string; weekday: number; value: number | null }[]; onOpenCalendar: (month: string) => void }) {
+export function MonthDetail({ month, daily, onOpenCalendar }: { month: MonthMean; daily: { date: string; weekday: number; value: number | null }[]; onOpenCalendar: (month: string) => void }) {
   return <div className="space-y-2 rounded-xl bg-paper p-3">
     <div className="flex flex-wrap items-center justify-between gap-2">
       <p className="font-bold">{monthTitle(month.month)} · {month.rounded === null ? `일평균 없음 (${month.observedDays}/${month.days}일 값 있음)` : `일평균 ${number(month.rounded)}명/일`}</p>

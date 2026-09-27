@@ -1,5 +1,6 @@
 // 관광자원 네 유형(관광지·문화시설·음식점·숙박)과 공통 소개 — both festival journeys, headless.
-// Design: docs/design/19-tourism-resources.md, docs/design/20-resource-experience.md (map clusters, home purpose cards).
+// Design: docs/design/19-tourism-resources.md, docs/design/20-resource-experience.md (map clusters),
+// docs/design/21-desktop-research-experience.md (PC list/map/detail and distinct larger purpose images).
 //
 // Data provenance: 검증용 CONTROLLED FIXTURES only. Every tourism list (/api/existing/resources) and every shared
 // introduction (/api/resources/detail) is synthetic, titled "검증용"/"(가상)". They prove UI semantics (type choice,
@@ -9,8 +10,8 @@
 // The ~650-place list is a deterministic grid that exercises rendering, clustering, radius filtering and detail
 // reachability at that size; it does not show that the provider returns complete lists for any region.
 // Every map selection uses a real pointer click or real key presses: no force click, dispatchEvent or synthetic DOM click.
-// The 200% check in layouts() is CSS layout zoom (`html { zoom: 2 }`) only. It is neither real browser page zoom (media
-// queries still see the unzoomed viewport) nor a deviceScaleFactor check, and is never reported as either.
+// layouts() includes a 720px viewport to check reflow. REAL 200% tab zoom is verified separately by
+// desktop-experience-e2e.mjs and resource-experience-live.mjs; CSS zoom is not a browser-zoom substitute.
 // Protocol keys mirror the server's canonical keys (lib/existing/request.ts, lib/new-festival/request.ts).
 // Race ordering uses request gates (hold → release); no sleeps decide ordering.
 import assert from "node:assert/strict";
@@ -644,7 +645,41 @@ async function largeList(flow) {
     assert.equal(await ddOf(detail(page, target), FLOW[flow].distanceTerm).innerText(), FLOW[flow].distanceText(distanceKm(BULK_ANCHOR.point, target.point)));
     assert.equal(await rowButton(page, target).getAttribute("aria-pressed"), "true", `${flow}: map place and row are the same place`);
     await closeClusterIfOpen(page);
+    // The same 650-place dataset and applied radius remain usable while the workspace switches between two and
+    // three columns. Measure rendered areas rather than CSS classes, so a matching class alone cannot pass.
+    const condition = page.url(), requestCount = calls.length;
+    for (const width of [1366, 1400, 1440, 1920]) {
+      await page.setViewportSize({ width, height: 1000 });
+      // Align the grid above the sticky threshold before comparing column tops.
+      await section(page, flow).locator('[data-resource-area="list"]').evaluate(element => window.scrollTo(0, element.getBoundingClientRect().top + scrollY - 120));
+      await flush(page);
+      const areas = await Promise.all(["list", "map", "detail"].map(area => section(page, flow).locator(`[data-resource-area="${area}"]`).boundingBox()));
+      const [listBox, mapBox, detailBox] = areas;
+      assert.ok(areas.every(box => box && box.width > 0 && box.height > 0), `${flow} ${width}: all three areas visible`);
+      assert.ok(listBox.x + listBox.width <= mapBox.x + 1 && Math.abs(listBox.y - mapBox.y) <= 1,
+        `${flow} ${width}: list and map stay side by side`);
+      if (width >= 1400) {
+        assert.ok(mapBox.x + mapBox.width <= detailBox.x + 1 && Math.abs(listBox.y - detailBox.y) <= 1,
+          `${flow} ${width}: selection details share the list/map row ${JSON.stringify(areas)}`);
+        assert.ok(listBox.width >= 300 && detailBox.width >= 300 && mapBox.width >= 280,
+          `${flow} ${width}: each work area has usable width ${JSON.stringify(areas)}`);
+      } else {
+        assert.ok(detailBox.y >= Math.max(listBox.y + listBox.height, mapBox.y + mapBox.height) - 1,
+          `${flow} ${width}: details follow the two-column workspace`);
+      }
+      await noPageOverflow(page, `${flow} ${width} large-list workspace`);
+      assert.equal(page.url(), condition, `${flow} ${width}: conditions kept`);
+      assert.equal(await page.getByLabel("반경").inputValue(), String(BULK_RADIUS));
+      assert.equal(await rows.count(), BULK_INSIDE.length);
+      assert.equal(await rowButton(page, target).getAttribute("aria-pressed"), "true");
+      await visible(detail(page, target));
+      await visible(anchorLabel(page, BULK_ANCHOR));
+    }
+    assert.equal(calls.length, requestCount, `${flow}: layout changes do not reload tourism data`);
+    await detail(page, target).getByRole("button", { name: "상세 닫기", exact: true }).click();
+    await waitFocusAttr(page, "data-resource-id", target.id);
     passed.push(`${flow}-650-places-list-clustered-map-no-overlap-radius-and-detail-by-real-clicks`);
+    passed.push(`${flow}-1366-two-columns-1400-1440-1920-three-columns-keep-selection-radius-and-focus`);
   } finally {
     RESOURCES["39"] = saved;
     await context.close();
@@ -855,7 +890,9 @@ async function resizeKeepsMapCentre(flow) {
       return { x: r.x + r.width / 2 - c.x - c.width / 2, y: r.y + r.height / 2 - c.y - c.height / 2 };
     });
     const before = await offset();
-    for (const width of [390, 320, 1440, 720]) {
+    // Opening the detail changes the map width on PC, but must not move its geographic centre.
+    await openDetail(page, flow, SAME1);
+    for (const width of [1440, 1366, 1400, 1920, 390, 320, 1440, 720]) {
       await page.setViewportSize({ width, height: 1000 });
       if (width < 1024) await page.getByRole('group', { name: '보기 방식' }).getByRole('button', { name: '지도', exact: true }).click();
       await visible(cluster);
@@ -870,7 +907,7 @@ async function resizeKeepsMapCentre(flow) {
         `${flow} ${width}: geographic centre survives hidden and visible resizing: ${JSON.stringify({before,after})}`);
       if (width < 1024) await page.getByRole('group', { name: '보기 방식' }).getByRole('button', { name: '목록', exact: true }).click();
     }
-    passed.push(`${flow}-resize-hidden-map-preserves-geographic-centre`);
+    passed.push(`${flow}-detail-open-and-two-three-column-hidden-map-resize-preserves-geographic-centre`);
   } finally { RESOURCES["12"] = saved; await context.close(); }
 }
 
@@ -1021,9 +1058,9 @@ async function compareIndependently() {
 }
 
 async function layouts() {
-  // 320 / 390 / 1440: four type buttons, long title rows, detail and (new) comparison without page overflow; focus moves to the detail.
+  // Narrow windows, a 720px reflow width, and PC: four type buttons, long titles, detail and comparison without overflow.
   mkdirSync("output/playwright", { recursive: true });
-  for (const width of [320, 390, 1440]) {
+  for (const width of [320, 390, 720, 1440]) {
     const { context, page } = await openContext({ width, height: 900 });
     for (const flow of ["existing", "new"]) {
       await page.goto(FLOW[flow].url("?types=12,14,39,32"));
@@ -1037,47 +1074,24 @@ async function layouts() {
         await visible(page.getByRole("heading", { name: "함께 보기 2/2", exact: true }));
         await noPageOverflow(page, `${flow} ${width} compare`);
       }
-      if (width === 1440) await cssLayoutZoom(page, flow, `${flow} ${width}`);
+      const clippedHeading = await detail(page, LONG39).getByRole("heading", { name: LONG39.title, exact: true }).evaluate(element => element.scrollWidth > element.clientWidth + 1);
+      assert.equal(clippedHeading, false, `${flow} ${width}: the long selected title wraps within its heading`);
       await detail(page, LONG39).getByRole("button", { name: "상세 닫기", exact: true }).click();
       await waitFocusAttr(page, "data-resource-id", LONG39.id);
       if (width === 320) await page.screenshot({ path: `output/playwright/tourism-resources-${flow}-320.png`, fullPage: true });
     }
     await context.close();
   }
-  passed.push("layout-320-390-1440-no-overflow-focus-to-detail-and-back", "css-layout-zoom-200-at-1440-no-sideways-scroll-long-title-wraps");
-}
-
-async function cssLayoutZoom(page, flow, label) {
-  // CSS LAYOUT ZOOM ONLY: `html { zoom: 2 }` doubles every CSS length inside the 1440px viewport (~720px of layout).
-  // Media queries still see 1440px, so this is not real browser page zoom and not a deviceScaleFactor check; real 200%
-  // page zoom is verified separately. It proves the resource screen reflows without sideways page scrolling and the long
-  // Korean title wraps inside its heading, list row, type group and (new) comparison card.
-  await page.evaluate(() => { document.documentElement.style.zoom = "2"; });
-  try {
-    await flush(page);
-    const sideways = await page.evaluate(() => { window.scrollTo(1e6, window.scrollY); const x = window.scrollX; window.scrollTo(0, window.scrollY); return x; });
-    assert.equal(sideways, 0, `${label}: CSS layout zoom 200% must not scroll the page sideways`);
-    const clipped = await section(page, flow).evaluate(root => {
-      const wide = el => el && el.scrollWidth > el.clientWidth + 1;
-      const checks = [["detail heading", root.querySelector("aside h3")], ["type group", root.querySelector("fieldset")],
-        ...[...root.querySelectorAll("[data-resource-id]")].filter(el => !el.closest('[role="group"][aria-label^="관광자원 지도"]')).map(el => ["row " + el.dataset.resourceId, el]),
-        ...[...root.querySelectorAll("article")].map(el => ["comparison card", el])];
-      return checks.filter(([, el]) => wide(el)).map(([name]) => name);
-    });
-    assert.deepEqual(clipped, [], `${label}: CSS layout zoom 200% keeps content inside its box`);
-    await visible(detail(page, LONG39).getByRole("button", { name: "상세 닫기", exact: true }));
-  } finally {
-    await page.evaluate(() => { document.documentElement.style.zoom = ""; });
-    await flush(page);
-  }
+  passed.push("layout-320-390-720-1440-no-overflow-long-title-wraps-focus-to-detail-and-back");
 }
 
 async function purposeCards() {
-  // Home: both purpose cards keep their heading and CTA href, and each shows one decorative (empty alt) purpose image that
-  // loaded from a successful, non-empty image response. On a phone the first CTA stays in the first screen.
+  // Home: the two larger PC images keep their existing heading and CTA href and remain decorative (empty alt).
+  // Successful image responses prove the new assets really load; narrow layouts remain usable without dictating
+  // a mobile-first fold for this PC research product.
   const PURPOSES = [
-    { heading: "기존 축제 개선", cta: "기존 축제 찾기 →", href: "/existing/search", file: "/images/purpose/existing-festival.png" },
-    { heading: "새 축제 기획", cta: "지역부터 살펴보기 →", href: "/new", file: "/images/purpose/new-festival.png" },
+    { heading: "기존 축제 개선", cta: "기존 축제 찾기 →", href: "/existing/search", file: "/images/purpose/existing-festival-v2.png" },
+    { heading: "새 축제 기획", cta: "지역부터 살펴보기 →", href: "/new", file: "/images/purpose/new-festival-v2.png" },
   ];
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
     const { context, page } = await openContext(viewport);
@@ -1099,6 +1113,8 @@ async function purposeCards() {
       assert.ok(decodeURIComponent(await img.evaluate(el => el.currentSrc)).includes(p.file), `${label}: shows its own purpose image`);
       const box = await img.boundingBox();
       assert.ok(box && box.width > 0 && box.height > 0, `${label}: the image is laid out`);
+      if (viewport.width >= 1366) assert.ok(box.width >= 390 && box.height >= 260,
+        `${label}: purpose image is larger than the previous 264px illustration ${JSON.stringify(box)}`);
     }
     for (const p of PURPOSES) {
       const served = [];
@@ -1107,15 +1123,11 @@ async function purposeCards() {
       }
       assert.ok(served.some(s => s.status === 200 && s.type.startsWith("image/") && s.bytes > 0), `${viewport.width} ${p.file}: successful non-empty image response ${JSON.stringify(served)}`);
     }
-    if (viewport.width === 390) {
-      await page.evaluate(() => window.scrollTo(0, 0));
-      const cta = await cards.nth(0).getByRole("link", { name: PURPOSES[0].cta, exact: true }).boundingBox();
-      assert.ok(cta && cta.y + cta.height <= viewport.height, `390: the first CTA stays in the first screen (bottom ${cta && cta.y + cta.height})`);
-    }
+    for (const [i, p] of PURPOSES.entries()) await cards.nth(i).getByRole("link", { name: p.cta, exact: true }).click({ trial: true });
     await noPageOverflow(page, `home ${viewport.width}`);
     await context.close();
   }
-  passed.push("home-purpose-cards-cta-hrefs-decorative-images-loaded-first-cta-in-view");
+  passed.push("home-purpose-cards-cta-hrefs-distinct-v2-decorative-images-loaded-and-enlarged-for-pc");
 }
 
 // ---- Run ----
@@ -1141,7 +1153,7 @@ try {
   assert.deepEqual(fixtureErrors, []);
   assert.equal(queue.length, 0, `unused overrides: ${queue.length}`);
   console.log(JSON.stringify({ headless: true, data: "검증용 controlled fixtures for tourism lists and introductions (not official-data verification)",
-    zoom: "200% = CSS layout zoom (html zoom: 2) at 1440px only; not real browser page zoom, not deviceScaleFactor",
+    zoom: "720px viewport reflow only; real 200% tab zoom is verified separately by desktop-experience-e2e.mjs and resource-experience-live.mjs",
     mapSelection: "real pointer clicks and key presses only (no force, dispatchEvent or synthetic DOM click)",
     passed, browserErrors: errors.length, clientWrites: writes.length, apiRequests: calls.length }));
 } finally {

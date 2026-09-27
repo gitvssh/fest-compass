@@ -110,19 +110,18 @@ export function ResourcesView() {
       <h2 id="new-resources-heading" ref={heading} tabIndex={-1} className="min-w-0 break-words text-xl font-extrabold sm:text-2xl">{region.districtName} 관광자원</h2>
       <p className="text-sm text-muted">{region.name} 전체 · 현재 등록된 관광지·문화시설·음식점·숙박</p>
     </div>
-    <div className="region-card space-y-3">
+    <div className="region-card flex flex-col gap-3 lg:flex-row lg:flex-wrap lg:items-center lg:gap-x-6 lg:gap-y-2 lg:px-4 lg:py-3">
       <KindPicker types={types} states={kindStates} onToggle={toggleType} />
-      {types.length === 0 ? <p className="text-[15px]">볼 유형을 하나 이상 골라 주세요.</p>
-        : <KindStatusList states={kindStates} />}
-      <AnchorControls anchor={anchor} radiusKm={radiusKm} sort={sort} onRadius={setRadiusKm} onSort={setSort}
-        onClear={() => { setAnchor(null); setRadiusKm(null); setSort("name"); }} />
-      {states.length > 0 && (allDone || items.length > 0) && <CountLine listed={numbered.length} mapped={mapRows.length}
-        radius={anchor && radiusKm !== null && counts.withinRadius !== null ? { km: radiusKm, inside: counts.withinRadius, unknown: numbered.length - counts.withinRadius } : null} />}
+      {types.length === 0 ? <p className="text-[15px] lg:order-2 lg:basis-full">볼 유형을 하나 이상 골라 주세요.</p>
+        : <KindStatusList states={kindStates} className="lg:order-2 lg:basis-full" />}
+      {anchor && <div className="min-w-0 lg:order-2 lg:basis-full"><AnchorControls anchor={anchor} radiusKm={radiusKm} sort={sort} onRadius={setRadiusKm} onSort={setSort}
+        onClear={() => { setAnchor(null); setRadiusKm(null); setSort("name"); }} /></div>}
+      {states.length > 0 && (allDone || items.length > 0) && <div className="min-w-0 lg:order-1 lg:ml-auto"><CountLine listed={numbered.length} mapped={mapRows.length}
+        radius={anchor && radiusKm !== null && counts.withinRadius !== null ? { km: radiusKm, inside: counts.withinRadius, unknown: numbered.length - counts.withinRadius } : null} /></div>}
     </div>
 
-    {states.length > 0 && <>
-      <ViewToggle display={display} onChange={setDisplay} />
-      <ListMapGrid display={display}
+    {states.length > 0 && <ViewToggle display={display} onChange={setDisplay} />}
+    {(states.length > 0 || shownDetail) && <ListMapGrid display={display} showResults={states.length > 0}
         list={numbered.length > 0 ? <ResourceList rows={numbered} listRef={list} detailId={shownDetail?.id ?? null} comparedIds={new Set(compared.map(c => c.id))} anchored={!!anchor} onOpen={open} onCompare={toggleCompare} />
           : items.length > 0 ? <AreaNote action={<button type="button" className="region-button min-h-11" onClick={() => setRadiusKm(null)}>반경 해제</button>}>기준점 반경 안에 있는 자원이 없어요.</AreaNote>
           : allDone ? <AreaNote action={<Link className="region-button min-h-11" href={chooseHref}>다른 지역 고르기</Link>}>선택한 유형에 조회된 자원이 없어요.</AreaNote> : null}
@@ -133,11 +132,10 @@ export function ResourcesView() {
               onSelect={openById} onCenter={anchorMap} onFailure={() => setMapFailed(true)} />
             : allDone || items.length > 0 ? <AreaNote muted>지도에 표시할 위치가 있는 자원이 없어요. 목록에서 확인해 주세요.</AreaNote> : null}
           {!mapFailed && mapRows.length > 0 && compared.some(c => visibleIds.has(c.id) && c.point) && <p className="mt-2 text-[13px] text-muted">굵은 테두리 번호: 함께 보기 중인 자원</p>}
-        </>} />
-    </>}
-    {shownDetail && <ResourceDetailPanel region={region} item={shownDetail} heading={detailHeading} distance={distance(shownDetail)} anchored={!!anchor}
-      hidden={hidden(shownDetail)} isAnchor={anchor?.resourceId === shownDetail.id} compared={compared.some(c => c.id === shownDetail.id)}
-      onAnchor={() => anchorOn(shownDetail)} onCompare={() => toggleCompare(shownDetail)} onClose={closeDetail} />}
+        </>}
+        detail={shownDetail && <ResourceDetailPanel region={region} item={shownDetail} heading={detailHeading} distance={distance(shownDetail)} anchored={!!anchor}
+          hidden={hidden(shownDetail)} isAnchor={anchor?.resourceId === shownDetail.id} compared={compared.some(c => c.id === shownDetail.id)}
+          onAnchor={() => anchorOn(shownDetail)} onCompare={() => toggleCompare(shownDetail)} onClose={closeDetail} />} />}
     <CompareResources region={region} items={shownCompared} hiddenIds={new Set(shownCompared.filter(hidden).map(i => i.id))} anchored={!!anchor} distances={new Map(shownCompared.map(i => [i.id, distance(i)]))}
       notice={notice} heading={compareHeading} onRemove={removeCompared} onOpen={open} />
     <div className="flex flex-wrap items-center gap-2">

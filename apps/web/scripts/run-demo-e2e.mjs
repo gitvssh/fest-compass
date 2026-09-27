@@ -30,10 +30,10 @@ const nextCli = join(webRoot, "node_modules", "next", "dist", "bin", "next");
 const developmentDb = join(webRoot, "prisma", "dev.db");
 const e2eDb = join(webRoot, "prisma", "e2e.db");
 
-function runNode(entrypoint, args) {
+function runNode(entrypoint, args, extraEnv = {}) {
   const result = spawnSync(process.execPath, [entrypoint, ...args], {
     cwd: webRoot,
-    env,
+    env: { ...env, ...extraEnv },
     stdio: "inherit",
   });
   if (result.error) throw result.error;
@@ -94,6 +94,7 @@ let server = spawn(process.execPath, [nextCli, "start", "-H", "127.0.0.1", "-p",
 
 try {
   await waitForServer();
+  runNode(join(webRoot, "scripts", "desktop-experience-e2e.mjs"), [], { E2E_APP_MODE: "editor" });
   runNode(join(webRoot, "scripts", "demo-e2e.mjs"), []);
   // The personal workspace must also work under the public server's write prohibition.
   const exited = once(server, "exit");
@@ -104,6 +105,7 @@ try {
   });
   await waitForServer();
   runNode(join(webRoot, "scripts", "workspace-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "desktop-experience-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "regions-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "map-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "boundary-e2e.mjs"), []);

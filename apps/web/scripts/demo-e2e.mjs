@@ -43,6 +43,8 @@ try {
   attachDiagnostics(page, "desktop");
 
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+  // Secondary examples and research stay reachable in the closed-by-default reference section.
+  await page.getByText("참고 자료", { exact: true }).click();
   await expectVisible(page.getByText("○○군 봄꽃축제"), "home missing seed festival");
   await expectVisible(page.getByText("L1 총계 실측"), "home missing label maturity badge");
   await shot(page, "01-home-desktop");
@@ -98,6 +100,7 @@ try {
   if (await page.getByRole("cell", { name: "오차 증가", exact: true }).count() !== 2) throw new Error("history study must show both degraded editions");
   await shot(page, "14-history-desktop");
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
+  await page.getByText("참고 자료", { exact: true }).click();
 
   await page.getByRole("link", { name: "○○군 봄꽃축제" }).click();
   await page.waitForURL("**/evidence");
@@ -181,7 +184,8 @@ try {
   await expectVisible(page.getByText("가정 세트 v1 저장됨"), "clone did not reset assumption version");
   await expectVisible(page.getByText("L0 · 라벨 없음"), "clone did not reset label maturity");
 
-  await page.getByRole("link", { name: "호출 로그" }).click();
+  await page.getByRole("button", { name: "기획 도구", exact: true }).click();
+  await page.getByRole("link", { name: "호출 로그", exact: true }).click();
   await page.waitForURL("**/logs");
   await expectVisible(page.getByText("seed-placeholder"), "logs missing seed row");
   await expectVisible(page.getByRole("columnheader", { name: "소요" }), "logs missing duration column");

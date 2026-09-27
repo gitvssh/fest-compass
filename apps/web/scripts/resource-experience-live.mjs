@@ -57,12 +57,23 @@ try {
   await page.goto(base);
   const purpose = page.locator('section[aria-labelledby="purpose-heading"]');
   for (const [name, href] of [["기존 축제 찾기 →", "/existing/search"], ["지역부터 살펴보기 →", "/new"]]) assert.equal(await purpose.getByRole("link", { name, exact: true }).getAttribute("href"), href);
-  await page.waitForFunction(() => [...document.querySelectorAll('#purpose-heading + ul img')].length === 2 && [...document.querySelectorAll('#purpose-heading + ul img')].every(img => img.complete && img.naturalWidth > 0));
+  await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].length === 2 && [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].every(img => img.complete && img.naturalWidth > 0));
   const images = await purpose.locator("img").evaluateAll(imgs => imgs.map(img => ({ alt: img.alt, width: img.naturalWidth, src: new URL(img.currentSrc).pathname, renderedWidth: img.getBoundingClientRect().width })));
   assert.ok(images.every(i => i.alt === "" && i.width > 0 && i.src === "/_next/image")); report.images = images;
   // Trial action runs the consent handler and verifies that the actual CTA is unobscured.
   // DOM reads and screenshots alone do not invoke locator handlers.
   await purpose.getByRole("link", { name: "기존 축제 찾기 →", exact: true }).click({ trial: true });
+  report.desktop = [];
+  for (const width of [1366, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const metrics = await page.evaluate(() => ({ width: innerWidth, header: document.querySelector('body header').getBoundingClientRect().height,
+      main: document.querySelector('main').getBoundingClientRect().width,
+      imageWidths: [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].map(el => el.getBoundingClientRect().width) }));
+    assert.ok(metrics.header <= 80 && metrics.imageWidths.every(w => w >= 390), `desktop home ${width}`);
+    await overflow(`desktop home ${width}`); report.desktop.push(metrics);
+  }
+  await shot("home-wide");
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await shot("home-desktop");
   for (const width of [640, 390, 320]) { await page.setViewportSize({ width, height: 900 }); await overflow(`home ${width}`); if (width === 390) await shot("home-mobile"); }
   await page.setViewportSize({ width: 1440, height: 1000 }); await zoom(2, "home"); await overflow("home zoom 200%"); await shot("home-zoom-200"); await zoom(1, "home reset");
@@ -121,6 +132,17 @@ try {
     await page.locator(`#${sample.heading}`).waitFor();
     assert.equal(await page.locator(`#${sample.heading}`).innerText(), item.title);
     await page.waitForFunction(id => document.activeElement?.id === id, sample.heading);
+    for (const width of [1440, 1920]) {
+      await page.setViewportSize({ width, height: 1000 });
+      const boxes = await page.locator('[data-resource-area]').evaluateAll(els => els.map(el => ({ area: el.dataset.resourceArea, ...el.getBoundingClientRect().toJSON() })));
+      const listBox = boxes.find(b => b.area === 'list'), mapBox = boxes.find(b => b.area === 'map'), detailBox = boxes.find(b => b.area === 'detail');
+      assert.ok(listBox && mapBox && detailBox && listBox.right <= mapBox.x && mapBox.right <= detailBox.x, `${sample.flow} ${width}: three readable columns`);
+      assert.ok(listBox.width >= 320 && mapBox.width >= 320 && detailBox.width >= 320);
+      assert.equal(await page.locator(`#${sample.heading}`).count(), 1);
+      await overflow(`${sample.flow} ${width}`);
+      report.desktop.push({ flow: sample.flow, width, boxes });
+      await shot(`${sample.flow}-detail-desktop-${width}`);
+    }
     for (const width of [390, 320]) { await page.setViewportSize({ width, height: 900 }); await overflow(`${sample.flow} ${width}`); if (width === 390) await shot(`${sample.flow}-detail-mobile`); }
     await page.setViewportSize({ width: 1440, height: 1000 }); await zoom(2, sample.flow); await overflow(`${sample.flow} zoom 200%`);
     await page.getByRole("group", { name: "보기 방식" }).getByRole("button", { name: "지도", exact: true }).click();
@@ -144,6 +166,18 @@ try {
     await page.getByRole("group", { name: "보기 방식" }).getByRole("button", { name: "목록", exact: true }).click();
     await zoom(1, `${sample.flow} reset`);
     report.checks.push(`${sample.flow}-official-source-full-list-identity-detail-mobile-real-zoom`);
+  }
+  for (const flow of ["new", "existing"]) {
+    const path = flow === "new" ? "/new/51150/visits?year=2025" : "/existing/current%3A50110%3A667418/visits?year=2025&month=2025-10";
+    await page.setViewportSize({ width: 1440, height: 1000 }); await page.goto(`${base}${path}`);
+    const analysis = page.locator(`[data-visit-analysis="${flow === 'new' ? 'monthly-weekday' : 'monthly-daily'}"]`);
+    await analysis.waitFor(); await analysis.locator('svg').first().waitFor();
+    const sections = analysis.locator(':scope > section');
+    await page.waitForFunction(value => document.querySelector(`[data-visit-analysis="${value}"]`)?.querySelectorAll(':scope > section').length === 2, flow === 'new' ? 'monthly-weekday' : 'monthly-daily');
+    const boxes = await sections.evaluateAll(els => els.map(el => el.getBoundingClientRect().toJSON()));
+    assert.ok(boxes[0].right <= boxes[1].x && Math.abs(boxes[0].y - boxes[1].y) < 2, `${flow} visit charts side by side`);
+    await overflow(`${flow} visits 1440`); await shot(`${flow}-visits-desktop`);
+    report.desktop.push({ flow, view: "visits", width: 1440, boxes });
   }
   assert.deepEqual(report.browserErrors, []); assert.deepEqual(report.appWrites, []); report.status = "passed";
 } finally {

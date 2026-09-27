@@ -30,6 +30,31 @@ button {
   font: inherit;
 }
 
+.app-navigation { position: relative; display: flex; justify-content: flex-end; min-width: 0; }
+.app-nav-toggle, .app-nav-link { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: 8px; border-radius: 8px; padding: 10px 14px; color: #43536a; font-size: 14px; font-weight: 700; white-space: nowrap; }
+.app-nav-toggle { border: 1px solid #10233d26; background: white; }
+.app-nav-link:hover, .app-nav-toggle:hover { color: #10233d; background: #f6f7f4; }
+.app-nav-link.is-current { color: #164ea1; background: #eaf1fe; }
+.app-nav-link[aria-current] { text-decoration: underline; text-underline-offset: 5px; }
+.app-nav-panel { display: none; position: absolute; top: calc(100% + 12px); right: 0; width: min(28rem, calc(100vw - 40px)); max-height: calc(100dvh - 104px); overflow-y: auto; border: 1px solid #10233d26; border-radius: 12px; padding: 12px; background: white; box-shadow: 0 12px 28px #10233d1a; }
+.app-nav-panel.is-open { display: block; }
+.app-nav-primary { display: grid; }
+.app-nav-primary .app-nav-link, .app-tools-panel .app-nav-link { justify-content: flex-start; }
+.app-nav-tools { margin-top: 8px; border-top: 1px solid #10233d1a; padding-top: 8px; }
+.app-tools-toggle { width: 100%; justify-content: space-between; }
+.app-tools-panel { display: grid; gap: 4px; padding: 8px 0 0 8px; }
+.app-tools-panel[hidden] { display: none; }
+
+@media (min-width: 1024px) {
+  .app-navigation { flex: 1; }
+  .app-nav-toggle { display: none; }
+  .app-nav-panel, .app-nav-panel.is-open { position: static; display: flex; width: 100%; max-height: none; align-items: center; justify-content: space-between; gap: 24px; overflow: visible; border: 0; border-radius: 0; padding: 0; background: transparent; box-shadow: none; }
+  .app-nav-primary { display: flex; gap: 8px; }
+  .app-nav-tools { position: relative; margin: 0; border: 0; padding: 0; }
+  .app-tools-toggle { gap: 12px; }
+  .app-tools-panel { position: absolute; right: 0; top: calc(100% + 10px); width: 360px; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid #10233d26; border-radius: 12px; padding: 12px; background: white; box-shadow: 0 12px 28px #10233d1a; }
+}
+
 @layer components {
   .region-card { @apply min-w-0 rounded-2xl border border-ink/10 bg-white p-4 sm:p-5; }
   .region-button { @apply inline-flex min-h-10 items-center justify-center rounded-xl border border-ink/20 bg-white px-3 py-2 text-sm font-bold hover:bg-paper disabled:cursor-not-allowed disabled:opacity-40; }

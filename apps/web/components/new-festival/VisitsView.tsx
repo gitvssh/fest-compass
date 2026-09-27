@@ -128,6 +128,7 @@ export function VisitsView() {
     </div>}
 
     {data && hasValues && shownYear !== null && <>
+      <div data-visit-analysis="monthly-weekday" className="grid min-w-0 items-start gap-4 xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
       <section aria-labelledby="new-monthly-heading" className="region-card space-y-3">
         <div>
           <h3 id="new-monthly-heading" tabIndex={-1} className="text-lg font-extrabold">{shownYear}년 월별 일평균</h3>
@@ -153,6 +154,7 @@ export function VisitsView() {
           : <div className="space-y-2 text-sm"><p>이 연도의 요일별 흐름을 불러올 수 없어요.</p>{changeYear}</div>}
       </section>
 
+      </div>
       <div className="flex flex-wrap gap-2">
         <InfoDialog label="출처·산식 보기" title="방문 자료 출처와 계산">
           <p>대상: {region.name} 전체의 날짜별 외지인 방문(통신 기반 추정). 지난 관측값이며 앞으로의 방문 전망이나 축제 관람객 수가 아니에요. 공휴일과 기존 행사 기간이 포함돼 있어요.</p>
