@@ -89,3 +89,46 @@
 .g-pd{display:inline-block;margin-top:6px;font-size:12.5px;font-weight:800;color:#1d3f8f;background:var(--blue-soft);padding:2px 8px;border-radius:6px}
 .g-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:14px 0 0;font-size:12.5px;color:var(--muted)}
 .g-legend i{font-style:normal;font-size:11px;font-weight:800;color:#5a4a8a;background:#efeafd;border-radius:5px;padding:0 5px;margin-right:4px}
+
+/* ---- v2 (after Codex·Fable reviews) ---- */
+.g2-area{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start;padding:14px 18px;border:1px solid var(--line);border-radius:16px;background:#fff;margin-bottom:12px}
+.g2-area .goal{margin:0;font-size:16px;font-weight:800;line-height:1.45}
+.g2-area .cannot{margin:4px 0 8px;font-size:13.5px;color:#334861}
+.g2-area .qs{margin:0;font-size:14px;line-height:1.6;color:#22344d}
+.g2-area .qs b{font-size:12.5px;color:var(--muted);margin-right:6px}
+.g2-area .qs ul{margin:2px 0 0;padding-left:18px}
+.g2-help{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.g2-hint{font-size:12.5px;color:var(--muted);max-width:220px;text-align:right}
+.g2-variant{margin:8px 0 0;font-size:12.5px;color:var(--muted)}
+.g2-side{position:fixed;top:73px;right:0;bottom:0;width:380px;z-index:20;overflow:auto;padding:18px 20px 24px;background:#fff;border-left:1px solid #10233d26}
+.g2-side h2{margin:0 0 12px;font-size:18px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.g2-side details{border-top:1px solid #10233d14;padding:8px 0}
+.g2-side summary{font-size:14.5px;font-weight:800;cursor:pointer;min-height:36px;display:flex;align-items:center}
+.g2-side ol,.g2-side ul{margin:4px 0 6px;padding-left:18px;display:grid;gap:6px;font-size:13.5px;line-height:1.55}
+.g2-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:22px 0 4px;padding-top:14px;border-top:1px solid var(--line)}
+.g2-row .next{display:inline-flex;gap:8px;align-items:center;min-height:48px;padding:10px 18px;border-radius:14px;background:var(--navy);color:#fff;font-weight:800;font-size:15px;text-decoration:none}
+.g2-row .others{display:flex;gap:8px;flex-wrap:wrap}
+.g2-flow{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:start;margin-top:22px;padding:18px 22px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.g2-flow img{width:300px;height:200px;object-fit:cover;border-radius:14px}
+.g2-flow h2{margin:0 0 4px;font-size:20px;font-weight:800}
+.g2-flow .goal{margin:0 0 6px;color:#2a3a52;line-height:1.55;font-size:15px}
+.g2-flow .legend{margin:0 0 10px;font-size:14px;color:#2a3a52}
+.g2-steps{list-style:none;margin:0 0 12px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.g2-steps li{padding:10px 12px;border-radius:12px;background:var(--paper);font-size:13px;line-height:1.45}
+.g2-steps li b{display:block;font-size:14.5px;margin-bottom:2px}
+.g2-judge{padding:10px 14px;border-radius:12px;border:1px dashed #10233d33;font-size:14px;line-height:1.55}
+.g2-judge b{display:block;font-size:13px;color:var(--muted);margin-bottom:2px}
+.g2-judge ul{margin:0;padding-left:18px}
+.g2-check{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.g2-check li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #10233d12;font-size:14.5px;line-height:1.45}
+.g2-kind{display:inline-block;margin-top:3px;font-size:12px;font-weight:800;color:#41506a}
+.g2-radios{display:flex;gap:6px}
+.g2-radios span{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid #10233d33;border-radius:10px;font-size:13.5px;font-weight:700;background:#fff;color:#41506a}
+.g2-radios span::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid #8794a8;box-sizing:border-box}
+.g2-radios .on{border-color:#2f6b4f;color:#173b2a;font-weight:800;background:#eef6f1}
+.g2-radios .on::before{border:5px solid #2f6b4f}
+.g2-overlap{margin:4px 0 0;padding-left:18px;font-size:13.5px}
+.g2-phase{display:grid;grid-template-columns:180px minmax(0,1.1fr) minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr);gap:14px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;font-size:14px;line-height:1.5}
+.g2-phase.help{border:2px solid #2667e8}
+.g2-phase h4{margin:0 0 4px;font-size:12.5px;color:var(--muted);font-weight:800}
+.g2-phase ul{margin:0;padding-left:16px}
