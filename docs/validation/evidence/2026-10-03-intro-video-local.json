@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-03T01:30:30.802Z",
-  "base": "http://127.0.0.1:3197",
+  "checkedAt": "2026-10-03T01:35:33.236Z",
+  "base": "http://127.0.0.1:41849",
   "headless": true,
   "checks": [
     {
@@ -30,7 +30,7 @@
     },
     {
       "name": "intro=play opens the player and leaves other query values",
-      "url": "http://127.0.0.1:3197/?utm_source=qr"
+      "url": "http://127.0.0.1:41849/?utm_source=qr"
     },
     {
       "name": "offer waits for a late consent modal and appears only after it closes"
