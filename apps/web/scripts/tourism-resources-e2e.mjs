@@ -393,9 +393,9 @@ async function typeChoice(flow) {
     await page.goto(existingUrl("?types=12,14,39,32"));
     await settled(page, ["12", "14", "39", "32"]);
     const nav = page.getByRole("navigation", { name: "축제 탐색 메뉴" });
-    await nav.getByRole("link", { name: "개최 시기", exact: true }).click();
+    await nav.getByRole("link", { name: "개최 시기 검토하기 · 개최 시기", exact: true }).click();
     await page.waitForURL(u => u.pathname.endsWith("/timing"));
-    await nav.getByRole("link", { name: "주변 관광자원", exact: true }).click();
+    await nav.getByRole("link", { name: "연계 관광 찾기 · 주변 관광자원", exact: true }).click();
     await page.waitForURL(u => u.pathname.endsWith("/resources"));
     await waitTypes(page, "12,14,39,32");
     await settled(page, ["39", "32"]);

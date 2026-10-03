@@ -86,6 +86,8 @@ try {
     await page.keyboard.press("Escape");
     await dialog(page).waitFor({ state: "hidden" });
     const paused = await page.evaluate(() => document.querySelector("dialog video")?.paused);
+    // Focus comes back with the close event, which is queued right after the dialog hides.
+    await page.waitForFunction(() => /1분 소개 영상/.test(document.activeElement?.textContent ?? ""), undefined, { timeout: 2000 }).catch(() => {});
     const returned = await page.evaluate(() => document.activeElement?.textContent ?? "");
     assert.equal(paused, true);
     assert.match(returned, /1분 소개 영상/);

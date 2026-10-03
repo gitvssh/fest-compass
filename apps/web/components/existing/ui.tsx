@@ -1,5 +1,6 @@
 "use client";
-import { useId, useRef, useState, type ReactNode } from "react";
+import { Info, X } from "lucide-react";
+import { useId, useRef, useState, type MouseEvent, type PointerEvent, type ReactNode } from "react";
 import type { DataFreshness } from "@/lib/existing/types";
 import { timeLabel } from "./format";
 
@@ -20,30 +21,51 @@ export function LoadState({ loading, failure, hasData, retrievedAt, subject, onR
   return null;
 }
 
-/** Native modal dialog; closing (button, Esc) returns focus to the button that opened it. `buttonLabel` names a repeated opener. `onOpen` runs just before it opens. */
-export function InfoDialog({ label, title, children, buttonClassName = "region-button", buttonLabel, onOpen }: { label: string; title: string; children: ReactNode; buttonClassName?: string; buttonLabel?: string; onOpen?: () => void }) {
-  const dialog = useRef<HTMLDialogElement>(null), opener = useRef<HTMLButtonElement>(null), id = useId();
+/** Shared header of every modal dialog: an optional badge, the title and a round close button named 닫기. */
+export function DialogHeader({ titleId, title, icon, onClose }: { titleId: string; title: ReactNode; icon?: ReactNode; onClose: () => void }) {
+  return <div className="ui-dialog-header">
+    {icon && <span aria-hidden="true" className="ui-dialog-badge">{icon}</span>}
+    <h2 id={titleId} className="ui-dialog-title">{title}</h2>
+    <button type="button" className="ui-icon-button" aria-label="닫기" title="닫기" onClick={onClose}><X size={20} aria-hidden="true" /></button>
+  </div>;
+}
+
+/** Closes a modal dialog on a press that starts and ends on its backdrop (a text selection dragged outside never closes it). */
+export function useBackdropClose() {
+  const started = useRef(false);
+  return {
+    onPointerDown: (e: PointerEvent<HTMLDialogElement>) => { started.current = e.target === e.currentTarget; },
+    onClick: (e: MouseEvent<HTMLDialogElement>) => { if (started.current && e.target === e.currentTarget) e.currentTarget.close(); started.current = false; },
+  };
+}
+
+/**
+ * Native modal dialog; closing (button, Esc, backdrop) returns focus to the button that opened it. `buttonLabel` names a
+ * repeated opener. `onOpen` runs just before it opens. `buttonIcon` sits before the visible label (decorative).
+ */
+export function InfoDialog({ label, title, children, buttonClassName = "region-button", buttonLabel, buttonIcon, icon, onOpen }: {
+  label: string; title: string; children: ReactNode; buttonClassName?: string; buttonLabel?: string; buttonIcon?: ReactNode; icon?: ReactNode; onOpen?: () => void;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null), opener = useRef<HTMLButtonElement>(null), id = useId(), backdrop = useBackdropClose();
   return <>
-    <button ref={opener} type="button" className={buttonClassName} aria-haspopup="dialog" aria-label={buttonLabel} onClick={() => { onOpen?.(); dialog.current?.showModal(); }}>{label}</button>
-    <dialog ref={dialog} aria-labelledby={`${id}-title`} onClose={() => opener.current?.focus()}
-      className="m-auto w-[min(40rem,calc(100vw-2rem))] rounded-2xl border border-ink/10 p-0 text-ink backdrop:bg-ink/40">
-      <div className="max-h-[80vh] space-y-3 overflow-y-auto p-5 text-sm leading-6">
-        <div className="flex items-start justify-between gap-3">
-          <h2 id={`${id}-title`} className="min-w-0 break-words text-lg font-extrabold">{title}</h2>
-          <button type="button" className="region-button shrink-0" onClick={() => dialog.current?.close()}>닫기</button>
-        </div>
-        {children}
-      </div>
+    <button ref={opener} type="button" className={buttonClassName} aria-haspopup="dialog" aria-label={buttonLabel} onClick={() => { onOpen?.(); dialog.current?.showModal(); }}>
+      {buttonIcon && <span aria-hidden="true" className="inline-flex shrink-0">{buttonIcon}</span>}{label}
+    </button>
+    <dialog ref={dialog} aria-labelledby={`${id}-title`} onClose={() => opener.current?.focus()} className="ui-dialog" {...backdrop}>
+      <DialogHeader titleId={`${id}-title`} title={title} icon={icon ?? <Info size={18} />} onClose={() => dialog.current?.close()} />
+      <div className="ui-dialog-body space-y-3">{children}</div>
     </dialog>
   </>;
 }
 
 /** Show/hide an equivalent table. Closing from inside returns focus to the toggle. */
-export function Disclosure({ label, children, open: initial = false, onToggle }: { label: string; children: ReactNode; open?: boolean; onToggle?: (open: boolean) => void }) {
+export function Disclosure({ label, children, open: initial = false, onToggle, icon }: { label: string; children: ReactNode; open?: boolean; onToggle?: (open: boolean) => void; icon?: ReactNode }) {
   const [open, setOpen] = useState(initial), button = useRef<HTMLButtonElement>(null), id = useId();
   const set = (value: boolean) => { setOpen(value); onToggle?.(value); };
   return <div className="min-w-0">
-    <button ref={button} type="button" className="region-button" aria-expanded={open} aria-controls={id} onClick={() => set(!open)}>{open ? `${label} 닫기` : label}</button>
+    <button ref={button} type="button" className="region-button" aria-expanded={open} aria-controls={id} onClick={() => set(!open)}>
+      {icon && <span aria-hidden="true" className="inline-flex shrink-0">{icon}</span>}{open ? `${label} 닫기` : label}
+    </button>
     <div id={id} hidden={!open} className="mt-3 min-w-0">
       {open && <>
         {children}

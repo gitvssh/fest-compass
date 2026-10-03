@@ -161,7 +161,8 @@ const flush = page => page.evaluate(() => new Promise(r => requestAnimationFrame
 const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const count = (text, part) => text.split(part).length - 1;
 const norm = s => s.normalize("NFC").replace(/\s+/g, " ").trim();
-const existingMenu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label, exact: true });
+// A tab is named "할 일 · 자료 이름"; the data name alone still picks exactly one tab.
+const existingMenu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label });
 const resourceList = page => page.getByRole("list", { name: "관광자원 목록" });
 const rowButton = (page, r) => resourceList(page).getByRole("button", { name: new RegExp(`^\\d+\\. ${escapeRe(r.title)}`) });
 const detail = (page, r) => page.getByRole("complementary", { name: r.title, exact: true });
@@ -173,7 +174,7 @@ const searchDialog = (page, target) => page.getByRole("dialog", { name: `${targe
 const queryBox = dialog => dialog.getByLabel("검색어", { exact: true });
 const topicGroup = dialog => dialog.getByRole("group", { name: "찾을 내용", exact: true });
 const yearGroup = dialog => dialog.getByRole("group", { name: "연도", exact: true });
-const searchLink = dialog => dialog.getByRole("link", { name: "DuckDuckGo에서 검색 ↗", exact: true });
+const searchLink = dialog => dialog.getByRole("link", { name: "DuckDuckGo에서 검색", exact: true });
 const resetButton = dialog => dialog.getByRole("button", { name: "기본 검색어로", exact: true });
 const closeButton = dialog => dialog.getByRole("button", { name: "닫기", exact: true });
 const EMPTY_TEXT = "검색어를 입력해 주세요.", NOTE_TEXT = "새 탭에서 검색 결과가 열려요.";

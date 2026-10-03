@@ -56,7 +56,7 @@ export function CurrentVisits({ heading }: { heading: RefObject<HTMLHeadingEleme
   return <>
     <div>
       <h2 id="visits-heading" ref={heading} tabIndex={-1} className="text-xl font-extrabold">{region ? `${region.districtName} 외지인 방문 흐름` : "지역 외지인 방문 흐름"}</h2>
-      <p className="text-sm text-muted">{region ? `${region.name} 전체` : "시군구 전체"} · 명/일 · 통신 기반 추정 · 축제장 입장객 수 아님</p>
+      <p className="text-sm text-muted">{region ? `${region.name} 전체` : "시군구 전체"} · 명/일 · 통신 기반 추정</p>
     </div>
     {region ? <DistrictVisits key={festival.id} region={region} /> : <FestivalPending />}
   </>;
@@ -119,7 +119,7 @@ function DistrictVisits({ region }: { region: RegionRef }) {
     {registered.length > 0 && <RegisteredDates items={registered} selected={month} available={hasMonth} onShow={showMonth} />}
     {noData ? <div className="region-card space-y-2">
       <p className="font-bold">{region.districtName}의 외지인 방문 자료가 아직 없어요.</p>
-      <p className="text-sm text-muted">주변 관광자원과 개최 시기는 지금 살펴볼 수 있어요.</p>
+      <p className="text-sm text-muted">연계 관광과 개최 시기는 아래에서 바로 살펴볼 수 있어요.</p>
     </div> : <div data-visit-analysis="monthly-daily" className={`grid min-w-0 items-start gap-4 ${data && month && data.months.length > 0 ? "xl:grid-cols-2" : ""}`}>
       <ObservedMonths region={region} result={monthly} year={applied.year ?? (data?.year ?? null)} onYear={year => apply({ year, month: null })}
         selectedMonth={month} onSelectMonth={m => apply({ year: shownYear, month: m })} onOpenCalendar={openCalendar}
@@ -129,8 +129,6 @@ function DistrictVisits({ region }: { region: RegionRef }) {
       </DailyLine>}
     </div>}
     <div className="flex flex-wrap gap-2">
-      <Link className="region-button" href={viewHref(festival.id, "resources")}>주변 관광자원 보기</Link>
-      <Link className="region-button" href={viewHref(festival.id, "timing")}>개최 시기 보기</Link>
       <Link className="region-button" href="/existing/search">다른 축제 찾기</Link>
     </div>
   </>;

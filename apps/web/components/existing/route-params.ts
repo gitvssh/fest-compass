@@ -8,7 +8,7 @@ export function festivalParam(segment: string): string | null {
   try { id = decodeURIComponent(segment); } catch { return null; }
   return parseFestivalId(id) ? id : null;
 }
-export function festivalPath(id: string, view: "visits" | "resources" | "timing"): string {
+export function festivalPath(id: string, view: "visits" | "resources" | "timing" | "summary"): string {
   return `/existing/${encodeURIComponent(id)}/${view}`;
 }
 export function one(params: SearchParams | URLSearchParams, key: string): string | null {

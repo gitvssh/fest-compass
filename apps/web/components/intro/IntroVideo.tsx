@@ -1,7 +1,9 @@
 "use client";
 
+import { Play } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { DialogHeader } from "@/components/existing/ui";
 import { isConsentModalOpen } from "@/lib/analytics/consent";
 import {
   INTRO_MEDIA,
@@ -42,18 +44,26 @@ export function IntroVideo() {
   }, []);
 
   const closePlayer = useCallback(() => {
+    // Sound stops with the action itself; the close event that follows may arrive a frame later.
+    videoRef.current?.pause();
     dialogRef.current?.close();
   }, []);
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
+    const stop = () => videoRef.current?.pause();
     const onClose = () => {
-      videoRef.current?.pause();
+      stop();
       triggerRef.current?.focus();
     };
+    // Escape fires `cancel` at the key press; `close` is queued after it.
+    dialog.addEventListener("cancel", stop);
     dialog.addEventListener("close", onClose);
-    return () => dialog.removeEventListener("close", onClose);
+    return () => {
+      dialog.removeEventListener("cancel", stop);
+      dialog.removeEventListener("close", onClose);
+    };
   }, []);
 
   useEffect(() => {
@@ -134,13 +144,11 @@ export function IntroVideo() {
         ref={dialogRef}
         aria-labelledby="intro-player-title"
         onClick={(event) => { if (event.target === dialogRef.current) closePlayer(); }}
-        className="w-[min(1100px,calc(100vw-32px))] max-w-none rounded-2xl bg-white p-0 text-ink backdrop:bg-navy/75"
+        className="ui-dialog ui-dialog-wide"
       >
-        <div className="flex items-center justify-between gap-4 border-b border-ink/10 px-4 py-2 sm:px-5">
-          <h2 id="intro-player-title" className="text-base font-extrabold">pickDday {INTRO_MEDIA.durationLabel} 소개</h2>
-          <button type="button" onClick={closePlayer} className="region-button min-h-11 border-transparent px-3">닫기 ✕</button>
-        </div>
-        <div className="relative aspect-video w-full bg-navy">
+        <DialogHeader titleId="intro-player-title" title={`pickDday ${INTRO_MEDIA.durationLabel} 소개`} icon={<Play size={18} />} onClose={closePlayer} />
+        <div className="min-h-0 flex-1 overflow-y-auto">
+        <div className="relative aspect-video max-h-[calc(100dvh-10rem)] w-full bg-navy">
           <video
             ref={videoRef}
             controls
@@ -177,6 +185,7 @@ export function IntroVideo() {
             {INTRO_TRANSCRIPT.map((line) => <li key={line}>{line}</li>)}
           </ol>
         </details>
+        </div>
       </dialog>
     </>
   );

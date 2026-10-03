@@ -1,3 +1,4 @@
+import { ArrowRight, Printer, Route } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,6 +6,9 @@ import { AnalyticsView } from "@/components/AnalyticsView";
 import { EditorOnly } from "@/components/EditorOnly";
 import { IntroVideo } from "@/components/intro/IntroVideo";
 import { isPublicReadonly } from "@/lib/app-mode";
+import { EXISTING_GUIDE, NEW_GUIDE } from "@/lib/guide/content";
+import { PHASES } from "@/lib/guide/process";
+import { PHASE_ICONS } from "@/components/guide/icons";
 import { listFestivals } from "@/lib/queries";
 import { canonicalUrl } from "@/lib/site";
 import { siteConfig } from "@/lib/site";
@@ -59,7 +63,8 @@ export default async function HomePage() {
               className="mb-6 h-48 w-full rounded-xl object-contain sm:h-60 lg:h-[300px]"
             />
             <h2 className="text-2xl font-extrabold">기존 축제 개선</h2>
-            <p className="mb-6 mt-2 text-base leading-7 text-muted">지난 개최 때의 지역 방문과 주변 관광자원을 살펴보고, 다음 개최 시기를 비교합니다.</p>
+            <p className="mt-2 text-base leading-7 text-muted">지난 개최 때의 지역 방문과 주변 관광자원을 살펴보고, 다음 개최 시기를 비교합니다.</p>
+            <p className="mb-6 mt-3 inline-flex items-center gap-2 self-start rounded-full bg-teal-soft/70 px-3 py-1.5 text-sm font-bold text-[#11564f]"><Printer aria-hidden="true" size={15} />얻는 것 · {EXISTING_GUIDE.outcome}</p>
             <Link href="/existing/search" className="region-button mt-auto min-h-11 self-start border-blue bg-blue px-5 text-white hover:border-[#164ea1] hover:bg-[#164ea1]">기존 축제 찾기 →</Link>
           </li>
           <li className="flex min-w-0 flex-col rounded-2xl border border-ink/10 bg-white p-5 lg:p-7">
@@ -74,10 +79,25 @@ export default async function HomePage() {
               className="mb-6 h-48 w-full rounded-xl object-contain sm:h-60 lg:h-[300px]"
             />
             <h2 className="text-2xl font-extrabold">새 축제 기획</h2>
-            <p className="mb-6 mt-2 text-base leading-7 text-muted">지역의 관광자원과 방문 추세를 탐색하고, 새로운 축제의 장소와 시기를 검토합니다.</p>
+            <p className="mt-2 text-base leading-7 text-muted">지역의 관광자원과 방문 추세를 탐색하고, 새로운 축제의 장소와 시기를 검토합니다.</p>
+            <p className="mb-6 mt-3 inline-flex items-center gap-2 self-start rounded-full bg-teal-soft/70 px-3 py-1.5 text-sm font-bold text-[#11564f]"><Printer aria-hidden="true" size={15} />얻는 것 · {NEW_GUIDE.outcome}</p>
             <Link href="/new" className="region-button mt-auto min-h-11 self-start border-blue bg-blue px-5 text-white hover:border-[#164ea1] hover:bg-[#164ea1]">지역부터 살펴보기 →</Link>
           </li>
         </ul>
+        <Link href="/guide" className="group mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-2xl border border-ink/10 bg-white px-5 py-4 hover:border-blue/40">
+          <span className="flex items-center gap-3">
+            <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-navy text-white"><Route size={20} /></span>
+            <span className="leading-snug">
+              <span className="block text-sm text-muted">축제를 처음 맡으셨나요?</span>
+              <span className="block font-extrabold">축제 준비 전체 과정 보기</span>
+            </span>
+          </span>
+          <span aria-hidden="true" className="flex flex-1 items-center gap-1.5 text-muted">
+            {PHASES.map(phase => { const Icon = PHASE_ICONS[phase.icon];
+              return <span key={phase.step} className="flex items-center gap-1.5"><span className="grid h-8 w-8 place-items-center rounded-full bg-paper text-ink/70"><Icon size={15} /></span>{phase.step < PHASES.length && <span className="hidden h-px w-3 bg-ink/20 sm:block" />}</span>; })}
+          </span>
+          <ArrowRight aria-hidden="true" size={18} className="text-blue transition-transform group-hover:translate-x-0.5" />
+        </Link>
       </section>
 
       <section aria-label="조사와 기획 도구" className="mb-10 grid divide-y divide-ink/10 border-y border-ink/10 lg:grid-cols-3 lg:divide-x lg:divide-y-0">

@@ -5,13 +5,15 @@ import type { ResourceItem } from "@/lib/existing/types";
 // Temporary exploration memory for this browser tab. It lives in the loaded client module, so it survives menu
 // moves and back/forward, and disappears on reload (the address then restores only the durable conditions).
 // Nothing here is written to storage or sent to the server.
-export type NewView = "resources" | "visits" | "timing";
+export type NewView = "resources" | "visits" | "timing" | "summary";
 
 /** Selections that belong to one region. Another region gets a fresh object; stale writers only touch the old one. */
 export type RegionMemory = {
   code: string;
   resources: { compared: ResourceItem[]; detail: ResourceItem | null; anchor: Anchor | null; radiusKm: number | null; sort: "name" | "distance"; display: "list" | "map" };
   visits: { observedMonth: string | null; returnFocus: string | null; open: Record<string, boolean> };
+  /** Screen-only memo of the summary sheet (printed with it, never saved). */
+  memo: string;
 };
 
 type TabMemory = {
@@ -28,6 +30,7 @@ function fresh(code: string): RegionMemory {
     code,
     resources: { compared: [], detail: null, anchor: null, radiusKm: null, sort: "name", display: "list" },
     visits: { observedMonth: null, returnFocus: null, open: {} },
+    memo: "",
   };
 }
 

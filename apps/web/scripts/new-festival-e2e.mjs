@@ -307,7 +307,10 @@ const rowsOf = region => region.locator("tbody tr").evaluateAll(trs => trs.map(t
 const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const main = page => page.locator("main");
 const title = (page, region) => page.getByRole("heading", { level: 1, name: region.name, exact: true });
-const menu = (page, label) => page.getByRole("navigation", { name: "새 축제 탐색 메뉴" }).getByRole("link", { name: label, exact: true });
+// The row under every task: the next task in order and the other tasks.
+const nextRow = page => page.getByRole("navigation", { name: "다음 할 일" });
+// A tab is named "할 일 · 자료 이름"; the data name alone still picks exactly one tab.
+const menu = (page, label) => page.getByRole("navigation", { name: "새 축제 탐색 메뉴" }).getByRole("link", { name: label });
 async function go(page, label, headingId) { await menu(page, label).click(); await waitFocusId(page, headingId); }
 const combo = (scope, prefix) => scope.getByRole("combobox", { name: new RegExp(`^${prefix}`) });
 async function pickRegion(scope, region, submit) {
@@ -850,7 +853,7 @@ async function visits({ page }) {
   await visible(page.getByText("선이 끊긴 날: 값 없음", { exact: true }));
   await weekday.getByRole("button", { name: "연도 바꾸기", exact: true }).click();
   await waitFocusId(page, "new-visits-year");
-  await visible(page.getByRole("link", { name: "지역 관광자원 보기", exact: true }));
+  await visible(nextRow(page).getByRole("link", { name: "지역 자원 살펴보기", exact: true }));
   await noInternalWording(page, "visits 2026");
   passed.push("AC5-real-2026-months-1-7-kept-all-weekday-means-withheld-missing-not-zero");
   // Leave the observation year at 2025 for later views.
@@ -1042,7 +1045,7 @@ async function failuresAndNoData() {
   await page.goto(`${base}/new/11110/visits`);
   await visible(page.getByText("종로구의 방문 자료가 없어요.", { exact: true }));
   await excludes(main(page), whole(NONSAN_2025_MONTHS[0]), "never another region's values");
-  await page.getByRole("link", { name: "지역 관광자원 보기", exact: true }).click();
+  await nextRow(page).getByRole("link", { name: "지역 자원 살펴보기", exact: true }).click();
   await visible(page.getByText("관광지: 조회한 등록 결과가 없어요", { exact: true }));
   await visible(page.getByText("선택한 유형에 조회된 자원이 없어요.", { exact: true }));
   await go(page, "개최 시기", "new-timing-heading");

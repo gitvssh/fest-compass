@@ -1,8 +1,15 @@
 "use client";
+import { Bookmark, FileText, FolderOpen, Lightbulb, Plus, Receipt, ScrollText, Wallet, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { currentFor, NAV_LINKS, planningLinks, PRIVACY_LINK, publicStorageNoticeFor, type NavLink } from "@/lib/nav";
+
+// Tool menu entries carry a small icon so the six tools read at a glance; the label stays the name.
+const TOOL_ICONS: Record<string, LucideIcon> = {
+  "/evidence": Bookmark, "/planning/options": Lightbulb, "/planning/budget": Wallet, "/planning/proposal": FileText,
+  "/planning/outcomes": Receipt, "/workspace": FolderOpen, "/festivals/new": Plus, "/logs": ScrollText,
+};
 
 export function NavLinks({ showEditorLinks }: { showEditorLinks: boolean }) {
   const pathname = usePathname() ?? "";
@@ -51,8 +58,10 @@ export function NavLinks({ showEditorLinks }: { showEditorLinks: boolean }) {
   }, [mobileOpen, toolsOpen]);
 
   const renderLink = (link: NavLink) => {
-    const current = currentFor(pathname, link.href, link.section);
-    return <Link key={link.href} href={link.href} aria-current={current} className={`app-nav-link${current ? " is-current" : ""}`} onClick={() => { setMobileOpen(false); setToolsOpen(false); }}>{link.label}</Link>;
+    const current = currentFor(pathname, link.href, link.section), Icon = TOOL_ICONS[link.href];
+    return <Link key={link.href} href={link.href} aria-current={current} className={`app-nav-link${current ? " is-current" : ""}`} onClick={() => { setMobileOpen(false); setToolsOpen(false); }}>
+      {Icon && <Icon aria-hidden="true" size={17} className="nav-icon" />}{link.label}
+    </Link>;
   };
 
   return <div ref={containerRef} className="app-navigation">

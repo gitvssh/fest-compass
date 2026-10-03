@@ -183,7 +183,10 @@ async function excludes(locator, pattern, label = "") {
   const found = typeof pattern === "string" ? text.includes(pattern) : pattern.test(text);
   assert.ok(!found, `${label} must not show ${pattern} in ${JSON.stringify(text.slice(0, 500))}`);
 }
-const menu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label, exact: true });
+// The row under every task: the next task in order and the other tasks.
+const nextRow = page => page.getByRole("navigation", { name: "다음 할 일" });
+// A tab is named "할 일 · 자료 이름"; the data name alone still picks exactly one tab.
+const menu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label });
 const results = page => page.getByRole("list", { name: "찾은 축제" });
 const link = (page, id) => page.locator(`a[href="${path(id, "visits")}"]`);
 async function noInternalWording(page, label) {
@@ -267,7 +270,8 @@ async function pendingLookup({ page }) {
 async function currentVisits({ page }) {
   // Any registered festival: district visits of its verified region, registration dates only as registration.
   await visible(page.getByRole("heading", { level: 1, name: ANDONG_FEST.name, exact: true }));
-  await includes(page.locator("section[aria-labelledby='visits-heading']"), "경상북도 안동시 전체 · 명/일 · 통신 기반 추정 · 축제장 입장객 수 아님");
+  await includes(page.locator("section[aria-labelledby='visits-heading']"), "경상북도 안동시 전체 · 명/일 · 통신 기반 추정");
+  await includes(page.getByRole("region", { name: "방문 흐름 돌아보기 안내" }), "축제장 입장객 수");
   await excludes(page.locator("main"), "지난 개최 기록이 없어요");
   const registered = page.getByRole("region", { name: "등록 일정", exact: true });
   await includes(registered, period(REG_2025.start, REG_2025.end));
@@ -330,7 +334,7 @@ async function emptyAndFailure() {
     await visible(page.getByRole("heading", { level: 2, name: "강릉시 외지인 방문 흐름", exact: true }));
     await visible(page.getByText("강릉시의 외지인 방문 자료가 아직 없어요.", { exact: true }));
     assert.equal(await page.getByRole("region", { name: "등록 일정", exact: true }).count(), 0, "no registration dates are invented");
-    await page.getByRole("link", { name: "주변 관광자원 보기", exact: true }).click();
+    await nextRow(page).getByRole("link", { name: /이어서\s*연계 관광 찾기/ }).click();
     await visible(page.getByText("검증용 강릉시 관광지 (가상)").first());
     passed.push("current-visits-empty-state-independent-links");
 
@@ -341,7 +345,7 @@ async function emptyAndFailure() {
     await visible(failed);
     await visible(page.getByRole("heading", { level: 1, name: ANDONG_FEST.name, exact: true }));
     await visible(page.getByRole("region", { name: "등록 일정", exact: true }));
-    await visible(page.getByRole("link", { name: "개최 시기 보기", exact: true }));
+    await visible(nextRow(page).getByRole("link", { name: "개최 시기 검토하기", exact: true }));
     await failed.getByRole("button", { name: "다시 불러오기" }).click();
     await visible(page.getByRole("heading", { name: "2024년 안동시 월별 외지인 방문", exact: true }));
     await noInternalWording(page, "failure recovered");

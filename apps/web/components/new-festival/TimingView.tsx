@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CandidatePeriods } from "@/components/existing/CandidatePeriods";
@@ -20,7 +19,7 @@ import { useNewRegion, useViewHeadingFocus } from "./NewShell";
  * No recommended date, forecast or score.
  */
 export function TimingView() {
-  const { region, href } = useNewRegion();
+  const { region } = useNewRegion();
   const heading = useRef<HTMLHeadingElement>(null), calendarHeading = useRef<HTMLHeadingElement>(null);
   useViewHeadingFocus("timing", heading);
   const address = useSearchParams()?.toString() ?? "";
@@ -47,9 +46,5 @@ export function TimingView() {
     <ScheduleCalendar region={region} month={month} result={schedule} onMonth={setMonth} heading={calendarHeading} />
     <CandidatePeriods region={region} candidates={candidates} onChange={setCandidates}
       onShowMonth={m => { setMonth(m); requestAnimationFrame(() => calendarHeading.current?.focus()); }} />
-    <div className="flex flex-wrap gap-2">
-      <Link className="region-button" href={href("visits")}>지역 방문 흐름 보기</Link>
-      <Link className="region-button" href={href("resources")}>지역 관광자원 보기</Link>
-    </div>
   </section>;
 }

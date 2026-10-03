@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { NextRow, TaskGuide, TaskTabs, type TaskHrefs } from "@/components/guide/JourneyFrame";
 import { RelatedSearch } from "@/components/related/RelatedSearch";
 import type { RegionRef } from "@/lib/existing/types";
 import { REGION_TOPICS } from "@/lib/related-search/query";
@@ -27,11 +28,7 @@ export function useNewRegion(): NewRegionValue {
   return value;
 }
 
-const VIEWS: { view: NewView; label: string }[] = [
-  { view: "resources", label: "지역 관광자원" },
-  { view: "visits", label: "지역 방문 흐름" },
-  { view: "timing", label: "개최 시기" },
-];
+const VIEWS: readonly NewView[] = ["resources", "visits", "timing", "summary"];
 
 /**
  * Shared frame of one verified region. The layout keys it by region code, so another region mounts a fresh
@@ -41,7 +38,7 @@ export function NewShell({ region, children }: { region: RegionRef; children: Re
   const [memory] = useState(() => regionMemory(region.code));
   const pathname = usePathname() ?? "", router = useRouter();
   const address = useSearchParams()?.toString() ?? "";
-  const view = VIEWS.find(v => pathname.endsWith(`/${v.view}`))?.view ?? null;
+  const view = VIEWS.find(v => pathname.endsWith(`/${v}`)) ?? null;
   const title = useRef<HTMLHeadingElement>(null);
   const [changing, setChanging] = useState(false), changeButton = useRef<HTMLButtonElement>(null);
   const code = routeCode(region);
@@ -62,30 +59,27 @@ export function NewShell({ region, children }: { region: RegionRef; children: Re
 
   const chooseHref = `/new${carried ? `?${carried}` : ""}`;
   const value: NewRegionValue = { region, memory, view, href, chooseHref };
+  const hrefs: TaskHrefs = { resources: href("resources"), visits: href("visits"), timing: href("timing"), summary: href("summary") };
+  const select = (next: NewView) => { tab.focusHeading = next; };
   return <NewRegionContext.Provider value={value}>
     <div className="space-y-3">
       <header className="space-y-2">
-        <Link href={chooseHref} className="inline-flex text-sm font-bold text-blue underline underline-offset-4">← 지역 다시 고르기</Link>
+        <Link href={chooseHref} className="no-print inline-flex text-sm font-bold text-blue underline underline-offset-4">← 지역 다시 고르기</Link>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <h1 ref={title} tabIndex={-1} className="text-2xl font-extrabold leading-tight sm:text-3xl">{region.name}</h1>
-          <button ref={changeButton} type="button" className="region-button min-h-8 px-2 py-1 text-xs" aria-expanded={changing} aria-controls="new-region-change"
+          <button ref={changeButton} type="button" className="region-button no-print min-h-8 px-2 py-1 text-xs" aria-expanded={changing} aria-controls="new-region-change"
             onClick={() => setChanging(open => !open)}>지역 바꾸기</button>
-          <RelatedSearch key={region.code} target={region.name} region={region} topics={REGION_TOPICS} />
+          <RelatedSearch key={region.code} target={region.name} region={region} topics={REGION_TOPICS} buttonClassName="region-button no-print min-h-8 px-2 py-1 text-xs" />
         </div>
         <p className="text-sm text-muted">새 축제 기획</p>
         <div id="new-region-change" hidden={!changing} className="region-card">
           {changing && <RegionPicker initial={{ province: region.province, district: region.district }} submitLabel="이 지역 보기" onPick={pick} />}
         </div>
       </header>
-      <nav aria-label="새 축제 탐색 메뉴" className="-mx-1 overflow-x-auto px-1">
-        <ul className="flex min-w-max gap-2 border-b border-ink/10 pb-2">
-          {VIEWS.map(v => <li key={v.view}>
-            <Link href={href(v.view)} aria-current={view === v.view ? "page" : undefined} onClick={() => { tab.focusHeading = v.view; }}
-              className={`inline-flex min-h-10 items-center rounded-xl px-3 py-2 text-sm font-bold ${view === v.view ? "bg-navy text-white" : "border border-ink/15 bg-white hover:bg-paper"}`}>{v.label}</Link>
-          </li>)}
-        </ul>
-      </nav>
+      <TaskTabs label="새 축제 탐색 메뉴" journey="new" current={view} hrefs={hrefs} onSelect={select} />
+      {view && view !== "summary" && <TaskGuide key={view} journey="new" view={view} />}
       {children}
+      {view && <NextRow journey="new" view={view} hrefs={hrefs} onSelect={select} />}
     </div>
   </NewRegionContext.Provider>;
 }

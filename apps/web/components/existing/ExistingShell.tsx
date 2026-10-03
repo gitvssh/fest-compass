@@ -2,7 +2,9 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { createContext, useContext, useEffect, useRef, type ReactNode, type RefObject } from "react";
+import { NextRow, TaskGuide, TaskTabs, type TaskHrefs } from "@/components/guide/JourneyFrame";
 import { RelatedSearch } from "@/components/related/RelatedSearch";
+import { VISITS_SCOPE_NOTE, visitsScope } from "@/lib/guide/content";
 import { parseFestivalId } from "@/lib/existing/identity";
 import type { ArchiveFestival, CurrentFestival, FestivalSearchResponse, RegionRef } from "@/lib/existing/types";
 import { editionYearOptions, FESTIVAL_TOPICS, selectedEditionYear } from "@/lib/related-search/query";
@@ -32,11 +34,7 @@ export function useFestival(): FestivalContextValue {
   return value;
 }
 
-const VIEWS: { view: View; label: string }[] = [
-  { view: "visits", label: "과거 방문 흐름" },
-  { view: "resources", label: "주변 관광자원" },
-  { view: "timing", label: "개최 시기" },
-];
+const VIEWS: readonly View[] = ["visits", "resources", "timing", "summary"];
 const pastYears = (archive: ArchiveFestival) => `지난 개최 ${archive.editions.map(e => `${e.year}년${e.start ? "" : "(개최일 미확인)"}`).join(" · ")}`;
 
 // A failed refresh of the same id keeps the earlier verified record (and marks it) instead of dropping it.
@@ -49,7 +47,7 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
   const pathname = usePathname() ?? "";
   // Re-render on address changes so the view menu links carry each view's latest applied conditions.
   const params = useSearchParams();
-  const view = VIEWS.find(v => pathname.endsWith(`/${v.view}`))?.view ?? null;
+  const view = VIEWS.find(v => pathname.endsWith(`/${v}`)) ?? null;
   const lookup = useKeyedRequest<FestivalSearchResponse>(`/api/existing/festivals?${new URLSearchParams({ id })}`, mergeLookup);
   const title = useRef<HTMLHeadingElement>(null);
   festivalMemory(id);
@@ -78,12 +76,17 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
   const verified = own;
   const years = [...new Set([...editionYearOptions(verified), ...(parsed.source === "current" ? editionYearOptions(archive) : [])])].sort((a, b) => b - a);
   const related = verified && !confirmedAbsent ? <RelatedSearch key={id} target={verified.name} subject={verified.name} region={verified.region}
-    topics={FESTIVAL_TOPICS} years={years}
+    topics={FESTIVAL_TOPICS} years={years} buttonClassName="region-button no-print min-h-8 px-2 py-1 text-xs"
     defaultYear={params ? selectedEditionYear(archive, params, view === "visits") : null} /> : null;
+  const hrefs: TaskHrefs = { visits: viewHref(id, "visits"), resources: viewHref(id, "resources"), timing: viewHref(id, "timing"), summary: viewHref(id, "summary") };
+  const select = (next: View) => { festivalMemory(id).focusHeading = next; };
+  // Only a limited record adds a line under the visits goal, and only once the record itself is known (never on a failure).
+  const scopeNote = view !== "visits" ? null : archive ? VISITS_SCOPE_NOTE[visitsScope(archive.editions)]
+    : current && !current.linkedArchiveId ? VISITS_SCOPE_NOTE.none : null;
   return <FestivalContext.Provider value={value}>
     <div className="space-y-3">
       <header className="space-y-1">
-        <Link href={searchHref} className="inline-flex text-sm font-bold text-blue underline underline-offset-4">← 다른 축제 찾기</Link>
+        <Link href={searchHref} className="no-print inline-flex text-sm font-bold text-blue underline underline-offset-4">← 다른 축제 찾기</Link>
         <h1 ref={title} tabIndex={-1} className="text-2xl font-extrabold leading-tight sm:text-3xl">{name ?? (confirmedAbsent ? "선택한 축제를 찾지 못했어요" : "축제 정보")}</h1>
         {parsed.source === "archive" && archive && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
           <p className="min-w-0 break-words">{archive.region.name} · {pastYears(archive)}</p>
@@ -91,7 +94,7 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
         </div>}
         {current && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
           <p className="min-w-0 break-words">{current.region.name} · 현재 등록 정보 · {current.datesVerified && current.start ? `등록 일정 ${periodLabel(current.start, current.end)}` : "등록 일정 미확인"}{archive ? ` · ${pastYears(archive)}` : ""}</p>
-          <InfoDialog label="등록 정보 출처" title="현재 등록 정보 출처" buttonClassName="region-button min-h-8 px-2 py-1 text-xs">
+          <InfoDialog label="등록 정보 출처" title="현재 등록 정보 출처" buttonClassName="region-button no-print min-h-8 px-2 py-1 text-xs">
             <p>한국관광공사에 현재 등록된 축제·행사 정보예요.</p>
             {current.address && <p>등록 주소: {current.address}</p>}
             <p><a className="font-bold text-blue underline" href={current.provenance.url} target="_blank" rel="noreferrer">{current.provenance.title} ↗</a>
@@ -113,16 +116,10 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
         <p className="text-sm">주소의 축제를 등록 정보에서 찾지 못했어요. 축제 이름이나 지역으로 다시 찾아 주세요.</p>
         <Link href={searchHref} className="region-primary">다른 축제 찾기</Link>
       </section> : <>
-        <nav aria-label="축제 탐색 메뉴" className="-mx-1 overflow-x-auto px-1">
-          <ul className="flex min-w-max gap-2 border-b border-ink/10 pb-2">
-            {VIEWS.map(v => <li key={v.view}>
-              <Link href={viewHref(id, v.view)} aria-current={view === v.view ? "page" : undefined}
-                onClick={() => { festivalMemory(id).focusHeading = v.view; }}
-                className={`inline-flex min-h-10 items-center rounded-xl px-3 py-2 text-sm font-bold ${view === v.view ? "bg-navy text-white" : "border border-ink/15 bg-white hover:bg-paper"}`}>{v.label}</Link>
-            </li>)}
-          </ul>
-        </nav>
+        <TaskTabs label="축제 탐색 메뉴" journey="existing" current={view} hrefs={hrefs} onSelect={select} />
+        {view && view !== "summary" && <TaskGuide key={view} journey="existing" view={view} note={scopeNote} />}
         {children}
+        {view && <NextRow journey="existing" view={view} hrefs={hrefs} onSelect={select} />}
       </>}
     </div>
   </FestivalContext.Provider>;

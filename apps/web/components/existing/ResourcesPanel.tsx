@@ -1,6 +1,5 @@
 "use client";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { introKey } from "@/components/resources/ResourceIntro";
@@ -17,7 +16,7 @@ import { rememberView, writeAddress } from "./address";
 import { isStale } from "./blocks";
 import { FestivalPending, useFestival, useViewHeadingFocus } from "./ExistingShell";
 import { timeLabel } from "./format";
-import { festivalMemory, shared, viewHref, type Anchor } from "./memory";
+import { festivalMemory, shared, type Anchor } from "./memory";
 import { one } from "./route-params";
 import { InfoDialog } from "./ui";
 import type { MapRow } from "./ResourceMap";
@@ -203,7 +202,6 @@ export function ResourcesPanel() {
           <p>거리는 고른 기준점에서 잰 직선거리예요. 이동 시간이나 경로가 아니에요.</p>
           <p><a className="font-bold text-blue underline" href={SOURCE} target="_blank" rel="noreferrer">공공데이터포털 관광정보 서비스 ↗</a></p>
         </InfoDialog>
-        <Link className="region-button min-h-11" href={viewHref(festival.id, "timing")}>개최 시기 보기</Link>
       </div>
     </>}
   </section>;

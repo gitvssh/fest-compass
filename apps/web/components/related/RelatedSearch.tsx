@@ -1,4 +1,5 @@
 "use client";
+import { ExternalLink, Search } from "lucide-react";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { InfoDialog } from "@/components/existing/ui";
 import type { RegionRef } from "@/lib/existing/types";
@@ -50,19 +51,19 @@ export function RelatedSearch({ target, subject, region, topics, years = [], def
   }
 
   return <InfoDialog label="관련 자료 검색" title={name} buttonLabel={name} buttonClassName={buttonClassName}
-    onOpen={() => choose(null, pickYear(years, defaultYear))}>
+    buttonIcon={<Search size={13} strokeWidth={2.5} />} icon={<Search size={18} />} onOpen={() => choose(null, pickYear(years, defaultYear))}>
     <fieldset className="min-w-0 space-y-2">
       <legend className="font-bold">찾을 내용</legend>
-      <div className="flex flex-wrap gap-x-4 gap-y-2">
-        {[null, ...topics].map(t => <label key={t ?? ""} className="inline-flex min-h-8 items-center gap-2">
+      <div className="flex flex-wrap gap-2">
+        {[null, ...topics].map(t => <label key={t ?? ""} className="choice-chip">
           <input type="radio" name={`${id}-topic`} checked={topic === t} onChange={() => choose(t, year)} />{t ?? "전체"}
         </label>)}
       </div>
     </fieldset>
     {years.length > 0 && <fieldset className="min-w-0 space-y-2">
       <legend className="font-bold">연도</legend>
-      <div className="flex flex-wrap gap-x-4 gap-y-2">
-        {[null, ...years].map(y => <label key={y ?? "all"} className="inline-flex min-h-8 items-center gap-2">
+      <div className="flex flex-wrap gap-2">
+        {[null, ...years].map(y => <label key={y ?? "all"} className="choice-chip">
           <input type="radio" name={`${id}-year`} checked={year === y} onChange={() => choose(topic, y)} />{y === null ? "연도 전체" : `${y}년`}
         </label>)}
       </div>
@@ -71,13 +72,13 @@ export function RelatedSearch({ target, subject, region, topics, years = [], def
       <label htmlFor={`${id}-query`} className="block font-bold">검색어</label>
       <input ref={input} id={`${id}-query`} type="search" value={query} maxLength={QUERY_MAX} autoComplete="off" enterKeyHint="search"
         onChange={e => setQuery(e.target.value)} onKeyDown={onKeyDown}
-        className="block w-full min-w-0 rounded-xl border border-ink/20 px-3 py-2" />
+        className="workspace-input block" />
       {query !== standard && <button type="button" className="region-button min-h-8 px-2 py-1 text-xs"
         onClick={() => { setQuery(standard); input.current?.focus(); }}>기본 검색어로</button>}
     </div>
     {url ? <div className="space-y-1">
       <a ref={link} href={url} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer" aria-describedby={`${id}-hint`}
-        className="region-primary w-full sm:w-auto">DuckDuckGo에서 검색 ↗</a>
+        className="region-primary w-full sm:w-auto"><Search aria-hidden="true" size={16} />DuckDuckGo에서 검색<ExternalLink aria-hidden="true" size={14} /></a>
       <p id={`${id}-hint`} className="text-xs text-muted">새 탭에서 검색 결과가 열려요.</p>
     </div> : <p role="status" className="text-sm font-bold">검색어를 입력해 주세요.</p>}
   </InfoDialog>;

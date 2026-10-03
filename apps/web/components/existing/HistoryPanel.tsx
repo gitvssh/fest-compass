@@ -1,45 +1,25 @@
 "use client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Info, Table2 } from "lucide-react";
 import { useEffect, useMemo, useRef, type RefObject } from "react";
 import { historyKey, parseHistory } from "@/lib/existing/request";
 import type { EditionHistory, HistoryResponse, Range } from "@/lib/existing/types";
 import { rememberView, writeAddress } from "./address";
-import { DEFAULT_PAD, EditionPicker, WindowForm, type Pads } from "./EditionControls";
+import { DEFAULT_PAD, EditionPicker, WindowForm } from "./EditionControls";
 import { EditionChart, niceMax } from "./EditionChart";
 import { CurrentVisits } from "./CurrentVisits";
 import { useFestival, useViewHeadingFocus } from "./ExistingShell";
-import { dateOnly, daysBetween, dayWithWeekday, editionLabel, fullDate, number, rawNumber, timeLabel, validDay, WEEKDAY_SHORT } from "./format";
+import { dateOnly, dayWithWeekday, editionLabel, fullDate, number, rawNumber, timeLabel, WEEKDAY_SHORT } from "./format";
 import { HostAreaVisits } from "./HostAreaVisits";
-import { festivalMemory, viewHref } from "./memory";
-import { one } from "./route-params";
+import { historyRequest, readVisitsApplied, visitsAddress, type VisitsApplied } from "./visits-address";
+import { PeriodBars } from "./PeriodBars";
+import { festivalMemory } from "./memory";
 import { Disclosure, FreshnessNote, InfoDialog, LoadState, TableScroll } from "./ui";
 import { useKeyedRequest } from "./useKeyedRequest";
 import { VisitorProfile } from "./VisitorProfile";
 
-type Applied = Pads & { editions: string[]; windows: Record<string, Range> };
-const WINDOW_ITEM = /^([a-z0-9-]{1,100}):(\d{4}-\d{2}-\d{2}):(\d{4}-\d{2}-\d{2})$/;
-
-function readApplied(params: URLSearchParams): Applied {
-  const list = (one(params, "editions") ?? "").split(",").map(s => s.trim()).filter(Boolean);
-  const pad = (key: string) => { const v = one(params, key); return v !== null && /^\d{1,2}$/.test(v) && Number(v) <= 30 ? Number(v) : DEFAULT_PAD; };
-  const windows: Record<string, Range> = {};
-  for (const item of (one(params, "windows") ?? "").split(",")) {
-    const m = WINDOW_ITEM.exec(item.trim());
-    if (m && validDay(m[2]) && validDay(m[3]) && m[2] <= m[3] && daysBetween(m[2], m[3]) <= 120) windows[m[1]] = { start: m[2], end: m[3] };
-  }
-  return { editions: [...new Set(list)], before: pad("before"), after: pad("after"), windows };
-}
-const windowsParam = (w: Record<string, Range>) => Object.keys(w).sort().map(k => `${k}:${w[k].start}:${w[k].end}`).join(",");
-function addressOf(a: Applied): URLSearchParams {
-  const params = new URLSearchParams();
-  if (a.editions.length) params.set("editions", a.editions.join(","));
-  if (a.before !== DEFAULT_PAD) params.set("before", String(a.before));
-  if (a.after !== DEFAULT_PAD) params.set("after", String(a.after));
-  if (Object.keys(a.windows).length) params.set("windows", windowsParam(a.windows));
-  params.sort();
-  return params;
-}
+type Applied = VisitsApplied;
 
 export function HistoryPanel() {
   const festival = useFestival(), heading = useRef<HTMLHeadingElement>(null);
@@ -50,13 +30,11 @@ export function HistoryPanel() {
   </section>;
 }
 
-function NoHistory({ id }: { id: string }) {
+function NoHistory() {
   return <div className="region-card space-y-3">
     <p className="font-bold">이 축제의 지난 개최 기록이 없어요.</p>
-    <p className="text-sm text-muted">현재 등록된 정보로 주변 관광자원과 개최 시기를 살펴볼 수 있어요.</p>
+    <p className="text-sm text-muted">연계 관광과 개최 시기는 아래에서 바로 살펴볼 수 있어요.</p>
     <div className="flex flex-wrap gap-2">
-      <Link className="region-button" href={viewHref(id, "resources")}>주변 관광자원 보기</Link>
-      <Link className="region-button" href={viewHref(id, "timing")}>개최 시기 보기</Link>
       <Link className="region-button" href="/existing/search">다른 축제 찾기</Link>
     </div>
   </div>;
@@ -64,17 +42,16 @@ function NoHistory({ id }: { id: string }) {
 
 function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | null> }) {
   const festival = useFestival(), params = useSearchParams(), address = params.toString();
-  const applied = useMemo(() => readApplied(new URLSearchParams(address)), [address]);
-  const request = new URLSearchParams({ festival: festival.id, ...(applied.editions.length ? { editions: applied.editions.join(",") } : {}), before: String(applied.before), after: String(applied.after),
-    ...(Object.keys(applied.windows).length ? { windows: windowsParam(applied.windows) } : {}) });
+  const applied = useMemo(() => readVisitsApplied(new URLSearchParams(address)), [address]);
+  const request = historyRequest(festival.id, applied);
   const expectedKey = (() => { try { return historyKey(parseHistory(request)); } catch { return null; } })();
   const result = useKeyedRequest<HistoryResponse>(expectedKey ? `/api/existing/history?${request}` : null, undefined, expectedKey);
   const data = result.data, memory = festivalMemory(festival.id);
-  useEffect(() => { rememberView(festival.id, "visits", addressOf(applied)); }, [festival.id, applied]);
+  useEffect(() => { rememberView(festival.id, "visits", visitsAddress(applied)); }, [festival.id, applied]);
 
   const editions = data?.festival.editions ?? festival.archive?.editions ?? [];
   const appliedIds = data ? data.editions.map(e => e.editionId) : applied.editions;
-  function apply(next: Applied) { const params = addressOf(next); rememberView(festival.id, "visits", params); writeAddress(params); }
+  function apply(next: Applied) { const params = visitsAddress(next); rememberView(festival.id, "visits", params); writeAddress(params); }
   function applyWindow(editionId: string, range: Range | null) {
     const windows = { ...applied.windows };
     if (range) windows[editionId] = range; else delete windows[editionId];
@@ -89,9 +66,9 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
   const noObservation = !!data && !hasChart && data.editions.every(e => e.state === "available" || e.state === "no-history");
   const title = <div>
     <h2 id="visits-heading" ref={heading} tabIndex={-1} className="text-xl font-extrabold">{region ? `${region.districtName} 외지인 방문 추이` : "지역 외지인 방문 추이"}</h2>
-    <p className="text-sm text-muted">{region ? `${region.name} 전체` : "시군구 전체"} · 명/일 · 통신 기반 추정 · 축제장 입장객 수 아님</p>
+    <p className="text-sm text-muted">{region ? `${region.name} 전체` : "시군구 전체"} · 명/일 · 통신 기반 추정</p>
   </div>;
-  if (result.failure === "notfound" && !data) return festival.source === "current" ? <CurrentVisits heading={heading} /> : <>{title}<NoHistory id={festival.id} /></>;
+  if (result.failure === "notfound" && !data) return festival.source === "current" ? <CurrentVisits heading={heading} /> : <>{title}<NoHistory /></>;
   return <>
     {title}
     <EditionPicker key={`${appliedIds.join(",")}/${applied.before}/${applied.after}`} editions={editions} applied={appliedIds} pads={{ before: applied.before, after: applied.after }}
@@ -105,7 +82,7 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
     {data && <>
       {!hasChart && <div className="region-card space-y-3">
         {noObservation && <p className="font-bold">선택한 회차 기간의 방문 자료가 없어요.</p>}
-        <div className="flex flex-wrap gap-2"><Link className="region-button" href={viewHref(festival.id, "resources")}>주변 관광자원 보기</Link><Link className="region-button" href={viewHref(festival.id, "timing")}>개최 시기 보기</Link><Link className="region-button" href="/existing/search">다른 축제 찾기</Link></div>
+        <div className="flex flex-wrap gap-2"><Link className="region-button" href="/existing/search">다른 축제 찾기</Link></div>
       </div>}
       <ul className={`grid gap-4 ${data.editions.length > 1 ? "md:grid-cols-2" : ""}`}>
         {data.editions.map(e => <li key={e.editionId} className="region-card min-w-0 space-y-3">
@@ -114,15 +91,15 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
             {e.window && e.windowSource === "custom" && <span className="text-xs text-muted">표시 {fullDate(e.window.start)} ~ {fullDate(e.window.end)}</span>}
           </div>
           {hasChart && charted(e) ? <EditionChart edition={e} region={region?.districtName ?? ""} yMax={yMax} slots={data.maxWindowDays} /> : null}
-          <EditionSummary edition={e} />
+          <EditionSummary edition={e} scaleMax={yMax} />
           <WindowForm key={`${e.window?.start}-${e.window?.end}`} edition={e} custom={e.windowSource === "custom"} onApply={range => applyWindow(e.editionId, range)} />
         </li>)}
       </ul>
       <div className="flex flex-wrap items-start gap-2">
-        <Disclosure label="수치 표 보기" open={!!memory.open[`visits-table:${data.key}`]} onToggle={open => { memory.open[`visits-table:${data.key}`] = open; }}>
+        <Disclosure label="수치 표 보기" icon={<Table2 size={16} />} open={!!memory.open[`visits-table:${data.key}`]} onToggle={open => { memory.open[`visits-table:${data.key}`] = open; }}>
           <div className="space-y-4">{data.editions.filter(e => e.points.length).map(e => <EditionTable key={e.editionId} edition={e} />)}</div>
         </Disclosure>
-        <InfoDialog label="출처·산식 보기" title="방문 자료 출처와 계산">
+        <InfoDialog label="출처·산식 보기" title="방문 자료 출처와 계산" buttonIcon={<Info size={16} />}>
           <SourceDetails data={data} />
         </InfoDialog>
       </div>
@@ -135,14 +112,16 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
   </>;
 }
 
-function EditionSummary({ edition: e }: { edition: EditionHistory }) {
+export function EditionSummary({ edition: e, scaleMax }: { edition: EditionHistory; scaleMax: number }) {
   const s = e.summary;
   if (e.withheld) return <p className="text-sm text-muted">{e.withheld.message}</p>;
-  if (s.status === "available") return <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-sm">
-    <dt className="text-muted">개최기간 일평균</dt><dd className="font-extrabold">{number(s.rounded)}명/일 <span className="font-normal text-muted">추정</span></dd>
-    <dt className="text-muted">가장 많았던 날</dt><dd>{s.peak.dates.map(dayWithWeekday).join(", ")} · {rawNumber(s.peak.value)}명</dd>
-    <dt className="text-muted">개최 일수</dt><dd>{s.denominator}일</dd>
-  </dl>;
+  if (s.status === "available") return <div className="space-y-3">
+    <PeriodBars edition={e} scaleMax={scaleMax} />
+    <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 border-t border-ink/10 pt-2 text-sm">
+      <dt className="text-muted">가장 많았던 날</dt><dd>{s.peak.dates.map(dayWithWeekday).join(", ")} · {rawNumber(s.peak.value)}명</dd>
+      <dt className="text-muted">개최 일수</dt><dd>{s.denominator}일</dd>
+    </dl>
+  </div>;
   if (s.status === "incomplete") return <div className="space-y-2 text-sm">
     <p className="font-bold">이 회차의 평균을 계산할 수 없어요.</p>
     <p className="text-muted">개최 {s.denominator}일 중 {s.observedDays}일만 값이 있어요. 값 없는 날: {s.missingDates.map(dayWithWeekday).join(", ")}</p>
@@ -172,7 +151,8 @@ function SourceDetails({ data }: { data: HistoryResponse }) {
   return <div className="space-y-4">
     <p>{data.metric.name} · {region.name} 전체 · 명/일 · 통신 기반 추정. 축제장 입장객 수나 고유 방문객 수가 아니에요.</p>
     <p>개최기간 일평균 = 개최기간 모든 날의 방문 합계 ÷ 실제 개최 일수. 개최기간에 값이 없는 날이 있으면 평균과 최대일을 만들지 않아요.</p>
-    <p>그래프의 표시 기간을 바꿔도 평균은 실제 개최일 전체로 계산해요.</p>
+    <p>개최 전·종료 후 일평균 = 그래프에 표시한 앞(뒤) 날짜의 방문 합계 ÷ 그 날짜 수. 값이 없는 날이 있으면 만들지 않아요. 표시 기간을 바꾸면 함께 바뀌어요.</p>
+    <p>그래프의 표시 기간을 바꿔도 개최기간 평균은 실제 개최일 전체로 계산해요.</p>
     {data.editions.map(e => <section key={e.editionId} className="space-y-1 border-t border-ink/10 pt-3">
       <h3 className="font-extrabold">{editionLabel(e)}</h3>
       {e.window && <p>표시 기간 {fullDate(e.window.start)} ~ {fullDate(e.window.end)}</p>}

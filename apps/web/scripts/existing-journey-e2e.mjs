@@ -217,7 +217,10 @@ async function excludes(locator, pattern, label = "") {
   assert.ok(!found, `${label} must not show ${pattern} in ${JSON.stringify(text.slice(0, 400))}`);
 }
 const rowsOf = region => region.locator("tbody tr").evaluateAll(trs => trs.map(tr => [...tr.children].map(c => c.textContent.trim())));
-const menu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label, exact: true });
+// The row under every task: the next task in order and the other tasks.
+const nextRow = page => page.getByRole("navigation", { name: "다음 할 일" });
+// A tab is named "할 일 · 자료 이름"; the data name alone still picks exactly one tab.
+const menu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label });
 const editionHeading = (page, label) => page.getByRole("heading", { level: 3, name: label, exact: true });
 const editionCard = (page, label) => page.getByRole("listitem").filter({ has: editionHeading(page, label) });
 const ddOf = (scope, term) => scope.locator("dt", { hasText: term }).locator("xpath=following-sibling::dd[1]");
@@ -404,7 +407,7 @@ async function resourcesAnchor({ page }) {
   // AC5 · AC6 · AC10 (검증용 resources): menu by keyboard, one type fails then recovers, no distance before an explicit anchor.
   once(is("resources", p => p.get("types") === "14"), resourcesWith("unavailable"));
   await page.locator("main h1").focus();
-  for (let i = 0; i < 15 && await page.evaluate(() => document.activeElement?.textContent?.trim()) !== "주변 관광자원"; i++) await page.keyboard.press("Tab");
+  for (let i = 0; i < 15 && !(await page.evaluate(() => document.activeElement?.textContent ?? "")).includes("주변 관광자원"); i++) await page.keyboard.press("Tab");
   await page.keyboard.press("Enter");
   await page.waitForURL(u => u.pathname === path(NONSAN_ID, "resources"));
   await waitFocusId(page, "resources-heading");
@@ -745,7 +748,7 @@ async function wonjuUndated({ page }) {
   await excludes(card, "명/일");
   assert.equal(await card.getByRole("img").count(), 0);
   assert.equal(await card.getByRole("button", { name: "표시 기간 바꾸기" }).count(), 0, "no chart window without dates");
-  await visible(page.getByRole("link", { name: "개최 시기 보기", exact: true }));
+  await visible(nextRow(page).getByRole("link", { name: "개최 시기 검토하기", exact: true }));
   await menu(page, "개최 시기").click(); await waitFocusId(page, "timing-heading");
   await visible(page.getByRole("heading", { name: "원주시 월별 외지인 방문", exact: true }));
   await visible(page.getByText("이 기간의 방문 자료가 없어요.", { exact: true }));
@@ -775,7 +778,7 @@ async function currentSameName({ page }) {
   await includes(source, "등록 주소: 검증용 가상 주소");
   await page.keyboard.press("Escape");
   await waitFocusText(page, "등록 정보 출처");
-  await page.getByRole("link", { name: "주변 관광자원 보기", exact: true }).click();
+  await nextRow(page).getByRole("link", { name: /이어서\s*연계 관광 찾기/ }).click();
   await visible(resourceButton(page, "검증용 관광지 가 (가상)"));
   passed.push("AC11-current-same-name-no-archive-join-resources-still-available");
 }

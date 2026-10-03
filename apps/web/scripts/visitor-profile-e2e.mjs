@@ -209,7 +209,8 @@ const picker = (page, year) => page.getByRole("checkbox", { name: new RegExp(`^$
 const editionsAre = years => p => (p.get("editions") ?? "").split(",").sort().join() === years.map(ed).sort().join();
 const detail = page => page.locator("#resource-detail-heading");
 const resourceButton = (page, id) => page.getByRole("list", { name: "관광자원 목록", exact: true }).locator(`[data-resource-id="${id}"]`);
-const menu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label, exact: true });
+// A tab is named "할 일 · 자료 이름"; the data name alone still picks exactly one tab.
+const menu = (page, label) => page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: label });
 const PENDING = "고른 장소를 목록에서 찾고 있어요…", RETRY_HINT = "목록을 다시 불러오면 고른 장소를 열어 드려요.";
 const MISSING = "고른 장소를 지금 등록된 관광정보 목록에서 찾지 못했어요. 아래 목록에서 살펴봐 주세요.";
 async function pick(page, years) {

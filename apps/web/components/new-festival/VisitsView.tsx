@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { dateOnly, timeLabel } from "@/components/existing/format";
@@ -75,10 +74,6 @@ export function VisitsView() {
   }
   const focusYearSelect = () => document.getElementById(YEAR_SELECT)?.focus();
   const changeYear = years.length > 0 ? <button type="button" className="region-button" onClick={focusYearSelect}>연도 바꾸기</button> : null;
-  const otherViews = <>
-    <Link className="region-button" href={href("resources")}>지역 관광자원 보기</Link>
-    <Link className="region-button" href={href("timing")}>개최 시기 보기</Link>
-  </>;
 
   const months = data?.months ?? [];
   const selected = observedMonth ? months.find(m => m.month === observedMonth) ?? null : null;
@@ -124,7 +119,7 @@ export function VisitsView() {
     {data && !hasValues && <div className="region-card space-y-2 text-sm">
       <p>{data.status === "not-selected" ? "모든 날짜의 값이 있는 연도가 없어요. 볼 관측연도를 골라 주세요."
         : data.year !== null ? (annual ? `${data.year}년 월·요일별 방문 자료가 없어요.` : `${data.year}년 ${region.districtName} 방문 자료가 없어요.`) : `${region.districtName}의 방문 자료가 없어요.`}</p>
-      <div className="flex flex-wrap gap-2">{changeYear}{otherViews}</div>
+      {changeYear && <div className="flex flex-wrap gap-2">{changeYear}</div>}
     </div>}
 
     {data && hasValues && shownYear !== null && <>
@@ -166,7 +161,6 @@ export function VisitsView() {
             {data.source.collectedAt ? ` · 수집 ${timeLabel(data.source.collectedAt)}` : ""}{data.source.checkedAt ? ` · 확인 ${dateOnly(data.source.checkedAt)}` : ""}</p>}
           <p className="text-xs text-muted">{timeLabel(data.retrievedAt)} 조회</p>
         </InfoDialog>
-        {otherViews}
       </div>
     </>}
     {annual && <RegionAnnual annual={annual} districtName={region.districtName} selectedYear={shownYear} viewedYear={hasValues ? shownYear : null}

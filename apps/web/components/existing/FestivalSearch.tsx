@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from "react";
+import { FlowMap } from "@/components/guide/FlowMap";
 import { mergeCurrentItems, normalizeKeyword } from "@/lib/existing/identity";
 import type { ArchiveFestival, CurrentBlock, CurrentFestival, FestivalSearchResponse } from "@/lib/existing/types";
 import { REGIONS, SOURCE } from "@/lib/region/model";
@@ -118,7 +119,7 @@ export function FestivalSearch() {
     <header>
       <p className="mb-2 text-xs font-extrabold tracking-widest text-blue">기존 축제 개선</p>
       <h1 className="text-3xl font-extrabold sm:text-4xl">어떤 축제를 살펴볼까요?</h1>
-      <p className="mt-2 text-sm text-muted">축제를 고르면 그 지역의 외지인 방문 흐름, 주변 관광자원, 다음 개최 시기를 차례와 상관없이 볼 수 있어요.</p>
+      <p className="mt-2 text-sm text-muted">축제를 고르면 지난 방문 흐름·연계 관광·개최 시기를 살펴볼 수 있어요.</p>
     </header>
     <form onSubmit={submit} role="search" aria-label="기존 축제 찾기" className="region-card grid gap-3 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-end" noValidate>
       <label className="text-sm font-bold">축제 이름
@@ -139,6 +140,7 @@ export function FestivalSearch() {
       <button type="submit" className="region-primary">축제 찾기</button>
       {fieldError && <p id={`${ids}-error`} role="alert" className="text-sm font-bold text-red-800 sm:col-span-4">{fieldError.text}</p>}
     </form>
+    <FlowMap journey="existing" />
 
     <section aria-labelledby={`${ids}-results`} className="space-y-4">
       <h2 id={`${ids}-results`} ref={resultsHeading} tabIndex={-1} className="text-xl font-extrabold">

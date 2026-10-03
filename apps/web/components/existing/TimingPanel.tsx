@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { monthlyKey, parseMonthly, parseSchedule, scheduleKey } from "@/lib/existing/request";
@@ -8,7 +7,7 @@ import { rememberView, writeAddress } from "./address";
 import { CandidatePeriods } from "./CandidatePeriods";
 import { FestivalPending, useFestival, useViewHeadingFocus } from "./ExistingShell";
 import { koreaToday, monthRange, validMonth } from "./format";
-import { festivalMemory, shared, viewHref, type Candidate } from "./memory";
+import { festivalMemory, shared, type Candidate } from "./memory";
 import { ObservedMonths } from "./ObservedMonths";
 import { one } from "./route-params";
 import { mergeSchedule, ScheduleCalendar } from "./ScheduleCalendar";
@@ -85,10 +84,6 @@ export function TimingPanel() {
         onOpenCalendar={openPastMonth} tableOpen={tableOpen} onTable={open => { setTableOpen(open); festivalMemory(festival.id).open["monthly-table"] = open; }} />
       <ScheduleCalendar region={region} month={month} result={schedule} onMonth={setMonth} heading={calendarHeading} />
       <CandidatePeriods region={region} candidates={candidates} onChange={setCandidates} onShowMonth={m => { setMonth(m); requestAnimationFrame(() => calendarHeading.current?.focus()); }} />
-      <div className="flex flex-wrap gap-2">
-        <Link className="region-button" href={viewHref(festival.id, "visits")}>과거 방문 흐름 보기</Link>
-        <Link className="region-button" href={viewHref(festival.id, "resources")}>주변 관광자원 보기</Link>
-      </div>
     </>}
   </section>;
 }

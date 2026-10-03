@@ -4,7 +4,7 @@ import { DEFAULT_RESOURCE_KINDS, readResourceTypes, RESOURCE_KINDS, resourceType
 // Temporary exploration memory for this browser tab. It survives menu moves and back/forward because it
 // lives in the loaded client module, and it disappears on a reload, which then restores only the address.
 // Nothing here is written to storage or sent to the server.
-export type View = "visits" | "resources" | "timing";
+export type View = "visits" | "resources" | "timing" | "summary";
 export type Anchor = { point: Point; label: string; source: "resource" | "map"; resourceId?: string };
 export type Candidate = { id: string; start: string; end: string };
 
@@ -18,6 +18,8 @@ export type FestivalMemory = {
   visitorProfile: { group: "outside" | "local" | "all" | null; returnTo: string | null };
   /** Opened tables and source panels, restored when coming back to the same view. */
   open: Record<string, boolean>;
+  /** Screen-only memo of the summary sheet (printed with it, never saved). */
+  memo: string;
   focusHeading: View | null;
 };
 
@@ -27,7 +29,7 @@ export const shared: { types: string | null; year: string | null; month: string 
 let active: FestivalMemory | null = null;
 function fresh(festivalId: string): FestivalMemory {
   return {
-    festivalId, search: {}, focusHeading: null, open: {},
+    festivalId, search: {}, focusHeading: null, open: {}, memo: "",
     resources: { selected: null, anchor: null, radiusKm: null, sort: "name", display: "list" },
     timing: { candidates: [], observedMonth: null, returnTo: null },
     visitorProfile: { group: null, returnTo: null },
@@ -41,7 +43,8 @@ export function festivalMemory(festivalId: string): FestivalMemory {
 
 export function viewHref(festivalId: string, view: View): string {
   const memory = festivalMemory(festivalId), base = `/existing/${encodeURIComponent(festivalId)}/${view}`;
-  let query = memory.search[view];
+  // The summary carries the compared editions of the visits view, so a reload gathers the same editions again.
+  let query = view === "summary" ? memory.search.visits : memory.search[view];
   if (query === undefined) {
     const params = new URLSearchParams();
     if (view === "resources" && shared.types) params.set("types", shared.types);

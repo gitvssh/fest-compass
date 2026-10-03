@@ -32,7 +32,7 @@ const done = (b: ResourceTypeBlock | null): b is ResourceTypeBlock => !!b && (b.
  * and the distance anchor are separate, explicit, temporary choices; none of them is saved or becomes a venue.
  */
 export function ResourcesView() {
-  const { region, memory, href, chooseHref } = useNewRegion(), saved = memory.resources;
+  const { region, memory, chooseHref } = useNewRegion(), saved = memory.resources;
   const heading = useRef<HTMLHeadingElement>(null), detailHeading = useRef<HTMLHeadingElement>(null), compareHeading = useRef<HTMLHeadingElement>(null);
   const list = useRef<HTMLUListElement>(null), focusDetail = useRef(false);
   useViewHeadingFocus("resources", heading);
@@ -145,8 +145,6 @@ export function ResourcesView() {
         <p>거리는 고른 기준점에서 잰 직선거리예요. 이동 시간이나 경로가 아니에요.</p>
         <p><a className="font-bold text-blue underline" href={SOURCE} target="_blank" rel="noreferrer">공공데이터포털 관광정보 서비스 ↗</a></p>
       </InfoDialog>
-      <Link className="region-button min-h-11" href={href("visits")}>지역 방문 흐름 보기</Link>
-      <Link className="region-button min-h-11" href={href("timing")}>개최 시기 보기</Link>
     </div>
   </section>;
 }
