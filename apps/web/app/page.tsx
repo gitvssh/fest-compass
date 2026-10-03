@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnalyticsView } from "@/components/AnalyticsView";
 import { EditorOnly } from "@/components/EditorOnly";
+import { IntroVideo } from "@/components/intro/IntroVideo";
 import { isPublicReadonly } from "@/lib/app-mode";
 import { listFestivals } from "@/lib/queries";
 import { canonicalUrl } from "@/lib/site";
@@ -38,8 +39,13 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replaceAll("<", "\\u003c") }}
       />
       <section aria-labelledby="purpose-heading" className="mb-10">
-        <p className="mb-2 text-sm font-bold text-muted">관광자료로 준비하는 다음 축제</p>
-        <h1 id="purpose-heading" className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">어떤 축제를 준비하시나요?</h1>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="mb-2 text-sm font-bold text-muted">관광자료로 준비하는 다음 축제</p>
+            <h1 id="purpose-heading" className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">어떤 축제를 준비하시나요?</h1>
+          </div>
+          <IntroVideo />
+        </div>
         <ul className="mt-7 grid gap-6 md:grid-cols-2">
           <li className="flex min-w-0 flex-col rounded-2xl border border-ink/10 bg-white p-5 lg:p-7">
             <Image

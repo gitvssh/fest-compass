@@ -1,0 +1,86 @@
+{
+  "checkedAt": "2026-10-03T01:30:30.802Z",
+  "base": "http://127.0.0.1:3197",
+  "headless": true,
+  "checks": [
+    {
+      "name": "video answers range requests and captions are served",
+      "videoStatus": 206,
+      "videoType": "video/mp4",
+      "vttType": "text/vtt; charset=UTF-8"
+    },
+    {
+      "name": "first visit shows the entry point and a non-blocking offer without loading the video",
+      "focused": "BODY",
+      "videoRequests": 0
+    },
+    {
+      "name": "dismissing hides the offer on return visits and keeps the entry point"
+    },
+    {
+      "name": "player opens with captions and transcript, Escape pauses and returns focus",
+      "src": "/media/intro/pickdday-intro.mp4",
+      "controls": true,
+      "track": "ko",
+      "isDefault": true,
+      "poster": "/media/intro/pickdday-intro-poster.jpg"
+    },
+    {
+      "name": "end screen links to the existing-festival journey"
+    },
+    {
+      "name": "intro=play opens the player and leaves other query values",
+      "url": "http://127.0.0.1:3197/?utm_source=qr"
+    },
+    {
+      "name": "offer waits for a late consent modal and appears only after it closes"
+    },
+    {
+      "name": "layout fits at 390px"
+    },
+    {
+      "name": "layout fits at 1920px"
+    }
+  ],
+  "layouts": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": 0,
+      "card": {
+        "x": 12,
+        "y": 758,
+        "width": 366,
+        "height": 74
+      },
+      "dialog": {
+        "x": 16,
+        "y": 260.8125,
+        "width": 358,
+        "height": 322.375
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": 0,
+      "card": {
+        "x": 1516,
+        "y": 890,
+        "width": 380,
+        "height": 166
+      },
+      "dialog": {
+        "x": 410,
+        "y": 170.125,
+        "width": 1100,
+        "height": 739.75
+      }
+    }
+  ],
+  "browserErrors": []
+}

@@ -25,6 +25,20 @@ export function canManageConsent(): boolean {
   return typeof zaraz()?.showConsentModal === "function";
 }
 
+/**
+ * True while the tag manager's consent modal is on screen. Only the modal's
+ * open state is read, never the decision, so other offers can wait their turn.
+ */
+export function isConsentModalOpen(root: Pick<Document, "querySelector"> | null = typeof document === "undefined" ? null : document): boolean {
+  if (!root) return false;
+  try {
+    const host = root.querySelector(".cf_modal_container");
+    return Boolean(host?.shadowRoot?.querySelector("dialog[open]") ?? host?.querySelector("dialog[open]"));
+  } catch {
+    return false;
+  }
+}
+
 /** Reopen the tag manager's consent modal so a decision can be changed. */
 export function openConsentSettings(): void {
   const client = zaraz();

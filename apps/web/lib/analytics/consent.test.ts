@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { afterEach, test } from "node:test";
-import { canManageConsent, openConsentSettings } from "./consent";
+import { canManageConsent, isConsentModalOpen, openConsentSettings } from "./consent";
 
 afterEach(() => {
   delete (globalThis as { window?: unknown }).window;
@@ -46,4 +46,17 @@ test("앱은 동의 어휘를 전혀 갖지 않는다", () => {
   assert.equal(/consent\s*\.\s*set(All)?\s*\(/.test(source), false, "동의 값을 앱이 설정하면 안 된다");
   assert.equal(/localStorage|sessionStorage|document\.cookie/.test(source), false, "결정을 앱이 저장하면 안 된다");
   assert.equal(/["'][A-Za-z0-9]{4}["']/.test(source), false, "purpose ID 형태의 리터럴이 있으면 안 된다");
+});
+
+test("동의 창이 열려 있는지만 읽고, 없거나 닫혔으면 열려 있지 않다고 본다", () => {
+  const rootWith = (host: unknown) => ({ querySelector: (selector: string) => (selector === ".cf_modal_container" ? host : null) }) as unknown as Pick<Document, "querySelector">;
+  const openDialog = { querySelector: (selector: string) => (selector === "dialog[open]" ? {} : null) };
+  const closedDialog = { querySelector: () => null };
+  assert.equal(isConsentModalOpen(null), false);
+  assert.equal(isConsentModalOpen(rootWith(null)), false);
+  assert.equal(isConsentModalOpen(rootWith({ shadowRoot: openDialog, querySelector: () => null })), true);
+  assert.equal(isConsentModalOpen(rootWith({ shadowRoot: closedDialog, querySelector: () => null })), false);
+  assert.equal(isConsentModalOpen(rootWith({ shadowRoot: null, querySelector: openDialog.querySelector })), true);
+  const throwing = { querySelector: () => { throw new Error("boom"); } } as unknown as Pick<Document, "querySelector">;
+  assert.equal(isConsentModalOpen(throwing), false);
 });

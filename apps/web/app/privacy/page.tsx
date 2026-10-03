@@ -40,6 +40,11 @@ export default function PrivacyPage() {
       </section>
 
       <section>
+        <h2 className="text-xl font-extrabold">소개 영상 안내 표시</h2>
+        <p className="mt-2 text-sm leading-7 text-muted">처음 방문하면 첫 화면에 소개 영상 안내가 나타납니다. 영상을 보거나 안내를 닫으면 다시 띄우지 않도록 ‘봤음’ 또는 ‘닫음’ 한 가지만 이 브라우저의 저장 공간(localStorage)에 남깁니다. 서버나 선택 분석으로 전송하지 않으며, 사이트 데이터를 지우면 안내가 다시 나타납니다. 영상은 첫 화면의 ‘1분 소개 영상’에서 언제든 볼 수 있습니다.</p>
+      </section>
+
+      <section>
         <h2 className="text-xl font-extrabold">공공데이터 호출</h2>
         <p className="mt-2 text-sm leading-7 text-muted">
           인증된 편집 모드의 KTO 새로고침은 축제 일정·지역·콘텐츠 식별자를 공공데이터포털 API에 전송할 수 있습니다.

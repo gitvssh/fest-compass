@@ -84,12 +84,12 @@ try {
     const cards = purpose.getByRole("listitem");
     assert.equal(await cards.count(), 2);
     // Each responsive width can request a cold optimized image on the production build.
-    await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].every(img => img.complete && img.naturalWidth > 0), undefined, { timeout: 60000 }).catch(async error => {
-      const images = await purpose.locator("img").evaluateAll(elements => elements.map(img => ({ src: img.currentSrc, complete: img.complete, naturalWidth: img.naturalWidth, rect: img.getBoundingClientRect().toJSON() })));
+    await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] li img')].every(img => img.complete && img.naturalWidth > 0), undefined, { timeout: 60000 }).catch(async error => {
+      const images = await cards.locator("img").evaluateAll(elements => elements.map(img => ({ src: img.currentSrc, complete: img.complete, naturalWidth: img.naturalWidth, rect: img.getBoundingClientRect().toJSON() })));
       await shot(`home-image-failure-${width}`);
       throw new Error(`Purpose images did not load at ${width}px: ${JSON.stringify(images)}`, { cause: error });
     });
-    const images = await purpose.locator("img").evaluateAll(elements => elements.map(img => ({ width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height, source: decodeURIComponent(img.currentSrc), alt: img.alt })));
+    const images = await cards.locator("img").evaluateAll(elements => elements.map(img => ({ width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height, source: decodeURIComponent(img.currentSrc), alt: img.alt })));
     assert.equal(images.length, 2);
     assert.ok(images.every(image => image.width >= 390 && image.height >= 260 && image.alt === ""), `${width}: larger decorative purpose art ${JSON.stringify(images)}`);
     assert.ok(images[0].source.includes("existing-festival-v2.png") && images[1].source.includes("new-festival-v2.png"), `${width}: distinct purpose assets`);
@@ -151,7 +151,7 @@ try {
 
   for (const width of [320, 390]) {
     await page.goto(`${base}/`); await page.setViewportSize({ width, height: 900 });
-    await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] img')].every(img => img.complete && img.naturalWidth > 0));
+    await page.waitForFunction(() => [...document.querySelectorAll('section[aria-labelledby="purpose-heading"] li img')].every(img => img.complete && img.naturalWidth > 0));
     await visible(menuButton()); await expanded(menuButton(), false);
     await noOverflow(`home ${width}`);
     await menuButton().click(); await expanded(menuButton(), true); await assertRoutes(nav, PRIMARY);

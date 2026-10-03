@@ -55,6 +55,8 @@ button {
   .app-tools-panel { position: absolute; right: 0; top: calc(100% + 10px); width: 360px; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid #10233d26; border-radius: 12px; padding: 12px; background: white; box-shadow: 0 12px 28px #10233d1a; }
 }
 
+@keyframes intro-offer { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
 @layer components {
   .region-card { @apply min-w-0 rounded-2xl border border-ink/10 bg-white p-4 sm:p-5; }
   .region-button { @apply inline-flex min-h-10 items-center justify-center rounded-xl border border-ink/20 bg-white px-3 py-2 text-sm font-bold hover:bg-paper disabled:cursor-not-allowed disabled:opacity-40; }

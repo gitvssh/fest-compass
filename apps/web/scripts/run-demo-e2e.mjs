@@ -106,6 +106,7 @@ try {
   await waitForServer();
   runNode(join(webRoot, "scripts", "workspace-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "desktop-experience-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "intro-video-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "regions-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "map-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "boundary-e2e.mjs"), []);

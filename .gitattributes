@@ -14,7 +14,10 @@ Dockerfile text eol=lf
 *.sql text eol=lf
 *.toml text eol=lf
 *.md text eol=lf
+*.vtt text eol=lf
 
 *.pdf binary
 *.xlsx binary
 *.db binary
+*.mp4 binary
+*.jpg binary
