@@ -8,7 +8,7 @@ summary: "홈 1분 소개 영상의 구현·검증·공개 반영 기록입니�
 
 # 홈 1분 소개 영상
 
-상태: **구현·로컬 검증 완료, 공개 반영은 아래 배포 절에 기록.** [설계23](../design/23-intro-video.md)과
+상태: **사용 가능 — 공개 반영·실제 동의 창 포함 공개 화면 검증 완료.** [설계23](../design/23-intro-video.md)과
 [인수 기준 TS-FC-020](../sdlc/3-testing/scenarios/TS-FC-020.md)에 따른 변경이다.
 
 ## 사용자에게 달라지는 점
@@ -52,4 +52,24 @@ summary: "홈 1분 소개 영상의 구현·검증·공개 반영 기록입니�
 
 ## 공개 배포
 
-배포 후 기록한다.
+- 소스 `cb57cf1`(기능)·`9e73694`(Next.js 16.3.8). 첫 [발행 작업37086458857](https://github.com/gitvssh/fest-compass/actions/runs/37086458857)은
+  보안 점검(Next.js critical 공지)에서 이미지 생성 전에 멈췄다. 패치 후 [발행 작업37086941173](https://github.com/gitvssh/fest-compass/actions/runs/37086941173)이
+  전용 `homelab-fest-compass`에서 성공했다(검증·빌드·원격 이미지 확인·보존 표식 갱신).
+- 검증 이미지 `sha256:cfd5952966b2549b06f3c5855705f45a8e311a3b419fa9e418fa8c8d5d6e2371`를 `9cebf25`에 고정했다. release 검증17개 통과.
+- 등록 앱 `fest-compass-prod`의 첫 sync 요청은 `9cebf25`를 지정했지만 Argo가 이전 렌더 결과로 `476ad7a`를 다시 적용했다(변경 없음).
+  강제 새로고침 후 다시 요청해 `9cebf25`로 Synced·Healthy·Succeeded가 됐다. 컨테이너3/3, 내부 livez·readyz200.
+- Deployment·PVC 식별자가 같고 업무9개 테이블20행의 건수·내용 해시가 배포 전후 일치한다
+  ([전](evidence/2026-10-03-intro-video-before.json), [후](evidence/2026-10-03-intro-video-after.json)).
+- [공개 화면 검사](evidence/2026-10-03-intro-video-public/report.json)(응답 대체 없음, `scripts/intro-video-live.mjs`):
+  영상 범위 요청206(`video/mp4`)·자막200, 1440/390px에서 실제 동의 창이 떠 있는 4초 동안 안내 없음 → 거부 후 안내 표시 →
+  재생 시작·1920x1080·자막20개 표시 → 새로고침 재방문 시 안내 없음, `/?intro=play` 직접 재생. 브라우저 오류0.
+
+## 실제 공개 화면
+
+![PC 첫 방문 안내와 홈 진입점](evidence/2026-10-03-intro-video-public/first-visit-1440.png)
+
+![재생 창과 기본 자막](evidence/2026-10-03-intro-video-public/player-1440.png)
+
+![휴대폰의 한 줄 안내](evidence/2026-10-03-intro-video-public/first-visit-390.png)
+
+도입부에서는 기본 자막이 영상 속 문제 제목 옆에 함께 보인다. 읽기에는 문제없지만 화면이 다소 붐비며, 영상 재제작 시 위치를 조정할 수 있다.

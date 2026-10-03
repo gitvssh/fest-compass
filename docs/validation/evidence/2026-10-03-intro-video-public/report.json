@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-03T02:03:07.005Z",
+  "base": "https://pickday.damecasol.com",
+  "headless": true,
+  "interceptedResponses": 0,
+  "checks": [
+    {
+      "name": "public media answers range requests and serves captions",
+      "video": 206,
+      "videoType": "video/mp4",
+      "vtt": 200,
+      "vttType": "text/vtt; charset=UTF-8"
+    },
+    {
+      "name": "first visit after real consent, playback with captions and return visit at 1440px",
+      "currentTime": 2.010133,
+      "duration": 66.7,
+      "width": 1920,
+      "height": 1080,
+      "captions": "showing",
+      "cues": 20
+    },
+    {
+      "name": "first visit after real consent, playback with captions and return visit at 390px",
+      "currentTime": 2.004779,
+      "duration": 66.7,
+      "width": 1920,
+      "height": 1080,
+      "captions": "showing",
+      "cues": 20
+    },
+    {
+      "name": "shared intro=play link opens the player on the public site"
+    }
+  ],
+  "browserErrors": []
+}

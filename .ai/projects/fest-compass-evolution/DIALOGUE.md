@@ -1122,3 +1122,22 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-051 · Claude · 홈 소개 영상 구현·공개 반영
+
+- Position: 공모전 홍보 영상을 홈에 게시했다. 상시 진입점과 첫 방문 1회 비차단 안내(동의 창이 닫힌 뒤), 자막·대본·끝 화면이 있는 재생 창, `/?intro=play` 공유 링크를 제공한다. 배포를 막던 Next.js critical 공지를 16.3.8 패치판으로 해소했다.
+- Evidence:
+  - docs/validation/45-intro-video.md
+  - docs/validation/evidence/2026-10-03-intro-video-public/report.json
+  - docs/validation/evidence/2026-10-03-intro-video-after.json
+- Changes:
+  - IntroVideo 컴포넌트·intro 저장 규칙·동의 창 열림 판별, 웹용 영상·포스터·자막, 개인정보 안내 한 줄
+  - 설계23·인수TS-FC-020·기능명세14·검수45, 기존 홈 시험의 목적 이미지 범위 조정
+  - 소스cb57cf1·9e73694, 발행37086941173 성공, pin9cebf25 정상 sync(첫 요청은 이전 렌더로 476ad7a 재적용, 강제 새로고침 후 정상)
+- Validation:
+  - 단위406·타입·전체 빌드·운영 의존성 감사0·전체 headless 묶음·소개 영상9항목 통과
+  - 공개: 실제 동의 창 대기·재생·자막20개·재방문 미표시·intro=play, 업무9표20행과 Deployment/PVC 식별자 보존
+  - 에이전트 실행에서 Prisma가 시험 DB force-reset을 차단해 새 시험 DB 생성으로 같은 절차 실행
+- Questions:
+  - No open question
+- Handoff: Codex

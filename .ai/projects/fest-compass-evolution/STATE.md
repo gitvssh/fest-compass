@@ -1,22 +1,23 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 50
+revision: 51
 status: active
 next_actor: codex
-last_actor: codex
+last_actor: claude
 current_question: "No open question recorded"
-updated_at: "2026-09-27T04:45:19.781Z"
+updated_at: "2026-10-03T02:20:00.000Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 방문·자원·시기 자료를 기록 없이 조회한다. PC 조사 배치에 실제 대표/상세사진·이용시간·주차·유형별 정보를 연결했고 두 후보의 사진과 조건을 비교한다. 공개3흐름·실제8장·200% 확대·업무자료 보존과 D 사본 검수를 완료했다. D:\download\project\pickDday\index.html에서 최신 화면과 설계를 확인한다.
+기존·새 축제와 관광지도의 공통 방문·자원·시기 자료를 기록 없이 조회한다. PC 조사 배치에 실제 대표/상세사진·이용시간·주차·유형별 정보를 연결했고 두 후보의 사진과 조건을 비교한다. 공개3흐름·실제8장·200% 확대·업무자료 보존과 D 사본 검수를 완료했다. D:\download\project\pickDday\index.html에서 최신 화면과 설계를 확인한다. 2026-10-03 홈에 1분 소개 영상(상시 진입점·첫 방문 안내·자막 재생 창·`/?intro=play`)을 공개했고 Next.js를 16.3.8 보안 패치판으로 올렸다.
 
 ## Accepted decisions
 
+- 2026-10-03 사용자 승인: 공모전 홍보 영상을 홈에 게시하되 자동 전면 재생 대신 상시 진입점·첫 방문 비차단 안내·누를 때 재생으로 한다. 웹용은 제작 검증 카드를 사용자 관점 문구로 바꾸고 제출본은 유지한다(docs/design/23-intro-video.md).
 - 공모전 완성도와 실무 활용성을 같은 비중으로 추진하고 과거·현재·예측·기획 결정·결과·다음 회차를 연결한다(2026-09-07 사용자 확인).
 - 승인된 개발·검증·일반 Git 게시·등록 앱 sync·전용 worktree 정리는 재승인 없이 진행한다(사용자 요청·저장소 규약).
 - 논산딸기축제를 개발 샘플, 논산시 일별 외지인 방문 추세를 1차 예측 지표로 삼는다. 행사장 입장·시간별 혼잡과 구분하며 다른 지자체에 자동 일반화하지 않는다(docs/validation/05~06).
@@ -176,3 +177,8 @@ updated_at: "2026-09-27T04:45:19.781Z"
 - docs/sdlc/3-testing/scenarios/TS-FC-019.md
 - apps/web/scripts/tourism-media-e2e.mjs
 - apps/web/scripts/tourism-media-live.mjs
+- docs/design/23-intro-video.md
+- docs/validation/45-intro-video.md
+- docs/sdlc/3-testing/scenarios/TS-FC-020.md
+- apps/web/scripts/intro-video-e2e.mjs
+- apps/web/scripts/intro-video-live.mjs
