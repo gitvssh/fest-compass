@@ -288,3 +288,16 @@ headless Chromium으로 HTML43개를1280/390px에서 열어 이미지와 Mermaid
 이전 PC 검토 묶음과 옛 `fest-compass/index.html`164개 파일의 해시가 전달 전후 일치한다.
 프로젝트 문서·원본 화면은 저장소에 유지한다. Windows 브라우저 직접 실행은 미평가다.
 세부 근거는 [전달 검사](../validation/evidence/2026-09-27-tourism-media-delivery.json)를 따른다.
+
+## 축제 기획 길잡이 기획 전달 · 2026-10-03
+
+현재 `D:\download\project\pickDday\index.html`은 `2026-10-03-planning-guide`를 연다.
+원본 커밋 `9c7d085e1ac175a0c0b0815c101f512a0153cb6e`에서 내보냈고 선택 자료에 미커밋 변경은 없다.
+첫 카드에 [설계24 기획 v2](../design/24-planning-guide.md), [공식 자료·절차 조사](../research/2026-10-novice-planner-sources.md),
+[UX 조사](../research/2026-10-guidance-ux-patterns.md), [Codex 검토](../review/2026-10-03-planning-guide-review-codex.md),
+[Fable 검토](../review/2026-10-03-planning-guide-review-fable.md)를 배치했다. 제안 시안은 공개 화면에 제안 요소를 덧붙여 찍은 것이며 구현 전이다.
+
+실제 D 드라이브 9p 마운트에 원본 사본153개·시안11페이지·문서37페이지·시작 페이지를 전달했다.
+headless Chromium으로 HTML49개를 1280px에서 열어 깨진 이미지0, 없는 로컬 연결0, 가로 넘침0, 페이지 오류0을 확인했고,
+시작 페이지와 설계24 문서 페이지를 1440/390px에서 열어 그림15장과 가로 넘침 없음을 확인했다.
+Windows 브라우저 직접 실행은 미평가다. 이 전달은 검토 자료이며 설계된 기능의 실행 인수가 아니다.
