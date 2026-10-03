@@ -7,9 +7,9 @@ summary: "지자체 축제 업무 조사와 요구사항 보완안을 내부 검
 
 # 공개 사례 조사와 검수본 게시 검증
 
-2026-09-08 KST 확인. [조사 보고서](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-research-2026-09-municipal-festival-cases.html)와
-[요구사항 보완안](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-research-2026-09-municipal-requirement-proposals.html)을
-기존 내부 검수 환경에서 읽을 수 있다.
+2026-09-08 KST 확인. 조사 보고서(`portfolio/fest-compass/site/pages/docs-research-2026-09-municipal-festival-cases.html`)와
+요구사항 보완안(`portfolio/fest-compass/site/pages/docs-research-2026-09-municipal-requirement-proposals.html`)을
+기존 내부 검수 환경(홈랩 내부 주소, 비공개)에서 읽을 수 있다.
 
 ## 대상과 변경
 
@@ -18,7 +18,7 @@ summary: "지자체 축제 업무 조사와 요구사항 보완안을 내부 검
 | FEST 문서 원천 | 51d2f55309c5b0bcc1245457719bd72fa60ae513 |
 | traceboard 빌드 도구 | 86a458577ce767f0441d07839d7d8741e60efd67 |
 | 게시 커밋 | 5ea684a16fee72ae7edc791566423736ddf7cd68 |
-| 게시 이미지 | registry.damecasol.com/traceboard/site@sha256:cb5d79ab0f8277d843730d56b6ed986b7107e778139bd3b8444e35c93393992f |
+| 게시 이미지 | 내부 레지스트리/traceboard/site@sha256:cb5d79ab0f8277d843730d56b6ed986b7107e778139bd3b8444e35c93393992f |
 | 배포 확인 | traceboard-dev: 위 커밋에서 Succeeded / Synced / Healthy |
 | 실행 상태 | traceboard Deployment의 위 이미지 일치, available=1 / updated=1 |
 

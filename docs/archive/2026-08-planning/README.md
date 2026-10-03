@@ -7,3 +7,7 @@ Windows 체크아웃의 Git 제외 경로 `output/`에 있던 핵심 Markdown 3�
 현재 개발 계획은 `docs/validation/00-plan.md`, 실행 상태는
 `.ai/projects/fest-compass-evolution/STATE.md`에서 확인한다.
 PPT·이미지 등 나머지 기존 산출물은 WSL 기준 저장소의 Git 제외 `output/`에 보존했다.
+
+공모전 주최 측이 배포한 공고문·지정과제 목록 PDF 2건은 제3자 문서라서 2026-10-03 공개 저장소 정리 때
+저장소에서 제외했다. 분석설계 기획서 §15 '로컬 자료'의 파일명은 원문 그대로 두며, 사본은 기준 저장소의
+Git 제외 `output/reference/`에 보관한다. 원문은 같은 절 '공식·외부 자료'의 공고 링크에서 확인한다.

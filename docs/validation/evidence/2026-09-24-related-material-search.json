@@ -257,11 +257,11 @@
         "containers": [
           {
             "name": "forecast-worker",
-            "image": "registry.damecasol.com/fest-compass/web@sha256:5c2072c74cfc5d9f605d5de8460ca5f4e8a355545d87e636ba817dc7f20f8810"
+            "image": "<내부 레지스트리>/fest-compass/web@sha256:5c2072c74cfc5d9f605d5de8460ca5f4e8a355545d87e636ba817dc7f20f8810"
           },
           {
             "name": "web",
-            "image": "registry.damecasol.com/fest-compass/web@sha256:5c2072c74cfc5d9f605d5de8460ca5f4e8a355545d87e636ba817dc7f20f8810"
+            "image": "<내부 레지스트리>/fest-compass/web@sha256:5c2072c74cfc5d9f605d5de8460ca5f4e8a355545d87e636ba817dc7f20f8810"
           }
         ]
       },

@@ -607,7 +607,7 @@
     "run": 36290156260,
     "url": "https://github.com/gitvssh/fest-compass/actions/runs/36290156260",
     "runnerLabel": "homelab-fest-compass",
-    "image": "registry.damecasol.com/fest-compass/web@sha256:e33197a4801ece680843dbfcbcc720e993d87c3d70961ba82f40f65f70cffa6f",
+    "image": "<내부 레지스트리>/fest-compass/web@sha256:e33197a4801ece680843dbfcbcc720e993d87c3d70961ba82f40f65f70cffa6f",
     "deploymentUID": "0b216035-cb40-4afc-85d1-655f5089742e",
     "pvcUID": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
     "sync": "Synced",

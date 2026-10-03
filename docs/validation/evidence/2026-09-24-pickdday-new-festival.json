@@ -92,8 +92,8 @@
     "generation": 27,
     "ready": 1,
     "images": {
-      "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:4e1f2992616bd3963021838ac0c42677c98eb1d92451491d4c8140a131085351",
-      "web": "registry.damecasol.com/fest-compass/web@sha256:4e1f2992616bd3963021838ac0c42677c98eb1d92451491d4c8140a131085351"
+      "forecast-worker": "<내부 레지스트리>/fest-compass/web@sha256:4e1f2992616bd3963021838ac0c42677c98eb1d92451491d4c8140a131085351",
+      "web": "<내부 레지스트리>/fest-compass/web@sha256:4e1f2992616bd3963021838ac0c42677c98eb1d92451491d4c8140a131085351"
     },
     "revision": "7bcb6ccd90078ec11700f9cbe8eeacaa6430fe7f",
     "sync": "Synced",

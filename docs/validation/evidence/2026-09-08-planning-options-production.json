@@ -96,7 +96,7 @@
     },
     "liveFiles": {
       "checkedAt": "2026-09-08T09:43:03.590871+00:00",
-      "baseUrl": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/",
+      "baseUrl": "<홈랩 내부 주소>/portfolio/fest-compass/site/",
       "documentSourceCommit": "3260214858010f054589cd918bc30c11f61567e9",
       "files": [
         {
@@ -594,7 +594,7 @@
       "total": 70
     },
     "browser": {
-      "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-planning-options-implementation.html#view=all",
+      "url": "<홈랩 내부 주소>/portfolio/fest-compass/site/pages/docs-sdlc-2-design-planning-options-implementation.html#view=all",
       "headless": true,
       "width": 390,
       "documentWidth": 390,

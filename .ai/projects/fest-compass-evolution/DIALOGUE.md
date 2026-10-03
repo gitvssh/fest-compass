@@ -212,7 +212,7 @@ The state revision is the number of the last `T-NNN` entry below.
   - docs/review/2026-09-planning-review.md: 검수 순서·질문·개발 착수 기준
   - docs/sdlc/: 기획·자료 계약·기능 23개/비기능 6개·UC 8개/AC 26개/TS 8개·화면 7개
   - docs/validation/16-planning-review-publication.md: 원천 커밋·그림/링크/추적 검사·내부 배포 검증
-  - https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html
+  - 홈랩 내부 검수 사이트(주소 비공개): portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html
 - Changes:
   - 제품 범위·용어집·CHARTER·마일스톤·실행 계획에 D0 문서/시안 검수를 개발 앞에 반영
   - SCR-FC-001~007 편집 원본·SVG, 지역 지도 작은 화면 시안 포함

@@ -140,8 +140,8 @@
       "observedGeneration": 16,
       "availableReplicas": 1,
       "images": [
-        "registry.damecasol.com/fest-compass/web@sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a",
-        "registry.damecasol.com/fest-compass/web@sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a"
+        "<내부 레지스트리>/fest-compass/web@sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a",
+        "<내부 레지스트리>/fest-compass/web@sha256:9d83122cfaa7924c699701fecfbe7c04a70fe7ae01a12d0744efe8f279ac160a"
       ]
     },
     "cleanup": {
@@ -397,7 +397,7 @@
       "generation": 46,
       "observedGeneration": 46,
       "availableReplicas": 1,
-      "image": "registry.damecasol.com/traceboard/site@sha256:8aa21dfaed7e3427b8fa88b05e7288738e66b96c4bfc088d140790eeae14c80a"
+      "image": "<내부 레지스트리>/traceboard/site@sha256:8aa21dfaed7e3427b8fa88b05e7288738e66b96c4bfc088d140790eeae14c80a"
     },
     "layoutCombinations": 1680,
     "layoutViolations": 0,
@@ -438,7 +438,7 @@
       ]
     },
     "browserException": "Existing favicon.ico 404; 0 warnings; all five lazy-loaded implementation images scrolled into view and decoded",
-    "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-outcome-implementation.html"
+    "url": "<홈랩 내부 주소>/portfolio/fest-compass/site/pages/docs-sdlc-2-design-outcome-implementation.html"
   },
   "registryDryRun": {
     "execution": 3576,
@@ -659,7 +659,7 @@
     "sourceCommit": "81533f062bf014f00f4b8f4ac4297989266c56bd",
     "publishedCommit": "df6508c1eb2020a58d2f6e9ed28a5b8564aa8fe2",
     "image": "sha256:b3c8fe4948a736745eaab6f2b0c785d49690fac21b3ff491f686fcb829708062",
-    "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-outcome-implementation.html",
+    "url": "<홈랩 내부 주소>/portfolio/fest-compass/site/pages/docs-sdlc-2-design-outcome-implementation.html",
     "argo": "Synced/Healthy/Succeeded",
     "generation": 45,
     "observedGeneration": 45,

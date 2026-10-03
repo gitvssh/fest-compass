@@ -9,8 +9,8 @@ summary: "기획 문서·7개 화면 시안을 내부 traceboard에 게시하고
 
 ## 사용 가능 상태
 
-2026-09-08 11:22 KST 확인. [기획 검수 안내](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html)와
-[화면설계·와이어프레임](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-screens.html)을 내부 사이트에서 열람할 수 있다.
+2026-09-08 11:22 KST 확인. 기획 검수 안내(`portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html`)와
+화면설계·와이어프레임(`portfolio/fest-compass/site/pages/docs-sdlc-2-design-screens.html`)을 홈랩 내부 검수 사이트(주소 비공개)에서 열람할 수 있다.
 문서와 시안의 게시 완료이며 지도·비교·새 기획 기능 구현이나 사용자 검수 완료가 아니다.
 
 ## 변경과 대상
@@ -20,7 +20,7 @@ summary: "기획 문서·7개 화면 시안을 내부 traceboard에 게시하고
 | 문서 원천 | fest-compass f76a283e54d5e1146c8c8c9af248320493ad44c8 |
 | traceboard 도구·목록 | 3455ad2abd25cb79eab5b8115c9e56674337b83e |
 | 내부 게시 커밋 | traceboard 86a458577ce767f0441d07839d7d8741e60efd67 |
-| 검증 이미지 | registry.damecasol.com/traceboard/site@sha256:d701b5ad05518dab5475ad023b569c547ca6a217dfdbe70708892405f59412b0 |
+| 검증 이미지 | 내부 레지스트리/traceboard/site@sha256:d701b5ad05518dab5475ad023b569c547ca6a217dfdbe70708892405f59412b0 |
 | 실제 반영 | traceboard-dev, Succeeded / Synced / Healthy, 위 게시 커밋 일치 |
 | 실행 워크로드 | traceboard 네임스페이스의 traceboard Deployment, available=1 / updated=1 |
 | 공개 범위 | 기존 내부 포트폴리오만 추가. 공개 포트폴리오·공개 오버레이는 변경 없음 |

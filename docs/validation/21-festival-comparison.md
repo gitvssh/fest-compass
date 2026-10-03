@@ -54,7 +54,7 @@ TS-FC-002의 전체 인수 시나리오 및 실제 공무원 관찰 완료로 �
 
 - 소스: `181144c3a9505f916dcbc11cca16d562f6436d0c`.
 - [CI 34202154992](https://github.com/gitvssh/fest-compass/actions/runs/34202154992) 성공. 리포 전용 ARC `homelab-fest-compass-k8d69-runner-6l2m8`에서 단위·타입·빌드·배포 선언을 다시 검증했다.
-- 원격 검증 이미지: `registry.damecasol.com/fest-compass/web@sha256:5c090b44164c4a442761375c7a29051696fdacff97c6d1bddfb9ebf66df657fa`.
+- 원격 검증 이미지: `내부 레지스트리/fest-compass/web@sha256:5c090b44164c4a442761375c7a29051696fdacff97c6d1bddfb9ebf66df657fa`.
 - 배포 선언 `78e182a5601304ac5c02dca86df99bd59ec56f13`을 등록 앱에 적용했다. `fest-compass-prod` Synced/Healthy/Succeeded, 가용 1개이며 두 컨테이너 이미지가 일치했다.
 - 공개 [전국 지도](https://kto.damecasol.com/regions)의 이전 표기 0, 전국→충남→논산→비교 링크의 지역·기간 전달을 확인했다.
 - 공개 [비교 화면](https://kto.damecasol.com/compare)에서 과거 8회차·논산 3회차 D0 값을 확인하고 52,671.5명 사본을 보관/재조회했다. 공주·임실 4일 겹침과 원주 실제 집행 재원 도넛을 확인했다.

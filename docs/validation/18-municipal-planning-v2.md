@@ -64,15 +64,15 @@ summary: "공개 사례 보완안 8개를 요구사항·자료·인수 기준·7
 
 ## 내부 게시 확인
 
-[검수 안내 v2](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html)와
-[화면설계·와이어프레임](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-screens.html)을
-기존 내부 접근 환경에서 검수할 수 있다.
+검수 안내 v2(`portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html`)와
+화면설계·와이어프레임(`portfolio/fest-compass/site/pages/docs-sdlc-2-design-screens.html`)을
+기존 내부 접근 환경(홈랩 내부 주소, 비공개)에서 검수할 수 있다.
 
 | 항목 | 확인 결과 |
 |---|---|
 | traceboard 빌드 도구 | 50823635fa6e2c0df6f5550ecdad5ceb1e065165 |
 | 게시 커밋 | fe067d1279b3dcda4ec801e34237fa430da42f35 |
-| 게시 이미지 | registry.damecasol.com/traceboard/site@sha256:1d8f6c160f0e512035a4c5bb41e8c1f22a53d20cf35e7a490ca5ee6fbdacbdbc |
+| 게시 이미지 | 내부 레지스트리/traceboard/site@sha256:1d8f6c160f0e512035a4c5bb41e8c1f22a53d20cf35e7a490ca5ee6fbdacbdbc |
 | 배포 확인 | traceboard-dev: 위 커밋의 Succeeded / Synced / Healthy |
 | 실행 이미지 | Deployment 이미지 일치, available=1 / updated=1 |
 | 발행 게이트 | `publish-site.sh --profile internal`: 라이트/다크 × 시스템/수동, 1,576페이지 검사 조합에서 위반 0·미평가 0 |

@@ -50,11 +50,11 @@
     "containers": [
       {
         "name": "forecast-worker",
-        "image": "registry.damecasol.com/fest-compass/web@sha256:ee3e4e0d250ed66228a99f2e3ffbe7b727cf1bcb21c575e07607caac8e09b6ba"
+        "image": "<내부 레지스트리>/fest-compass/web@sha256:ee3e4e0d250ed66228a99f2e3ffbe7b727cf1bcb21c575e07607caac8e09b6ba"
       },
       {
         "name": "web",
-        "image": "registry.damecasol.com/fest-compass/web@sha256:ee3e4e0d250ed66228a99f2e3ffbe7b727cf1bcb21c575e07607caac8e09b6ba"
+        "image": "<내부 레지스트리>/fest-compass/web@sha256:ee3e4e0d250ed66228a99f2e3ffbe7b727cf1bcb21c575e07607caac8e09b6ba"
       }
     ],
     "health": "Healthy",
@@ -261,7 +261,7 @@
       "containers": [
         {
           "name": "site",
-          "image": "registry.damecasol.com/traceboard/site@sha256:81b270d504436864697ba74fa992eea93d70cade4f9dedb8c086db3d0dbce55a"
+          "image": "<내부 레지스트리>/traceboard/site@sha256:81b270d504436864697ba74fa992eea93d70cade4f9dedb8c086db3d0dbce55a"
         }
       ],
       "health": "Healthy",

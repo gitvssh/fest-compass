@@ -1,7 +1,7 @@
 {
   "checkedAt": "2026-09-08T05:48:26.772928+00:00",
   "sourceCommit": "387af0e87ec80db1c22f0d0de817ad79585428da",
-  "base": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/",
+  "base": "<홈랩 내부 주소>/portfolio/fest-compass/site/",
   "files": [
     {
       "path": "assets/docs-assets-SCR-FC-001-wireframe-v3.svg.svg",
@@ -324,7 +324,7 @@
   ],
   "publicationCommit": "6a19ba87b85837b54809a5bdd29aa0696bd9435c",
   "toolCommit": "53fb6aabbbb9cf704960b648eb2cb076df334a4e",
-  "image": "registry.damecasol.com/traceboard/site@sha256:a4fd38ded522fafa6ee47a65ebcdb9c9e14edbdf42362bb66c886d173a9b1e6f",
+  "image": "<내부 레지스트리>/traceboard/site@sha256:a4fd38ded522fafa6ee47a65ebcdb9c9e14edbdf42362bb66c886d173a9b1e6f",
   "deployment": {
     "application": "traceboard-dev",
     "namespace": "traceboard",

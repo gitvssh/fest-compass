@@ -55,7 +55,7 @@
   },
   "traceboard": {
     "status": "published and verified",
-    "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-region-map-improvement.html",
+    "url": "<홈랩 내부 주소>/portfolio/fest-compass/site/pages/docs-sdlc-2-design-region-map-improvement.html",
     "publicationCommit": "149eda00b44eb2e15cd6bffffc5273a3e0d352c2",
     "imageDigest": "sha256:d0ba223f3a181c14e9073d09ba16724d08414bbb012acae14bb73775c70b5ea7",
     "generation": 47,

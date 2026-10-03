@@ -156,8 +156,8 @@
     "deployment": {
       "generation": 21,
       "images": [
-        "registry.damecasol.com/fest-compass/web@sha256:fb147f9cdc5156ffb35431cc07ccc188f152092cd36e9201c92fac8f61dc133b",
-        "registry.damecasol.com/fest-compass/web@sha256:fb147f9cdc5156ffb35431cc07ccc188f152092cd36e9201c92fac8f61dc133b"
+        "<내부 레지스트리>/fest-compass/web@sha256:fb147f9cdc5156ffb35431cc07ccc188f152092cd36e9201c92fac8f61dc133b",
+        "<내부 레지스트리>/fest-compass/web@sha256:fb147f9cdc5156ffb35431cc07ccc188f152092cd36e9201c92fac8f61dc133b"
       ],
       "availableReplicas": 1
     },
@@ -10918,7 +10918,7 @@
     "checkedAt": "2026-09-10T08:02:12.693753+00:00",
     "generation": 53,
     "images": [
-      "registry.damecasol.com/traceboard/site@sha256:7357015aa46b6c0f1d8b0ba482c0564b6975ae3788f0f6307373fbe76783c81d"
+      "<내부 레지스트리>/traceboard/site@sha256:7357015aa46b6c0f1d8b0ba482c0564b6975ae3788f0f6307373fbe76783c81d"
     ],
     "availableReplicas": 1,
     "health": "Healthy",

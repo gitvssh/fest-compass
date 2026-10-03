@@ -53,13 +53,13 @@ Node 24.15.0·Python 3·로컬 Chromium을 사용했다. Playwright CLI 설정�
 
 ## 내부 게시
 
-[검수 안내 v3](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html)와
-[7개 화면 v3](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-screens.html)를 기존 내부 접근 환경에서 검수할 수 있다.
+검수 안내 v3(`portfolio/fest-compass/site/pages/docs-review-2026-09-planning-review.html`)와
+7개 화면 v3(`portfolio/fest-compass/site/pages/docs-sdlc-2-design-screens.html`)를 기존 내부 접근 환경(홈랩 내부 주소, 비공개)에서 검수할 수 있다.
 
 | 항목 | 결과 |
 |---|---|
 | 게시 커밋 | 6a19ba87b85837b54809a5bdd29aa0696bd9435c |
-| 이미지 | registry.damecasol.com/traceboard/site@sha256:a4fd38ded522fafa6ee47a65ebcdb9c9e14edbdf42362bb66c886d173a9b1e6f |
+| 이미지 | 내부 레지스트리/traceboard/site@sha256:a4fd38ded522fafa6ee47a65ebcdb9c9e14edbdf42362bb66c886d173a9b1e6f |
 | 발행 게이트 | `publish-site.sh --profile internal`: 1,576페이지/보기 검사 조합, 라이트·다크×시스템·수동, 위반 0·미평가 0 |
 | 배포 | traceboard-dev가 위 커밋 Succeeded / Synced / Healthy |
 | 실행 | traceboard namespace의 Deployment 이미지 일치, available=1 / updated=1 |

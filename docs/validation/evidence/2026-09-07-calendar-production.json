@@ -11,7 +11,7 @@
     "appTests": 118,
     "infraTests": 40
   },
-  "image": "registry.damecasol.com/fest-compass/web@sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd",
+  "image": "<내부 레지스트리>/fest-compass/web@sha256:7ebad161407038aa8e074cc55a32555c3fc49d578d1084a7bc9713c22ee4e6fd",
   "argo": {
     "application": "fest-compass-prod",
     "operation": "Succeeded",

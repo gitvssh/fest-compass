@@ -243,7 +243,7 @@
     },
     "live": {
       "checkedAt": "2026-09-08T08:29:56.067522+00:00",
-      "baseUrl": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/",
+      "baseUrl": "<홈랩 내부 주소>/portfolio/fest-compass/site/",
       "checkedFiles": 64,
       "matches": 64,
       "files": [
@@ -634,7 +634,7 @@
       ]
     },
     "browser": {
-      "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-festival-comparison-implementation.html",
+      "url": "<홈랩 내부 주소>/portfolio/fest-compass/site/pages/docs-sdlc-2-design-festival-comparison-implementation.html",
       "headless": true,
       "title": "과거 축제 비교의 첫 구현 · fest-compass",
       "width": 390,

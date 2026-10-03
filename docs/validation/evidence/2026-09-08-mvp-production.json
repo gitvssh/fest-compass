@@ -24,8 +24,8 @@
     "health": "Healthy",
     "phase": "Succeeded",
     "images": [
-      "registry.damecasol.com/fest-compass/web@sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789",
-      "registry.damecasol.com/fest-compass/web@sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789"
+      "<내부 레지스트리>/fest-compass/web@sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789",
+      "<내부 레지스트리>/fest-compass/web@sha256:4af5b4104d9e2d3c97d3e8b6e66d89f7e8f19d02f215a1a092dfdd8c05584789"
     ],
     "replicas": 1,
     "readyReplicas": 1

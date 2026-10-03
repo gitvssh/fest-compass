@@ -191,7 +191,7 @@
     },
     "liveFiles": {
       "checkedAt": "2026-09-08T23:28:04.561780+00:00",
-      "baseUrl": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/",
+      "baseUrl": "<홈랩 내부 주소>/portfolio/fest-compass/site/",
       "files": [
         {
           "path": "assets/docs-assets-SCR-FC-001-implementation-mobile.png.png",
@@ -730,7 +730,7 @@
       "total": 76
     },
     "browser": {
-      "url": "https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/pages/docs-sdlc-2-design-budget-implementation.html#view=all",
+      "url": "<홈랩 내부 주소>/portfolio/fest-compass/site/pages/docs-sdlc-2-design-budget-implementation.html#view=all",
       "headless": true,
       "width": 390,
       "documentWidth": 390,

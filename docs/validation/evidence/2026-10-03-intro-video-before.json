@@ -6,10 +6,10 @@
   "observedGeneration": 36,
   "ready": 1,
   "images": {
-    "migrate": "registry.damecasol.com/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875",
-    "festival-source-worker": "registry.damecasol.com/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875",
-    "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875",
-    "web": "registry.damecasol.com/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875"
+    "migrate": "<내부 레지스트리>/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875",
+    "festival-source-worker": "<내부 레지스트리>/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875",
+    "forecast-worker": "<내부 레지스트리>/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875",
+    "web": "<내부 레지스트리>/fest-compass/web@sha256:19bd603b6ca07ac1176da0dbbb911f3bbce7bad9ffa463b0bb93e24d486bb875"
   },
   "revision": "cb57cf19e0ae3d9a2aa14fd05610b65449be6381",
   "sync": "Synced",

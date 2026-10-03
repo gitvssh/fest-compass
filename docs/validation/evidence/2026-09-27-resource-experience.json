@@ -1002,19 +1002,19 @@
           "name": "festival-source-worker",
           "ready": true,
           "image": "sha256:346e02c8e29ffb331c6d5ade647170414c999fd24ee9668b9b1c9377417b1db3",
-          "imageID": "registry.damecasol.com/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
+          "imageID": "<내부 레지스트리>/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
         },
         {
           "name": "forecast-worker",
           "ready": true,
           "image": "sha256:346e02c8e29ffb331c6d5ade647170414c999fd24ee9668b9b1c9377417b1db3",
-          "imageID": "registry.damecasol.com/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
+          "imageID": "<내부 레지스트리>/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
         },
         {
           "name": "web",
           "ready": true,
           "image": "sha256:346e02c8e29ffb331c6d5ade647170414c999fd24ee9668b9b1c9377417b1db3",
-          "imageID": "registry.damecasol.com/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
+          "imageID": "<내부 레지스트리>/fest-compass/web@sha256:3eb378420ccc6baba04857156cbf0a065c131f539aae89777b3df93980cba40b"
         }
       ],
       "originHealth": [

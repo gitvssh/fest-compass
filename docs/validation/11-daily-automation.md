@@ -54,7 +54,7 @@ API 호출 실패가 아니며, 전체 날짜가 제공됐다는 뜻도 아니�
 | 이미지 발행 | [publish-image 실행 34115679879](https://github.com/gitvssh/fest-compass/actions/runs/34115679879), 성공 |
 | 실행 환경 | 등록 라벨 `homelab-fest-compass`, 실제 ARC runner `homelab-fest-compass-k8d69-runner-6wg6w` |
 | CI 검증 | 정확한 소스에서 앱 109개·타입·빌드·운영 audit·기존 infra 39개 통과. 연결 manifest 추가 후 로컬 infra 40개·release 계약 검사 통과 |
-| 검증된 이미지 | `registry.damecasol.com/fest-compass/web@sha256:32db6593000e16a2f7b4fce6817417be6d49d3279909130a211db74f10ba9c4d` |
+| 검증된 이미지 | `내부 레지스트리/fest-compass/web@sha256:32db6593000e16a2f7b4fce6817417be6d49d3279909130a211db74f10ba9c4d` |
 | 배포 선언 | `c8bbbacec86efa950ccbe5fbc9a43966125a3425`를 기존 `fest-compass-prod`에 수동 sync. Succeeded·Synced·Healthy |
 | 실행 상태 | `fest-compass-5bd6c7d8d6-pwr6x`, web/worker 2/2 Running·재시작 0. 두 컨테이너의 실제 imageID가 위 digest와 일치 |
 | 첫 실제 처리 | 2026-09-07 **20:20:26~20:20:54 한국시각**, 7회 호출, `partial`, 오류 없음 |

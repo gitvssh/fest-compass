@@ -6,3 +6,5 @@ __pycache__/
 output/
 .playwright-cli/
 tmp/
+# 제3자(공모전 주최 측) 공고문·지정과제 PDF는 저장소에 두지 않는다. 로컬 사본은 output/reference/에 보관한다.
+/2026 관광데이터 활용 공모전*.pdf

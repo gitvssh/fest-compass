@@ -124,8 +124,8 @@
         "uid": "0b216035-cb40-4afc-85d1-655f5089742e",
         "ready": 1,
         "images": {
-          "forecast-worker": "registry.damecasol.com/fest-compass/web@sha256:8ce8dfa419e431c87df39f4f269c4737c35fa9e3fec46749c303bd5143b3383c",
-          "web": "registry.damecasol.com/fest-compass/web@sha256:8ce8dfa419e431c87df39f4f269c4737c35fa9e3fec46749c303bd5143b3383c"
+          "forecast-worker": "<내부 레지스트리>/fest-compass/web@sha256:8ce8dfa419e431c87df39f4f269c4737c35fa9e3fec46749c303bd5143b3383c",
+          "web": "<내부 레지스트리>/fest-compass/web@sha256:8ce8dfa419e431c87df39f4f269c4737c35fa9e3fec46749c303bd5143b3383c"
         }
       },
       "PersistentVolumeClaim": {

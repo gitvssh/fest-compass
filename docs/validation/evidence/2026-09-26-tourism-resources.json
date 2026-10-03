@@ -251,7 +251,7 @@
     "deploymentUID": "0b216035-cb40-4afc-85d1-655f5089742e",
     "pvcUID": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
     "pod": "fest-compass-84bddddcf9-jv8mt",
-    "image": "registry.damecasol.com/fest-compass/web@sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed",
+    "image": "<내부 레지스트리>/fest-compass/web@sha256:c27d06af10fdda83e2d0dd5d929bbe102e629d1da5d7a459973725d6febe39ed",
     "ready": 3,
     "businessTables": {
       "festival": {

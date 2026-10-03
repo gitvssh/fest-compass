@@ -60,7 +60,7 @@ M1~M6 첫 기능의 구현·공개 검증 기록이 있습니다. 이번에는 �
 8개 보완 방향을 요구사항·자료 정의·인수 기준과 7개 와이어프레임에 반영했고, v3에서 전국 진입·실자료 그래프를 추가했습니다.
 기존 화면 번호와 지도 중심 순서를 유지하고, 기획·예산·결과 단계의 업무 정보를 구체화했습니다.
 
-내부 검수 사이트: [pickDday 문서](https://traceboard.homelab.damecasol.com/portfolio/fest-compass/site/index.html) (주소의 `fest-compass`는 프로젝트 식별자).
+내부 검수 사이트: pickDday 문서(홈랩 내부 주소의 `portfolio/fest-compass/site/index.html`, 주소는 공개 저장소에 싣지 않음. 경로의 `fest-compass`는 프로젝트 식별자).
 이 주소는 기존 내부 접근 환경에서 사용합니다. 외부 공개 사이트 등록은 이번 범위가 아닙니다.
 traceboard의 화면 카탈로그와 화면 흐름에서 7개 시안을 열 수 있습니다.
 사이트의 '문서 존재' 표시는 개발 완료·사용자 검수 완료가 아닙니다.
