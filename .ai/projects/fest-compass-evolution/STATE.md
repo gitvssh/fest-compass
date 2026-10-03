@@ -1,12 +1,12 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 51
+revision: 52
 status: active
-next_actor: codex
-last_actor: claude
-current_question: "No open question recorded"
-updated_at: "2026-10-03T02:20:00.000Z"
+next_actor: claude
+last_actor: codex
+current_question: "첫 배포를 입력 없는 정리·인쇄와 다음 확인 안내까지로 하고, 기존 기획 초안으로 옮기는 기능은 별도 구현으로 나눌 수 있는가?"
+updated_at: "2026-10-03T13:18:56.038Z"
 ---
 
 # Current state

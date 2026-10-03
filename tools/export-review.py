@@ -23,6 +23,12 @@ PROJECT_ID = 'fest-compass'
 REPOSITORY = 'https://github.com/gitvssh/fest-compass'
 MARKER = '<!-- pickDday-review-index -->'
 DOCS = {
+    'docs/design/24-planning-guide.md': '축제 기획 길잡이·화면 이미지 체계 기획(제안)',
+    'docs/research/2026-10-novice-planner-sources.md': '처음 맡은 담당자를 위한 공식 자료·절차 조사',
+    'docs/research/2026-10-guidance-ux-patterns.md': '단계 안내·체크리스트·이미지 UX 조사',
+    'docs/review/2026-10-03-planning-guide-review-codex.md': '길잡이 설계 검토 의견 · Codex',
+    'docs/review/2026-10-03-planning-guide-review-fable.md': '길잡이 설계 검토 의견 · Fable',
+    'docs/validation/45-intro-video.md': '홈 1분 소개 영상 실제 화면·검수',
     'docs/validation/44-tourism-media.md': '관광지도·자원 사진과 이용정보 실제 화면·검수',
     'docs/design/22-tourism-media.md': '관광자원 사진·이용정보 화면과 데이터 설계',
     'docs/validation/43-desktop-research-experience.md': 'PC 조사·기획 화면과 목적 이미지 개선·실제 검수',
@@ -208,11 +214,17 @@ def main():
     tourism_design = doc_pages['docs/design/19-tourism-resources.md']
     experience_doc = doc_pages['docs/validation/42-resource-experience.md']
     experience_design = doc_pages['docs/design/20-resource-experience.md']
+    guide_design = doc_pages['docs/design/24-planning-guide.md']
+    guide_sources = doc_pages['docs/research/2026-10-novice-planner-sources.md']
+    guide_ux = doc_pages['docs/research/2026-10-guidance-ux-patterns.md']
+    guide_codex = doc_pages['docs/review/2026-10-03-planning-guide-review-codex.md']
+    guide_fable = doc_pages['docs/review/2026-10-03-planning-guide-review-fable.md']
     media_doc = doc_pages['docs/validation/44-tourism-media.md']
     media_design = doc_pages['docs/design/22-tourism-media.md']
     desktop_doc = doc_pages['docs/validation/43-desktop-research-experience.md']
     desktop_design = doc_pages['docs/design/21-desktop-research-experience.md']
-    body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>관광지도와 두 축제 흐름에서 실제 장소 사진·이용정보를 조사하고 비교하는 화면부터 확인하세요.</p><p>최신 설계와 실제 화면은 맨 위 자료에 있습니다. 아래 와이어프레임은 개발 전 기본 배치 참고이며 현재 PC 화면과 구별해 읽어 주세요. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 보존합니다.</p><nav><a href="{media_doc}">최신 개선 화면·검수 결과</a><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
+    body = f'<p class="meta">{BRAND} · {stamp[:10]}</p><h1>축제 기획 기능·화면 검토</h1><p>맨 위의 새 기획(축제 기획 길잡이·화면 이미지)부터 확인하세요. 그 아래는 지금 사용 가능한 화면의 설계·검수 기록입니다.</p><p>최신 설계와 실제 화면은 맨 위 자료에 있습니다. 아래 와이어프레임은 개발 전 기본 배치 참고이며 현재 PC 화면과 구별해 읽어 주세요. 정상 상태 v5·v6와 부족한 자료·오류 상태 v7을 함께 보존합니다.</p><nav><a href="{media_doc}">최신 개선 화면·검수 결과</a><a href="{first_doc}">새 축제 실제 화면·검증 결과</a><a href="{existing_doc}">기존 축제 실제 화면·검증 결과</a><a href="#existing">기존 축제</a><a href="#new">새 축제</a><a href="#states">부족한 자료·복구</a><a href="#documents">설계 문서</a></nav>'
+    body += f'<section class="card"><h2>새 기획 · 처음 맡은 담당자를 위한 축제 기획 길잡이</h2><p>초기 사용자 의견(두 흐름의 목표와 과정이 흔들림, 첫 화면 이미지 호응)에 맞춘 단계 목표·확인할 것·읽을거리, 정리 단계, 축제 준비 전체 과정 안내와 화면 이미지 체계 제안입니다. 제안 시안은 실제 화면에 덧붙여 찍은 것이며 구현 전입니다.</p><a class="button" href="{guide_design}">기획·제안 시안 보기</a> <a class="button" href="{guide_sources}">공식 자료·절차 조사</a> <a class="button" href="{guide_ux}">UX 조사</a> <a class="button" href="{guide_codex}">Codex 검토</a> <a class="button" href="{guide_fable}">Fable 검토</a></section>'
     body += f'<section class="card"><h2>관광지도·자원 사진과 이용정보</h2><p>실제 장소 사진, 사진 모음, 이용시간·주차·유형별 정보와 세 화면의 연결을 확인하세요.</p><a class="button" href="{media_doc}">사진·이용정보 실제 화면과 검수 보기</a> <a class="button" href="{media_design}">사진·이용정보 설계 보기</a></section>'
     body += f'<section class="card"><h2>PC 중심 자료 조사·비교·기획</h2><p>구도가 다른 두 목적 이미지, 간결한 메뉴, 목록·지도·상세의 세 열과 방문 자료 병렬 분석을 확인하세요.</p><a class="button" href="{desktop_doc}">PC 실제 화면·검수 결과 보기</a> <a class="button" href="{desktop_design}">PC 화면 설계·이미지 원본 보기</a></section>'
     body += f'<section class="card"><h2>관광자원 지도·화면과 첫 화면 이미지</h2><p>유형과 건수, 장소 목록과 지도, 선택 상세를 함께 확인하세요. 가까운 장소 묶음에서 각 장소를 고르는 화면과 두 목적의 새 이미지를 담았습니다.</p><a class="button" href="{experience_doc}">개선 화면·검수 결과 보기</a> <a class="button" href="{experience_design}">시각 설계·이미지 원본 보기</a></section>'
@@ -232,7 +244,7 @@ def main():
     (bundle / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
     landing = project / 'index.html'
     landing_hash = project / '.review-index.sha256'
-    content = MARKER + page('최신 검토 자료', f'<h1>{BRAND} 검토 자료</h1><p>{stamp[:10]} · 관광지도·자원 사진과 이용정보</p><a class="button" href="{quote(args.label)}/index.html">최신 화면·설계 문서 열기</a>')
+    content = MARKER + page('최신 검토 자료', f'<h1>{BRAND} 검토 자료</h1><p>{stamp[:10]} · 축제 기획 길잡이·화면 이미지 기획(제안)</p><a class="button" href="{quote(args.label)}/index.html">최신 기획·설계 문서 열기</a>')
     if landing.exists() and (not landing_hash.exists() or hashlib.sha256(landing.read_bytes()).hexdigest() != landing_hash.read_text().strip()):
         print('Existing user index preserved:', landing)
         suffix = ''

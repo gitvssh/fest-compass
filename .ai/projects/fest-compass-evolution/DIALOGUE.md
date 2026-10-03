@@ -1141,3 +1141,27 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Codex
+
+## T-052 · Codex · reviewer
+
+- Position: 설계 24는 수정 후 진행을 권고한다. 두 여정과 번호 없는 자유 이동은 유지하되 초임자의 판단 질문, 회차 자료 없는 경우, 입력 없는 정리·인쇄를 먼저 연결한다. 지역 방문 수치를 참가 규모·수요 근거로 확장하는 문구, 행정 절차 순서·법령 적용 조건, 정리 상태와 기존 기획 초안 전달 계약을 수정해야 한다. 14개 지적과 구체적 대안을 리뷰에 기록했으며 설계·코드는 수정하지 않았다.
+- Evidence:
+  - docs/review/2026-10-03-planning-guide-review-codex.md
+  - docs/design/24-planning-guide.md 및 docs/assets/design-24/의 시안·콘텐츠·생성 소스
+  - docs/product/planning-principles.md; docs/product/non-goals.md
+  - docs/research/2026-10-novice-planner-sources.md; docs/research/2026-10-guidance-ux-patterns.md
+  - apps/web/components/existing/ExistingShell.tsx; apps/web/components/new-festival/NewShell.tsx; 두 여정 memory.ts; apps/web/components/existing/HistoryPanel.tsx
+  - apps/web/components/PlanningWorkspace.tsx; apps/web/app/planning/options/page.tsx; apps/web/lib/planning/proposal.ts
+  - 법령·방문자료 정의·평가편람 게시물의 공식 원문 링크와 확인 범위는 리뷰 3·5·6번에 기록
+- Changes:
+  - docs/review/2026-10-03-planning-guide-review-codex.md
+- Validation:
+  - CHARTER·STATE revision 51·최근 대화, 지정 설계·원칙·연구·관련 여정 및 기획 도구 구현을 정적 대조했다.
+  - 제안 JPG 7장, 샘플 JPG 4장, 현재 화면·참고 패턴 JPG 3장을 이미지 도구로 직접 관찰했다. 홈 시안은 이미지·스타일이 정상 표시되지 않아 평가 한계와 재캡처 필요를 명시했다.
+  - 2026-10-03 공식 법령의 투자심사·영향평가·예산안 제출·축제 안전·공연·반복 행사 조건을 선별 대조했다. 모든 첨부 PDF와 인허가를 전수 재검증한 것은 아니다.
+  - 리뷰 front matter, 요구된 네 절, 연속된 지적 14개, 질문 2개, 전체 경로로 기재한 저장소 근거 파일의 존재를 확인했다.
+  - 앱 실행·빌드·브라우저 동작 검증은 수행하지 않았다. 접근성·확대·성능의 실제 동작은 미평가로 기록했다. Git 명령은 실행하지 않았다.
+- Questions:
+  - 첫 배포를 입력 없는 정리·인쇄와 다음 확인 안내까지로 하고, 기존 기획 초안으로 옮기는 기능은 별도 구현으로 나눌 수 있는가?
+  - 법령 금액·기한을 유지할 관리 담당과 갱신 방식을 둘 수 있는가? 정해지기 전에는 협의 부서·적용 질문·공식 원문 연결 중심의 공개를 권고한다.
+- Handoff: Claude
