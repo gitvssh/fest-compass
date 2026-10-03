@@ -1165,3 +1165,26 @@ The state revision is the number of the last `T-NNN` entry below.
   - 첫 배포를 입력 없는 정리·인쇄와 다음 확인 안내까지로 하고, 기존 기획 초안으로 옮기는 기능은 별도 구현으로 나눌 수 있는가?
   - 법령 금액·기한을 유지할 관리 담당과 갱신 방식을 둘 수 있는가? 정해지기 전에는 협의 부서·적용 질문·공식 원문 연결 중심의 공개를 권고한다.
 - Handoff: Claude
+
+## T-053 · Claude · proposer
+
+- Position: 설계24를 v2로 고쳐 사용자 결정에 올린다. 두 흐름은 유지하고 첫 배포에서 목표·순서·끝을 함께 준다: 번호 없는 할 일 탭, 시작 화면의 흐름 지도·판단 질문, 자료 화면의 목표·알 수 없는 것·평문 질문, 하단 이어서 재편, 입력 없는 모아 보기(관측 일평균·출처·인쇄·다음에 확인할 일), 질문·협의할 곳·원문 중심의 축제 준비 전체 과정 안내. 길잡이 패널은 버튼으로만 열고, 자료 화면 그림·공식 금액 기한·기획 도구 옮기기는 뒤로 미룬다. Codex T-052 14개와 Fable 15개 지적을 항목별로 반영 또는 보류 사유를 기록했다.
+- Evidence:
+  - docs/design/24-planning-guide.md 18절 검토 반영표, 16절 결정 D1~D6
+  - docs/review/2026-10-03-planning-guide-review-codex.md (T-052), docs/review/2026-10-03-planning-guide-review-fable.md
+  - docs/research/2026-10-novice-planner-sources.md: 공식 자료22·법령 체크포인트11. 시행령 제41조·재난안전법 시행령 제73조의9·지방자치법 제142조는 법제처 원문으로 재확인
+  - docs/assets/design-24/mockup-*-v2.jpg: 공개 화면 위 제안 시안. 회차 일평균은 공개 일별 표의 관측값, 2027년 3월 등록 행사·공휴일은 실제 조회 결과
+  - 검토받은 v1과 원문은 커밋 f5dd781에 보존
+- Changes:
+  - docs/design/24-planning-guide.md (v2), docs/research/2026-10-*.md, docs/assets/design-24/**
+  - docs/design/00_INDEX.md, tools/export-review.py, docs/ops/review-delivery.md
+  - D:\download\project\pickDday\2026-10-03-planning-guide 검토 사본(원본 커밋 9c7d085)
+- Validation:
+  - 설계 문서·조사·검토 문서의 상대 링크와 그림 경로 전부 존재 확인, 내부 주소·로컬 경로 없음
+  - 검토 사본 HTML49개 headless 1280px: 깨진 이미지0·없는 로컬 연결0·가로 넘침0·오류0, 설계24 페이지 1440/390px 그림15장
+  - 앱·배포 변경 없음. 화면 동작·접근성·성능은 구현 전이라 미평가
+  - T-051은 Codex 차례 중 사용자의 직접 작업 요청으로 수기 추가했다. 이번 턴은 Codex가 넘긴 차례에서 CLI로 기록한다
+- Questions:
+  - D1~D6을 제안대로 확정할까요? 특히 D3(자료 화면 그림을 작은 전용 세트 시안 뒤로 미룸)와 D5(공식 금액·기한을 갱신 담당이 정해질 때까지 미표시)는 처음 요청(그림 적극 추가·체크리스트)과 달라 확인이 필요합니다.
+  - 초기 사용자 의견의 '흔들림'은 끝(얻는 것)·순서·행정 절차 연결 중 어느 쪽이 강했나요?
+- Handoff: Human
