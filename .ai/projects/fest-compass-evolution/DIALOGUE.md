@@ -1188,3 +1188,40 @@ The state revision is the number of the last `T-NNN` entry below.
   - D1~D6을 제안대로 확정할까요? 특히 D3(자료 화면 그림을 작은 전용 세트 시안 뒤로 미룸)와 D5(공식 금액·기한을 갱신 담당이 정해질 때까지 미표시)는 처음 요청(그림 적극 추가·체크리스트)과 달라 확인이 필요합니다.
   - 초기 사용자 의견의 '흔들림'은 끝(얻는 것)·순서·행정 절차 연결 중 어느 쪽이 강했나요?
 - Handoff: Human
+
+## T-054 · Human · chair
+
+- Position: 설계24 개선안 전체와 D1~D6 제안을 승인하고 구현을 지시한다. 흔들림은 ①끝에 얻는 것과 ②볼 순서 모두다. ③행정 절차 연결은 확인해 줄 공무원이 없어 확인하지 못했다. 시·도 담당자는 없고 모두 개인 PC를 쓰며 인쇄본은 내부 보고에 쓴다. 내용 검수자는 없어 우리가 정한다. 방향 조정: 문장·설명을 줄이고 시각 도구·아이콘·이미지로 직관적으로 보이게 하며, 팝업·초점 상태의 디자인 시스템도 함께 정제한다.
+- Evidence:
+  - 2026-10-03 Claude Code 세션에서 사용자가 T-053 질문에 직접 답하고 구현을 요청했다. 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 결정 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-055 · Claude · implementer
+
+- Position: 설계24 묶음 1을 사용자 방향(문장 대신 아이콘·이미지·시각 도구)에 맞춰 구현·공개했다. 두 흐름의 할 일 탭(아이콘·번호 없음), 시작 화면 흐름 지도, 자료 화면 안내 띠(목표·알 수 없는 것·질문 2)와 이어서 줄, 회차 카드의 개최 전·개최기간·종료 후 일평균 막대, 입력 없는 모아 보기와 인쇄, 홈 얻는 것·전체 과정 띠, /guide 일곱 단계(숫자 기준 없음)를 더했다. 팝업은 공통 표면·머리글·둥근 닫기·휴대폰 아래 시트로, 초점은 2px 고리·입력칸 안쪽 빛·칩 전체 고리로 통일했다. 첫 반영 뒤 공개 측정에서 방문 화면 화면 밀림이 0.04→0.45로 커진 것을 찾아 고쳐 다시 반영했다.
+- Evidence:
+  - docs/validation/46-planning-guide.md (구현·검증·성능 비교·공개 배포)
+  - docs/sdlc/3-testing/scenarios/TS-FC-021.md (인수 기준 G1~G6·G8·G9·DS1·DS2)
+  - docs/design/24-planning-guide.md 19절 (결정·구현·계획과의 차이)
+  - 공개 검사 docs/validation/evidence/2026-10-03-planning-guide-public/report.json, 배포 전후 보존 docs/validation/evidence/2026-10-03-planning-guide-before.json·after.json
+  - 발행 작업 37131260380(ae7b945→ac9f196), 37133708269(1312880→4331467)
+- Changes:
+  - apps/web: lib/guide/*, components/guide/*, 두 여정 shell·모아 보기(summary) 경로·/guide, 회차 막대, 공통 대화상자·초점·메뉴 CSS, lucide-react 1.51.0
+  - apps/web/scripts: planning-guide-e2e·live 추가, 기존 시험의 탭 이름·이어서 줄·부제 변경 반영, 소개 영상 시험 초점 대기
+  - docs: 설계24 v3, design-system v8, functional-spec §15, screens·ia, TS-FC-021, 검수46
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정(2회)
+- Validation:
+  - npm test 414 통과(42+342+30, 새 길잡이 단위 시험 8), typecheck·next build 통과, 운영 의존성 감사 0건
+  - 전체 headless 묶음(편집/공개, 시험 실행 29회) 최종 코드에서 통과, 새 시험 15항목, 소개 영상 시험 6회 연속 통과
+  - 같은 컴퓨터 반영 전/후 5회 중앙값: 화면 밀림은 모든 화면에서 같거나 감소(방문 0.24→0.001, 시기 0.45→0.001), 전송량 화면당 약 10~30KB 증가, 시작 화면 LCP 소폭 증가
+  - 공개: 4331467 Synced·Healthy, livez·readyz200, Deployment·PVC 동일·업무 9테이블20행 해시 일치, 공개 화면 검사 5항목·브라우저 오류0, 방문 화면 CLS 0.042→0.001
+  - 미평가: 화면 낭독기 실제 사용, 실제 초기 사용자 재확인
+- Questions:
+  - No open question
+- Handoff: Human
