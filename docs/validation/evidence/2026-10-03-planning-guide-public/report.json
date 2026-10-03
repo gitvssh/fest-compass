@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-03T15:03:15.383Z",
+  "base": "https://pickday.damecasol.com",
+  "headless": true,
+  "interceptedResponses": 0,
+  "checks": [
+    {
+      "name": "home outcome lines and the seven-phase process page"
+    },
+    {
+      "name": "task tabs and real before/during/after means on the public archive",
+      "tabs": [
+        "방문 흐름 돌아보기 · 과거 방문 흐름",
+        "연계 관광 찾기 · 주변 관광자원",
+        "개최 시기 검토하기 · 개최 시기",
+        "모아 보기 · 한 장 요약"
+      ]
+    },
+    {
+      "name": "summary gathers the compared editions with their basis and source"
+    },
+    {
+      "name": "no sideways scroll at 390px and a bottom-sheet dialog"
+    },
+    {
+      "name": "no browser errors"
+    }
+  ],
+  "browserErrors": []
+}

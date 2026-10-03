@@ -50,7 +50,7 @@ export function TaskGuide({ journey, view, note }: { journey: JourneyId; view: T
   const task = guideTask(journey, view);
   return <section aria-label={`${task.title} 안내`} className="no-print rounded-2xl border border-ink/10 bg-white px-4 py-3 sm:px-5 sm:py-4">
     <div className={`grid gap-x-6 gap-y-3 ${task.questions.length ? "lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.8fr)_minmax(0,1.3fr)]" : ""}`}>
-      <GuideItem icon={Target} tone="blue" label="목표"><p className="font-bold">{task.goal}</p></GuideItem>
+      <GuideItem icon={Target} tone="blue" label="목표"><p className="text-base font-bold leading-6">{task.goal}</p></GuideItem>
       {task.unknown.length > 0 && <GuideItem icon={EyeOff} tone="amber" label="이 자료로 알 수 없어요"><p>{task.unknown.join(" · ")}</p></GuideItem>}
       {task.questions.length > 0 && <GuideItem icon={MessageCircleQuestion} tone="teal" label="살펴볼 질문">
         <ul className="space-y-0.5">{task.questions.map(q => <li key={q}>{q}</li>)}</ul>

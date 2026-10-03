@@ -88,6 +88,8 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
       <header className="space-y-1">
         <Link href={searchHref} className="no-print inline-flex text-sm font-bold text-blue underline underline-offset-4">← 다른 축제 찾기</Link>
         <h1 ref={title} tabIndex={-1} className="text-2xl font-extrabold leading-tight sm:text-3xl">{name ?? (confirmedAbsent ? "선택한 축제를 찾지 못했어요" : "축제 정보")}</h1>
+        {/* Holds the place of the region line while the record loads (with its own status), so the tabs below do not jump. */}
+        {!own && !confirmedAbsent && !lookup.failure && !unavailable && <p role="status" className="h-8 text-sm leading-8 text-muted">{lookup.loading ? "축제 정보를 불러오고 있어요…" : ""}</p>}
         {parsed.source === "archive" && archive && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
           <p className="min-w-0 break-words">{archive.region.name} · {pastYears(archive)}</p>
           {related}
@@ -102,7 +104,7 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
           </InfoDialog>
           {related}
         </div>}
-        <LoadState loading={lookup.loading} failure={lookup.failure} hasData={!!own} retrievedAt={lookup.data?.retrievedAt} subject="축제 정보를" onRetry={lookup.retry} />
+        <LoadState loading={lookup.loading && !!own} failure={lookup.failure} hasData={!!own} retrievedAt={lookup.data?.retrievedAt} subject="축제 정보를" onRetry={lookup.retry} />
         {unavailable && !lookup.failure && <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-coral-soft p-3 text-sm">
           축제 등록 정보를 불러오지 못했어요.
           <button type="button" className="region-button" onClick={lookup.retry}>다시 불러오기</button>
@@ -118,7 +120,8 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
       </section> : <>
         <TaskTabs label="축제 탐색 메뉴" journey="existing" current={view} hrefs={hrefs} onSelect={select} />
         {view && view !== "summary" && <TaskGuide key={view} journey="existing" view={view} note={scopeNote} />}
-        {children}
+        {/* Keeps the continue row below the first screen while a view loads, so arriving data never pushes it. */}
+        <div className="min-h-[70vh] print:min-h-0">{children}</div>
         {view && <NextRow journey="existing" view={view} hrefs={hrefs} onSelect={select} />}
       </>}
     </div>

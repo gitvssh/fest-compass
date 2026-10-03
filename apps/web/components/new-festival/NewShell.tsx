@@ -78,7 +78,8 @@ export function NewShell({ region, children }: { region: RegionRef; children: Re
       </header>
       <TaskTabs label="새 축제 탐색 메뉴" journey="new" current={view} hrefs={hrefs} onSelect={select} />
       {view && view !== "summary" && <TaskGuide key={view} journey="new" view={view} />}
-      {children}
+      {/* Keeps the continue row below the first screen while a view loads, so arriving data never pushes it. */}
+      <div className="min-h-[70vh] print:min-h-0">{children}</div>
       {view && <NextRow journey="new" view={view} hrefs={hrefs} onSelect={select} />}
     </div>
   </NewRegionContext.Provider>;

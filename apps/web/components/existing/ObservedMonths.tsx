@@ -39,6 +39,12 @@ export function ObservedMonths({ region, result, year, onYear, selectedMonth, on
       <button type="submit" className="region-button" disabled={draftYear === String(shownYear ?? "")}>연도 보기</button>
     </form>}
     <LoadState loading={result.loading} failure={result.failure} hasData={!!data} retrievedAt={data?.retrievedAt} subject="월별 방문 자료를" onRetry={result.retry} />
+    {/* Holds the chart's place while the first answer loads, so the calendar below does not jump when it arrives. */}
+    {!data && result.loading && !result.failure && <div aria-hidden="true" className="space-y-3">
+      <div className="h-[62px] max-w-xs rounded-lg bg-paper" />
+      <div className="aspect-[360/200] w-full min-w-[300px] max-w-4xl rounded-lg bg-paper" />
+      <div className="h-10 max-w-xl rounded-lg bg-paper" />
+    </div>}
     {data && (data.status === "not-selected" ? <p className="text-sm">모든 날짜의 값이 있는 연도가 없어요. 볼 관측연도를 골라 주세요.</p>
       : data.status === "empty" || !months.length ? <p className="text-sm">이 기간의 방문 자료가 없어요.{data.years.length ? " 다른 관측연도를 골라 보세요." : ""}</p> : <>
       <MonthChart months={months} selected={selectedMonth} onSelect={m => onSelectMonth(m)} />

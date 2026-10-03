@@ -43,9 +43,16 @@ export function SummaryPanel() {
   const distance = place?.point && anchor && validPoint(anchor.point) && validPoint(place.point) ? distanceKm(anchor.point, place.point) : null;
   const candidates = memory.timing.candidates;
   const region = festival.region;
+  // The sheet appears in one piece once its main numbers settle (an answer, a failure or nothing to wait for), so a late
+  // answer never pushes the parts below it. Once shown it stays, also while a retry runs.
+  const lookupEnded = !!festival.lookup.failure || festival.lookup.unavailable;
+  const settled = noRecord || !!data || !!history.failure || (hasRecord && !key) || (!hasRecord && lookupEnded);
+  const shown = useRef(false);
+  if (settled) shown.current = true;
 
   return <section aria-labelledby="summary-heading" className="summary-sheet space-y-4">
     <SheetHeader heading={heading} title="모아 보기" subject={festival.name} />
+    {!shown.current ? <p role="status" className="text-sm text-muted">모아 보기를 준비하고 있어요…</p> : <>
     <div className="grid items-start gap-4 lg:grid-cols-2">
       <SheetSection icon={ChartLine} title="방문 흐름">
         {noRecord ? <SheetEmpty text="지난 개최 기록이 연결되지 않은 축제예요." href={viewHref(festival.id, "visits")} label="방문 흐름 돌아보기" icon={ChartLine} />
@@ -82,5 +89,6 @@ export function SummaryPanel() {
         <CheckList checks={EXISTING_GUIDE.checks} />
       </SheetSection>
     </div>
+    </>}
   </section>;
 }

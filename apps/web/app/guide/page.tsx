@@ -25,7 +25,7 @@ export default function GuidePage() {
           <li className="inline-flex items-center gap-1.5 rounded-full bg-blue-soft px-3 py-1.5 text-[#164ea1]">pickDday로 살펴볼 수 있는 단계</li>
         </ul>
       </div>
-      <Image src="/images/guide/process.png" alt="" width={1536} height={1024} priority quality={75}
+      <Image src="/images/guide/process.png" alt="" width={1536} height={1024} preload quality={75}
         sizes="(min-width: 1024px) 480px, calc(100vw - 40px)" className="h-auto w-full mix-blend-multiply" />
     </header>
     <PhaseRail />

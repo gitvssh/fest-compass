@@ -194,7 +194,8 @@ export function ResourcesPanel() {
           : allDone || items.length > 0 ? <AreaNote muted>지도에 표시할 위치가 있는 자원이 없어요. 목록에서 확인해 주세요.</AreaNote> : null}
         detail={selected && <ResourceDetail region={region} item={selected} heading={detailHeading} distance={selectedDistance} anchored={!!anchor}
           hidden={hiddenByFilter} isAnchor={anchor?.resourceId === selected.id} onAnchor={() => setAnchorFrom(selected)} onClose={closeDetail} />} />}
-    {region && states.length > 0 && <>
+    {/* The source row follows the settled lists, so arriving rows never push it while it is on screen. */}
+    {region && states.length > 0 && states.every(s => s.block || s.request.failure) && <>
       <div className="flex flex-wrap items-center gap-2">
         <InfoDialog label="출처 보기" title="관광자원 출처" buttonClassName="region-button min-h-11">
           <p>한국관광공사 국문 관광정보 서비스의 지역 기반 목록(관광지·문화시설·음식점·숙박)이에요. 현재 등록 정보이며 운영 여부나 이용 조건은 각 시설에 확인해 주세요.</p>

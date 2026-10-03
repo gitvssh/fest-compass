@@ -28,9 +28,13 @@ export function SummaryView() {
   const visits = useKeyedRequest<NewVisitsResponse>(key ? `/api/new/visits?${params}` : null, undefined, key), data = visits.data;
   const months = data && (data.status === "complete" || data.status === "partial") ? data.months : [];
   const compared = memory.resources.compared, candidates = tab.candidates;
+  // The sheet appears in one piece once the visits answer settles, so it never pushes the parts below it; once shown it stays.
+  const shown = useRef(false);
+  if (data || visits.failure || !key) shown.current = true;
 
   return <section aria-labelledby="summary-heading" className="summary-sheet space-y-4">
     <SheetHeader heading={heading} title="모아 보기" subject={`${region.name} 새 축제`} />
+    {!shown.current ? <p role="status" className="text-sm text-muted">모아 보기를 준비하고 있어요…</p> : <>
     <div className="grid items-start gap-4 lg:grid-cols-2">
       <SheetSection icon={ChartLine} title="방문 흐름">
         <LoadState loading={visits.loading} failure={visits.failure} hasData={!!data} retrievedAt={data?.retrievedAt} subject="방문 자료를" onRetry={visits.retry} />
@@ -61,6 +65,7 @@ export function SummaryView() {
         <CheckList checks={NEW_GUIDE.checks} />
       </SheetSection>
     </div>
+    </>}
   </section>;
 }
 

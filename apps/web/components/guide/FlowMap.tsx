@@ -15,7 +15,7 @@ export function FlowMap({ journey }: { journey: JourneyId }) {
   return <section aria-labelledby={`${journey}-flow-heading`} className="region-card overflow-hidden p-0 sm:p-0">
     <div className="grid lg:grid-cols-[220px_minmax(0,1fr)]">
       <div aria-hidden="true" className="hidden items-center justify-center bg-[#f4f3ee] px-3 lg:flex">
-        <Image src={IMAGES[journey]} alt="" width={1536} height={1024} sizes="200px" className="h-auto w-full mix-blend-multiply" />
+        <Image src={IMAGES[journey]} alt="" width={1536} height={1024} sizes="200px" loading="eager" fetchPriority="high" className="h-auto w-full mix-blend-multiply" />
       </div>
       <div className="min-w-0 space-y-4 p-4 sm:p-5">
         <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">

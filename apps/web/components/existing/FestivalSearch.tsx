@@ -142,7 +142,8 @@ export function FestivalSearch() {
     </form>
     <FlowMap journey="existing" />
 
-    <section aria-labelledby={`${ids}-results`} className="space-y-4">
+    {/* Reserves room for the list so the footer stays below the first screen until the results arrive. */}
+    <section aria-labelledby={`${ids}-results`} className="min-h-[50vh] space-y-4">
       <h2 id={`${ids}-results`} ref={resultsHeading} tabIndex={-1} className="text-xl font-extrabold">
         {query ? <>{applied.q ? `‘${applied.q}’` : ""}{applied.q && regionName ? " · " : ""}{regionName ? `${regionName.provinceName} ${regionName.districtName}` : ""} 검색 결과</> : "바로 살펴볼 수 있는 축제"}
       </h2>
