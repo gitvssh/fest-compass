@@ -1281,3 +1281,34 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - 3단계 데이터랩 수동 보강을 언제, 어떤 축제부터 할지 정해 주세요.
 - Handoff: Human
+
+## T-059 · Human · chair
+
+- Position: 2026-10-04 결정: 지난 이미지 2개(ed3585c·d3def74) 정리를 승인하고, 공개 검사에서 찾은 문제(휴대폰 바닥글 가림·첫 방문 기본 창 깜박임)를 고치도록 요청했다. 데이터랩 축제별 연도 방문 추이 파일 내려받기의 자동화 가능 여부를 확인하도록 요청했다.
+- Evidence:
+  - 2026-10-04 Claude Code 세션에서 사용자가 직접 승인·요청했다. 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 결정 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-060 · Claude · implementer
+
+- Position: 승인대로 지난 이미지 2개를 정리하고, 동의 배너 공개 검사에서 찾은 두 문제를 고쳐 공개했다: 화면 아래 고정 카드(동의 배너·소개 영상 안내)가 떠 있는 동안 바닥글 아래 자리를 더해 휴대폰에서도 `분석 동의 다시 보기`를 누를 수 있고, 페이지가 기본 창 숨김 표시를 단 채 와서 첫 방문에 Cloudflare 창이 깜박이지 않는다(로더 없으면 즉시 해제, 지켜보기는 간격 횟수로). 데이터랩 내려받기 자동화는 권하지 않음 — 공지·로그인·약관상 회색지대이고 같은 자료의 공식 API가 없으며, 더 큰 쟁점은 공공누리 없는 자료의 공개 재이용 허락이다.
+- Evidence:
+  - docs/validation/48-consent-banner.md v2 공개 배포(실행 6054, 발행 37196367559 → sha256:f3650a9e…, 배포 선언 a369dc1, 공개 검사 두 번 모두 통과)
+  - docs/research/2026-10-datalab-download-automation.md(공지·저작권 정책 원문 인용, 대안 자료, 신청 경로)
+- Changes:
+  - apps/web: components/useBottomDock.ts·AppShell·ConsentBanner·intro/IntroVideo, lib/analytics/consent.ts, app/layout.tsx(첫 화면 숨김 표시), scripts/consent-banner-e2e.mjs(바닥글·첫 화면 시험)
+  - docs: 설계26, 검수48 v2, design-system, 검수47 메모, 연구 메모 2026-10 데이터랩 자동화, 자료 목록
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 446 통과, 전체 headless 묶음 31회 통과, 새 첫 화면 시험은 고치기 전 빌드에서 실패(표본12)·고친 뒤 0
+  - 공개: Synced·Healthy, livez·readyz 200, Deployment·PVC 동일·업무 9테이블 20행 해시 일치, 동의 공개 검사 2회×2폭 통과, 축제 찾기 공개 검사 통과
+  - 미평가: 데이터랩 재이용 범위(공사 회신 필요)
+- Questions:
+  - 데이터랩 자료의 공개 재이용 허락·일괄 제공을 한국관광공사에 문의할까요? 문의 글 초안은 제가 준비할 수 있고 보내는 것은 사용자 몫입니다.
+- Handoff: Human
