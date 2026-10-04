@@ -382,7 +382,12 @@ test("host-area visit mix: selected verified editions only, independent of chart
   const noDaily = await service({ hostVisits: defaultHostVisits, archive: arch(archive.filter(d => d.region.code !== "52750")) }).loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
   assert.notEqual(noDaily.editions[0].state, "available");
   assert.deepEqual(noDaily.hostVisits?.editions.map(e => e.editionId), ["imsil-cheese-2025"], "missing district daily data keeps the verified festival-period block");
-  assert.equal((await svc.loadHistory(parseHistory(req("festival=nonsan-strawberry")))).hostVisits, null);
+  // 논산딸기축제 is reviewed for 2024 and 2025 only (owner's DataLab download); its 2023 edition has no DataLab year.
+  const nonsan = await svc.loadHistory(parseHistory(req("festival=nonsan-strawberry")));
+  assert.deepEqual(nonsan.hostVisits?.editions.map(e => e.editionId), nonsan.editions.map(e => e.editionId).filter(id => id !== "nonsan-strawberry-2023"));
+  assert.ok(nonsan.hostVisits!.editions.length > 0);
+  assert.equal((await svc.loadHistory(parseHistory(req("festival=nonsan-strawberry&editions=nonsan-strawberry-2023")))).hostVisits, null);
+  assert.equal((await svc.loadHistory(parseHistory(req("festival=baekje-gongju")))).hostVisits, null, "no reviewed link");
   assert.equal((await service().loadHistory(parseHistory(req("festival=imsil-cheese")))).hostVisits, null, "no resolver injected -> null");
   const text = JSON.stringify(two);
   for (const leak of ["sha256", "docs/research", "commit", "\"raw\"", "evidence", "github.com"]) assert.ok(!text.includes(leak), `${leak} leaked`);
