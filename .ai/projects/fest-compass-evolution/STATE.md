@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 67
-status: waiting-human
-next_actor: human
+revision: 69
+status: waiting-claude
+next_actor: claude
 last_actor: claude
-current_question: "TourAPI 응답의 서버 보관 허용 여부를 운영사무국에서 회신받으면 알려 주세요(보관 방식 결정에 씁니다)."
-updated_at: "2026-10-04T14:10:55.758Z"
+current_question: "No open question"
+updated_at: "2026-10-04T15:45:45.551Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(축제별 방문 자료 — 개최연도별 방문·축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위·개최지 관광 소비와 외지인 방문객, 새 축제 방문 흐름의 지역 연간 합계 24곳·지역 카드 26곳, 개최지 방문 구성·임실 방문자 특성)을 공개 중이다(이미지 3194d2c0). 받아 둔 데이터랩 CSV 304개를 모두 쓴다. 모든 화면 하단에 ⓒ한국관광공사 출처를 표기한다.
+기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(축제별 방문 자료 — 개최연도별 방문·축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위·개최지 관광 소비와 외지인 방문객, 새 축제 방문 흐름의 지역 연간 합계 24곳·지역 카드 26곳, 개최지 방문 구성·임실 방문자 특성)을 공개 중이다(이미지 f9cbcb7c). 받아 둔 데이터랩 CSV 304개를 모두 쓴다. 모든 화면 하단에 ⓒ한국관광공사 출처를 표기한다. 관광자원 화면에 공사 OpenAPI 두 종(앞으로 30일 관광지 붐빔 예측·함께 찾는 곳)을 연결했다. 사용자가 받은 문화관광축제 92곳 자료는 검사를 마쳤고 연결을 이어서 한다.
 
 ## Accepted decisions
 
@@ -84,6 +84,7 @@ updated_at: "2026-10-04T14:10:55.758Z"
 - 2026-10-04 사용자 승인: 이미지 저장소의 지난 이미지 ed3585c·d3def74 정리(실행 6054). 같은 날 공개 검사에서 찾은 동의 배너 문제를 고치도록 요청(docs/validation/48-consent-banner.md).
 - 2026-10-04 사용자 결정: 한국관광공사 공모전 목적에 맞춰 데이터랩 자료 화면을 유지한다(ADR-0004가 ADR-0003 대체, docs/decisions/0004-use-kto-datalab-data.md). 자동 내려받기는 하지 않는다.
 - 2026-10-04 사용자 결정: 데이터랩 자료를 적극 쓰고 이미 받아 둔 표를 화면에 잇는다(1차 축제 표와 모든 화면 하단 ⓒ한국관광공사 출처 표기, 2차 개최지·지역 표). TourAPI 응답의 서버 보관 허용 여부는 사용자가 공모전 운영사무국에 문의한다(docs/design/27-datalab-festival-profile.md).
+- 2026-10-05 사용자 결정: 데이터랩 파일은 사용자가 공식 단추로 직접 받고(문화관광축제 92곳 받음), 공사 OpenAPI 두 종(관광지 집중률 방문자 추이 예측·관광지별 연관 관광지)을 연결한다(docs/design/28-kto-spot-signals.md).
 
 ## Open questions
 
@@ -232,3 +233,8 @@ updated_at: "2026-10-04T14:10:55.758Z"
 - apps/web/scripts/build-datalab-region-profiles.mjs
 - apps/web/data/datalab-region-ids.json
 - docs/validation/evidence/2026-10-04-region-profiles-after.json
+- docs/design/28-kto-spot-signals.md
+- docs/validation/50-kto-spot-signals.md
+- docs/sdlc/3-testing/scenarios/TS-FC-025.md
+- apps/web/lib/kto-signals/server.ts
+- docs/validation/evidence/2026-10-05-kto-signals-after.json

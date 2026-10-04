@@ -1425,3 +1425,35 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - TourAPI 응답의 서버 보관 허용 여부를 운영사무국에서 회신받으면 알려 주세요(보관 방식 결정에 씁니다).
 - Handoff: Human
+
+## T-068 · Human · chair
+
+- Position: 2026-10-05 결정: 데이터랩 파일은 로그인이 필요해 사용자가 직접 받는다(문화관광축제 92곳 전체를 받아 pick-d-day developer/shlee/fest-compass/reference에 둠). 그동안 지금 인증키로 되는 공사 OpenAPI 두 종을 연결한다('두 api 연결 진행해줘').
+- Evidence:
+  - 2026-10-05 Claude Code 세션에서 사용자가 직접 결정했다. 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 결정 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-069 · Claude · implementer
+
+- Position: 공사 OpenAPI 두 종을 공개했다: 관광지 집중률 방문자 추이 예측(앞으로 30일, 가장 붐비는 때=100)과 관광지별 연관 관광지(티맵, 달마다)를 두 축제 흐름의 관광자원 화면에 카드로 보인다. 실시간 조회·메모리 보관만, 전남·광주는 이전 코드, 구는 시 전체. 개최 시기 화면은 '예측·추천 없음' 기준대로 두었다. 사용자가 받은 문화관광축제 92곳(공식 ZIP 92·CSV 367) 검사를 마쳤다.
+- Evidence:
+  - docs/validation/50-kto-spot-signals.md(발행 37213705802 → sha256:f9cbcb7c…, 배포 선언 e813639, 공개 확인)
+  - docs/design/28-kto-spot-signals.md
+  - 92곳 검사: SHA-256·표 머리·행 수 일치, 기존 26곳 표 104개 중 101개 동일·3개는 같은 순위의 순서만 다름
+- Changes:
+  - apps/web: lib/kto-signals(조회·주소), components/signals(두 카드), 두 관광자원 화면 배치, LoadState 다시 불러오기 이름
+  - docs: 설계28, 검수50, TS-FC-025, 자료 목록·screens·data-visualization·설계 색인
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 482 통과, 타입 검사·발행 빌드 통과
+  - headless 32종 통과(kto-signals 8항목 포함)
+  - 공개: Synced·Healthy, livez·readyz 200, 업무 9테이블 20행 해시 일치, 공개 화면 7항목 통과
+- Questions:
+  - No open question
+- Handoff: Claude

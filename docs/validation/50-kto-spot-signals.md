@@ -8,7 +8,7 @@ summary: "한국관광공사 OpenAPI 두 종(관광지 집중률 방문자 추�
 
 # 관광지 붐빔 예측과 함께 찾는 곳
 
-상태: **로컬 검증 완료, 공개 반영 전.** [설계28](../design/28-kto-spot-signals.md)과 [인수 기준 TS-FC-025](../sdlc/3-testing/scenarios/TS-FC-025.md)에 따른 변경이다.
+상태: **사용 가능 — 공개 반영·공개 화면 검증 완료(아래 '공개 배포').** [설계28](../design/28-kto-spot-signals.md)과 [인수 기준 TS-FC-025](../sdlc/3-testing/scenarios/TS-FC-025.md)에 따른 변경이다.
 
 ## 사용자에게 달라지는 점
 
@@ -50,6 +50,15 @@ summary: "한국관광공사 OpenAPI 두 종(관광지 집중률 방문자 추�
   빈 지역 안내, 함께 찾는 곳의 달·중심·유형·모두 보기·기준, 390px). 쓰기 요청·브라우저 오류 0.
 - 전체 headless 32종 통과(같은 빌드: 편집 서버 2종·공개 서버 30종, 길잡이 그림은 미리 변환). 처음 묶음에서 `visitor-profile-e2e`가 같은 이름의
   `다시 불러오기` 단추가 여럿이라 멈춰 위의 단추 이름 구분으로 고쳤다. 마지막에 바꾼 날짜 눈금 표시는 다시 빌드해 `kto-signals-e2e`와 단위 시험을 다시 통과했다.
+
+## 공개 배포
+
+- 발행: `release.yml` 실행 37213705802(내부 실행기, 커밋 `476e493`) → `sha256:f9cbcb7c3c0463701b5dc23c645ffe3b6e36cc6c3bcac22fae7b5c83d5d20a92`.
+- 배포 선언 `e813639`(운영 overlay 두 곳, 등록 검사 17개 자원·인프라 시험 41건 통과) → Synced·Healthy·Succeeded, 세대 49.
+- 보존: 배포 전후 Deployment·PVC 식별자와 업무 9테이블 20행 해시가 같다([전](evidence/2026-10-05-kto-signals-before.json)·[후](evidence/2026-10-05-kto-signals-after.json)).
+  `/health/livez`·`/health/readyz` 200. 공개 서버의 두 주소: 논산 붐빔 예측 49곳·30일, 장흥 함께 찾는 곳 2026-08 중심 17곳(이전 코드).
+- 공개 화면 headless 7항목 통과, 브라우저 오류 0([기록](evidence/2026-10-05-kto-signals-live.json)): 논산 두 카드, 장흥 붐빔 없음 안내·함께 찾는 곳,
+  기존 축제 관광자원의 붐빔 카드, 개최 시기 화면에 예측 없음, 390px 넘침 없음.
 
 ## 화면 검수
 
