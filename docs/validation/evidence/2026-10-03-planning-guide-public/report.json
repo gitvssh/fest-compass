@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-04T00:34:49.563Z",
+  "checkedAt": "2026-10-04T01:20:56.689Z",
   "base": "https://pickday.damecasol.com",
   "headless": true,
   "interceptedResponses": 0,
@@ -19,6 +19,12 @@
     },
     {
       "name": "visits overlay chart by default, line toggle and separate charts on request"
+    },
+    {
+      "name": "overlay tooltip beside the pointer with both editions' values"
+    },
+    {
+      "name": "festival site marked from the reviewed registration and used as the anchor on request"
     },
     {
       "name": "summary gathers the compared editions with their basis and source"

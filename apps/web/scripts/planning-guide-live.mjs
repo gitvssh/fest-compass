@@ -34,6 +34,7 @@ try {
   assert.match(await text(page.locator("main")), /얻는 것 · 방문 흐름·연계 후보·후보 기간을 한 장으로/);
   await page.getByRole("link", { name: /축제 준비 전체 과정 보기/ }).click();
   await page.waitForURL(u => u.pathname === "/guide");
+  await page.waitForLoadState("networkidle"); // measure the laid-out page, not one still loading its styles
   assert.equal(await page.locator("main li[id^=phase-]").count(), 7);
   // Every card starts each part at the same height: the question boxes line up across all seven cards.
   const parts = await page.locator("main li[id^=phase-]").evaluateAll(cards => cards.map(c => [...c.children].slice(0, 5).map(k => Math.round(k.getBoundingClientRect().top - c.getBoundingClientRect().top)).join(",")));
