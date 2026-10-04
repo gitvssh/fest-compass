@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  // Pages built from DataLab website downloads were withdrawn (ADR-0003); old links land on festival comparison.
+  async redirects() {
+    return ["/compare/annual", "/compare/scale"].map(source => ({ source, destination: "/compare", permanent: true }));
+  },
 };
 
 export default nextConfig;

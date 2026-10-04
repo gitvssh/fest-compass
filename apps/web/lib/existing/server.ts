@@ -4,8 +4,6 @@ import editionsData from "../../data/festival-editions.json";
 import bundled from "../../data/region-history.json";
 import expanded from "../../data/regional-history-expanded.json";
 import calendarData from "../../data/nonsan-calendar.json";
-import { defaultHostVisits, type HostVisitsResolver } from "../datalab/host-visits";
-import { defaultVisitorProfile, type VisitorProfileResolver } from "../datalab/visitor-profile";
 import { loadRuntimeSummary } from "../forecast/runtime";
 import { loadSnapshots } from "../forecast/store";
 import { readIntroStore, readNationalDatasets, readRegistrationPeriods } from "../festival-sources";
@@ -22,8 +20,8 @@ import { holidaySources, scheduleDays, scheduleEvents, summarizeSchedule, type H
 import { festivalMarks, type FestivalMarks } from "./festival-marks";
 import type { FestivalTypeFilter } from "./festival-types";
 import { collectRegionEvents, collectTypeEvents, createTourCall, lookupCurrent, searchKeywordPage, TourChanged, type RegionEvents, type TourCall } from "./tour";
-import type { ArchiveFestival, CurrentBlock, CurrentFestival, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, HostAreaVisits, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
-  ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef, VisitorProfileSelection } from "./types";
+import type { ArchiveFestival, CurrentBlock, CurrentFestival, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse,  MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
+  ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef } from "./types";
 
 export class NotFound extends Error { constructor(readonly field: string) { super(`not-found:${field}`); } }
 const VISITS_SOURCE: SourceRef = { title: "한국관광공사 지역별 방문자", url: HISTORY_SOURCE, checkedAt: null, publishedAt: null };
@@ -38,10 +36,6 @@ export type ExistingDeps = {
   /** Read-only TourAPI adapter: keyword search, identity lookup and the verified regional event collector. */
   tour: TourCall;
   editions?: Edition[];
-  /** Reviewed DataLab host-area visit mix per selected edition; absent -> hostVisits is null. Production injects the verified default. */
-  hostVisits?: HostVisitsResolver;
-  /** Reviewed DataLab visitor profiles of the exact selected editions; absent -> visitorProfile is null. Production injects the verified default. */
-  visitorProfile?: VisitorProfileResolver;
   registrationPeriods?: (contentId: string, regionCode: string) => Promise<{ id: string; start: string; end: string; collectedAt: string; name?: string }[]>;
   /** Marks from registration introductions the source worker has read, by `regionCode:contentId`; null when none are stored. */
   intros?: () => Promise<ReadonlyMap<string, FestivalMarks> | null>;
@@ -98,15 +92,6 @@ export function createExistingService(deps: ExistingDeps) {
   async function list(q: Query): Promise<ResourceResult | null> { try { return await deps.regionList(q); } catch { return null; } }
   async function events(region: RegionRef, range: Range, type: FestivalTypeFilter | null = null): Promise<RegionEvents | null> { try { return await collectRegionEvents(deps.tour, region, range, type); } catch { return null; } }
   const block = (r: ResourceResult | null): SourceBlock => !r || r.status === "unavailable" ? unavailable : { status: r.status, error: null, collectedAt: r.collectedAt };
-  // Optional block: a resolver failure omits only hostVisits and logs a fixed category.
-  function hostVisits(festival: ArchiveFestival, editionIds: string[]): HostAreaVisits | null {
-    if (!deps.hostVisits) return null;
-    try { return deps.hostVisits(festival, editionIds); } catch { console.error("datalab-host-visits: resolver-failed"); return null; }
-  }
-  function visitorProfile(festival: ArchiveFestival, editionIds: string[]): VisitorProfileSelection | null {
-    if (!deps.visitorProfile) return null;
-    try { return deps.visitorProfile(festival, editionIds); } catch { console.error("datalab-visitor-profile: resolver-failed"); return null; }
-  }
 
   // Optional marks: a store read failure leaves every festival unmarked ("not read yet") and logs a fixed category.
   async function withMarks(items: CurrentFestival[]): Promise<CurrentFestival[]> {
@@ -202,8 +187,7 @@ export function createExistingService(deps: ExistingDeps) {
       return editionHistory(input, [...new Map(obs.map(o => [o.date, o])).values()], { before: req.before, after: req.after, window: custom, visits: VISITS_SOURCE });
     });
     return { key: historyKey(req), request: req, retrievedAt: now(), festival, metric: { name: VISIT_DEFINITION.metric, unit: "명/일", regionCode: code, estimate: true },
-      sharedYMax: sharedYMax(histories), maxWindowDays: Math.max(0, ...histories.map(e => e.points.length)), editions: histories, freshness: scopedFreshness(state, [code], used),
-      hostVisits: hostVisits(festival, histories.map(h => h.editionId)), visitorProfile: visitorProfile(festival, histories.map(h => h.editionId)) };
+      sharedYMax: sharedYMax(histories), maxWindowDays: Math.max(0, ...histories.map(e => e.points.length)), editions: histories, freshness: scopedFreshness(state, [code], used) };
   }
 
   async function loadMonthly(req: MonthlyRequest): Promise<MonthlyResponse> {
@@ -251,6 +235,6 @@ function cachedMarks() {
   if (!marksCache || Date.now() - marksCache.at > 300_000) marksCache = { at: Date.now(), value: readMarks().catch(() => { marksCache = null; throw new Error("intro-read-failed"); }) };
   return marksCache.value;
 }
-const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(), hostVisits: defaultHostVisits, visitorProfile: defaultVisitorProfile,
+const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(),
   registrationPeriods: async (contentId, code) => { const dir = festivalSourceDir(); return dir ? readRegistrationPeriods(dir, contentId, code) : []; }, intros: cachedMarks });
 export const { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule } = service;

@@ -11,14 +11,12 @@ import { EditionChart, niceMax } from "./EditionChart";
 import { CurrentVisits } from "./CurrentVisits";
 import { useFestival, useViewHeadingFocus } from "./ExistingShell";
 import { dateOnly, dayWithWeekday, editionLabel, fullDate, number, rawNumber, timeLabel, WEEKDAY_SHORT } from "./format";
-import { HostAreaVisits } from "./HostAreaVisits";
 import { EDITION_LOOKS, LookSwatch, OverlayChart, OverlayLegend, type OverlaySeries } from "./OverlayChart";
 import { historyRequest, readVisitsApplied, visitsAddress, type VisitsApplied } from "./visits-address";
 import { PeriodBars } from "./PeriodBars";
 import { festivalMemory } from "./memory";
 import { Disclosure, FreshnessNote, InfoDialog, LoadState, TableScroll } from "./ui";
 import { useKeyedRequest } from "./useKeyedRequest";
-import { VisitorProfile } from "./VisitorProfile";
 
 type Applied = VisitsApplied;
 
@@ -123,10 +121,6 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
         </InfoDialog>
       </div>
       <FreshnessNote freshness={data.freshness} retrievedAt={data.retrievedAt} onRetry={result.retry} />
-      {data.hostVisits && data.hostVisits.editions.length > 0 && <HostAreaVisits festivalId={festival.id} data={data.hostVisits} />}
-      {/* Tied to this answer's applied editions only; a profile for an edition not in the answer is never shown. */}
-      {data.visitorProfile && data.visitorProfile.editions.length > 0 && data.visitorProfile.editions.every(p => data.editions.some(e => e.editionId === p.editionId)) &&
-        <VisitorProfile key={data.visitorProfile.editions.map(p => p.editionId).join(",")} festivalId={festival.id} festivalName={data.festival.name} data={data.visitorProfile} recentPair={data.editions.length > 2} />}
     </>}
   </>;
 }

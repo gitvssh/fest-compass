@@ -110,7 +110,6 @@ try {
   assert.equal(await page.getByText(/논산시 행사 달력/).count(), 0); delay = 0;
   passed.push("late-response-rejected");
   await page.goto(`${base}/compare`);
-  assert.equal(await page.getByRole("link", { name: "연도별 방문 보기", exact: true }).getAttribute("href"), "/compare/annual");
   delay = 700; await page.getByRole("button", { name: "논산·공주·부여 등록 행사 조회", exact: true }).click();
   const compareCsvButton = page.getByRole("button", { name: "목록의 행사 내려받기 (CSV)", exact: true });
   assert.equal(await compareCsvButton.isDisabled(), true); await visible(page.getByText("모든 지역을 불러온 뒤 내려받을 수 있어요", { exact: true }));

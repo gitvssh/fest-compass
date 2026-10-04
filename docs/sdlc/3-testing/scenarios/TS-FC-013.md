@@ -4,7 +4,7 @@ owner: pickDday
 last_verified: 2026-09-24
 id: TS-FC-013
 version: v1
-status: active
+status: retired
 summary: "임실 2025년 방문자 특성의 기간·대상과 현재 관광자원 연결을 검증합니다. 실행 결과는 기록38을 따릅니다."
 usecase: null
 covers_ac: ["VP1","VP2","VP3","VP4","VP5","VP6","VP7","VP8"]
@@ -13,6 +13,8 @@ specs: []
 ---
 
 # TS-FC-013 · 임실 방문자 특성과 관광자원 연결
+
+**2026-10-04 폐기 — 시험 대상 화면을 [ADR-0003](../../../decisions/0003-no-datalab-website-downloads.md)으로 공개 서비스에서 뺐다. 자동 시험도 지웠다.**
 
 [기능 상세 §10](../../2-design/functional-spec.md#10-방문자-특성과-관광자원-연결)의 UC-FC-009 보강이다.
 VP 번호는 이 시나리오 안에서만 사용한다. 실제 결과는 [검증 기록38](../../../validation/38-visitor-profile.md)에 남긴다.

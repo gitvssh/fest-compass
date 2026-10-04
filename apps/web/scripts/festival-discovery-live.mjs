@@ -1,13 +1,11 @@
-// Public acceptance of the festival type chips and the culture-tourism festival scale page, headless and read-only.
+// Public acceptance of the festival type chips, introduction marks and the withdrawn DataLab pages, headless and read-only.
 // Usage: LIVE_BASE_URL=https://pickday.damecasol.com node scripts/festival-discovery-live.mjs
 // Real provider answers: counts are reported as observed, never asserted to a fixed number.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { chromium } from "playwright";
 
 const base = process.env.LIVE_BASE_URL;
 if (!base) throw new Error("LIVE_BASE_URL required");
-const trend = JSON.parse(readFileSync(new URL("../data/datalab-festival-trend.json", import.meta.url), "utf8"));
 const browser = await chromium.launch({ headless: true });
 const errors = [], checks = [], observed = {};
 async function open(viewport = { width: 1440, height: 1000 }) {
@@ -41,17 +39,14 @@ try {
     await context.close();
   }
   {
+    // Pages built from DataLab website downloads are withdrawn (ADR-0003): old addresses land on festival comparison.
     const { context, page } = await open();
-    await page.goto(`${base}/compare/scale`);
-    await page.getByRole("heading", { level: 1, name: "문화관광축제 방문 규모", exact: true }).waitFor();
-    const rows = page.getByRole("list", { name: "2025년 일평균 순위", exact: true }).getByRole("listitem");
-    const expected = trend.festivals.flatMap(f => f.years.filter(y => y.year === 2025).map(y => ({ name: f.name, mean: y.dailyMean })))
-      .sort((a, b) => b.mean - a.mean || a.name.localeCompare(b.name, "ko-KR")).map(r => r.name);
-    assert.deepEqual(await rows.evaluateAll(lis => lis.map(li => li.querySelector("a")?.textContent?.trim())), expected);
-    await page.getByRole("group", { name: "순위 기준" }).getByRole("button", { name: "외지인 비율", exact: true }).click();
-    await page.waitForURL(/sort=outside/);
-    assert.ok((await page.getByRole("list", { name: "2025년 외지인 비율 순위", exact: true }).getByRole("listitem").first().innerText()).includes("임실N치즈축제"));
-    checks.push("scale-order-matches-file", "scale-sort-switch");
+    for (const old of ["/compare/annual", "/compare/scale"]) {
+      await page.goto(`${base}${old}`);
+      assert.equal(new URL(page.url()).pathname, "/compare", `${old} redirects`);
+    }
+    assert.equal(await page.getByRole("link", { name: "연도별 방문 보기", exact: true }).count(), 0);
+    checks.push("withdrawn-datalab-pages-redirect");
     await context.close();
   }
   if (process.env.LIVE_MARKS !== "0") {
@@ -85,7 +80,7 @@ try {
   }
   {
     const { context, page } = await open({ width: 390, height: 844 });
-    for (const path of ["/existing/search?type=EV010300", "/existing/search?type=all&mark=experience", "/compare/scale"]) {
+    for (const path of ["/existing/search?type=EV010300", "/existing/search?type=all&mark=experience"]) {
       await page.goto(`${base}${path}`);
       await page.waitForLoadState("networkidle");
       assert.ok(await overflow(page) <= 0, `${path}: no sideways scroll at 390px`);

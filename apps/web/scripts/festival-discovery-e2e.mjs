@@ -1,11 +1,10 @@
-// Festival discovery (type chips on the festival search, culture-tourism festival scale ranking), headless.
+// Festival discovery (type chips, registration-introduction marks, nationwide list) and the withdrawn DataLab pages, headless.
 //
 // Data provenance is explicit per check:
-//  - REAL: /compare/scale renders the checked-in DataLab file; the expected order, values and shares below are
-//    recomputed here from the same file with an independent implementation.
 //  - REAL ARCHIVE: the reviewed archive record of 논산딸기축제 (/api/existing/festivals) is merged under its link.
-//  - 검증용 FIXTURES: registered festivals of a type are synthetic and labelled "(가상)". They prove UI semantics only;
-//    the server's type filter, paging and strictness are covered by lib/existing/festival-types.test.ts.
+//  - 검증용 FIXTURES: registered festivals of a type and their marks are synthetic and labelled "(가상)". They prove UI semantics only;
+//    the server's type filter, paging, marks and strictness are covered by lib/existing/festival-types.test.ts.
+//  - Pages built from DataLab website downloads were withdrawn (ADR-0003): their old addresses must redirect and nothing links to them.
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { chromium } from "playwright";
@@ -89,18 +88,6 @@ async function onApi(route) {
   } catch { /* superseded */ }
 }
 
-// ---- Expected ranking, recomputed from the DataLab file ----
-const trend = JSON.parse(readFileSync(new URL("../data/datalab-festival-trend.json", import.meta.url), "utf8"));
-function expected(year, sort) {
-  const rows = trend.festivals.flatMap(f => f.years.filter(y => y.year === year).map(y => ({ id: f.id, name: f.name, ...y,
-    outsideShare: y.outside / y.periodTotal, localShare: y.local / y.periodTotal, foreignShare: y.foreign / y.periodTotal })));
-  const key = { mean: r => r.dailyMean, total: r => r.periodTotal, outside: r => r.outsideShare, local: r => r.localShare }[sort];
-  rows.sort((a, b) => key(b) - key(a) || a.name.localeCompare(b.name, "ko-KR"));
-  const absent = trend.festivals.filter(f => !f.years.some(y => y.year === year)).map(f => f.name).sort((a, b) => a.localeCompare(b, "ko-KR"));
-  return { rows, absent };
-}
-const pct = s => { const p = s * 100; return p > 0 && p < 0.05 ? "<0.1%" : p > 0 && p < 0.95 ? `${p.toFixed(1)}%` : `${Math.round(p)}%`; };
-const count = v => v.toLocaleString("ko-KR", { maximumFractionDigits: 0 });
 
 // ---- Page helpers ----
 const browser = await chromium.launch({ headless: true });
@@ -145,7 +132,7 @@ async function typeChips() {
     assert.deepEqual((await chips(page).getByRole("button").allInnerTexts()).map(s => s.replace(/\s+/g, " ").trim()),
       ["전체", "문화관광 · 문체부 지정", "문화예술", "지역특산물 · 먹거리", "전통역사", "생태자연", "기타 축제"]);
     assert.deepEqual(await pressedChips(page), [], "the starting choices are no type list");
-    assert.equal(await page.getByRole("link", { name: "문화관광축제 방문 규모" }).getAttribute("href"), "/compare/scale");
+    assert.equal(await page.getByRole("link", { name: /방문 규모/ }).count(), 0, "no link to the withdrawn ranking page");
 
     // A chip applies at once and keeps focus; the list is the type's whole national list in steps of 40.
     await chip(page, /^지역특산물/).click();
@@ -311,97 +298,23 @@ async function typePhone() {
   } finally { await context.close(); }
 }
 
-// ---- Scenarios: culture-tourism festival scale ----
-const ranked = (page, label) => page.getByRole("list", { name: label, exact: true });
-async function rowNames(list) { return list.getByRole("listitem").evaluateAll(lis => lis.map(li => li.querySelector("a")?.textContent?.trim())); }
-
-async function scaleRanking() {
+// ---- Scenario: pages built from DataLab website downloads are withdrawn (ADR-0003) ----
+async function withdrawnPages() {
   const { context, page } = await openContext();
   try {
-    await page.goto(`${base}/compare/scale`);
-    await visible(page.getByRole("heading", { level: 1, name: "문화관광축제 방문 규모", exact: true }));
-    const e25 = expected(2025, "mean");
-    const leaders = page.getByRole("list", { name: "2025년 한눈에 보기" });
-    await includes(leaders, `${e25.rows[0].name}\n하루 ${count(Math.round(e25.rows[0].dailyMean))}명`);
-    const out25 = expected(2025, "outside").rows[0], local25 = expected(2025, "local").rows[0];
-    await includes(leaders, `${out25.name}\n외지인 ${pct(out25.outsideShare)}`);
-    await includes(leaders, `${local25.name}\n현지인 ${pct(local25.localShare)}`);
-    assert.deepEqual([e25.rows[0].name, out25.name, local25.name], ["부평풍물대축제", "임실N치즈축제", "목포항구축제"], "file sanity");
-
-    const list = ranked(page, "2025년 일평균 순위");
-    assert.deepEqual(await rowNames(list), e25.rows.map(r => r.name), "daily-mean order of the file");
-    const first = list.getByRole("listitem").first(), r0 = e25.rows[0];
-    for (const text of ["1", `${r0.days}일`, `하루 ${count(Math.round(r0.dailyMean))}명`, `현지인 ${pct(r0.localShare)} · 외지인 ${pct(r0.outsideShare)} · 외국인 ${pct(r0.foreignShare)}`, "고르게"]) await includes(first, text, "first row");
-    await visible(page.getByText(`2025년 자료 없음 · ${e25.absent.join(", ")}`, { exact: true }));
-    assert.equal(await list.getByRole("link", { name: "임실N치즈축제", exact: true }).getAttribute("href"), "/compare/annual?festival=imsil-n-cheese");
-    passed.push("scale-default-daily-mean", "scale-leaders", "scale-absent-years", "scale-row-link");
-
-    // Share orders: 100% bars ordered by the group's share, address kept for sharing.
-    const sort = page.getByRole("group", { name: "순위 기준" }), year = page.getByRole("group", { name: "연도" });
-    await sort.getByRole("button", { name: "외지인 비율", exact: true }).click();
-    await waitAddress(page, "sort=outside");
-    const byOutside = ranked(page, "2025년 외지인 비율 순위");
-    assert.deepEqual(await rowNames(byOutside), expected(2025, "outside").rows.map(r => r.name));
-    await includes(byOutside.getByRole("listitem").first(), `${pct(out25.outsideShare)}`);
-    await includes(byOutside.getByRole("listitem").first(), "외지인 중심");
-    await year.getByRole("button", { name: "2024", exact: true }).click();
-    await waitAddress(page, "year=2024&sort=outside");
-    assert.equal(await ranked(page, "2024년 외지인 비율 순위").getByRole("listitem").count(), 26);
-    assert.equal(await page.getByText(/자료 없음 ·/).count(), 0, "2024 holds every festival");
-    await sort.getByRole("button", { name: "현지인 비율", exact: true }).click();
-    const byLocal = ranked(page, "2024년 현지인 비율 순위"), e24 = expected(2024, "local");
-    assert.deepEqual(await rowNames(byLocal), e24.rows.map(r => r.name));
-    // 60% marks a side; below it on both sides reads as mixed.
-    for (const r of e24.rows) {
-      const row = byLocal.getByRole("listitem").filter({ has: page.getByRole("link", { name: r.name, exact: true }) });
-      await includes(row, r.outsideShare >= 0.6 ? "외지인 중심" : r.localShare >= 0.6 ? "현지인 중심" : "고르게", r.name);
+    for (const old of ["/compare/annual", "/compare/scale", "/compare/annual?festival=imsil-n-cheese", "/compare/scale?year=2024&sort=outside"]) {
+      const response = await page.goto(`${base}${old}`);
+      assert.equal(new URL(page.url()).pathname, "/compare", `${old} lands on festival comparison`);
+      assert.ok(response?.ok(), `${old} answers`);
+      assert.ok(response?.request().redirectedFrom(), `${old} is a redirect`);
     }
-    await sort.getByRole("button", { name: "기간 합계", exact: true }).click();
-    await waitAddress(page, "year=2024&sort=total");
-    const byTotal = ranked(page, "2024년 기간 합계 순위"), t24 = expected(2024, "total");
-    assert.deepEqual(await rowNames(byTotal), t24.rows.map(r => r.name));
-    await includes(byTotal.getByRole("listitem").first(), `${count(t24.rows[0].periodTotal)}명`);
-    passed.push("scale-share-orders", "scale-year-switch", "scale-orientation-60", "scale-period-total");
-
-    // Unknown address values fall back to the newest year and the daily mean.
-    await page.goto(`${base}/compare/scale?year=2020&sort=views`);
-    await visible(ranked(page, "2025년 일평균 순위"));
-    assert.deepEqual(await page.locator("button[aria-pressed=true]").allInnerTexts(), ["2025", "일평균"]);
-    passed.push("scale-address-fallback");
-
-    // The criteria are one tap away and return focus.
-    const criteria = page.getByRole("button", { name: "기준", exact: true });
-    await criteria.click();
-    const dialog = page.getByRole("dialog", { name: "방문 규모를 읽는 기준" });
-    await includes(dialog, "60% 이상");
-    await includes(dialog, "행사장 입장객이 아니에요");
-    await page.keyboard.press("Escape");
-    await dialog.waitFor({ state: "hidden" });
-    await page.waitForFunction(() => document.activeElement?.textContent?.trim() === "기준");
-    assert.equal(await page.getByRole("link", { name: "문화관광축제 찾기", exact: true }).getAttribute("href"), `/existing/search?type=${CULTURE}`);
-    await noInternalWording(page, "scale");
-    passed.push("scale-criteria-dialog", "scale-to-type-search");
-
-    // Entrances: home, festival comparison and the yearly flow page.
+    await visible(page.getByRole("heading", { level: 1, name: "주변·과거 축제 비교", exact: true }));
+    for (const name of ["연도별 방문 보기", "축제 방문 규모"]) assert.equal(await page.getByRole("link", { name, exact: true }).count(), 0, name);
     await page.goto(`${base}/`);
-    assert.equal(await page.getByRole("link", { name: "축제 방문 규모 →", exact: true }).getAttribute("href"), "/compare/scale");
-    await page.goto(`${base}/compare/annual`);
-    assert.equal(await page.getByRole("link", { name: `${trend.festivals.length}곳 방문 규모 한눈에 보기`, exact: true }).getAttribute("href"), "/compare/scale");
-    await page.goto(`${base}/compare`);
-    assert.equal(await page.getByRole("link", { name: "축제 방문 규모", exact: true }).getAttribute("href"), "/compare/scale");
-    passed.push("scale-entrances");
-  } finally { await context.close(); }
-}
-
-async function scalePhone() {
-  const { context, page } = await openContext({ width: 390, height: 844 });
-  try {
-    await page.goto(`${base}/compare/scale`);
-    await visible(ranked(page, "2025년 일평균 순위"));
-    const tops = await page.getByRole("group", { name: "연도" }).getByRole("button").evaluateAll(bs => bs.map(b => Math.round(b.getBoundingClientRect().top)));
-    assert.equal(new Set(tops).size, 1, `six years in one row (${tops})`);
-    await noPageOverflow(page, "scale 390");
-    passed.push("scale-phone-no-overflow");
+    assert.equal(await page.getByRole("link", { name: "축제 방문 규모 →", exact: true }).count(), 0);
+    const sitemap = await (await page.request.get(`${base}/sitemap.xml`)).text();
+    assert.ok(!/compare\/(annual|scale)/.test(sitemap), "the sitemap no longer lists them");
+    passed.push("withdrawn-datalab-pages-redirect", "withdrawn-datalab-pages-unlinked");
   } finally { await context.close(); }
 }
 
@@ -411,12 +324,11 @@ try {
   await typeWithNameAndRegion();
   await markFilter();
   await typePhone();
-  await scaleRanking();
-  await scalePhone();
+  await withdrawnPages();
   assert.deepEqual(writes, [], "no same-origin non-GET request");
   assert.deepEqual(errors, []);
   assert.deepEqual(fixtureErrors, []);
-  console.log(JSON.stringify({ headless: true, real: ["DataLab culture-tourism festival file", "festivals archive block"], fixtures: "검증용 registrations by type", passed, browserErrors: errors.length, apiRequests: calls.length }));
+  console.log(JSON.stringify({ headless: true, real: ["festivals archive block"], fixtures: "검증용 registrations by type", passed, browserErrors: errors.length, apiRequests: calls.length }));
 } finally {
   await browser.close();
 }

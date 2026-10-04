@@ -24,9 +24,9 @@ test("nested pages mark the parent section without claiming to be it", () => {
   assert.equal(currentFor("/new-other", fresh.href, fresh.section), undefined);
   assert.equal(currentFor("/festivals/new", fresh.href, fresh.section), undefined);
   assert.equal(currentFor("/compare", "/compare"), "page");
-  assert.equal(currentFor("/compare/annual", "/compare"), "true");
-  assert.equal(currentFor("/compare/annual/", "/compare"), "true");
-  assert.equal(currentFor("/compare-annual", "/compare"), undefined);
+  assert.equal(currentFor("/compare/sub", "/compare"), "true");
+  assert.equal(currentFor("/compare/sub/", "/compare"), "true");
+  assert.equal(currentFor("/compare-sub", "/compare"), undefined);
   assert.equal(currentFor("/planning-other", "/planning"), undefined);
   assert.equal(currentFor("/planning/options-x", "/planning/options"), undefined);
   assert.equal(currentFor("/planning/options/detail", "/planning/options"), "true");
@@ -38,7 +38,7 @@ test("root is exact only, and trailing slashes, queries and hashes are ignored",
   assert.equal(currentFor("/regions/", "/regions"), "page");
   assert.equal(currentFor("/compare?province=44&district=230", "/compare"), "page");
   assert.equal(currentFor("/compare#list", "/compare"), "page");
-  assert.equal(currentFor("/compare?next=/compare/annual", "/regions"), undefined);
+  assert.equal(currentFor("/compare?next=/compare/sub", "/regions"), undefined);
   assert.equal(normalizePath("///"), "/");
   assert.equal(normalizePath(""), "/");
 });

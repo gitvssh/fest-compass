@@ -37,8 +37,7 @@ for(const s of samples){
 const currentHistory=await json('/api/existing/history?festival=current%3A52750%3A2031318');
 const archiveHistory=await json('/api/existing/history?festival=archive%3Aimsil-cheese');
 assert.deepEqual(currentHistory.editions,archiveHistory.editions);
-assert.deepEqual(currentHistory.visitorProfile,archiveHistory.visitorProfile);
-report.checks.push("current-archive-identical-editions-and-profile","four-unseen-festivals-exact-30-daily-values-and-monthly-mean","new-festival-shares-observations");
+report.checks.push("current-archive-identical-editions","four-unseen-festivals-exact-30-daily-values-and-monthly-mean","new-festival-shares-observations");
 const split=await json('/api/existing/monthly?province=28&district=275&year=2026');
 assert.equal(split.months[0].mean,null);assert.ok(split.months[7].observedDays>0);
 if(split.months[7].observedDays<split.months[7].days)assert.equal(split.months[7].mean,null);
@@ -76,7 +75,7 @@ try {
  }
  await page.goto(`${base}/existing/current%3A52750%3A2031318/visits`);
  await page.getByRole("heading",{level:1,name:"임실N치즈축제",exact:true}).waitFor();
- await page.getByRole("heading",{name:/방문자 특성/}).first().waitFor();
+ await page.getByRole("heading",{name:/외지인 방문 추이/}).first().waitFor();
  assert.ok(new URL(page.url()).pathname.includes('current'));
  await page.screenshot({path:join(output,"linked-imsil.png"),fullPage:true});
  report.checks.push("real-search-to-all-three-views-four-regions","320-390-1440-no-page-overflow","reviewed-history-inline-keeps-current-identity");

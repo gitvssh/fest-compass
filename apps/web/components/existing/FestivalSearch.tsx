@@ -1,5 +1,5 @@
 "use client";
-import { ArrowDown, LayoutGrid, Trophy, type LucideIcon } from "lucide-react";
+import { ArrowDown, LayoutGrid, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from "react";
@@ -189,7 +189,6 @@ export function FestivalSearch() {
         {typeLabel && data && !result.loading && (filtered.length ? <button type="button" onClick={() => resultsHeading.current?.focus()} className="inline-flex min-h-8 items-center gap-1 text-sm font-bold text-blue hover:underline">
           {typeLabel} {filtered.length}건 보기<ArrowDown aria-hidden="true" size={15} />
         </button> : <p className="text-sm font-bold text-muted">{typeLabel} 0건</p>)}
-        <Link href="/compare/scale" className="inline-flex min-h-8 items-center gap-1.5 text-sm font-bold text-blue hover:underline lg:ml-auto"><Trophy aria-hidden="true" size={15} />문화관광축제 방문 규모</Link>
       </div>
       {fieldError && <p id={`${ids}-error`} role="alert" className="text-sm font-bold text-red-800 sm:col-span-4">{fieldError.text}</p>}
     </form>

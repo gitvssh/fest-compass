@@ -4,7 +4,7 @@ owner: pickDday
 last_verified: 2026-09-24
 id: TS-FC-014
 version: v1
-status: passed
+status: retired
 summary: "임실 2023·2024·2025년 방문자 특성의 회차별 결속과 두 회차 비교를 검증할 기준입니다. 11개 기준의 자동·공개 검증을 완료했으며 결과는 기록39를 따릅니다."
 usecase: null
 covers_ac: ["EP1","EP2","EP3","EP4","EP5","EP6","EP7","EP8","EP9","EP10","EP11"]
@@ -13,6 +13,8 @@ specs: []
 ---
 
 # TS-FC-014 · 임실 두 회차 방문자 특성 비교
+
+**2026-10-04 폐기 — 시험 대상 화면을 [ADR-0003](../../../decisions/0003-no-datalab-website-downloads.md)으로 공개 서비스에서 뺐다. 자동 시험도 지웠다.**
 
 [기능 상세 §11](../../2-design/functional-spec.md#11-두-회차-방문자-특성-비교)의 UC-FC-009 보강이다.
 EP 번호는 이 시나리오 안에서만 쓴다. 아래 11개 기준은 명시한 수단으로 **통과**했으며 실행 결과는

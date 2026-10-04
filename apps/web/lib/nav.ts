@@ -29,7 +29,7 @@ export function normalizePath(path: string): string {
   const bare = path.split(/[?#]/, 1)[0].replace(/\/+$/, "");
   return bare.startsWith("/") ? bare : `/${bare}`;
 }
-// Exact page is "page"; a nested page (for example /compare/annual) marks its section with "true".
+// Exact page is "page"; a nested page (for example /new/44230/visits) marks its section with "true".
 export function currentFor(pathname: string, href: string, section?: string): "page" | "true" | undefined {
   const path = normalizePath(pathname), target = normalizePath(href);
   if (path === target) return "page";
