@@ -1406,3 +1406,22 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Claude
+
+## T-067 · Claude · implementer
+
+- Position: 2차 공개: 데이터랩 지역 표 200개를 모두 이었다. 축제별 방문 자료에 개최지 관광 소비(순위·해마다·업종·읍면동)와 외지인 방문객(거주지·읍면동) 카드(25곳), 새 축제 방문 흐름에 같은 카드(26곳)와 지역 연간 합계(1곳→24곳). 대구치맥페스티벌은 개최 행정동(두류3동, 달서구)이 받아 둔 대구 중구에 없어 잇지 않았다.
+- Evidence:
+  - docs/validation/49-datalab-festival-profiles.md '2차'(발행 37207877798 → sha256:3194d2c0…, 배포 선언 7fbb386, 공개 확인)
+  - docs/design/27-datalab-festival-profile.md 5절
+  - apps/web/data/datalab-region-ids.json v2(26곳 코드·시도·축제 연결 검토표)
+- Changes:
+  - apps/web: 지역 생성·읽기(datalab-region-profiles), 화면 RegionProfile, 축제별 방문 자료 개최지 줄·바로가기, /api/new/visits regionProfile, 지역 연간 24곳, 원문 사용 표시 105→304
+  - docs: 설계27 v2, 검수49 v2, TS-FC-024 R1~R5, screens·data-visualization·design-system·자료 목록·가져오기 README·현황
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 473 통과, 생성 결과 다섯 종 재생성 대조, 타입 검사·발행 빌드 통과
+  - headless 31종 통과(visitor-context의 거주지 확인 범위를 지역 카드 밖으로 좁힌 뒤)
+  - 공개: Synced·Healthy, livez·readyz 200, 업무 9테이블 20행 해시 일치, 공개 화면 10항목 통과
+- Questions:
+  - TourAPI 응답의 서버 보관 허용 여부를 운영사무국에서 회신받으면 알려 주세요(보관 방식 결정에 씁니다).
+- Handoff: Human
