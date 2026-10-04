@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { isPublicReadonly } from "@/lib/app-mode";
 import { siteConfig } from "@/lib/site";
+import { ConsentBanner } from "./ConsentBanner";
+import { ConsentSettingsButton } from "./ConsentSettingsButton";
 import { FooterPrivacyLink, NavLinks, PublicStorageNotice } from "./NavLinks";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -22,11 +24,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {readOnly ? <PublicStorageNotice /> : null}
       <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-[1760px] flex-1 scroll-mt-24 px-5 py-8 lg:px-8">{children}</main>
       <footer className="no-print mt-10 border-t border-ink/10">
-        <div className="mx-auto flex min-h-[72px] w-full max-w-[1760px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-3 text-sm text-muted lg:px-8">
+        <div className="mx-auto flex min-h-[72px] w-full max-w-[1760px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-3 text-sm text-[#43536a] lg:px-8">
           <span className="font-bold text-ink">{siteConfig.name}</span>
-          <FooterPrivacyLink />
+          <span className="flex flex-wrap items-center gap-x-5">
+            <FooterPrivacyLink />
+            <ConsentSettingsButton className="inline-flex min-h-11 items-center hover:text-ink hover:underline" />
+          </span>
         </div>
       </footer>
+      <ConsentBanner />
     </div>
   );
 }

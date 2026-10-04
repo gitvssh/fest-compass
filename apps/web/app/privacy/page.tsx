@@ -67,10 +67,10 @@ export default function PrivacyPage() {
       <section>
         <h2 className="text-xl font-extrabold">선택 분석과 동의 경계</h2>
         <p className="mt-2 text-sm leading-7 text-muted">
-          선택 분석은 <strong className="font-bold text-ink">동의하신 경우에만</strong> 실행됩니다. 처음 방문하시면
-          {analyticsConsentBoundary.owner}가 동의 창을 띄우고, 선택 전과 거부·철회 후에는 아무것도 전송되지 않습니다.
-          아래 버튼으로 언제든 그 창을 다시 열어 선택을 바꾸실 수 있습니다. 동의 기록과 목적 구분은 전부
-          {analyticsConsentBoundary.owner}가 보관하며, 이 서비스는 측정 ID도 목적 ID도 갖지 않고 동의 여부를 저장하지도 않습니다.
+          선택 분석은 <strong className="font-bold text-ink">동의하신 경우에만</strong> 실행됩니다. 처음 방문하시면 화면 아래 작은 안내에서
+          ‘거부’ 또는 ‘허용’을 고르시며, 안내는 화면을 가리지 않고 고르기 전에도 모든 기능을 그대로 쓸 수 있습니다.
+          고르기 전과 거부·철회 후에는 아무것도 전송되지 않습니다. 선택은 아래 ‘분석 동의 다시 보기’나 모든 화면 아래의 같은 링크로 언제든 바꾸실 수 있습니다.
+          동의 기록과 목적 구분은 전부 {analyticsConsentBoundary.owner}가 보관하며, 이 서비스는 측정 ID도 목적 ID도 갖지 않고 동의 여부를 저장하지도 않습니다.
           보안·전송을 위한 Cloudflare의 필수 처리와 선택 분석은 별도 경계로 취급합니다.
         </p>
         <ConsentPreference />

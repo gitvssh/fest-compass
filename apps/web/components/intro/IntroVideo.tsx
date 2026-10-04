@@ -4,7 +4,7 @@ import { Play } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DialogHeader } from "@/components/existing/ui";
-import { isConsentModalOpen } from "@/lib/analytics/consent";
+import { isConsentModalOpen, isSiteConsentOpen } from "@/lib/analytics/consent";
 import {
   INTRO_MEDIA,
   INTRO_TRANSCRIPT,
@@ -73,19 +73,24 @@ export function IntroVideo() {
       return;
     }
     if (hasHandledIntro()) return;
-    // The tag manager injects its consent modal a moment after load. Offer only once the
-    // modal has stayed away for a while, so two overlays never compete on the first screen.
+    // The consent question comes first: the site's banner appears a moment after load (and, as a
+    // fallback, the tag manager's own modal may). Offer only once the question has stayed away
+    // for a while, and step aside again whenever it comes back, so two cards never share the
+    // bottom of the screen.
     const startedAt = Date.now();
     let clearSince = startedAt;
     const poll = window.setInterval(() => {
-      const now = Date.now();
-      if (isConsentModalOpen() && now - startedAt < CONSENT_WAIT_LIMIT_MS) {
-        clearSince = now;
+      if (hasHandledIntro()) {
+        window.clearInterval(poll);
         return;
       }
-      if (now - clearSince < OFFER_QUIET_MS) return;
-      window.clearInterval(poll);
-      if (!hasHandledIntro()) setOfferVisible(true);
+      const now = Date.now();
+      if (isSiteConsentOpen() || (isConsentModalOpen() && now - startedAt < CONSENT_WAIT_LIMIT_MS)) {
+        clearSince = now;
+        setOfferVisible(false);
+        return;
+      }
+      if (now - clearSince >= OFFER_QUIET_MS) setOfferVisible(true);
     }, CONSENT_POLL_MS);
     return () => window.clearInterval(poll);
   }, [openPlayer]);

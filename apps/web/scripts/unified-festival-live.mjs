@@ -47,8 +47,8 @@ const browser=await chromium.launch({headless:true});
 try {
  const context=await browser.newContext({viewport:{width:1440,height:1000},locale:"ko-KR"});
  const page=await context.newPage();page.setDefaultTimeout(30000);
- // The platform consent dialog may arrive after the app. Use its ordinary refusal button whenever shown.
- await page.addLocatorHandler(page.getByRole("button",{name:"모두 거부",exact:true}),async button=>{await button.click();});
+ // The site consent banner may arrive after the app (lib/analytics/consent.ts). Decline it whenever shown.
+ await page.addLocatorHandler(page.locator("[data-consent-banner]").getByRole("button",{name:"거부",exact:true}),async button=>{await button.click();});
  page.on("pageerror",e=>report.browserErrors.push(e.message));
  page.on("request",r=>{if(r.method()!=="GET"&&new URL(r.url()).pathname.startsWith('/api/'))report.appWrites.push(r.method()+" "+new URL(r.url()).pathname);});
  for(const s of samples){

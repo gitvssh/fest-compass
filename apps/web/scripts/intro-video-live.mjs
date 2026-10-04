@@ -1,4 +1,4 @@
-// Public check of the home introduction video with the real consent modal. Never intercepts responses.
+// Public check of the home introduction video with the real Zaraz consent flow (site banner since 2026-10-04). Never intercepts responses.
 // BASE_URL=https://pickday.damecasol.com node scripts/intro-video-live.mjs
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -26,10 +26,11 @@ try {
     page.on("pageerror", (error) => report.browserErrors.push(String(error)));
     page.on("console", (message) => { if (message.type() === "error" && /Content Security Policy|media|video/i.test(message.text())) report.browserErrors.push(message.text()); });
     await page.goto(base, { waitUntil: "networkidle" });
-    const consent = page.getByRole("button", { name: /모두 거부|Reject All/ });
+    // The site banner asks instead of the zone's default modal (lib/analytics/consent.ts); the offer waits for it.
+    const consent = page.locator("[data-consent-banner]").getByRole("button", { name: "거부" });
     await consent.waitFor({ state: "visible", timeout: 15000 });
     await page.waitForTimeout(4000);
-    assert.equal(await page.getByRole("complementary", { name: offerName }).count(), 0, "offer waits for the real consent modal");
+    assert.equal(await page.getByRole("complementary", { name: offerName }).count(), 0, "offer waits for the consent banner");
     await consent.click();
     const offer = page.getByRole("complementary", { name: offerName });
     await offer.waitFor({ state: "visible", timeout: 10000 });

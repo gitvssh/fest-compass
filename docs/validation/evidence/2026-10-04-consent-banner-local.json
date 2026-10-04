@@ -1,0 +1,133 @@
+{
+  "checkedAt": "2026-10-04T03:51:57.270Z",
+  "base": "http://127.0.0.1:3141",
+  "headless": true,
+  "checks": [
+    {
+      "name": "first visit: default modal never visible, site banner asks without focus, overlay or layout shift",
+      "modalOpenedAt": 1920.0999999940395,
+      "readyAt": 418.90000000596046,
+      "banner": {
+        "x": 24,
+        "y": 734,
+        "width": 576,
+        "height": 142
+      }
+    },
+    {
+      "name": "거부 closes the banner first, relays setAll(false) only, and the intro offer follows after the quiet period",
+      "offerAfterMs": 1792
+    },
+    {
+      "name": "a decided visitor sees no banner; the default modal hide is lifted after the watch window and the offer follows"
+    },
+    {
+      "name": "footer reopen moves focus, hides the offer meanwhile, and 허용 relays setAll(true) plus queued events"
+    },
+    {
+      "name": "the privacy page describes the banner and its control reopens it"
+    },
+    {
+      "name": "without Zaraz the banner only appears on request, says there is nothing to choose, and closes"
+    },
+    {
+      "name": "phone: banner fits without overflow, the offer waits and follows",
+      "banner": {
+        "x": 12,
+        "y": 618,
+        "width": 366,
+        "height": 214
+      },
+      "offer": {
+        "x": 12,
+        "y": 758.2498168945312,
+        "width": 366,
+        "height": 74
+      }
+    },
+    {
+      "name": "axe-core 4.10.2: no violation involves the banner",
+      "otherViolationIds": [
+        "color-contrast×5"
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "banner": {
+        "x": 24,
+        "y": 734,
+        "width": 576,
+        "height": 142
+      },
+      "offerVisibleWithBanner": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "banner": {
+        "x": 12,
+        "y": 618,
+        "width": 366,
+        "height": 214
+      },
+      "offerVisibleWithBanner": false
+    }
+  ],
+  "axe": {
+    "version": "4.10.2",
+    "bannerViolations": [],
+    "otherViolations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "nodes": [
+          {
+            "target": [
+              ".sm\\:flex-row > div > .mb-2"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.46 (foreground color: #65738a, background color: #f6f7f4, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1",
+            "consentRelated": false
+          },
+          {
+            "target": [
+              ".lg\\:pr-7 > .leading-6.mt-2"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.46 (foreground color: #65738a, background color: #f6f7f4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+            "consentRelated": false
+          },
+          {
+            "target": [
+              ".lg\\:px-7 > .leading-6.mt-2"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.46 (foreground color: #65738a, background color: #f6f7f4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+            "consentRelated": false
+          },
+          {
+            "target": [
+              ".lg\\:pl-7 > .leading-6.mt-2"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.46 (foreground color: #65738a, background color: #f6f7f4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+            "consentRelated": false
+          },
+          {
+            "target": [
+              ".lg\\:pl-7 > .mt-1"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.46 (foreground color: #65738a, background color: #f6f7f4, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+            "consentRelated": false
+          }
+        ]
+      }
+    ]
+  },
+  "browserErrors": [],
+  "cspViolations": []
+}

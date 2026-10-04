@@ -23,7 +23,8 @@ try {
   const page = await context.newPage(); page.setDefaultTimeout(30000);
   page.on("pageerror", e => report.browserErrors.push(e.message));
   page.on("request", r => { if (r.method() !== "GET" && new URL(r.url()).origin === new URL(base).origin && new URL(r.url()).pathname.startsWith("/api/")) report.appWrites.push(`${r.method()} ${new URL(r.url()).pathname}`); });
-  await page.addLocatorHandler(page.getByRole("button", { name: "모두 거부", exact: true }), async b => b.click());
+  // The site consent banner (lib/analytics/consent.ts) is declined whenever it shows.
+  await page.addLocatorHandler(page.locator("[data-consent-banner]").getByRole("button", { name: "거부", exact: true }), async b => b.click());
   const overflow = async label => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), label);
   const shot = async name => {
     await page.evaluate(() => window.scrollTo(0, 0));

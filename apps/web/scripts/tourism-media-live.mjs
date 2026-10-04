@@ -98,7 +98,8 @@ try {
   const page = await context.newPage(); page.setDefaultTimeout(45000);
   page.on("pageerror", error => report.browserErrors.push(error.message));
   page.on("request", request => { const url = new URL(request.url()); if (url.origin === origin && url.pathname.startsWith("/api/") && request.method() !== "GET") report.appWrites.push(`${request.method()} ${url.pathname}`); });
-  await page.addLocatorHandler(page.getByRole("button", { name: "모두 거부", exact: true }), button => button.click());
+  // The site consent banner (lib/analytics/consent.ts) is declined whenever it shows.
+  await page.addLocatorHandler(page.locator("[data-consent-banner]").getByRole("button", { name: "거부", exact: true }), button => button.click());
   for (const flow of flows) {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(`${base}${flow.path}`);

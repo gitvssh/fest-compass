@@ -1,4 +1,4 @@
-// Public check of the planning guide (TS-FC-021) with the real consent modal and real data. Never intercepts responses.
+// Public check of the planning guide (TS-FC-021) with the real Zaraz consent flow (site banner since 2026-10-04) and real data. Never intercepts responses.
 // BASE_URL=https://pickday.damecasol.com node scripts/planning-guide-live.mjs
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -22,7 +22,8 @@ async function open(viewport = { width: 1440, height: 900 }) {
   return { context, page };
 }
 async function consent(page) {
-  const reject = page.getByRole("button", { name: /모두 거부|Reject All/ });
+  // The site banner asks instead of the zone default modal (lib/analytics/consent.ts); decline it when it shows.
+  const reject = page.locator("[data-consent-banner]").getByRole("button", { name: "거부", exact: true });
   if (await reject.isVisible({ timeout: 8000 }).catch(() => false)) await reject.click();
 }
 const text = locator => locator.innerText();

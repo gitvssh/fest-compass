@@ -6,11 +6,25 @@
 export type AnalyticsScalar = string | number;
 export type AnalyticsProperties = Readonly<Record<string, AnalyticsScalar>>;
 
+/**
+ * Cloudflare Zaraz Consent API (https://developers.cloudflare.com/zaraz/consent-management/api/).
+ * The app relays only an all-or-nothing choice with `setAll`; purpose identifiers belong to the
+ * Cloudflare console and stay unknown to this code.
+ */
+export interface ZarazConsentApi {
+  /** `true` while Zaraz shows its own consent modal. Setting `false` on a closed modal throws. */
+  modal: boolean;
+  APIReady?: boolean;
+  setAll: (status: boolean) => void;
+  sendQueuedEvents?: () => void;
+}
+
 interface ZarazClient {
   track: (
     eventName: string,
     properties?: Record<string, AnalyticsScalar>,
   ) => void | Promise<unknown>;
+  consent?: ZarazConsentApi;
 }
 
 declare global {

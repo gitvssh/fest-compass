@@ -4,7 +4,7 @@ doc_class: how_to
 doc_kind: runbook
 authority: canonical
 owner: fest-compass
-last_verified: 2026-08-31
+last_verified: 2026-10-04
 ---
 
 # 분석·검색 최종 연결 런북 (pickday.damecasol.com)
@@ -14,9 +14,10 @@ Cloudflare·GA4·Search Console 콘솔에서 사람이 설정해야 한다. 작�
 콘솔 설정도 변경하지 않았다.
 
 앱과 콘솔의 경계는 분명하다. **앱은 측정 ID도 목적 ID도 갖지 않는다.** 앱은
-`window.zaraz.track(이벤트명, 속성)`만 호출하고, GA4 연결과 동의 목적 배정은 전적으로
-Cloudflare 콘솔이 소유한다. 따라서 동의가 없으면 `window.zaraz`가 없고, 이벤트는
-조용히 사라진다.
+`window.zaraz.track(이벤트명, 속성)`을 호출하고, 아직 고르지 않은 방문자에게는 사이트 배너로
+물어 전체 허용·거부를 `zaraz.consent.setAll`로 넘긴다. GA4 연결과 동의 목적 배정·동의 기록은
+전적으로 Cloudflare 콘솔이 소유한다. 따라서 동의가 없으면 `window.zaraz.track`이 동작하지 않고,
+이벤트는 조용히 사라진다.
 
 ## 1. 배포 전제 확인
 
@@ -43,6 +44,9 @@ curl -I https://pickday.damecasol.com/sitemap.xml
 3. `zaraz.track`의 custom event name과 flat property가 GA4 event name·event
    parameter로 그대로 전달되도록 매핑한다.
 4. 보안·전송을 위한 Cloudflare 필수 처리와 선택 분석은 별도 목적으로 유지한다.
+5. **기본 동의 창은 켜 둔다(2026-10-04).** 앱은 Zaraz가 기본 창을 열려는 순간을 미선택 신호로 받아 그 창을 닫고
+   화면 아래 작은 한국어 배너로 대신 묻는다([설계26](../design/26-consent-banner.md)). 콘솔에서 기본 창을 끄면
+   미선택 신호가 없어 배너도 뜨지 않는다. 앱은 여전히 purpose ID를 모르고 전체 허용·거부(`setAll`)만 넘긴다.
 
 ## 3. 이벤트 사전 (앱이 강제하는 정본)
 
