@@ -118,6 +118,7 @@ try {
   runNode(join(webRoot, "scripts", "existing-journey-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "unified-festival-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "new-festival-e2e.mjs"), []);
+  runNode(join(webRoot, "scripts", "kto-signals-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "tourism-resources-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "tourism-media-e2e.mjs"), []);
   runNode(join(webRoot, "scripts", "related-search-e2e.mjs"), []);

@@ -9,6 +9,8 @@ import type { Anchor } from "@/components/existing/memory";
 import type { MapRow } from "@/components/existing/ResourceMap";
 import { InfoDialog } from "@/components/existing/ui";
 import { useResourceLists } from "@/components/resources/useResourceLists";
+import { CrowdForecast } from "@/components/signals/CrowdForecast";
+import { RelatedSpots } from "@/components/signals/RelatedSpots";
 import { AreaNote, CountLine, focusAfterDetail, KindPicker, KindStatusList, ListMapGrid, ViewToggle, WORKSPACE_ROOT } from "@/components/resources/ResourceWorkspace";
 import { distanceKm, validPoint } from "@/lib/comparison/distance";
 import { RESOURCE_KINDS } from "@/lib/existing/request";
@@ -146,5 +148,7 @@ export function ResourcesView() {
         <p><a className="font-bold text-blue underline" href={SOURCE} target="_blank" rel="noreferrer">공공데이터포털 관광정보 서비스 ↗</a></p>
       </InfoDialog>
     </div>
+    <CrowdForecast region={region} />
+    <RelatedSpots region={region} />
   </section>;
 }

@@ -3,12 +3,20 @@ class: Current
 doc_class: current
 doc_kind: research
 owner: pickDday
-last_verified: 2026-10-04
-version: v9
+last_verified: 2026-10-05
+version: v10
 summary: "지역 방문·축제 등록·관광자원과 임실 회차별 성·연령·목적지 자료를 연결했습니다. 2026-09-27 관광자원 사진·유형별 이용정보의 공식 API 응답도 확인했으며 화면 연결 상태는 검수44를 따릅니다. 보존 CSV277개와 축제별 거주지 확대는 후속입니다."
 ---
 
 # 관광 의사결정을 위한 데이터 확보·연결 현황
+
+## 2026-10-05 공사 OpenAPI 두 종 — 관광지 붐빔 예측·함께 찾는 곳
+
+**사용 가능.** 지금 인증키로 [관광지 집중률 방문자 추이 예측](https://www.data.go.kr/data/15128555/openapi.do)(`TatsCnctrRateService`)과
+[관광지별 연관 관광지 정보](https://www.data.go.kr/data/15128560/openapi.do)(`TarRlteTarService1`)를 실시간으로 묻고 두 축제 흐름의 관광자원 화면에 보인다
+([설계28](../design/28-kto-spot-signals.md), [검수50](../validation/50-kto-spot-signals.md)). 둘 다 이용허락범위 제한 없음이며 서버에 저장하지 않는다.
+붐빔 예측은 관광지별 앞으로 30일(가장 붐비는 때 = 100)이고 전남·광주는 아직 0건이다. 함께 찾는 곳은 달마다(2024-05~2026-08 응답 확인)이고
+전남·광주는 이전 코드로 응답한다. 같은 클라이언트 정의가 `lib/kto/client.ts`(편집 모드의 근거 저장)에도 있으나 공개 화면은 새 읽기 전용 경로만 쓴다.
 
 ## 2026-09-27 관광자원 사진·유형별 이용정보
 

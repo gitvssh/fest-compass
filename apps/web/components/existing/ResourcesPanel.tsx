@@ -7,6 +7,8 @@ import { introKey } from "@/components/resources/ResourceIntro";
 import { ResourceDetails } from "@/components/resources/ResourceDetails";
 import { AnchorControls, AreaNote, CountLine, DetailFrame, Facts, focusAfterDetail, KindPicker, KindStatusList, ListMapGrid, ResourceRows, ViewToggle, WORKSPACE_ROOT } from "@/components/resources/ResourceWorkspace";
 import { useResourceLists } from "@/components/resources/useResourceLists";
+import { CrowdForecast } from "@/components/signals/CrowdForecast";
+import { RelatedSpots } from "@/components/signals/RelatedSpots";
 import { distanceKm, validPoint } from "@/lib/comparison/distance";
 import { linkedCurrentId } from "@/lib/existing/identity";
 import { RESOURCE_KINDS } from "@/lib/existing/request";
@@ -220,6 +222,9 @@ export function ResourcesPanel() {
         </InfoDialog>
       </div>
     </>}
+    {/* KTO spot signals: own sources and loading below the settled list, so they never push the list or its source row. */}
+    {region && <CrowdForecast region={region} />}
+    {region && <RelatedSpots region={region} />}
   </section>;
 }
 

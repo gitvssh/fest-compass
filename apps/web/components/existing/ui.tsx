@@ -5,17 +5,19 @@ import type { DataFreshness } from "@/lib/existing/types";
 import { timeLabel } from "./format";
 
 /** Short loading / failure / stale-refresh line for one result area. */
-export function LoadState({ loading, failure, hasData, retrievedAt, subject, onRetry }: {
+export function LoadState({ loading, failure, hasData, retrievedAt, subject, onRetry, retryLabel = "다시 불러오기" }: {
   loading: boolean; failure: "network" | "invalid" | "notfound" | null; hasData: boolean; retrievedAt?: string | null; subject: string; onRetry: () => void;
+  /** Name of the retry button; give each block its own when several can fail on one screen. */
+  retryLabel?: string;
 }) {
   if (failure === "invalid") return <p role="alert" className="rounded-xl bg-coral-soft p-3 text-sm">조회 조건을 확인하지 못했어요. 조건을 바꿔 다시 선택해 주세요.</p>;
   if (failure === "notfound") return <p role="alert" className="rounded-xl bg-paper p-3 text-sm">선택한 대상의 자료를 찾지 못했어요.</p>;
   if (failure && hasData) return <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-amber-50 p-3 text-sm text-amber-950">
     새 자료를 불러오지 못했어요. {timeLabel(retrievedAt ?? null)}에 조회한 결과를 보여드리고 있어요.
-    <button type="button" className="region-button" onClick={onRetry}>다시 불러오기</button>
+    <button type="button" className="region-button" onClick={onRetry}>{retryLabel}</button>
   </p>;
   if (failure) return <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-coral-soft p-3 text-sm">
-    {subject} 불러오지 못했어요.<button type="button" className="region-button" onClick={onRetry}>다시 불러오기</button>
+    {subject} 불러오지 못했어요.<button type="button" className="region-button" onClick={onRetry}>{retryLabel}</button>
   </p>;
   if (loading) return <p role="status" className="text-sm text-muted">{hasData ? "새 자료를 확인하고 있어요…" : `${subject} 불러오고 있어요…`}</p>;
   return null;
