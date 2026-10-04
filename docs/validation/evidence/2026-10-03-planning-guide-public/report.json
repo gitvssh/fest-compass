@@ -1,11 +1,12 @@
 {
-  "checkedAt": "2026-10-03T15:41:26.378Z",
+  "checkedAt": "2026-10-04T00:34:49.563Z",
   "base": "https://pickday.damecasol.com",
   "headless": true,
   "interceptedResponses": 0,
   "checks": [
     {
-      "name": "home outcome lines and the seven-phase process page"
+      "name": "home outcome lines and the seven-phase process page with aligned card parts",
+      "parts": "21,81,205,289,351"
     },
     {
       "name": "task tabs and real before/during/after means on the public archive",
@@ -15,6 +16,9 @@
         "개최 시기 검토하기 · 개최 시기",
         "모아 보기 · 한 장 요약"
       ]
+    },
+    {
+      "name": "visits overlay chart by default, line toggle and separate charts on request"
     },
     {
       "name": "summary gathers the compared editions with their basis and source"

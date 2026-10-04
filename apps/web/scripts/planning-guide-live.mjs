@@ -35,8 +35,11 @@ try {
   await page.getByRole("link", { name: /축제 준비 전체 과정 보기/ }).click();
   await page.waitForURL(u => u.pathname === "/guide");
   assert.equal(await page.locator("main li[id^=phase-]").count(), 7);
+  // Every card starts each part at the same height: the question boxes line up across all seven cards.
+  const parts = await page.locator("main li[id^=phase-]").evaluateAll(cards => cards.map(c => [...c.children].slice(0, 5).map(k => Math.round(k.getBoundingClientRect().top - c.getBoundingClientRect().top)).join(",")));
+  assert.equal(new Set(parts).size, 1, `aligned card parts ${JSON.stringify(parts)}`);
   await page.screenshot({ path: join(output, "guide-1440.png"), fullPage: true });
-  check("home outcome lines and the seven-phase process page");
+  check("home outcome lines and the seven-phase process page with aligned card parts", { parts: parts[0] });
 
   await page.goto(`${base}${NONSAN}/visits`, { waitUntil: "networkidle" });
   const tabs = await page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link").evaluateAll(links => links.map(a => a.textContent.replace(/\s+/g, " ").trim()));
@@ -46,6 +49,20 @@ try {
   for (const v of ["개최 전 7일", "50,823명/일", "85,213명/일", "종료 후 7일", "43,485명/일"]) assert.ok(values.includes(v), `${v} on the 2025 card`);
   await page.screenshot({ path: join(output, "visits-1440.png") });
   check("task tabs and real before/during/after means on the public archive", { tabs });
+
+  // Overlay first: one chart lined up on the first festival day; a line hides and shows; separate charts on request.
+  const overlay = page.getByRole("img", { name: "논산시 외지인 방문 추이 · 회차 겹쳐 보기", exact: true });
+  await overlay.waitFor();
+  const desc = () => overlay.evaluate(svg => svg.querySelector("desc")?.textContent ?? "");
+  assert.match(await desc(), /2025년 3\.27\(목\)~3\.30\(일\), 2024년 3\.21\(목\)~3\.24\(일\)/);
+  await page.getByRole("checkbox", { name: /^2024년 · .* 선 보이기$/ }).uncheck();
+  assert.doesNotMatch(await desc(), /2024년/);
+  await page.getByRole("checkbox", { name: /^2024년 · .* 선 보이기$/ }).check();
+  await page.locator("section[aria-label='회차 겹쳐 보기']").screenshot({ path: join(output, "visits-overlay-1440.png") });
+  await page.getByRole("group", { name: "그래프 보기 방식" }).getByRole("button", { name: "따로 보기", exact: true }).click();
+  assert.equal(await page.getByRole("img", { name: /^\d{4}년 논산시 외지인 방문 추이, / }).count(), 2);
+  await page.getByRole("group", { name: "그래프 보기 방식" }).getByRole("button", { name: "겹쳐 보기", exact: true }).click();
+  check("visits overlay chart by default, line toggle and separate charts on request");
 
   await page.getByRole("navigation", { name: "다음 할 일" }).getByRole("link", { name: /이어서\s*연계 관광 찾기/ }).click();
   await page.waitForURL(u => u.pathname.endsWith("/resources"));
