@@ -25,7 +25,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-[1760px] flex-1 scroll-mt-24 px-5 py-8 lg:px-8">{children}</main>
       <footer className="no-print mt-10 border-t border-ink/10">
         <div className="mx-auto flex min-h-[72px] w-full max-w-[1760px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-3 text-sm text-[#43536a] lg:px-8">
-          <span className="font-bold text-ink">{siteConfig.name}</span>
+          <span className="flex min-w-0 flex-wrap items-baseline gap-x-4 gap-y-1">
+            <span className="font-bold text-ink">{siteConfig.name}</span>
+            <span className="break-keep text-xs">관광 자료 출처: ⓒ한국관광공사 (한국관광콘텐츠랩·한국관광 데이터랩)</span>
+          </span>
           <span className="flex flex-wrap items-center gap-x-5">
             <FooterPrivacyLink />
             <ConsentSettingsButton className="inline-flex min-h-11 items-center hover:text-ink hover:underline" />

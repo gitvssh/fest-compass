@@ -50,11 +50,13 @@ test("all 304 CSVs and 5 source docs are manifest-listed with matching bytes and
   assert.equal(trend.length, 26);
   assert.ok(trend.every(f => f.use === "consumed" && f.header.length === 16 && f.header[2] === "축체기간(일)"));
   assert.equal(trend.reduce((n, f) => n + f.rowCount, 0), 147);
-  // The one extra consumed file is the reviewed region annual source, by exact path; the festival build ignores it.
+  // Every festival table is consumed (trend here, the other three by the profile build); the one extra consumed file is
+  // the reviewed region annual source, by exact path. The festival build reads only the trend table.
   const consumed = manifest.files.filter(f => f.use === "consumed");
   assert.deepEqual(consumed.filter(f => f.group !== "festival").map(f => f.path), CONSUMED_REGION_PATHS);
   assert.deepEqual(CONSUMED_REGION_PATHS, ["data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv"]);
-  assert.equal(consumed.filter(f => f.group === "festival").length, 26);
+  assert.equal(consumed.filter(f => f.group === "festival").length, 104);
+  assert.equal(consumed.filter(f => f.table === "연도별 방문자 추이").length, 26);
   assert.ok(manifest.files.filter(f => f.group === "region" || f.table !== "방문자 수 추이" && f.group === "region_visitor").every(f => f.use === "preserved-only"));
 });
 

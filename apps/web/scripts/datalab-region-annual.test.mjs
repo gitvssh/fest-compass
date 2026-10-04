@@ -84,14 +84,14 @@ test("annual outside equals the sum of the district's daily outside visits for e
   assert.deepEqual(checked, [2023, 2024, 2025]);
 });
 
-test("manifest consumes exactly 26 festival trends plus the one reviewed region file; region IDs cover it exactly", () => {
+test("manifest consumes the 104 festival tables plus the one reviewed region file; region IDs cover it exactly", () => {
   const { manifest } = verifyImport(), ids = JSON.parse(readFileSync(`${REPO_ROOT}${REGION_IDS_PATH}`, "utf8"));
   const consumed = manifest.files.filter(f => f.use === "consumed");
-  assert.equal(consumed.filter(f => f.group === "festival").length, 26);
+  assert.equal(consumed.filter(f => f.group === "festival").length, 104);
   assert.deepEqual(consumed.filter(f => f.group !== "festival").map(f => f.path), CONSUMED_REGION_PATHS);
   assert.deepEqual(ids.regions.map(r => r.sourceFile), CONSUMED_REGION_PATHS);
   assert.equal(manifest.files.filter(f => f.group === "region_visitor" && f.use === "preserved-only").length, 95);
-  assert.equal(manifest.files.filter(f => f.use === "preserved-only").length, 309 - 27);
+  assert.equal(manifest.files.filter(f => f.use === "preserved-only").length, 309 - 105);
 });
 
 function sandbox() {
@@ -108,7 +108,7 @@ test("tampered bytes, widened consumption and unreviewed region codes are reject
   const cases = [
     [root => appendFileSync(`${root}${ORIGINAL_DIR}/${CONSUMED_REGION_PATHS[0]}`, "x"), /hash mismatch/],
     [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.path === residence).use = "consumed"; m.files.find(f => f.path === CONSUMED_REGION_PATHS[0]).use = "preserved-only"; }), /Manifest entry mismatch/],
-    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.path === CONSUMED_REGION_PATHS[0]).use = "preserved-only"; m.counts.consumed = 26; }), /Unexpected consumed count/],
+    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.path === CONSUMED_REGION_PATHS[0]).use = "preserved-only"; m.counts.consumed = 104; }), /Unexpected consumed count/],
     [root => editJson(root, REGION_IDS_PATH, m => { m.regions[0].sourceFile = residence; }), /cover consumed/],
     [root => editJson(root, REGION_IDS_PATH, m => { m.regions.push({ ...m.regions[0], code: "46770" }); }), /cover consumed/],
     [root => editJson(root, REGION_IDS_PATH, m => { m.regions[0].code = "44230"; }), /not in catalogue/],

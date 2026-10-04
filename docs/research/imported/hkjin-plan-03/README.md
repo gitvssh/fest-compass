@@ -33,8 +33,10 @@
 
 ## 앱에서 쓰는 범위
 
-앱은 `연도별 방문자 추이` 26개 파일(147행)과 임실군 `방문자 수 추이` 1개 파일(24행)을 쓴다(`use: consumed`).
-나머지 277개 CSV와 문서는 출처 보관용이다. 2026-09-24 추가 범위·검증은 [기록37](../../../validation/37-visitor-context.md)을 따른다.
+앱은 축제 폴더 26개의 네 표 104개 파일과 임실군 `방문자 수 추이` 1개 파일(24행)을 쓴다(`use: consumed`, 모두 105개).
+`연도별 방문자 추이`는 2026-09-23부터, 나머지 세 표(`문화관광축제 주요 지표`·`성-연령별 내국인 방문자`·`목적지 검색순위`)는 2026-10-04부터다
+([검수49](../../../validation/49-datalab-festival-profiles.md)). `region/` 104개와 `region_visitor/`의 나머지 95개, 문서는 아직 출처 보관용이다.
+2026-09-24 추가 범위·검증은 [기록37](../../../validation/37-visitor-context.md)을 따른다.
 
 - 값의 뜻: 축제가 열린 행정동에서 통신 데이터로 추정한 방문자 수의 **개최기간 합계**와 **일평균**. 개최기간이
   짧으면 합계가 줄 수 있다. 행사장 입장객, 연간 방문객, 시군구 일별 방문 이력(`Edition.visits`)과 다르다.
@@ -56,8 +58,11 @@
 - 과학적 숫자 표기를 해석하되 원문 문자열을 보존한다. 전체는 제공값을 유지하며 2021·2024년 구분별 합과 1 차이가 있다.
 - 축제 ID 대응은 `datalab-festival-links.json`이다. 같은 이름·개최일수가 대조된 임실 2023~2025 회차에만 구성 자료를 연결한다.
   지역 전체 일별 값과 축제 개최 행정동 값은 다른 공간이며 같은 차트로 합치지 않는다.
-- 성·연령·거주지·목적지 순위에는 관측기간을 확정할 열·수집 메모가 없다. 폴더 범위를 그대로 적용하지 않으며,
-  후속 공식 다운로드에서 선택한 연도·대상·공간을 함께 확보한 뒤 연결한다.
+- 성·연령·거주지·목적지 순위에는 관측기간을 확정할 열·수집 메모가 없다. 폴더 이름만으로 기간을 정하지 않는다.
+  2026-10-04 축제 표는 같은 내려받기의 방문 추이 연도 범위, 임실 세 해 화면 자료와의 불일치(어느 한 해와도 다름), 여러 해 장소가 섞인 목적지 목록,
+  같은 방식으로 받은 지역 표의 2018~2025 합계 일치로 `내려받기 범위 합산`임을 확인하고 연결했다(근거: [검수49](../../../validation/49-datalab-festival-profiles.md)).
+  지역 `방문자 거주지`는 아직 연결하지 않았다.
+- `문화관광축제 주요 지표`의 열 개 값이 모두 0인 해 7개는 측정값 없음으로 보고 화면에 0으로 그리지 않는다.
 
 ## 시각 정보
 
@@ -84,6 +89,9 @@ node scripts/build-datalab-festival-trend.mjs            # apps/web/data/datalab
 node --test scripts/datalab-festival-trend.test.mjs
 node scripts/build-datalab-region-annual.mjs --verify  # 임실 지역 추이·원문·생성 파일 확인
 node scripts/build-datalab-region-annual.mjs           # 지역 추이 재생성
+node scripts/build-datalab-festival-profiles.mjs --verify  # 주요 지표·성연령·목적지 순위 확인
+node scripts/build-datalab-festival-profiles.mjs           # apps/web/data/datalab-festival-profiles.json 재생성
+node --test scripts/datalab-festival-profiles.test.mjs
 # 원본 체크아웃이 있을 때만: 목록 재작성
 node scripts/build-datalab-festival-trend.mjs --init-manifest --source-repo <pick-d-day 체크아웃>
 ```

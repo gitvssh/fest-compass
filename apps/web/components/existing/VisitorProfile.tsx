@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { DemographicBars, pct, SEX } from "@/components/DemographicBars";
 import { compareDestinations, percentagePointChange } from "@/lib/datalab/visitor-profile-compare";
 import type { VisitorProfile as Profile, VisitorProfileBand, VisitorProfileResource, VisitorProfileSelection } from "@/lib/datalab/visitor-profile-types";
 import { dateOnly, daysBetween, shortDate } from "./format";
@@ -10,16 +11,11 @@ import { Disclosure, InfoDialog, TableScroll } from "./ui";
 type Group = Profile["destinationGroups"][number]["group"];
 type BandPair = { ageBand: string; before: VisitorProfileBand; after: VisitorProfileBand };
 const GROUP_ORDER: Group[] = ["outside", "local", "all"];
-const pct = (value: number) => `${value.toFixed(1)}%`;
 const signed = (value: number) => `${value > 0 ? "+" : value < 0 ? "-" : ""}${Math.abs(value).toFixed(1)}`;
 const rankText = (rank: number | null) => (rank === null ? "—" : `${rank}위`);
 const rankChangeText = (change: number | null) => (change === null ? "—" : change > 0 ? `${change}위 상승` : change < 0 ? `${-change}위 하락` : "같음");
 const periodOf = (p: Profile) => `${p.start.slice(0, 4)}.${shortDate(p.start)}–${shortDate(p.end)}`;
 const daysOf = (p: Profile) => daysBetween(p.start, p.end);
-const SEX = [
-  { key: "malePercent", short: "남", label: "남성", swatch: "bg-blue", soft: "bg-blue/40" },
-  { key: "femalePercent", short: "여", label: "여성", swatch: "bg-coral", soft: "bg-coral/45" },
-] as const;
 
 /**
  * Reviewed visitor profile for the selected editions of the host town: one edition as a single profile, two editions
@@ -40,7 +36,7 @@ function SingleProfile({ festivalId, festivalName, data }: { festivalId: string;
       <p className="text-sm text-muted">{period} · {data.areaName} · 내국인 · 통신 기반 추정</p>
     </div>
     <div className="grid items-start gap-4 lg:grid-cols-2">
-      {data.demographics.length > 0 && <Demographics rows={data.demographics} />}
+      {data.demographics.length > 0 && <DemographicBars rows={data.demographics} />}
       {data.destinationGroups.length > 0 && <Destinations festivalId={festivalId} areaName={data.areaName} groups={data.destinationGroups} />}
     </div>
     <div className="flex flex-wrap items-start gap-2">
@@ -117,35 +113,6 @@ function ProfileComparison({ festivalId, festivalName, before, after, recentPair
         <p>관광자원에서 보기는 한국관광공사 관광정보에 지금 등록된 같은 장소를 열어요.</p>
         {[before, after].map(p => <p key={p.editionId}>{p.year}년 자료: <a className="font-bold text-blue underline" href={p.source.url} target="_blank" rel="noreferrer">{p.source.title} ↗</a> · 수집 {dateOnly(p.source.collectedAt)}</p>)}
       </InfoDialog>
-    </div>
-  </section>;
-}
-
-function Demographics({ rows }: { rows: Profile["demographics"] }) {
-  const id = useId();
-  // One shared scale for every bar, rounded up to a whole 5%.
-  const max = Math.max(5, Math.ceil(Math.max(0, ...rows.flatMap(r => [r.malePercent, r.femalePercent])) / 5) * 5);
-  const label = `성·연령별 비율, 내국인 방문자 전체 중. ${rows.map(r => `${r.ageBand} 남성 ${pct(r.malePercent)}, 여성 ${pct(r.femalePercent)}`).join("; ")}`;
-  return <section aria-labelledby={`${id}-heading`} className="min-w-0 space-y-2">
-    <div>
-      <h4 id={`${id}-heading`} className="font-extrabold">성·연령별 비율</h4>
-      <p className="text-xs text-muted">내국인 방문자 전체 중 비율(%)</p>
-    </div>
-    <p className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted">
-      {SEX.map(s => <span key={s.key} className="inline-flex items-center gap-1"><span aria-hidden="true" className={`inline-block h-3 w-3 rounded-sm ${s.swatch}`} />{s.label}({s.short})</span>)}
-    </p>
-    <div role="img" aria-label={label} className="space-y-2">
-      <div aria-hidden="true" className="grid grid-cols-[4.5rem_1.25rem_minmax(0,1fr)_3rem] gap-x-1.5 text-xs text-muted">
-        <span className="col-start-3 flex justify-between"><span>0%</span><span>{max}%</span></span>
-      </div>
-      {rows.map(r => <div key={r.ageBand} aria-hidden="true" className="grid grid-cols-[4.5rem_1.25rem_minmax(0,1fr)_3rem] items-center gap-x-1.5 gap-y-0.5 text-xs">
-        <span className="row-span-2 text-sm">{r.ageBand}</span>
-        {SEX.map(s => <span key={s.key} className="contents">
-          <span className="text-muted">{s.short}</span>
-          <span className="block h-2.5 rounded bg-paper"><span className={`block h-full rounded ${s.swatch}`} style={{ width: `${Math.min(100, (r[s.key] / max) * 100)}%` }} /></span>
-          <span className="text-right tabular-nums">{pct(r[s.key])}</span>
-        </span>)}
-      </div>)}
     </div>
   </section>;
 }

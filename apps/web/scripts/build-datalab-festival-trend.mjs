@@ -22,12 +22,13 @@ export const SOURCE = {
 export const OFFICIAL_URL = "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do";
 export const TREND_HEADER = ["축제명", "개최년도", "축체기간(일)", "(현지인)방문자수", "(외지인)방문자수", "(외국인)방문자수", "(전체)방문자수", "일평균 방문자수", "전년도 일평균 방문자수", "일평균 방문자수 증감률", "(이전)전체방문자", "(전체)방문자증감", "(현지인)방문자비율", "(외지인)방문자비율", "(외국인)방문자비율", "전년대비방문자증감비율"];
 const DOCS = ["data/README.md", "data/CHECKLIST.md", "data/COLLECT-REGION.md", "01-retraction.md", "02-results.md"];
-const FESTIVAL_TABLES = ["목적지 검색순위", "문화관광축제 주요 지표", "성-연령별 내국인 방문자", "연도별 방문자 추이"];
+export const FESTIVAL_TABLES = ["목적지 검색순위", "문화관광축제 주요 지표", "성-연령별 내국인 방문자", "연도별 방문자 추이"];
 const REGION_TABLES = ["관광소비 추이", "관광소비 히트맵", "업종별 지출액", "지역별 지출액"];
 const VISITOR_TABLES = ["방문자 거주지", "방문자 수 추이", "방문자수 히트맵", "지역별 방문자 수"];
 // Reviewed 2026-09-24: exact region files read by build-datalab-region-annual.mjs. Never widen to a whole group or table.
 export const CONSUMED_REGION_PATHS = ["data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv"];
-export const EXPECTED_COUNTS = { csv: 304, festival: 104, region: 104, region_visitor: 96, doc: 5, consumed: 27 };
+// Reviewed 2026-10-04: every festival table is read — the trend here, the other three by build-datalab-festival-profiles.mjs.
+export const EXPECTED_COUNTS = { csv: 304, festival: 104, region: 104, region_visitor: 96, doc: 5, consumed: 105 };
 
 export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 export const gitBlobId = bytes => createHash("sha1").update(Buffer.concat([Buffer.from(`blob ${bytes.length}\0`), bytes])).digest("hex");
@@ -56,7 +57,7 @@ function manifestEntry(path, bytes, gitBlob) {
   const base = { path, group: c.group, table: c.table, bytes: bytes.length, sha256: sha256(bytes), gitBlob, encoding: d.encoding, lineEnding: d.lineEnding };
   if (c.group === "doc") return { ...base, use: "preserved-only", url: originalUrl(path) };
   const { header, rows } = parseTable(d.text);
-  const consumed = (c.group === "festival" && c.table === "연도별 방문자 추이") || (c.group === "region_visitor" && CONSUMED_REGION_PATHS.includes(path));
+  const consumed = c.group === "festival" || (c.group === "region_visitor" && CONSUMED_REGION_PATHS.includes(path));
   return { ...base, header, rowCount: rows.length, use: consumed ? "consumed" : "preserved-only", url: originalUrl(path) };
 }
 
@@ -112,7 +113,7 @@ const req = (v, what) => { if (v === null) throw new Error(`Missing required val
 export function buildDataset(root = REPO_ROOT) {
   const { manifest, manifestSha256, files } = verifyImport(root);
   const ids = JSON.parse(readFileSync(`${root}${IDS_PATH}`, "utf8"));
-  const consumed = manifest.files.filter(f => f.use === "consumed" && f.group === "festival").map(f => f.path);
+  const consumed = manifest.files.filter(f => f.use === "consumed" && f.group === "festival" && f.table === "연도별 방문자 추이").map(f => f.path);
   const mapped = ids.festivals.map(f => f.sourceFile);
   if (new Set(ids.festivals.map(f => f.id)).size !== ids.festivals.length || ids.festivals.some(f => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(f.id))) throw new Error("Festival IDs must be unique slugs");
   if (new Set(mapped).size !== mapped.length || mapped.length !== consumed.length || consumed.some(p => !mapped.includes(p))) throw new Error("ID mapping does not cover consumed files exactly");

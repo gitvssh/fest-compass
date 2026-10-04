@@ -14,7 +14,7 @@
     "region": 104,
     "region_visitor": 96,
     "doc": 5,
-    "consumed": 27
+    "consumed": 105
   },
   "files": [
     {
@@ -59,7 +59,7 @@
         "카테고리"
       ],
       "rowCount": 48,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829165421_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829165421_%EC%84%9C%EC%82%B0%ED%95%B4%EB%AF%B8%EC%9D%8D%EC%84%B1%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -79,7 +79,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829165421_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829165421_%EC%84%9C%EC%82%B0%ED%95%B4%EB%AF%B8%EC%9D%8D%EC%84%B1%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -98,7 +98,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829165421_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829165421_%EC%84%9C%EC%82%B0%ED%95%B4%EB%AF%B8%EC%9D%8D%EC%84%B1%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -150,7 +150,7 @@
         "카테고리"
       ],
       "rowCount": 75,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174020_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174020_%EA%B0%95%EB%A6%89%EC%BB%A4%ED%94%BC%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -170,7 +170,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174020_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174020_%EA%B0%95%EB%A6%89%EC%BB%A4%ED%94%BC%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -189,7 +189,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174020_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174020_%EA%B0%95%EB%A6%89%EC%BB%A4%ED%94%BC%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -241,7 +241,7 @@
         "카테고리"
       ],
       "rowCount": 57,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174154_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174154_%EB%AA%A9%ED%8F%AC%ED%95%AD%EA%B5%AC%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -261,7 +261,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174154_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174154_%EB%AA%A9%ED%8F%AC%ED%95%AD%EA%B5%AC%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -280,7 +280,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174154_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174154_%EB%AA%A9%ED%8F%AC%ED%95%AD%EA%B5%AC%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -332,7 +332,7 @@
         "카테고리"
       ],
       "rowCount": 168,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174203_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174203_%EC%88%98%EC%9B%90%ED%99%94%EC%84%B1%EB%AC%B8%ED%99%94%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -352,7 +352,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174203_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174203_%EC%88%98%EC%9B%90%ED%99%94%EC%84%B1%EB%AC%B8%ED%99%94%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -371,7 +371,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174203_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174203_%EC%88%98%EC%9B%90%ED%99%94%EC%84%B1%EB%AC%B8%ED%99%94%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -423,7 +423,7 @@
         "카테고리"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174211_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174211_%EB%8C%80%EA%B5%AC%EC%B9%98%EB%A7%A5%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -443,7 +443,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174211_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174211_%EB%8C%80%EA%B5%AC%EC%B9%98%EB%A7%A5%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -462,7 +462,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174211_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174211_%EB%8C%80%EA%B5%AC%EC%B9%98%EB%A7%A5%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -514,7 +514,7 @@
         "카테고리"
       ],
       "rowCount": 57,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174220_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174220_%EC%88%9C%EC%B0%BD%EC%9E%A5%EB%A5%98%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -534,7 +534,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174220_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174220_%EC%88%9C%EC%B0%BD%EC%9E%A5%EB%A5%98%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -553,7 +553,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174220_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174220_%EC%88%9C%EC%B0%BD%EC%9E%A5%EB%A5%98%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -605,7 +605,7 @@
         "카테고리"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174228_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174228_%EA%B4%91%EC%95%88%EB%A6%AC%EC%96%B4%EB%B0%A9%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -625,7 +625,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174228_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174228_%EA%B4%91%EC%95%88%EB%A6%AC%EC%96%B4%EB%B0%A9%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -644,7 +644,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174228_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174228_%EA%B4%91%EC%95%88%EB%A6%AC%EC%96%B4%EB%B0%A9%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -696,7 +696,7 @@
         "카테고리"
       ],
       "rowCount": 84,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174334_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174334_%EC%9D%8C%EC%84%B1%ED%92%88%EB%B0%94%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -716,7 +716,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174334_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174334_%EC%9D%8C%EC%84%B1%ED%92%88%EB%B0%94%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -735,7 +735,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174334_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174334_%EC%9D%8C%EC%84%B1%ED%92%88%EB%B0%94%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -787,7 +787,7 @@
         "카테고리"
       ],
       "rowCount": 93,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174342_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2024_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174342_%EA%B3%A0%EB%A0%B9%EB%8C%80%EA%B0%80%EC%95%BC%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -807,7 +807,7 @@
         "지표값"
       ],
       "rowCount": 50,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174342_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2024_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174342_%EA%B3%A0%EB%A0%B9%EB%8C%80%EA%B0%80%EC%95%BC%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -826,7 +826,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174342_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2024_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174342_%EA%B3%A0%EB%A0%B9%EB%8C%80%EA%B0%80%EC%95%BC%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -878,7 +878,7 @@
         "카테고리"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174351_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174351_%EB%B6%80%ED%8F%89%ED%92%8D%EB%AC%BC%EB%8C%80%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -898,7 +898,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174351_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174351_%EB%B6%80%ED%8F%89%ED%92%8D%EB%AC%BC%EB%8C%80%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -917,7 +917,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174351_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174351_%EB%B6%80%ED%8F%89%ED%92%8D%EB%AC%BC%EB%8C%80%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -969,7 +969,7 @@
         "카테고리"
       ],
       "rowCount": 33,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174359_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174359_%EB%B0%80%EC%96%91%EC%95%84%EB%A6%AC%EB%9E%91%EB%8C%80%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -989,7 +989,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174359_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174359_%EB%B0%80%EC%96%91%EC%95%84%EB%A6%AC%EB%9E%91%EB%8C%80%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1008,7 +1008,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174359_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174359_%EB%B0%80%EC%96%91%EC%95%84%EB%A6%AC%EB%9E%91%EB%8C%80%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1060,7 +1060,7 @@
         "카테고리"
       ],
       "rowCount": 99,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174416_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174416_%EC%9A%B8%EC%82%B0%EC%98%B9%EA%B8%B0%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1080,7 +1080,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174416_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174416_%EC%9A%B8%EC%82%B0%EC%98%B9%EA%B8%B0%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1099,7 +1099,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174416_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174416_%EC%9A%B8%EC%82%B0%EC%98%B9%EA%B8%B0%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1151,7 +1151,7 @@
         "카테고리"
       ],
       "rowCount": 81,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174425_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174425_%EC%A0%95%EC%84%A0%EC%95%84%EB%A6%AC%EB%9E%91%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1171,7 +1171,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174425_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174425_%EC%A0%95%EC%84%A0%EC%95%84%EB%A6%AC%EB%9E%91%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1190,7 +1190,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174425_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174425_%EC%A0%95%EC%84%A0%EC%95%84%EB%A6%AC%EB%9E%91%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1242,7 +1242,7 @@
         "카테고리"
       ],
       "rowCount": 33,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174433_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2024_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174433_%EC%98%81%EC%95%94%EC%99%95%EC%9D%B8%EB%AC%B8%ED%99%94%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1262,7 +1262,7 @@
         "지표값"
       ],
       "rowCount": 50,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174433_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2024_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174433_%EC%98%81%EC%95%94%EC%99%95%EC%9D%B8%EB%AC%B8%ED%99%94%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1281,7 +1281,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174433_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2024_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174433_%EC%98%81%EC%95%94%EC%99%95%EC%9D%B8%EB%AC%B8%ED%99%94%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1333,7 +1333,7 @@
         "카테고리"
       ],
       "rowCount": 33,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174442_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174442_%EC%8B%9C%ED%9D%A5%EA%B0%AF%EA%B3%A8%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1353,7 +1353,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174442_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174442_%EC%8B%9C%ED%9D%A5%EA%B0%AF%EA%B3%A8%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1372,7 +1372,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174442_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174442_%EC%8B%9C%ED%9D%A5%EA%B0%AF%EA%B3%A8%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1424,7 +1424,7 @@
         "카테고리"
       ],
       "rowCount": 69,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174450_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174450_%ED%8F%AC%ED%95%AD%EA%B5%AD%EC%A0%9C%EB%B6%88%EB%B9%9B%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1444,7 +1444,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174450_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174450_%ED%8F%AC%ED%95%AD%EA%B5%AD%EC%A0%9C%EB%B6%88%EB%B9%9B%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1463,7 +1463,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174450_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174450_%ED%8F%AC%ED%95%AD%EA%B5%AD%EC%A0%9C%EB%B6%88%EB%B9%9B%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1515,7 +1515,7 @@
         "카테고리"
       ],
       "rowCount": 114,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174507_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174507_%EC%9D%B8%EC%B2%9C%ED%8E%9C%ED%83%80%ED%8F%AC%ED%8A%B8%EC%9D%8C%EC%95%85%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1535,7 +1535,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174507_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174507_%EC%9D%B8%EC%B2%9C%ED%8E%9C%ED%83%80%ED%8F%AC%ED%8A%B8%EC%9D%8C%EC%95%85%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1554,7 +1554,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174507_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174507_%EC%9D%B8%EC%B2%9C%ED%8E%9C%ED%83%80%ED%8F%AC%ED%8A%B8%EC%9D%8C%EC%95%85%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1606,7 +1606,7 @@
         "카테고리"
       ],
       "rowCount": 66,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174516_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174516_%EB%B3%B4%EC%84%B1%EB%8B%A4%ED%96%A5%EB%8C%80%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1626,7 +1626,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174516_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174516_%EB%B3%B4%EC%84%B1%EB%8B%A4%ED%96%A5%EB%8C%80%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1645,7 +1645,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174516_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174516_%EB%B3%B4%EC%84%B1%EB%8B%A4%ED%96%A5%EB%8C%80%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1697,7 +1697,7 @@
         "카테고리"
       ],
       "rowCount": 93,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174533_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174533_%EC%97%B0%EC%B2%9C%EA%B5%AC%EC%84%9D%EA%B8%B0%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1717,7 +1717,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174533_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174533_%EC%97%B0%EC%B2%9C%EA%B5%AC%EC%84%9D%EA%B8%B0%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1736,7 +1736,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174533_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174533_%EC%97%B0%EC%B2%9C%EA%B5%AC%EC%84%9D%EA%B8%B0%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1788,7 +1788,7 @@
         "카테고리"
       ],
       "rowCount": 87,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174551_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174551_%EC%A7%84%EC%95%88%ED%99%8D%EC%82%BC%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1808,7 +1808,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174551_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174551_%EC%A7%84%EC%95%88%ED%99%8D%EC%82%BC%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1827,7 +1827,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174551_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174551_%EC%A7%84%EC%95%88%ED%99%8D%EC%82%BC%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1879,7 +1879,7 @@
         "카테고리"
       ],
       "rowCount": 222,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174608_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174608_%ED%99%94%EC%84%B1%EB%B1%83%EB%86%80%EC%9D%B4%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1899,7 +1899,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174608_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174608_%ED%99%94%EC%84%B1%EB%B1%83%EB%86%80%EC%9D%B4%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -1918,7 +1918,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829174608_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829174608_%ED%99%94%EC%84%B1%EB%B1%83%EB%86%80%EC%9D%B4%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -1970,7 +1970,7 @@
         "카테고리"
       ],
       "rowCount": 21,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175205_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175205_%ED%95%9C%EC%82%B0%EB%AA%A8%EC%8B%9C%EB%AC%B8%ED%99%94%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -1990,7 +1990,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175205_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175205_%ED%95%9C%EC%82%B0%EB%AA%A8%EC%8B%9C%EB%AC%B8%ED%99%94%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -2009,7 +2009,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175205_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175205_%ED%95%9C%EC%82%B0%EB%AA%A8%EC%8B%9C%EB%AC%B8%ED%99%94%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -2061,7 +2061,7 @@
         "카테고리"
       ],
       "rowCount": 27,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175229_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175229_%EC%9E%84%EC%8B%A4N%EC%B9%98%EC%A6%88%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -2081,7 +2081,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175229_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175229_%EC%9E%84%EC%8B%A4N%EC%B9%98%EC%A6%88%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -2100,7 +2100,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175229_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175229_%EC%9E%84%EC%8B%A4N%EC%B9%98%EC%A6%88%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -2152,7 +2152,7 @@
         "카테고리"
       ],
       "rowCount": 84,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175253_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175253_%ED%8F%89%EC%B0%BD%EC%86%A1%EC%96%B4%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -2172,7 +2172,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175253_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175253_%ED%8F%89%EC%B0%BD%EC%86%A1%EC%96%B4%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -2191,7 +2191,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175253_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175253_%ED%8F%89%EC%B0%BD%EC%86%A1%EC%96%B4%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -2243,7 +2243,7 @@
         "카테고리"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175318_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175318_%EC%A0%95%EB%82%A8%EC%A7%84%EC%9E%A5%ED%9D%A5%EB%AC%BC%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -2263,7 +2263,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175318_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175318_%EC%A0%95%EB%82%A8%EC%A7%84%EC%9E%A5%ED%9D%A5%EB%AC%BC%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -2282,7 +2282,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175318_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175318_%EC%A0%95%EB%82%A8%EC%A7%84%EC%9E%A5%ED%9D%A5%EB%AC%BC%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {
@@ -2334,7 +2334,7 @@
         "카테고리"
       ],
       "rowCount": 90,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175342_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175342_%EC%95%88%EC%84%B1%EB%A7%9E%EC%B6%A4%EB%82%A8%EC%82%AC%EB%8B%B9%EB%B0%94%EC%9A%B0%EB%8D%95%EC%9D%B4%EC%B6%95%EC%A0%9C_%EB%AA%A9%EC%A0%81%EC%A7%80%20%EA%B2%80%EC%83%89%EC%88%9C%EC%9C%84.csv"
     },
     {
@@ -2354,7 +2354,7 @@
         "지표값"
       ],
       "rowCount": 60,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175342_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175342_%EC%95%88%EC%84%B1%EB%A7%9E%EC%B6%A4%EB%82%A8%EC%82%AC%EB%8B%B9%EB%B0%94%EC%9A%B0%EB%8D%95%EC%9D%B4%EC%B6%95%EC%A0%9C_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C%20%EC%A3%BC%EC%9A%94%20%EC%A7%80%ED%91%9C.csv"
     },
     {
@@ -2373,7 +2373,7 @@
         "여성비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/20260829175342_%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%B6%95%EC%A0%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260829175342_%EC%95%88%EC%84%B1%EB%A7%9E%EC%B6%A4%EB%82%A8%EC%82%AC%EB%8B%B9%EB%B0%94%EC%9A%B0%EB%8D%95%EC%9D%B4%EC%B6%95%EC%A0%9C_%EC%84%B1-%EC%97%B0%EB%A0%B9%EB%B3%84%20%EB%82%B4%EA%B5%AD%EC%9D%B8%20%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
     },
     {

@@ -2,17 +2,20 @@
 import Link from "next/link";
 import { useMemo, useRef, useState, type RefObject } from "react";
 import { axisYears, consecutiveRuns, formatCount, formatMetric, METRICS, metricValue, niceMax, searchFestivals } from "@/lib/datalab/model";
+import type { FestivalProfiles } from "@/lib/datalab/festival-profile-types";
 import type { FestivalPeriodDataset, FestivalPeriodTrend as Trend, FestivalPeriodYear, PeriodMetric } from "@/lib/datalab/types";
+import { FestivalProfile, PROFILE_SECTIONS } from "./FestivalProfile";
 
 const W = 720, H = 290, L = 76, R = 700, T = 24, B = 236;
 
-export function FestivalPeriodTrend({ dataset, initialId, initialMetric, missingRequest }: { dataset: FestivalPeriodDataset; initialId: string | null; initialMetric: PeriodMetric; missingRequest: boolean }) {
+export function FestivalPeriodTrend({ dataset, profiles, initialId, initialMetric, missingRequest }: { dataset: FestivalPeriodDataset; profiles: FestivalProfiles | null; initialId: string | null; initialMetric: PeriodMetric; missingRequest: boolean }) {
   const [query, setQuery] = useState(""), [id, setId] = useState(initialId), [metric, setMetric] = useState(initialMetric);
   const [activeYear, setActiveYear] = useState<number | null>(null), [missing, setMissing] = useState(missingRequest);
   const heading = useRef<HTMLHeadingElement>(null);
   const matches = useMemo(() => searchFestivals(dataset.festivals, query), [dataset.festivals, query]);
   const years = useMemo(() => axisYears(dataset.festivals), [dataset.festivals]);
   const festival = dataset.festivals.find(f => f.id === id) ?? null;
+  const profile = festival && profiles?.festivals.find(p => p.id === festival.id) || null;
   function sync(nextId: string | null, nextMetric: PeriodMetric) {
     const params = new URLSearchParams();
     if (nextId) params.set("festival", nextId);
@@ -23,7 +26,7 @@ export function FestivalPeriodTrend({ dataset, initialId, initialMetric, missing
   function choose(next: string) { setId(next); setActiveYear(null); setMissing(false); sync(next, metric); requestAnimationFrame(() => heading.current?.focus()); }
   function chooseMetric(next: PeriodMetric) { setMetric(next); sync(id, next); }
   return <div className="space-y-6">
-    <header className="space-y-3"><p className="text-xs font-extrabold text-blue">축제 개최 행정동 · 개최기간 · 통신 기반</p><h1 className="text-3xl font-extrabold">개최연도별 방문 흐름</h1><p className="max-w-3xl text-sm leading-7 text-muted">문화관광축제를 골라 개최기간의 일평균 방문자와 방문 합계를 비교합니다.</p><Link href="/compare/scale" className="region-button">{dataset.festivals.length}곳 방문 규모 한눈에 보기</Link></header>
+    <header className="space-y-3"><p className="text-xs font-extrabold text-blue">한국관광 데이터랩 · 문화관광축제 {dataset.festivals.length}곳</p><h1 className="text-3xl font-extrabold">축제별 방문 자료</h1><p className="max-w-3xl text-sm leading-7 text-muted">축제를 골라 해마다 방문, 축제 기간과 평소의 차이, 방문객 성·연령, 많이 찾은 곳을 봐요.</p><Link href="/compare/scale" className="region-button">{dataset.festivals.length}곳 방문 규모 한눈에 보기</Link></header>
     <div className="grid gap-4 lg:grid-cols-[18rem_minmax(0,1fr)]">
       <section className="region-card space-y-3 self-start" aria-labelledby="period-trend-picker">
         <h2 id="period-trend-picker" className="text-lg font-extrabold">축제 선택</h2>
@@ -35,21 +38,25 @@ export function FestivalPeriodTrend({ dataset, initialId, initialMetric, missing
       </section>
       <div className="min-w-0 space-y-4">
         {missing && !festival && <p role="status" className="rounded-xl bg-paper p-4 text-sm font-bold">요청한 축제의 자료가 없습니다. 목록에서 골라 주세요.</p>}
-        {festival ? <TrendPanel key={festival.id} dataset={dataset} festival={festival} years={years} metric={metric} onMetric={chooseMetric} activeYear={activeYear} onYear={setActiveYear} heading={heading} />
-          : !missing && <section className="region-card"><p className="text-sm font-bold">목록에서 축제를 고르면 개최연도별 방문 흐름과 수치 표를 보여 줍니다.</p></section>}
+        {festival ? <>
+          <TrendPanel key={festival.id} dataset={dataset} festival={festival} years={years} metric={metric} onMetric={chooseMetric} activeYear={activeYear} onYear={setActiveYear} heading={heading} hasProfile={!!profile} />
+          {profile && profiles && <FestivalProfile key={`profile-${profile.id}`} profile={profile} officialUrl={profiles.officialUrl} />}
+        </> : !missing && <section className="region-card"><p className="text-sm font-bold">목록에서 축제를 고르면 해마다 방문 흐름, 축제 기간과 평소 비교, 방문객 성·연령, 목적지 검색순위를 보여 줘요.</p></section>}
       </div>
     </div>
   </div>;
 }
 
-function TrendPanel({ dataset, festival, years, metric, onMetric, activeYear, onYear, heading }: { dataset: FestivalPeriodDataset; festival: Trend; years: number[]; metric: PeriodMetric; onMetric: (m: PeriodMetric) => void; activeYear: number | null; onYear: (y: number) => void; heading: RefObject<HTMLHeadingElement | null> }) {
+function TrendPanel({ dataset, festival, years, metric, onMetric, activeYear, onYear, heading, hasProfile }: { dataset: FestivalPeriodDataset; festival: Trend; years: number[]; metric: PeriodMetric; onMetric: (m: PeriodMetric) => void; activeYear: number | null; onYear: (y: number) => void; heading: RefObject<HTMLHeadingElement | null>; hasProfile: boolean }) {
   const byYear = new Map(festival.years.map(y => [y.year, y])), absent = years.filter(y => !byYear.has(y));
   const max = niceMax(Math.max(...festival.years.map(y => metricValue(y, metric))));
   const x = (year: number) => L + (year - years[0]) * (R - L) / Math.max(1, years.length - 1), y = (v: number) => B - v / max * (B - T);
   const active = activeYear === null ? null : byYear.get(activeYear) ?? null, m = METRICS[metric], unit = dataset.scope.unit;
   return <section className="region-card space-y-4" aria-labelledby="period-trend-title">
     <div className="flex flex-wrap items-start justify-between gap-3">
-      <div><h2 id="period-trend-title" ref={heading} tabIndex={-1} className="text-xl font-extrabold focus:outline-none">{festival.name}</h2><p className="mt-1 text-sm text-muted">{m.short} 방문자 · 단위 {unit}</p></div>
+      <div><h2 id="period-trend-title" ref={heading} tabIndex={-1} className="text-xl font-extrabold focus:outline-none">{festival.name}</h2><p className="mt-1 text-sm text-muted">{m.short} 방문자 · 단위 {unit}</p>
+        {hasProfile && <nav aria-label="이 축제의 다른 자료" className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-sm">{PROFILE_SECTIONS.map(x => <a key={x.id} href={`#${x.id}`} className="font-bold text-blue underline-offset-4 hover:underline" onClick={e => { e.preventDefault(); const t = document.getElementById(x.id); t?.scrollIntoView({ block: "start" }); t?.focus({ preventScroll: true }); }}>{x.label} ↓</a>)}</nav>}
+      </div>
       <div role="group" aria-label="표시 값" className="flex gap-2">{(["mean", "total"] as const).map(k => <button key={k} type="button" className="region-button" aria-pressed={metric === k} onClick={() => onMetric(k)}>{METRICS[k].label}</button>)}</div>
     </div>
     <div className="overflow-x-auto" role="region" aria-label={`${festival.name} 방문 흐름 그래프 영역`} tabIndex={0}>
