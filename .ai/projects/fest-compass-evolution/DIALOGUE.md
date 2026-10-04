@@ -1225,3 +1225,38 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Human
+
+## T-056 · Human · chair
+
+- Position: 2026-10-04 후속 요청과 결정: (1) 기존 축제 방문 흐름은 연도별 색으로 겹친 큰 그래프를 기본으로 하고 따로 보기는 바꿔 보기로 유지, 점에 상세 수치, 연계 관광 지도에 축제 위치 표시. (2) 자동차·도보 이동 시간 원은 보류(고려할 것이 너무 많아짐). (3) 목적에 맞게 축제를 찾는 기능을 제안 순서대로 진행: 등록 분류 유형 칩·먹거리·체험 표시 → 문화관광축제 방문 규모 → 데이터랩 수동 보강(나중). 방문 축제는 외지인 대상(관광 연계)과 지역 주민 대상(교통편·프로그램) 둘 다를 뜻하며 기획자에게 중요한 판단 기준이다. (4) 이미지 저장소 한도로 발행이 막혔을 때 지난 이미지 2개(ae7b945·1312880) 정리 후 즉시 공개를 승인.
+- Evidence:
+  - 2026-10-04 Claude Code 세션에서 사용자가 직접 요청·결정했다. 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 결정 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-057 · Claude · implementer
+
+- Position: 2026-10-04 후속 개선을 공개했다: 방문 흐름 겹쳐 보기 기본·점 상세 수치·연계 관광 지도의 축제장 표시(검수46 후속), 그리고 목적별 축제 찾기 1단계 — 축제 검색의 등록 분류 유형 칩 일곱 개(지역특산물·먹거리 등, 유형만 고르면 전국 목록 40건씩, 카드·축제 머리 분류 표식)와 /compare/scale 문화관광축제 방문 규모(일평균·기간 합계·외지인/현지인 비율 순위, 세 집단 쌓은 막대, 60% 외지인/현지인 중심 표시). 이동 시간 원은 사용자 결정대로 보류했다.
+- Evidence:
+  - docs/validation/47-festival-discovery.md (구현·검증·검수·공개 배포)
+  - docs/design/25-festival-discovery.md, docs/sdlc/3-testing/scenarios/TS-FC-022.md
+  - docs/validation/evidence/2026-10-04-festival-discovery-before.json·after.json
+  - 발행 작업 37182965902(deee795 → sha256:72c7ace2…), 배포 선언 a067d79
+- Changes:
+  - apps/web: lib/existing/festival-types.ts·tour.ts·server.ts·request.ts·identity.ts, components/existing/FestivalSearch.tsx·festival-type.tsx·ExistingShell.tsx, lib/datalab/scale.ts, components/FestivalScale.tsx, app/compare/scale, 홈·축제 비교·연도별 흐름 입구
+  - apps/web/scripts: festival-discovery-e2e·live 추가, run-demo-e2e 목록
+  - docs: 설계25, TS-FC-022, 검수47, functional-spec §16, screens(SCR-FC-018), ia, data-visualization v13, design-system v9, 자료 목록
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정(동의 배너 deee795 포함)
+- Validation:
+  - npm test 424 통과(새 단위 시험 9), typecheck·next build 통과
+  - 전체 headless 묶음(편집/공개, 시험 실행 30회) 통과, 새 시험 26항목
+  - 공개: Synced·Healthy, livez·readyz 200, Deployment·PVC 동일·업무 9테이블 20행 해시 일치, 공개 검사 5항목 통과(지역특산물 47건·문화관광 64건·순위 원문 일치)
+  - 미평가: 분류 자체의 타당성(공급처 값), 화면 낭독기 실사용
+- Questions:
+  - No open question
+- Handoff: Claude

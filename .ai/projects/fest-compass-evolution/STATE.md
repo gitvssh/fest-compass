@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 55
-status: active
-next_actor: human
+revision: 57
+status: waiting-claude
+next_actor: claude
 last_actor: claude
-current_question: "No open question recorded"
-updated_at: "2026-10-03T15:45:05.181Z"
+current_question: "No open question"
+updated_at: "2026-10-04T06:47:38.209Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 방문·자원·시기 자료를 기록 없이 조회하고, 홈 1분 소개 영상을 공개했다(Next.js 16.3.8). 2026-10-03 초기 사용자 의견(두 흐름의 목표·과정 흔들림)에 따라 설계24 묶음 1을 공개했다: 두 흐름의 할 일 탭·흐름 지도·짧은 안내 띠·이어서 줄·회차 전후 일평균 막대·입력 없는 모아 보기와 인쇄·축제 준비 전체 과정(/guide), 공통 팝업·초점 표현. 문장은 아이콘·시각 도구 중심으로 줄였고 공식 금액·기한은 쓰지 않는다. 다음은 초기 사용자 재확인과 묶음 2(요청형 길잡이 패널) 착수 판단이다.
+기존·새 축제와 관광지도의 공통 방문·자원·시기 자료, 축제 기획 길잡이(설계24 묶음 1)를 공개 중이다. 2026-10-04 방문 흐름 겹쳐 보기·점 상세 수치·축제장 표시와 목적별 축제 찾기 1단계(등록 분류 유형 칩, 문화관광축제 방문 규모와 외지인/현지인 구성)를 공개했다(Next.js 16.3.8, 이미지 72c7ace2, 다른 작업의 분석 동의 배너 포함). 이동 시간 원은 보류. 다음은 2단계 체험·어린이·무료 표시(등록 소개 글 근거)와 전국 축제 전체 목록이다.
 
 ## Accepted decisions
 
@@ -77,6 +77,10 @@ updated_at: "2026-10-03T15:45:05.181Z"
 - 2026-10-03 사용자 요청: 초기 사용자 의견을 반영해 순환보직으로 처음 축제를 맡은 담당자의 의사결정 길잡이(단계 목표·체크리스트·읽을거리)와 페이지별 시각 이미지를 현황 분석·조사·기획하고 Codex(gpt-6-astra xhigh)·Fable의 설계 검토를 받는다. 이번 범위는 기획·설계이며 구현과 디자인 채택은 사용자 결정 뒤다(docs/design/24-planning-guide.md).
 - 2026-10-03 사용자 승인: 설계24 개선안 전체와 D1~D6 제안을 확정하고 구현을 지시했다. 흔들림은 끝(얻는 것)과 순서 모두이고 행정 절차 연결은 확인할 수 없었다. 시·도 담당자 없음, 개인 PC, 인쇄본은 내부 보고용, 내용 검수자는 없어 우리가 정한다(docs/design/24-planning-guide.md 19절).
 - 2026-10-03 사용자 방향: 문장·설명을 줄이고 시각 도구·아이콘·이미지로 직관적으로 보이게 하며 팝업·초점 상태의 디자인 시스템을 정제한다(docs/sdlc/2-design/design-system.md 2026-10-03 절).
+- 2026-10-04 사용자 요청: 기존 축제 방문 흐름은 회차를 한 그래프에 겹쳐 보는 것이 기본(따로 보기 유지), 점의 상세 수치, 연계 관광 지도의 축제 위치(검토된 등록 연결만) — 구현·공개(docs/validation/46-planning-guide.md 후속 개선).
+- 2026-10-04 사용자 결정: 이동 시간 원(자동차·도보 15·35·60분)은 보류한다(docs/design/25-festival-discovery.md 1절).
+- 2026-10-04 사용자 결정: 목적별 축제 찾기를 제안 순서대로 — 1단계 등록 분류 유형 칩·문화관광축제 방문 규모(외지인·현지인 구성 포함) 구현·공개, 2단계 체험·어린이·무료 표시(등록 소개 글 근거), 3단계 데이터랩 수동 보강(사람 작업, 나중)(docs/design/25-festival-discovery.md).
+- 2026-10-04 사용자 승인: 이미지 저장소 한도로 막힌 발행을 위해 지난 이미지 ae7b945·1312880만 프로젝트 정리 절차로 지우고 즉시 공개(docs/validation/47-festival-discovery.md 공개 배포).
 
 ## Open questions
 
@@ -87,6 +91,8 @@ updated_at: "2026-10-03T15:45:05.181Z"
 - 설계24 묶음2(요청형 길잡이 패널·탭별 자료 읽는 법·읽을거리)~5의 착수 순서. 검수자가 없으므로 문장은 출처 대장 원문과 대조해 정하고 업무 경험자 검수를 받았다고 쓰지 않는다.
 - 공개 서버 그림 최적화 캐시가 읽기 전용 루트 때문에 매번 MISS다. 쓰기 가능한 임시 캐시 볼륨을 붙일지(그림 화면의 첫 화면 시간 개선, 검수46).
 - 묶음 1 뒤 초기 사용자 재확인(설계24 14절): 각 흐름의 목표·끝·순서를 자기 말로 설명하는지, 어디서 막히는지.
+- 목적별 축제 찾기 2단계(체험·어린이·무료 표시와 거르기, 전국 축제 전체 목록) 구현 중 — 등록 소개 글 수집은 하루 40회(처음 200회) 예산.
+- 함께 공개된 분석 동의 배너(deee795, 다른 작업): 공개 검사에서 390px 소개 영상 카드가 바닥글 `분석 동의 다시 보기`를 가리고, 1440px에서 한 번 Cloudflare 기본 창이 약 0.1초 보였다(검수47 공개 배포). 그 작업의 확인 대상.
 
 ## Artifacts and durable documents
 
@@ -200,3 +206,8 @@ updated_at: "2026-10-03T15:45:05.181Z"
 - apps/web/lib/guide/process.ts
 - apps/web/scripts/planning-guide-e2e.mjs
 - apps/web/scripts/planning-guide-live.mjs
+- docs/design/25-festival-discovery.md
+- docs/sdlc/3-testing/scenarios/TS-FC-022.md
+- docs/validation/47-festival-discovery.md
+- apps/web/scripts/festival-discovery-e2e.mjs
+- apps/web/scripts/festival-discovery-live.mjs
