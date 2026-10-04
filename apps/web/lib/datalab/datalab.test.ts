@@ -9,8 +9,9 @@ const dataset = parseFestivalPeriodDataset(raw);
 
 test("checked-in DataLab trend passes the strict adapter", () => {
   assert.equal(dataset.kind, "datalab-festival-period-annual");
-  assert.equal(dataset.festivals.length, 26);
-  assert.equal(dataset.festivals.reduce((n, f) => n + f.years.length, 0), 147);
+  assert.equal(dataset.festivals.length, 92);
+  assert.equal(dataset.festivals.reduce((n, f) => n + f.years.length, 0), 447);
+  assert.deepEqual(dataset.source.imports.map(m => m.id), ["hkjin-plan-03", "datalab-festivals-2026-10"]);
   assert.equal(dataset.rawHeader[2], "축체기간(일)");
   assert.equal(dataset.source.downloadTimezone, null);
   assert.deepEqual(axisYears(dataset.festivals), [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]);
@@ -35,6 +36,10 @@ test("malformed payloads are rejected rather than coerced", () => {
     ["non-https source", d => { d.festivals[0].source.originalUrl = "http://example.com"; }],
     ["alias order", d => { d.festivals[0].aliases.reverse(); }],
     ["empty years", d => { d.festivals[0].years = []; }],
+    ["missing place", d => { delete d.festivals[0].place; }],
+    ["older schema", d => { d.schemaVersion = 1; }],
+    ["repeated import", d => { d.source.imports[1].id = d.source.imports[0].id; }],
+    ["import without hash", d => { d.source.imports[0].manifestSha256 = "abc"; }],
   ];
   for (const [name, mutate] of mutations) {
     const d = clone(raw);
@@ -66,11 +71,21 @@ test("metric values come from the source columns without cross-period derivation
   assert.equal(niceMax(0), 1);
 });
 
-test("search matches source names and reviewed aliases only", () => {
-  assert.deepEqual(searchFestivals(dataset.festivals, "논산"), []);
+test("search matches source names, reviewed aliases and the place label only", () => {
+  assert.deepEqual(searchFestivals(dataset.festivals, "논산").map(f => f.id), ["ganggyeong-jeotgal", "nonsan-strawberry"], "강경젓갈축제 is found by its place");
   assert.deepEqual(searchFestivals(dataset.festivals, "강릉 커피").map(f => f.id), ["gangneung-coffee"]);
   assert.deepEqual(searchFestivals(dataset.festivals, "치맥").map(f => f.id), ["daegu-chimac"]);
-  assert.equal(searchFestivals(dataset.festivals, "  ").length, 26);
+  assert.deepEqual(searchFestivals(dataset.festivals, "국제탈춤").map(f => f.id), ["andong-maskdance"], "reviewed alias");
+  assert.equal(searchFestivals(dataset.festivals, "  ").length, 92);
   const typed: FestivalPeriodDataset = dataset;
   assert.ok(!("visits" in typed.festivals[0]) && !("points" in typed.festivals[0]));
+});
+
+test("place labels name the host dong's province and district; a stray border address does not count", () => {
+  const place = (id: string) => dataset.festivals.find(f => f.id === id)!.place;
+  assert.equal(place("ganggyeong-jeotgal"), "충남 논산시");
+  assert.equal(place("gwangju-kimchi"), "광주 서구·남구", "two venues across the years, both a tenth or more of the ranked places");
+  assert.equal(place("eumseong-pumba"), "충북 음성군", "three 충주 addresses out of 84 stay out");
+  assert.equal(place("sejong"), "세종", "reviewed: the official download has no destination ranking");
+  assert.ok(dataset.festivals.every(f => /^\S+( \S+)?$/.test(f.place.split(" · ")[0])));
 });

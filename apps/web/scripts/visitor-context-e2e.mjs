@@ -29,6 +29,12 @@ function originalCsv(suffix) {
   return readFileSync(join(originals, String(found[0])), "utf8").replace(/^﻿/, "").trim().split(/\r?\n/).map(l => l.split(","));
 }
 const sourceNumber = s => { assert.match(s, /^(0|[1-9]\d*)(\.\d+)?(E[+-]?\d+)?$/, `oracle number ${s}`); return Number(s); };
+// The owner's 2026-10 download (extracted from the official ZIPs, byte for byte).
+const ownerOriginals = fileURLToPath(new URL("../../../docs/research/imported/datalab-festivals-2026-10/original/data/", import.meta.url));
+const NONSAN_ROWS = Object.fromEntries(readdirSync(ownerOriginals, { recursive: true }).filter(p => String(p).normalize("NFC").endsWith("_논산딸기축제_연도별 방문자 추이.csv"))
+  .flatMap(p => readFileSync(join(ownerOriginals, String(p)), "utf8").replace(/^\uFEFF/, "").trim().split(/\r?\n/).slice(1).map(l => l.split(",")))
+  .map(c => [c[1], { days: Number(c[2]), total: sourceNumber(c[6]), daily: sourceNumber(c[7]) }]));
+assert.deepEqual(Object.keys(NONSAN_ROWS), ["2024", "2025"], "oracle: 논산딸기축제 rows");
 
 const FESTIVAL = { 2025: { days: 5, local: 16688, outside: 127842, foreign: 126, total: 144656, daily: 28931.2 }, 2024: { days: 4, local: 14949, outside: 93573, foreign: 187, total: 108709 } };
 const festivalRows = Object.fromEntries(originalCsv("_임실N치즈축제_연도별 방문자 추이.csv").slice(1).map(c => [c[1], {
@@ -253,16 +259,30 @@ async function existingFestival({ page }) {
   assert.deepEqual(await hostYears(page), [2023, 2025]);
   passed.push("controlled-failure-recovers-with-real-answer");
 
-  for (const [id, heading] of [["archive:nonsan-strawberry", "논산시 외지인 방문 추이"], ["archive:baekje-gongju", "공주시 외지인 방문 추이"]]) {
-    body = served(page, "existing/history");
-    await page.goto(visitsPath(id));
-    assert.equal((await body).hostVisits, null, `${id}: no host composition without a reviewed mapping`);
-    await visible(page.getByRole("heading", { level: 2, name: heading, exact: true }));
-    await flush(page);
-    assert.equal(await host(page).count(), 0, `${id}: section omitted`);
-    assert.equal(await page.getByRole("button", { name: "방문 구성 출처 보기" }).count(), 0);
-  }
-  passed.push("unmapped-nonsan-gongju-omitted");
+  // 논산딸기축제 is reviewed for 2024 and 2025 (owner's DataLab download): its 2023 edition has no DataLab year.
+  body = served(page, "existing/history");
+  await page.goto(visitsPath("archive:nonsan-strawberry", "?editions=nonsan-strawberry-2024,nonsan-strawberry-2025"));
+  const nonsanHost = (await body).hostVisits;
+  assert.deepEqual(nonsanHost.editions.map(e => [e.editionId, e.days, e.total, e.dailyMean]).sort(), [2024, 2025].map(y => [`nonsan-strawberry-${y}`, NONSAN_ROWS[y].days, NONSAN_ROWS[y].total, NONSAN_ROWS[y].daily]));
+  await visible(host(page).getByText("논산딸기축제 개최기간 · 명/일 · 통신 기반 추정", { exact: true }));
+  await visible(hostItem(page, 2024));
+  assert.equal(await host(page).getByRole("link", { name: "모든 개최연도 보기", exact: true }).getAttribute("href"), "/compare/annual?festival=nonsan-strawberry");
+  body = served(page, "existing/history");
+  await page.goto(visitsPath("archive:nonsan-strawberry", "?editions=nonsan-strawberry-2023"));
+  assert.equal((await body).hostVisits, null, "2023 is outside the DataLab years");
+  await visible(page.getByRole("heading", { level: 2, name: "논산시 외지인 방문 추이", exact: true }));
+  await flush(page);
+  assert.equal(await host(page).count(), 0);
+  passed.push("nonsan-2024-2025-host-composition", "nonsan-2023-omitted");
+
+  body = served(page, "existing/history");
+  await page.goto(visitsPath("archive:baekje-gongju"));
+  assert.equal((await body).hostVisits, null, "archive:baekje-gongju: no host composition without a reviewed mapping");
+  await visible(page.getByRole("heading", { level: 2, name: "공주시 외지인 방문 추이", exact: true }));
+  await flush(page);
+  assert.equal(await host(page).count(), 0, "archive:baekje-gongju: section omitted");
+  assert.equal(await page.getByRole("button", { name: "방문 구성 출처 보기" }).count(), 0);
+  passed.push("unmapped-gongju-omitted");
 }
 
 // ---- New festival: district yearly totals ----

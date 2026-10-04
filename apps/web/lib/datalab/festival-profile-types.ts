@@ -8,17 +8,21 @@ export type FestivalIndicatorKey = (typeof FESTIVAL_INDICATOR_KEYS)[number];
 export type FestivalIndicatorYear = { year: number; festival: number[]; base: number[] };
 export type FestivalDestination = { rank: number; area: string; name: string; address: string; category: string };
 export type FestivalDestinationGroup = { group: "outside" | "local" | "all"; label: string; items: FestivalDestination[] };
+/** Why a year in the download range has no comparison: no visit measurement that year, or a source value above that year's maximum. */
+export const WITHHELD_REASONS = ["no-visit-measurement", "above-maximum"] as const;
+export type WithheldYear = { year: number; reason: (typeof WITHHELD_REASONS)[number] };
 export type FestivalProfile = {
   id: string; name: string;
   /** The download's selected years; shares and ranks cover the festival periods of this whole range, not one year. */
   range: { from: number; to: number };
   downloadDate: string;
   indicators: FestivalIndicatorYear[];
-  /** Years whose source values are all 0 (no measurement); never drawn as zeros. */
-  withheldYears: number[];
+  /** Years in the range without a comparison, never drawn as zeros. */
+  withheldYears: WithheldYear[];
   demographics: VisitorProfileBand[];
-  destinations: FestivalDestinationGroup[];
+  /** Null when the official download had no destination ranking for this festival. */
+  destinations: FestivalDestinationGroup[] | null;
   /** Original CSV links per table. */
-  links: { indicators: string; demographics: string; destinations: string };
+  links: { indicators: string; demographics: string; destinations: string | null };
 };
 export type FestivalProfiles = { officialUrl: string; festivals: FestivalProfile[] };

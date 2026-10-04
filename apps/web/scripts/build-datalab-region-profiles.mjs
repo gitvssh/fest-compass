@@ -6,7 +6,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { parseTable } from "./datalab-csv.mjs";
 import { parseDestinations } from "./build-datalab-festival-profiles.mjs";
-import { classify, describe, IDS_PATH, MANIFEST_PATH, ORIGINAL_DIR, REPO_ROOT, SOURCE, verifyImport } from "./build-datalab-festival-trend.mjs";
+import { classify, describe, festivalSources, MANIFEST_PATH, ORIGINAL_DIR, REPO_ROOT, SOURCE, verifyImport } from "./build-datalab-festival-trend.mjs";
 import { CATALOGUE_PATH, parseAnnualCount, parseRegionAnnual, REGION_IDS_PATH, REGION_OFFICIAL_URL } from "./build-datalab-region-annual.mjs";
 
 export const REGION_PROFILE_OUTPUT_PATH = "apps/web/data/datalab-region-profiles.json";
@@ -143,7 +143,7 @@ export function buildRegionProfiles(root = REPO_ROOT) {
   const { manifestSha256, files } = verifyImport(root);
   const ids = JSON.parse(readFileSync(`${root}${REGION_IDS_PATH}`, "utf8"));
   const catalogue = JSON.parse(readFileSync(`${root}${CATALOGUE_PATH}`, "utf8")).rows;
-  const festivals = JSON.parse(readFileSync(`${root}${IDS_PATH}`, "utf8")).festivals;
+  const sources = festivalSources(root), festivals = sources.ids.festivals;
   const spendingFolders = [...new Set([...files.keys()].filter(p => p.startsWith("data/region/")).map(p => p.split("/").slice(0, 3).join("/")))];
   const visitorFolders = [...new Set([...files.keys()].filter(p => p.startsWith("data/region_visitor/")).map(p => p.split("/").slice(0, 3).join("/")))];
   const mappedSpending = ids.regions.map(r => r.spendingFolder), mappedVisitor = ids.regions.map(r => r.visitorFolder).filter(Boolean);
@@ -190,9 +190,9 @@ export function buildRegionProfiles(root = REPO_ROOT) {
     for (const id of r.festivalIds) {
       const f = festivals.find(x => x.id === id);
       if (!f) throw new Error(`Unknown festival: ${id}`);
-      const path = f.sourceFile.replace(/_연도별 방문자 추이\.csv$/, "_목적지 검색순위.csv"), hit = files.get(path);
-      if (!hit) throw new Error(`Missing destination file: ${id}`);
-      const hosts = new Set(parseDestinations(describe(hit.bytes).text).flatMap(g => g.items.map(i => i.area)));
+      const destinations = sources.table(f, "목적지 검색순위");
+      if (!destinations) throw new Error(`Missing destination file: ${id}`);
+      const hosts = new Set(parseDestinations(destinations.text).flatMap(g => g.items.map(i => i.area)));
       if (![...hosts].some(h => dongs.has(h))) throw new Error(`Festival host dong is not in the region: ${id}`);
     }
     return { code: r.code, name: r.name, province: r.province, festivalIds: r.festivalIds, range: { from: YEARS[0], to: YEARS.at(-1) }, spending, visitors };

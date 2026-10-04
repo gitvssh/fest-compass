@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { appendFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { IDS_PATH, IMPORT_DIR, ORIGINAL_DIR, REPO_ROOT } from "./build-datalab-festival-trend.mjs";
+import { OWNER_DIR } from "./datalab-owner-import.mjs";
 import { CATALOGUE_PATH, REGION_IDS_PATH } from "./build-datalab-region-annual.mjs";
 import { buildRegionProfiles, parseAreaShares, parseIndustries, parseOrigins, parseProvince, parseSpendingTrend, REGION_PROFILE_OUTPUT_PATH, serialize, SPENDING_HEADERS, TOTAL, VISITOR_HEADERS, YEARS } from "./build-datalab-region-profiles.mjs";
 
@@ -25,8 +26,9 @@ test("26 reviewed regions: codes, festival links and known source values", () =>
   const d = buildRegionProfiles(), byCode = Object.fromEntries(d.regions.map(r => [r.code, r]));
   assert.equal(d.regions.length, 26);
   assert.deepEqual(d.regions.filter(r => r.visitors === null).map(r => r.name).sort(), ["부평구", "연수구"]);
-  assert.deepEqual(d.regions.flatMap(r => r.festivalIds).length, 25, "every festival but Daegu Chimac");
-  assert.deepEqual(byCode["27110"].festivalIds, [], "Daegu Chimac is held in Duryu 3-dong (Dalseo-gu), not Jung-gu");
+  assert.deepEqual(d.regions.flatMap(r => r.festivalIds).length, 27, "every first-import festival but Daegu Chimac, and two owner-download festivals in downloaded regions");
+  assert.deepEqual(byCode["27110"].festivalIds, ["daegu-yangnyeongsi"], "Daegu Chimac is held in Duryu 3-dong (Dalseo-gu), not Jung-gu; 약령시 is in 성내2동, Jung-gu");
+  assert.deepEqual(byCode["51760"].festivalIds, ["pyeongchang-trout", "pyeongchang-hyoseok"]);
   const jangheung = byCode["12770"];
   assert.deepEqual([jangheung.name, jangheung.province, jangheung.festivalIds], ["장흥군", "전남광주통합특별시", ["jangheung-water"]]);
   assert.deepEqual(jangheung.spending.years[0], { year: 2018, total: 40180429 });
@@ -86,6 +88,7 @@ function sandbox() {
   const dir = mkdtempSync(`${tmpdir()}/datalab-region-profiles-`) + "/";
   mkdirSync(`${dir}apps/web/data`, { recursive: true });
   cpSync(`${REPO_ROOT}${IMPORT_DIR}`, `${dir}${IMPORT_DIR}`, { recursive: true });
+  cpSync(`${REPO_ROOT}${OWNER_DIR}`, `${dir}${OWNER_DIR}`, { recursive: true });
   for (const p of [IDS_PATH, REGION_IDS_PATH, CATALOGUE_PATH]) cpSync(`${REPO_ROOT}${p}`, `${dir}${p}`);
   return dir;
 }
@@ -97,6 +100,9 @@ test("tampered bytes, unreviewed codes, provinces and festival links are rejecte
     [root => { const r = region(JSON.parse(readFileSync(`${root}${REGION_IDS_PATH}`, "utf8")), "12770"); appendFileSync(`${root}${ORIGINAL_DIR}/${r.spendingFolder}/${r.spendingFolder.split("/").at(-1).split("_")[0]}_업종별 지출액.csv`, "x"); }, /hash mismatch/],
     [root => editJson(root, REGION_IDS_PATH, m => { region(m, "27110").festivalIds = ["daegu-chimac"]; }), /host dong is not in the region: daegu-chimac/],
     [root => editJson(root, REGION_IDS_PATH, m => { region(m, "12770").festivalIds.push("boseong-dahyang"); }), /linked to more than one region/],
+    [root => editJson(root, REGION_IDS_PATH, m => { region(m, "51760").festivalIds.push("hoengseong-hanwoo"); }), /host dong is not in the region: hoengseong-hanwoo/],
+    // A festival without a destination ranking cannot show that its host dong is in the region.
+    [root => editJson(root, REGION_IDS_PATH, m => { region(m, "12770").festivalIds.push("sejong"); }), /Missing destination file: sejong/],
     [root => editJson(root, REGION_IDS_PATH, m => { region(m, "27110").code = "26110"; region(m, "26110").province = "부산광역시"; }), /not the region's province/],
     [root => editJson(root, REGION_IDS_PATH, m => { region(m, "12770").province = "전라남도"; }), /not in catalogue/],
     [root => editJson(root, REGION_IDS_PATH, m => { region(m, "12770").visitorFolder = null; }), /cover the visitor downloads/],

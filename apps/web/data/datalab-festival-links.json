@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "reviewedAt": "2026-09-24",
+  "reviewedAt": "2026-10-05",
   "note": "이름 유사도로 잇지 않는다. 이 표의 축제·지역·회차만 연결하며 evidence는 서버 밖으로 내보내지 않는다.",
   "links": [
     {
@@ -13,6 +13,16 @@
         { "editionId": "imsil-cheese-2025", "year": 2025, "start": "2025-10-08", "end": "2025-10-12", "days": 5 }
       ],
       "evidence": "원문 축제명 임실N치즈축제 일치, 2023·2024·2025 개최일수 4·4·5가 회차 원래 기간과 일치"
+    },
+    {
+      "archiveFestivalId": "nonsan-strawberry",
+      "datalabFestivalId": "nonsan-strawberry",
+      "regionCode": "44230",
+      "editions": [
+        { "editionId": "nonsan-strawberry-2024", "year": 2024, "start": "2024-03-21", "end": "2024-03-24", "days": 4 },
+        { "editionId": "nonsan-strawberry-2025", "year": 2025, "start": "2025-03-27", "end": "2025-03-30", "days": 4 }
+      ],
+      "evidence": "원문 축제명 논산딸기축제 일치(2026-10-05 소유자 공식 내려받기), 2024·2025 개최일수 4·4가 회차 원래 기간과 일치, 목적지 검색순위 주소 충남 논산시. 2023 회차는 데이터랩 선택 연도(2024~2025) 밖이라 잇지 않음"
     }
   ]
 }

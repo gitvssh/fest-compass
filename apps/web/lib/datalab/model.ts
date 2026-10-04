@@ -35,14 +35,14 @@ function festival(v: unknown, at: string): FestivalPeriodTrend {
   const years = arr(f.years, `${at}.years`).map((y, i) => year(y, name, `${at}.years[${i}]`));
   if (!years.length) fail(`${at} has no years`);
   years.forEach((y, i) => { if (i && y.year <= years[i - 1].year) fail(`${at} years must be unique and ascending`); });
-  return { id, name, aliases, downloadStamp: stamp, downloadDate: f.downloadDate as string, years,
+  return { id, name, aliases, place: str(f.place, `${at}.place`), downloadStamp: stamp, downloadDate: f.downloadDate as string, years,
     source: { path: str(s.path, `${at}.source.path`), originalPath: str(s.originalPath, `${at}.source.originalPath`), originalUrl: https(s.originalUrl, `${at}.source.originalUrl`), bytes: int(s.bytes, `${at}.source.bytes`, 1, 1e8), sha256: hex(s.sha256, `${at}.source.sha256`, 64) } };
 }
 
 /** Strictly validate the checked-in generated artifact before any UI use. */
 export function parseFestivalPeriodDataset(input: unknown): FestivalPeriodDataset {
   const d = obj(input, "dataset");
-  if (d.kind !== "datalab-festival-period-annual" || d.schemaVersion !== 1) fail("unexpected kind or schema version");
+  if (d.kind !== "datalab-festival-period-annual" || d.schemaVersion !== 2) fail("unexpected kind or schema version");
   const scope = obj(d.scope, "scope"), source = obj(d.source, "source");
   const header = arr(d.rawHeader, "rawHeader");
   if (header.length !== TREND_HEADER.length || header.some((h, i) => h !== TREND_HEADER[i])) fail("unexpected raw header");
@@ -50,10 +50,15 @@ export function parseFestivalPeriodDataset(input: unknown): FestivalPeriodDatase
   const festivals = arr(d.festivals, "festivals").map((f, i) => festival(f, `festivals[${i}]`));
   if (!festivals.length || new Set(festivals.map(f => f.id)).size !== festivals.length) fail("festival IDs must be unique");
   const s = (k: string) => str(scope[k], `scope.${k}`), t = (k: string) => str(source[k], `source.${k}`);
+  const imports = arr(source.imports, "source.imports").map((v, i) => {
+    const m = obj(v, `source.imports[${i}]`);
+    return { id: str(m.id, `source.imports[${i}].id`), manifestPath: str(m.manifestPath, `source.imports[${i}].manifestPath`), manifestSha256: hex(m.manifestSha256, `source.imports[${i}].manifestSha256`, 64) };
+  });
+  if (!imports.length || new Set(imports.map(m => m.id)).size !== imports.length) fail("source imports must be unique");
   return {
-    kind: "datalab-festival-period-annual", schemaVersion: 1, rawHeader: TREND_HEADER.slice(), festivals,
-    scope: { area: s("area"), period: s("period"), method: s("method"), unit: s("unit"), periodTotal: s("periodTotal"), dailyMean: s("dailyMean"), note: s("note") },
-    source: { title: t("title"), officialUrl: https(source.officialUrl, "source.officialUrl"), definitionReviewedAt: t("definitionReviewedAt"), repository: https(source.repository, "source.repository"), commit: hex(source.commit, "source.commit", 40), basePath: t("basePath"), manifestPath: t("manifestPath"), manifestSha256: hex(source.manifestSha256, "source.manifestSha256", 64), downloadTimezone: null },
+    kind: "datalab-festival-period-annual", schemaVersion: 2, rawHeader: TREND_HEADER.slice(), festivals,
+    scope: { area: s("area"), period: s("period"), method: s("method"), unit: s("unit"), periodTotal: s("periodTotal"), dailyMean: s("dailyMean"), note: s("note"), place: s("place") },
+    source: { title: t("title"), officialUrl: https(source.officialUrl, "source.officialUrl"), definitionReviewedAt: t("definitionReviewedAt"), imports, downloadTimezone: null },
   };
 }
 
@@ -65,14 +70,14 @@ export const parseMetric = (v: unknown): PeriodMetric => (v === "total" ? "total
 export const metricValue = (y: FestivalPeriodYear, m: PeriodMetric) => (m === "total" ? y.periodTotal : y.dailyMean);
 
 const normal = (s: string) => s.normalize("NFC").replace(/\s+/g, "").toLowerCase();
-/** Match on source name and reviewed aliases only; never fabricates entries. */
-export function searchFestivals(festivals: FestivalPeriodTrend[], query: string) {
+/** Match on source name, reviewed aliases and the place label only; never fabricates entries. */
+export function searchFestivals<T extends { aliases: string[]; place: string }>(festivals: T[], query: string): T[] {
   const q = normal(query);
-  return q ? festivals.filter(f => f.aliases.some(a => normal(a).includes(q))) : festivals;
+  return q ? festivals.filter(f => [...f.aliases, f.place].some(a => normal(a).includes(q))) : festivals;
 }
 
 /** Every calendar year across the dataset span, so gaps keep their real spacing. */
-export function axisYears(festivals: FestivalPeriodTrend[]) {
+export function axisYears(festivals: { years: { year: number }[] }[]) {
   const all = festivals.flatMap(f => f.years.map(y => y.year)), lo = Math.min(...all), hi = Math.max(...all);
   return Array.from({ length: hi - lo + 1 }, (_, i) => lo + i);
 }

@@ -5,7 +5,7 @@ import { DemographicBars, pct, SEX } from "@/components/DemographicBars";
 import { Disclosure, InfoDialog, TableScroll } from "@/components/existing/ui";
 import { IconBadge } from "@/components/guide/icons";
 import { Segmented } from "@/components/Segmented";
-import { FESTIVAL_INDICATOR_KEYS, type FestivalDestinationGroup, type FestivalIndicatorKey, type FestivalProfile as Profile } from "@/lib/datalab/festival-profile-types";
+import { FESTIVAL_INDICATOR_KEYS, type FestivalDestinationGroup, type FestivalIndicatorKey, type FestivalProfile as Profile, type WithheldYear } from "@/lib/datalab/festival-profile-types";
 
 const INDICATORS: Readonly<Record<FestivalIndicatorKey, { label: string; area: string; source: string }>> = {
   outside: { label: "외지인 방문", area: "개최 행정동", source: "외부방문자 유입" },
@@ -26,6 +26,10 @@ const signed = (v: number) => `${v > 0 ? "+" : v < 0 ? "−" : "±"}${Math.abs(v
 const rangeText = (p: Profile) => `${p.range.from}~${p.range.to}년`;
 /** Road addresses come with a "-0" sub-number; drop it for reading. The source file keeps the original. */
 const address = (a: string) => a.replace(/(\d)-0$/, "$1");
+const WITHHELD: Readonly<Record<WithheldYear["reason"], { row: string; note: string }>> = {
+  "no-visit-measurement": { row: "값 없음(그해 방문 측정 없음)", note: "년은 데이터랩의 연도별 방문자 자료가 없고 방문 지표가 모두 0이라 자료가 없는 해로 봤어요." },
+  "above-maximum": { row: "값 없음(원문 값이 최댓값을 넘음)", note: "년은 원문 값 일부가 그해 최댓값(1)을 넘어 기준과 맞지 않아 비교에서 뺐어요." },
+};
 
 /** DataLab profile cards for one reviewed 문화관광축제, shown under its yearly visit trend. */
 export function FestivalProfile({ profile, officialUrl }: { profile: Profile; officialUrl: string }) {
@@ -90,7 +94,7 @@ function Indicators({ profile, officialUrl }: { profile: Profile; officialUrl: s
           <tbody>{yearRows(profile).map(r => <tr key={r.year} className="border-t border-ink/10">
             <th scope="row" className="px-3 py-1.5 text-left font-bold">{r.year}</th>
             {r.values ? r.values.map((v, i) => <td key={i} className="px-3 py-1.5 text-right tabular-nums">{v.festival} / {v.base}</td>)
-              : <td colSpan={FESTIVAL_INDICATOR_KEYS.length} className="px-3 py-1.5 text-right text-muted">값 없음(원문 값이 모두 0)</td>}
+              : <td colSpan={FESTIVAL_INDICATOR_KEYS.length} className="px-3 py-1.5 text-right text-muted">{WITHHELD[r.reason].row}</td>}
           </tr>)}</tbody>
         </table>
       </TableScroll>
@@ -98,10 +102,12 @@ function Indicators({ profile, officialUrl }: { profile: Profile; officialUrl: s
   </section>;
 }
 
+type YearRow = { year: number; values: { festival: string; base: string }[]; reason: null } | { year: number; values: null; reason: WithheldYear["reason"] };
 /** Held and withheld years in order; held values as the source wrote them (up to three decimals). */
-function yearRows(profile: Profile) {
-  const held = profile.indicators.map(y => ({ year: y.year, values: y.festival.map((f, i) => ({ festival: String(f), base: String(y.base[i]) })) }));
-  return [...held, ...profile.withheldYears.map(year => ({ year, values: null }))].sort((a, b) => a.year - b.year);
+function yearRows(profile: Profile): YearRow[] {
+  const held: YearRow[] = profile.indicators.map(y => ({ year: y.year, values: y.festival.map((f, i) => ({ festival: String(f), base: String(y.base[i]) })), reason: null }));
+  const withheld: YearRow[] = profile.withheldYears.map(w => ({ year: w.year, values: null, reason: w.reason }));
+  return [...held, ...withheld].sort((a, b) => a.year - b.year);
 }
 
 function IndicatorCriteria({ profile, officialUrl }: { profile: Profile; officialUrl: string }) {
@@ -111,7 +117,7 @@ function IndicatorCriteria({ profile, officialUrl }: { profile: Profile; officia
       <li>평소는 축제 시작 전 4주와 끝난 뒤 4주예요.</li>
       <li>외지인·현지인 방문과 내비게이션 검색은 축제가 열린 행정동, 관광 소비는 시군구 전체 값이에요. 축제지 집중률은 행정동 값을 시군구 값과 견준 거예요.</li>
       <li>지역 규모가 클수록 값이 낮게 나오는 경향이 있어요. 다른 축제와 값의 크기를 견주지 말고, 같은 축제의 해마다 변화를 볼 때 쓰세요.</li>
-      {profile.withheldYears.length > 0 && <li>{profile.withheldYears.join("·")}년은 원문 값이 모두 0이라 자료가 없는 해로 봤어요.</li>}
+      {(Object.keys(WITHHELD) as WithheldYear["reason"][]).map(reason => { const ys = profile.withheldYears.filter(w => w.reason === reason).map(w => w.year); return ys.length > 0 && <li key={reason}>{ys.join("·")}{WITHHELD[reason].note}</li>; })}
       <li>2020·2021년은 데이터랩이 제공하지 않아요.</li>
     </ul>
     <p>자료: <a className="font-bold text-blue underline" href={officialUrl} target="_blank" rel="noreferrer">한국관광 데이터랩 축제 데이터 ↗</a> · 내려받은 날 {profile.downloadDate} · <a className="font-bold text-blue underline" href={profile.links.indicators} target="_blank" rel="noreferrer">원문 CSV ↗</a></p>
@@ -158,9 +164,17 @@ function Demographics({ profile, officialUrl }: { profile: Profile; officialUrl:
 }
 
 function Destinations({ profile, officialUrl }: { profile: Profile; officialUrl: string }) {
+  if (!profile.destinations) return <section aria-labelledby="festival-destinations" className="region-card space-y-3">
+    <CardHeading id="festival-destinations" icon={MapPin} tone="teal" title="축제 기간 목적지 검색순위" note={`${rangeText(profile)} 축제기간 합산 · 음식점·숙박 제외`} />
+    <p className="rounded-xl bg-paper px-3 py-2 text-sm">한국관광 데이터랩이 이 축제의 목적지 검색순위를 제공하지 않아요. <a className="font-bold text-blue underline" href={officialUrl} target="_blank" rel="noreferrer">데이터랩 축제 데이터 ↗</a></p>
+  </section>;
+  return <DestinationRanking profile={profile} groups={profile.destinations} link={profile.links.destinations} officialUrl={officialUrl} />;
+}
+
+function DestinationRanking({ profile, groups, link, officialUrl }: { profile: Profile; groups: FestivalDestinationGroup[]; link: string | null; officialUrl: string }) {
   const [group, setGroup] = useState<FestivalDestinationGroup["group"]>("outside"), [all, setAll] = useState(false);
-  const current = profile.destinations.find(g => g.group === group) ?? profile.destinations[0];
-  const items = all ? current.items : current.items.slice(0, TOP), areas = [...new Set(profile.destinations.flatMap(g => g.items.map(i => i.area)))];
+  const current = groups.find(g => g.group === group) ?? groups[0];
+  const items = all ? current.items : current.items.slice(0, TOP), areas = [...new Set(groups.flatMap(g => g.items.map(i => i.area)))];
   return <section aria-labelledby="festival-destinations" className="region-card space-y-4">
     <div className="flex flex-wrap items-start justify-between gap-3">
       <CardHeading id="festival-destinations" icon={MapPin} tone="teal" title="축제 기간 목적지 검색순위" note={`${areas.join("·")} · ${rangeText(profile)} 축제기간 합산 · 음식점·숙박 제외`} />
@@ -171,10 +185,10 @@ function Destinations({ profile, officialUrl }: { profile: Profile; officialUrl:
           <li>{rangeText(profile)} 중 자료가 있는 해의 축제기간을 합친 순위예요. 같은 순위가 여러 곳이면 같은 숫자로 적어요.</li>
           <li>외지인·현지인·전체는 검색한 사람의 구분이에요. 이름과 분류는 원문 그대로예요.</li>
         </ul>
-        <p>자료: <a className="font-bold text-blue underline" href={officialUrl} target="_blank" rel="noreferrer">한국관광 데이터랩 축제 데이터 ↗</a> · 내려받은 날 {profile.downloadDate} · <a className="font-bold text-blue underline" href={profile.links.destinations} target="_blank" rel="noreferrer">원문 CSV ↗</a></p>
+        <p>자료: <a className="font-bold text-blue underline" href={officialUrl} target="_blank" rel="noreferrer">한국관광 데이터랩 축제 데이터 ↗</a> · 내려받은 날 {profile.downloadDate}{link && <> · <a className="font-bold text-blue underline" href={link} target="_blank" rel="noreferrer">원문 CSV ↗</a></>}</p>
       </InfoDialog>
     </div>
-    <Segmented label="검색한 사람" value={current.group} options={profile.destinations.map(g => ({ value: g.group, label: g.label }))} onChange={g => { setGroup(g); setAll(false); }} columns="grid-cols-3" />
+    <Segmented label="검색한 사람" value={current.group} options={groups.map(g => ({ value: g.group, label: g.label }))} onChange={g => { setGroup(g); setAll(false); }} columns="grid-cols-3" />
     <ol aria-label={`${current.label} 목적지 검색순위`} className="grid gap-1.5 sm:grid-cols-2">
       {items.map((item, i) => <li key={`${current.group}-${i}`} className="grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] gap-2 rounded-xl border border-ink/10 bg-white px-3 py-2 text-sm">
         <span className={`font-extrabold tabular-nums ${item.rank <= 3 ? "text-blue" : ""}`}>{item.rank}위</span>

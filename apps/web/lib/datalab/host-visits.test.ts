@@ -48,8 +48,22 @@ test("selected editions map in the requested order with counts from the DataLab 
   assert.deepEqual(defaultHostVisits(imsil, ["imsil-cheese-2023"])!.editions.map(e => e.editionId), ["imsil-cheese-2023"]);
 });
 
+test("reviewed link: nonsan-strawberry in 44230 covers 2024 and 2025 only; the 2023 edition has no DataLab year", () => {
+  const nonsan = festivals.find(f => f.festivalId === "nonsan-strawberry")!, link = parseFestivalLinks(linksRaw, trend).find(l => l.archiveFestivalId === "nonsan-strawberry")!;
+  assert.deepEqual([link.datalabFestivalId, link.regionCode, nonsan.region.code, link.editions.map(e => [e.editionId, e.days])], ["nonsan-strawberry", "44230", "44230", [["nonsan-strawberry-2024", 4], ["nonsan-strawberry-2025", 4]]]);
+  for (const r of link.editions) {
+    const e = editions.find(x => x.id === r.editionId)!;
+    assert.deepEqual([e.year, e.start, e.end, editionDays(e.start, e.end)], [r.year, r.start, r.end, r.days]);
+  }
+  const v = defaultHostVisits(nonsan, ["nonsan-strawberry-2025", "nonsan-strawberry-2024", "nonsan-strawberry-2023"])!;
+  const rows = trend.festivals.find(f => f.id === "nonsan-strawberry")!.years;
+  assert.deepEqual(v.editions.map(e => [e.editionId, e.total, e.dailyMean]), [2025, 2024].map(y => { const r = rows.find(x => x.year === y)!; return [`nonsan-strawberry-${y}`, r.periodTotal, r.dailyMean]; }));
+  assert.deepEqual([v.festivalName, v.allYearsHref, v.source.downloadedOn], ["논산딸기축제", "/compare/annual?festival=nonsan-strawberry", "2026-10-04"]);
+  assert.equal(defaultHostVisits(nonsan, ["nonsan-strawberry-2023"]), null);
+});
+
 test("unreviewed festivals, other regions, cancelled/undated/changed-period editions are dropped; valid subset survives", () => {
-  for (const f of festivals.filter(f => f.festivalId !== "imsil-cheese")) assert.equal(defaultHostVisits(f, f.editions.map(e => e.editionId)), null, f.festivalId);
+  for (const f of festivals.filter(f => !["imsil-cheese", "nonsan-strawberry"].includes(f.festivalId))) assert.equal(defaultHostVisits(f, f.editions.map(e => e.editionId)), null, f.festivalId);
   assert.equal(defaultHostVisits({ ...imsil, region: { ...imsil.region, code: "52790" } }, IDS), null, "region must match the link");
   const cases: [string, ArchiveFestival][] = [
     ["cancelled", withEdition(imsil, "imsil-cheese-2024", { cancelled: true, status: "취소" })],

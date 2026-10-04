@@ -9,11 +9,13 @@ const clone = <T>(v: T): T => JSON.parse(JSON.stringify(v));
 type Raw = typeof raw;
 const mutate = (edit: (d: Raw) => void) => { const d = clone(raw); edit(d); return d; };
 
-test("checked-in profiles parse: 26 regions, 25 festivals linked to reviewed festival IDs", () => {
+test("checked-in profiles parse: 26 regions, 27 festivals linked to reviewed festival IDs", () => {
   const p = parseRegionProfiles(raw), festivals = parseFestivalProfiles(festivalRaw).festivals.map(f => f.id);
   assert.equal(p.regions.length, 26);
   assert.deepEqual(defaultRegionProfiles, p);
-  assert.equal(Object.keys(p.festivalRegions).length, 25);
+  assert.equal(Object.keys(p.festivalRegions).length, 27);
+  assert.equal(p.festivalRegions["daegu-yangnyeongsi"], "27110", "성내2동 is in 대구 중구");
+  assert.deepEqual(["pyeongchang-trout", "pyeongchang-hyoseok"].map(id => p.festivalRegions[id]), ["51760", "51760"], "two festivals in one region");
   assert.ok(Object.keys(p.festivalRegions).every(id => festivals.includes(id)));
   assert.equal(p.festivalRegions["daegu-chimac"], undefined);
   assert.equal(p.festivalRegions["jangheung-water"], "12770");

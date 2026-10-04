@@ -3,10 +3,11 @@
 // the app only reads the checked-in apps/web/data/datalab-festival-trend.json.
 // `--init-manifest --source-repo <pick-d-day checkout>` records the import manifest from the original commit.
 import { execFileSync } from "node:child_process";
-import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { blobUrl, describe, gitBlobId, sha256 } from "./datalab-bytes.mjs";
 import { parseSourceNumber, parseTable } from "./datalab-csv.mjs";
+import { classifyOwner, OWNER_IMPORT, OWNER_MANIFEST, OWNER_ORIGINAL, previousTables, verifyOwnerImport } from "./datalab-owner-import.mjs";
 
 export const REPO_ROOT = fileURLToPath(new URL("../../../", import.meta.url));
 export const IMPORT_DIR = "docs/research/imported/hkjin-plan-03";
@@ -29,9 +30,8 @@ const VISITOR_TABLES = ["방문자 거주지", "방문자 수 추이", "방문�
 // region_visitor tables by build-datalab-region-annual.mjs and build-datalab-region-profiles.mjs. Documents stay preserved-only.
 export const EXPECTED_COUNTS = { csv: 304, festival: 104, region: 104, region_visitor: 96, doc: 5, consumed: 304 };
 
-export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
-export const gitBlobId = bytes => createHash("sha1").update(Buffer.concat([Buffer.from(`blob ${bytes.length}\0`), bytes])).digest("hex");
-export const originalUrl = path => `${SOURCE.repository}/blob/${SOURCE.commit}/${`${SOURCE.basePath}/${path}`.split("/").map(encodeURIComponent).join("/")}`;
+export { describe, gitBlobId, sha256 };
+export const originalUrl = path => blobUrl(SOURCE.repository, SOURCE.commit, `${SOURCE.basePath}/${path}`);
 
 /** Classify a path relative to plan-03-datalab. Unknown names are rejected rather than guessed. */
 export function classify(path) {
@@ -41,14 +41,6 @@ export function classify(path) {
   m = path.match(/^data\/(region|region_visitor)\/(\d{14})_([^_/]+)_2018-2025_데이터랩_다운로드\/(\d{14})_([^_/]+)\.csv$/);
   if (m && m[2] === m[4] && (m[1] === "region" ? REGION_TABLES : VISITOR_TABLES).includes(m[5])) return { group: m[1], table: m[5], stamp: m[2], name: m[3] };
   throw new Error(`Unknown source file classification: ${path}`);
-}
-
-export function describe(bytes) {
-  let text;
-  try { text = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes); } catch { throw new Error("Source file is not UTF-8"); }
-  const bom = bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
-  const crlf = (text.match(/\r\n/g) ?? []).length, lf = (text.match(/\n/g) ?? []).length;
-  return { text: bom ? text.slice(1) : text, encoding: bom ? "utf-8-bom" : "utf-8", lineEnding: lf === 0 ? "none" : crlf === 0 ? "LF" : crlf === lf ? "CRLF" : "mixed" };
 }
 
 function manifestEntry(path, bytes, gitBlob) {
@@ -108,17 +100,74 @@ export function verifyImport(root = REPO_ROOT) {
 
 const req = (v, what) => { if (v === null) throw new Error(`Missing required value: ${what}`); return v; };
 
-export function buildDataset(root = REPO_ROOT) {
-  const { manifest, manifestSha256, files } = verifyImport(root);
+export const FESTIVAL_IMPORTS = ["hkjin-plan-03", OWNER_IMPORT.id];
+const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+export const stampDate = stamp => `${stamp.slice(0, 4)}-${stamp.slice(4, 6)}-${stamp.slice(6, 8)}`;
+
+/**
+ * Both festival imports verified, with one lookup over the reviewed ID table. `table(festival, name)` returns the text and
+ * public source reference of one of the festival's four tables, or null only when that festival's official download had
+ * no such table (the owner's list records which). Every consumed trend table of each import maps to exactly one ID.
+ */
+export function festivalSources(root = REPO_ROOT) {
+  const hkjin = verifyImport(root), owner = verifyOwnerImport(root, previousTables(hkjin.files));
   const ids = JSON.parse(readFileSync(`${root}${IDS_PATH}`, "utf8"));
-  const consumed = manifest.files.filter(f => f.use === "consumed" && f.group === "festival" && f.table === "연도별 방문자 추이").map(f => f.path);
-  const mapped = ids.festivals.map(f => f.sourceFile);
-  if (new Set(ids.festivals.map(f => f.id)).size !== ids.festivals.length || ids.festivals.some(f => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(f.id))) throw new Error("Festival IDs must be unique slugs");
-  if (new Set(mapped).size !== mapped.length || mapped.length !== consumed.length || consumed.some(p => !mapped.includes(p))) throw new Error("ID mapping does not cover consumed files exactly");
+  if (ids.version !== 2 || !Array.isArray(ids.festivals)) throw new Error("Unexpected festival ID table version");
+  const imports = new Map([
+    [FESTIVAL_IMPORTS[0], { files: hkjin.files, original: ORIGINAL_DIR, classify, originalPath: e => `${SOURCE.basePath}/${e.path}`, manifestPath: MANIFEST_PATH, manifestSha256: hkjin.manifestSha256, manifest: hkjin.manifest }],
+    [FESTIVAL_IMPORTS[1], { files: owner.files, original: OWNER_ORIGINAL, classify: classifyOwner, originalPath: e => `${e.zip.path.slice("zip/".length)}/${e.zip.entry}`, manifestPath: OWNER_MANIFEST, manifestSha256: owner.manifestSha256, manifest: owner.manifest }],
+  ]);
+  if (new Set(ids.festivals.map(f => f.id)).size !== ids.festivals.length || ids.festivals.some(f => !SLUG.test(f.id))) throw new Error("Festival IDs must be unique slugs");
+  if (new Set(ids.festivals.map(f => f.name)).size !== ids.festivals.length) throw new Error("A festival is mapped twice");
+  for (const [id, imp] of imports) {
+    const consumed = imp.manifest.files.filter(f => f.use === "consumed" && f.group === "festival" && f.table === "연도별 방문자 추이").map(f => f.path);
+    const mapped = ids.festivals.filter(f => f.import === id).map(f => f.sourceFile);
+    if (new Set(mapped).size !== mapped.length || mapped.length !== consumed.length || consumed.some(p => !mapped.includes(p))) throw new Error(`ID mapping does not cover consumed files exactly: ${id}`);
+  }
+  for (const f of ids.festivals) {
+    if (!imports.has(f.import)) throw new Error(`Unknown import: ${f.id}`);
+    const c = imports.get(f.import).classify(f.sourceFile);
+    if (c.group !== "festival" || c.table !== "연도별 방문자 추이" || c.name !== f.name || f.aliases?.[0] !== f.name) throw new Error(`Mapping name mismatch: ${f.id}`);
+  }
+  function table(f, name) {
+    const imp = imports.get(f.import), path = f.sourceFile.replace(/_연도별 방문자 추이\.csv$/, `_${name}.csv`), hit = imp.files.get(path);
+    const trend = imp.classify(f.sourceFile);
+    if (!hit) {
+      // Only the owner's list can say an official download lacked a table: its ZIP entry list is verified against the list.
+      const zip = f.import === OWNER_IMPORT.id && imp.manifest.files.find(z => z.group === "zip" && z.festival === f.name);
+      if (zip && zip.entries.includes(f.sourceFile) && !zip.entries.includes(path)) return null;
+      throw new Error(`Missing reviewed ${name} file: ${f.id}`);
+    }
+    const c = imp.classify(path);
+    if (c.group !== "festival" || c.table !== name || c.name !== f.name || c.stamp !== trend.stamp || hit.entry.use !== "consumed") throw new Error(`Missing reviewed ${name} file: ${f.id}`);
+    return { text: describe(hit.bytes).text, stamp: c.stamp, source: { path: `${imp.original}/${path}`, originalPath: imp.originalPath(hit.entry), originalUrl: hit.entry.url, bytes: hit.entry.bytes, sha256: hit.entry.sha256 } };
+  }
+  return { ids, table, imports: [...imports].map(([id, imp]) => ({ id, manifestPath: imp.manifestPath, manifestSha256: imp.manifestSha256 })) };
+}
+
+// The festival's host dong(s) are where its destination ranking sits; their road addresses name the province and district.
+// Districts holding at least a tenth of the ranked places make the label; a stray border address does not.
+const PLACE_SHARE = 0.1;
+export function placeOf(destinationText) {
+  const { rows } = parseTable(destinationText), counts = new Map();
+  rows.forEach((r, i) => {
+    const m = r[4].match(/^(\S+) (\S+)(?: |$)/);
+    if (!m) throw new Error(`Address without province and district: row ${i + 2}`);
+    counts.set(`${m[1]} ${m[2]}`, (counts.get(`${m[1]} ${m[2]}`) ?? 0) + 1);
+  });
+  const kept = [...counts].filter(([, n]) => n >= rows.length * PLACE_SHARE).sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).map(([k]) => k.split(" "));
+  if (!kept.length) throw new Error("No district holds a tenth of the ranked places");
+  const byProvince = new Map();
+  for (const [province, district] of kept) byProvince.set(province, [...(byProvince.get(province) ?? []), district]);
+  return [...byProvince].map(([province, districts]) => `${province} ${districts.join("·")}`).join(" · ");
+}
+
+export function buildDataset(root = REPO_ROOT) {
+  const { ids, table, imports } = festivalSources(root);
   const festivals = ids.festivals.map(f => {
-    const { entry, bytes } = files.get(f.sourceFile), c = classify(f.sourceFile);
-    if (c.name !== f.name || f.aliases?.[0] !== f.name) throw new Error(`Mapping name mismatch: ${f.id}`);
-    const { rows } = parseTable(describe(bytes).text, TREND_HEADER);
+    const trend = table(f, "연도별 방문자 추이"), destinations = table(f, "목적지 검색순위");
+    if ((destinations === null) !== (typeof f.place === "string")) throw new Error(`A reviewed place is only for a festival without a destination ranking: ${f.id}`);
+    const { rows } = parseTable(trend.text, TREND_HEADER);
     const seen = new Set();
     const years = rows.map((raw, i) => {
       const at = `${f.id} row ${i + 2}`;
@@ -136,15 +185,15 @@ export function buildDataset(root = REPO_ROOT) {
       return { year, days, periodTotal, dailyMean, local, outside, foreign, raw };
     }).sort((a, b) => a.year - b.year);
     return {
-      id: f.id, name: f.name, aliases: f.aliases, downloadStamp: c.stamp, downloadDate: `${c.stamp.slice(0, 4)}-${c.stamp.slice(4, 6)}-${c.stamp.slice(6, 8)}`,
-      source: { path: `${ORIGINAL_DIR}/${entry.path}`, originalPath: `${SOURCE.basePath}/${entry.path}`, originalUrl: entry.url, bytes: entry.bytes, sha256: entry.sha256 },
-      years,
+      id: f.id, name: f.name, aliases: f.aliases, place: destinations ? placeOf(destinations.text) : f.place,
+      downloadStamp: trend.stamp, downloadDate: stampDate(trend.stamp), source: trend.source, years,
     };
   });
   return {
-    kind: "datalab-festival-period-annual", schemaVersion: 1,
-    scope: { area: "축제 개최 행정동", period: "축제 개최기간", method: "이동통신 기반 방문자 추정", unit: "명", periodTotal: "개최기간 방문자 합계", dailyMean: "개최기간 일평균 방문자", note: "개최기간이 짧으면 합계가 줄 수 있습니다. 행사장 입장객이나 연간 방문객이 아닙니다." },
-    source: { title: "한국관광 데이터랩 · 문화관광축제 연도별 방문자 추이", officialUrl: OFFICIAL_URL, definitionReviewedAt: "2026-09-23", repository: SOURCE.repository, commit: SOURCE.commit, basePath: SOURCE.basePath, manifestPath: MANIFEST_PATH, manifestSha256, downloadTimezone: null },
+    kind: "datalab-festival-period-annual", schemaVersion: 2,
+    scope: { area: "축제 개최 행정동", period: "축제 개최기간", method: "이동통신 기반 방문자 추정", unit: "명", periodTotal: "개최기간 방문자 합계", dailyMean: "개최기간 일평균 방문자", note: "개최기간이 짧으면 합계가 줄 수 있습니다. 행사장 입장객이나 연간 방문객이 아닙니다.",
+      place: "지역은 목적지 검색순위 도로명주소의 시도·시군구(순위 장소의 10% 이상). 목적지 검색순위가 없는 축제만 검토한 값." },
+    source: { title: "한국관광 데이터랩 · 문화관광축제 연도별 방문자 추이", officialUrl: OFFICIAL_URL, definitionReviewedAt: "2026-09-23", imports, downloadTimezone: null },
     rawHeader: TREND_HEADER, festivals,
   };
 }

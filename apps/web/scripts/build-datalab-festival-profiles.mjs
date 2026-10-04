@@ -1,11 +1,11 @@
 // Build the checked-in DataLab festival profiles — festival-period vs base-period indicators, sex·age shares and
-// destination search ranks — for the 26 reviewed festivals from byte-preserved imports.
+// destination search ranks — for every reviewed festival from the byte-preserved imports.
 // Standalone: `node scripts/build-datalab-festival-profiles.mjs [--verify]`. Not part of `npm run build`;
 // the app only reads the checked-in apps/web/data/datalab-festival-profiles.json.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { parseTable } from "./datalab-csv.mjs";
-import { classify, describe, IDS_PATH, MANIFEST_PATH, OFFICIAL_URL, ORIGINAL_DIR, REPO_ROOT, SOURCE, TREND_HEADER, verifyImport } from "./build-datalab-festival-trend.mjs";
+import { festivalSources, OFFICIAL_URL, REPO_ROOT, stampDate, TREND_HEADER } from "./build-datalab-festival-trend.mjs";
 
 export const PROFILE_OUTPUT_PATH = "apps/web/data/datalab-festival-profiles.json";
 export const INDICATOR_HEADER = ["축제명", "그룹명", "개최년도", "구분명", "지표값"];
@@ -26,16 +26,20 @@ export const AGE_BANDS = ["0~9세", "10~19세", "20~29세", "30~39세", "40~49�
 export const DESTINATION_GROUPS = [{ group: "outside", source: "외지인" }, { group: "local", source: "현지인" }, { group: "all", source: "전체" }];
 // The ranking excludes food and lodging by definition; a category like these means the file is not what we reviewed.
 const EXCLUDED_CATEGORY = /음식|식당|한식|중식|일식|양식|카페|주점|제과|분식|뷔페|숙박|호텔|모텔|펜션|콘도|민박|게스트하우스|여관/;
-const INDEX = /^(0|1)(\.\d{1,3})?$/;
+const INDEX = /^(0|[1-9]\d?)(\.\d{1,3})?$/;
+export const WITHHELD = { unmeasured: "no-visit-measurement", aboveMaximum: "above-maximum" };
 const SHARE = /^(0|[1-9]\d?|100)\.\d$/;
 
-const sourceRef = entry => ({ path: `${ORIGINAL_DIR}/${entry.path}`, originalPath: `${SOURCE.basePath}/${entry.path}`, originalUrl: entry.url, bytes: entry.bytes, sha256: entry.sha256 });
+/** Indicators measured from visits; search counts and spending exist without them. */
+const VISIT_INDICATORS = ["외부방문자 유입", "현지인방문자 유입", "축제지 집중률"].map(s => INDICATORS.findIndex(x => x.source === s));
 
 /**
- * Indicators per held year. A year whose ten values are all exactly 0 is withheld (the source has no measurement for it;
- * these are the festival-years absent from the visit trend) and never shown as zeros. A partly zero year fails the build.
+ * Indicators per held year. The visit trend decides which festival-years were measured: a year absent from it must have
+ * every visit indicator at exactly 0 in both periods and is withheld as unmeasured (never shown as zeros, even when search
+ * or spending have values); a year present in it must have no zero at all. A measured year with a value above 1 — above
+ * that year's maximum, against the definition — is withheld whole rather than shown or clipped. Anything else fails.
  */
-export function parseIndicators(text, name, range) {
+export function parseIndicators(text, name, range, trendYears) {
   const { rows } = parseTable(text, INDICATOR_HEADER), byYear = new Map();
   rows.forEach((r, i) => {
     const at = `row ${i + 2}`, group = PERIOD_GROUPS[r[1]], index = INDICATORS.findIndex(x => x.source === r[3]);
@@ -43,7 +47,7 @@ export function parseIndicators(text, name, range) {
     if (!group) throw new Error(`Unknown period group: ${at}`);
     if (!/^\d{4}$/.test(r[2]) || Number(r[2]) < range.from || Number(r[2]) > range.to) throw new Error(`Year outside the download range: ${at}`);
     if (index < 0) throw new Error(`Unknown indicator: ${at}`);
-    if (!INDEX.test(r[4]) || Number(r[4]) > 1) throw new Error(`Indicator must be 0..1 with up to three decimals: ${at}`);
+    if (!INDEX.test(r[4]) || Number(r[4]) > 2) throw new Error(`Indicator must be a ratio with up to three decimals: ${at}`);
     const year = Number(r[2]), y = byYear.get(year) ?? { festival: INDICATORS.map(() => null), base: INDICATORS.map(() => null) };
     if (y[group][index] !== null) throw new Error(`Duplicate indicator: ${at}`);
     y[group][index] = Number(r[4]);
@@ -53,8 +57,13 @@ export function parseIndicators(text, name, range) {
   for (const year of [...byYear.keys()].sort((a, b) => a - b)) {
     const y = byYear.get(year), all = [...y.festival, ...y.base];
     if (all.some(v => v === null)) throw new Error(`Incomplete indicator year: ${year}`);
-    if (all.every(v => v === 0)) { withheldYears.push(year); continue; }
-    if (all.some(v => v === 0)) throw new Error(`Partly zero indicator year needs review: ${year}`);
+    if (!trendYears.includes(year)) {
+      if (VISIT_INDICATORS.some(i => y.festival[i] !== 0 || y.base[i] !== 0)) throw new Error(`Visit values in a year without a visit trend need review: ${year}`);
+      withheldYears.push({ year, reason: WITHHELD.unmeasured });
+      continue;
+    }
+    if (all.some(v => v === 0)) throw new Error(`Zero indicator in a measured year needs review: ${year}`);
+    if (all.some(v => v > 1)) { withheldYears.push({ year, reason: WITHHELD.aboveMaximum }); continue; }
     years.push({ year, festival: y.festival, base: y.base });
   }
   if (!years.length) throw new Error("No indicator year with values");
@@ -104,36 +113,33 @@ function rangeOf(path) {
 }
 
 export function buildProfiles(root = REPO_ROOT) {
-  const { manifestSha256, files } = verifyImport(root);
-  const ids = JSON.parse(readFileSync(`${root}${IDS_PATH}`, "utf8"));
+  const { ids, table, imports } = festivalSources(root);
   const festivals = ids.festivals.map(f => {
-    const trend = classify(f.sourceFile), range = rangeOf(f.sourceFile);
-    const table = name => {
-      const path = f.sourceFile.replace(/_연도별 방문자 추이\.csv$/, `_${name}.csv`), hit = files.get(path), c = hit && classify(path);
-      if (!hit || c.group !== "festival" || c.table !== name || c.name !== f.name || c.stamp !== trend.stamp || hit.entry.use !== "consumed") throw new Error(`Missing reviewed ${name} file: ${f.id}`);
-      return { text: describe(hit.bytes).text, source: sourceRef(hit.entry) };
-    };
-    const ind = table("문화관광축제 주요 지표"), demo = table("성-연령별 내국인 방문자"), dest = table("목적지 검색순위");
-    const indicators = parseIndicators(ind.text, f.name, range);
-    if (Math.max(...indicators.years.map(y => y.year), ...indicators.withheldYears) !== range.to) throw new Error(`Indicators do not reach the download range end: ${f.id}`);
-    const trendYears = parseTable(describe(files.get(f.sourceFile).bytes).text, TREND_HEADER).rows.map(r => Number(r[1]));
+    const trend = table(f, "연도별 방문자 추이"), range = rangeOf(trend.source.path);
+    const ind = table(f, "문화관광축제 주요 지표"), demo = table(f, "성-연령별 내국인 방문자"), dest = table(f, "목적지 검색순위");
+    if (!ind || !demo) throw new Error(`Missing reviewed indicator or sex·age file: ${f.id}`);
+    const trendYears = parseTable(trend.text, TREND_HEADER).rows.map(r => Number(r[1]));
     if (trendYears.some(y => y < range.from || y > range.to)) throw new Error(`Trend year outside the download range: ${f.id}`);
+    const indicators = parseIndicators(ind.text, f.name, range, trendYears);
+    if (Math.max(...indicators.years.map(y => y.year), ...indicators.withheldYears.map(w => w.year)) !== range.to) throw new Error(`Indicators do not reach the download range end: ${f.id}`);
+    if (indicators.years.length + indicators.withheldYears.filter(w => w.reason === WITHHELD.aboveMaximum).length !== trendYears.length) throw new Error(`Indicators miss a measured year: ${f.id}`);
     return {
-      id: f.id, name: f.name, range, downloadDate: `${trend.stamp.slice(0, 4)}-${trend.stamp.slice(4, 6)}-${trend.stamp.slice(6, 8)}`,
-      indicators, demographics: parseDemographics(demo.text, f.name), destinations: parseDestinations(dest.text),
-      sources: { indicators: ind.source, demographics: demo.source, destinations: dest.source },
+      id: f.id, name: f.name, range, downloadDate: stampDate(trend.stamp),
+      // null only when the official download had no ranking (the owner's list and ZIP entries say so).
+      indicators, demographics: parseDemographics(demo.text, f.name), destinations: dest ? parseDestinations(dest.text) : null,
+      sources: { indicators: ind.source, demographics: demo.source, destinations: dest ? dest.source : null },
     };
   });
   return {
-    kind: "datalab-festival-profiles", schemaVersion: 1,
+    kind: "datalab-festival-profiles", schemaVersion: 2,
     scope: {
       indicators: "축제기간과 비축제기간(축제 전후 4주)의 지표값. 지표값 = 해당 기간 평균 ÷ 그해 최대값(0~1). 외부·현지인 방문과 내비게이션 검색은 축제 개최 행정동, 관광소비는 시군구, 집중률은 행정동 ÷ 시군구.",
-      withheld: "열 개 값이 모두 0인 해는 측정값이 없는 해로 보고 표시하지 않는다(방문 추이에도 없는 축제·연도).",
+      withheld: "방문 추이에 없는 해는 측정이 없는 해(no-visit-measurement)다. 그해 방문 지표(외부·현지인 방문, 집중률)가 축제기간·평소 모두 0이어야 하며 표시하지 않는다(검색·소비 값이 있어도). 방문 추이에 있는 해는 0이 없어야 하고, 값이 1(그해 최대)을 넘는 해는 정의와 맞지 않아 그해 전체를 표시하지 않는다(above-maximum).",
       demographics: "내려받기 기간(폴더 이름의 연도 범위) 전체의 축제기간 내국인 방문자 성·연령 비율(%). 연도별 값이 아니다.",
-      destinations: "내려받기 기간 전체의 축제기간에 축제 개최 행정동 안에서 내비게이션 목적지 검색이 많았던 곳의 순위. 음식점·숙박 제외. 방문 수나 동선이 아니다.",
+      destinations: "내려받기 기간 전체의 축제기간에 축제 개최 행정동 안에서 내비게이션 목적지 검색이 많았던 곳의 순위. 음식점·숙박 제외. 방문 수나 동선이 아니다. 공식 내려받기에 순위가 없던 축제는 null.",
       comparison: "지표값은 지역 규모에 따라 달라지므로 다른 축제와 크기를 비교하지 않는다. 같은 축제의 연도별 변화에 쓴다.",
     },
-    source: { title: "한국관광 데이터랩 · 문화관광축제 주요 지표·성연령·목적지 검색순위", officialUrl: OFFICIAL_URL, definitionReviewedAt: "2026-10-04", repository: SOURCE.repository, commit: SOURCE.commit, basePath: SOURCE.basePath, manifestPath: MANIFEST_PATH, manifestSha256, downloadTimezone: null },
+    source: { title: "한국관광 데이터랩 · 문화관광축제 주요 지표·성연령·목적지 검색순위", officialUrl: OFFICIAL_URL, definitionReviewedAt: "2026-10-04", imports, downloadTimezone: null },
     indicators: INDICATORS, festivals,
   };
 }

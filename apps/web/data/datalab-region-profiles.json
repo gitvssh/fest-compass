@@ -8791,7 +8791,9 @@
       "code": "27110",
       "name": "중구",
       "province": "대구광역시",
-      "festivalIds": [],
+      "festivalIds": [
+        "daegu-yangnyeongsi"
+      ],
       "range": {
         "from": 2018,
         "to": 2025
@@ -34440,7 +34442,8 @@
       "name": "평창군",
       "province": "강원특별자치도",
       "festivalIds": [
-        "pyeongchang-trout"
+        "pyeongchang-trout",
+        "pyeongchang-hyoseok"
       ],
       "range": {
         "from": 2018,

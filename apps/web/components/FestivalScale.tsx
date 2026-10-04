@@ -6,8 +6,8 @@ import { IconBadge } from "@/components/guide/icons";
 import { InfoDialog } from "@/components/existing/ui";
 import { Segmented } from "@/components/Segmented";
 import { formatCount } from "@/lib/datalab/model";
-import { ORIENTATION_SHARE, rankScale, SCALE_SORTS, scaleYears, sharePercent, type Orientation, type ScaleRow, type ScaleSort } from "@/lib/datalab/scale";
-import type { FestivalPeriodDataset } from "@/lib/datalab/types";
+import { ORIENTATION_SHARE, rankScale, SCALE_SORTS, scaleProvinces, scaleYears, sharePercent, type Orientation, type ScaleRow, type ScaleSort } from "@/lib/datalab/scale";
+import type { ScaleDataset } from "@/lib/datalab/types";
 
 // One colour per visitor group wherever the groups are drawn; the share text next to each bar carries the same facts.
 const GROUPS = [
@@ -21,22 +21,27 @@ const ORIENTATIONS: Readonly<Record<Orientation, { label: string; Icon: LucideIc
   mixed: { label: "고르게", Icon: Scale, className: "bg-paper text-ink/70" },
 };
 const PERCENT = Math.round(ORIENTATION_SHARE * 100);
+/** Rows shown before "모두 보기"; a province view is short enough to show whole. */
+const TOP = 20;
 
-export function FestivalScale({ dataset, initialYear, initialSort }: { dataset: FestivalPeriodDataset; initialYear: number; initialSort: ScaleSort }) {
-  const years = useMemo(() => scaleYears(dataset), [dataset]);
-  const [year, setYear] = useState(initialYear), [sort, setSort] = useState(initialSort);
-  const ranked = useMemo(() => rankScale(dataset, year, sort), [dataset, year, sort]);
-  const leaders = useMemo(() => ({ mean: rankScale(dataset, year, "mean").rows[0], outside: rankScale(dataset, year, "outside").rows[0], local: rankScale(dataset, year, "local").rows[0] }), [dataset, year]);
-  function sync(nextYear: number, nextSort: ScaleSort) {
+export function FestivalScale({ dataset, initialYear, initialSort, initialProvince }: { dataset: ScaleDataset; initialYear: number; initialSort: ScaleSort; initialProvince: string | null }) {
+  const years = useMemo(() => scaleYears(dataset), [dataset]), provinces = useMemo(() => scaleProvinces(dataset), [dataset]);
+  const [year, setYear] = useState(initialYear), [sort, setSort] = useState(initialSort), [province, setProvince] = useState(initialProvince), [all, setAll] = useState(false);
+  const ranked = useMemo(() => rankScale(dataset, year, sort, province), [dataset, year, sort, province]);
+  const leaders = useMemo(() => ({ mean: rankScale(dataset, year, "mean", province).rows[0], outside: rankScale(dataset, year, "outside", province).rows[0], local: rankScale(dataset, year, "local", province).rows[0] }), [dataset, year, province]);
+  function sync(nextYear: number, nextSort: ScaleSort, nextProvince: string | null) {
     const params = new URLSearchParams();
     if (nextYear !== years[0]) params.set("year", String(nextYear));
     if (nextSort !== "mean") params.set("sort", nextSort);
+    if (nextProvince) params.set("province", nextProvince);
     const qs = params.toString();
     window.history.replaceState(window.history.state, "", `${window.location.pathname}${qs ? `?${qs}` : ""}`);
   }
-  const chooseYear = (next: number) => { setYear(next); sync(next, sort); };
-  const chooseSort = (next: ScaleSort) => { setSort(next); sync(year, next); };
+  const chooseYear = (next: number) => { setYear(next); setAll(false); sync(next, sort, province); };
+  const chooseSort = (next: ScaleSort) => { setSort(next); setAll(false); sync(year, next, province); };
+  const chooseProvince = (next: string | null) => { setProvince(next); setAll(false); sync(year, sort, next); };
   const share = SCALE_SORTS[sort].share, max = ranked.rows[0] ? (sort === "total" ? ranked.rows[0].periodTotal : ranked.rows[0].dailyMean) : 1;
+  const scope = province ?? "전국", shown = all || ranked.rows.length <= TOP ? ranked.rows : ranked.rows.slice(0, TOP);
 
   return <div className="space-y-6">
     <header className="space-y-3">
@@ -49,7 +54,7 @@ export function FestivalScale({ dataset, initialYear, initialSort }: { dataset: 
       </div>
     </header>
 
-    {leaders.mean && <ul aria-label={`${year}년 한눈에 보기`} className="grid divide-y divide-ink/10 rounded-2xl border border-ink/10 bg-white sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+    {leaders.mean && <ul aria-label={`${year}년 ${scope} 한눈에 보기`} className="grid divide-y divide-ink/10 rounded-2xl border border-ink/10 bg-white sm:grid-cols-3 sm:divide-x sm:divide-y-0">
       <Leader icon={Trophy} tone="amber" label="하루 방문 최다" row={leaders.mean} value={`하루 ${formatCount(Math.round(leaders.mean.dailyMean))}명`} />
       <Leader icon={Luggage} tone="blue" label="외지인 비율 최고" row={leaders.outside} value={`외지인 ${sharePercent(leaders.outside.shares.outside)}`} />
       <Leader icon={House} tone="teal" label="현지인 비율 최고" row={leaders.local} value={`현지인 ${sharePercent(leaders.local.shares.local)}`} />
@@ -58,10 +63,18 @@ export function FestivalScale({ dataset, initialYear, initialSort }: { dataset: 
     <section aria-labelledby="scale-list" className="region-card space-y-4">
       <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
         <div className="space-y-2">
-          <h2 id="scale-list" className="text-lg font-extrabold">{year}년 순위</h2>
+          <h2 id="scale-list" className="text-lg font-extrabold">{year}년 {scope} 순위</h2>
           <Segmented label="연도" value={year} options={years.map(y => ({ value: y, label: String(y) }))} onChange={chooseYear} columns="grid-cols-6" />
         </div>
-        <Segmented label="순위 기준" value={sort} options={(Object.keys(SCALE_SORTS) as ScaleSort[]).map(k => ({ value: k, label: SCALE_SORTS[k].label }))} onChange={chooseSort} columns="grid-cols-2" />
+        <div className="flex flex-wrap items-end gap-x-4 gap-y-3">
+          <label className="flex items-center gap-2 text-xs font-bold text-muted">지역
+            <select className="workspace-input min-h-10 w-auto py-1.5 text-sm font-bold text-ink" value={province ?? ""} onChange={e => chooseProvince(e.target.value || null)}>
+              <option value="">전국 {dataset.festivals.length}곳</option>
+              {provinces.map(p => <option key={p.name} value={p.name}>{p.name} {p.count}곳</option>)}
+            </select>
+          </label>
+          <Segmented label="순위 기준" value={sort} options={(Object.keys(SCALE_SORTS) as ScaleSort[]).map(k => ({ value: k, label: SCALE_SORTS[k].label }))} onChange={chooseSort} columns="grid-cols-2" />
+        </div>
       </div>
       {/* Each colour and each badge stays beside its meaning when the row wraps. */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-ink/10 py-2.5 text-xs">
@@ -72,14 +85,19 @@ export function FestivalScale({ dataset, initialYear, initialSort }: { dataset: 
         <span className="inline-flex items-center gap-1.5"><OrientationBadge orientation="mixed" /><span className="text-muted">둘 다 살펴보기</span></span>
         <span className="ml-auto"><Criteria dataset={dataset} /></span>
       </div>
-      <p aria-live="polite" className="sr-only">{year}년 {SCALE_SORTS[sort].label} 순 {ranked.rows.length}곳</p>
-      <div aria-hidden="true" className="hidden grid-cols-[2.25rem_minmax(0,15rem)_minmax(0,1fr)_8rem] gap-x-4 text-xs font-bold text-muted md:grid">
+      <p aria-live="polite" className="sr-only">{year}년 {scope} {SCALE_SORTS[sort].label} 순 {ranked.rows.length}곳</p>
+      <div aria-hidden="true" className="hidden grid-cols-[2.25rem_minmax(0,17rem)_minmax(0,1fr)_8rem] gap-x-4 text-xs font-bold text-muted md:grid">
         <span>순위</span><span>축제</span><span>{share ? "방문객 구성" : `방문객 구성 · 막대 길이는 ${SCALE_SORTS[sort].label}`}</span><span className="text-right">{SCALE_SORTS[sort].label}</span>
       </div>
-      <ol aria-label={`${year}년 ${SCALE_SORTS[sort].label} 순위`} className="divide-y divide-ink/10">
-        {ranked.rows.map(r => <Row key={r.id} row={r} sort={sort} width={share ? 1 : (sort === "total" ? r.periodTotal : r.dailyMean) / max} />)}
-      </ol>
-      {ranked.absent.length > 0 && <p className="rounded-xl bg-paper px-3 py-2 text-sm text-muted">{year}년 자료 없음 · {ranked.absent.map(a => a.name).join(", ")}</p>}
+      {ranked.rows.length > 0 ? <ol aria-label={`${year}년 ${scope} ${SCALE_SORTS[sort].label} 순위`} className="divide-y divide-ink/10">
+        {shown.map(r => <Row key={r.id} row={r} sort={sort} width={share ? 1 : (sort === "total" ? r.periodTotal : r.dailyMean) / max} />)}
+      </ol> : <p className="rounded-xl bg-paper px-3 py-2 text-sm">{year}년에는 {scope} 축제 자료가 없어요. 다른 연도를 골라 보세요.</p>}
+      {ranked.rows.length > TOP && <button type="button" className="region-button" aria-expanded={all} onClick={() => setAll(!all)}>{all ? `상위 ${TOP}곳만 보기` : `${ranked.rows.length}곳 모두 보기`}</button>}
+      {ranked.absent.length > 0 && <details className="rounded-xl bg-paper px-3 py-2 text-sm text-muted">
+        <summary className="cursor-pointer font-bold">{year}년 자료 없음 {ranked.absent.length}곳</summary>
+        <p className="mt-1 leading-6">{ranked.absent.map(a => a.name).join(", ")}</p>
+        <p className="mt-1 text-xs">그해 열리지 않았거나, 데이터랩에서 그해를 고를 수 없는 축제예요.</p>
+      </details>}
     </section>
   </div>;
 }
@@ -103,11 +121,12 @@ function OrientationBadge({ orientation }: { orientation: Orientation }) {
 function Row({ row: r, sort, width }: { row: ScaleRow; sort: ScaleSort; width: number }) {
   const value = sort === "mean" ? `하루 ${formatCount(Math.round(r.dailyMean))}명` : sort === "total" ? `${formatCount(r.periodTotal)}명`
     : sort === "outside" ? sharePercent(r.shares.outside) : sharePercent(r.shares.local);
-  return <li className="grid grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 py-3 md:grid-cols-[2.25rem_minmax(0,15rem)_minmax(0,1fr)_8rem] md:gap-x-4">
+  return <li className="grid grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 py-3 md:grid-cols-[2.25rem_minmax(0,17rem)_minmax(0,1fr)_8rem] md:gap-x-4">
     <span className={`col-start-1 row-span-3 row-start-1 self-start text-center text-lg font-extrabold tabular-nums md:row-span-2 md:row-start-1 ${r.rank <= 3 ? "text-blue" : "text-ink/60"}`}>{r.rank}</span>
     <span className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
       <Link href={`/compare/annual?festival=${encodeURIComponent(r.id)}`} className="min-w-0 break-keep font-extrabold hover:text-blue hover:underline">{r.name}</Link>
       <span className="rounded-md bg-paper px-1.5 py-0.5 text-xs font-bold text-muted">{r.days}일</span>
+      <span className="text-xs text-muted">{r.place}</span>
     </span>
     <span className="col-start-3 row-start-1 text-right text-sm font-extrabold tabular-nums md:col-start-4">{value}</span>
     <span aria-hidden="true" className="col-span-2 col-start-2 row-start-2 block h-3 overflow-hidden rounded-full bg-paper md:col-span-1 md:col-start-3 md:row-start-1">
@@ -122,15 +141,16 @@ function Row({ row: r, sort, width }: { row: ScaleRow; sort: ScaleSort; width: n
   </li>;
 }
 
-function Criteria({ dataset }: { dataset: FestivalPeriodDataset }) {
+function Criteria({ dataset }: { dataset: ScaleDataset }) {
   return <InfoDialog label="기준" title="방문 규모를 읽는 기준" buttonClassName="region-button min-h-8 px-2 py-1 text-xs">
     <ul className="list-disc space-y-2 pl-5">
       <li>방문자는 축제가 열린 행정동에 머문 사람을 이동통신 자료로 추정한 수예요. 행사장 입장객이 아니에요.</li>
       <li>일평균은 개최기간 방문자 합계를 개최일수로 나눈 값이에요. 기간이 긴 축제는 일평균이 낮게 보일 수 있어요.</li>
       <li>현지인·외지인·외국인 구분과 수는 데이터랩 원문 그대로예요. 외국인 0명도 원문 값이에요.</li>
       <li>‘외지인 중심’·‘현지인 중심’은 한쪽이 {PERCENT}% 이상일 때 이 화면에서 붙인 표시예요.</li>
-      <li>데이터랩에서 내려받은 문화관광축제 {dataset.festivals.length}곳만 비교해요. 2020·2021년 자료는 없어요.</li>
+      <li>데이터랩에서 내려받은 문화관광축제 {dataset.festivals.length}곳만 비교해요. 축제마다 데이터랩에서 고를 수 있는 연도가 달라요. 2020·2021년 자료는 없어요.</li>
+      <li>지역은 축제가 열린 행정동이 속한 시도·시군구예요. 지역을 고르면 그 시도 축제끼리 순위를 매겨요.</li>
     </ul>
-    <p><a className="font-bold text-blue underline" href={dataset.source.officialUrl} target="_blank" rel="noreferrer">{dataset.source.title} ↗</a></p>
+    <p><a className="font-bold text-blue underline" href={dataset.officialUrl} target="_blank" rel="noreferrer">{dataset.title} ↗</a></p>
   </InfoDialog>;
 }

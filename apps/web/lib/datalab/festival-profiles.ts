@@ -1,6 +1,6 @@
 import "server-only";
 import raw from "../../data/datalab-festival-profiles.json";
-import { FESTIVAL_INDICATOR_KEYS, type FestivalDestinationGroup, type FestivalIndicatorYear, type FestivalProfile, type FestivalProfiles } from "./festival-profile-types";
+import { FESTIVAL_INDICATOR_KEYS, WITHHELD_REASONS, type FestivalDestinationGroup, type FestivalIndicatorYear, type FestivalProfile, type FestivalProfiles, type WithheldYear } from "./festival-profile-types";
 import type { VisitorProfileBand } from "./visitor-profile-types";
 
 // Strict reader for the generated festival profiles. Internal evidence (paths, hashes, byte counts) is checked here and
@@ -27,7 +27,7 @@ const index = (v: unknown, at: string): number => (typeof v === "number" && v > 
 const share = (v: unknown, at: string): number => (typeof v === "number" && v >= 0 && v <= 100 && decimals(v, 1) ? v : fail(`${at} must be a one-decimal percentage`));
 const ascendingUnique = (xs: number[], at: string) => xs.forEach((x, i) => { if (i && x <= xs[i - 1]) fail(`${at} must be unique and ascending`); });
 
-function indicators(v: unknown, range: FestivalProfile["range"], at: string): { years: FestivalIndicatorYear[]; withheldYears: number[] } {
+function indicators(v: unknown, range: FestivalProfile["range"], at: string): { years: FestivalIndicatorYear[]; withheldYears: WithheldYear[] } {
   const o = obj(v, at);
   const years = arr(o.years, `${at}.years`).map((y, i) => {
     const e = obj(y, `${at}.years[${i}]`), year = int(e.year, `${at}.years[${i}].year`, range.from, range.to);
@@ -38,11 +38,15 @@ function indicators(v: unknown, range: FestivalProfile["range"], at: string): { 
     };
     return { year, festival: values("festival"), base: values("base") };
   });
-  const withheldYears = arr(o.withheldYears, `${at}.withheldYears`).map((y, i) => int(y, `${at}.withheldYears[${i}]`, range.from, range.to));
+  const withheldYears = arr(o.withheldYears, `${at}.withheldYears`).map((y, i) => {
+    const w = obj(y, `${at}.withheldYears[${i}]`), reason = w.reason;
+    if (typeof reason !== "string" || !(WITHHELD_REASONS as readonly string[]).includes(reason)) fail(`${at}.withheldYears[${i}].reason is unknown`);
+    return { year: int(w.year, `${at}.withheldYears[${i}].year`, range.from, range.to), reason: reason as WithheldYear["reason"] };
+  });
   if (!years.length) fail(`${at} has no held year`);
   ascendingUnique(years.map(y => y.year), `${at}.years`);
-  ascendingUnique(withheldYears, `${at}.withheldYears`);
-  if (withheldYears.some(y => years.some(h => h.year === y))) fail(`${at} withheld years overlap held years`);
+  ascendingUnique(withheldYears.map(w => w.year), `${at}.withheldYears`);
+  if (withheldYears.some(w => years.some(h => h.year === w.year))) fail(`${at} withheld years overlap held years`);
   return { years, withheldYears };
 }
 
@@ -81,22 +85,26 @@ function festival(v: unknown, at: string): FestivalProfile {
   if (range.from > range.to) fail(`${at}.range must not be reversed`);
   const downloadDate = str(f.downloadDate, `${at}.downloadDate`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(downloadDate)) fail(`${at}.downloadDate must be a date`);
+  // Only the destination ranking may be absent (the official download had none); then its source is absent too.
   const links = Object.fromEntries(TABLES.map(t => {
+    if (t === "destinations" && f.destinations === null) { if (s[t] !== null) fail(`${at}.sources.${t} must be null without destinations`); return [t, null]; }
     const e = obj(s[t], `${at}.sources.${t}`);
     str(e.path, `${at}.sources.${t}.path`); hex(e.sha256, `${at}.sources.${t}.sha256`); int(e.bytes, `${at}.sources.${t}.bytes`, 1, 1e8);
     return [t, https(e.originalUrl, `${at}.sources.${t}.originalUrl`)];
   })) as FestivalProfile["links"];
   const ind = indicators(f.indicators, range, `${at}.indicators`);
   return { id, name: str(f.name, `${at}.name`), range, downloadDate, indicators: ind.years, withheldYears: ind.withheldYears,
-    demographics: demographics(f.demographics, `${at}.demographics`), destinations: destinations(f.destinations, `${at}.destinations`), links };
+    demographics: demographics(f.demographics, `${at}.demographics`), destinations: f.destinations === null ? null : destinations(f.destinations, `${at}.destinations`), links };
 }
 
 /** Strictly validate the checked-in artifact before any UI use. */
 export function parseFestivalProfiles(input: unknown): FestivalProfiles {
   const d = obj(input, "dataset"), source = obj(d.source, "source");
-  if (d.kind !== "datalab-festival-profiles" || d.schemaVersion !== 1) fail("unexpected kind or schema version");
+  if (d.kind !== "datalab-festival-profiles" || d.schemaVersion !== 2) fail("unexpected kind or schema version");
   if (source.officialUrl !== OFFICIAL_URL || source.downloadTimezone !== null) fail("source must be the official festival page without a download timezone");
-  hex(source.manifestSha256, "source.manifestSha256");
+  const imports = arr(source.imports, "source.imports");
+  if (!imports.length) fail("source.imports must not be empty");
+  imports.forEach((m, i) => { const o = obj(m, `source.imports[${i}]`); str(o.id, `source.imports[${i}].id`); hex(o.manifestSha256, `source.imports[${i}].manifestSha256`); });
   const names = arr(d.indicators, "indicators").map((x, i) => { const o = obj(x, `indicators[${i}]`); return `${String(o.key)}|${String(o.source)}`; });
   if (names.join() !== FESTIVAL_INDICATOR_KEYS.map((k, i) => `${k}|${INDICATOR_SOURCES[i]}`).join()) fail("indicators differ from the reviewed five");
   const festivals = arr(d.festivals, "festivals").map((f, i) => festival(f, `festivals[${i}]`));

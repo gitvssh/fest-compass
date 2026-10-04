@@ -44,14 +44,20 @@ try {
     const { context, page } = await open();
     await page.goto(`${base}/compare/scale`);
     await page.getByRole("heading", { level: 1, name: "문화관광축제 방문 규모", exact: true }).waitFor();
-    const rows = page.getByRole("list", { name: "2025년 일평균 순위", exact: true }).getByRole("listitem");
+    const rows = page.getByRole("list", { name: "2025년 전국 일평균 순위", exact: true }).getByRole("listitem");
     const expected = trend.festivals.flatMap(f => f.years.filter(y => y.year === 2025).map(y => ({ name: f.name, mean: y.dailyMean })))
       .sort((a, b) => b.mean - a.mean || a.name.localeCompare(b.name, "ko-KR")).map(r => r.name);
-    assert.deepEqual(await rows.evaluateAll(lis => lis.map(li => li.querySelector("a")?.textContent?.trim())), expected);
+    const names = () => rows.evaluateAll(lis => lis.map(li => li.querySelector("a")?.textContent?.trim()));
+    assert.deepEqual(await names(), expected.slice(0, 20));
+    await page.getByRole("button", { name: `${expected.length}곳 모두 보기`, exact: true }).click();
+    assert.deepEqual(await names(), expected);
     await page.getByRole("group", { name: "순위 기준" }).getByRole("button", { name: "외지인 비율", exact: true }).click();
     await page.waitForURL(/sort=outside/);
-    assert.ok((await page.getByRole("list", { name: "2025년 외지인 비율 순위", exact: true }).getByRole("listitem").first().innerText()).includes("임실N치즈축제"));
-    checks.push("scale-order-matches-file", "scale-sort-switch");
+    assert.ok((await page.getByRole("list", { name: "2025년 전국 외지인 비율 순위", exact: true }).getByRole("listitem").first().innerText()).includes("임실N치즈축제"));
+    await page.getByRole("combobox", { name: "지역" }).selectOption("충남");
+    await page.waitForURL(/province=/);
+    observed.chungnam2025 = await page.getByRole("list", { name: "2025년 충남 외지인 비율 순위", exact: true }).getByRole("listitem").count();
+    checks.push("scale-order-matches-file", "scale-show-all", "scale-sort-switch", "scale-province");
     await context.close();
   }
   if (process.env.LIVE_MARKS !== "0") {

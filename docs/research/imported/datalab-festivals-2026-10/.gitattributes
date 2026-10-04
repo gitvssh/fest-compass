@@ -1,0 +1,2 @@
+# Byte-preserved official downloads: never convert line endings (the manifest hashes the exact bytes).
+original/** -text
