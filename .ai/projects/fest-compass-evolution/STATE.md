@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 62
+revision: 64
 status: waiting-human
 next_actor: human
 last_actor: claude
-current_question: "공개 저장소에 남은 데이터랩 원본 파일 337개를 현재 판에서 지울까요?"
-updated_at: "2026-10-04T11:39:25.829Z"
+current_question: "No open question"
+updated_at: "2026-10-04T12:04:08.155Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 자료(공공데이터포털 API·TourAPI), 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너를 공개 중이다(이미지 0535ad3c). 2026-10-04 ADR-0003으로 데이터랩 웹사이트 내려받기 자료를 쓰던 화면(연도별 방문 흐름·방문 규모·개최지 방문 구성·임실 방문자 특성·지역 연간 추세)을 뺐다. 공개 저장소의 데이터랩 원본 파일 처리가 사용자 결정으로 남았다.
+기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(연도별 방문 흐름·개최지 방문 구성·임실 방문자 특성·지역 연간 추세)을 공개 중이다(이미지 3bba936d). 2026-10-04 ADR-0003 제거를 같은 날 ADR-0004로 되돌렸다.
 
 ## Accepted decisions
 
@@ -82,7 +82,7 @@ updated_at: "2026-10-04T11:39:25.829Z"
 - 2026-10-04 사용자 결정: 목적별 축제 찾기를 제안 순서대로 — 1단계 등록 분류 유형 칩·문화관광축제 방문 규모(외지인·현지인 구성 포함) 구현·공개, 2단계 체험·어린이·무료 표시(등록 소개 글 근거), 3단계 데이터랩 수동 보강(사람 작업, 나중)(docs/design/25-festival-discovery.md).
 - 2026-10-04 사용자 승인: 이미지 저장소 한도로 막힌 발행을 위해 지난 이미지 ae7b945·1312880만 프로젝트 정리 절차로 지우고 즉시 공개(docs/validation/47-festival-discovery.md 공개 배포).
 - 2026-10-04 사용자 승인: 이미지 저장소의 지난 이미지 ed3585c·d3def74 정리(실행 6054). 같은 날 공개 검사에서 찾은 동의 배너 문제를 고치도록 요청(docs/validation/48-consent-banner.md).
-- 2026-10-04 사용자 결정: 데이터랩(웹사이트 내려받기 자료, 공공누리 없음)을 쓰지 않고 배포된 화면을 제거한다 — docs/decisions/0003-no-datalab-website-downloads.md. 공공데이터포털 DataLabService API 자료(이용 제한 없음)는 유지.
+- 2026-10-04 사용자 결정: 한국관광공사 공모전 목적에 맞춰 데이터랩 자료 화면을 유지한다(ADR-0004가 ADR-0003 대체, docs/decisions/0004-use-kto-datalab-data.md). 자동 내려받기는 하지 않는다.
 
 ## Open questions
 
@@ -93,7 +93,7 @@ updated_at: "2026-10-04T11:39:25.829Z"
 - 설계24 묶음2(요청형 길잡이 패널·탭별 자료 읽는 법·읽을거리)~5의 착수 순서. 검수자가 없으므로 문장은 출처 대장 원문과 대조해 정하고 업무 경험자 검수를 받았다고 쓰지 않는다.
 - 공개 서버 그림 최적화 캐시가 읽기 전용 루트 때문에 매번 MISS다. 쓰기 가능한 임시 캐시 볼륨을 붙일지(그림 화면의 첫 화면 시간 개선, 검수46).
 - 묶음 1 뒤 초기 사용자 재확인(설계24 14절): 각 흐름의 목표·끝·순서를 자기 말로 설명하는지, 어디서 막히는지.
-- 공개 저장소에 남은 데이터랩 원본 내려받기 파일(docs/research/imported/hkjin-plan-03, datalab-imsil-2023~2025, 337개·약 2.4MB)을 현재 판에서 지울지. 이력 삭제(강제 push)는 별도 결정.
+- 공모전 이후 일반 서비스로 이어 갈 때 데이터랩 자료(공공누리 표시 없음)의 재이용 범위를 한국관광공사에 확인한다(ADR-0004).
 
 ## Artifacts and durable documents
 
@@ -221,3 +221,4 @@ updated_at: "2026-10-04T11:39:25.829Z"
 - docs/validation/48-consent-banner.md
 - apps/web/components/useBottomDock.ts
 - docs/decisions/0003-no-datalab-website-downloads.md
+- docs/decisions/0004-use-kto-datalab-data.md

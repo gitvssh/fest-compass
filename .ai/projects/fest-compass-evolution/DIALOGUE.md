@@ -1343,3 +1343,33 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - 공개 저장소에 남은 데이터랩 원본 파일 337개를 현재 판에서 지울까요?
 - Handoff: Human
+
+## T-063 · Human · chair
+
+- Position: 2026-10-04 결정: 연도별 방문 흐름은 꼭 필요하니 제거를 되돌린다. 이 프로젝트는 한국관광공사 공모전 참가작이라 한국관광공사 자료를 쓰는 것이 목표이고, ‘데이터랩’을 다른 기관 사이트로 착각했었다. 공공데이터·공모전·공무원 대상이라 괜찮다고 판단한다.
+- Evidence:
+  - 2026-10-04 Claude Code 세션에서 사용자가 직접 결정·설명했다. 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 결정 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-064 · Claude · implementer
+
+- Position: ADR-0003 제거를 전부 되돌려 공개했다: 연도별 방문 흐름(/compare/annual), 문화관광축제 방문 규모(/compare/scale), 개최지 방문 구성, 임실 방문자 특성, 지역 연간 추세와 연결·자료·스크립트·시험. 앱 코드는 전체 시험을 마친 c5ed391과 바이트 단위로 같다. ADR-0004가 ADR-0003을 대체한다.
+- Evidence:
+  - docs/decisions/0004-use-kto-datalab-data.md
+  - docs/validation/47-festival-discovery.md ‘되돌림’(발행 37200430264 → sha256:3bba936d…, 배포 선언 f2d2e3d, 공개 확인)
+- Changes:
+  - apps/web: 4784489 상태로 복원(c5ed391과 동일)
+  - docs: ADR-0004, ADR-0003 대체됨 표시, 설계·시험 문서의 제거 표시 되돌림, 검수47 되돌림 기록, 연구 메모 결정 표시
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 446 통과, 타입 검사·발행 빌드 통과, 같은 코드의 전체 headless 31회 근거 재사용(c5ed391)
+  - 공개: Synced·Healthy, livez·readyz 200, 업무 9테이블 20행 해시 일치, 두 화면 200·사이트맵 포함·임실 화면 영역 복귀, 축제 찾기 공개 검사 8항목 통과
+- Questions:
+  - No open question
+- Handoff: Human
