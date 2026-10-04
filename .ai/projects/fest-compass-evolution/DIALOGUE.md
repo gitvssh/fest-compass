@@ -1457,3 +1457,23 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Claude
+
+## T-070 · Claude · implementer
+
+- Position: 소유자가 받은 데이터랩 문화관광축제 92곳을 공개했다. 공식 ZIP 92개를 바이트 그대로 보관하고 매 생성마다 목록을 다시 만들어 대조한다. 겹치는 26곳은 처음 가져오기를 유지(표 101개 동일·3개 동순위 순서만 다름), 새 66곳을 더했다. 축제별 방문 자료·방문 규모는 92곳·지역 표시·고른 축제만 받기·상위 20곳·시도별 순위, 기존 축제 화면은 논산딸기축제 2024·2025 개최지 방문 구성. 측정 없는 해·정의(최댓값 1)를 넘는 해는 이유와 함께 뺐다.
+- Evidence:
+  - docs/validation/51-datalab-festivals-92.md(발행 37224952497 → sha256:beed519c…, 배포 선언 0073ec5, 공개 확인)
+  - docs/design/29-datalab-festivals-92.md
+  - docs/research/imported/datalab-festivals-2026-10/README.md
+- Changes:
+  - docs/research/imported/datalab-festivals-2026-10(ZIP 92·CSV 367·목록, original/** -text)
+  - apps/web: 두 가져오기 생성(festivalSources·placeOf), 스키마 v2, /api/datalab/festival, 축제별 방문 자료·방문 규모 화면, 논산·대구약령시·평창효석 연결
+  - docs: 설계29, 검수51, TS-FC-026, 자료 목록·screens·data-visualization·설계 색인
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 488 통과, 타입 검사·전체 빌드·인프라 시험 41·등록 검사 통과(첫 발행 실행은 낡은 기대값 시험 1개로 이미지 없이 멈춤 → 수정)
+  - headless 32종 통과(최종 빌드·새 시험용 DB)
+  - 공개: Synced·Healthy 세대 50, 업무 9테이블 20행 해시 일치, 공개 화면 9항목·방문 규모 7항목 통과
+- Questions:
+  - No open question
+- Handoff: Human

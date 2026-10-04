@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 69
-status: waiting-claude
-next_actor: claude
+revision: 70
+status: waiting-human
+next_actor: human
 last_actor: claude
 current_question: "No open question"
-updated_at: "2026-10-04T15:45:45.551Z"
+updated_at: "2026-10-04T18:43:50.877Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(축제별 방문 자료 — 개최연도별 방문·축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위·개최지 관광 소비와 외지인 방문객, 새 축제 방문 흐름의 지역 연간 합계 24곳·지역 카드 26곳, 개최지 방문 구성·임실 방문자 특성)을 공개 중이다(이미지 f9cbcb7c). 받아 둔 데이터랩 CSV 304개를 모두 쓴다. 모든 화면 하단에 ⓒ한국관광공사 출처를 표기한다. 관광자원 화면에 공사 OpenAPI 두 종(앞으로 30일 관광지 붐빔 예측·함께 찾는 곳)을 연결했다. 사용자가 받은 문화관광축제 92곳 자료는 검사를 마쳤고 연결을 이어서 한다.
+기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(축제별 방문 자료 — 개최연도별 방문·축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위·개최지 관광 소비와 외지인 방문객, 새 축제 방문 흐름의 지역 연간 합계 24곳·지역 카드 26곳, 개최지 방문 구성·임실 방문자 특성)을 공개 중이다(이미지 beed519c). 받아 둔 데이터랩 CSV 304개를 모두 쓴다. 모든 화면 하단에 ⓒ한국관광공사 출처를 표기한다. 관광자원 화면에 공사 OpenAPI 두 종(앞으로 30일 관광지 붐빔 예측·함께 찾는 곳)을 연결했다. 소유자가 받은 데이터랩 문화관광축제 92곳(공식 ZIP 92·CSV 367)을 보관·검증하고 축제별 방문 자료·방문 규모(지역 표시, 고른 축제만 받기, 상위 20곳·시도별 순위)와 기존 축제 화면의 논산딸기축제 2024·2025 개최지 방문 구성까지 공개했다.
 
 ## Accepted decisions
 
@@ -238,3 +238,9 @@ updated_at: "2026-10-04T15:45:45.551Z"
 - docs/sdlc/3-testing/scenarios/TS-FC-025.md
 - apps/web/lib/kto-signals/server.ts
 - docs/validation/evidence/2026-10-05-kto-signals-after.json
+- docs/design/29-datalab-festivals-92.md
+- docs/validation/51-datalab-festivals-92.md
+- docs/sdlc/3-testing/scenarios/TS-FC-026.md
+- docs/research/imported/datalab-festivals-2026-10/README.md
+- apps/web/scripts/datalab-owner-import.mjs
+- docs/validation/evidence/2026-10-05-datalab-92-after.json
