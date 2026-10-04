@@ -4,7 +4,7 @@ owner: pickDday
 last_verified: 2026-09-24
 id: TS-FC-012
 version: v1
-status: retired
+status: active
 summary: "임실 축제 방문 구성과 지역 연간 추세가 정확한 대상·기간에 연결되는지 확인합니다. 실행 결과는 검증 기록37을 따릅니다."
 usecase: null
 covers_ac: ["VC1","VC2","VC3","VC4","VC5","VC6","VC7","VC8"]
@@ -13,8 +13,6 @@ specs: []
 ---
 
 # TS-FC-012 · 임실 방문 구성과 연간 추세
-
-**2026-10-04 폐기 — 시험 대상 화면을 [ADR-0003](../../../decisions/0003-no-datalab-website-downloads.md)으로 공개 서비스에서 뺐다. 자동 시험도 지웠다.**
 
 [기능 상세 §9](../../2-design/functional-spec.md#9-방문-구성과-지역-연간-추세)를 검증한다.
 UC-FC-009·010의 방문 흐름 보강이며 아래 VC 번호는 이 시나리오 안에서만 사용한다.

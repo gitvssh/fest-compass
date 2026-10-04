@@ -99,7 +99,7 @@ flowchart TD
 2026-10-03 두 흐름에 네 번째 탭 `모아 보기`(`/existing/{id}/summary`, `/new/{지역코드}/summary`)와 공통 안내 `/guide`(축제 준비 전체 과정)를 더했다.
 모아 보기 주소는 기존 축제에서 방문 흐름의 비교 회차 조건을, 새 축제에서 지속 조건(유형·연도·달)을 그대로 싣는다. `/guide`는 홈 띠·시작 화면·모아 보기 다음에서 연결한다.
 2026-10-04 축제 검색 주소에 등록 분류 `type`(예: `/existing/search?type=EV010300`)을 더했고, 축제 비교 아래에 `/compare/scale`(문화관광축제 방문 규모,
-`?year=&sort=`)을 두었다. 같은 날 [ADR-0003](../../decisions/0003-no-datalab-website-downloads.md)으로 `/compare/scale`과 `/compare/annual`을 없애고 `/compare`로 영구 이동한다. 홈 `자료 조사·비교`, `/compare`, `/compare/annual`, 축제 검색의 유형 줄에서 들어온다([설계25](../../design/25-festival-discovery.md)).
+`?year=&sort=`)을 두었다. 홈 `자료 조사·비교`, `/compare`, `/compare/annual`, 축제 검색의 유형 줄에서 들어온다([설계25](../../design/25-festival-discovery.md)).
 2단계: `type=all`은 이름·지역 없는 그해 모든 축제 전국 목록이고, `mark=experience,family,free`는 결과를 화면에서 거르는 주소 조건이다(서버 조회 조건 아님).
 
 ## v6 새 축제의 정보 우선순위

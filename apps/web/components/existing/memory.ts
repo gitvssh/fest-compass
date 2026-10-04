@@ -15,6 +15,7 @@ export type FestivalMemory = {
   resources: { selected: ResourceItem | null; anchor: Anchor | null; radiusKm: number | null; sort: "name" | "distance"; display: "list" | "map" };
   timing: { candidates: Candidate[]; observedMonth: string | null; returnTo: { month: string | null; focusId: string } | null };
   /** Chosen destination-rank group and the rank link to refocus when coming back from the resources view. */
+  visitorProfile: { group: "outside" | "local" | "all" | null; returnTo: string | null };
   /** Opened tables and source panels, restored when coming back to the same view. */
   open: Record<string, boolean>;
   /** Screen-only memo of the summary sheet (printed with it, never saved). */
@@ -31,6 +32,7 @@ function fresh(festivalId: string): FestivalMemory {
     festivalId, search: {}, focusHeading: null, open: {}, memo: "",
     resources: { selected: null, anchor: null, radiusKm: null, sort: "name", display: "list" },
     timing: { candidates: [], observedMonth: null, returnTo: null },
+    visitorProfile: { group: null, returnTo: null },
   };
 }
 /** Choosing another festival clears the previous festival's selections, center and candidate periods. */

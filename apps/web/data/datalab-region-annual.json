@@ -1,0 +1,134 @@
+{
+  "kind": "datalab-region-visitor-annual",
+  "schemaVersion": 1,
+  "scope": {
+    "area": "기초지자체 전체",
+    "period": "달력 연도",
+    "method": "이동통신 기반 방문자 추정",
+    "unit": "명(연간 방문 합계)",
+    "total": "원문 전체방문자(a+b) 값을 그대로 둔다. 현지인+외지인과 1명까지 다를 수 있다.",
+    "note": "기간 중 반복 방문이 합산된 값이며 고유 방문자 수가 아니다."
+  },
+  "source": {
+    "title": "한국관광 데이터랩 · 지역 방문자 수 추이",
+    "officialUrl": "https://datalab.visitkorea.or.kr/datalab/portal/loc/getAreaDataForm.do",
+    "officialUrlOpenedOn": "2026-09-24",
+    "repository": "https://github.com/travel-resolver/pick-d-day",
+    "commit": "f362e65ba9e1cac18757951236484cff666c2696",
+    "basePath": "developer/hkjin/plan-03-datalab",
+    "manifestPath": "docs/research/imported/hkjin-plan-03/manifest.json",
+    "manifestSha256": "2f76075b3885a5d23f5eca53251dbe2964182eded7086439e389cb9e770886a9",
+    "downloadTimezone": null
+  },
+  "rawHeader": [
+    "기준년월",
+    "기초지자체",
+    "방문자 구분",
+    "방문자 수"
+  ],
+  "regions": [
+    {
+      "code": "52750",
+      "name": "임실군",
+      "downloadStamp": "20260830132526",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132526_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132526_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1193,
+        "sha256": "e36cc998f14454db0f9349356076d60815c83f245a13c808c8f29f5f69457e6d"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 2418692,
+          "outside": 4981442,
+          "total": 7400134,
+          "raw": {
+            "local": "2418692.0",
+            "outside": "4981442.0",
+            "total": "7400134.0"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 2754094,
+          "outside": 6440147,
+          "total": 9194241,
+          "raw": {
+            "local": "2754094.0",
+            "outside": "6440147.0",
+            "total": "9194241.0"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 2976228,
+          "outside": 6412108,
+          "total": 9388336,
+          "raw": {
+            "local": "2976228.0",
+            "outside": "6412108.0",
+            "total": "9388336.0"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 3433454,
+          "outside": 7329430,
+          "total": 10762885,
+          "raw": {
+            "local": "3433454.0",
+            "outside": "7329430.0",
+            "total": "1.0762885E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 3597531,
+          "outside": 8092476,
+          "total": 11690007,
+          "raw": {
+            "local": "3597531.0",
+            "outside": "8092476.0",
+            "total": "1.1690007E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 3825514,
+          "outside": 8522745,
+          "total": 12348259,
+          "raw": {
+            "local": "3825514.0",
+            "outside": "8522745.0",
+            "total": "1.2348259E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 4046486,
+          "outside": 8875772,
+          "total": 12922259,
+          "raw": {
+            "local": "4046486.0",
+            "outside": "8875772.0",
+            "total": "1.2922259E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 4134106,
+          "outside": 9183132,
+          "total": 13317238,
+          "raw": {
+            "local": "4134106.0",
+            "outside": "9183132.0",
+            "total": "1.3317238E7"
+          }
+        }
+      ]
+    }
+  ]
+}

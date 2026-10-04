@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import catalogue from "../../data/festival-editions.json";
 import bundled from "../../data/region-history.json";
@@ -14,6 +14,8 @@ import { defaultYear, editionHistory, monthlyMeans, periodSummary, yearCoverage,
 import { resourceRows } from "./resources";
 import { holidaySummary, overlapDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
 import { historyKey, festivalsKey, InvalidRequest, parseFestivalSearch, parseHistory, parseResources, parseSchedule, RESOURCE_KINDS as REQUEST_KINDS, resourcesKey } from "./request";
+import { defaultHostVisits } from "../datalab/host-visits";
+import { defaultVisitorProfile } from "../datalab/visitor-profile";
 import { createExistingService, loadHistory as productionHistory, regionObservations } from "./server";
 import { createTourCall, KEYWORD_PAGE_SIZE, type TourCall, type TourOperation, type TourPage } from "./tour";
 import { DEFAULT_RESOURCE_KINDS, parseResourceTarget, readResourceTypes, RESOURCE_KIND_LABELS, RESOURCE_KINDS, resourceTypesValue, type CurrentFestival, type DataFreshness, type ResourceItem } from "./types";
@@ -370,6 +372,81 @@ test("client-safe modules never reach server-only, node built-ins, DB, forecast 
   assert.ok(seen.size >= 6);
 });
 
+test("host-area visit mix: selected verified editions only, independent of chart windows and district daily coverage", async () => {
+  const svc = service({ hostVisits: defaultHostVisits });
+  const two = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2023,imsil-cheese-2025")));
+  assert.deepEqual(two.hostVisits?.editions.map(e => e.editionId), two.editions.map(e => e.editionId));
+  assert.deepEqual(two.hostVisits?.editions.map(e => [e.editionId, e.days, e.outside]), [["imsil-cheese-2025", 5, 127842], ["imsil-cheese-2023", 4, 79355]]);
+  const windowed = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2023,imsil-cheese-2025&windows=imsil-cheese-2025:2025-10-09:2025-10-10&before=30")));
+  assert.deepEqual(windowed.hostVisits, two.hostVisits, "chart range never changes the festival-period block");
+  const noDaily = await service({ hostVisits: defaultHostVisits, archive: arch(archive.filter(d => d.region.code !== "52750")) }).loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+  assert.notEqual(noDaily.editions[0].state, "available");
+  assert.deepEqual(noDaily.hostVisits?.editions.map(e => e.editionId), ["imsil-cheese-2025"], "missing district daily data keeps the verified festival-period block");
+  assert.equal((await svc.loadHistory(parseHistory(req("festival=nonsan-strawberry")))).hostVisits, null);
+  assert.equal((await service().loadHistory(parseHistory(req("festival=imsil-cheese")))).hostVisits, null, "no resolver injected -> null");
+  const text = JSON.stringify(two);
+  for (const leak of ["sha256", "docs/research", "commit", "\"raw\"", "evidence", "github.com"]) assert.ok(!text.includes(leak), `${leak} leaked`);
+});
+
+test("a failing host-visits resolver omits only its block and logs a fixed category", async () => {
+  const logged: unknown[][] = [], original = console.error;
+  console.error = (...args: unknown[]) => { logged.push(args); };
+  try {
+    const r = await service({ hostVisits: () => { throw new Error("secret /var/data path"); } }).loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+    assert.equal(r.hostVisits, null);
+    assert.equal(r.editions[0].editionId, "imsil-cheese-2025");
+  } finally { console.error = original; }
+  assert.deepEqual(logged, [["datalab-host-visits: resolver-failed"]]);
+});
+
+test("production history wiring uses the verified host-area resolver", async () => {
+  const r = await productionHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025,imsil-cheese-2024")));
+  assert.deepEqual(r.hostVisits?.editions.map(e => e.editionId), ["imsil-cheese-2025", "imsil-cheese-2024"]);
+  assert.equal(r.hostVisits?.source.url, "https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do");
+  assert.deepEqual(r.visitorProfile?.editions.map(e => e.editionId), ["imsil-cheese-2024", "imsil-cheese-2025"], "production injects the verified profiles, oldest first");
+  assert.deepEqual(r.visitorProfile?.editions.map(e => e.source.url), Array(2).fill("https://datalab.visitkorea.or.kr/datalab/portal/fes/getFesDataForm.do"));
+});
+
+test("visitor profile: only selected reviewed editions, one or two ascending, independent of chart windows and daily coverage", async () => {
+  const svc = service({ visitorProfile: defaultVisitorProfile });
+  const profiles = async (q: string) => (await svc.loadHistory(parseHistory(req(q)))).visitorProfile?.editions.map(e => e.editionId) ?? null;
+  const both = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025,imsil-cheese-2023")));
+  assert.deepEqual(both.visitorProfile?.editions.map(e => e.editionId), ["imsil-cheese-2023", "imsil-cheese-2025"], "ascending, whatever the chart order");
+  assert.deepEqual(both.editions.map(e => e.editionId), ["imsil-cheese-2025", "imsil-cheese-2023"], "the history chart keeps its own order");
+  assert.deepEqual(both.visitorProfile?.editions.map(e => e.destinationGroups.map(g => g.group)), Array(2).fill(["outside", "local", "all"]));
+  const windowed = await svc.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025,imsil-cheese-2023&windows=imsil-cheese-2025:2025-10-09:2025-10-10&before=30")));
+  assert.deepEqual(windowed.visitorProfile, both.visitorProfile, "chart range never changes the profile");
+  assert.deepEqual(await profiles("festival=imsil-cheese&editions=imsil-cheese-2024,imsil-cheese-2023"), ["imsil-cheese-2023", "imsil-cheese-2024"], "prior editions compare without 2025");
+  assert.deepEqual(await profiles("festival=imsil-cheese&editions=imsil-cheese-2024"), ["imsil-cheese-2024"], "one selected -> single profile");
+  assert.deepEqual(await profiles("festival=imsil-cheese"), ["imsil-cheese-2024", "imsil-cheese-2025"], "default selection");
+  assert.deepEqual(await profiles("festival=imsil-cheese&editions=imsil-cheese-2023,imsil-cheese-2024,imsil-cheese-2025"), ["imsil-cheese-2024", "imsil-cheese-2025"], "never more than two");
+  assert.equal(await profiles("festival=nonsan-strawberry"), null);
+  const noDaily = await service({ visitorProfile: defaultVisitorProfile, archive: arch(archive.filter(d => d.region.code !== "52750")) }).loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+  assert.notEqual(noDaily.editions[0].state, "available");
+  assert.deepEqual(noDaily.visitorProfile?.editions.map(e => e.editionId), ["imsil-cheese-2025"], "missing district daily data keeps the reviewed profile");
+  const cancelled = service({ visitorProfile: defaultVisitorProfile, editions: editions.map(e => e.id === "imsil-cheese-2024" ? { ...e, status: "취소" } : e) });
+  const partly = await cancelled.loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2024,imsil-cheese-2025")));
+  assert.deepEqual(partly.visitorProfile?.editions.map(e => e.editionId), ["imsil-cheese-2025"], "a cancelled edition drops out; the other stays single");
+  const plain = await service().loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+  assert.equal(plain.visitorProfile, null, "no resolver injected -> null");
+  assert.equal(plain.editions[0].editionId, "imsil-cheese-2025", "original history still works without the profile");
+  const text = JSON.stringify(both.visitorProfile);
+  for (const leak of ["sha256", "docs/research", "KCTF0061", "52750340", "evidence", "SRCH", "_TOT", "baseYears", "display"]) assert.ok(!text.includes(leak), `${leak} leaked`);
+});
+
+test("a failing visitor-profile resolver omits only its block and logs a fixed category", async () => {
+  const logged: unknown[][] = [], original = console.error;
+  console.error = (...args: unknown[]) => { logged.push(args); };
+  try {
+    const r = await service({ hostVisits: defaultHostVisits, visitorProfile: () => { throw new Error("secret /var/data path"); } })
+      .loadHistory(parseHistory(req("festival=imsil-cheese&editions=imsil-cheese-2025")));
+    assert.equal(r.visitorProfile, null);
+    assert.equal(r.hostVisits?.editions[0].editionId, "imsil-cheese-2025", "the other optional block survives");
+    assert.equal(r.editions[0].editionId, "imsil-cheese-2025");
+  } finally { console.error = original; }
+  assert.deepEqual(logged, [["datalab-visitor-profile: resolver-failed"]]);
+});
+
 test("an archive festival reaches its registration only through one reviewed link", () => {
   assert.equal(linkedCurrentId("nonsan-strawberry"), "current:44230:525292");
   assert.equal(linkedCurrentId("unknown-festival"), null);
@@ -378,22 +455,5 @@ test("an archive festival reaches its registration only through one reviewed lin
   assert.equal(linkedCurrentId("a", [link, { ...link, contentId: "2" }]), null, "two registrations for one archive festival");
   assert.equal(linkedCurrentId("a", [link, { ...link, archiveFestivalId: "b" }]), null, "one registration claimed by two archive festivals");
   assert.equal(linkedCurrentId("a", [{ ...link, region: "99999" }]), null, "unknown region");
-});
-
-test("ADR-0003: no screen, route, module or bundled file uses DataLab website downloads", () => {
-  const root = resolve(__dirname, "../.."), hits: string[] = [];
-  const walk = (dir: string) => {
-    for (const name of readdirSync(join(root, dir), { withFileTypes: true })) {
-      const path = join(dir, name.name);
-      if (name.isDirectory()) { walk(path); continue; }
-      if (!/\.(ts|tsx)$/.test(name.name) || path.endsWith("existing.test.ts")) continue;
-      const text = readFileSync(join(root, path), "utf8");
-      if (/lib\/datalab|datalab-(festival|region|visitor)|\/compare\/(annual|scale)/.test(text)) hits.push(path);
-    }
-  };
-  for (const dir of ["app", "components", "lib"]) walk(dir);
-  assert.deepEqual(hits, []);
-  assert.deepEqual(readdirSync(join(root, "data")).filter(f => f.startsWith("datalab-")), []);
-  assert.equal(existsSync(join(root, "lib", "datalab")), false);
 });
 

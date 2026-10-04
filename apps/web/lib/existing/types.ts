@@ -1,7 +1,9 @@
 import type { FestivalTypeFilter } from "./festival-types";
 import type { FestivalMarks } from "./festival-marks";
 // Response contracts for the existing-festival journey (UC-FC-009). Pure types and constants; safe for client imports.
+import type { VisitorProfileSelection } from "../datalab/visitor-profile-types";
 import type { ResourcePhoto } from "../resources/types";
+export type { VisitorProfile, VisitorProfileBand, VisitorProfileDestination, VisitorProfileDestinationGroup, VisitorProfileGroupId, VisitorProfileResource, VisitorProfileSelection } from "../datalab/visitor-profile-types";
 export type Point = { latitude: number; longitude: number };
 export type Range = { start: string; end: string };
 export type SourceStatus = "complete" | "empty" | "unavailable" | "not-requested";
@@ -66,10 +68,21 @@ export type EditionHistory = {
   source: { edition: SourceRef; visits: PublicSource | null };
 };
 export type HistoryRequest = { festival: string; editions: string[]; before: number; after: number; windows: Record<string, Range> };
+/** DataLab festival-period counts for the festival's host area over the edition's original dates (not the district daily series). */
+export type HostAreaEdition = {
+  editionId: string; year: number; start: string; end: string; days: number;
+  local: number; outside: number; foreign: number; total: number; dailyMean: number;
+  /** outside ÷ total from the counts (ratio 0..1), not the source's rounded percent column. */
+  outsideShare: number;
+};
+export type HostAreaVisits = { festivalName: string; editions: HostAreaEdition[]; allYearsHref: string; source: { title: string; url: string; downloadedOn: string } };
 export type HistoryResponse = Envelope<HistoryRequest> & {
   festival: ArchiveFestival;
   metric: { name: string; unit: "명/일"; regionCode: string; estimate: true };
   sharedYMax: number | null; maxWindowDays: number; editions: EditionHistory[]; freshness: DataFreshness;
+  hostVisits: HostAreaVisits | null;
+  /** Reviewed festival-period visitor profiles of selected editions only (one, or two ascending by date); none -> null. */
+  visitorProfile: VisitorProfileSelection | null;
 };
 
 export type MonthMean = { month: string; days: number; observedDays: number; missingDays: number; zeroDays: number; sum: number | null; mean: number | null; rounded: number | null; status: "complete" | "partial" | "none" };

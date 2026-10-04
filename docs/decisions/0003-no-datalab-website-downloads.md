@@ -1,16 +1,18 @@
 ---
 id: ADR-0003
 type: implementation-policy
-status: Accepted
+status: Superseded
 date: 2026-10-04
 deciders: [owner]
 supersedes: []
-superseded_by: []
+superseded_by: [ADR-0004]
 aliases: []
 scope: product
 ---
 
 # ADR-0003: 데이터랩 웹사이트에서 내려받은 자료를 공개 화면에 쓰지 않는다
+
+> **2026-10-04 대체됨 — [ADR-0004](0004-use-kto-datalab-data.md).** 사용자가 같은 날 되돌리라고 했다(한국관광공사 공모전의 목적이 공사 자료 활용이며, ‘데이터랩’을 다른 기관 사이트로 착각했음).
 
 ## Context and Problem Statement
 
