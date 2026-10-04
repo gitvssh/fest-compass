@@ -304,7 +304,7 @@ test("request parsing: pages, windows, regions and canonical keys", () => {
   const h = parseHistory(req("festival=archive:a&editions=x,y&windows=y:2025-01-01:2025-01-02,x:2025-02-01:2025-02-02"));
   assert.equal(historyKey(h), historyKey(parseHistory(req("festival=a&editions=x,y&windows=x:2025-02-01:2025-02-02,y:2025-01-01:2025-01-02"))));
   const s = parseFestivalSearch(req("q=  논산  딸기 &page=2"), "2026-09-23");
-  assert.deepEqual(s, { q: "논산 딸기", province: null, district: null, start: "2026-01-01", end: "2026-12-31", page: 2, total: null, id: null });
+  assert.deepEqual(s, { q: "논산 딸기", province: null, district: null, start: "2026-01-01", end: "2026-12-31", page: 2, total: null, id: null, type: null });
   assert.equal(parseFestivalSearch(req("q=a&page=2&total=45"), "2026-09-23").total, 45);
   assert.notEqual(festivalsKey(parseFestivalSearch(req("q=a&page=2&total=45"), "2026-09-23")), festivalsKey(parseFestivalSearch(req("q=a&page=2"), "2026-09-23")));
   for (const bad of ["page=0", "page=51", "page=x", "province=44", "id=kto-1", "total=-1", "total=x"]) assert.throws(() => parseFestivalSearch(req(bad), "2026-09-23"), InvalidRequest, bad);

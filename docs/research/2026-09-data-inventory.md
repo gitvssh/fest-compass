@@ -3,7 +3,7 @@ class: Current
 doc_class: current
 doc_kind: research
 owner: pickDday
-last_verified: 2026-09-27
+last_verified: 2026-10-04
 version: v8
 summary: "지역 방문·축제 등록·관광자원과 임실 회차별 성·연령·목적지 자료를 연결했습니다. 2026-09-27 관광자원 사진·유형별 이용정보의 공식 API 응답도 확인했으며 화면 연결 상태는 검수44를 따릅니다. 보존 CSV277개와 축제별 거주지 확대는 후속입니다."
 ---
@@ -151,9 +151,9 @@ TourAPI 일반 개발 계정의 일 호출 한도는 1,000건이다([공공데�
 | 원천 | 데이터랩 축제 `연도별 방문자 추이` CSV 26개. [가져온 원본](imported/hkjin-plan-03/README.md) 중 축제 추이만 이 화면에서 사용한다. 지역 연간 추이 1개 추가와 나머지 보존 범위는 위 9월 24일 항목을 따른다. |
 | 지표의 뜻 | **축제가 열린 행정동**에서 통신 데이터로 추정한 방문자의 **개최기간 합계**와 **개최기간 일평균**(단위 명). 행사장 입장객·연간 방문객이 아니다. 개최기간이 짧으면 합계가 줄 수 있다. |
 | 범위 | 26개 축제·147행. 개최연도 2018(25)·2019(24)·2022(22)·2023(26)·2024(26)·2025(24). **2020·2021은 자료가 없고** 축제마다 빠진 연도가 있다. 파일명 기준 내려받은 날 2026-08-29(시간대 미기재). |
-| 화면 | `/compare/annual`. 축제를 이름·검토된 별칭으로 찾아 고르면 기본값 **일평균**, 선택 시 **기간 합계**를 그래프와 표로 보여 준다. 가로축은 2018~2025 모든 해를 두고 자료 없는 해는 `없음`으로 표시하며 선을 잇지 않는다. 연도를 고르면 개최일수·현지인·외지인·외국인 수, 원문 표(파생 열은 원문 문자열 그대로)와 원본 CSV 링크를 연다. 주소의 `festival`·`metric=total`로 선택이 유지되고, 없는 축제를 요청하면 자료 없음 안내를 보인다. |
+| 화면 | `/compare/annual`. 축제를 이름·검토된 별칭으로 찾아 고르면 기본값 **일평균**, 선택 시 **기간 합계**를 그래프와 표로 보여 준다. 가로축은 2018~2025 모든 해를 두고 자료 없는 해는 `없음`으로 표시하며 선을 잇지 않는다. 연도를 고르면 개최일수·현지인·외지인·외국인 수, 원문 표(파생 열은 원문 문자열 그대로)와 원본 CSV 링크를 연다. 주소의 `festival`·`metric=total`로 선택이 유지되고, 없는 축제를 요청하면 자료 없음 안내를 보인다. 2026-10-04부터 같은 파일로 `/compare/scale`이 연도별 26곳을 일평균·기간 합계·외지인/현지인 비율로 줄 세운다([설계25](../design/25-festival-discovery.md)). |
 | 식별 | 원문에 축제 코드가 없어 [검토된 대응표](../../apps/web/data/datalab-festival-ids.json)로 고정 ID를 정한다. 원천 축제명과 별칭만 검색하며 목록에 없는 축제를 만들지 않는다. |
-| 코드 | [화면](../../apps/web/app/compare/annual/page.tsx), [표시 구성](../../apps/web/components/FestivalPeriodTrend.tsx), [자료 검사·계산](../../apps/web/lib/datalab/model.ts), [생성 자료](../../apps/web/data/datalab-festival-trend.json), [재생성 스크립트](../../apps/web/scripts/build-datalab-festival-trend.mjs). 앱은 체크인된 JSON만 읽고 빌드 때 CSV를 다시 변환하지 않는다. |
+| 코드 | [화면](../../apps/web/app/compare/annual/page.tsx), [표시 구성](../../apps/web/components/FestivalPeriodTrend.tsx), [방문 규모 화면](../../apps/web/components/FestivalScale.tsx)·[순위 계산](../../apps/web/lib/datalab/scale.ts), [자료 검사·계산](../../apps/web/lib/datalab/model.ts), [생성 자료](../../apps/web/data/datalab-festival-trend.json), [재생성 스크립트](../../apps/web/scripts/build-datalab-festival-trend.mjs). 앱은 체크인된 JSON만 읽고 빌드 때 CSV를 다시 변환하지 않는다. |
 
 **기존 지역 방문 이력과 다른 지표다.** 위 표의 논산·공주·임실 **시군구 일별 외지인 방문**은 시군구 전체의 하루 단위 값이고,
 새 연도별 추이는 **개최 행정동의 개최기간 방문 추정**을 연 1개 값으로 모은 것이다. 두 값을 합치거나 같은 축에서 비교하지 않는다.

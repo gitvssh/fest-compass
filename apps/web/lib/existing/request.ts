@@ -3,6 +3,7 @@ import { koreaDate } from "../region/calendar";
 import { MAX_EDITIONS, normalizeKeyword, parseFestivalId, regionRef } from "./identity";
 import { CUSTOM_WINDOW_MAX, datesBetween, PAD_DEFAULT, PAD_MAX } from "./history";
 import { DEFAULT_RESOURCE_KINDS, isResourceKind, RESOURCE_KINDS } from "./types";
+import { isFestivalTypeCode } from "./festival-types";
 import type { FestivalSearchRequest, HistoryRequest, MonthlyRequest, ResourcesRequest, ScheduleRequest } from "./types";
 export { DEFAULT_RESOURCE_KINDS, RESOURCE_KINDS } from "./types";
 
@@ -22,7 +23,7 @@ function region(p: URLSearchParams, optional = false): { province: string; distr
 }
 
 // Canonical keys: identical conditions produce identical keys so the UI can keep and match results per condition.
-export const festivalsKey = (r: FestivalSearchRequest) => JSON.stringify(["festivals", r.id, r.q, r.province, r.district, r.start, r.end, r.page, r.total]);
+export const festivalsKey = (r: FestivalSearchRequest) => JSON.stringify(["festivals", r.id, r.q, r.province, r.district, r.start, r.end, r.page, r.total, r.type]);
 export const historyKey = (r: HistoryRequest) => JSON.stringify(["history", r.festival, r.editions, r.before, r.after, Object.keys(r.windows).sort().map(k => [k, r.windows[k].start, r.windows[k].end])]);
 export const monthlyKey = (r: MonthlyRequest) => JSON.stringify(["monthly", r.province, r.district, r.year]);
 export const resourcesKey = (r: ResourcesRequest) => JSON.stringify(["resources", r.province, r.district, r.types]);
@@ -38,7 +39,9 @@ export function parseFestivalSearch(p: URLSearchParams, today = koreaDate()): Fe
   // `total` = the source total reported with `next`; a continued page must still match it.
   const rawTotal = p.get("total");
   if (rawTotal !== null && rawTotal !== "" && !/^\d{1,6}$/.test(rawTotal)) throw new InvalidRequest("total");
-  return { q, province: where?.province ?? null, district: where?.district ?? null, ...r, page: rawPage ? Number(rawPage) : 1, total: rawTotal ? Number(rawTotal) : null, id };
+  const rawType = p.get("type")?.trim() || null;
+  if (rawType !== null && !isFestivalTypeCode(rawType)) throw new InvalidRequest("type");
+  return { q, province: where?.province ?? null, district: where?.district ?? null, ...r, page: rawPage ? Number(rawPage) : 1, total: rawTotal ? Number(rawTotal) : null, id, type: rawType };
 }
 /** `windows=<editionId>:<start>:<end>,...` — absolute chart ranges; they never change the festival-period summary. */
 export function parseWindows(raw: string | null): Record<string, { start: string; end: string }> {

@@ -107,6 +107,7 @@ export default async function HomePage() {
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
             <Link href="/regions" className="inline-flex min-h-11 items-center text-sm font-bold hover:underline">관광지도 →</Link>
             <Link href="/compare" className="inline-flex min-h-11 items-center text-sm font-bold hover:underline">축제 비교 →</Link>
+            <Link href="/compare/scale" className="inline-flex min-h-11 items-center text-sm font-bold hover:underline">축제 방문 규모 →</Link>
           </div>
         </div>
         <div className="py-6 lg:px-7">

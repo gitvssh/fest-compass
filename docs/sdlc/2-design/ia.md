@@ -1,8 +1,8 @@
 ---
 class: Current
 owner: pickDday
-last_verified: 2026-10-03
-version: v12
+last_verified: 2026-10-04
+version: v13
 summary: "두 목적과 세 탐색의 구조를 유지하고 기능 연결·다른 지역 복귀를 구체화합니다. 기존 축제 연결은 검증 기록34를 따르고 새 축제 전용 화면은 사용 가능입니다."
 ---
 
@@ -98,6 +98,8 @@ flowchart TD
 세종은 `/new/36110`이 지역 목록의 `36110/36110` 행에 연결된다. `/new/{지역코드}`만 열면 관광자원으로 이동한다.
 2026-10-03 두 흐름에 네 번째 탭 `모아 보기`(`/existing/{id}/summary`, `/new/{지역코드}/summary`)와 공통 안내 `/guide`(축제 준비 전체 과정)를 더했다.
 모아 보기 주소는 기존 축제에서 방문 흐름의 비교 회차 조건을, 새 축제에서 지속 조건(유형·연도·달)을 그대로 싣는다. `/guide`는 홈 띠·시작 화면·모아 보기 다음에서 연결한다.
+2026-10-04 축제 검색 주소에 등록 분류 `type`(예: `/existing/search?type=EV010300`)을 더했고, 축제 비교 아래에 `/compare/scale`(문화관광축제 방문 규모,
+`?year=&sort=`)을 두었다. 홈 `자료 조사·비교`, `/compare`, `/compare/annual`, 축제 검색의 유형 줄에서 들어온다([설계25](../../design/25-festival-discovery.md)).
 
 ## v6 새 축제의 정보 우선순위
 

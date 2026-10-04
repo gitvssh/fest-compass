@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useMemo, useRef, useState, type RefObject } from "react";
 import { axisYears, consecutiveRuns, formatCount, formatMetric, METRICS, metricValue, niceMax, searchFestivals } from "@/lib/datalab/model";
 import type { FestivalPeriodDataset, FestivalPeriodTrend as Trend, FestivalPeriodYear, PeriodMetric } from "@/lib/datalab/types";
@@ -22,7 +23,7 @@ export function FestivalPeriodTrend({ dataset, initialId, initialMetric, missing
   function choose(next: string) { setId(next); setActiveYear(null); setMissing(false); sync(next, metric); requestAnimationFrame(() => heading.current?.focus()); }
   function chooseMetric(next: PeriodMetric) { setMetric(next); sync(id, next); }
   return <div className="space-y-6">
-    <header className="space-y-3"><p className="text-xs font-extrabold text-blue">축제 개최 행정동 · 개최기간 · 통신 기반</p><h1 className="text-3xl font-extrabold">개최연도별 방문 흐름</h1><p className="max-w-3xl text-sm leading-7 text-muted">문화관광축제를 골라 개최기간의 일평균 방문자와 방문 합계를 비교합니다.</p></header>
+    <header className="space-y-3"><p className="text-xs font-extrabold text-blue">축제 개최 행정동 · 개최기간 · 통신 기반</p><h1 className="text-3xl font-extrabold">개최연도별 방문 흐름</h1><p className="max-w-3xl text-sm leading-7 text-muted">문화관광축제를 골라 개최기간의 일평균 방문자와 방문 합계를 비교합니다.</p><Link href="/compare/scale" className="region-button">{dataset.festivals.length}곳 방문 규모 한눈에 보기</Link></header>
     <div className="grid gap-4 lg:grid-cols-[18rem_minmax(0,1fr)]">
       <section className="region-card space-y-3 self-start" aria-labelledby="period-trend-picker">
         <h2 id="period-trend-picker" className="text-lg font-extrabold">축제 선택</h2>

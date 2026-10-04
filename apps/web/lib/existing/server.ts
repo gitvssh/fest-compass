@@ -19,8 +19,9 @@ import { archiveCatalogue, currentFestival, parseFestivalId, regionRef, searchAr
 import { dailyValues, datesBetween, defaultYear, editionHistory, editionWindow, linkedVisitsCompatible, monthlyMeans, sharedYMax, VISIT_DEFINITION, type LinkedVisits, type Observed, yearCoverage } from "./history";
 import { festivalsKey, historyKey, InvalidRequest, monthlyKey, resourcesKey, scheduleKey } from "./request";
 import { holidaySources, scheduleDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
-import { collectRegionEvents, createTourCall, lookupCurrent, searchKeywordPage, TourChanged, type RegionEvents, type TourCall } from "./tour";
-import type { ArchiveFestival, CurrentBlock, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, HostAreaVisits, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
+import type { FestivalTypeCode } from "./festival-types";
+import { collectRegionEvents, collectTypeEvents, createTourCall, lookupCurrent, searchKeywordPage, TourChanged, type RegionEvents, type TourCall } from "./tour";
+import type { ArchiveFestival, CurrentBlock, CurrentFestival, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, HostAreaVisits, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
   ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef, VisitorProfileSelection } from "./types";
 
 export class NotFound extends Error { constructor(readonly field: string) { super(`not-found:${field}`); } }
@@ -92,7 +93,7 @@ export function createExistingService(deps: ExistingDeps) {
     return { state, festivals };
   }
   async function list(q: Query): Promise<ResourceResult | null> { try { return await deps.regionList(q); } catch { return null; } }
-  async function events(region: RegionRef, range: Range): Promise<RegionEvents | null> { try { return await collectRegionEvents(deps.tour, region, range); } catch { return null; } }
+  async function events(region: RegionRef, range: Range, type: FestivalTypeCode | null = null): Promise<RegionEvents | null> { try { return await collectRegionEvents(deps.tour, region, range, type); } catch { return null; } }
   const block = (r: ResourceResult | null): SourceBlock => !r || r.status === "unavailable" ? unavailable : { status: r.status, error: null, collectedAt: r.collectedAt };
   // Optional block: a resolver failure omits only hostVisits and logs a fixed category.
   function hostVisits(festival: ArchiveFestival, editionIds: string[]): HostAreaVisits | null {
@@ -124,16 +125,25 @@ export function createExistingService(deps: ExistingDeps) {
     if (req.q) {
       const continuity = req.total === null ? null : "consistent" as const;
       try {
-        const page = await searchKeywordPage(deps.tour, { keyword: req.q, region, page: req.page, expectTotal: req.total });
+        const page = await searchKeywordPage(deps.tour, { keyword: req.q, region, page: req.page, expectTotal: req.total, type: req.type });
         const items = page.items.map(i => currentFestival(i.region, i.fields, false, page.collectedAt));
         return { ...none, status: items.length ? "complete" : "empty", collectedAt: page.collectedAt, mode: "keyword", page: page.page, next: page.next, continuity, total: page.total, omitted: page.omitted, items };
       } catch (e) { return { ...none, ...unavailable, mode: "keyword", page: req.page, continuity: e instanceof TourChanged ? "changed" : continuity }; }
     }
+    const byStart = (a: CurrentFestival, c: CurrentFestival) => (a.start ?? "9999-12-31").localeCompare(c.start ?? "9999-12-31") || a.name.localeCompare(c.name, "ko-KR") || a.contentId.localeCompare(c.contentId);
+    if (!region && req.type) {
+      // One type nationwide: the whole registered list of the period (a few pages), in date order like a district list.
+      const range = { start: req.start, end: req.end };
+      try {
+        const found = await collectTypeEvents(deps.tour, req.type, range);
+        const items = found.items.map(i => currentFestival(i.region, i.event, i.event.datesKnown, found.collectedAt)).sort(byStart);
+        return { ...none, status: found.status, collectedAt: found.collectedAt, mode: "type-list", range, page: 1, total: found.total, omitted: found.omitted, items };
+      } catch { return { ...none, ...unavailable, mode: "type-list", range, page: 1 }; }
+    }
     if (!region) return none;
-    const range = { start: req.start, end: req.end }, found = await events(region, range);
+    const range = { start: req.start, end: req.end }, found = await events(region, range, req.type);
     if (!found) return { ...none, ...unavailable, mode: "region-list", range, page: 1 };
-    const items = found.items.map(r => currentFestival(region, r, r.datesKnown, found.collectedAt))
-      .sort((a, c) => (a.start ?? "9999-12-31").localeCompare(c.start ?? "9999-12-31") || a.name.localeCompare(c.name, "ko-KR") || a.contentId.localeCompare(c.contentId));
+    const items = found.items.map(r => currentFestival(region, r, r.datesKnown, found.collectedAt)).sort(byStart);
     return { ...none, status: found.status, collectedAt: found.collectedAt, mode: "region-list", range, page: 1, total: found.total, items };
   }
 
@@ -141,7 +151,10 @@ export function createExistingService(deps: ExistingDeps) {
     const target = req.id ? parseFestivalId(req.id) : null;
     const [{ state, festivals }, cur] = await Promise.all([catalogue(), current(req, target)]);
     const archive: FestivalSearchResponse["archive"] = (() => {
-      const items = target?.source === "current" ? festivals.filter(f => f.id === cur.items[0]?.linkedArchiveId) : target?.source === "archive" ? festivals.filter(f => f.festivalId === target.festivalId) : searchArchive(festivals, req.q, req.province && req.district ? regionRef(req.province, req.district) : null);
+      // A type belongs to a registration: with a type, a past-record festival is shown only through a returned registration's link.
+      const typed = req.type ? new Set(cur.items.map(c => c.linkedArchiveId).filter(Boolean)) : null;
+      const items = target?.source === "current" ? festivals.filter(f => f.id === cur.items[0]?.linkedArchiveId) : target?.source === "archive" ? festivals.filter(f => f.festivalId === target.festivalId)
+        : searchArchive(festivals, req.q, req.province && req.district ? regionRef(req.province, req.district) : null).filter(f => !typed || typed.has(f.id));
       const codes = [...new Set(items.map(f => f.region.code))];
       return { status: items.length ? "complete" as const : "empty" as const, error: null, collectedAt: null, items, freshness: codes.length ? scopedFreshness(state, codes) : null };
     })();
@@ -153,7 +166,7 @@ export function createExistingService(deps: ExistingDeps) {
     const parsed = parseFestivalId(req.festival);
     let archiveFestivalId = req.festival;
     if (parsed?.source === "current") {
-      const cur = await current({ id: req.festival, q: "", province: null, district: null, start: today(), end: today(), page: 1, total: null }, parsed);
+      const cur = await current({ id: req.festival, q: "", province: null, district: null, start: today(), end: today(), page: 1, total: null, type: null }, parsed);
       if (cur.status === "unavailable") throw new Error("source-unavailable");
       archiveFestivalId = cur.items[0]?.linkedArchiveId?.replace(/^archive:/, "") ?? "";
     }

@@ -82,12 +82,13 @@ export function archiveCatalogue(editions: Edition[], periodObserved: (e: Editio
   }).sort((a, b) => a.name.localeCompare(b.name, "ko-KR") || a.id.localeCompare(b.id));
 }
 
-export type CurrentFields = Pick<Resource, "id" | "title" | "address" | "latitude" | "longitude" | "start" | "end" | "modifiedAt">;
+/** `type` is the provider classification (lclsSystm3) when the row states a valid one. */
+export type CurrentFields = Pick<Resource, "id" | "title" | "address" | "latitude" | "longitude" | "start" | "end" | "modifiedAt"> & { type?: string | null };
 export function currentFestival(region: RegionRef, r: CurrentFields, datesVerified: boolean, collectedAt: string | null, links: readonly IdentityLink[] = IDENTITY_LINKS): CurrentFestival {
   const point = { latitude: r.latitude, longitude: r.longitude }, dated = datesVerified && !!r.start && !!r.end && r.end >= r.start;
   return { id: currentId(region, r.id), source: "current", contentId: r.id, name: r.title, region,
     start: dated ? r.start : null, end: dated ? r.end : null, datesVerified: dated, address: r.address,
-    point: validPoint(point) ? point : null, modifiedAt: r.modifiedAt, linkedArchiveId: linkedArchiveId(region, r.id, links), provenance: currentProvenance(collectedAt) };
+    point: validPoint(point) ? point : null, modifiedAt: r.modifiedAt, type: r.type ?? null, linkedArchiveId: linkedArchiveId(region, r.id, links), provenance: currentProvenance(collectedAt) };
 }
 /** Append a further page: only identical current ids collapse (first wins); same names never merge. */
 export function mergeCurrentItems(prev: CurrentFestival[], next: CurrentFestival[]): CurrentFestival[] {

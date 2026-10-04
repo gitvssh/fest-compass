@@ -1,3 +1,4 @@
+import type { FestivalTypeCode } from "./festival-types";
 // Response contracts for the existing-festival journey (UC-FC-009). Pure types and constants; safe for client imports.
 import type { VisitorProfileSelection } from "../datalab/visitor-profile-types";
 import type { ResourcePhoto } from "../resources/types";
@@ -25,13 +26,18 @@ export type ArchiveFestival = { id: string; source: "archive"; festivalId: strin
 export type CurrentFestival = {
   id: string; source: "current"; contentId: string; name: string; region: RegionRef;
   start: string | null; end: string | null; datesVerified: boolean;
-  address: string; point: Point | null; modifiedAt: string | null; linkedArchiveId: string | null; provenance: PublicSource;
+  address: string; point: Point | null; modifiedAt: string | null;
+  /** Provider classification (lclsSystm3, e.g. EV010300 지역특산물축제), null when the row states none. */
+  type: string | null;
+  linkedArchiveId: string | null; provenance: PublicSource;
   /** Observed provider registration dates, never inferred festival editions. */
   periods?: { id: string; start: string; end: string; collectedAt: string }[];
 };
 
-export type FestivalSearchRequest = { q: string; province: string | null; district: string | null; start: string; end: string; page: number; total: number | null; id: string | null };
-export type CurrentMode = "keyword" | "region-list" | "lookup";
+export type FestivalSearchRequest = { q: string; province: string | null; district: string | null; start: string; end: string; page: number; total: number | null; id: string | null;
+  /** Festival type (lclsSystm3) narrowing every mode; alone it lists that type nationwide for the range. */
+  type: FestivalTypeCode | null };
+export type CurrentMode = "keyword" | "region-list" | "type-list" | "lookup";
 export type LookupResult = "verified" | "not-found" | "not-festival" | "region-mismatch";
 export type CurrentBlock = SourceBlock & {
   mode: CurrentMode | null; range: Range | null; page: number | null; next: { page: number; total: number } | null;

@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 async function existingFestivalPages(): Promise<MetadataRoute.Sitemap> {
   try {
     const year = koreaDate().slice(0, 4);
-    const result = await loadFestivals({ q: "", province: null, district: null, start: `${year}-01-01`, end: `${year}-12-31`, page: 1, total: null, id: null });
+    const result = await loadFestivals({ q: "", province: null, district: null, start: `${year}-01-01`, end: `${year}-12-31`, page: 1, total: null, id: null, type: null });
     return result.archive.items.flatMap(festival => (["visits", "resources", "timing"] as const).map(view => ({
       url: canonicalUrl(festivalPath(festival.id, view)),
       changeFrequency: "weekly" as const,
@@ -34,6 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: canonicalUrl("/planning/options"), changeFrequency: "weekly", priority: 0.9 },
     { url: canonicalUrl("/compare"), changeFrequency: "weekly", priority: 0.9 },
     { url: canonicalUrl("/compare/annual"), changeFrequency: "monthly", priority: 0.8 },
+    { url: canonicalUrl("/compare/scale"), changeFrequency: "monthly", priority: 0.8 },
     { url: canonicalUrl("/regions"), changeFrequency: "weekly", priority: 0.9 },
     { url: canonicalUrl("/workspace"), changeFrequency: "weekly", priority: 0.9 },
     {

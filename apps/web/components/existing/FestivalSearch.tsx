@@ -1,13 +1,16 @@
 "use client";
+import { ArrowDown, LayoutGrid, Trophy, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from "react";
 import { FlowMap } from "@/components/guide/FlowMap";
+import { FESTIVAL_TYPES, festivalType, isFestivalTypeCode, type FestivalTypeCode } from "@/lib/existing/festival-types";
 import { mergeCurrentItems, normalizeKeyword } from "@/lib/existing/identity";
 import type { ArchiveFestival, CurrentBlock, CurrentFestival, FestivalSearchResponse } from "@/lib/existing/types";
 import { REGIONS, SOURCE } from "@/lib/region/model";
 import { writeAddress } from "./address";
 import { isStale, keepBlock } from "./blocks";
+import { FESTIVAL_TYPE_ICONS, TypeBadge } from "./festival-type";
 import { koreaToday, periodLabel, timeLabel } from "./format";
 import { shared } from "./memory";
 import { festivalPath, one } from "./route-params";
@@ -15,17 +18,20 @@ import { InfoDialog, LoadState } from "./ui";
 import { useKeyedRequest } from "./useKeyedRequest";
 
 const provinces = [...new Map(REGIONS.map(r => [r.provinceCode, r.provinceName])).entries()];
-type Applied = { q: string; province: string; district: string };
+type Applied = { q: string; province: string; district: string; type: FestivalTypeCode | null };
+// A type list can be long (a whole country); it opens in steps so the page stays light.
+const REVEAL_STEP = 40;
 
 function readApplied(params: URLSearchParams): Applied {
-  const q = normalizeKeyword(one(params, "q") ?? ""), province = one(params, "province") ?? "", district = one(params, "district") ?? "";
+  const q = normalizeKeyword(one(params, "q") ?? ""), province = one(params, "province") ?? "", district = one(params, "district") ?? "", type = one(params, "type");
   const valid = REGIONS.some(r => r.provinceCode === province && r.districtCode === district);
-  return { q, province: valid ? province : "", district: valid ? district : "" };
+  return { q, province: valid ? province : "", district: valid ? district : "", type: isFestivalTypeCode(type) ? type : null };
 }
 function searchQuery(a: Applied): URLSearchParams {
   const params = new URLSearchParams();
   if (a.q) params.set("q", a.q);
   if (a.district) { params.set("province", a.province); params.set("district", a.district); }
+  if (a.type) params.set("type", a.type);
   params.sort();
   return params;
 }
@@ -98,22 +104,32 @@ export function FestivalSearch() {
   const data = result.data;
   const more = useMoreCurrent(query, data && (data.current.status === "complete" || data.current.status === "empty") ? data.current : null, result.retry);
   const list = data ? results(data.archive.items, more.items) : [];
+  const [reveal, setReveal] = useState({ query, limit: REVEAL_STEP });
+  const limit = reveal.query === query ? reveal.limit : REVEAL_STEP;
+  // Keyword answers already come in source pages; other lists open in steps on the page.
+  const visible = data?.current.mode === "keyword" ? list : list.slice(0, limit);
   useEffect(() => { if (data && focusResults.current) { focusResults.current = false; resultsHeading.current?.focus(); } }, [data]);
 
-  function submit(event: FormEvent) {
-    event.preventDefault();
+  /** Applies the typed name and region with `type`. A chip keeps focus where it is; the form moves to the results. */
+  function apply(type: FestivalTypeCode | null, from: "form" | "chip") {
     const keyword = normalizeKeyword(q);
     if (province && !district) { setFieldError({ field: "district", text: "시군구까지 골라 주세요. 지역 없이 찾으려면 시도를 ‘전체’로 두세요." }); return; }
-    if (!keyword && !district) { setFieldError({ field: "q", text: "축제 이름을 입력하거나 지역을 골라 주세요." }); return; }
+    if (!keyword && !district && !type && from === "form") { setFieldError({ field: "q", text: "축제 이름을 입력하거나 지역·유형을 골라 주세요." }); return; }
     setFieldError(null);
-    const next = searchQuery({ q: keyword, province: district ? province : "", district });
-    // The same condition again: search once more and move to its results instead of waiting for an address change.
-    if (next.toString() === query) { result.retry(); resultsHeading.current?.focus(); return; }
-    focusResults.current = true;
+    const next = searchQuery({ q: keyword, province: district ? province : "", district, type });
+    if (next.toString() === query) {
+      // The same condition again: search once more and move to its results instead of waiting for an address change.
+      if (from === "form") { result.retry(); resultsHeading.current?.focus(); }
+      return;
+    }
+    focusResults.current = from === "form";
     writeAddress(next);
   }
+  function submit(event: FormEvent) { event.preventDefault(); apply(applied.type, "form"); }
   const districts = REGIONS.filter(r => r.provinceCode === province);
   const regionName = applied.district ? REGIONS.find(r => r.provinceCode === applied.province && r.districtCode === applied.district) : null;
+  const regionLabel = regionName ? `${regionName.provinceName} ${regionName.districtName}` : null, typeInfo = festivalType(applied.type);
+  const subject = [applied.q ? `‘${applied.q}’` : "", regionLabel ?? "", typeInfo?.label ?? ""].filter(Boolean).join(" · ");
 
   return <div className="space-y-6">
     <header>
@@ -138,28 +154,42 @@ export function FestivalSearch() {
         </select>
       </label>
       <button type="submit" className="region-primary">축제 찾기</button>
+      {/* One line on a wide screen so the list below still starts in the first screen. */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-ink/10 pt-3 sm:col-span-4">
+        <p id={`${ids}-types`} className="text-sm font-bold">축제 유형</p>
+        <div role="group" aria-labelledby={`${ids}-types`} className="flex flex-wrap gap-2">
+          <TypeChip icon={LayoutGrid} label="전체" pressed={!applied.type} onClick={() => apply(null, "chip")} />
+          {FESTIVAL_TYPES.map(t => <TypeChip key={t.code} icon={FESTIVAL_TYPE_ICONS[t.icon]} label={t.short} hint={t.hint} pressed={applied.type === t.code} onClick={() => apply(t.code, "chip")} />)}
+        </div>
+        {/* A chip keeps focus, and the list may start below the screen: one step to the answer, next to the chips. */}
+        {typeInfo && data && !result.loading && (list.length ? <button type="button" onClick={() => resultsHeading.current?.focus()} className="inline-flex min-h-8 items-center gap-1 text-sm font-bold text-blue hover:underline">
+          {typeInfo.label} {list.length}건 보기<ArrowDown aria-hidden="true" size={15} />
+        </button> : <p className="text-sm font-bold text-muted">{typeInfo.label} 0건</p>)}
+        <Link href="/compare/scale" className="inline-flex min-h-8 items-center gap-1.5 text-sm font-bold text-blue hover:underline lg:ml-auto"><Trophy aria-hidden="true" size={15} />문화관광축제 방문 규모</Link>
+      </div>
       {fieldError && <p id={`${ids}-error`} role="alert" className="text-sm font-bold text-red-800 sm:col-span-4">{fieldError.text}</p>}
     </form>
     <FlowMap journey="existing" />
 
     {/* Reserves room for the list so the footer stays below the first screen until the results arrive. */}
     <section aria-labelledby={`${ids}-results`} className="min-h-[50vh] space-y-4">
-      <h2 id={`${ids}-results`} ref={resultsHeading} tabIndex={-1} className="text-xl font-extrabold">
-        {query ? <>{applied.q ? `‘${applied.q}’` : ""}{applied.q && regionName ? " · " : ""}{regionName ? `${regionName.provinceName} ${regionName.districtName}` : ""} 검색 결과</> : "바로 살펴볼 수 있는 축제"}
+      <h2 id={`${ids}-results`} ref={resultsHeading} tabIndex={-1} className="scroll-mt-24 text-xl font-extrabold">
+        {query ? `${subject} 검색 결과` : "바로 살펴볼 수 있는 축제"}
       </h2>
       <LoadState loading={result.loading} failure={result.failure} hasData={!!data} retrievedAt={data?.retrievedAt} subject="축제 목록을" onRetry={result.retry} />
       {data && <>
-        <p aria-live="polite" className="text-sm text-muted">축제 {list.length}건{more.next ? " 표시" : ""}</p>
+        <p aria-live="polite" className="text-sm text-muted">축제 {list.length}건{more.next ? " 표시" : visible.length < list.length ? ` 중 ${visible.length}건 표시` : ""}</p>
         <SourceNotes archive={data.archive} block={data.current} onRetry={result.retry} searched={!!query} regionChosen={!!applied.district} />
-        {list.length > 0 && <ul aria-label="찾은 축제" className="grid gap-2 sm:grid-cols-2">{list.map(r => <li key={r.id}><ResultCard result={r} /></li>)}</ul>}
-        <CurrentSource block={data.current} shown={more.items.length} keyword={applied.q} regionLabel={regionName ? `${regionName.provinceName} ${regionName.districtName}` : null} />
+        {visible.length > 0 && <ul aria-label="찾은 축제" className="grid gap-2 sm:grid-cols-2">{visible.map(r => <li key={r.id}><ResultCard result={r} chosenType={applied.type} /></li>)}</ul>}
+        {visible.length < list.length && <button type="button" className="region-button" onClick={() => setReveal({ query, limit: limit + REVEAL_STEP })}>축제 더 보기 ({list.length - visible.length}건 남음)</button>}
+        <CurrentSource block={data.current} shown={more.items.length} keyword={applied.q} regionLabel={regionLabel} typeLabel={typeInfo?.label ?? null} />
         {more.restarted && <p role="status" className="text-sm text-muted">등록 목록이 바뀌어 처음부터 다시 불러왔어요.</p>}
         {more.next && <div className="flex flex-wrap items-center gap-2">
           <button type="button" className="region-button" disabled={more.loading} onClick={() => void more.loadMore()}>{more.loading ? "다음 목록을 불러오고 있어요…" : "축제 더 보기"}</button>
           {more.failed && <p role="alert" className="text-sm text-red-800">다음 목록을 불러오지 못했어요. 다시 눌러 주세요.</p>}
         </div>}
         {list.length === 0 && data.archive.status !== "unavailable" && data.current.status !== "unavailable" && <div className="region-card space-y-2 text-sm">
-          <p>검색어나 지역을 바꿔 다시 찾아보세요.</p>
+          <p>검색어·지역·유형을 바꿔 다시 찾아보세요.</p>
           <Link className="region-button" href={applied.district ? `/regions?${new URLSearchParams({ province: applied.province, district: applied.district, start: `${koreaToday().slice(0, 4)}-01-01`, end: `${koreaToday().slice(0, 4)}-12-31`, kind: "12" })}` : "/regions"}>지역 관광정보 살펴보기</Link>
         </div>}
       </>}
@@ -169,9 +199,17 @@ export function FestivalSearch() {
 
 const pastYears = (a: ArchiveFestival) => `지난 개최 ${a.editions.map(e => `${e.year}년${e.start ? "" : "(개최일 미확인)"}`).join(" · ")}`;
 
-function ResultCard({ result: { id, current, archive } }: { result: Result }) {
+function TypeChip({ icon: Icon, label, hint = null, pressed, onClick }: { icon: LucideIcon; label: string; hint?: string | null; pressed: boolean; onClick: () => void }) {
+  return <button type="button" aria-pressed={pressed} onClick={onClick} className="region-button rounded-full px-3">
+    <Icon aria-hidden="true" size={16} strokeWidth={2.25} />{label}{hint && <span className="text-xs font-semibold opacity-70">· {hint}</span>}
+  </button>;
+}
+
+function ResultCard({ result: { id, current, archive }, chosenType }: { result: Result; chosenType: FestivalTypeCode | null }) {
   const f = current ?? archive!;
   return <Link href={festivalPath(id, "visits")} onClick={() => { shared.focusTitle = true; }} className="block h-full rounded-2xl border border-ink/10 bg-white p-4 hover:border-blue">
+    {/* Under a chosen type every card shares it; the badge then only repeats the heading. */}
+    {current?.type !== chosenType && <TypeBadge code={current?.type} className="mb-1.5" />}
     <span className="block font-extrabold">{f.name}</span>
     <span className="mt-1 block text-sm text-muted">{f.region.name}</span>
     {current && <span className="mt-1 block text-sm">{current.datesVerified && current.start ? `등록 일정 ${periodLabel(current.start, current.end)}` : "등록 일정은 축제를 열면 확인해요"}</span>}
@@ -190,18 +228,22 @@ function SourceNotes({ archive, block, onRetry, searched, regionChosen }: {
     {isStale(archive) && <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-amber-50 p-3 text-sm text-amber-950">지난 개최 기록을 새로 불러오지 못해 먼저 불러온 목록을 보여드려요.{retry}</p>}
     {block.status === "unavailable" && <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-coral-soft p-3 text-sm">현재 등록된 축제를 불러오지 못했어요.{retry}</p>}
     {isStale(block) && <p role="alert" className="flex flex-wrap items-center gap-2 rounded-xl bg-amber-50 p-3 text-sm text-amber-950">새 등록 정보를 불러오지 못했어요. {timeLabel(block.collectedAt)} 기준 목록이에요.{retry}</p>}
-    {block.status === "not-requested" && <p className="text-sm text-muted">{!searched ? "축제 이름이나 지역으로 찾으면 현재 등록된 축제도 함께 보여드려요." : regionChosen ? "현재 등록된 축제·행사는 이 조건으로 찾지 않았어요." : "지역을 고르면 그 지역에 현재 등록된 축제·행사도 함께 찾아요."}</p>}
+    {block.status === "not-requested" && <p className="text-sm text-muted">{!searched ? "축제 이름·지역·유형으로 찾으면 현재 등록된 축제도 함께 보여드려요." : regionChosen ? "현재 등록된 축제·행사는 이 조건으로 찾지 않았어요." : "지역을 고르면 그 지역에 현재 등록된 축제·행사도 함께 찾아요."}</p>}
   </>;
 }
 
 /** After the list, so the first result is the first stop after the results heading. */
-function CurrentSource({ block, shown, keyword, regionLabel }: { block: CurrentBlock; shown: number; keyword: string; regionLabel: string | null }) {
+function CurrentSource({ block, shown, keyword, regionLabel, typeLabel }: { block: CurrentBlock; shown: number; keyword: string; regionLabel: string | null; typeLabel: string | null }) {
   if (block.status !== "complete" && block.status !== "empty") return null;
+  const period = block.range ? `${periodLabel(block.range.start, block.range.end)} ` : "", among = typeLabel ? `${typeLabel} 분류 중 ` : "";
+  const how = block.mode === "keyword" ? `${among}‘${keyword}’ 이름으로 ${regionLabel ? `${regionLabel} 안에서` : "전국에서"}`
+    : block.mode === "type-list" ? `전국 ${typeLabel ?? ""} ${period}일정 목록으로` : `${regionLabel ?? "선택한 지역"}의 ${among}${period}일정 목록으로`;
   return <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
     {block.range && <p>현재 등록 축제는 {periodLabel(block.range.start, block.range.end)}와 겹치는 일정만 보여드려요.</p>}
     <InfoDialog label="검색 출처" title="현재 등록 축제 검색 출처" buttonClassName="region-button min-h-8 px-2 py-1 text-xs">
-      <p>한국관광공사 축제·행사 등록 정보에서 {block.mode === "keyword" ? `‘${keyword}’ 이름으로${regionLabel ? ` ${regionLabel} 안에서` : " 전국에서"}` : `${regionLabel ?? "선택한 지역"}의 ${block.range ? periodLabel(block.range.start, block.range.end) : ""} 일정 목록으로`}찾았어요.</p>
-      <p>지금 {shown}건을 보여드리고 있어요.{block.next ? " 더 보기로 이어서 볼 수 있어요." : ""}</p>
+      <p>한국관광공사 축제·행사 등록 정보에서 {how} 찾았어요.</p>
+      {typeLabel && <p>축제 유형은 한국관광공사가 등록 정보에 붙인 분류예요.</p>}
+      <p>지금 {shown}건을 불러왔어요.{block.next ? " 더 보기로 이어서 볼 수 있어요." : ""}</p>
       {block.collectedAt && <p>{timeLabel(block.collectedAt)} 조회</p>}
       <p><a className="font-bold text-blue underline" href={SOURCE} target="_blank" rel="noreferrer">공공데이터포털 관광정보 서비스 ↗</a></p>
     </InfoDialog>
