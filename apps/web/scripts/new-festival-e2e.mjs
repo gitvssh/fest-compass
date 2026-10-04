@@ -875,6 +875,11 @@ async function zeroVersusMissing() {
   assert.deepEqual(rows[4], ["2023년 5월", whole(m[4].rounded), "31/31일", "1일"], "a zero is observed and kept in the mean");
   assert.deepEqual(rows[5], ["2023년 6월", "—", "29/30일", "0일"], "a missing day withholds the month mean");
   await includes(page.locator("section[aria-labelledby=new-weekday-heading]"), "이 연도의 요일별 흐름을 불러올 수 없어요.");
+  // DataLab cards for the whole district (download range) under the yearly totals; independent of the monthly year.
+  await visible(page.getByRole("heading", { level: 3, name: "임실군 관광 소비", exact: true }));
+  await visible(page.getByText("같은 시도 목록 15곳 중 11위 · 2018~2025년 합계", { exact: true }));
+  await visible(page.getByRole("heading", { level: 3, name: "임실군 외지인 방문객", exact: true }));
+  await visible(page.getByRole("img", { name: /^임실군 외지인 방문객 거주지\. 전북특별자치도 전주시 완산구 17\.5%/ }));
   await monthButton(page, 2023, 5).click();
   const may = await rowsOf(page.getByRole("region", { name: "2023년 5월 일별 수치 표", exact: true }));
   assert.deepEqual(may.find(r => r[0] === "2023-05-05"), ["2023-05-05", "금", "0"]);
@@ -884,8 +889,14 @@ async function zeroVersusMissing() {
   await visible(page.getByText("선이 끊긴 날: 값 없음", { exact: true }));
   await go(page, "지역 관광자원", "new-resources-heading");
   await visible(rowButton(page, RESOURCES["52750"]["12"][0]));
+  // A district without a DataLab download (Nonsan) shows no region cards.
+  await page.goto(`${base}/new/44230/visits`);
+  await visible(page.getByRole("heading", { level: 2, name: "논산시 방문 흐름", exact: true }));
+  await page.waitForLoadState("networkidle");
+  assert.equal(await page.locator("#region-spending").count(), 0, "no DataLab region cards for Nonsan");
   await context.close();
   passed.push("AC5-zero-kept-missing-dash-and-no-mean(검증용 Imsil 2023 variant)");
+  passed.push("datalab-region-cards-imsil-and-none-for-nonsan");
 }
 
 async function regionChange() {

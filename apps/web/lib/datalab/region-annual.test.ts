@@ -5,7 +5,7 @@ import { createRegionAnnualResolver, defaultRegionAnnual, parseRegionAnnualDatas
 
 const clone = <T>(v: T): T => JSON.parse(JSON.stringify(v));
 
-test("default resolver gives Imsil 2018-2025 source totals, keeps the one-count total gap, and nothing for other regions", () => {
+test("default resolver gives Imsil 2018-2025 source totals, keeps the one-count total gap, and nothing for regions without a download", () => {
   const a = defaultRegionAnnual("52750")!;
   assert.equal(a.regionCode, "52750");
   assert.deepEqual(a.years.map(y => y.year), [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]);
@@ -18,13 +18,21 @@ test("default resolver gives Imsil 2018-2025 source totals, keeps the one-count 
   assert.equal(defaultRegionAnnual("52750")!.years[0].outside, 4981442, "each call returns a fresh copy");
 });
 
+test("the reviewed downloads cover 24 regions; regions without a visitor download have no annual block", () => {
+  const d = parseRegionAnnualDataset(raw);
+  assert.equal(d.regions.length, 24);
+  assert.ok(d.regions.every(r => r.years.length === 8));
+  assert.equal(defaultRegionAnnual("12770")!.years[0].outside, 4616252, "Jangheung 2018 outside visits");
+  for (const code of ["28237", "28185"]) assert.equal(defaultRegionAnnual(code), null, code);
+});
+
 test("projection carries no paths, hashes, commits, raw strings or scope notes", () => {
   const text = JSON.stringify(defaultRegionAnnual("52750"));
   for (const leak of ["sha256", "docs/research", "commit", "\"raw\"", "E7", "github.com", "manifest", "고유", "scope"]) assert.ok(!text.includes(leak), leak);
 });
 
 test("missing source values stay null (not 0) and skip the sum check; source zero stays 0", () => {
-  const d = clone(raw), y = d.regions[0].years[0] as any;
+  const d = clone(raw), y = d.regions.find(r => r.code === "52750")!.years[0] as any;
   y.raw.local = ""; y.local = null; y.raw.outside = "0.0"; y.outside = 0; y.raw.total = "N/A"; y.total = null;
   const first = regionAnnualFrom(parseRegionAnnualDataset(d))("52750")!.years[0];
   assert.deepEqual(first, { year: 2018, outside: 0, local: null, total: null });

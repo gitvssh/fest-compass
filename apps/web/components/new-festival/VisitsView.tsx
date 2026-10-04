@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { dateOnly, timeLabel } from "@/components/existing/format";
 import { MonthChart, MonthTable } from "@/components/existing/ObservedMonths";
 import { Disclosure, FreshnessNote, InfoDialog, LoadState } from "@/components/existing/ui";
+import { RegionProfileCards } from "@/components/RegionProfile";
 import { useKeyedRequest } from "@/components/existing/useKeyedRequest";
 import { newVisitsKey, parseNewVisits } from "@/lib/new-festival/request";
 import type { NewVisitsResponse } from "@/lib/new-festival/types";
@@ -84,6 +85,7 @@ export function VisitsView() {
   // or fails, keep this region's last answer for them (never another region's).
   const regionAnswer = data ?? (kept && kept.region.code === region.code ? kept : null);
   const annual = regionAnswer?.annual && regionAnswer.annual.regionCode === region.code ? regionAnswer.annual : null;
+  const regionProfile = regionAnswer?.regionProfile && regionAnswer.regionProfile.profile.code === region.code ? regionAnswer.regionProfile : null;
   // An annual year button applies that year; focus moves to the monthly heading once that year's answer is shown.
   const [focusYear, setFocusYear] = useState<{ code: string; year: number } | null>(null);
   useEffect(() => {
@@ -166,6 +168,7 @@ export function VisitsView() {
     {annual && <RegionAnnual annual={annual} districtName={region.districtName} selectedYear={shownYear} viewedYear={hasValues ? shownYear : null}
       monthlyYears={(regionAnswer?.years ?? []).filter(y => y.complete).map(y => y.year)} onYear={chooseAnnualYear}
       tableOpen={!!open["annual-table"]} onTable={v => setOpen(o => ({ ...o, "annual-table": v }))} />}
+    {regionProfile && <RegionProfileCards profile={regionProfile.profile} officialUrl={regionProfile.officialUrl} />}
     {data && <FreshnessNote freshness={data.freshness} retrievedAt={data.retrievedAt} onRetry={result.retry} />}
   </section>;
 }

@@ -55,11 +55,12 @@ export function buildRegionDataset(root = REPO_ROOT) {
   const { manifest, manifestSha256, files } = verifyImport(root);
   const ids = JSON.parse(readFileSync(`${root}${REGION_IDS_PATH}`, "utf8"));
   const catalogue = JSON.parse(readFileSync(`${root}${CATALOGUE_PATH}`, "utf8")).rows;
-  const consumed = manifest.files.filter(f => f.use === "consumed" && f.group === "region_visitor").map(f => f.path);
-  const mapped = ids.regions.map(r => r.sourceFile);
+  const consumed = manifest.files.filter(f => f.use === "consumed" && f.group === "region_visitor" && f.table === "방문자 수 추이").map(f => f.path);
+  // Reviewed regions without a visitor download (sourceFile null) have no annual totals.
+  const annual = ids.regions.filter(r => r.sourceFile !== null), mapped = annual.map(r => r.sourceFile);
   if (new Set(ids.regions.map(r => r.code)).size !== ids.regions.length || ids.regions.some(r => !/^\d{5}$/.test(r.code))) throw new Error("Region codes must be unique 5-digit codes");
   if (new Set(mapped).size !== mapped.length || mapped.length !== consumed.length || consumed.some(p => !mapped.includes(p))) throw new Error("Region mapping does not cover consumed files exactly");
-  const regions = ids.regions.map(r => {
+  const regions = annual.map(r => {
     const { entry, bytes } = files.get(r.sourceFile), c = classify(r.sourceFile);
     if (c.group !== "region_visitor" || c.table !== "방문자 수 추이" || c.name !== r.name) throw new Error(`Region mapping name mismatch: ${r.code}`);
     const known = catalogue.find(k => `${k.provinceCode}${k.districtCode}` === r.code);

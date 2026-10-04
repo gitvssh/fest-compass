@@ -64,6 +64,12 @@ const n0 = v => v.toLocaleString("ko-KR"), n1 = v => v.toLocaleString("ko-KR", {
 const HOST_KEYS = ["allYearsHref", "editions", "festivalName", "source"], EDITION_KEYS = ["days", "dailyMean", "editionId", "end", "foreign", "local", "outside", "outsideShare", "start", "total", "year"];
 const ANNUAL_KEYS = ["regionCode", "source", "years"], INTERNAL = ["sha256", "docs/research", "\"raw\"", "evidence", "commit", "manifest", "/original/"];
 const UNCONFIRMED = /거주지/; // 2025 sex/age and destination ranks now have a separately verified source.
+// Festival-period residence stays out (hidden on the official festival page). District residence over 2018~2025 was verified
+// against the yearly totals (validation 49) and may appear only inside the DataLab region visitor card.
+async function residenceOnlyInRegionCard(page) {
+  for (const el of await page.locator("main").getByText(UNCONFIRMED).all())
+    assert.ok(await el.evaluate(e => !!e.closest("section[aria-labelledby=region-visitors]")), "residence only in the DataLab region visitor card");
+}
 
 // ---- API gates on real answers ----
 const queue = [], passed = [], errors = [], consoleErrors = [], writes = [], blocked = [];
@@ -296,7 +302,7 @@ async function newFestival({ page }) {
   for (const y of ANNUAL_YEARS) assert.deepEqual(await rowCells(table, String(y)), [String(y), n0(ANNUAL[y].outside), n0(ANNUAL[y].local), n0(ANNUAL[y].total)], `table ${y}`);
   assert.deepEqual(await rowCells(table, "2024"), ["2024", "8,875,772", "4,046,486", "12,922,259"]);
   await keyboardDialog(page, annualSection(page).getByRole("button", { name: "연간 추세 출처 보기", exact: true }), "연도별 방문 합계 출처", "내려받은 날 2026-08-30");
-  assert.doesNotMatch(await page.locator("main").innerText(), UNCONFIRMED);
+  await residenceOnlyInRegionCard(page);
   passed.push("annual-2018-2025-source-values-total-kept-table-source");
 
   // Each year button applies that year, clears the chosen month and focuses the monthly heading after its answer.

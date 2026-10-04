@@ -14,7 +14,7 @@
     "region": 104,
     "region_visitor": 96,
     "doc": 5,
-    "consumed": 105
+    "consumed": 304
   },
   "files": [
     {
@@ -2459,7 +2459,7 @@
         "소비액(천원)"
       ],
       "rowCount": 137,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830130925_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830130925_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2478,7 +2478,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830130925_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830130925_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -2497,7 +2497,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830130925_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830130925_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2514,7 +2514,7 @@
         "비율(%)"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830130925_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830130925_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2533,7 +2533,7 @@
         "소비액(천원)"
       ],
       "rowCount": 108,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131007_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131007_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2552,7 +2552,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131007_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131007_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -2571,7 +2571,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 13,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131007_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131007_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2588,7 +2588,7 @@
         "비율(%)"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131007_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131007_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2607,7 +2607,7 @@
         "소비액(천원)"
       ],
       "rowCount": 113,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131023_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131023_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2626,7 +2626,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 43,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131023_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131023_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -2645,7 +2645,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 14,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131023_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131023_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2662,7 +2662,7 @@
         "비율(%)"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131023_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131023_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2681,7 +2681,7 @@
         "소비액(천원)"
       ],
       "rowCount": 109,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131039_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131039_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2700,7 +2700,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131039_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131039_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -2719,7 +2719,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 14,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131039_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131039_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2736,7 +2736,7 @@
         "비율(%)"
       ],
       "rowCount": 11,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131039_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131039_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2755,7 +2755,7 @@
         "소비액(천원)"
       ],
       "rowCount": 138,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131056_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131056_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2774,7 +2774,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131056_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131056_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -2793,7 +2793,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131056_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131056_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2810,7 +2810,7 @@
         "비율(%)"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131056_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131056_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2829,7 +2829,7 @@
         "소비액(천원)"
       ],
       "rowCount": 144,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131249_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131249_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2848,7 +2848,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131249_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131249_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -2867,7 +2867,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131249_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131249_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2884,7 +2884,7 @@
         "비율(%)"
       ],
       "rowCount": 9,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131249_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131249_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2903,7 +2903,7 @@
         "소비액(천원)"
       ],
       "rowCount": 123,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131306_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131306_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2922,7 +2922,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131306_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131306_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -2941,7 +2941,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131306_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131306_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2958,7 +2958,7 @@
         "비율(%)"
       ],
       "rowCount": 13,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131306_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131306_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -2977,7 +2977,7 @@
         "소비액(천원)"
       ],
       "rowCount": 154,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131322_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131322_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -2996,7 +2996,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 31,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131322_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131322_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3015,7 +3015,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 19,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131322_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131322_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3032,7 +3032,7 @@
         "비율(%)"
       ],
       "rowCount": 30,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131322_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131322_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3051,7 +3051,7 @@
         "소비액(천원)"
       ],
       "rowCount": 138,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131338_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131338_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3070,7 +3070,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131338_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131338_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3089,7 +3089,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131338_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131338_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3106,7 +3106,7 @@
         "비율(%)"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131338_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131338_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3125,7 +3125,7 @@
         "소비액(천원)"
       ],
       "rowCount": 150,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131354_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131354_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3144,7 +3144,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131354_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131354_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3163,7 +3163,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131354_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131354_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3180,7 +3180,7 @@
         "비율(%)"
       ],
       "rowCount": 21,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131354_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131354_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3199,7 +3199,7 @@
         "소비액(천원)"
       ],
       "rowCount": 140,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131411_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131411_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3218,7 +3218,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 31,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131411_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131411_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3237,7 +3237,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131411_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131411_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3254,7 +3254,7 @@
         "비율(%)"
       ],
       "rowCount": 45,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131411_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131411_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3273,7 +3273,7 @@
         "소비액(천원)"
       ],
       "rowCount": 136,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131427_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131427_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3292,7 +3292,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 43,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131427_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131427_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3311,7 +3311,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131427_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131427_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3328,7 +3328,7 @@
         "비율(%)"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131427_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131427_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3347,7 +3347,7 @@
         "소비액(천원)"
       ],
       "rowCount": 136,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131443_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131443_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3366,7 +3366,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 43,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131443_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131443_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3385,7 +3385,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131443_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131443_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3402,7 +3402,7 @@
         "비율(%)"
       ],
       "rowCount": 20,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131443_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131443_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3421,7 +3421,7 @@
         "소비액(천원)"
       ],
       "rowCount": 127,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131459_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131459_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3440,7 +3440,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131459_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131459_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3459,7 +3459,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131459_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131459_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3476,7 +3476,7 @@
         "비율(%)"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131459_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131459_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3495,7 +3495,7 @@
         "소비액(천원)"
       ],
       "rowCount": 136,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131515_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131515_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3514,7 +3514,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131515_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131515_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3533,7 +3533,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131515_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131515_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3550,7 +3550,7 @@
         "비율(%)"
       ],
       "rowCount": 31,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131515_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131515_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3569,7 +3569,7 @@
         "소비액(천원)"
       ],
       "rowCount": 144,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131532_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131532_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3588,7 +3588,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131532_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131532_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3607,7 +3607,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131532_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131532_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3624,7 +3624,7 @@
         "비율(%)"
       ],
       "rowCount": 29,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131532_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131532_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3643,7 +3643,7 @@
         "소비액(천원)"
       ],
       "rowCount": 141,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131548_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131548_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3662,7 +3662,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 9,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131548_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131548_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3681,7 +3681,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131548_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131548_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3698,7 +3698,7 @@
         "비율(%)"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131548_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131548_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3717,7 +3717,7 @@
         "소비액(천원)"
       ],
       "rowCount": 132,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131604_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131604_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3736,7 +3736,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131604_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131604_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3755,7 +3755,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131604_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131604_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3772,7 +3772,7 @@
         "비율(%)"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131604_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131604_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3791,7 +3791,7 @@
         "소비액(천원)"
       ],
       "rowCount": 128,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131621_%EB%B6%80%ED%8F%89%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131621_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3810,7 +3810,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131621_%EB%B6%80%ED%8F%89%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131621_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3829,7 +3829,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131621_%EB%B6%80%ED%8F%89%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131621_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3846,7 +3846,7 @@
         "비율(%)"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131621_%EB%B6%80%ED%8F%89%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131621_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3865,7 +3865,7 @@
         "소비액(천원)"
       ],
       "rowCount": 142,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131637_%EC%97%B0%EC%88%98%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131637_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3884,7 +3884,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131637_%EC%97%B0%EC%88%98%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131637_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3903,7 +3903,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131637_%EC%97%B0%EC%88%98%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131637_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3920,7 +3920,7 @@
         "비율(%)"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830131637_%EC%97%B0%EC%88%98%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830131637_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3939,7 +3939,7 @@
         "소비액(천원)"
       ],
       "rowCount": 143,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132033_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132033_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -3958,7 +3958,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 5,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132033_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132033_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -3977,7 +3977,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 17,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132033_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132033_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -3994,7 +3994,7 @@
         "비율(%)"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132033_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132033_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4013,7 +4013,7 @@
         "소비액(천원)"
       ],
       "rowCount": 117,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132104_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132104_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4032,7 +4032,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132104_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132104_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4051,7 +4051,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132104_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132104_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4068,7 +4068,7 @@
         "비율(%)"
       ],
       "rowCount": 11,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132104_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132104_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4087,7 +4087,7 @@
         "소비액(천원)"
       ],
       "rowCount": 136,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132136_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132136_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4106,7 +4106,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 14,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132136_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132136_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4125,7 +4125,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132136_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132136_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4142,7 +4142,7 @@
         "비율(%)"
       ],
       "rowCount": 9,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132136_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132136_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4161,7 +4161,7 @@
         "소비액(천원)"
       ],
       "rowCount": 108,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132207_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132207_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4180,7 +4180,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 23,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132207_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132207_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4199,7 +4199,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 14,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132207_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132207_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4216,7 +4216,7 @@
         "비율(%)"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132207_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132207_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4235,7 +4235,7 @@
         "소비액(천원)"
       ],
       "rowCount": 131,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132238_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132238_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4254,7 +4254,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132238_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132238_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4273,7 +4273,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132238_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132238_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4290,7 +4290,7 @@
         "비율(%)"
       ],
       "rowCount": 11,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132238_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132238_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4309,7 +4309,7 @@
         "소비액(천원)"
       ],
       "rowCount": 150,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132309_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132309_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4328,7 +4328,7 @@
         "전년동기 소비액"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132309_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132309_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4347,7 +4347,7 @@
         "중분류 지출액 비율"
       ],
       "rowCount": 19,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132309_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132309_%EC%97%85%EC%A2%85%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4364,7 +4364,7 @@
         "비율(%)"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region/20260830132309_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132309_%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%A7%80%EC%B6%9C%EC%95%A1.csv"
     },
     {
@@ -4382,7 +4382,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132443_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132443_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4401,7 +4401,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132443_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132443_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4418,7 +4418,7 @@
         "방문자 수"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132443_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132443_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4436,7 +4436,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132443_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132443_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4454,7 +4454,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132526_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132526_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4490,7 +4490,7 @@
         "방문자 수"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132526_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132526_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4508,7 +4508,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132526_%EC%9E%84%EC%8B%A4%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132526_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4526,7 +4526,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132548_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132548_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4545,7 +4545,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132548_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132548_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4562,7 +4562,7 @@
         "방문자 수"
       ],
       "rowCount": 43,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132548_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132548_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4580,7 +4580,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132548_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132548_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4598,7 +4598,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132610_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132610_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4617,7 +4617,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132610_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132610_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4634,7 +4634,7 @@
         "방문자 수"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132610_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132610_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4652,7 +4652,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 11,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132610_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132610_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4670,7 +4670,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132632_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132632_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4689,7 +4689,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132632_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132632_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4706,7 +4706,7 @@
         "방문자 수"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132632_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132632_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4724,7 +4724,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132632_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132632_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4742,7 +4742,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132655_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132655_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4761,7 +4761,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132655_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132655_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4778,7 +4778,7 @@
         "방문자 수"
       ],
       "rowCount": 5,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132655_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132655_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4796,7 +4796,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 13,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132655_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132655_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4814,7 +4814,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132717_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132717_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4833,7 +4833,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132717_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132717_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4850,7 +4850,7 @@
         "방문자 수"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132717_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132717_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4868,7 +4868,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 11,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132717_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132717_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4886,7 +4886,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132739_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132739_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4905,7 +4905,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132739_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132739_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4922,7 +4922,7 @@
         "방문자 수"
       ],
       "rowCount": 14,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132739_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132739_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -4940,7 +4940,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 9,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132739_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132739_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -4958,7 +4958,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132801_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132801_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -4977,7 +4977,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132801_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132801_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -4994,7 +4994,7 @@
         "방문자 수"
       ],
       "rowCount": 23,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132801_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132801_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5012,7 +5012,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132801_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132801_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5030,7 +5030,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132823_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132823_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5049,7 +5049,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132823_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132823_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5066,7 +5066,7 @@
         "방문자 수"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132823_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132823_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5084,7 +5084,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 11,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132823_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132823_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5102,7 +5102,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132846_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132846_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5121,7 +5121,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132846_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132846_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5138,7 +5138,7 @@
         "방문자 수"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132846_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132846_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5156,7 +5156,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 8,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132846_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132846_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5174,7 +5174,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132908_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132908_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5193,7 +5193,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132908_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132908_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5210,7 +5210,7 @@
         "방문자 수"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132908_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132908_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5228,7 +5228,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 9,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132908_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132908_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5246,7 +5246,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132930_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132930_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5265,7 +5265,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132930_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132930_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5282,7 +5282,7 @@
         "방문자 수"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132930_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132930_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5300,7 +5300,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 13,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132930_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132930_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5318,7 +5318,7 @@
         "비율(%)"
       ],
       "rowCount": 228,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132952_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132952_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5337,7 +5337,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132952_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132952_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5354,7 +5354,7 @@
         "방문자 수"
       ],
       "rowCount": 31,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132952_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132952_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5372,7 +5372,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 29,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132952_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132952_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5390,7 +5390,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133015_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133015_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5409,7 +5409,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133015_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133015_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5426,7 +5426,7 @@
         "방문자 수"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133015_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133015_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5444,7 +5444,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133015_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133015_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5462,7 +5462,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133037_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133037_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5481,7 +5481,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133037_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133037_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5498,7 +5498,7 @@
         "방문자 수"
       ],
       "rowCount": 18,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133037_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133037_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5516,7 +5516,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 21,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133037_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133037_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5534,7 +5534,7 @@
         "비율(%)"
       ],
       "rowCount": 228,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133059_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133059_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5553,7 +5553,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133059_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133059_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5570,7 +5570,7 @@
         "방문자 수"
       ],
       "rowCount": 31,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133059_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133059_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5588,7 +5588,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 45,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133059_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133059_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5606,7 +5606,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133121_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133121_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5625,7 +5625,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133121_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133121_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5642,7 +5642,7 @@
         "방문자 수"
       ],
       "rowCount": 43,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133121_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133121_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5660,7 +5660,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 15,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133121_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133121_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5678,7 +5678,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133143_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133143_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5697,7 +5697,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133143_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133143_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5714,7 +5714,7 @@
         "방문자 수"
       ],
       "rowCount": 43,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133143_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133143_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5732,7 +5732,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 21,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133143_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133143_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5750,7 +5750,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133205_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133205_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5769,7 +5769,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133205_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133205_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5786,7 +5786,7 @@
         "방문자 수"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133205_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133205_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5804,7 +5804,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133205_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133205_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5822,7 +5822,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133228_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133228_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5841,7 +5841,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133228_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133228_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5858,7 +5858,7 @@
         "방문자 수"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133228_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133228_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5876,7 +5876,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 23,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133228_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133228_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5894,7 +5894,7 @@
         "비율(%)"
       ],
       "rowCount": 228,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133250_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133250_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5913,7 +5913,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133250_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133250_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -5930,7 +5930,7 @@
         "방문자 수"
       ],
       "rowCount": 22,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133250_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133250_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -5948,7 +5948,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 29,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133250_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133250_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -5966,7 +5966,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133312_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133312_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -5985,7 +5985,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133312_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133312_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -6002,7 +6002,7 @@
         "방문자 수"
       ],
       "rowCount": 9,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133312_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133312_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -6020,7 +6020,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 12,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133312_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133312_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     },
     {
@@ -6038,7 +6038,7 @@
         "비율(%)"
       ],
       "rowCount": 250,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133820_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133820_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EA%B1%B0%EC%A3%BC%EC%A7%80.csv"
     },
     {
@@ -6057,7 +6057,7 @@
         "방문자 수"
       ],
       "rowCount": 24,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133820_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133820_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv"
     },
     {
@@ -6074,7 +6074,7 @@
         "방문자 수"
       ],
       "rowCount": 16,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133820_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133820_%EB%B0%A9%EB%AC%B8%EC%9E%90%EC%88%98%20%ED%9E%88%ED%8A%B8%EB%A7%B5.csv"
     },
     {
@@ -6092,7 +6092,7 @@
         "기초지자체 방문자 비율"
       ],
       "rowCount": 10,
-      "use": "preserved-only",
+      "use": "consumed",
       "url": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133820_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133820_%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98.csv"
     }
   ]

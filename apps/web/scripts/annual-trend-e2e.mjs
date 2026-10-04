@@ -31,7 +31,7 @@ try{
   await visible(page.getByText("자료 없는 연도: 2020 · 2021",{exact:true}));assert.equal(await page.getByText(/선으로 잇지 않습니다/).count(),0);
   assert.equal(await page.getByRole("img",{name:/방문자 그래프/}).locator("path").count(),2,"2018–2019 and 2022–2025 are separate lines");
   // DataLab profile cards: jump links, indicator year switch, withheld years, sex·age summary, destination groups
-  const jump=page.getByRole("navigation",{name:"이 축제의 다른 자료"});assert.deepEqual((await jump.getByRole("link").allInnerTexts()).map(t=>t.trim()),["축제 기간과 평소 ↓","방문객 성·연령 ↓","목적지 검색순위 ↓"]);
+  const jump=page.getByRole("navigation",{name:"이 축제의 다른 자료"});assert.deepEqual((await jump.getByRole("link").allInnerTexts()).map(t=>t.trim()),["축제 기간과 평소 ↓","방문객 성·연령 ↓","목적지 검색순위 ↓","개최지 서산시 ↓"]);
   await jump.getByRole("link",{name:"축제 기간과 평소 ↓"}).click();assert.equal(await page.evaluate(()=>document.activeElement?.id),"festival-indicators");
   const indicators=page.locator("section",{has:page.locator("#festival-indicators")});
   assert.equal(await indicators.getByRole("group",{name:"연도"}).getByRole("button",{name:"2025",exact:true}).getAttribute("aria-pressed"),"true");
@@ -55,6 +55,20 @@ try{
   await destinations.getByRole("button",{name:"16곳 모두 보기"}).click();assert.equal(await ranks.getByRole("listitem").count(),16);
   await destinations.getByRole("group",{name:"검색한 사람"}).getByRole("button",{name:"현지인",exact:true}).click();
   assert.equal(await destinations.getByRole("list",{name:"현지인 목적지 검색순위"}).getByRole("listitem").count(),10);await visible(destinations.getByRole("button",{name:"16곳 모두 보기"}));
+  // Host region cards: the whole municipality over the download range, linked only where the host dong is in the region
+  await visible(page.getByText("개최지 서산시 전체 자료 · 축제 기간만이 아닌 2018~2025년 지역 전체",{exact:true}));
+  await jump.getByRole("link",{name:"개최지 서산시 ↓"}).click();assert.equal(await page.evaluate(()=>document.activeElement?.id),"region-spending");
+  const spending=page.locator("section",{has:page.locator("#region-spending")}),visitorsCard=page.locator("section",{has:page.locator("#region-visitors")});
+  await visible(spending.getByRole("heading",{name:"서산시 관광 소비",level:3}));await visible(spending.getByText("같은 시도 목록 16곳 중 6위 · 2018~2025년 합계",{exact:true}));
+  await visible(spending.getByRole("img",{name:/서산시 해마다 관광 소비\. 2018년 .*2025년 3,343억 원$/}));
+  await visible(spending.getByRole("img",{name:/^서산시 업종별 관광 소비 비율\. 쇼핑업 34\.6%/}));
+  await visible(visitorsCard.getByRole("heading",{name:"서산시 외지인 방문객",level:3}));
+  await visible(visitorsCard.getByRole("img",{name:/^서산시 외지인 방문객 거주지\. 충청남도 태안군 12\.6%, 충청남도 당진시 10\.2%/}));
+  await visitorsCard.getByRole("button",{name:"읍면동별 방문·소비 표 보기"}).click();
+  const dongs=visitorsCard.getByRole("region",{name:"서산시 읍면동별 방문·소비 비율 표"});
+  assert.deepEqual((await dongs.locator("tbody tr").filter({has:page.getByRole("rowheader",{name:"해미면",exact:true})}).locator("th,td").allInnerTexts()).map(t=>t.trim()),["해미면","12.1","14.9"]);
+  await visitorsCard.getByRole("button",{name:"기준"}).click();const vcrit=page.getByRole("dialog",{name:"외지인 방문객 자료의 기준"});await visible(vcrit);
+  await visible(vcrit.getByText(/한 사람이 여러 읍면동을 들르면 각각 세는 값/));await page.keyboard.press("Escape");await vcrit.waitFor({state:"hidden"});
   // Year detail is reachable without hover; raw foreign 0 is not asserted as absence
   await page.getByRole("group",{name:"연도별 상세 보기"}).getByRole("button",{name:"2018",exact:true}).click();
   await visible(page.getByText("2018년 개최기간",{exact:true}));await visible(page.getByText("외국인 수는 원문 기준입니다.",{exact:true}));
@@ -77,6 +91,12 @@ try{
   await search.fill("영암");await page.getByRole("button",{name:/영암왕인문화축제/}).click();assert.equal(new URL(page.url()).searchParams.get("metric"),"total");
   assert.deepEqual(await cells(2022),["2022","값 없음"]);assert.deepEqual(await cells(2025),["2025","값 없음"]);assert.deepEqual(await cells(2023),["2023","4","30,600.8","122,403"]);
   await visible(page.getByText("자료 없는 연도: 2020 · 2021 · 2022 · 2025",{exact:true}));
+  // Daegu Chimac's host dong (Duryu 3-dong, Dalseo-gu) is not in the Jung-gu download: no host cards, no jump link
+  await search.fill("치맥");await page.getByRole("button",{name:/대구치맥페스티벌/}).click();await visible(page.getByRole("heading",{name:"대구치맥페스티벌",level:2}));
+  assert.equal(await page.locator("#region-spending").count(),0);assert.equal(await page.getByRole("link",{name:/개최지/}).count(),0);
+  await search.fill("부평");await page.getByRole("button",{name:/부평풍물대축제/}).click();await visible(page.getByRole("heading",{name:"부평구 관광 소비",level:3}));
+  await visible(page.getByText("이 지역은 외지인 방문객의 거주지·읍면동 자료가 아직 없어요.",{exact:true}));
+  await search.fill("영암");await page.getByRole("button",{name:/영암왕인문화축제/}).click();await visible(page.getByRole("heading",{name:"영암군 관광 소비",level:3}));
   // All-zero indicator years are withheld: no 2022 button, a plain "no value" row in the year table
   const yeongam=page.locator("section",{has:page.locator("#festival-indicators")});
   assert.deepEqual((await yeongam.getByRole("group",{name:"연도"}).getByRole("button").allInnerTexts()).map(t=>t.trim()),["2018","2019","2023","2024"]);
@@ -96,5 +116,5 @@ try{
   await rawBox.focus();await page.keyboard.press("End");
   await page.screenshot({path:"output/playwright/annual-trend-mobile.png",fullPage:true});
   assert.deepEqual(errors,[]);assert.deepEqual(writes,[]);assert.equal(await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.includes("annual")||k.includes("datalab")).length),0);
-  console.log(JSON.stringify({headless:true,passed:["entry-list","intro-copy","nonsan-no-match","keyboard-select","url-festival","default-daily-mean","exact-table-values","missing-years-not-zero","line-breaks-at-gaps","year-detail-no-hover","foreign-zero-raw","metric-url-restore","raw-disclosure-typo-preserved","previous-year-note","source-links","metric-definition","download-date-only","no-sha256","yeongam-gaps","desktop-screenshot","unknown-deeplink","390px-no-overflow","raw-table-own-scroll","footer-kto-credit","profile-jump-links","indicator-year-switch","indicator-raw-table","indicator-criteria-dialog","demographics-summary","destination-groups-and-show-all","withheld-indicator-years","profile-tables-390px"],browserErrors:errors.length,clientWrites:writes.length}));
+  console.log(JSON.stringify({headless:true,passed:["entry-list","intro-copy","nonsan-no-match","keyboard-select","url-festival","default-daily-mean","exact-table-values","missing-years-not-zero","line-breaks-at-gaps","year-detail-no-hover","foreign-zero-raw","metric-url-restore","raw-disclosure-typo-preserved","previous-year-note","source-links","metric-definition","download-date-only","no-sha256","yeongam-gaps","desktop-screenshot","unknown-deeplink","390px-no-overflow","raw-table-own-scroll","footer-kto-credit","profile-jump-links","indicator-year-switch","indicator-raw-table","indicator-criteria-dialog","demographics-summary","destination-groups-and-show-all","withheld-indicator-years","profile-tables-390px","host-region-jump-and-cards","host-region-spending-values","host-region-visitor-origins","host-region-dong-table","host-region-criteria","chimac-no-host-link","bupyeong-no-visitor-note"],browserErrors:errors.length,clientWrites:writes.length}));
 }finally{await browser.close();}

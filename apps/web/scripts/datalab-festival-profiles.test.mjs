@@ -120,7 +120,7 @@ test("tampered profile bytes and unconsumed profile tables are rejected", () => 
     [root => appendFileSync(`${root}${ORIGINAL_DIR}/${profileFile(root, "강릉커피축제", "성-연령별 내국인 방문자").path}`, "x"), /hash mismatch/],
     [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.table === "목적지 검색순위").use = "preserved-only"; }), /Unexpected consumed count/],
     // Same count, swapped use: the per-file check still sees that a reviewed profile table is no longer consumed.
-    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.table === "목적지 검색순위").use = "preserved-only"; m.files.find(f => f.group === "region").use = "consumed"; }), /Manifest entry mismatch/],
+    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.table === "목적지 검색순위").use = "preserved-only"; m.files.find(f => f.group === "doc").use = "consumed"; }), /Manifest entry mismatch/],
     [root => editJson(root, IDS_PATH, m => { m.festivals[0].sourceFile = m.festivals[0].sourceFile.replace("서산해미읍성축제_연도별", "서산해미읍성_연도별"); }), /Missing reviewed/],
   ];
   for (const [mutate, error] of cases) {

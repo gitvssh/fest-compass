@@ -25,10 +25,9 @@ const DOCS = ["data/README.md", "data/CHECKLIST.md", "data/COLLECT-REGION.md", "
 export const FESTIVAL_TABLES = ["목적지 검색순위", "문화관광축제 주요 지표", "성-연령별 내국인 방문자", "연도별 방문자 추이"];
 const REGION_TABLES = ["관광소비 추이", "관광소비 히트맵", "업종별 지출액", "지역별 지출액"];
 const VISITOR_TABLES = ["방문자 거주지", "방문자 수 추이", "방문자수 히트맵", "지역별 방문자 수"];
-// Reviewed 2026-09-24: exact region files read by build-datalab-region-annual.mjs. Never widen to a whole group or table.
-export const CONSUMED_REGION_PATHS = ["data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv"];
-// Reviewed 2026-10-04: every festival table is read — the trend here, the other three by build-datalab-festival-profiles.mjs.
-export const EXPECTED_COUNTS = { csv: 304, festival: 104, region: 104, region_visitor: 96, doc: 5, consumed: 105 };
+// Reviewed 2026-10-04: every CSV is read — festival tables by this build and build-datalab-festival-profiles.mjs, region and
+// region_visitor tables by build-datalab-region-annual.mjs and build-datalab-region-profiles.mjs. Documents stay preserved-only.
+export const EXPECTED_COUNTS = { csv: 304, festival: 104, region: 104, region_visitor: 96, doc: 5, consumed: 304 };
 
 export const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 export const gitBlobId = bytes => createHash("sha1").update(Buffer.concat([Buffer.from(`blob ${bytes.length}\0`), bytes])).digest("hex");
@@ -57,8 +56,7 @@ function manifestEntry(path, bytes, gitBlob) {
   const base = { path, group: c.group, table: c.table, bytes: bytes.length, sha256: sha256(bytes), gitBlob, encoding: d.encoding, lineEnding: d.lineEnding };
   if (c.group === "doc") return { ...base, use: "preserved-only", url: originalUrl(path) };
   const { header, rows } = parseTable(d.text);
-  const consumed = c.group === "festival" || (c.group === "region_visitor" && CONSUMED_REGION_PATHS.includes(path));
-  return { ...base, header, rowCount: rows.length, use: consumed ? "consumed" : "preserved-only", url: originalUrl(path) };
+  return { ...base, header, rowCount: rows.length, use: "consumed", url: originalUrl(path) };
 }
 
 export function initManifest(sourceRepo, root = REPO_ROOT) {

@@ -33,9 +33,9 @@
 
 ## 앱에서 쓰는 범위
 
-앱은 축제 폴더 26개의 네 표 104개 파일과 임실군 `방문자 수 추이` 1개 파일(24행)을 쓴다(`use: consumed`, 모두 105개).
-`연도별 방문자 추이`는 2026-09-23부터, 나머지 세 표(`문화관광축제 주요 지표`·`성-연령별 내국인 방문자`·`목적지 검색순위`)는 2026-10-04부터다
-([검수49](../../../validation/49-datalab-festival-profiles.md)). `region/` 104개와 `region_visitor/`의 나머지 95개, 문서는 아직 출처 보관용이다.
+앱은 CSV 304개를 모두 쓴다(`use: consumed`). 문서 5개만 출처 보관용이다. 축제 `연도별 방문자 추이`는 2026-09-23부터,
+나머지 세 축제 표(`문화관광축제 주요 지표`·`성-연령별 내국인 방문자`·`목적지 검색순위`)와 지역 표 200개(`region/` 104·`region_visitor/` 96)는
+2026-10-04부터다([검수49](../../../validation/49-datalab-festival-profiles.md)). 지역 코드와 축제 연결은 `apps/web/data/datalab-region-ids.json`(v2, 26곳) 검토표다.
 2026-09-24 추가 범위·검증은 [기록37](../../../validation/37-visitor-context.md)을 따른다.
 
 - 값의 뜻: 축제가 열린 행정동에서 통신 데이터로 추정한 방문자 수의 **개최기간 합계**와 **일평균**. 개최기간이
@@ -54,14 +54,16 @@
 
 - 지역 원본은 `data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv`다.
   각 행에 명시된 2018~2025년을 사용한다. 현지인·외지인·전체 각 8행이며 `기준년월`이라는 헤더와 달리 실제 값은 연도다.
-- `apps/web/data/datalab-region-ids.json`이 이 파일과 임실군 코드 52750을 명시적으로 연결한다. 다른 23개 지역으로 자동 확장하지 않는다.
+- `apps/web/data/datalab-region-ids.json`이 이 파일과 임실군 코드 52750을 명시적으로 연결한다. 2026-10-04 같은 검토표를 26곳으로 넓혔다(v2):
+  시도는 히트맵의 이웃 지역 이름으로, 코드는 현재 관광조회 지역 목록의 같은 이름으로 정하고, 축제는 개최 행정동이 그 지역 읍면동에 있을 때만 잇는다.
 - 과학적 숫자 표기를 해석하되 원문 문자열을 보존한다. 전체는 제공값을 유지하며 2021·2024년 구분별 합과 1 차이가 있다.
 - 축제 ID 대응은 `datalab-festival-links.json`이다. 같은 이름·개최일수가 대조된 임실 2023~2025 회차에만 구성 자료를 연결한다.
   지역 전체 일별 값과 축제 개최 행정동 값은 다른 공간이며 같은 차트로 합치지 않는다.
 - 성·연령·거주지·목적지 순위에는 관측기간을 확정할 열·수집 메모가 없다. 폴더 이름만으로 기간을 정하지 않는다.
   2026-10-04 축제 표는 같은 내려받기의 방문 추이 연도 범위, 임실 세 해 화면 자료와의 불일치(어느 한 해와도 다름), 여러 해 장소가 섞인 목적지 목록,
   같은 방식으로 받은 지역 표의 2018~2025 합계 일치로 `내려받기 범위 합산`임을 확인하고 연결했다(근거: [검수49](../../../validation/49-datalab-festival-profiles.md)).
-  지역 `방문자 거주지`는 아직 연결하지 않았다.
+  지역 표(거주지·읍면동·업종·같은 시도 비교)는 히트맵의 자기 지역 값이 2018~2025 연도별 합계와 같고 업종 비율이 그 합계의 비율과 같아
+  `2018~2025 합계`로 연결했다.
 - `문화관광축제 주요 지표`의 열 개 값이 모두 0인 해 7개는 측정값 없음으로 보고 화면에 0으로 그리지 않는다.
 
 ## 시각 정보
@@ -92,6 +94,9 @@ node scripts/build-datalab-region-annual.mjs           # 지역 추이 재생성
 node scripts/build-datalab-festival-profiles.mjs --verify  # 주요 지표·성연령·목적지 순위 확인
 node scripts/build-datalab-festival-profiles.mjs           # apps/web/data/datalab-festival-profiles.json 재생성
 node --test scripts/datalab-festival-profiles.test.mjs
+node scripts/build-datalab-region-profiles.mjs --verify   # 지역 관광소비·방문자 확인
+node scripts/build-datalab-region-profiles.mjs            # apps/web/data/datalab-region-profiles.json 재생성
+node --test scripts/datalab-region-profiles.test.mjs
 # 원본 체크아웃이 있을 때만: 목록 재작성
 node scripts/build-datalab-festival-trend.mjs --init-manifest --source-repo <pick-d-day 체크아웃>
 ```

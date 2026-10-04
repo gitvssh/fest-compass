@@ -4,10 +4,11 @@ import assert from "node:assert/strict";
 import { appendFileSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { CsvError } from "./datalab-csv.mjs";
-import { CONSUMED_REGION_PATHS, IDS_PATH, IMPORT_DIR, MANIFEST_PATH, ORIGINAL_DIR, REPO_ROOT, sha256, verifyImport } from "./build-datalab-festival-trend.mjs";
+import { IDS_PATH, IMPORT_DIR, MANIFEST_PATH, ORIGINAL_DIR, REPO_ROOT, sha256, verifyImport } from "./build-datalab-festival-trend.mjs";
 import { ANNUAL_HEADER, buildRegionDataset, CATALOGUE_PATH, parseAnnualCount, parseRegionAnnual, REGION_IDS_PATH, REGION_OFFICIAL_URL, REGION_OUTPUT_PATH, serialize } from "./build-datalab-region-annual.mjs";
 
 const HEAD = ANNUAL_HEADER.join(",");
+const IMSIL = "data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv";
 const table = (rows, name = "임실군") => `\uFEFF${HEAD}\n${rows.map(([y, seg, v]) => `${y},${name},${seg},${v}`).join("\n")}\n`;
 const year = (y, local = "2.0", outside = "3.0", total = "5.0") => [[y, "외지인방문자(b)", outside], [y, "전체방문자(a+b)", total], [y, "현지인방문자(a)", local]];
 const years = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => year(String(from + i))).flat();
@@ -56,13 +57,14 @@ test("generator is deterministic, matches the checked-in artifact and pins the r
   assert.equal(a, b);
   assert.equal(readFileSync(`${REPO_ROOT}${REGION_OUTPUT_PATH}`, "utf8"), a);
   assert.ok(!/20\d\d-\d\d-\d\dT\d\d:/.test(a), "no clock timestamps in output");
-  const d = JSON.parse(a), [r] = d.regions, { manifest, manifestSha256 } = verifyImport();
-  assert.equal(d.regions.length, 1);
+  const d = JSON.parse(a), r = d.regions.find(x => x.code === "52750"), { manifest, manifestSha256 } = verifyImport();
+  assert.equal(d.regions.length, 24);
+  assert.deepEqual(d.regions.map(x => x.years.length), Array(24).fill(8));
   assert.deepEqual([d.kind, d.schemaVersion, d.source.officialUrl, d.source.downloadTimezone, d.source.manifestSha256], ["datalab-region-visitor-annual", 1, REGION_OFFICIAL_URL, null, manifestSha256]);
-  const entry = manifest.files.find(f => f.path === CONSUMED_REGION_PATHS[0]);
+  const entry = manifest.files.find(f => f.path === IMSIL);
   assert.deepEqual([r.code, r.name, r.downloadDate, r.source.sha256, r.source.bytes], ["52750", "임실군", "2026-08-30", "e36cc998f14454db0f9349356076d60815c83f245a13c808c8f29f5f69457e6d", 1193]);
   assert.equal(sha256(readFileSync(`${REPO_ROOT}${r.source.path}`)), entry.sha256);
-  assert.equal(r.source.path, `${ORIGINAL_DIR}/${CONSUMED_REGION_PATHS[0]}`);
+  assert.equal(r.source.path, `${ORIGINAL_DIR}/${IMSIL}`);
   assert.deepEqual(r.years.map(y => y.year), [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], "value years, not the 2026 download stamp");
   assert.deepEqual(r.years.find(y => y.year === 2021), { year: 2021, local: 3433454, outside: 7329430, total: 10762885, raw: { local: "3433454.0", outside: "7329430.0", total: "1.0762885E7" } });
   assert.deepEqual(r.years.map(y => [y.year, y.total - y.local - y.outside]).filter(([, gap]) => gap), [[2021, 1], [2024, 1]], "source total preserved, not re-summed");
@@ -73,7 +75,7 @@ test("annual outside equals the sum of the district's daily outside visits for e
   const expanded = JSON.parse(readFileSync(`${REPO_ROOT}apps/web/data/regional-history-expanded.json`, "utf8"));
   const daily = expanded.datasets.filter(d => d.region.code === "52750");
   assert.equal(daily.length, 1);
-  const annual = buildRegionDataset().regions[0].years, checked = [];
+  const annual = buildRegionDataset().regions.find(x => x.code === "52750").years, checked = [];
   for (const y of [...new Set(daily[0].points.map(p => Number(p.date.slice(0, 4))))]) {
     const points = daily[0].points.filter(p => p.date.startsWith(`${y}-`)), days = (Date.UTC(y + 1, 0, 1) - Date.UTC(y, 0, 1)) / 86_400_000;
     if (points.length !== days || points.some(p => p.quality !== "complete" || typeof p.value !== "number")) continue;
@@ -84,14 +86,15 @@ test("annual outside equals the sum of the district's daily outside visits for e
   assert.deepEqual(checked, [2023, 2024, 2025]);
 });
 
-test("manifest consumes the 104 festival tables plus the one reviewed region file; region IDs cover it exactly", () => {
+test("every region CSV is consumed; the reviewed table maps 26 downloads and the 24 annual files exactly", () => {
   const { manifest } = verifyImport(), ids = JSON.parse(readFileSync(`${REPO_ROOT}${REGION_IDS_PATH}`, "utf8"));
-  const consumed = manifest.files.filter(f => f.use === "consumed");
-  assert.equal(consumed.filter(f => f.group === "festival").length, 104);
-  assert.deepEqual(consumed.filter(f => f.group !== "festival").map(f => f.path), CONSUMED_REGION_PATHS);
-  assert.deepEqual(ids.regions.map(r => r.sourceFile), CONSUMED_REGION_PATHS);
-  assert.equal(manifest.files.filter(f => f.group === "region_visitor" && f.use === "preserved-only").length, 95);
-  assert.equal(manifest.files.filter(f => f.use === "preserved-only").length, 309 - 105);
+  assert.ok(manifest.files.filter(f => f.group === "region" || f.group === "region_visitor").every(f => f.use === "consumed"));
+  assert.equal(manifest.files.filter(f => f.use === "preserved-only").length, 5, "only the five documents");
+  const annual = manifest.files.filter(f => f.table === "방문자 수 추이").map(f => f.path).sort();
+  assert.deepEqual(ids.regions.map(r => r.sourceFile).filter(Boolean).sort(), annual);
+  assert.equal(ids.regions.length, 26);
+  assert.deepEqual(ids.regions.filter(r => r.sourceFile === null).map(r => r.name).sort(), ["부평구", "연수구"]);
+  assert.equal(ids.regions.find(r => r.code === "52750").sourceFile, IMSIL);
 });
 
 function sandbox() {
@@ -104,12 +107,14 @@ function sandbox() {
 const editJson = (root, path, edit) => { const p = `${root}${path}`, m = JSON.parse(readFileSync(p, "utf8")); edit(m); writeFileSync(p, JSON.stringify(m, null, 2) + "\n"); };
 
 test("tampered bytes, widened consumption and unreviewed region codes are rejected", () => {
-  const residence = CONSUMED_REGION_PATHS[0].replace("방문자 수 추이", "방문자 거주지");
+  const residence = IMSIL.replace("방문자 수 추이", "방문자 거주지");
+  const imsil = m => m.regions.find(r => r.code === "52750");
   const cases = [
-    [root => appendFileSync(`${root}${ORIGINAL_DIR}/${CONSUMED_REGION_PATHS[0]}`, "x"), /hash mismatch/],
-    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.path === residence).use = "consumed"; m.files.find(f => f.path === CONSUMED_REGION_PATHS[0]).use = "preserved-only"; }), /Manifest entry mismatch/],
-    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.path === CONSUMED_REGION_PATHS[0]).use = "preserved-only"; m.counts.consumed = 104; }), /Unexpected consumed count/],
-    [root => editJson(root, REGION_IDS_PATH, m => { m.regions[0].sourceFile = residence; }), /cover consumed/],
+    [root => appendFileSync(`${root}${ORIGINAL_DIR}/${IMSIL}`, "x"), /hash mismatch/],
+    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.path === IMSIL).use = "preserved-only"; m.files.find(f => f.group === "doc").use = "consumed"; }), /Manifest entry mismatch/],
+    [root => editJson(root, MANIFEST_PATH, m => { m.files.find(f => f.path === IMSIL).use = "preserved-only"; m.counts.consumed = 303; }), /Unexpected consumed count/],
+    [root => editJson(root, REGION_IDS_PATH, m => { imsil(m).sourceFile = residence; }), /cover consumed/],
+    [root => editJson(root, REGION_IDS_PATH, m => { imsil(m).sourceFile = null; }), /cover consumed/],
     [root => editJson(root, REGION_IDS_PATH, m => { m.regions.push({ ...m.regions[0], code: "46770" }); }), /cover consumed/],
     [root => editJson(root, REGION_IDS_PATH, m => { m.regions[0].code = "44230"; }), /not in catalogue/],
     [root => editJson(root, REGION_IDS_PATH, m => { m.regions[0].code = "5275"; }), /5-digit/],

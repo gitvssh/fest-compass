@@ -1,5 +1,6 @@
 // Response contracts for the new-festival journey (UC-FC-010). Pure types; safe for client imports.
 import type { MonthlyRequest, MonthlyResponse, PublicSource, RegionRef, ResourceKind, SourceError } from "../existing/types";
+import type { RegionProfile } from "../datalab/region-profile-types";
 import type { ResourceFact, ResourcePhoto, ResourceSectionStatus } from "../resources/types";
 
 export type WeekdayCoverage = "complete" | "partial" | "none";
@@ -17,10 +18,13 @@ export type NewVisitsRequest = MonthlyRequest;
 /** DataLab annual totals for the whole district, independent of the requested monthly year. Missing stays null, never 0. */
 export type RegionAnnualYear = { year: number; outside: number | null; local: number | null; total: number | null };
 export type RegionAnnual = { regionCode: string; years: RegionAnnualYear[]; source: { title: string; url: string; downloadedOn: string } };
+/** DataLab spending and outside-visitor profile of the whole district (download range), independent of the monthly year. */
+export type RegionProfileBlock = { officialUrl: string; profile: RegionProfile };
 export type NewVisitsResponse = MonthlyResponse & {
   metric: { name: string; unit: "명/일"; basis: "통신 기반 추정"; estimate: true; regionCode: string };
   weekdays: WeekdayBlock;
   annual: RegionAnnual | null;
+  regionProfile: RegionProfileBlock | null;
 };
 
 export type ResourceDetailRequest = { province: string; district: string; kind: ResourceKind; id: string };

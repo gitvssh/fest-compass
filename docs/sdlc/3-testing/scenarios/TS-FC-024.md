@@ -3,19 +3,19 @@ class: Current
 owner: pickDday
 last_verified: 2026-10-04
 id: TS-FC-024
-version: v1
+version: v2
 status: active
-summary: "축제별 방문 자료의 축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위와 공통 하단 출처 표기의 인수 기준입니다."
+summary: "축제별 방문 자료의 축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위, 공통 하단 출처 표기, 개최지·지역의 관광 소비와 외지인 방문객 카드의 인수 기준입니다."
 usecase: null
-covers_ac: ["P1", "P2", "P3", "P4", "P5", "P6", "P7"]
+covers_ac: ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "R1", "R2", "R3", "R4", "R5"]
 apis: []
 specs: []
 ---
 
 # TS-FC-024 · 축제별 방문 자료
 
-[설계27](../../../design/27-datalab-festival-profile.md) 1차의 인수 기준이다. 실행 결과는 [검수49](../../../validation/49-datalab-festival-profiles.md)에 기록한다.
-자동 시험은 `scripts/datalab-festival-profiles.test.mjs`(생성), `lib/datalab/festival-profiles.test.ts`(읽기), `scripts/annual-trend-e2e.mjs`(화면)다.
+[설계27](../../../design/27-datalab-festival-profile.md) 1·2차의 인수 기준이다(R은 2차). 실행 결과는 [검수49](../../../validation/49-datalab-festival-profiles.md)에 기록한다.
+자동 시험은 `scripts/datalab-festival-profiles.test.mjs`·`scripts/datalab-region-profiles.test.mjs`(생성), `lib/datalab/festival-profiles.test.ts`·`lib/datalab/region-profiles.test.ts`·`lib/new-festival/new-festival.test.ts`(읽기·응답), `scripts/annual-trend-e2e.mjs`·`scripts/new-festival-e2e.mjs`(화면)다.
 
 | 기준 | 확인할 결과 | 수단 |
 |---|---|---|
@@ -26,3 +26,8 @@ specs: []
 | P5 | `방문객 성·연령`은 `2018~2025년 축제기간 합산`(고령·영암 2018~2024)임을 밝히고 남성·여성·가장 많은 연령대와 여덟 연령대 막대·표를 보인다 | headless(서산 55.0%·45.1%·50~59세 21.5%) |
 | P6 | `목적지 검색순위`는 외지인 기본, 상위 10곳과 `N곳 모두 보기`, 검색한 사람을 바꾸면 10곳으로 돌아간다. 같은 순위는 같은 숫자다 | headless, 단위 시험 |
 | P7 | 축제 이름 아래 바로가기 세 개가 각 카드 제목으로 초점을 옮긴다. 모든 화면 하단에 `관광 자료 출처: ⓒ한국관광공사 (한국관광콘텐츠랩·한국관광 데이터랩)`. 390px에서 가로 넘침이 없고 넓은 표는 자기 영역에서 움직인다 | headless |
+| R1 | 지역 생성은 26곳의 지역 표 200개만 쓰고, 검토표 밖의 폴더·코드·이름·시도가 있으면 멈춘다. 히트맵의 자기 지역 값이 2018~2025 연도별 합계와, 업종 비율이 연도×업종 합계의 비율과 다르면 멈춘다 | 생성 단위 시험 |
+| R2 | 축제는 개최 행정동이 그 지역 읍면동에 있을 때만 잇는다(25곳). 대구치맥페스티벌은 대구 중구와 잇지 않고 바로가기·카드가 없다 | 생성 단위 시험, headless |
+| R3 | 축제별 방문 자료에 `개최지 ○○ 전체 자료` 아래 관광 소비(순위·해마다 억 원·업종·읍면동 상위 5)와 외지인 방문객(순위·거주지 상위 10·그 밖·읍면동 상위 5·읍면동 표) 카드. 바로가기 `개최지 ○○`가 첫 카드 제목으로 초점을 옮긴다 | headless(서산: 16곳 중 6위·2025년 3,343억 원·쇼핑업 34.6%·태안군 12.6%·해미면 12.1/14.9) |
+| R4 | 방문 자료가 없는 부평구·연수구는 방문객 카드에 `이 지역은 외지인 방문객의 거주지·읍면동 자료가 아직 없어요.` | headless(부평풍물대축제) |
+| R5 | 새 축제 `방문 흐름`은 받은 지역 26곳에서 같은 두 카드를, 연간 방문 24곳에서 연도별 합계를 보이고 관측연도를 바꿔도 같다. 받지 않은 지역(논산)은 카드가 없다. 응답에 경로·해시가 없고 생성 파일이 깨지면 그 블록만 빠진다 | 응답 단위 시험, headless(임실·논산) |

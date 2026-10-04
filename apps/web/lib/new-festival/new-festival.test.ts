@@ -13,6 +13,7 @@ import { loadResourceDetail, DETAIL_SOURCE_TITLE } from "./detail";
 import { decodeEntities, OVERVIEW_MAX, overviewText } from "./overview";
 import { newVisitsKey, parseNewVisits, parseResourceDetail, resourceDetailKey } from "./request";
 import { defaultRegionAnnual } from "../datalab/region-annual";
+import { defaultRegionProfiles, regionProfileFor } from "../datalab/region-profiles";
 import { createNewFestivalService, loadVisits as productionVisits } from "./server";
 import { weekdayMeans } from "./weekday";
 
@@ -67,9 +68,10 @@ test("Nonsan default year is 2025; weekday means equal an independent raw-data r
 test("new visits keeps every existing monthly field and value; only the key differs", async () => {
   const s = services(), req = parseMonthly(q("province=44&district=230&year=2025"));
   const [m, n] = await Promise.all([s.existing.loadMonthly(req), s.fresh.loadVisits(req)]);
-  const { key: mk, ...mRest } = m, { key: nk, weekdays, metric, annual, ...nRest } = n;
+  const { key: mk, ...mRest } = m, { key: nk, weekdays, metric, annual, regionProfile, ...nRest } = n;
   assert.deepEqual(nRest, mRest);
   assert.equal(annual, null, "annual is a separate optional block (null without an injected resolver)");
+  assert.equal(regionProfile, null, "the region profile is a separate optional block (null without an injected resolver)");
   assert.notEqual(mk, nk);
   assert.equal(nk, newVisitsKey(req));
   assert.deepEqual(metric, { name: "시군구 일별 외지인 방문", unit: "명/일", basis: "통신 기반 추정", estimate: true, regionCode: "44230" });
@@ -282,11 +284,32 @@ test("annual totals follow the selected region, not the requested monthly year; 
   assert.deepEqual(y2019.annual.years.map(y => y.year), [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]);
   assert.deepEqual([y2019.status, y2019.year, y2019.months.every(m => m.mean === null)], ["empty", 2019, true], "no daily 2019 data; annual 2019 still present");
   assert.equal(plain.annual, null, "no resolver injected -> null");
-  const { annual, ...rest } = y2025, { annual: none, ...plainRest } = plain;
+  const { annual, regionProfile: _p, ...rest } = y2025, { annual: none, regionProfile: _q, ...plainRest } = plain;
   assert.deepEqual([rest, none], [plainRest, null], "annual adds one field and changes nothing else");
   assert.equal((await fresh.loadVisits(parseNewVisits(q("province=44&district=230")))).annual, null, "other regions get no annual block");
   const text = JSON.stringify(y2025.annual);
   for (const leak of ["sha256", "docs/research", "commit", "\"raw\"", "E7"]) assert.ok(!text.includes(leak), `${leak} leaked`);
+});
+
+test("region profile follows the selected region, is independent of the year, and failures omit only that block", async () => {
+  const { existing } = services(), profiles = defaultRegionProfiles!, logged: unknown[][] = [], original = console.error;
+  const block = (code: string) => { const p = regionProfileFor(profiles, code); return p ? { officialUrl: profiles.officialUrl, profile: p } : null; };
+  const fresh = createNewFestivalService({ monthly: existing.loadMonthly, tour: noTour, now: () => NOW, profile: block });
+  const [y2019, y2025, nonsan] = await Promise.all([fresh.loadVisits(parseNewVisits(q("province=52&district=750&year=2019"))), fresh.loadVisits(parseNewVisits(q("province=52&district=750&year=2025"))),
+    fresh.loadVisits(parseNewVisits(q("province=44&district=230")))]);
+  assert.equal(y2019.regionProfile?.profile.code, "52750");
+  assert.deepEqual(y2019.regionProfile, y2025.regionProfile);
+  assert.equal(nonsan.regionProfile, null, "regions without a DataLab download get no block");
+  const text = JSON.stringify(y2025.regionProfile);
+  for (const leak of ["sha256", "docs/research", "commit", "\"path\""]) assert.ok(!text.includes(leak), `${leak} leaked`);
+  console.error = (...args: unknown[]) => { logged.push(args); };
+  try {
+    const broken = await createNewFestivalService({ monthly: existing.loadMonthly, tour: noTour, now: () => NOW, profile: () => { throw new Error("bad /tmp/x"); } }).loadVisits(parseNewVisits(q("province=52&district=750&year=2025")));
+    assert.deepEqual([broken.regionProfile, broken.status], [null, "complete"]);
+    const wrong = await createNewFestivalService({ monthly: existing.loadMonthly, tour: noTour, now: () => NOW, profile: () => block("52750") }).loadVisits(parseNewVisits(q("province=44&district=230")));
+    assert.equal(wrong.regionProfile, null);
+  } finally { console.error = original; }
+  assert.deepEqual(logged, [["datalab-region-profiles: resolver-failed"], ["datalab-region-profiles: region-mismatch"]]);
 });
 
 test("annual resolver failures or a region mismatch omit only the annual block; monthly failures still propagate", async () => {

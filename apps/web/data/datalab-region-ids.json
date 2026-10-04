@@ -1,12 +1,291 @@
 {
-  "version": 1,
-  "reviewedAt": "2026-09-24",
-  "note": "지역 코드는 폴더 이름에서 추정하지 않고 이 검토표에서만 정한다. 원문 CSV에는 지역 이름만 있다.",
+  "version": 2,
+  "reviewedAt": "2026-10-04",
+  "note": "지역 코드는 폴더 이름에서 추정하지 않고 이 검토표에서만 정한다. 원문 CSV에는 지역 이름만 있다. 2026-10-04 데이터랩 지역 내려받기 26곳으로 넓혔다: 시도는 각 지역 히트맵의 이웃 지역 이름이 속한 시도(현재 관광조회 지역 목록)로, 코드는 그 시도의 같은 이름으로 정했다. 축제는 내려받기 기록(COLLECT-REGION.md)의 개최지이며 축제 목적지 순위의 개최 행정동이 그 지역 읍면동 목록에 있을 때만 잇는다(대구치맥페스티벌의 두류3동은 대구 중구에 없어 잇지 않는다). sourceFile은 연간 방문 추이, 방문 폴더가 없는 부평구·연수구는 null.",
   "regions": [
+    {
+      "code": "12110",
+      "name": "목포시",
+      "province": "전남광주통합특별시",
+      "festivalIds": [
+        "mokpo-port"
+      ],
+      "sourceFile": "data/region_visitor/20260830133228_목포시_2018-2025_데이터랩_다운로드/20260830133228_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131515_목포시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133228_목포시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "12750",
+      "name": "보성군",
+      "province": "전남광주통합특별시",
+      "festivalIds": [
+        "boseong-dahyang"
+      ],
+      "sourceFile": "data/region_visitor/20260830132632_보성군_2018-2025_데이터랩_다운로드/20260830132632_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131056_보성군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132632_보성군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "12770",
+      "name": "장흥군",
+      "province": "전남광주통합특별시",
+      "festivalIds": [
+        "jangheung-water"
+      ],
+      "sourceFile": "data/region_visitor/20260830132443_장흥군_2018-2025_데이터랩_다운로드/20260830132443_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830130925_장흥군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132443_장흥군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "12800",
+      "name": "영암군",
+      "province": "전남광주통합특별시",
+      "festivalIds": [
+        "yeongam-wangin"
+      ],
+      "sourceFile": "data/region_visitor/20260830132823_영암군_2018-2025_데이터랩_다운로드/20260830132823_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830132238_영암군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132823_영암군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "26500",
+      "name": "수영구",
+      "province": "부산광역시",
+      "festivalIds": [
+        "gwangalli-eobang"
+      ],
+      "sourceFile": "data/region_visitor/20260830133820_수영구_2018-2025_데이터랩_다운로드/20260830133820_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131604_수영구_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133820_수영구_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "27110",
+      "name": "중구",
+      "province": "대구광역시",
+      "festivalIds": [],
+      "sourceFile": "data/region_visitor/20260830133312_중구_2018-2025_데이터랩_다운로드/20260830133312_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131548_중구_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133312_중구_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "28185",
+      "name": "연수구",
+      "province": "인천광역시",
+      "festivalIds": [
+        "incheon-pentaport"
+      ],
+      "sourceFile": null,
+      "spendingFolder": "data/region/20260830131637_연수구_2018-2025_데이터랩_다운로드",
+      "visitorFolder": null
+    },
+    {
+      "code": "28237",
+      "name": "부평구",
+      "province": "인천광역시",
+      "festivalIds": [
+        "bupyeong-pungmul"
+      ],
+      "sourceFile": null,
+      "spendingFolder": "data/region/20260830131621_부평구_2018-2025_데이터랩_다운로드",
+      "visitorFolder": null
+    },
+    {
+      "code": "31710",
+      "name": "울주군",
+      "province": "울산광역시",
+      "festivalIds": [
+        "ulsan-onggi"
+      ],
+      "sourceFile": "data/region_visitor/20260830132655_울주군_2018-2025_데이터랩_다운로드/20260830132655_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830132033_울주군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132655_울주군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "41110",
+      "name": "수원시",
+      "province": "경기도",
+      "festivalIds": [
+        "suwon-hwaseong-culture"
+      ],
+      "sourceFile": "data/region_visitor/20260830133059_수원시_2018-2025_데이터랩_다운로드/20260830133059_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131411_수원시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133059_수원시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "41390",
+      "name": "시흥시",
+      "province": "경기도",
+      "festivalIds": [
+        "siheung-gaetgol"
+      ],
+      "sourceFile": "data/region_visitor/20260830133143_시흥시_2018-2025_데이터랩_다운로드/20260830133143_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131443_시흥시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133143_시흥시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "41550",
+      "name": "안성시",
+      "province": "경기도",
+      "festivalIds": [
+        "anseong-baudeogi"
+      ],
+      "sourceFile": "data/region_visitor/20260830133121_안성시_2018-2025_데이터랩_다운로드/20260830133121_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131427_안성시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133121_안성시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "41590",
+      "name": "화성시",
+      "province": "경기도",
+      "festivalIds": [
+        "hwaseong-boat"
+      ],
+      "sourceFile": "data/region_visitor/20260830132952_화성시_2018-2025_데이터랩_다운로드/20260830132952_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131322_화성시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132952_화성시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "41800",
+      "name": "연천군",
+      "province": "경기도",
+      "festivalIds": [
+        "yeoncheon-paleolithic"
+      ],
+      "sourceFile": "data/region_visitor/20260830132548_연천군_2018-2025_데이터랩_다운로드/20260830132548_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131023_연천군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132548_연천군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "43770",
+      "name": "음성군",
+      "province": "충청북도",
+      "festivalIds": [
+        "eumseong-pumba"
+      ],
+      "sourceFile": "data/region_visitor/20260830132739_음성군_2018-2025_데이터랩_다운로드/20260830132739_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830132136_음성군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132739_음성군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "44210",
+      "name": "서산시",
+      "province": "충청남도",
+      "festivalIds": [
+        "seosan-haemieupseong"
+      ],
+      "sourceFile": "data/region_visitor/20260830133015_서산시_2018-2025_데이터랩_다운로드/20260830133015_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131338_서산시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133015_서산시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "44770",
+      "name": "서천군",
+      "province": "충청남도",
+      "festivalIds": [
+        "hansan-mosi"
+      ],
+      "sourceFile": "data/region_visitor/20260830132930_서천군_2018-2025_데이터랩_다운로드/20260830132930_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131306_서천군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132930_서천군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "47110",
+      "name": "포항시",
+      "province": "경상북도",
+      "festivalIds": [
+        "pohang-bulbit"
+      ],
+      "sourceFile": "data/region_visitor/20260830133250_포항시_2018-2025_데이터랩_다운로드/20260830133250_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131532_포항시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133250_포항시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "47830",
+      "name": "고령군",
+      "province": "경상북도",
+      "festivalIds": [
+        "goryeong-daegaya"
+      ],
+      "sourceFile": "data/region_visitor/20260830132801_고령군_2018-2025_데이터랩_다운로드/20260830132801_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830132207_고령군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132801_고령군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "48270",
+      "name": "밀양시",
+      "province": "경상남도",
+      "festivalIds": [
+        "miryang-arirang"
+      ],
+      "sourceFile": "data/region_visitor/20260830133205_밀양시_2018-2025_데이터랩_다운로드/20260830133205_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131459_밀양시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133205_밀양시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "51150",
+      "name": "강릉시",
+      "province": "강원특별자치도",
+      "festivalIds": [
+        "gangneung-coffee"
+      ],
+      "sourceFile": "data/region_visitor/20260830133037_강릉시_2018-2025_데이터랩_다운로드/20260830133037_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131354_강릉시_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830133037_강릉시_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "51760",
+      "name": "평창군",
+      "province": "강원특별자치도",
+      "festivalIds": [
+        "pyeongchang-trout"
+      ],
+      "sourceFile": "data/region_visitor/20260830132846_평창군_2018-2025_데이터랩_다운로드/20260830132846_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830132309_평창군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132846_평창군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "51770",
+      "name": "정선군",
+      "province": "강원특별자치도",
+      "festivalIds": [
+        "jeongseon-arirang"
+      ],
+      "sourceFile": "data/region_visitor/20260830132908_정선군_2018-2025_데이터랩_다운로드/20260830132908_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131249_정선군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132908_정선군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "52720",
+      "name": "진안군",
+      "province": "전북특별자치도",
+      "festivalIds": [
+        "jinan-hongsam"
+      ],
+      "sourceFile": "data/region_visitor/20260830132610_진안군_2018-2025_데이터랩_다운로드/20260830132610_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131039_진안군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132610_진안군_2018-2025_데이터랩_다운로드"
+    },
     {
       "code": "52750",
       "name": "임실군",
-      "sourceFile": "data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv"
+      "province": "전북특별자치도",
+      "festivalIds": [
+        "imsil-n-cheese"
+      ],
+      "sourceFile": "data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드/20260830132526_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830131007_임실군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132526_임실군_2018-2025_데이터랩_다운로드"
+    },
+    {
+      "code": "52770",
+      "name": "순창군",
+      "province": "전북특별자치도",
+      "festivalIds": [
+        "sunchang-jang"
+      ],
+      "sourceFile": "data/region_visitor/20260830132717_순창군_2018-2025_데이터랩_다운로드/20260830132717_방문자 수 추이.csv",
+      "spendingFolder": "data/region/20260830132104_순창군_2018-2025_데이터랩_다운로드",
+      "visitorFolder": "data/region_visitor/20260830132717_순창군_2018-2025_데이터랩_다운로드"
     }
   ]
 }

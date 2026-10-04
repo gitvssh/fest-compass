@@ -17,7 +17,7 @@
     "commit": "f362e65ba9e1cac18757951236484cff666c2696",
     "basePath": "developer/hkjin/plan-03-datalab",
     "manifestPath": "docs/research/imported/hkjin-plan-03/manifest.json",
-    "manifestSha256": "231fc2c4d3dd5d92d8a331c478586de0df3386a4ebed70883d366b5e853467c0",
+    "manifestSha256": "e8fe99f1929da8cec8c63483aa4f65fc90bbeda8ea8afbbc16cc33cc719f491c",
     "downloadTimezone": null
   },
   "rawHeader": [
@@ -27,6 +27,2272 @@
     "방문자 수"
   ],
   "regions": [
+    {
+      "code": "12110",
+      "name": "목포시",
+      "downloadStamp": "20260830133228",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133228_목포시_2018-2025_데이터랩_다운로드/20260830133228_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133228_목포시_2018-2025_데이터랩_다운로드/20260830133228_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133228_%EB%AA%A9%ED%8F%AC%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133228_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1223,
+        "sha256": "59f395cc89c1578c90dc95228f8df05420e63e91ec6c82118a08a07823cad160"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 54422620,
+          "outside": 22355070,
+          "total": 76777690,
+          "raw": {
+            "local": "5.442262E7",
+            "outside": "2.235507E7",
+            "total": "7.677769E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 54444733,
+          "outside": 23609856,
+          "total": 78054588,
+          "raw": {
+            "local": "5.4444733E7",
+            "outside": "2.3609856E7",
+            "total": "7.8054588E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 52771778,
+          "outside": 21274212,
+          "total": 74045990,
+          "raw": {
+            "local": "5.2771778E7",
+            "outside": "2.1274212E7",
+            "total": "7.404599E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 59805120,
+          "outside": 22601940,
+          "total": 82407059,
+          "raw": {
+            "local": "5.980512E7",
+            "outside": "2.260194E7",
+            "total": "8.2407059E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 59994308,
+          "outside": 25398748,
+          "total": 85393056,
+          "raw": {
+            "local": "5.9994308E7",
+            "outside": "2.5398748E7",
+            "total": "8.5393056E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 64151003,
+          "outside": 26447890,
+          "total": 90598893,
+          "raw": {
+            "local": "6.4151003E7",
+            "outside": "2.644789E7",
+            "total": "9.0598893E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 65478378,
+          "outside": 27081534,
+          "total": 92559912,
+          "raw": {
+            "local": "6.5478378E7",
+            "outside": "2.7081534E7",
+            "total": "9.2559912E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 64405796,
+          "outside": 28289730,
+          "total": 92695526,
+          "raw": {
+            "local": "6.4405796E7",
+            "outside": "2.828973E7",
+            "total": "9.2695526E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "12750",
+      "name": "보성군",
+      "downloadStamp": "20260830132632",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132632_보성군_2018-2025_데이터랩_다운로드/20260830132632_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132632_보성군_2018-2025_데이터랩_다운로드/20260830132632_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132632_%EB%B3%B4%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132632_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1196,
+        "sha256": "eab7d611af31b45da9887022bc1c033802c2eb032077cfd6594e5861dd7efe94"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 5496351,
+          "outside": 6232930,
+          "total": 11729280,
+          "raw": {
+            "local": "5496351.0",
+            "outside": "6232930.0",
+            "total": "1.172928E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 5764322,
+          "outside": 6576059,
+          "total": 12340380,
+          "raw": {
+            "local": "5764322.0",
+            "outside": "6576059.0",
+            "total": "1.234038E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 6067638,
+          "outside": 6007506,
+          "total": 12075144,
+          "raw": {
+            "local": "6067638.0",
+            "outside": "6007506.0",
+            "total": "1.2075144E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 6831615,
+          "outside": 6381560,
+          "total": 13213176,
+          "raw": {
+            "local": "6831615.0",
+            "outside": "6381560.0",
+            "total": "1.3213176E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 7047124,
+          "outside": 7043032,
+          "total": 14090156,
+          "raw": {
+            "local": "7047124.0",
+            "outside": "7043032.0",
+            "total": "1.4090156E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 7429544,
+          "outside": 7275926,
+          "total": 14705470,
+          "raw": {
+            "local": "7429544.0",
+            "outside": "7275926.0",
+            "total": "1.470547E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 7376660,
+          "outside": 6985545,
+          "total": 14362204,
+          "raw": {
+            "local": "7376660.0",
+            "outside": "6985545.0",
+            "total": "1.4362204E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 7682154,
+          "outside": 7306764,
+          "total": 14988918,
+          "raw": {
+            "local": "7682154.0",
+            "outside": "7306764.0",
+            "total": "1.4988918E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "12770",
+      "name": "장흥군",
+      "downloadStamp": "20260830132443",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132443_장흥군_2018-2025_데이터랩_다운로드/20260830132443_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132443_장흥군_2018-2025_데이터랩_다운로드/20260830132443_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132443_%EC%9E%A5%ED%9D%A5%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132443_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1196,
+        "sha256": "b00b73120bab0b43eb85b065e0b92aac68a0e163668130653d77d3fc29d2ca7b"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 7133399,
+          "outside": 4616252,
+          "total": 11749650,
+          "raw": {
+            "local": "7133399.0",
+            "outside": "4616252.0",
+            "total": "1.174965E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 7557732,
+          "outside": 4712208,
+          "total": 12269940,
+          "raw": {
+            "local": "7557732.0",
+            "outside": "4712208.0",
+            "total": "1.226994E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 7965492,
+          "outside": 4404072,
+          "total": 12369565,
+          "raw": {
+            "local": "7965492.0",
+            "outside": "4404072.0",
+            "total": "1.2369565E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 8771672,
+          "outside": 4685838,
+          "total": 13457510,
+          "raw": {
+            "local": "8771672.0",
+            "outside": "4685838.0",
+            "total": "1.345751E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 8916520,
+          "outside": 5271406,
+          "total": 14187926,
+          "raw": {
+            "local": "8916520.0",
+            "outside": "5271406.0",
+            "total": "1.4187926E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 9341948,
+          "outside": 5466146,
+          "total": 14808094,
+          "raw": {
+            "local": "9341948.0",
+            "outside": "5466146.0",
+            "total": "1.4808094E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 9272806,
+          "outside": 5383088,
+          "total": 14655893,
+          "raw": {
+            "local": "9272806.0",
+            "outside": "5383088.0",
+            "total": "1.4655893E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 9461602,
+          "outside": 5534736,
+          "total": 14996338,
+          "raw": {
+            "local": "9461602.0",
+            "outside": "5534736.0",
+            "total": "1.4996338E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "12800",
+      "name": "영암군",
+      "downloadStamp": "20260830132823",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132823_영암군_2018-2025_데이터랩_다운로드/20260830132823_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132823_영암군_2018-2025_데이터랩_다운로드/20260830132823_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132823_%EC%98%81%EC%95%94%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132823_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1220,
+        "sha256": "8100c8e7d906c7217c0b0dfff950b992f0c68fb8ea7970ff7478a5e91675b2f5"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 9872698,
+          "outside": 8842855,
+          "total": 18715554,
+          "raw": {
+            "local": "9872698.0",
+            "outside": "8842855.0",
+            "total": "1.8715554E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 10506492,
+          "outside": 9244526,
+          "total": 19751018,
+          "raw": {
+            "local": "1.0506492E7",
+            "outside": "9244526.0",
+            "total": "1.9751018E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 11157626,
+          "outside": 8985748,
+          "total": 20143374,
+          "raw": {
+            "local": "1.1157626E7",
+            "outside": "8985748.0",
+            "total": "2.0143374E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 12615578,
+          "outside": 9770397,
+          "total": 22385976,
+          "raw": {
+            "local": "1.2615578E7",
+            "outside": "9770397.0",
+            "total": "2.2385976E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 12797186,
+          "outside": 10405171,
+          "total": 23202358,
+          "raw": {
+            "local": "1.2797186E7",
+            "outside": "1.0405171E7",
+            "total": "2.3202358E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 12869486,
+          "outside": 10479021,
+          "total": 23348507,
+          "raw": {
+            "local": "1.2869486E7",
+            "outside": "1.0479021E7",
+            "total": "2.3348507E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 12404609,
+          "outside": 10373447,
+          "total": 22778056,
+          "raw": {
+            "local": "1.2404609E7",
+            "outside": "1.0373447E7",
+            "total": "2.2778056E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 13335270,
+          "outside": 10672462,
+          "total": 24007732,
+          "raw": {
+            "local": "1.333527E7",
+            "outside": "1.0672462E7",
+            "total": "2.4007732E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "26500",
+      "name": "수영구",
+      "downloadStamp": "20260830133820",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133820_수영구_2018-2025_데이터랩_다운로드/20260830133820_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133820_수영구_2018-2025_데이터랩_다운로드/20260830133820_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133820_%EC%88%98%EC%98%81%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133820_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1229,
+        "sha256": "62243b2c97650df433be9503a7b3ffe69bb206d33546fd147d33a08f40fbeaf2"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 28568169,
+          "outside": 34314350,
+          "total": 62882519,
+          "raw": {
+            "local": "2.8568169E7",
+            "outside": "3.431435E7",
+            "total": "6.2882519E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 28987868,
+          "outside": 34416788,
+          "total": 63404656,
+          "raw": {
+            "local": "2.8987868E7",
+            "outside": "3.4416788E7",
+            "total": "6.3404656E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 30607118,
+          "outside": 31844323,
+          "total": 62451442,
+          "raw": {
+            "local": "3.0607118E7",
+            "outside": "3.1844323E7",
+            "total": "6.2451442E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 31088634,
+          "outside": 32291270,
+          "total": 63379904,
+          "raw": {
+            "local": "3.1088634E7",
+            "outside": "3.229127E7",
+            "total": "6.3379904E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 33846138,
+          "outside": 36961858,
+          "total": 70807996,
+          "raw": {
+            "local": "3.3846138E7",
+            "outside": "3.6961858E7",
+            "total": "7.0807996E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 34324521,
+          "outside": 37754664,
+          "total": 72079186,
+          "raw": {
+            "local": "3.4324521E7",
+            "outside": "3.7754664E7",
+            "total": "7.2079186E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 32284812,
+          "outside": 38222387,
+          "total": 70507199,
+          "raw": {
+            "local": "3.2284812E7",
+            "outside": "3.8222387E7",
+            "total": "7.0507199E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 35562933,
+          "outside": 41449362,
+          "total": 77012296,
+          "raw": {
+            "local": "3.5562933E7",
+            "outside": "4.1449362E7",
+            "total": "7.7012296E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "27110",
+      "name": "중구",
+      "downloadStamp": "20260830133312",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133312_중구_2018-2025_데이터랩_다운로드/20260830133312_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133312_중구_2018-2025_데이터랩_다운로드/20260830133312_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133312_%EC%A4%91%EA%B5%AC_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133312_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1154,
+        "sha256": "4096b1f336cd39ae46425f788f48a664ce347549ff15d88b62a0c318a04b02f2"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 23609495,
+          "outside": 72231537,
+          "total": 95841032,
+          "raw": {
+            "local": "2.3609495E7",
+            "outside": "7.2231537E7",
+            "total": "9.5841032E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 23882250,
+          "outside": 71891634,
+          "total": 95773884,
+          "raw": {
+            "local": "2.388225E7",
+            "outside": "7.1891634E7",
+            "total": "9.5773884E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 21177118,
+          "outside": 53600782,
+          "total": 74777899,
+          "raw": {
+            "local": "2.1177118E7",
+            "outside": "5.3600782E7",
+            "total": "7.4777899E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 22076635,
+          "outside": 55329575,
+          "total": 77406210,
+          "raw": {
+            "local": "2.2076635E7",
+            "outside": "5.5329575E7",
+            "total": "7.740621E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 23186048,
+          "outside": 60064560,
+          "total": 83250608,
+          "raw": {
+            "local": "2.3186048E7",
+            "outside": "6.006456E7",
+            "total": "8.3250608E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 25952160,
+          "outside": 64253112,
+          "total": 90205272,
+          "raw": {
+            "local": "2.595216E7",
+            "outside": "6.4253112E7",
+            "total": "9.0205272E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 28067624,
+          "outside": 65750276,
+          "total": 93817899,
+          "raw": {
+            "local": "2.8067624E7",
+            "outside": "6.5750276E7",
+            "total": "9.3817899E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 30496228,
+          "outside": 69024662,
+          "total": 99520890,
+          "raw": {
+            "local": "3.0496228E7",
+            "outside": "6.9024662E7",
+            "total": "9.952089E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "31710",
+      "name": "울주군",
+      "downloadStamp": "20260830132655",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132655_울주군_2018-2025_데이터랩_다운로드/20260830132655_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132655_울주군_2018-2025_데이터랩_다운로드/20260830132655_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132655_%EC%9A%B8%EC%A3%BC%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132655_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1228,
+        "sha256": "2d3acaa77bf4bd7acc4aa9948c3a8a8174e848a41061c05060bd65590cdd5c05"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 37834594,
+          "outside": 28682976,
+          "total": 66517570,
+          "raw": {
+            "local": "3.7834594E7",
+            "outside": "2.8682976E7",
+            "total": "6.651757E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 37803154,
+          "outside": 29189230,
+          "total": 66992384,
+          "raw": {
+            "local": "3.7803154E7",
+            "outside": "2.918923E7",
+            "total": "6.6992384E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 38599852,
+          "outside": 28910665,
+          "total": 67510516,
+          "raw": {
+            "local": "3.8599852E7",
+            "outside": "2.8910665E7",
+            "total": "6.7510516E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 39948608,
+          "outside": 29605216,
+          "total": 69553824,
+          "raw": {
+            "local": "3.9948608E7",
+            "outside": "2.9605216E7",
+            "total": "6.9553824E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 44983295,
+          "outside": 33045250,
+          "total": 78028545,
+          "raw": {
+            "local": "4.4983295E7",
+            "outside": "3.304525E7",
+            "total": "7.8028545E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 47057423,
+          "outside": 34571562,
+          "total": 81628984,
+          "raw": {
+            "local": "4.7057423E7",
+            "outside": "3.4571562E7",
+            "total": "8.1628984E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 46509928,
+          "outside": 35822087,
+          "total": 82332016,
+          "raw": {
+            "local": "4.6509928E7",
+            "outside": "3.5822087E7",
+            "total": "8.2332016E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 49907032,
+          "outside": 38923062,
+          "total": 88830094,
+          "raw": {
+            "local": "4.9907032E7",
+            "outside": "3.8923062E7",
+            "total": "8.8830094E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "41110",
+      "name": "수원시",
+      "downloadStamp": "20260830133059",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133059_수원시_2018-2025_데이터랩_다운로드/20260830133059_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133059_수원시_2018-2025_데이터랩_다운로드/20260830133059_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133059_%EC%88%98%EC%9B%90%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133059_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1250,
+        "sha256": "c65819ecc20caedf79cab938999eb50fc8f06dc3ae78a30f35fe37fdea0667f0"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 168210273,
+          "outside": 155315990,
+          "total": 323526262,
+          "raw": {
+            "local": "1.68210273E8",
+            "outside": "1.5531599E8",
+            "total": "3.23526262E8"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 172973136,
+          "outside": 169955334,
+          "total": 342928470,
+          "raw": {
+            "local": "1.72973136E8",
+            "outside": "1.69955334E8",
+            "total": "3.4292847E8"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 183520984,
+          "outside": 148805146,
+          "total": 332326130,
+          "raw": {
+            "local": "1.83520984E8",
+            "outside": "1.48805146E8",
+            "total": "3.3232613E8"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 197295812,
+          "outside": 152560366,
+          "total": 349856178,
+          "raw": {
+            "local": "1.97295812E8",
+            "outside": "1.52560366E8",
+            "total": "3.49856178E8"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 210172672,
+          "outside": 166874362,
+          "total": 377047034,
+          "raw": {
+            "local": "2.10172672E8",
+            "outside": "1.66874362E8",
+            "total": "3.77047034E8"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 213414814,
+          "outside": 176525996,
+          "total": 389940810,
+          "raw": {
+            "local": "2.13414814E8",
+            "outside": "1.76525996E8",
+            "total": "3.8994081E8"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 209857578,
+          "outside": 186751684,
+          "total": 396609262,
+          "raw": {
+            "local": "2.09857578E8",
+            "outside": "1.86751684E8",
+            "total": "3.96609262E8"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 221110340,
+          "outside": 197404756,
+          "total": 418515097,
+          "raw": {
+            "local": "2.2111034E8",
+            "outside": "1.97404756E8",
+            "total": "4.18515097E8"
+          }
+        }
+      ]
+    },
+    {
+      "code": "41390",
+      "name": "시흥시",
+      "downloadStamp": "20260830133143",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133143_시흥시_2018-2025_데이터랩_다운로드/20260830133143_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133143_시흥시_2018-2025_데이터랩_다운로드/20260830133143_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133143_%EC%8B%9C%ED%9D%A5%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133143_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1236,
+        "sha256": "66ff993403e6529939aa4b07bfac83f3dd34aa57563fc7c2d086931e186bcee2"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 54414094,
+          "outside": 48450356,
+          "total": 102864450,
+          "raw": {
+            "local": "5.4414094E7",
+            "outside": "4.8450356E7",
+            "total": "1.0286445E8"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 55503686,
+          "outside": 51582153,
+          "total": 107085839,
+          "raw": {
+            "local": "5.5503686E7",
+            "outside": "5.1582153E7",
+            "total": "1.07085839E8"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 62614860,
+          "outside": 50713464,
+          "total": 113328324,
+          "raw": {
+            "local": "6.261486E7",
+            "outside": "5.0713464E7",
+            "total": "1.13328324E8"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 71763797,
+          "outside": 52060984,
+          "total": 123824782,
+          "raw": {
+            "local": "7.1763797E7",
+            "outside": "5.2060984E7",
+            "total": "1.23824782E8"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 80909056,
+          "outside": 53036840,
+          "total": 133945896,
+          "raw": {
+            "local": "8.0909056E7",
+            "outside": "5.303684E7",
+            "total": "1.33945896E8"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 82675915,
+          "outside": 53104398,
+          "total": 135780312,
+          "raw": {
+            "local": "8.2675915E7",
+            "outside": "5.3104398E7",
+            "total": "1.35780312E8"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 79114424,
+          "outside": 54374215,
+          "total": 133488638,
+          "raw": {
+            "local": "7.9114424E7",
+            "outside": "5.4374215E7",
+            "total": "1.33488638E8"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 83712206,
+          "outside": 56498228,
+          "total": 140210434,
+          "raw": {
+            "local": "8.3712206E7",
+            "outside": "5.6498228E7",
+            "total": "1.40210434E8"
+          }
+        }
+      ]
+    },
+    {
+      "code": "41550",
+      "name": "안성시",
+      "downloadStamp": "20260830133121",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133121_안성시_2018-2025_데이터랩_다운로드/20260830133121_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133121_안성시_2018-2025_데이터랩_다운로드/20260830133121_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133121_%EC%95%88%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133121_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1223,
+        "sha256": "4398db45e46cd5c29f0535de4675987d869567687f193c798b281f8fc350a0fc"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 33328376,
+          "outside": 31025956,
+          "total": 64354332,
+          "raw": {
+            "local": "3.3328376E7",
+            "outside": "3.1025956E7",
+            "total": "6.4354332E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 33149347,
+          "outside": 31043834,
+          "total": 64193182,
+          "raw": {
+            "local": "3.3149347E7",
+            "outside": "3.1043834E7",
+            "total": "6.4193182E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 36403248,
+          "outside": 32137217,
+          "total": 68540465,
+          "raw": {
+            "local": "3.6403248E7",
+            "outside": "3.2137217E7",
+            "total": "6.8540465E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 39967210,
+          "outside": 34713000,
+          "total": 74680210,
+          "raw": {
+            "local": "3.996721E7",
+            "outside": "3.4713E7",
+            "total": "7.468021E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 43959419,
+          "outside": 37112180,
+          "total": 81071599,
+          "raw": {
+            "local": "4.3959419E7",
+            "outside": "3.711218E7",
+            "total": "8.1071599E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 43617546,
+          "outside": 35788431,
+          "total": 79405977,
+          "raw": {
+            "local": "4.3617546E7",
+            "outside": "3.5788431E7",
+            "total": "7.9405977E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 45156422,
+          "outside": 34515240,
+          "total": 79671662,
+          "raw": {
+            "local": "4.5156422E7",
+            "outside": "3.451524E7",
+            "total": "7.9671662E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 46367612,
+          "outside": 36616430,
+          "total": 82984041,
+          "raw": {
+            "local": "4.6367612E7",
+            "outside": "3.661643E7",
+            "total": "8.2984041E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "41590",
+      "name": "화성시",
+      "downloadStamp": "20260830132952",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132952_화성시_2018-2025_데이터랩_다운로드/20260830132952_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132952_화성시_2018-2025_데이터랩_다운로드/20260830132952_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132952_%ED%99%94%EC%84%B1%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132952_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1245,
+        "sha256": "e7eb5f181b61091b97df81b8732b766a39a51def8e906685eedd13b92a51f89e"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 112507574,
+          "outside": 83008779,
+          "total": 195516352,
+          "raw": {
+            "local": "1.12507574E8",
+            "outside": "8.3008779E7",
+            "total": "1.95516352E8"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 115074155,
+          "outside": 89546646,
+          "total": 204620801,
+          "raw": {
+            "local": "1.15074155E8",
+            "outside": "8.9546646E7",
+            "total": "2.04620801E8"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 134749230,
+          "outside": 86102874,
+          "total": 220852104,
+          "raw": {
+            "local": "1.3474923E8",
+            "outside": "8.6102874E7",
+            "total": "2.20852104E8"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 147021882,
+          "outside": 90607674,
+          "total": 237629556,
+          "raw": {
+            "local": "1.47021882E8",
+            "outside": "9.0607674E7",
+            "total": "2.37629556E8"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 166941688,
+          "outside": 97596646,
+          "total": 264538334,
+          "raw": {
+            "local": "1.66941688E8",
+            "outside": "9.7596646E7",
+            "total": "2.64538334E8"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 177547720,
+          "outside": 99817662,
+          "total": 277365382,
+          "raw": {
+            "local": "1.7754772E8",
+            "outside": "9.9817662E7",
+            "total": "2.77365382E8"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 182032848,
+          "outside": 98212464,
+          "total": 280245312,
+          "raw": {
+            "local": "1.82032848E8",
+            "outside": "9.8212464E7",
+            "total": "2.80245312E8"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 197303197,
+          "outside": 104112312,
+          "total": 301415510,
+          "raw": {
+            "local": "1.97303197E8",
+            "outside": "1.04112312E8",
+            "total": "3.0141551E8"
+          }
+        }
+      ]
+    },
+    {
+      "code": "41800",
+      "name": "연천군",
+      "downloadStamp": "20260830132548",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132548_연천군_2018-2025_데이터랩_다운로드/20260830132548_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132548_연천군_2018-2025_데이터랩_다운로드/20260830132548_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132548_%EC%97%B0%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132548_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1200,
+        "sha256": "2b94a4c7623d5a35b0e92867ece37ebd3598df5f3b54af7234c4f3331174d06f"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 7894442,
+          "outside": 6620887,
+          "total": 14515330,
+          "raw": {
+            "local": "7894442.0",
+            "outside": "6620887.0",
+            "total": "1.451533E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 8097845,
+          "outside": 7784830,
+          "total": 15882674,
+          "raw": {
+            "local": "8097845.0",
+            "outside": "7784830.0",
+            "total": "1.5882674E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 9481504,
+          "outside": 8224069,
+          "total": 17705572,
+          "raw": {
+            "local": "9481504.0",
+            "outside": "8224069.0",
+            "total": "1.7705572E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 9853372,
+          "outside": 8699565,
+          "total": 18552936,
+          "raw": {
+            "local": "9853372.0",
+            "outside": "8699565.0",
+            "total": "1.8552936E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 10315792,
+          "outside": 9014352,
+          "total": 19330143,
+          "raw": {
+            "local": "1.0315792E7",
+            "outside": "9014352.0",
+            "total": "1.9330143E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 9804238,
+          "outside": 9125529,
+          "total": 18929768,
+          "raw": {
+            "local": "9804238.0",
+            "outside": "9125529.0",
+            "total": "1.8929768E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 9914856,
+          "outside": 9304900,
+          "total": 19219756,
+          "raw": {
+            "local": "9914856.0",
+            "outside": "9304900.0",
+            "total": "1.9219756E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 9756506,
+          "outside": 9108421,
+          "total": 18864926,
+          "raw": {
+            "local": "9756506.0",
+            "outside": "9108421.0",
+            "total": "1.8864926E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "43770",
+      "name": "음성군",
+      "downloadStamp": "20260830132739",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132739_음성군_2018-2025_데이터랩_다운로드/20260830132739_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132739_음성군_2018-2025_데이터랩_다운로드/20260830132739_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132739_%EC%9D%8C%EC%84%B1%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132739_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1223,
+        "sha256": "fc54ad6916a6cec4b6e052b80bcf8756f401e29da16b620eccb0d73f529b29f8"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 17605406,
+          "outside": 14875956,
+          "total": 32481362,
+          "raw": {
+            "local": "1.7605406E7",
+            "outside": "1.4875956E7",
+            "total": "3.2481362E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 18659417,
+          "outside": 15412828,
+          "total": 34072244,
+          "raw": {
+            "local": "1.8659417E7",
+            "outside": "1.5412828E7",
+            "total": "3.4072244E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 19301100,
+          "outside": 14713720,
+          "total": 34014820,
+          "raw": {
+            "local": "1.93011E7",
+            "outside": "1.471372E7",
+            "total": "3.401482E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 20744066,
+          "outside": 15154209,
+          "total": 35898275,
+          "raw": {
+            "local": "2.0744066E7",
+            "outside": "1.5154209E7",
+            "total": "3.5898275E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 23575769,
+          "outside": 19141188,
+          "total": 42716958,
+          "raw": {
+            "local": "2.3575769E7",
+            "outside": "1.9141188E7",
+            "total": "4.2716958E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 23104750,
+          "outside": 18940880,
+          "total": 42045630,
+          "raw": {
+            "local": "2.310475E7",
+            "outside": "1.894088E7",
+            "total": "4.204563E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 22071392,
+          "outside": 17800198,
+          "total": 39871590,
+          "raw": {
+            "local": "2.2071392E7",
+            "outside": "1.7800198E7",
+            "total": "3.987159E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 23511296,
+          "outside": 19137626,
+          "total": 42648921,
+          "raw": {
+            "local": "2.3511296E7",
+            "outside": "1.9137626E7",
+            "total": "4.2648921E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "44210",
+      "name": "서산시",
+      "downloadStamp": "20260830133015",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133015_서산시_2018-2025_데이터랩_다운로드/20260830133015_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133015_서산시_2018-2025_데이터랩_다운로드/20260830133015_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133015_%EC%84%9C%EC%82%B0%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133015_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1228,
+        "sha256": "3fe219c26453d5a6bab13d6ea28757dcf2dd99dddf9263e3f723bd8101d78979"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 32107274,
+          "outside": 17180989,
+          "total": 49288264,
+          "raw": {
+            "local": "3.2107274E7",
+            "outside": "1.7180989E7",
+            "total": "4.9288264E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 33981720,
+          "outside": 18163078,
+          "total": 52144799,
+          "raw": {
+            "local": "3.398172E7",
+            "outside": "1.8163078E7",
+            "total": "5.2144799E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 35367829,
+          "outside": 17158544,
+          "total": 52526372,
+          "raw": {
+            "local": "3.5367829E7",
+            "outside": "1.7158544E7",
+            "total": "5.2526372E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 37800220,
+          "outside": 17729996,
+          "total": 55530216,
+          "raw": {
+            "local": "3.780022E7",
+            "outside": "1.7729996E7",
+            "total": "5.5530216E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 38233363,
+          "outside": 18311958,
+          "total": 56545321,
+          "raw": {
+            "local": "3.8233363E7",
+            "outside": "1.8311958E7",
+            "total": "5.6545321E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 39259444,
+          "outside": 18517814,
+          "total": 57777258,
+          "raw": {
+            "local": "3.9259444E7",
+            "outside": "1.8517814E7",
+            "total": "5.7777258E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 38436646,
+          "outside": 17856293,
+          "total": 56292940,
+          "raw": {
+            "local": "3.8436646E7",
+            "outside": "1.7856293E7",
+            "total": "5.629294E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 38123582,
+          "outside": 18388262,
+          "total": 56511844,
+          "raw": {
+            "local": "3.8123582E7",
+            "outside": "1.8388262E7",
+            "total": "5.6511844E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "44770",
+      "name": "서천군",
+      "downloadStamp": "20260830132930",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132930_서천군_2018-2025_데이터랩_다운로드/20260830132930_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132930_서천군_2018-2025_데이터랩_다운로드/20260830132930_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132930_%EC%84%9C%EC%B2%9C%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132930_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1217,
+        "sha256": "e9a2886efebbc5af24692983cc803ff869b113ea57a4f28b238ab8e0ea126cec"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 10704099,
+          "outside": 8256532,
+          "total": 18960630,
+          "raw": {
+            "local": "1.0704099E7",
+            "outside": "8256532.0",
+            "total": "1.896063E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 11225890,
+          "outside": 9153644,
+          "total": 20379534,
+          "raw": {
+            "local": "1.122589E7",
+            "outside": "9153644.0",
+            "total": "2.0379534E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 12294471,
+          "outside": 8942696,
+          "total": 21237167,
+          "raw": {
+            "local": "1.2294471E7",
+            "outside": "8942696.0",
+            "total": "2.1237167E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 12982480,
+          "outside": 9067366,
+          "total": 22049846,
+          "raw": {
+            "local": "1.298248E7",
+            "outside": "9067366.0",
+            "total": "2.2049846E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 13540860,
+          "outside": 10108392,
+          "total": 23649252,
+          "raw": {
+            "local": "1.354086E7",
+            "outside": "1.0108392E7",
+            "total": "2.3649252E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 13266956,
+          "outside": 10723223,
+          "total": 23990180,
+          "raw": {
+            "local": "1.3266956E7",
+            "outside": "1.0723223E7",
+            "total": "2.399018E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 13646734,
+          "outside": 10570476,
+          "total": 24217210,
+          "raw": {
+            "local": "1.3646734E7",
+            "outside": "1.0570476E7",
+            "total": "2.421721E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 13346148,
+          "outside": 11119518,
+          "total": 24465665,
+          "raw": {
+            "local": "1.3346148E7",
+            "outside": "1.1119518E7",
+            "total": "2.4465665E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "47110",
+      "name": "포항시",
+      "downloadStamp": "20260830133250",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133250_포항시_2018-2025_데이터랩_다운로드/20260830133250_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133250_포항시_2018-2025_데이터랩_다운로드/20260830133250_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133250_%ED%8F%AC%ED%95%AD%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133250_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1238,
+        "sha256": "2b0381c8b69350e4047a11fec57522c1d89b4cd25f5e9e5cc313b9c71ac48245"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 93100000,
+          "outside": 49007126,
+          "total": 142107126,
+          "raw": {
+            "local": "9.31E7",
+            "outside": "4.9007126E7",
+            "total": "1.42107126E8"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 95871290,
+          "outside": 50961334,
+          "total": 146832623,
+          "raw": {
+            "local": "9.587129E7",
+            "outside": "5.0961334E7",
+            "total": "1.46832623E8"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 95399668,
+          "outside": 47456048,
+          "total": 142855716,
+          "raw": {
+            "local": "9.5399668E7",
+            "outside": "4.7456048E7",
+            "total": "1.42855716E8"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 101856076,
+          "outside": 48867336,
+          "total": 150723412,
+          "raw": {
+            "local": "1.01856076E8",
+            "outside": "4.8867336E7",
+            "total": "1.50723412E8"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 103655552,
+          "outside": 52692524,
+          "total": 156348076,
+          "raw": {
+            "local": "1.03655552E8",
+            "outside": "5.2692524E7",
+            "total": "1.56348076E8"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 107674756,
+          "outside": 54741813,
+          "total": 162416569,
+          "raw": {
+            "local": "1.07674756E8",
+            "outside": "5.4741813E7",
+            "total": "1.62416569E8"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 105587346,
+          "outside": 54589472,
+          "total": 160176818,
+          "raw": {
+            "local": "1.05587346E8",
+            "outside": "5.4589472E7",
+            "total": "1.60176818E8"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 108380906,
+          "outside": 56746921,
+          "total": 165127826,
+          "raw": {
+            "local": "1.08380906E8",
+            "outside": "5.6746921E7",
+            "total": "1.65127826E8"
+          }
+        }
+      ]
+    },
+    {
+      "code": "47830",
+      "name": "고령군",
+      "downloadStamp": "20260830132801",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132801_고령군_2018-2025_데이터랩_다운로드/20260830132801_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132801_고령군_2018-2025_데이터랩_다운로드/20260830132801_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132801_%EA%B3%A0%EB%A0%B9%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132801_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1193,
+        "sha256": "066d2ac9f13d4acf3f2798ba5340563f551500ca06715519539b70dff44e66b9"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 4464047,
+          "outside": 4988361,
+          "total": 9452408,
+          "raw": {
+            "local": "4464047.0",
+            "outside": "4988361.0",
+            "total": "9452408.0"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 4530418,
+          "outside": 5232266,
+          "total": 9762683,
+          "raw": {
+            "local": "4530418.0",
+            "outside": "5232266.0",
+            "total": "9762683.0"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 4742717,
+          "outside": 5499742,
+          "total": 10242460,
+          "raw": {
+            "local": "4742717.0",
+            "outside": "5499742.0",
+            "total": "1.024246E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 4985550,
+          "outside": 5947232,
+          "total": 10932782,
+          "raw": {
+            "local": "4985550.0",
+            "outside": "5947232.0",
+            "total": "1.0932782E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 5170988,
+          "outside": 6117394,
+          "total": 11288382,
+          "raw": {
+            "local": "5170988.0",
+            "outside": "6117394.0",
+            "total": "1.1288382E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 5512619,
+          "outside": 6172537,
+          "total": 11685156,
+          "raw": {
+            "local": "5512619.0",
+            "outside": "6172537.0",
+            "total": "1.1685156E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 5265054,
+          "outside": 6223000,
+          "total": 11488054,
+          "raw": {
+            "local": "5265054.0",
+            "outside": "6223000.0",
+            "total": "1.1488054E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 5789049,
+          "outside": 6465302,
+          "total": 12254350,
+          "raw": {
+            "local": "5789049.0",
+            "outside": "6465302.0",
+            "total": "1.225435E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "48270",
+      "name": "밀양시",
+      "downloadStamp": "20260830133205",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133205_밀양시_2018-2025_데이터랩_다운로드/20260830133205_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133205_밀양시_2018-2025_데이터랩_다운로드/20260830133205_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133205_%EB%B0%80%EC%96%91%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133205_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1225,
+        "sha256": "ecee741c1d4761b97bad400958ca97cbc3c019a112774ceadec7f2ce1bb2f2d5"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 17930794,
+          "outside": 11380670,
+          "total": 29311464,
+          "raw": {
+            "local": "1.7930794E7",
+            "outside": "1.138067E7",
+            "total": "2.9311464E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 18105658,
+          "outside": 12142305,
+          "total": 30247962,
+          "raw": {
+            "local": "1.8105658E7",
+            "outside": "1.2142305E7",
+            "total": "3.0247962E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 19279918,
+          "outside": 13004534,
+          "total": 32284452,
+          "raw": {
+            "local": "1.9279918E7",
+            "outside": "1.3004534E7",
+            "total": "3.2284452E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 20639272,
+          "outside": 14204606,
+          "total": 34843879,
+          "raw": {
+            "local": "2.0639272E7",
+            "outside": "1.4204606E7",
+            "total": "3.4843879E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 22030866,
+          "outside": 15074185,
+          "total": 37105050,
+          "raw": {
+            "local": "2.2030866E7",
+            "outside": "1.5074185E7",
+            "total": "3.710505E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 23187300,
+          "outside": 15103218,
+          "total": 38290518,
+          "raw": {
+            "local": "2.31873E7",
+            "outside": "1.5103218E7",
+            "total": "3.8290518E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 23569920,
+          "outside": 15237348,
+          "total": 38807268,
+          "raw": {
+            "local": "2.356992E7",
+            "outside": "1.5237348E7",
+            "total": "3.8807268E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 24373212,
+          "outside": 16012308,
+          "total": 40385520,
+          "raw": {
+            "local": "2.4373212E7",
+            "outside": "1.6012308E7",
+            "total": "4.038552E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "51150",
+      "name": "강릉시",
+      "downloadStamp": "20260830133037",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830133037_강릉시_2018-2025_데이터랩_다운로드/20260830133037_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830133037_강릉시_2018-2025_데이터랩_다운로드/20260830133037_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830133037_%EA%B0%95%EB%A6%89%EC%8B%9C_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830133037_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1229,
+        "sha256": "7fcea62cd5f8b567410bcc777cd3dfa376c624e4caedd025e71f6bcce52cd308"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 52937990,
+          "outside": 31244031,
+          "total": 84182021,
+          "raw": {
+            "local": "5.293799E7",
+            "outside": "3.1244031E7",
+            "total": "8.4182021E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 51030368,
+          "outside": 32137920,
+          "total": 83168288,
+          "raw": {
+            "local": "5.1030368E7",
+            "outside": "3.213792E7",
+            "total": "8.3168288E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 56888226,
+          "outside": 31213630,
+          "total": 88101856,
+          "raw": {
+            "local": "5.6888226E7",
+            "outside": "3.121363E7",
+            "total": "8.8101856E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 63795658,
+          "outside": 30439048,
+          "total": 94234707,
+          "raw": {
+            "local": "6.3795658E7",
+            "outside": "3.0439048E7",
+            "total": "9.4234707E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 61119810,
+          "outside": 35738924,
+          "total": 96858734,
+          "raw": {
+            "local": "6.111981E7",
+            "outside": "3.5738924E7",
+            "total": "9.6858734E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 66144008,
+          "outside": 34210099,
+          "total": 100354107,
+          "raw": {
+            "local": "6.6144008E7",
+            "outside": "3.4210099E7",
+            "total": "1.00354107E8"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 68224356,
+          "outside": 33233340,
+          "total": 101457696,
+          "raw": {
+            "local": "6.8224356E7",
+            "outside": "3.323334E7",
+            "total": "1.01457696E8"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 70094014,
+          "outside": 34369052,
+          "total": 104463065,
+          "raw": {
+            "local": "7.0094014E7",
+            "outside": "3.4369052E7",
+            "total": "1.04463065E8"
+          }
+        }
+      ]
+    },
+    {
+      "code": "51760",
+      "name": "평창군",
+      "downloadStamp": "20260830132846",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132846_평창군_2018-2025_데이터랩_다운로드/20260830132846_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132846_평창군_2018-2025_데이터랩_다운로드/20260830132846_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132846_%ED%8F%89%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132846_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1221,
+        "sha256": "5e92ca5ed86ada8bc03be237908071749020884e6a9ca00b661e85efcd15a76b"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 9030318,
+          "outside": 14960620,
+          "total": 23990939,
+          "raw": {
+            "local": "9030318.0",
+            "outside": "1.496062E7",
+            "total": "2.3990939E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 8207745,
+          "outside": 14051832,
+          "total": 22259576,
+          "raw": {
+            "local": "8207745.0",
+            "outside": "1.4051832E7",
+            "total": "2.2259576E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 9111123,
+          "outside": 13619837,
+          "total": 22730960,
+          "raw": {
+            "local": "9111123.0",
+            "outside": "1.3619837E7",
+            "total": "2.273096E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 10091088,
+          "outside": 15246850,
+          "total": 25337938,
+          "raw": {
+            "local": "1.0091088E7",
+            "outside": "1.524685E7",
+            "total": "2.5337938E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 10904278,
+          "outside": 17018110,
+          "total": 27922388,
+          "raw": {
+            "local": "1.0904278E7",
+            "outside": "1.701811E7",
+            "total": "2.7922388E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 11559762,
+          "outside": 17665613,
+          "total": 29225374,
+          "raw": {
+            "local": "1.1559762E7",
+            "outside": "1.7665613E7",
+            "total": "2.9225374E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 11841746,
+          "outside": 17309016,
+          "total": 29150762,
+          "raw": {
+            "local": "1.1841746E7",
+            "outside": "1.7309016E7",
+            "total": "2.9150762E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 12043364,
+          "outside": 17450391,
+          "total": 29493754,
+          "raw": {
+            "local": "1.2043364E7",
+            "outside": "1.7450391E7",
+            "total": "2.9493754E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "51770",
+      "name": "정선군",
+      "downloadStamp": "20260830132908",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132908_정선군_2018-2025_데이터랩_다운로드/20260830132908_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132908_정선군_2018-2025_데이터랩_다운로드/20260830132908_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132908_%EC%A0%95%EC%84%A0%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132908_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1200,
+        "sha256": "ac78509553f4ce30e07ecaea04e73b540fe3ae0d35d113f78300af53c66b45c5"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 7768562,
+          "outside": 9008307,
+          "total": 16776868,
+          "raw": {
+            "local": "7768562.0",
+            "outside": "9008307.0",
+            "total": "1.6776868E7"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 7415684,
+          "outside": 8981256,
+          "total": 16396940,
+          "raw": {
+            "local": "7415684.0",
+            "outside": "8981256.0",
+            "total": "1.639694E7"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 7713114,
+          "outside": 6518141,
+          "total": 14231256,
+          "raw": {
+            "local": "7713114.0",
+            "outside": "6518141.0",
+            "total": "1.4231256E7"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 8343408,
+          "outside": 6932818,
+          "total": 15276226,
+          "raw": {
+            "local": "8343408.0",
+            "outside": "6932818.0",
+            "total": "1.5276226E7"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 9036587,
+          "outside": 8999826,
+          "total": 18036414,
+          "raw": {
+            "local": "9036587.0",
+            "outside": "8999826.0",
+            "total": "1.8036414E7"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 9284138,
+          "outside": 9877122,
+          "total": 19161261,
+          "raw": {
+            "local": "9284138.0",
+            "outside": "9877122.0",
+            "total": "1.9161261E7"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 9498202,
+          "outside": 9916344,
+          "total": 19414546,
+          "raw": {
+            "local": "9498202.0",
+            "outside": "9916344.0",
+            "total": "1.9414546E7"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 9654922,
+          "outside": 10187373,
+          "total": 19842294,
+          "raw": {
+            "local": "9654922.0",
+            "outside": "1.0187373E7",
+            "total": "1.9842294E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "52720",
+      "name": "진안군",
+      "downloadStamp": "20260830132610",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132610_진안군_2018-2025_데이터랩_다운로드/20260830132610_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132610_진안군_2018-2025_데이터랩_다운로드/20260830132610_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132610_%EC%A7%84%EC%95%88%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132610_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1183,
+        "sha256": "7d080937beaeed27e5a8040640ae36938568e4b7c10be4a83c80b872bb76bfa7"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 2291692,
+          "outside": 4120599,
+          "total": 6412290,
+          "raw": {
+            "local": "2291692.0",
+            "outside": "4120599.0",
+            "total": "6412290.0"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 2570312,
+          "outside": 4300240,
+          "total": 6870552,
+          "raw": {
+            "local": "2570312.0",
+            "outside": "4300240.0",
+            "total": "6870552.0"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 3164458,
+          "outside": 4201730,
+          "total": 7366188,
+          "raw": {
+            "local": "3164458.0",
+            "outside": "4201730.0",
+            "total": "7366188.0"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 3549942,
+          "outside": 4480966,
+          "total": 8030908,
+          "raw": {
+            "local": "3549942.0",
+            "outside": "4480966.0",
+            "total": "8030908.0"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 3520808,
+          "outside": 4713912,
+          "total": 8234720,
+          "raw": {
+            "local": "3520808.0",
+            "outside": "4713912.0",
+            "total": "8234720.0"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 3659030,
+          "outside": 4805840,
+          "total": 8464869,
+          "raw": {
+            "local": "3659030.0",
+            "outside": "4805840.0",
+            "total": "8464869.0"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 3643227,
+          "outside": 4794066,
+          "total": 8437292,
+          "raw": {
+            "local": "3643227.0",
+            "outside": "4794066.0",
+            "total": "8437292.0"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 3659576,
+          "outside": 5015686,
+          "total": 8675261,
+          "raw": {
+            "local": "3659576.0",
+            "outside": "5015686.0",
+            "total": "8675261.0"
+          }
+        }
+      ]
+    },
     {
       "code": "52750",
       "name": "임실군",
@@ -126,6 +2392,109 @@
             "local": "4134106.0",
             "outside": "9183132.0",
             "total": "1.3317238E7"
+          }
+        }
+      ]
+    },
+    {
+      "code": "52770",
+      "name": "순창군",
+      "downloadStamp": "20260830132717",
+      "downloadDate": "2026-08-30",
+      "source": {
+        "path": "docs/research/imported/hkjin-plan-03/original/data/region_visitor/20260830132717_순창군_2018-2025_데이터랩_다운로드/20260830132717_방문자 수 추이.csv",
+        "originalPath": "developer/hkjin/plan-03-datalab/data/region_visitor/20260830132717_순창군_2018-2025_데이터랩_다운로드/20260830132717_방문자 수 추이.csv",
+        "originalUrl": "https://github.com/travel-resolver/pick-d-day/blob/f362e65ba9e1cac18757951236484cff666c2696/developer/hkjin/plan-03-datalab/data/region_visitor/20260830132717_%EC%88%9C%EC%B0%BD%EA%B5%B0_2018-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20260830132717_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98%20%EC%B6%94%EC%9D%B4.csv",
+        "bytes": 1183,
+        "sha256": "1cf8d664face1a1318f600abac1495dfaf0476fb452ee5a86370b1ff20cf475e"
+      },
+      "years": [
+        {
+          "year": 2018,
+          "local": 2898480,
+          "outside": 3947674,
+          "total": 6846154,
+          "raw": {
+            "local": "2898480.0",
+            "outside": "3947674.0",
+            "total": "6846154.0"
+          }
+        },
+        {
+          "year": 2019,
+          "local": 3105984,
+          "outside": 4196878,
+          "total": 7302862,
+          "raw": {
+            "local": "3105984.0",
+            "outside": "4196878.0",
+            "total": "7302862.0"
+          }
+        },
+        {
+          "year": 2020,
+          "local": 3418646,
+          "outside": 4040564,
+          "total": 7459210,
+          "raw": {
+            "local": "3418646.0",
+            "outside": "4040564.0",
+            "total": "7459210.0"
+          }
+        },
+        {
+          "year": 2021,
+          "local": 3778726,
+          "outside": 4421498,
+          "total": 8200224,
+          "raw": {
+            "local": "3778726.0",
+            "outside": "4421498.0",
+            "total": "8200224.0"
+          }
+        },
+        {
+          "year": 2022,
+          "local": 4008018,
+          "outside": 4987230,
+          "total": 8995248,
+          "raw": {
+            "local": "4008018.0",
+            "outside": "4987230.0",
+            "total": "8995248.0"
+          }
+        },
+        {
+          "year": 2023,
+          "local": 4305924,
+          "outside": 5067419,
+          "total": 9373343,
+          "raw": {
+            "local": "4305924.0",
+            "outside": "5067419.0",
+            "total": "9373343.0"
+          }
+        },
+        {
+          "year": 2024,
+          "local": 3947636,
+          "outside": 4857646,
+          "total": 8805282,
+          "raw": {
+            "local": "3947636.0",
+            "outside": "4857646.0",
+            "total": "8805282.0"
+          }
+        },
+        {
+          "year": 2025,
+          "local": 4010422,
+          "outside": 4986608,
+          "total": 8997030,
+          "raw": {
+            "local": "4010422.0",
+            "outside": "4986608.0",
+            "total": "8997030.0"
           }
         }
       ]
