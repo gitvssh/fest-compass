@@ -1260,3 +1260,24 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Claude
+
+## T-058 · Claude · implementer
+
+- Position: 목적별 축제 찾기 2단계를 공개했다: 수집기가 등록 소개 글(detailIntro2)을 하루 한 번 읽어(첫날 200회, 이후 40회, 다가오는 축제 먼저) 체험·어린이·가족·무료(무료·일부 유료) 표시를 근거 글 조각과 함께 만들고, 검색 결과 위 `소개 글로 거르기`(표시별 수, 그리고, 주소 유지, 확인 전 제외 안내), 카드·축제 머리 표시와 `소개 글 근거` 팝업, `전체` = 이름·지역 없는 그해 모든 축제 전국 목록(처음 화면은 눌린 칩 없음, 눌린 칩 재클릭 해제)을 더했다. 3단계 데이터랩 수동 보강은 사람 작업으로 남는다.
+- Evidence:
+  - docs/validation/47-festival-discovery.md v2 2단계(구현·검증·공개 배포)
+  - docs/design/25-festival-discovery.md 6절, docs/sdlc/3-testing/scenarios/TS-FC-022.md v2 M1~M6, docs/ops/festival-sources.md v2
+  - 발행 작업 37184689129(f0b0d24 → sha256:720c589c…), 배포 선언 c2cd6c8, 운영 소개 글 첫 수집 200회·200건·오류 0
+- Changes:
+  - apps/web: lib/existing/festival-marks.ts, lib/festival-sources/intro.ts·run.ts·registry.ts·store.ts, lib/existing/server.ts·tour.ts·request.ts·types.ts, components/existing/FestivalSearch.tsx·festival-marks.tsx·ExistingShell.tsx, 수집 작업자·수동 CLI(--intro)
+  - apps/web/scripts: festival-discovery-e2e(34항목)·live 확장
+  - docs: 설계25 v2, TS-FC-022 v2, 검수47 v2, functional-spec v12, screens v18, ia v14, design-system v10, 운영 문서 v2, 자료 목록
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 445 통과(새 단위 시험 12), typecheck·next build·수집기 묶음 통과
+  - 전체 headless 묶음(시험 실행 31회) 통과, 축제 찾기 시험 34항목
+  - 공개: Synced·Healthy, livez·readyz 200, Deployment·PVC 동일·업무 9테이블 20행 해시 일치, 공개 검사 8항목(모든 축제 486건, 체험 92·어린이·가족 45·무료 104, 근거 팝업)
+  - 미평가: 표시 규칙의 넓은 표본 정확도(30건 표본만 대조), 화면 낭독기 실사용
+- Questions:
+  - 3단계 데이터랩 수동 보강을 언제, 어떤 축제부터 할지 정해 주세요.
+- Handoff: Human

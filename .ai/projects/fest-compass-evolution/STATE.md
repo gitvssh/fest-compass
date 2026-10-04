@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 57
-status: waiting-claude
-next_actor: claude
+revision: 58
+status: waiting-human
+next_actor: human
 last_actor: claude
-current_question: "No open question"
-updated_at: "2026-10-04T06:47:38.209Z"
+current_question: "3단계 데이터랩 수동 보강을 언제, 어떤 축제부터 할지 정해 주세요."
+updated_at: "2026-10-04T07:13:31.401Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 방문·자원·시기 자료, 축제 기획 길잡이(설계24 묶음 1)를 공개 중이다. 2026-10-04 방문 흐름 겹쳐 보기·점 상세 수치·축제장 표시와 목적별 축제 찾기 1단계(등록 분류 유형 칩, 문화관광축제 방문 규모와 외지인/현지인 구성)를 공개했다(Next.js 16.3.8, 이미지 72c7ace2, 다른 작업의 분석 동의 배너 포함). 이동 시간 원은 보류. 다음은 2단계 체험·어린이·무료 표시(등록 소개 글 근거)와 전국 축제 전체 목록이다.
+기존·새 축제와 관광지도의 공통 방문·자원·시기 자료, 축제 기획 길잡이(설계24 묶음 1)를 공개 중이다. 2026-10-04 방문 흐름 겹쳐 보기·점 상세 수치·축제장 표시, 목적별 축제 찾기 1단계(등록 분류 유형 칩, 문화관광축제 방문 규모와 외지인/현지인 구성)와 2단계(등록 소개 글 근거 체험·어린이·가족·무료 표시와 거르기, 전국 모든 축제 목록)를 공개했다(이미지 720c589c). 이동 시간 원은 보류, 3단계 데이터랩 수동 보강은 사람 작업 대기.
 
 ## Accepted decisions
 
@@ -91,8 +91,9 @@ updated_at: "2026-10-04T06:47:38.209Z"
 - 설계24 묶음2(요청형 길잡이 패널·탭별 자료 읽는 법·읽을거리)~5의 착수 순서. 검수자가 없으므로 문장은 출처 대장 원문과 대조해 정하고 업무 경험자 검수를 받았다고 쓰지 않는다.
 - 공개 서버 그림 최적화 캐시가 읽기 전용 루트 때문에 매번 MISS다. 쓰기 가능한 임시 캐시 볼륨을 붙일지(그림 화면의 첫 화면 시간 개선, 검수46).
 - 묶음 1 뒤 초기 사용자 재확인(설계24 14절): 각 흐름의 목표·끝·순서를 자기 말로 설명하는지, 어디서 막히는지.
-- 목적별 축제 찾기 2단계(체험·어린이·무료 표시와 거르기, 전국 축제 전체 목록) 구현 중 — 등록 소개 글 수집은 하루 40회(처음 200회) 예산.
 - 함께 공개된 분석 동의 배너(deee795, 다른 작업): 공개 검사에서 390px 소개 영상 카드가 바닥글 `분석 동의 다시 보기`를 가리고, 1440px에서 한 번 Cloudflare 기본 창이 약 0.1초 보였다(검수47 공개 배포). 그 작업의 확인 대상.
+- 목적별 축제 찾기 3단계(데이터랩 화면에서 더 많은 축제의 연도별 방문 추이를 사람이 내려받아 방문 규모에 더하기) 착수 시기와 대상 축제 목록.
+- 이미지 저장소가 994MiB/1GiB다(운영·복구본 외 정리 후보 ed3585c·d3def74). 다음 발행은 매일 03:30 자동 정리 뒤, 또는 두 이미지 정리 승인 뒤에 가능하다.
 
 ## Artifacts and durable documents
 
@@ -211,3 +212,8 @@ updated_at: "2026-10-04T06:47:38.209Z"
 - docs/validation/47-festival-discovery.md
 - apps/web/scripts/festival-discovery-e2e.mjs
 - apps/web/scripts/festival-discovery-live.mjs
+- docs/ops/festival-sources.md
+- apps/web/lib/existing/festival-marks.ts
+- apps/web/lib/festival-sources/intro.ts
+- docs/validation/evidence/2026-10-04-festival-marks-before.json
+- docs/validation/evidence/2026-10-04-festival-marks-after.json
