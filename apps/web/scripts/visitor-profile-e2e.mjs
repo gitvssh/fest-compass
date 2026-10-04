@@ -205,7 +205,8 @@ const groupButton = (page, label) => rankRegion(page).getByRole("group", { name:
 const rankList = (page, label) => rankRegion(page).getByRole("list", { name: `${label} 목적지 검색순위`, exact: true });
 const rankLink = (page, title) => rankRegion(page).getByRole("link", { name: `${title} 관광자원에서 보기`, exact: true });
 const host = page => page.getByRole("region", { name: "축제가 열린 읍·면·동의 방문 구성", exact: true });
-const picker = (page, year) => page.getByRole("checkbox", { name: new RegExp(`^${year}년 · `) });
+// The compared-edition picker (the overlay chart has its own show-line checkboxes).
+const picker = (page, year) => page.locator("form:has(#edition-picker)").getByRole("checkbox", { name: new RegExp(`^${year}년 · `) });
 const editionsAre = years => p => (p.get("editions") ?? "").split(",").sort().join() === years.map(ed).sort().join();
 const detail = page => page.locator("#resource-detail-heading");
 const resourceButton = (page, id) => page.getByRole("list", { name: "관광자원 목록", exact: true }).locator(`[data-resource-id="${id}"]`);

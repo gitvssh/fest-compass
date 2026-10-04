@@ -426,7 +426,7 @@ async function editionAddress({ page }) {
   }
   // Applying one edition through the picker changes the next opening (context re-read on open).
   await page.goto(`${base}${path(NONSAN_ID, "visits")}?editions=${ED(2025)},${ED(2024)}`);
-  await page.getByRole("checkbox", { name: /^2024년 · /, exact: false }).uncheck();
+  await page.locator("form:has(#edition-picker)").getByRole("checkbox", { name: /^2024년 · /, exact: false }).uncheck();
   await page.locator("form:has(#edition-picker)").getByRole("button", { name: "적용", exact: true }).click();
   await waitParam(page, "editions", ED(2025));
   const s = await openSearch(page, FESTIVAL);

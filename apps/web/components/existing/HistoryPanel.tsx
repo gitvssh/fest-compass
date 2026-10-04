@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Info, Table2 } from "lucide-react";
-import { useEffect, useMemo, useRef, type RefObject } from "react";
+import { Columns2, Info, Layers, Table2 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { historyKey, parseHistory } from "@/lib/existing/request";
 import type { EditionHistory, HistoryResponse, Range } from "@/lib/existing/types";
 import { rememberView, writeAddress } from "./address";
@@ -12,6 +12,7 @@ import { CurrentVisits } from "./CurrentVisits";
 import { useFestival, useViewHeadingFocus } from "./ExistingShell";
 import { dateOnly, dayWithWeekday, editionLabel, fullDate, number, rawNumber, timeLabel, WEEKDAY_SHORT } from "./format";
 import { HostAreaVisits } from "./HostAreaVisits";
+import { EDITION_LOOKS, LookSwatch, OverlayChart, OverlayLegend, type OverlaySeries } from "./OverlayChart";
 import { historyRequest, readVisitsApplied, visitsAddress, type VisitsApplied } from "./visits-address";
 import { PeriodBars } from "./PeriodBars";
 import { festivalMemory } from "./memory";
@@ -64,6 +65,17 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
   const charted = (e: EditionHistory) => e.state === "available" && e.points.some(p => p.value !== null);
   const hasChart = !!data && data.sharedYMax !== null && data.editions.some(charted);
   const noObservation = !!data && !hasChart && data.editions.every(e => e.state === "available" || e.state === "no-history");
+  // Overlay first: one large chart lined up on each edition's first day, lines shown or hidden per edition. The separate
+  // charts (actual dates side by side) stay one click away. Both choices are kept for this tab only.
+  const [separate, setOverlaySeparate] = useState(() => !!memory.open["visits-separate"]);
+  const overlay = hasChart && !separate, setOverlay = (on: boolean) => setOverlaySeparate(!on);
+  const [hidden, setHidden] = useState<ReadonlySet<string>>(() => new Set(Object.keys(memory.open).filter(k => k.startsWith("visits-hidden:") && memory.open[k]).map(k => k.slice(14))));
+  function toggleLine(editionId: string) {
+    setHidden(previous => { const next = new Set(previous); if (next.has(editionId)) next.delete(editionId); else next.add(editionId); memory.open[`visits-hidden:${editionId}`] = next.has(editionId); return next; });
+  }
+  const series: OverlaySeries[] = (data?.editions ?? []).filter(e => charted(e) && e.start).map((edition, i) => ({ edition, look: EDITION_LOOKS[i % EDITION_LOOKS.length] }));
+  const looks = new Map(series.map(s => [s.edition.editionId, s.look]));
+  const shown = series.filter(s => !hidden.has(s.edition.editionId));
   const title = <div>
     <h2 id="visits-heading" ref={heading} tabIndex={-1} className="text-xl font-extrabold">{region ? `${region.districtName} 외지인 방문 추이` : "지역 외지인 방문 추이"}</h2>
     <p className="text-sm text-muted">{region ? `${region.name} 전체` : "시군구 전체"} · 명/일 · 통신 기반 추정</p>
@@ -84,16 +96,23 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
         {noObservation && <p className="font-bold">선택한 회차 기간의 방문 자료가 없어요.</p>}
         <div className="flex flex-wrap gap-2"><Link className="region-button" href="/existing/search">다른 축제 찾기</Link></div>
       </div>}
-      <ul className={`grid gap-4 ${data.editions.length > 1 ? "md:grid-cols-2" : ""}`}>
-        {data.editions.map(e => <li key={e.editionId} className="region-card min-w-0 space-y-3">
+      {hasChart && <ChartMode mode={overlay ? "overlay" : "separate"} onChange={next => { setOverlay(next === "overlay"); memory.open["visits-separate"] = next === "separate"; }} />}
+      {overlay && <section aria-label="회차 겹쳐 보기" className="region-card space-y-3">
+        <OverlayLegend series={series} hidden={hidden} onToggle={toggleLine} />
+        {shown.length ? <OverlayChart series={shown} yMax={yMax} region={region?.districtName ?? ""} />
+          : <p className="rounded-xl bg-paper px-3 py-6 text-center text-sm text-muted">그래프에 보일 회차를 하나 이상 골라 주세요.</p>}
+      </section>}
+      <ul className={`grid gap-4 ${data.editions.length > 1 ? overlay && data.editions.length > 2 ? "md:grid-cols-2 xl:grid-cols-3" : "md:grid-cols-2" : ""}`}>
+        {data.editions.map(e => { const look = overlay ? looks.get(e.editionId) : undefined;
+          return <li key={e.editionId} className="region-card min-w-0 space-y-3">
           <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-            <h3 className="font-extrabold">{editionLabel(e)}</h3>
+            <h3 className="flex items-center gap-2 font-extrabold">{look && <LookSwatch look={look} className={hidden.has(e.editionId) ? "opacity-40" : ""} />}{editionLabel(e)}</h3>
             {e.window && e.windowSource === "custom" && <span className="text-xs text-muted">표시 {fullDate(e.window.start)} ~ {fullDate(e.window.end)}</span>}
           </div>
-          {hasChart && charted(e) ? <EditionChart edition={e} region={region?.districtName ?? ""} yMax={yMax} slots={data.maxWindowDays} /> : null}
+          {hasChart && !overlay && charted(e) ? <EditionChart edition={e} region={region?.districtName ?? ""} yMax={yMax} slots={data.maxWindowDays} /> : null}
           <EditionSummary edition={e} scaleMax={yMax} />
           <WindowForm key={`${e.window?.start}-${e.window?.end}`} edition={e} custom={e.windowSource === "custom"} onApply={range => applyWindow(e.editionId, range)} />
-        </li>)}
+        </li>; })}
       </ul>
       <div className="flex flex-wrap items-start gap-2">
         <Disclosure label="수치 표 보기" icon={<Table2 size={16} />} open={!!memory.open[`visits-table:${data.key}`]} onToggle={open => { memory.open[`visits-table:${data.key}`] = open; }}>
@@ -110,6 +129,17 @@ function ArchiveHistory({ heading }: { heading: RefObject<HTMLHeadingElement | n
         <VisitorProfile key={data.visitorProfile.editions.map(p => p.editionId).join(",")} festivalId={festival.id} festivalName={data.festival.name} data={data.visitorProfile} recentPair={data.editions.length > 2} />}
     </>}
   </>;
+}
+
+/** Overlay or separate charts; a two-button switch that keeps the focus where it is. */
+function ChartMode({ mode, onChange }: { mode: "overlay" | "separate"; onChange: (mode: "overlay" | "separate") => void }) {
+  const options = [{ mode: "overlay" as const, label: "겹쳐 보기", Icon: Layers }, { mode: "separate" as const, label: "따로 보기", Icon: Columns2 }];
+  return <div role="group" aria-label="그래프 보기 방식" className="inline-flex gap-1 rounded-xl border border-ink/15 bg-white p-1">
+    {options.map(o => <button key={o.mode} type="button" aria-pressed={mode === o.mode} onClick={() => onChange(o.mode)}
+      className={`inline-flex min-h-10 items-center gap-1.5 rounded-lg px-3 text-sm font-bold transition-colors ${mode === o.mode ? "bg-navy text-white" : "text-ink hover:bg-paper"}`}>
+      <o.Icon aria-hidden="true" size={16} />{o.label}
+    </button>)}
+  </div>;
 }
 
 export function EditionSummary({ edition: e, scaleMax }: { edition: EditionHistory; scaleMax: number }) {

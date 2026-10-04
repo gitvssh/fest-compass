@@ -178,7 +178,8 @@ const hostChange = (page, [a, b]) => host(page).getByRole("region", { name: `${a
 const anyHostChange = page => host(page).getByRole("region", { name: /^\d{4}년과 \d{4}년 비교$/ });
 const rankRegion = section => section.getByRole("region", { name: "축제 기간 목적지 검색순위", exact: true });
 const groupButton = (section, label) => rankRegion(section).getByRole("group", { name: "검색한 사람 구분", exact: true }).getByRole("button", { name: label, exact: true });
-const picker = (page, year) => page.getByRole("checkbox", { name: new RegExp(`^${year}년 · `) });
+// The compared-edition picker (the overlay chart has its own show-line checkboxes).
+const picker = (page, year) => page.locator("form:has(#edition-picker)").getByRole("checkbox", { name: new RegExp(`^${year}년 · `) });
 const editionsAre = years => p => (p.get("editions") ?? "").split(",").sort().join() === years.map(ed).sort().join();
 const detail = page => page.locator("#resource-detail-heading");
 async function pick(page, years) {
@@ -403,7 +404,7 @@ async function initialComparison({ page }) {
   assert.deepEqual(first.editions.map(e => e.editionId).sort(), years.map(ed), "default: the latest two editions");
   await visible(comparison(page, years));
   assert.deepEqual(await Promise.all(YEARS.map(y => picker(page, y).isChecked())), [false, true, true], "initial controls: 2024 and 2025 selected");
-  assert.equal(await page.getByRole("checkbox", { name: /^\d{4}년 · /, checked: true }).count(), 2, "initial controls: at most two selected");
+  assert.equal(await page.locator("form:has(#edition-picker)").getByRole("checkbox", { name: /^\d{4}년 · /, checked: true }).count(), 2, "initial controls: at most two selected");
   assert.doesNotMatch(await page.locator("body").innerText(), THREE_EDITIONS, "no three-edition explanation");
   passed.push("initial-controls-latest-two-no-three-explanation");
 
@@ -477,7 +478,7 @@ async function otherSelections({ page }) {
   assert.equal(three.editions.length, 3, "all three history editions kept");
   await checkComparison(page, three, [2024, 2025]);
   await checkHostChange(page, three, [2024, 2025]);
-  assert.equal(await page.getByRole("checkbox", { name: /^\d{4}년 · /, checked: true }).count(), 3);
+  assert.equal(await page.locator("form:has(#edition-picker)").getByRole("checkbox", { name: /^\d{4}년 · /, checked: true }).count(), 3);
   await visible(comparison(page, [2024, 2025]).getByText("최근 두 회차", { exact: true }));
   await comparison(page, [2024, 2025]).getByRole("link", { name: "비교할 회차 바꾸기", exact: true }).click();
   await page.waitForFunction(() => document.activeElement?.id === "edition-picker");

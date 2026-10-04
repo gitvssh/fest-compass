@@ -306,6 +306,27 @@ async function defaultVisits({ page }) {
   await visible(page.getByText(/^자료 수집 .+ · .+ 조회$/)); // real archive freshness: original collection time, then retrieval time
   assert.equal(await page.locator("main textarea").count(), 0, "no mandatory writing field");
   passed.push("AC1-default-2025-2024-no-writing");
+
+  // Overlay first: one chart lined up on each edition's first day; a line can be hidden without changing the comparison.
+  const mode = page.getByRole("group", { name: "그래프 보기 방식" });
+  assert.equal(await mode.getByRole("button", { name: "겹쳐 보기", exact: true }).getAttribute("aria-pressed"), "true");
+  const overlayChart = page.getByRole("img", { name: "논산시 외지인 방문 추이 · 회차 겹쳐 보기", exact: true });
+  await visible(overlayChart);
+  assert.equal(await page.getByRole("img", { name: /^\d{4}년 논산시 외지인 방문 추이, / }).count(), 0, "no separate charts in the overlay");
+  const describe = () => overlayChart.evaluate(svg => svg.querySelector("desc")?.textContent ?? "");
+  assert.match(await describe(), /개최 첫날\(D\)을 맞춰 2025년 3\.27\(목\)~3\.30\(일\), 2024년 3\.21\(목\)~3\.24\(일\)을 겹쳤어요/);
+  const line2024 = page.getByRole("checkbox", { name: `${E2024} 선 보이기`, exact: true });
+  await line2024.uncheck();
+  assert.doesNotMatch(await describe(), /2024년/, "a hidden line leaves the chart");
+  assert.equal(await page.getByRole("checkbox", { name: E2024, exact: true }).isChecked(), true, "hiding a line keeps the compared edition");
+  await includes(editionCard(page, E2024), "90,413명/일", "the hidden edition keeps its summary");
+  await line2024.check();
+  assert.match(await describe(), /2024년/);
+  await mode.getByRole("button", { name: "따로 보기", exact: true }).click();
+  assert.equal(await page.getByRole("img", { name: /^\d{4}년 논산시 외지인 방문 추이, / }).count(), 2, "separate charts on request");
+  await mode.getByRole("button", { name: "겹쳐 보기", exact: true }).click();
+  await visible(overlayChart);
+  passed.push("visits-overlay-first-lines-toggle-separate-on-request");
 }
 
 async function sourceDialogHasCalculations(page, editions = NONSAN) {
@@ -332,6 +353,9 @@ async function threeEditions({ page }) {
     await includes(editionCard(page, e.label), e.peak, e.label);
   }
   await visible(page.locator("#edition-picker").getByText("3/3개 선택", { exact: true }));
+  // The overlay holds all three lines; the separate charts below compare their actual dates.
+  assert.match(await page.getByRole("img", { name: "논산시 외지인 방문 추이 · 회차 겹쳐 보기", exact: true }).evaluate(svg => svg.querySelector("desc")?.textContent ?? ""), /2023년 3\.8\(수\)~3\.12\(일\)/);
+  await page.getByRole("group", { name: "그래프 보기 방식" }).getByRole("button", { name: "따로 보기", exact: true }).click();
   const charts = page.getByRole("img", { name: /^\d{4}년 논산시 외지인 방문 추이, / });
   assert.equal(await charts.count(), 3);
   await visible(page.getByRole("img", { name: /^2025년 논산시 외지인 방문 추이, 3\.20\(목\)부터 4\.6\(일\)까지/ }));
@@ -681,6 +705,10 @@ async function zeroMissingIncompatible({ page }) {
   await page.goto(`${base}${path(NONSAN_ID, "visits")}?before=2&editions=nonsan-strawberry-2025,nonsan-strawberry-2024,nonsan-strawberry-2023`);
   const c2024 = editionCard(page, E2024), c2025 = editionCard(page, E2025), c2023 = editionCard(page, E2023);
   await visible(c2024.getByText("이 회차의 평균을 계산할 수 없어요.", { exact: true }));
+  // Overlay: the missing day breaks its line there too, and the incompatible edition has no line to show.
+  await includes(page.locator("figure").filter({ has: page.getByRole("img", { name: "논산시 외지인 방문 추이 · 회차 겹쳐 보기", exact: true }) }), "선이 끊긴 날: 값 없음");
+  assert.equal(await page.getByRole("checkbox", { name: `${E2023} 선 보이기`, exact: true }).count(), 0, "no line for an incompatible edition");
+  await page.getByRole("group", { name: "그래프 보기 방식" }).getByRole("button", { name: "따로 보기", exact: true }).click();
   await includes(c2024, "개최 4일 중 3일만 값이 있어요. 값 없는 날: 3.22(금)");
   await includes(c2024, "선이 끊긴 날: 값 없음");
   await excludes(c2024, "명/일", "no partial mean");

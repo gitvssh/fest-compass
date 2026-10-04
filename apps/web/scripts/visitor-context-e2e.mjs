@@ -146,7 +146,8 @@ const IMSIL_ID = "archive:imsil-cheese", ed = y => `imsil-cheese-${y}`;
 const visitsPath = (id, query = "") => `${base}/existing/${encodeURIComponent(id)}/visits${query}`;
 const host = page => page.getByRole("region", { name: "축제가 열린 읍·면·동의 방문 구성", exact: true });
 const hostItem = (page, year) => host(page).getByRole("listitem").filter({ hasText: new RegExp(`^${year}년 · `) });
-const picker = (page, year) => page.getByRole("checkbox", { name: new RegExp(`^${year}년 · `) });
+// The compared-edition picker (the overlay chart has its own show-line checkboxes).
+const picker = (page, year) => page.locator("form:has(#edition-picker)").getByRole("checkbox", { name: new RegExp(`^${year}년 · `) });
 const editionsAre = years => p => (p.get("editions") ?? "").split(",").sort().join() === years.map(ed).sort().join();
 async function pick(page, years) {
   // Uncheck first so the 3-edition limit never disables a wanted box.
