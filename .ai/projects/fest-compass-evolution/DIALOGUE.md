@@ -1373,3 +1373,36 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Human
+
+## T-065 · Human · chair
+
+- Position: 2026-10-04 결정: 공모전 제출처가 한국관광공사이므로 데이터랩 자료를 적극 쓴다. 재이용 점검 뒤 제안한 대로 이미 받아 둔 표를 화면에 잇고 모든 화면에 ⓒ한국관광공사 출처를 표기한다('좋아 연결해줘'). 서버 보관 문의 메일은 사용자가 바로 보낸다.
+- Evidence:
+  - 2026-10-04 Claude Code 세션에서 사용자가 직접 결정했다. 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+  - 점검 근거: 2026 관광데이터 활용 공모전(②-2 웹·앱 구현) 공고문 원본 — OpenAPI 필수·그 외 자료 자유, 저작권 등 법적 책임은 지원자
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 결정 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-066 · Claude · implementer
+
+- Position: 1차 공개: 축제별 방문 자료(/compare/annual)에 데이터랩 26곳의 축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위(78개 표)를 잇고 모든 화면 하단에 ⓒ한국관광공사 출처를 표기했다. 성·연령·목적지 순위는 내려받기 범위 합산, 측정값 없는 7개 축제·연도는 값 없음으로 둔다. 2차(개최지·지역 표)를 이어서 진행한다.
+- Evidence:
+  - docs/validation/49-datalab-festival-profiles.md(발행 37206020672 → sha256:e2516c84…, 배포 선언 0d017b1, 공개 확인)
+  - docs/design/27-datalab-festival-profile.md
+  - docs/sdlc/3-testing/scenarios/TS-FC-024.md
+- Changes:
+  - apps/web: 생성·읽기(datalab-festival-profiles), 화면 FestivalProfile, 공통 Segmented·DemographicBars, 원문 목록 사용 표시 27→105, 하단 출처
+  - docs: 설계27, 검수49, TS-FC-024, screens·data-visualization·자료 목록·가져오기 README·현황
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 459 통과, 타입 검사·발행 빌드 통과
+  - headless 31종 통과(길잡이는 그림을 미리 변환한 새 서버에서 16항목)
+  - 공개: Synced·Healthy, livez·readyz 200, 업무 9테이블 20행 해시 일치, 공개 화면 10항목 통과
+- Questions:
+  - No open question
+- Handoff: Claude

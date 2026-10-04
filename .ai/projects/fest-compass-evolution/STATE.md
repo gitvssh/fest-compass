@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 64
-status: waiting-human
-next_actor: human
+revision: 66
+status: waiting-claude
+next_actor: claude
 last_actor: claude
 current_question: "No open question"
-updated_at: "2026-10-04T12:04:08.155Z"
+updated_at: "2026-10-04T13:42:22.464Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(연도별 방문 흐름·개최지 방문 구성·임실 방문자 특성·지역 연간 추세)을 공개 중이다(이미지 3bba936d). 2026-10-04 ADR-0003 제거를 같은 날 ADR-0004로 되돌렸다.
+기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(축제별 방문 자료 — 개최연도별 방문·축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위, 개최지 방문 구성·임실 방문자 특성·지역 연간 추세)을 공개 중이다(이미지 e2516c84). 모든 화면 하단에 ⓒ한국관광공사 출처를 표기한다. 데이터랩 지역 표(개최지 관광소비·거주지·읍면동 비율) 연결은 2차로 진행 중이다.
 
 ## Accepted decisions
 
@@ -83,10 +83,11 @@ updated_at: "2026-10-04T12:04:08.155Z"
 - 2026-10-04 사용자 승인: 이미지 저장소 한도로 막힌 발행을 위해 지난 이미지 ae7b945·1312880만 프로젝트 정리 절차로 지우고 즉시 공개(docs/validation/47-festival-discovery.md 공개 배포).
 - 2026-10-04 사용자 승인: 이미지 저장소의 지난 이미지 ed3585c·d3def74 정리(실행 6054). 같은 날 공개 검사에서 찾은 동의 배너 문제를 고치도록 요청(docs/validation/48-consent-banner.md).
 - 2026-10-04 사용자 결정: 한국관광공사 공모전 목적에 맞춰 데이터랩 자료 화면을 유지한다(ADR-0004가 ADR-0003 대체, docs/decisions/0004-use-kto-datalab-data.md). 자동 내려받기는 하지 않는다.
+- 2026-10-04 사용자 결정: 데이터랩 자료를 적극 쓰고 이미 받아 둔 표를 화면에 잇는다(1차 축제 표와 모든 화면 하단 ⓒ한국관광공사 출처 표기, 2차 개최지·지역 표). TourAPI 응답의 서버 보관 허용 여부는 사용자가 공모전 운영사무국에 문의한다(docs/design/27-datalab-festival-profile.md).
 
 ## Open questions
 
-- 공통 지역 방문·자원·시기, 기존 회차 비교·선택적 기록은 사용 가능하다. 축제 입장객·효과·성/연령·거주지 전국 확대, 미확보 과거 개최일·공개 비용·나머지277CSV/Foundry연계는 후속이다. 비공식 데이터랩 차트 자동 수집은 원천으로 쓰지 않고 공식 API/다운로드만 사용한다.
+- 공통 지역 방문·자원·시기, 기존 회차 비교·선택적 기록은 사용 가능하다. 축제 입장객·효과·성/연령·거주지 전국 확대, 미확보 과거 개최일·공개 비용·데이터랩 지역 표 199개(2차 진행 중)/Foundry연계는 후속이다. 비공식 데이터랩 차트 자동 수집은 원천으로 쓰지 않고 공식 API/다운로드만 사용한다.
 - 이번 개편 범위 밖의 기획·운영 화면 상세 디자인·실제 담당자 관찰·전체 보조기술·다른 화면의200% 확대·개편35조회단위 공식 경계 교체·공동편집/공식승인·정형 API/Spec/Run 연결은 후속이다. 뉴스 AI요약은 나중에 검토한다.
 - 관광자원 군집 지도·목록/상세 위계·목적 이미지는 공개 사용 가능하며 실제 자료·모바일·200%와 D 사본 검수를 완료했다. 등록된 운영시간·메뉴·입퇴실·주차는 연결했다. 실시간 영업·객실 재고·예약 가능 여부와 포토코리아 지역 경관 검색은 후속이다.
 - PC 전역 메뉴·홈·관광자원3열·방문 병렬 분석은 공개 사용 가능하며 실제 자료·200%·D 사본 검수를 완료했다. 실무자 관찰에 따른 추가 밀도·배치 조정은 후속이다.
@@ -94,6 +95,7 @@ updated_at: "2026-10-04T12:04:08.155Z"
 - 공개 서버 그림 최적화 캐시가 읽기 전용 루트 때문에 매번 MISS다. 쓰기 가능한 임시 캐시 볼륨을 붙일지(그림 화면의 첫 화면 시간 개선, 검수46).
 - 묶음 1 뒤 초기 사용자 재확인(설계24 14절): 각 흐름의 목표·끝·순서를 자기 말로 설명하는지, 어디서 막히는지.
 - 공모전 이후 일반 서비스로 이어 갈 때 데이터랩 자료(공공누리 표시 없음)의 재이용 범위를 한국관광공사에 확인한다(ADR-0004).
+- TourAPI 등록 일정·소개 글을 서버에 보관하는 방식이 한국관광콘텐츠랩의 '콘텐츠 캐싱(로컬서버 저장방식) 금지'에 해당하는지 — 사용자가 운영사무국 답을 받은 뒤 보관 방식을 정한다.
 
 ## Artifacts and durable documents
 
@@ -222,3 +224,8 @@ updated_at: "2026-10-04T12:04:08.155Z"
 - apps/web/components/useBottomDock.ts
 - docs/decisions/0003-no-datalab-website-downloads.md
 - docs/decisions/0004-use-kto-datalab-data.md
+- docs/design/27-datalab-festival-profile.md
+- docs/validation/49-datalab-festival-profiles.md
+- docs/sdlc/3-testing/scenarios/TS-FC-024.md
+- apps/web/scripts/build-datalab-festival-profiles.mjs
+- docs/validation/evidence/2026-10-04-festival-profiles-after.json
