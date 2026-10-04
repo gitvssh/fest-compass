@@ -19,6 +19,10 @@ const OTHER_TYPES: Readonly<Record<string, string>> = {
 };
 
 export const isFestivalTypeCode = (value: unknown): value is FestivalTypeCode => typeof value === "string" && FESTIVAL_TYPES.some(t => t.code === value);
+/** A search filter: one festival type, or `all` = every festival type (performances and events left out). */
+export type FestivalTypeFilter = FestivalTypeCode | "all";
+export const ALL_FESTIVALS = { label: "모든 축제", short: "전체" } as const;
+export const isFestivalTypeFilter = (value: unknown): value is FestivalTypeFilter => value === "all" || isFestivalTypeCode(value);
 /** A provider classification code as stored (EV + six digits), else null. */
 export const classificationCode = (value: unknown): string | null => typeof value === "string" && /^EV\d{6}$/.test(value) ? value : null;
 export const festivalType = (code: string | null | undefined) => FESTIVAL_TYPES.find(t => t.code === code) ?? null;

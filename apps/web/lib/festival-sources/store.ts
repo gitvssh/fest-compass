@@ -86,7 +86,9 @@ export async function acquireLock(dir: string): Promise<() => Promise<void>> {
   return async () => { child.stdin.end(); await exited; };
 }
 
-export type Attempt = { id: string; source: "national" | "registry"; mode: "standard" | "backfill"; at: string };
+export type Attempt = { id: string; source: "national" | "registry" | "intro"; mode: "standard" | "backfill"; at: string };
+/** Introductions keep their own daily log, so an older collector never meets a source it does not know. */
+export type AttemptLogName = "sources" | "intro";
 /** What a source collector may use: the day's attempt log and a budget that records each call before it is sent. */
 export type CollectContext = {
   dir: string; day: string; now: string; key: string; fetch: typeof fetch; attempts: AttemptLog;
@@ -98,8 +100,9 @@ export type CollectContext = {
  */
 export class AttemptLog {
   private constructor(private readonly path: string, readonly entries: Attempt[]) {}
-  static async open(dir: string, day: string): Promise<AttemptLog> {
-    const directory = join(dir, "attempts"), path = join(directory, `${day}.jsonl`);
+  static async open(dir: string, day: string, log: AttemptLogName = "sources"): Promise<AttemptLog> {
+    const directory = join(dir, "attempts"), path = join(directory, log === "intro" ? `intro-${day}.jsonl` : `${day}.jsonl`);
+    const sources = log === "intro" ? ["intro"] : ["national", "registry"];
     await mkdir(directory, { recursive: true, mode: 0o700 });
     let text = "";
     try { text = await readFile(path, "utf8"); } catch (error) { if (!missing(error)) throw error; }
@@ -107,7 +110,7 @@ export class AttemptLog {
     for (const line of text.split("\n").filter(Boolean)) {
       let value: unknown;
       try { value = JSON.parse(line); } catch { throw new Error("sources-attempt-log-corrupt"); }
-      if (!isRecord(value) || typeof value.id !== "string" || !["national", "registry"].includes(String(value.source))
+      if (!isRecord(value) || typeof value.id !== "string" || !sources.includes(String(value.source))
         || !["standard", "backfill"].includes(String(value.mode)) || !isTimestamp(value.at)) throw new Error("sources-attempt-log-corrupt");
       entries.push(value as Attempt);
     }
@@ -128,11 +131,11 @@ export async function pruneDays(dir: string, day: string) {
   for (const name of await readdir(pages).catch(() => [] as string[])) if (/^\d{4}-\d{2}-\d{2}$/.test(name) && name !== day) await rm(join(pages, name), { recursive: true, force: true });
   const oldest = shiftDay(day, -STORE_LIMITS.attemptRetentionDays);
   for (const name of await readdir(join(dir, "attempts")).catch(() => [] as string[])) {
-    const match = /^(\d{4}-\d{2}-\d{2})\.jsonl$/.exec(name);
+    const match = /^(?:intro-)?(\d{4}-\d{2}-\d{2})\.jsonl$/.exec(name);
     if (match && match[1] < oldest) await unlink(join(dir, "attempts", name)).catch(() => undefined);
   }
   // Callers hold the run lock, so no writer owns these temporaries.
-  for (const directory of [dir, join(dir, "national"), join(dir, "national", "months"), join(dir, "registry"), join(pages, day)]) {
+  for (const directory of [dir, join(dir, "national"), join(dir, "national", "months"), join(dir, "registry"), join(dir, "intro"), join(pages, day)]) {
     for (const name of await readdir(directory).catch(() => [] as string[])) {
       if (/\.json\.[0-9a-f-]{36}\.tmp$/.test(name)) await unlink(join(directory, name)).catch(() => undefined);
     }

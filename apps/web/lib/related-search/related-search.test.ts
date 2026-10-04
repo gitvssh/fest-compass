@@ -16,7 +16,7 @@ const archive = (editions: ArchiveEditionRef[], defaults: string[]): ArchiveFest
 });
 const current = (start: string | null, datesVerified: boolean): CurrentFestival => ({
   id: "current:1", source: "current", contentId: "1", name: "새 축제", region: NONSAN, start, end: start, datesVerified,
-  address: "주소", point: null, modifiedAt: null, type: null, linkedArchiveId: null,
+  address: "주소", point: null, modifiedAt: null, type: null, linkedArchiveId: null, marks: null,
   provenance: { title: "출처", url: "https://example.test/", checkedAt: null, publishedAt: null, collectedAt: null },
 });
 const E = [edition("ns-2025", 2025), edition("ns-2024", 2024), edition("ns-2023", 2023), edition("ns-2023b", 2023)];

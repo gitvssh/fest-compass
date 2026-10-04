@@ -5,6 +5,7 @@ import { classificationCode, classificationLabel, FESTIVAL_TYPES, festivalType, 
 import { InvalidRequest, festivalsKey, parseFestivalSearch } from "./request";
 import { createExistingService } from "./server";
 import { collectTypeEvents, EVENT_PAGE_SIZE, KEYWORD_PAGE_SIZE, type TourCall, type TourOperation, type TourPage } from "./tour";
+import type { FestivalMarks } from "./festival-marks";
 import type { DataFreshness } from "./types";
 
 const FRESH: DataFreshness = { mode: "archive-only", collectedAt: null, runtimeCollectedAt: null, refresh: { status: "not-configured", retryable: false } };
@@ -23,8 +24,9 @@ function paged(op: TourOperation, rows: Record<string, unknown>[], tamper: (page
   };
   return { call, calls };
 }
-const service = (tour: TourCall) => createExistingService({ archive: async () => ({ datasets: bundled, freshness: FRESH, runtime: [], runtimeRegions: [] }), regionList: async () => { throw new Error("resources not used"); }, tour, now: () => "2026-09-23T03:00:00.000Z" });
-const search = (tour: TourCall, query: string) => service(tour).loadFestivals(parseFestivalSearch(new URLSearchParams(query), TODAY));
+const service = (tour: TourCall, intros?: () => Promise<ReadonlyMap<string, FestivalMarks> | null>) =>
+  createExistingService({ archive: async () => ({ datasets: bundled, freshness: FRESH, runtime: [], runtimeRegions: [] }), regionList: async () => { throw new Error("resources not used"); }, tour, now: () => "2026-09-23T03:00:00.000Z", intros });
+const search = (tour: TourCall, query: string, intros?: () => Promise<ReadonlyMap<string, FestivalMarks> | null>) => service(tour, intros).loadFestivals(parseFestivalSearch(new URLSearchParams(query), TODAY));
 const typeFilter = (type: string) => ({ lclsSystm1: "EV", lclsSystm2: "EV01", lclsSystm3: type });
 
 test("festival types: six registered festival kinds, other kinds keep their own names, nothing is guessed", () => {
@@ -96,3 +98,45 @@ test("a type narrows the name search and the district list at the source, with t
   assert.equal("lclsSystm3" in plain.calls[0][1], false);
   assert.deepEqual(untyped.current.items.map(i => i.type), ["EV020700"]);
 });
+
+test("all festival types: the nationwide list asks for every festival class and nothing else", async () => {
+  const t = paged("searchFestival2", [row("1", "44", "230", "20260410", SPECIALTY), row("2", "52", "750", "20260301", CULTURE_TOURISM)]);
+  const r = await search(t.call, "type=all");
+  assert.deepEqual(t.calls[0][1], { eventStartDate: "20260101", eventEndDate: "20261231", numOfRows: String(EVENT_PAGE_SIZE), pageNo: "1", arrange: "A", lclsSystm1: "EV", lclsSystm2: "EV01" });
+  assert.deepEqual([r.current.mode, r.current.items.map(i => [i.contentId, i.type])], ["type-list", [["2", CULTURE_TOURISM], ["1", SPECIALTY]]]);
+  const exhibition = await search(paged("searchFestival2", [row("3", "44", "230", "20260410", "EV030100")]).call, "type=all");
+  assert.equal(exhibition.current.status, "unavailable", "a performance or event row breaks an all-festivals list");
+  assert.equal(parseFestivalSearch(new URLSearchParams("type=all"), TODAY).type, "all");
+});
+
+test("marks come from stored introductions; a store failure leaves festivals unmarked, never failed", async (t) => {
+  const marks: FestivalMarks = { checkedAt: "2026-10-02T03:00:00.000Z", items: [{ kind: "experience", label: "체험", evidence: "딸기 따기 체험" }] };
+  const rows = [row("525292", "44", "230", "20260326", SPECIALTY), row("9", "44", "230", "20260410", SPECIALTY)];
+  const r = await search(paged("searchFestival2", rows).call, `province=44&district=230&type=${SPECIALTY}`, async () => new Map([["44230:525292", marks]]));
+  assert.deepEqual(r.current.items.map(i => [i.contentId, i.marks?.items.map(m => m.kind) ?? null]), [["525292", ["experience"]], ["9", null]]);
+  const errors: unknown[] = [], original = console.error;
+  console.error = (...a: unknown[]) => { errors.push(a.join(" ")); };
+  t.after(() => { console.error = original; });
+  const failed = await search(paged("searchFestival2", rows).call, `province=44&district=230&type=${SPECIALTY}`, async () => { throw new Error("disk"); });
+  assert.deepEqual([failed.current.status, failed.current.items.map(i => i.marks)], ["complete", [null, null]]);
+  assert.deepEqual(errors, ["festival-intros: read-failed"]);
+});
+
+test("a festival lookup reads its own introduction for marks, else the stored ones", async () => {
+  const common = { contentid: "525292", contenttypeid: "15", title: "논산딸기축제", addr1: "논산", lDongRegnCd: "44", lDongSignguCd: "230", lclsSystm3: CULTURE_TOURISM };
+  const lookup = (intro: Record<string, unknown>[] | Error): TourCall => async op => {
+    if (op === "detailCommon2") return { total: 1, pageNo: 1, rows: [common], collectedAt: AT };
+    if (op === "detailIntro2") { if (intro instanceof Error) throw intro; return { total: intro.length, pageNo: 1, rows: intro, collectedAt: AT }; }
+    throw new Error("unexpected");
+  };
+  const stored = async () => new Map([["44230:525292", { checkedAt: "2026-09-01T00:00:00.000Z", items: [] } satisfies FestivalMarks]]);
+  const live = await service(lookup([{ contentid: "525292", contenttypeid: "15", eventstartdate: "20260326", eventenddate: "20260329", program: "딸기 따기 <b>체험</b>, 키즈존", usetimefestival: "무료" }]), stored)
+    .loadFestivals(parseFestivalSearch(new URLSearchParams("id=current:44230:525292"), TODAY));
+  const item = live.current.items[0];
+  assert.deepEqual([item.type, item.start, item.marks?.checkedAt, item.marks?.items.map(m => `${m.kind}:${m.evidence}`)], [CULTURE_TOURISM, "2026-03-26", AT, ["experience:딸기 따기 체험", "family:키즈존", "free:무료"]]);
+  const undated = await service(lookup([{ contentid: "525292", contenttypeid: "15", program: "체험 부스" }]), stored).loadFestivals(parseFestivalSearch(new URLSearchParams("id=current:44230:525292"), TODAY));
+  assert.deepEqual([undated.current.items[0].datesVerified, undated.current.items[0].marks?.items.map(m => m.kind)], [false, ["experience"]], "an introduction without valid dates still gives marks");
+  const fallback = await service(lookup(new Error("down")), stored).loadFestivals(parseFestivalSearch(new URLSearchParams("id=current:44230:525292"), TODAY));
+  assert.deepEqual(fallback.current.items[0].marks, { checkedAt: "2026-09-01T00:00:00.000Z", items: [] });
+});
+

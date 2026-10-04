@@ -3,7 +3,7 @@ import { koreaDate } from "../region/calendar";
 import { MAX_EDITIONS, normalizeKeyword, parseFestivalId, regionRef } from "./identity";
 import { CUSTOM_WINDOW_MAX, datesBetween, PAD_DEFAULT, PAD_MAX } from "./history";
 import { DEFAULT_RESOURCE_KINDS, isResourceKind, RESOURCE_KINDS } from "./types";
-import { isFestivalTypeCode } from "./festival-types";
+import { isFestivalTypeFilter } from "./festival-types";
 import type { FestivalSearchRequest, HistoryRequest, MonthlyRequest, ResourcesRequest, ScheduleRequest } from "./types";
 export { DEFAULT_RESOURCE_KINDS, RESOURCE_KINDS } from "./types";
 
@@ -40,7 +40,7 @@ export function parseFestivalSearch(p: URLSearchParams, today = koreaDate()): Fe
   const rawTotal = p.get("total");
   if (rawTotal !== null && rawTotal !== "" && !/^\d{1,6}$/.test(rawTotal)) throw new InvalidRequest("total");
   const rawType = p.get("type")?.trim() || null;
-  if (rawType !== null && !isFestivalTypeCode(rawType)) throw new InvalidRequest("type");
+  if (rawType !== null && !isFestivalTypeFilter(rawType)) throw new InvalidRequest("type");
   return { q, province: where?.province ?? null, district: where?.district ?? null, ...r, page: rawPage ? Number(rawPage) : 1, total: rawTotal ? Number(rawTotal) : null, id, type: rawType };
 }
 /** `windows=<editionId>:<start>:<end>,...` — absolute chart ranges; they never change the festival-period summary. */

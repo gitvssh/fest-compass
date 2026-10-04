@@ -30,9 +30,14 @@ const NONSAN_ID = "archive:nonsan-strawberry", SPECIALTY = "EV010300", CULTURE =
 const current = (region, contentId, name, type, extra = {}) => ({ id: `current:${region.code}:${contentId}`, source: "current", contentId, name, region,
   start: null, end: null, datesVerified: false, address: "검증용 가상 주소", point: null, modifiedAt: null, type, linkedArchiveId: null, provenance: fixtureSource, ...extra });
 const two = n => String(n).padStart(2, "0");
+// 검증용 marks as the server sends them (read from a registration's introduction): label + the words they came from.
+const MARK = { experience: ["체험", "검증용 딸기 따기 체험"], family: ["어린이·가족", "검증용 키즈존"], free: ["무료", "입장료 무료"] };
+const marksOf = (...kinds) => ({ checkedAt: FIXTURE_AT, items: kinds.map(kind => ({ kind, label: MARK[kind][0], evidence: MARK[kind][1] })) });
+// Every third: experience+family / free / not read yet (null).
 const SPECIALTIES = Array.from({ length: 45 }, (_, i) => current(ANDONG, `99006${two(i)}`, `검증용 특산물 축제 ${two(i + 1)} (가상)`, SPECIALTY,
-  { start: `2026-${two(1 + (i % 12))}-10`, end: `2026-${two(1 + (i % 12))}-12`, datesVerified: true }));
-const LINKED = current(NONSAN, "9900501", "논산딸기축제", CULTURE, { start: "2027-03-26", end: "2027-03-29", datesVerified: true, linkedArchiveId: NONSAN_ID });
+  { start: `2026-${two(1 + (i % 12))}-10`, end: `2026-${two(1 + (i % 12))}-12`, datesVerified: true, marks: i % 3 === 0 ? marksOf("experience", "family") : i % 3 === 1 ? marksOf("free") : null }));
+const LINKED = current(NONSAN, "9900501", "논산딸기축제", CULTURE, { start: "2027-03-26", end: "2027-03-29", datesVerified: true, linkedArchiveId: NONSAN_ID, marks: marksOf("experience") });
+const MARKED = current(ANDONG, "9900701", "검증용 안동 체험 축제 (가상)", ECO, { start: "2026-10-20", end: "2026-10-22", datesVerified: true, marks: marksOf("experience", "free") });
 const EXHIBIT = current(NONSAN, "9900502", "검증용 딸기 전시 (가상)", "EV030100");
 const MARKET = current(NONSAN, "9900503", "검증용 딸기 장터 (가상)", SPECIALTY);
 const block = (mode, items, extra = {}) => ({ status: items.length ? "complete" : "empty", error: null, collectedAt: FIXTURE_AT, mode, range: null,
@@ -51,13 +56,19 @@ async function realArchive() {
   return realNonsan;
 }
 async function festivals(route, p) {
-  const type = p.get("type"), q = p.get("q") ?? "";
+  const type = p.get("type"), q = p.get("q") ?? "", id = p.get("id");
+  if (id === MARKED.id) { // 검증용 identity lookup with the introduction read just now
+    const y = new Date(Date.now() + 9 * 3_600_000).toISOString().slice(0, 4), request = { q: "", province: null, district: null, start: `${y}-01-01`, end: `${y}-12-31`, page: 1, total: null, id, type: null };
+    return { kind: "fulfill", options: { json: { key: JSON.stringify(["festivals", id, "", null, null, request.start, request.end, 1, null, null]), request, retrievedAt: new Date().toISOString(),
+      archive: { status: "not-requested", error: null, collectedAt: null, items: [], freshness: null }, current: block("lookup", [MARKED], { lookup: "verified" }) } } };
+  }
   if (!type && !q) return { kind: "continue" }; // REAL starting choices
   const response = await route.fetch(), body = await response.json();
   if (!response.ok()) return { kind: "fulfill", options: { response, json: body } };
   const range = { start: body.request.start, end: body.request.end }, archive = await realArchive();
   let items = [];
   if (type === SPECIALTY && !q) body.current = block("type-list", items = SPECIALTIES, { range });
+  else if (type === "all" && !q) body.current = block("type-list", items = [LINKED, MARKED, ...SPECIALTIES], { range });
   else if (type === ECO && !q) body.current = block("type-list", items = [], { range });
   else if (/딸기/.test(q)) body.current = block("keyword", items = type === CULTURE ? [LINKED] : type ? [] : [LINKED, EXHIBIT, MARKET]);
   else throw new Error(`no fixture for ${p}`);
@@ -133,7 +144,7 @@ async function typeChips() {
     await visible(heading(page).filter({ hasText: "바로 살펴볼 수 있는 축제" }));
     assert.deepEqual((await chips(page).getByRole("button").allInnerTexts()).map(s => s.replace(/\s+/g, " ").trim()),
       ["전체", "문화관광 · 문체부 지정", "문화예술", "지역특산물 · 먹거리", "전통역사", "생태자연", "기타 축제"]);
-    assert.deepEqual(await pressedChips(page), ["전체"]);
+    assert.deepEqual(await pressedChips(page), [], "the starting choices are no type list");
     assert.equal(await page.getByRole("link", { name: "문화관광축제 방문 규모" }).getAttribute("href"), "/compare/scale");
 
     // A chip applies at once and keeps focus; the list is the type's whole national list in steps of 40.
@@ -167,12 +178,12 @@ async function typeChips() {
     await dialog.waitFor({ state: "hidden" });
     await noInternalWording(page, "type list");
 
-    // 전체 with no other condition returns to the starting choices.
-    await chip(page, "전체").click();
+    // A pressed chip lifts its type: with no other condition, back to the starting choices.
+    await chip(page, /^지역특산물/).click();
     await waitAddress(page, "");
     await visible(heading(page).filter({ hasText: "바로 살펴볼 수 있는 축제" }));
-    assert.deepEqual(await pressedChips(page), ["전체"]);
-    passed.push("type-source-note", "type-clear-to-start");
+    assert.deepEqual(await pressedChips(page), []);
+    passed.push("type-source-note", "type-chip-toggles-off");
 
     // A type with no registration this year: an honest empty answer.
     await chip(page, "생태자연").click();
@@ -199,13 +210,14 @@ async function typeWithNameAndRegion() {
     assert.equal(await results(page).getByRole("listitem").count(), 1);
     passed.push("type-with-name");
 
-    // Clearing the type keeps the name; a mixed list shows each registration's kind.
-    await chip(page, "전체").click();
+    // Lifting the type keeps the name; a mixed list shows each registration's kind and "전체" reads as no type condition.
+    await chip(page, /^문화관광/).click();
     await waitAddress(page, "q=딸기");
     await visible(page.getByRole("heading", { level: 2, name: "‘딸기’ 검색 결과", exact: true }));
     for (const [name, badge] of [["논산딸기축제", "문화관광축제"], ["검증용 딸기 전시 (가상)", "전시회"], ["검증용 딸기 장터 (가상)", "지역특산물축제"]]) {
       await includes(results(page).getByRole("link").filter({ hasText: name }), badge, name);
     }
+    assert.deepEqual(await pressedChips(page), ["전체"]);
     passed.push("type-clear-keeps-name", "type-badges-in-mixed-list");
 
     // A half-chosen region blocks the chip like the search button does.
@@ -221,8 +233,66 @@ async function typeWithNameAndRegion() {
     assert.deepEqual(await pressedChips(page), ["생태자연"]);
     await page.goto(`${base}/existing/search?type=food`);
     await visible(heading(page).filter({ hasText: "바로 살펴볼 수 있는 축제" }));
-    assert.deepEqual(await pressedChips(page), ["전체"]);
+    assert.deepEqual(await pressedChips(page), []);
     passed.push("type-deep-links");
+  } finally { await context.close(); }
+}
+
+async function markFilter() {
+  const { context, page } = await openContext();
+  try {
+    // "전체" with nothing else: every festival type nationwide.
+    await page.goto(`${base}/existing/search`);
+    await chip(page, "전체").click();
+    await waitAddress(page, "type=all");
+    await visible(page.getByRole("heading", { level: 2, name: "모든 축제 검색 결과", exact: true }));
+    assert.deepEqual(await pressedChips(page), ["전체"]);
+    const filter = page.getByRole("group", { name: "소개 글로 거르기" });
+    const counts = (await filter.getByRole("button").allInnerTexts()).map(s => s.replace(/\s+/g, " ").trim());
+    assert.deepEqual(counts, ["체험 17", "어린이·가족 15", "무료 16"], "how many listed festivals carry each mark");
+    await visible(page.getByText("소개 글 확인 전 15건", { exact: true }));
+    passed.push("all-festivals-national-list", "mark-counts");
+
+    // Marks filter on the page (no new search), AND across marks; cards show their marks; focus stays.
+    const before = calls.filter(c => c.endpoint === "festivals").length;
+    await filter.getByRole("button", { name: /^체험/ }).click();
+    await waitAddress(page, "mark=experience&type=all");
+    await visible(page.getByText("축제 47건 중 체험 17건", { exact: true }));
+    assert.ok((await focusedText(page)).startsWith("체험"), "focus stays on the mark chip");
+    await filter.getByRole("button", { name: /^어린이·가족/ }).click();
+    await waitAddress(page, "mark=experience,family&type=all");
+    await visible(page.getByText("축제 47건 중 체험·어린이·가족 15건", { exact: true }));
+    await visible(page.getByText("소개 글을 아직 확인하지 못한 15건은 빠져요", { exact: true }));
+    assert.equal(calls.filter(c => c.endpoint === "festivals").length, before, "filtering asks the server nothing");
+    for (const card of await results(page).getByRole("link").all()) { await includes(card, "체험"); await includes(card, "어린이·가족"); }
+    passed.push("mark-filter-on-page", "mark-filter-and", "mark-unchecked-left-out");
+
+    // Nothing left: say so and offer to lift the marks.
+    await filter.getByRole("button", { name: /^무료/ }).click();
+    await visible(page.getByText("체험·어린이·가족·무료 표시가 있는 축제가 이 목록에는 없어요.", { exact: true }));
+    await page.getByRole("button", { name: "거르기 지우기", exact: true }).click();
+    await waitAddress(page, "type=all");
+    assert.equal(await results(page).getByRole("listitem").count(), 40, "the whole list again (first 40)");
+    // The address keeps the marks.
+    await page.goto(`${base}/existing/search?type=all&mark=free`);
+    await visible(page.getByText("축제 47건 중 무료 16건", { exact: true }));
+    assert.deepEqual(await page.getByRole("group", { name: "소개 글로 거르기" }).locator("button[aria-pressed=true]").allInnerTexts().then(a => a.map(s => s.replace(/\s+/g, " ").trim())), ["무료 16"]);
+    passed.push("mark-filter-empty-and-clear", "mark-filter-address");
+
+    // A festival's header shows its marks and the words they were read from.
+    await page.goto(`${base}/existing/${encodeURIComponent(MARKED.id)}/visits`);
+    await visible(page.getByRole("heading", { level: 1, name: MARKED.name, exact: true }));
+    const header = page.locator("main header");
+    await includes(header, "체험"); await includes(header, "무료");
+    await page.getByRole("button", { name: "소개 글 근거", exact: true }).click();
+    const dialog = page.getByRole("dialog", { name: "등록 소개 글에서 찾은 표시" });
+    await includes(dialog, "“검증용 딸기 따기 체험”");
+    await includes(dialog, "“입장료 무료”");
+    await includes(dialog, "실제 운영 여부는 주최 측 안내를 확인해 주세요.");
+    await page.keyboard.press("Escape");
+    await page.waitForFunction(() => document.activeElement?.textContent?.trim() === "소개 글 근거");
+    await noInternalWording(page, "marks");
+    passed.push("mark-header-evidence");
   } finally { await context.close(); }
 }
 
@@ -339,6 +409,7 @@ async function scalePhone() {
 try {
   await typeChips();
   await typeWithNameAndRegion();
+  await markFilter();
   await typePhone();
   await scaleRanking();
   await scalePhone();

@@ -2,7 +2,8 @@ import "server-only";
 import { isKtoSuccessCode, parseKtoWire } from "../kto/wire";
 import { coordinate, day } from "../region/model";
 import { MAX_PAGE } from "./request";
-import { classificationCode, type FestivalTypeCode } from "./festival-types";
+import { INTRO_FIELD_MAX, introText, type IntroText } from "./festival-marks";
+import { classificationCode, type FestivalTypeFilter } from "./festival-types";
 import { verifiedLdongRegion, type CurrentFields } from "./identity";
 import type { LookupResult, Range, RegionRef } from "./types";
 
@@ -66,10 +67,12 @@ function fields(row: Record<string, unknown>): CurrentFields {
     longitude: latitude === null ? null : longitude, latitude: longitude === null ? null : latitude, start: null, end: null,
     modifiedAt: /^\d{14}$/.test(String(row.modifiedtime)) ? String(row.modifiedtime) : null, type: classificationCode(row.lclsSystm3) };
 }
-/** Provider filter for one festival type (all three classification levels, as the source expects). */
-const typeParams = (type: FestivalTypeCode | null | undefined): Record<string, string> => type ? { lclsSystm1: type.slice(0, 2), lclsSystm2: type.slice(0, 4), lclsSystm3: type } : {};
+/** Provider filter: one festival type (all three classification levels, as the source expects) or every festival type. */
+const typeParams = (type: FestivalTypeFilter | null | undefined): Record<string, string> =>
+  type === "all" ? { lclsSystm1: "EV", lclsSystm2: "EV01" } : type ? { lclsSystm1: type.slice(0, 2), lclsSystm2: type.slice(0, 4), lclsSystm3: type } : {};
 /** A typed query must only return rows of that type; anything else breaks the contract. */
-const typeMatches = (row: Record<string, unknown>, type: FestivalTypeCode | null | undefined) => !type || classificationCode(row.lclsSystm3) === type;
+const typeMatches = (row: Record<string, unknown>, type: FestivalTypeFilter | null | undefined) =>
+  !type || (type === "all" ? !!classificationCode(row.lclsSystm3)?.startsWith("EV01") : classificationCode(row.lclsSystm3) === type);
 // List endpoints are queried with festival type 15; a row that states another type breaks the contract.
 const listFestivalType = (row: Record<string, unknown>) => row.contenttypeid === undefined || row.contenttypeid === null || String(row.contenttypeid) === "15";
 const explicit = (row: Record<string, unknown>, field: string, value: string) => row[field] !== undefined && row[field] !== null && String(row[field]) === value;
@@ -82,7 +85,7 @@ export type KeywordPage = { total: number; page: number; next: { page: number; t
  * continues from an earlier page it passes that page's total; a different total means the listing changed (TourChanged).
  * Rows whose lDong pair is not a verified catalogue pair are omitted (counted), never guessed.
  */
-export async function searchKeywordPage(call: TourCall, input: { keyword: string; region: RegionRef | null; page: number; expectTotal?: number | null; type?: FestivalTypeCode | null }): Promise<KeywordPage> {
+export async function searchKeywordPage(call: TourCall, input: { keyword: string; region: RegionRef | null; page: number; expectTotal?: number | null; type?: FestivalTypeFilter | null }): Promise<KeywordPage> {
   const params: Record<string, string> = { keyword: input.keyword, contentTypeId: "15", numOfRows: String(KEYWORD_PAGE_SIZE), pageNo: String(input.page), arrange: "A", ...typeParams(input.type) };
   if (input.region) { params.lDongRegnCd = input.region.province; params.lDongSignguCd = input.region.district; }
   const res = await call("searchKeyword2", params);
@@ -111,7 +114,7 @@ export type RegionEvents = { status: "complete" | "empty"; total: number; collec
  * verified lDong pair; otherwise the whole collection is rejected. Rows with missing or invalid dates are kept as
  * unknown-date registrations. No cancellation field exists in this source, so rows are never marked cancelled here.
  */
-export async function collectRegionEvents(call: TourCall, region: RegionRef, range: Range, type: FestivalTypeCode | null = null): Promise<RegionEvents> {
+export async function collectRegionEvents(call: TourCall, region: RegionRef, range: Range, type: FestivalTypeFilter | null = null): Promise<RegionEvents> {
   const items: RegionEvent[] = [], ids = new Set<string>(); let total: number | null = null, collectedAt = "";
   for (let page = 1; page <= EVENT_MAX_PAGES; page++) {
     const res = await call("searchFestival2", { eventStartDate: range.start.replaceAll("-", ""), eventEndDate: range.end.replaceAll("-", ""),
@@ -137,7 +140,7 @@ export type TypeEvents = { status: "complete" | "empty"; total: number; omitted:
  * Registered festivals of ONE type nationwide overlapping `range` (searchFestival2 with the type filter). Same page
  * contract as a district list; rows whose lDong pair is not a verified catalogue pair are omitted (counted), never guessed.
  */
-export async function collectTypeEvents(call: TourCall, type: FestivalTypeCode, range: Range): Promise<TypeEvents> {
+export async function collectTypeEvents(call: TourCall, type: FestivalTypeFilter, range: Range): Promise<TypeEvents> {
   const items: TypeEvents["items"] = [], ids = new Set<string>(); let total: number | null = null, seen = 0, omitted = 0, collectedAt = "";
   for (let page = 1; page <= EVENT_MAX_PAGES; page++) {
     const res = await call("searchFestival2", { eventStartDate: range.start.replaceAll("-", ""), eventEndDate: range.end.replaceAll("-", ""),
@@ -162,7 +165,8 @@ export async function collectTypeEvents(call: TourCall, type: FestivalTypeCode, 
   throw new TourUnavailable();
 }
 
-export type Lookup = { result: LookupResult; collectedAt: string; festival: { region: RegionRef; fields: CurrentFields; datesVerified: boolean } | null };
+/** `intro` is the registration's own introduction text when its row was explicit (same content, festival type). */
+export type Lookup = { result: LookupResult; collectedAt: string; festival: { region: RegionRef; fields: CurrentFields; datesVerified: boolean; intro?: IntroText | null } | null };
 /**
  * Server-side identity check for `current:<code>:<contentid>`: detailCommon2 must return exactly one row with the
  * same explicit contentid, an explicit type (15 => festival) and a verified lDong pair equal to the id's region.
@@ -182,9 +186,10 @@ export async function lookupCurrent(call: TourCall, contentId: string, expected:
   try {
     const intro = await call("detailIntro2", { contentId, contentTypeId: "15" }), i = intro.rows[0];
     if (intro.rows.length === 1 && intro.total === 1 && explicit(i, "contentid", contentId) && explicit(i, "contenttypeid", "15")) {
-      const d = dates(i);
-      if (d.start) return { result: "verified", collectedAt: common.collectedAt, festival: { region, fields: { ...f, ...d }, datesVerified: true } };
+      const d = dates(i), text: IntroText = { program: introText(i.program, INTRO_FIELD_MAX.program), subevent: introText(i.subevent, INTRO_FIELD_MAX.subevent),
+        agelimit: introText(i.agelimit, INTRO_FIELD_MAX.agelimit), fee: introText(i.usetimefestival, INTRO_FIELD_MAX.fee) };
+      return { result: "verified", collectedAt: common.collectedAt, festival: { region, fields: d.start ? { ...f, ...d } : f, datesVerified: !!d.start, intro: text } };
     }
-  } catch { /* Dates are optional; identity stays verified. */ }
-  return { result: "verified", collectedAt: common.collectedAt, festival: { region, fields: f, datesVerified: false } };
+  } catch { /* Dates and introduction are optional; identity stays verified. */ }
+  return { result: "verified", collectedAt: common.collectedAt, festival: { region, fields: f, datesVerified: false, intro: null } };
 }

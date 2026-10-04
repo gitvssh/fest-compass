@@ -2,7 +2,7 @@ import { mkdir, readFile } from "node:fs/promises";
 import { isAbsolute, join } from "node:path";
 import { setTimeout as sleep } from "node:timers/promises";
 import { atomicJson } from "../lib/forecast/daily";
-import { runFestivalSources } from "../lib/festival-sources";
+import { runFestivalIntros, runFestivalSources } from "../lib/festival-sources";
 
 async function main() {
   const dir = process.env.SOURCE_DATA_DIR;
@@ -36,6 +36,9 @@ async function main() {
             const recent = await runFestivalSources(dir, process.env.TOUR_API_KEY ?? "", { maxCalls: 30 });
             console.log(JSON.stringify({ event: "festival-sources-recent", day, ...recent }));
           }
+          // Registration introductions follow the day's sweep; their failure never fails the source run.
+          const intros = await runFestivalIntros(dir, process.env.TOUR_API_KEY ?? "");
+          console.log(JSON.stringify({ event: "festival-intros", day, ...intros }));
           if (result.status === "failed") process.exitCode = process.argv.includes("--once") ? 1 : undefined;
         } catch { console.error("festival-source-refresh-failed"); if (process.argv.includes("--once")) process.exitCode = 1; }
       }

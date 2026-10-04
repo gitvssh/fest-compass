@@ -88,7 +88,7 @@ export function currentFestival(region: RegionRef, r: CurrentFields, datesVerifi
   const point = { latitude: r.latitude, longitude: r.longitude }, dated = datesVerified && !!r.start && !!r.end && r.end >= r.start;
   return { id: currentId(region, r.id), source: "current", contentId: r.id, name: r.title, region,
     start: dated ? r.start : null, end: dated ? r.end : null, datesVerified: dated, address: r.address,
-    point: validPoint(point) ? point : null, modifiedAt: r.modifiedAt, type: r.type ?? null, linkedArchiveId: linkedArchiveId(region, r.id, links), provenance: currentProvenance(collectedAt) };
+    point: validPoint(point) ? point : null, modifiedAt: r.modifiedAt, type: r.type ?? null, linkedArchiveId: linkedArchiveId(region, r.id, links), provenance: currentProvenance(collectedAt), marks: null };
 }
 /** Append a further page: only identical current ids collapse (first wins); same names never merge. */
 export function mergeCurrentItems(prev: CurrentFestival[], next: CurrentFestival[]): CurrentFestival[] {

@@ -9,6 +9,7 @@ import { parseFestivalId } from "@/lib/existing/identity";
 import type { ArchiveFestival, CurrentFestival, FestivalSearchResponse, RegionRef } from "@/lib/existing/types";
 import { editionYearOptions, FESTIVAL_TOPICS, selectedEditionYear } from "@/lib/related-search/query";
 import { isStale, keepBlock } from "./blocks";
+import { MarkBadges, MarkEvidence } from "./festival-marks";
 import { TypeBadge } from "./festival-type";
 import { dateOnly, periodLabel, timeLabel } from "./format";
 import { festivalMemory, shared, viewHref, type View } from "./memory";
@@ -98,6 +99,8 @@ export function ExistingShell({ id, children }: { id: string; children: ReactNod
         {current && <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
           <TypeBadge code={current.type} />
           <p className="min-w-0 break-words">{current.region.name} · 현재 등록 정보 · {current.datesVerified && current.start ? `등록 일정 ${periodLabel(current.start, current.end)}` : "등록 일정 미확인"}{archive ? ` · ${pastYears(archive)}` : ""}</p>
+          <MarkBadges marks={current.marks} />
+          <MarkEvidence marks={current.marks} />
           <InfoDialog label="등록 정보 출처" title="현재 등록 정보 출처" buttonClassName="region-button no-print min-h-8 px-2 py-1 text-xs">
             <p>한국관광공사에 현재 등록된 축제·행사 정보예요.</p>
             {current.address && <p>등록 주소: {current.address}</p>}

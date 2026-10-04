@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState, type FormEvent } from "react";
 import { FlowMap } from "@/components/guide/FlowMap";
-import { FESTIVAL_TYPES, festivalType, isFestivalTypeCode, type FestivalTypeCode } from "@/lib/existing/festival-types";
+import { hasMarks, MARK_KINDS, parseMarkKinds, type MarkKind } from "@/lib/existing/festival-marks";
+import { ALL_FESTIVALS, FESTIVAL_TYPES, festivalType, isFestivalTypeFilter, type FestivalTypeFilter } from "@/lib/existing/festival-types";
 import { mergeCurrentItems, normalizeKeyword } from "@/lib/existing/identity";
 import type { ArchiveFestival, CurrentBlock, CurrentFestival, FestivalSearchResponse } from "@/lib/existing/types";
 import { REGIONS, SOURCE } from "@/lib/region/model";
 import { writeAddress } from "./address";
 import { isStale, keepBlock } from "./blocks";
+import { MARK_ICONS, MarkBadges } from "./festival-marks";
 import { FESTIVAL_TYPE_ICONS, TypeBadge } from "./festival-type";
 import { koreaToday, periodLabel, timeLabel } from "./format";
 import { shared } from "./memory";
@@ -18,20 +20,30 @@ import { InfoDialog, LoadState } from "./ui";
 import { useKeyedRequest } from "./useKeyedRequest";
 
 const provinces = [...new Map(REGIONS.map(r => [r.provinceCode, r.provinceName])).entries()];
-type Applied = { q: string; province: string; district: string; type: FestivalTypeCode | null };
+// `type: "all"` = every festival type nationwide (only without a name or region). `marks` filter the shown list on the page.
+type Applied = { q: string; province: string; district: string; type: FestivalTypeFilter | null; marks: MarkKind[] };
 // A type list can be long (a whole country); it opens in steps so the page stays light.
 const REVEAL_STEP = 40;
 
 function readApplied(params: URLSearchParams): Applied {
   const q = normalizeKeyword(one(params, "q") ?? ""), province = one(params, "province") ?? "", district = one(params, "district") ?? "", type = one(params, "type");
   const valid = REGIONS.some(r => r.provinceCode === province && r.districtCode === district);
-  return { q, province: valid ? province : "", district: valid ? district : "", type: isFestivalTypeCode(type) ? type : null };
+  const scoped = !!q || valid, kind = isFestivalTypeFilter(type) && !(type === "all" && scoped) ? type : null;
+  return { q, province: valid ? province : "", district: valid ? district : "", type: kind, marks: parseMarkKinds(one(params, "mark")) };
 }
-function searchQuery(a: Applied): URLSearchParams {
+/** What the server is asked (marks are not: they filter the answer on the page). */
+function searchQuery(a: Omit<Applied, "marks">): URLSearchParams {
   const params = new URLSearchParams();
   if (a.q) params.set("q", a.q);
   if (a.district) { params.set("province", a.province); params.set("district", a.district); }
   if (a.type) params.set("type", a.type);
+  params.sort();
+  return params;
+}
+/** The page address: the search plus the chosen marks. */
+function addressQuery(a: Applied): URLSearchParams {
+  const params = searchQuery(a);
+  if (a.marks.length) params.set("mark", a.marks.join(","));
   params.sort();
   return params;
 }
@@ -97,39 +109,51 @@ export function FestivalSearch() {
   // Back/forward or a restored address replaces the inputs with the applied condition.
   useEffect(() => { setQ(applied.q); setProvince(applied.province); setDistrict(applied.district); setFieldError(null); }, [applied]);
   const query = searchQuery(applied).toString();
-  useEffect(() => { shared.search = query || null; }, [query]);
+  const pageAddress = addressQuery(applied).toString();
+  useEffect(() => { shared.search = pageAddress || null; }, [pageAddress]);
   // Without a condition the first page still offers the festivals with past-edition records as starting choices.
   const url = query ? `/api/existing/festivals?${query}` : "/api/existing/festivals";
   const result = useKeyedRequest<FestivalSearchResponse>(url, merge);
   const data = result.data;
   const more = useMoreCurrent(query, data && (data.current.status === "complete" || data.current.status === "empty") ? data.current : null, result.retry);
   const list = data ? results(data.archive.items, more.items) : [];
-  const [reveal, setReveal] = useState({ query, limit: REVEAL_STEP });
-  const limit = reveal.query === query ? reveal.limit : REVEAL_STEP;
+  // Marks filter what is listed; a festival whose introduction was not read yet never passes a filter.
+  const filtered = applied.marks.length ? list.filter(r => hasMarks(r.current?.marks, applied.marks)) : list;
+  const unchecked = list.filter(r => !r.current?.marks).length;
+  const [reveal, setReveal] = useState({ query: pageAddress, limit: REVEAL_STEP });
+  const limit = reveal.query === pageAddress ? reveal.limit : REVEAL_STEP;
   // Keyword answers already come in source pages; other lists open in steps on the page.
-  const visible = data?.current.mode === "keyword" ? list : list.slice(0, limit);
+  const visible = data?.current.mode === "keyword" ? filtered : filtered.slice(0, limit);
   useEffect(() => { if (data && focusResults.current) { focusResults.current = false; resultsHeading.current?.focus(); } }, [data]);
 
   /** Applies the typed name and region with `type`. A chip keeps focus where it is; the form moves to the results. */
-  function apply(type: FestivalTypeCode | null, from: "form" | "chip") {
+  function apply(type: FestivalTypeFilter | null, from: "form" | "chip") {
     const keyword = normalizeKeyword(q);
     if (province && !district) { setFieldError({ field: "district", text: "시군구까지 골라 주세요. 지역 없이 찾으려면 시도를 ‘전체’로 두세요." }); return; }
     if (!keyword && !district && !type && from === "form") { setFieldError({ field: "q", text: "축제 이름을 입력하거나 지역·유형을 골라 주세요." }); return; }
     setFieldError(null);
-    const next = searchQuery({ q: keyword, province: district ? province : "", district, type });
-    if (next.toString() === query) {
+    // With a name or a region, "every festival type" is simply no type condition.
+    const next: Applied = { q: keyword, province: district ? province : "", district, type: type === "all" && (keyword || district) ? null : type, marks: applied.marks };
+    if (searchQuery(next).toString() === query) {
       // The same condition again: search once more and move to its results instead of waiting for an address change.
       if (from === "form") { result.retry(); resultsHeading.current?.focus(); }
       return;
     }
     focusResults.current = from === "form";
-    writeAddress(next);
+    writeAddress(addressQuery(next));
   }
   function submit(event: FormEvent) { event.preventDefault(); apply(applied.type, "form"); }
+  // A pressed chip lifts its condition again. "전체" lists every festival type nationwide when nothing else narrows the search.
+  const scoped = !!applied.q || !!applied.district, allPressed = applied.type === "all" || (!applied.type && scoped);
+  const chooseAll = () => apply(applied.type === "all" || normalizeKeyword(q) || district ? null : "all", "chip");
+  const chooseType = (code: FestivalTypeFilter) => apply(applied.type === code ? null : code, "chip");
+  const toggleMark = (kind: MarkKind) => writeAddress(addressQuery({ ...applied, marks: applied.marks.includes(kind) ? applied.marks.filter(k => k !== kind) : [...applied.marks, kind] }));
   const districts = REGIONS.filter(r => r.provinceCode === province);
   const regionName = applied.district ? REGIONS.find(r => r.provinceCode === applied.province && r.districtCode === applied.district) : null;
-  const regionLabel = regionName ? `${regionName.provinceName} ${regionName.districtName}` : null, typeInfo = festivalType(applied.type);
-  const subject = [applied.q ? `‘${applied.q}’` : "", regionLabel ?? "", typeInfo?.label ?? ""].filter(Boolean).join(" · ");
+  const regionLabel = regionName ? `${regionName.provinceName} ${regionName.districtName}` : null;
+  const typeLabel = applied.type === "all" ? ALL_FESTIVALS.label : festivalType(applied.type)?.label ?? null;
+  const subject = [applied.q ? `‘${applied.q}’` : "", regionLabel ?? "", typeLabel ?? ""].filter(Boolean).join(" · ");
+  const markLabel = MARK_KINDS.filter(m => applied.marks.includes(m.kind)).map(m => m.label).join("·");
 
   return <div className="space-y-6">
     <header>
@@ -158,13 +182,13 @@ export function FestivalSearch() {
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-ink/10 pt-3 sm:col-span-4">
         <p id={`${ids}-types`} className="text-sm font-bold">축제 유형</p>
         <div role="group" aria-labelledby={`${ids}-types`} className="flex flex-wrap gap-2">
-          <TypeChip icon={LayoutGrid} label="전체" pressed={!applied.type} onClick={() => apply(null, "chip")} />
-          {FESTIVAL_TYPES.map(t => <TypeChip key={t.code} icon={FESTIVAL_TYPE_ICONS[t.icon]} label={t.short} hint={t.hint} pressed={applied.type === t.code} onClick={() => apply(t.code, "chip")} />)}
+          <TypeChip icon={LayoutGrid} label={ALL_FESTIVALS.short} pressed={allPressed} onClick={chooseAll} />
+          {FESTIVAL_TYPES.map(t => <TypeChip key={t.code} icon={FESTIVAL_TYPE_ICONS[t.icon]} label={t.short} hint={t.hint} pressed={applied.type === t.code} onClick={() => chooseType(t.code)} />)}
         </div>
         {/* A chip keeps focus, and the list may start below the screen: one step to the answer, next to the chips. */}
-        {typeInfo && data && !result.loading && (list.length ? <button type="button" onClick={() => resultsHeading.current?.focus()} className="inline-flex min-h-8 items-center gap-1 text-sm font-bold text-blue hover:underline">
-          {typeInfo.label} {list.length}건 보기<ArrowDown aria-hidden="true" size={15} />
-        </button> : <p className="text-sm font-bold text-muted">{typeInfo.label} 0건</p>)}
+        {typeLabel && data && !result.loading && (filtered.length ? <button type="button" onClick={() => resultsHeading.current?.focus()} className="inline-flex min-h-8 items-center gap-1 text-sm font-bold text-blue hover:underline">
+          {typeLabel} {filtered.length}건 보기<ArrowDown aria-hidden="true" size={15} />
+        </button> : <p className="text-sm font-bold text-muted">{typeLabel} 0건</p>)}
         <Link href="/compare/scale" className="inline-flex min-h-8 items-center gap-1.5 text-sm font-bold text-blue hover:underline lg:ml-auto"><Trophy aria-hidden="true" size={15} />문화관광축제 방문 규모</Link>
       </div>
       {fieldError && <p id={`${ids}-error`} role="alert" className="text-sm font-bold text-red-800 sm:col-span-4">{fieldError.text}</p>}
@@ -178,11 +202,16 @@ export function FestivalSearch() {
       </h2>
       <LoadState loading={result.loading} failure={result.failure} hasData={!!data} retrievedAt={data?.retrievedAt} subject="축제 목록을" onRetry={result.retry} />
       {data && <>
-        <p aria-live="polite" className="text-sm text-muted">축제 {list.length}건{more.next ? " 표시" : visible.length < list.length ? ` 중 ${visible.length}건 표시` : ""}</p>
+        <p aria-live="polite" className="text-sm text-muted">축제 {list.length}건{applied.marks.length ? ` 중 ${markLabel} ${filtered.length}건` : ""}{more.next ? " 표시" : visible.length < filtered.length ? ` 중 ${visible.length}건 표시` : ""}</p>
         <SourceNotes archive={data.archive} block={data.current} onRetry={result.retry} searched={!!query} regionChosen={!!applied.district} />
+        {list.length - unchecked > 0 && <MarkFilter list={list} chosen={applied.marks} unchecked={unchecked} onToggle={toggleMark} />}
         {visible.length > 0 && <ul aria-label="찾은 축제" className="grid gap-2 sm:grid-cols-2">{visible.map(r => <li key={r.id}><ResultCard result={r} chosenType={applied.type} /></li>)}</ul>}
-        {visible.length < list.length && <button type="button" className="region-button" onClick={() => setReveal({ query, limit: limit + REVEAL_STEP })}>축제 더 보기 ({list.length - visible.length}건 남음)</button>}
-        <CurrentSource block={data.current} shown={more.items.length} keyword={applied.q} regionLabel={regionLabel} typeLabel={typeInfo?.label ?? null} />
+        {list.length > 0 && filtered.length === 0 && <div className="region-card flex flex-wrap items-center gap-3 text-sm">
+          <p>{markLabel} 표시가 있는 축제가 이 목록에는 없어요.</p>
+          <button type="button" className="region-button" onClick={() => writeAddress(addressQuery({ ...applied, marks: [] }))}>거르기 지우기</button>
+        </div>}
+        {visible.length < filtered.length && <button type="button" className="region-button" onClick={() => setReveal({ query: pageAddress, limit: limit + REVEAL_STEP })}>축제 더 보기 ({filtered.length - visible.length}건 남음)</button>}
+        <CurrentSource block={data.current} shown={more.items.length} keyword={applied.q} regionLabel={regionLabel} typeLabel={typeLabel} />
         {more.restarted && <p role="status" className="text-sm text-muted">등록 목록이 바뀌어 처음부터 다시 불러왔어요.</p>}
         {more.next && <div className="flex flex-wrap items-center gap-2">
           <button type="button" className="region-button" disabled={more.loading} onClick={() => void more.loadMore()}>{more.loading ? "다음 목록을 불러오고 있어요…" : "축제 더 보기"}</button>
@@ -205,7 +234,22 @@ function TypeChip({ icon: Icon, label, hint = null, pressed, onClick }: { icon: 
   </button>;
 }
 
-function ResultCard({ result: { id, current, archive }, chosenType }: { result: Result; chosenType: FestivalTypeCode | null }) {
+/** Filters by what registration introductions say, with how many listed festivals carry each mark. */
+function MarkFilter({ list, chosen, unchecked, onToggle }: { list: Result[]; chosen: MarkKind[]; unchecked: number; onToggle: (kind: MarkKind) => void }) {
+  const id = useId();
+  return <div className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl bg-paper px-3 py-2.5">
+    <p id={id} className="text-sm font-bold">소개 글로 거르기</p>
+    <div role="group" aria-labelledby={id} className="flex flex-wrap gap-2">
+      {MARK_KINDS.map(m => { const Icon = MARK_ICONS[m.kind], count = list.filter(r => hasMarks(r.current?.marks, [m.kind])).length;
+        return <button key={m.kind} type="button" aria-pressed={chosen.includes(m.kind)} onClick={() => onToggle(m.kind)} className="region-button rounded-full px-3">
+          <Icon aria-hidden="true" size={16} strokeWidth={2.25} />{m.label}<span className="text-xs font-semibold tabular-nums opacity-70">{count}</span>
+        </button>; })}
+    </div>
+    {unchecked > 0 && <p className="text-xs text-muted">{chosen.length ? `소개 글을 아직 확인하지 못한 ${unchecked}건은 빠져요` : `소개 글 확인 전 ${unchecked}건`}</p>}
+  </div>;
+}
+
+function ResultCard({ result: { id, current, archive }, chosenType }: { result: Result; chosenType: FestivalTypeFilter | null }) {
   const f = current ?? archive!;
   return <Link href={festivalPath(id, "visits")} onClick={() => { shared.focusTitle = true; }} className="block h-full rounded-2xl border border-ink/10 bg-white p-4 hover:border-blue">
     {/* Under a chosen type every card shares it; the badge then only repeats the heading. */}
@@ -213,6 +257,7 @@ function ResultCard({ result: { id, current, archive }, chosenType }: { result: 
     <span className="block font-extrabold">{f.name}</span>
     <span className="mt-1 block text-sm text-muted">{f.region.name}</span>
     {current && <span className="mt-1 block text-sm">{current.datesVerified && current.start ? `등록 일정 ${periodLabel(current.start, current.end)}` : "등록 일정은 축제를 열면 확인해요"}</span>}
+    <MarkBadges marks={current?.marks} className="mt-1.5" />
     {archive && <span className="mt-1 block text-sm">{pastYears(archive)}</span>}
     {current?.address && <span className="mt-1 block break-words text-xs text-muted">{current.address}</span>}
   </Link>;
@@ -242,7 +287,7 @@ function CurrentSource({ block, shown, keyword, regionLabel, typeLabel }: { bloc
     {block.range && <p>현재 등록 축제는 {periodLabel(block.range.start, block.range.end)}와 겹치는 일정만 보여드려요.</p>}
     <InfoDialog label="검색 출처" title="현재 등록 축제 검색 출처" buttonClassName="region-button min-h-8 px-2 py-1 text-xs">
       <p>한국관광공사 축제·행사 등록 정보에서 {how} 찾았어요.</p>
-      {typeLabel && <p>축제 유형은 한국관광공사가 등록 정보에 붙인 분류예요.</p>}
+      {typeLabel && <p>축제 유형은 한국관광공사가 등록 정보에 붙인 분류예요.{typeLabel === ALL_FESTIVALS.label ? " 모든 축제는 여섯 분류를 모두 보여드리고, 공연·전시 같은 행사는 빼요." : ""}</p>}
       <p>지금 {shown}건을 불러왔어요.{block.next ? " 더 보기로 이어서 볼 수 있어요." : ""}</p>
       {block.collectedAt && <p>{timeLabel(block.collectedAt)} 조회</p>}
       <p><a className="font-bold text-blue underline" href={SOURCE} target="_blank" rel="noreferrer">공공데이터포털 관광정보 서비스 ↗</a></p>

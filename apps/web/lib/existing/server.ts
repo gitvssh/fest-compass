@@ -8,7 +8,7 @@ import { defaultHostVisits, type HostVisitsResolver } from "../datalab/host-visi
 import { defaultVisitorProfile, type VisitorProfileResolver } from "../datalab/visitor-profile";
 import { loadRuntimeSummary } from "../forecast/runtime";
 import { loadSnapshots } from "../forecast/store";
-import { readNationalDatasets, readRegistrationPeriods } from "../festival-sources";
+import { readIntroStore, readNationalDatasets, readRegistrationPeriods } from "../festival-sources";
 import { koreaDate } from "../region/calendar";
 import { HISTORY_SOURCE, selectHistory, TYPES, type Dataset } from "../region/model";
 import { getRegionData } from "../region/service";
@@ -19,7 +19,8 @@ import { archiveCatalogue, currentFestival, parseFestivalId, regionRef, searchAr
 import { dailyValues, datesBetween, defaultYear, editionHistory, editionWindow, linkedVisitsCompatible, monthlyMeans, sharedYMax, VISIT_DEFINITION, type LinkedVisits, type Observed, yearCoverage } from "./history";
 import { festivalsKey, historyKey, InvalidRequest, monthlyKey, resourcesKey, scheduleKey } from "./request";
 import { holidaySources, scheduleDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
-import type { FestivalTypeCode } from "./festival-types";
+import { festivalMarks, type FestivalMarks } from "./festival-marks";
+import type { FestivalTypeFilter } from "./festival-types";
 import { collectRegionEvents, collectTypeEvents, createTourCall, lookupCurrent, searchKeywordPage, TourChanged, type RegionEvents, type TourCall } from "./tour";
 import type { ArchiveFestival, CurrentBlock, CurrentFestival, FestivalSearchRequest, FestivalSearchResponse, HistoryRequest, HistoryResponse, HostAreaVisits, MonthlyRequest, MonthlyResponse, Range, RegionRef, ResourceItem,
   ResourceKind, ResourcesRequest, ResourcesResponse, ScheduleRequest, ScheduleResponse, SourceBlock, SourceRef, VisitorProfileSelection } from "./types";
@@ -42,6 +43,8 @@ export type ExistingDeps = {
   /** Reviewed DataLab visitor profiles of the exact selected editions; absent -> visitorProfile is null. Production injects the verified default. */
   visitorProfile?: VisitorProfileResolver;
   registrationPeriods?: (contentId: string, regionCode: string) => Promise<{ id: string; start: string; end: string; collectedAt: string; name?: string }[]>;
+  /** Marks from registration introductions the source worker has read, by `regionCode:contentId`; null when none are stored. */
+  intros?: () => Promise<ReadonlyMap<string, FestivalMarks> | null>;
   now?: () => string;
   today?: () => string;
 };
@@ -93,7 +96,7 @@ export function createExistingService(deps: ExistingDeps) {
     return { state, festivals };
   }
   async function list(q: Query): Promise<ResourceResult | null> { try { return await deps.regionList(q); } catch { return null; } }
-  async function events(region: RegionRef, range: Range, type: FestivalTypeCode | null = null): Promise<RegionEvents | null> { try { return await collectRegionEvents(deps.tour, region, range, type); } catch { return null; } }
+  async function events(region: RegionRef, range: Range, type: FestivalTypeFilter | null = null): Promise<RegionEvents | null> { try { return await collectRegionEvents(deps.tour, region, range, type); } catch { return null; } }
   const block = (r: ResourceResult | null): SourceBlock => !r || r.status === "unavailable" ? unavailable : { status: r.status, error: null, collectedAt: r.collectedAt };
   // Optional block: a resolver failure omits only hostVisits and logs a fixed category.
   function hostVisits(festival: ArchiveFestival, editionIds: string[]): HostAreaVisits | null {
@@ -105,6 +108,14 @@ export function createExistingService(deps: ExistingDeps) {
     try { return deps.visitorProfile(festival, editionIds); } catch { console.error("datalab-visitor-profile: resolver-failed"); return null; }
   }
 
+  // Optional marks: a store read failure leaves every festival unmarked ("not read yet") and logs a fixed category.
+  async function withMarks(items: CurrentFestival[]): Promise<CurrentFestival[]> {
+    if (!items.length || !deps.intros) return items;
+    let index: ReadonlyMap<string, FestivalMarks> | null = null;
+    try { index = await deps.intros(); } catch { console.error("festival-intros: read-failed"); }
+    return index ? items.map(i => ({ ...i, marks: index!.get(`${i.region.code}:${i.contentId}`) ?? null })) : items;
+  }
+
   async function current(req: FestivalSearchRequest, target: ReturnType<typeof parseFestivalId>): Promise<CurrentBlock> {
     const none: CurrentBlock = { status: "not-requested", error: null, collectedAt: null, mode: null, range: null, page: null, next: null, continuity: null, total: null, omitted: 0, lookup: null, items: [] };
     if (target?.source === "archive") return none;
@@ -112,7 +123,10 @@ export function createExistingService(deps: ExistingDeps) {
       const expected = regionRef(target.province, target.district)!;
       try {
         const found = await lookupCurrent(deps.tour, target.contentId, expected);
-        const items = found.festival ? [currentFestival(found.festival.region, found.festival.fields, found.festival.datesVerified, found.collectedAt)] : [];
+        let items = found.festival ? [currentFestival(found.festival.region, found.festival.fields, found.festival.datesVerified, found.collectedAt)] : [];
+        // The introduction just read is newer than any stored one.
+        const live = found.festival?.intro;
+        items = live ? items.map(i => ({ ...i, marks: { checkedAt: found.collectedAt, items: festivalMarks(live) } })) : await withMarks(items);
         if (items[0] && deps.registrationPeriods) {
           try {
             items[0].periods = (await deps.registrationPeriods(items[0].contentId, items[0].region.code)).filter(p => !p.name || p.name === items[0].name).map(p => ({ id: p.id, start: p.start, end: p.end, collectedAt: p.collectedAt }));
@@ -126,7 +140,7 @@ export function createExistingService(deps: ExistingDeps) {
       const continuity = req.total === null ? null : "consistent" as const;
       try {
         const page = await searchKeywordPage(deps.tour, { keyword: req.q, region, page: req.page, expectTotal: req.total, type: req.type });
-        const items = page.items.map(i => currentFestival(i.region, i.fields, false, page.collectedAt));
+        const items = await withMarks(page.items.map(i => currentFestival(i.region, i.fields, false, page.collectedAt)));
         return { ...none, status: items.length ? "complete" : "empty", collectedAt: page.collectedAt, mode: "keyword", page: page.page, next: page.next, continuity, total: page.total, omitted: page.omitted, items };
       } catch (e) { return { ...none, ...unavailable, mode: "keyword", page: req.page, continuity: e instanceof TourChanged ? "changed" : continuity }; }
     }
@@ -136,14 +150,14 @@ export function createExistingService(deps: ExistingDeps) {
       const range = { start: req.start, end: req.end };
       try {
         const found = await collectTypeEvents(deps.tour, req.type, range);
-        const items = found.items.map(i => currentFestival(i.region, i.event, i.event.datesKnown, found.collectedAt)).sort(byStart);
+        const items = await withMarks(found.items.map(i => currentFestival(i.region, i.event, i.event.datesKnown, found.collectedAt)).sort(byStart));
         return { ...none, status: found.status, collectedAt: found.collectedAt, mode: "type-list", range, page: 1, total: found.total, omitted: found.omitted, items };
       } catch { return { ...none, ...unavailable, mode: "type-list", range, page: 1 }; }
     }
     if (!region) return none;
     const range = { start: req.start, end: req.end }, found = await events(region, range, req.type);
     if (!found) return { ...none, ...unavailable, mode: "region-list", range, page: 1 };
-    const items = found.items.map(r => currentFestival(region, r, r.datesKnown, found.collectedAt)).sort(byStart);
+    const items = await withMarks(found.items.map(r => currentFestival(region, r, r.datesKnown, found.collectedAt)).sort(byStart));
     return { ...none, status: found.status, collectedAt: found.collectedAt, mode: "region-list", range, page: 1, total: found.total, items };
   }
 
@@ -227,6 +241,16 @@ export function createExistingService(deps: ExistingDeps) {
   return { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule };
 }
 
+// The introduction store changes once a day; one validated read serves requests for five minutes.
+let marksCache: { at: number; value: Promise<ReadonlyMap<string, FestivalMarks> | null> } | null = null;
+async function readMarks(): Promise<ReadonlyMap<string, FestivalMarks> | null> {
+  const dir = festivalSourceDir(), store = dir ? await readIntroStore(dir) : null;
+  return store ? new Map(Object.entries(store.entries).map(([key, e]) => [key, { checkedAt: e.collectedAt, items: e.found ? festivalMarks(e) : [] }])) : null;
+}
+function cachedMarks() {
+  if (!marksCache || Date.now() - marksCache.at > 300_000) marksCache = { at: Date.now(), value: readMarks().catch(() => { marksCache = null; throw new Error("intro-read-failed"); }) };
+  return marksCache.value;
+}
 const service = createExistingService({ archive: archiveState, regionList: async q => (await getRegionData(q)).resources, tour: createTourCall(), hostVisits: defaultHostVisits, visitorProfile: defaultVisitorProfile,
-  registrationPeriods: async (contentId, code) => { const dir = festivalSourceDir(); return dir ? readRegistrationPeriods(dir, contentId, code) : []; } });
+  registrationPeriods: async (contentId, code) => { const dir = festivalSourceDir(); return dir ? readRegistrationPeriods(dir, contentId, code) : []; }, intros: cachedMarks });
 export const { loadFestivals, loadHistory, loadMonthly, loadResources, loadSchedule } = service;

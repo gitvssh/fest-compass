@@ -1,4 +1,5 @@
-import type { FestivalTypeCode } from "./festival-types";
+import type { FestivalTypeFilter } from "./festival-types";
+import type { FestivalMarks } from "./festival-marks";
 // Response contracts for the existing-festival journey (UC-FC-009). Pure types and constants; safe for client imports.
 import type { VisitorProfileSelection } from "../datalab/visitor-profile-types";
 import type { ResourcePhoto } from "../resources/types";
@@ -30,13 +31,15 @@ export type CurrentFestival = {
   /** Provider classification (lclsSystm3, e.g. EV010300 지역특산물축제), null when the row states none. */
   type: string | null;
   linkedArchiveId: string | null; provenance: PublicSource;
+  /** Marks read from the registration's introduction; null until it was read (never "none"). */
+  marks: FestivalMarks | null;
   /** Observed provider registration dates, never inferred festival editions. */
   periods?: { id: string; start: string; end: string; collectedAt: string }[];
 };
 
 export type FestivalSearchRequest = { q: string; province: string | null; district: string | null; start: string; end: string; page: number; total: number | null; id: string | null;
   /** Festival type (lclsSystm3) narrowing every mode; alone it lists that type nationwide for the range. */
-  type: FestivalTypeCode | null };
+  type: FestivalTypeFilter | null };
 export type CurrentMode = "keyword" | "region-list" | "type-list" | "lookup";
 export type LookupResult = "verified" | "not-found" | "not-festival" | "region-mismatch";
 export type CurrentBlock = SourceBlock & {

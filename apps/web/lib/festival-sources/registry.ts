@@ -1,5 +1,6 @@
 import { unlink } from "node:fs/promises";
 import { join } from "node:path";
+import { classificationCode } from "../existing/festival-types";
 import { verifiedLdongRegion } from "../existing/identity";
 import { validDate } from "../kto/probe";
 import { isKtoSuccessCode, parseKtoWire } from "../kto/wire";
@@ -14,14 +15,15 @@ export const REGISTRY = {
   pageMaxBytes: 1024 * 1024, snapshotMaxBytes: 8 * 1024 * 1024, historyMaxBytes: 32 * 1024 * 1024, maxKeys: 50_000, maxObservationsPerKey: 20,
 } as const;
 
-export type RegistryRow = { contentId: string; regionCode: string | null; name: string; start: string | null; end: string | null; modifiedAt: string | null };
+/** `type` is the provider class (lclsSystm3); sweeps stored before it was kept have no `type`. */
+export type RegistryRow = { contentId: string; regionCode: string | null; name: string; start: string | null; end: string | null; modifiedAt: string | null; type?: string | null };
 export type RegistryPage = { eventStartDate: string; pageNo: number; total: number; bodyHash: string; rows: RegistryRow[] };
 export type RegistrySnapshot = { collectedAt: string; eventStartDate: string; total: number; pages: { pageNo: number; bodyHash: string }[]; items: RegistryRow[] };
 type Observation = { start: string; end: string; name: string; firstSeenAt: string; lastSeenAt: string };
 export type RegistryHistory = { updatedAt: string; entries: Record<string, Observation[]> };
 export type RegistrationPeriod = { id: string; contentId: string; name: string; regionCode: string; start: string; end: string; collectedAt: string };
 
-const ACCESS_STOP = new Set(["20", "22", "23", "29", "30", "31"]);
+export const ACCESS_STOP: ReadonlySet<string> = new Set(["20", "22", "23", "29", "30", "31"]);
 const expectedRows = (total: number, pageNo: number) => Math.max(0, Math.min(REGISTRY.pageSize, total - (pageNo - 1) * REGISTRY.pageSize));
 const eventDates = (row: Record<string, unknown>) => {
   const start = validDate(row.eventstartdate), end = validDate(row.eventenddate);
@@ -59,7 +61,7 @@ export async function fetchRegistryPage(request: { eventStartDate: string; pageN
     if (ids.has(contentId)) throw new Error("registry-duplicate-row");
     ids.add(contentId);
     return { contentId, regionCode: verifiedLdongRegion(row.lDongRegnCd, row.lDongSignguCd)?.code ?? null, name: row.title.trim().slice(0, 300),
-      ...eventDates(row), modifiedAt: /^\d{14}$/.test(String(row.modifiedtime)) ? String(row.modifiedtime) : null };
+      ...eventDates(row), modifiedAt: /^\d{14}$/.test(String(row.modifiedtime)) ? String(row.modifiedtime) : null, type: classificationCode(row.lclsSystm3) };
   });
   return { eventStartDate, pageNo, total: total!, bodyHash: sha256(body), rows };
 }
@@ -68,7 +70,8 @@ const isDay = (v: unknown): v is string => typeof v === "string" && validDate(v)
 function validateRow(r: unknown): RegistryRow {
   if (!isRecord(r) || typeof r.contentId !== "string" || !/^\d{1,20}$/.test(r.contentId) || !(r.regionCode === null || (typeof r.regionCode === "string" && /^\d{5,10}$/.test(r.regionCode)))
     || typeof r.name !== "string" || !r.name || r.name.length > 300 || !(r.modifiedAt === null || (typeof r.modifiedAt === "string" && /^\d{14}$/.test(r.modifiedAt)))
-    || !((r.start === null && r.end === null) || (isDay(r.start) && isDay(r.end) && r.end >= r.start))) throw new Error("invalid-registry-row");
+    || !((r.start === null && r.end === null) || (isDay(r.start) && isDay(r.end) && r.end >= r.start))
+    || !(r.type === undefined || r.type === null || (typeof r.type === "string" && /^EV\d{6}$/.test(r.type)))) throw new Error("invalid-registry-row");
   return r as RegistryRow;
 }
 function validatePage(value: unknown): RegistryPage {
