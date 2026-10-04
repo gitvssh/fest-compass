@@ -4,6 +4,7 @@ import { Play } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DialogHeader } from "@/components/existing/ui";
+import { useBottomDock } from "@/components/useBottomDock";
 import { isConsentModalOpen, isSiteConsentOpen } from "@/lib/analytics/consent";
 import {
   INTRO_MEDIA,
@@ -28,6 +29,8 @@ export function IntroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [offerVisible, setOfferVisible] = useState(false);
+  const offerRef = useRef<HTMLElement>(null);
+  useBottomDock(offerRef, offerVisible);
   const [ended, setEnded] = useState(false);
 
   const openPlayer = useCallback((autoplay: boolean) => {
@@ -77,14 +80,15 @@ export function IntroVideo() {
     // fallback, the tag manager's own modal may). Offer only once the question has stayed away
     // for a while, and step aside again whenever it comes back, so two cards never share the
     // bottom of the screen.
-    const startedAt = Date.now();
+    // Monotonic time: a wall-clock adjustment must not shorten the waits.
+    const startedAt = performance.now();
     let clearSince = startedAt;
     const poll = window.setInterval(() => {
       if (hasHandledIntro()) {
         window.clearInterval(poll);
         return;
       }
-      const now = Date.now();
+      const now = performance.now();
       if (isSiteConsentOpen() || (isConsentModalOpen() && now - startedAt < CONSENT_WAIT_LIMIT_MS)) {
         clearSince = now;
         setOfferVisible(false);
@@ -130,6 +134,7 @@ export function IntroVideo() {
 
       {offerVisible ? (
         <aside
+          ref={offerRef}
           aria-labelledby="intro-offer-title"
           className="no-print fixed inset-x-3 bottom-3 z-40 flex items-center gap-2 rounded-2xl border border-ink/10 bg-white p-2 pl-4 shadow-card motion-safe:animate-[intro-offer_300ms_ease-out] sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[380px] sm:flex-wrap sm:gap-0 sm:p-4"
         >

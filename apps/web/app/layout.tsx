@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AppShell } from "@/components/AppShell";
 import { isPublicReadonly } from "@/lib/app-mode";
 import { siteConfig, siteRobots } from "@/lib/site";
+import { CONSENT_TAKEOVER_ATTRIBUTE } from "@/lib/analytics/consent";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -32,7 +33,8 @@ export function generateMetadata(): Metadata {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const appMode = isPublicReadonly() ? "public-readonly" : "editor";
   return (
-    <html lang="ko">
+    // Served with the consent takeover mark so the tag manager's own modal cannot flash before the app starts.
+    <html lang="ko" {...{ [CONSENT_TAKEOVER_ATTRIBUTE]: "" }}>
       <body className="font-sans antialiased" data-app-mode={appMode}>
         <AppShell>{children}</AppShell>
       </body>

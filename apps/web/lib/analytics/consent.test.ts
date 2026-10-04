@@ -7,6 +7,7 @@ import {
   OPEN_CONSENT_EVENT,
   closeDefaultModal,
   getConsentApi,
+  hasConsentManager,
   isConsentModalOpen,
   isSiteConsentOpen,
   openConsentSettings,
@@ -274,3 +275,16 @@ test("앱은 동의 어휘를 갖지 않는다 — 전체 허용·거부만 넘�
   assert.equal(/localStorage|sessionStorage|document\.cookie/.test(source), false, "결정을 앱이 저장하면 안 된다");
   assert.equal(/["'][A-Za-z0-9]{4}["']/.test(source), false, "purpose ID 형태의 리터럴이 있으면 안 된다");
 });
+
+test("페이지는 기본 창을 가린 채 오고, 태그 관리자가 없을 때만 앱이 바로 가림을 푼다", () => {
+  const layout = readFileSync(new URL("../../app/layout.tsx", import.meta.url), "utf8");
+  assert.match(layout, /<html[^>]*\[CONSENT_TAKEOVER_ATTRIBUTE\]/, "서버가 보낸 첫 화면부터 가린다");
+  assert.equal(hasConsentManager(), false, "서버 렌더");
+  installBrowser();
+  assert.equal(hasConsentManager(), false, "태그 관리자 없음");
+  installBrowser({ track() {} });
+  assert.equal(hasConsentManager(), true, "동의 API가 준비되기 전이라도 로더가 있으면 기다린다");
+  const css = readFileSync(new URL("../../app/globals.css", import.meta.url), "utf8");
+  assert.ok(css.includes(`html[${CONSENT_TAKEOVER_ATTRIBUTE}] .cf_modal_container { display: none !important; }`));
+});
+

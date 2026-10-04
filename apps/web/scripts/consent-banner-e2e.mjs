@@ -22,7 +22,7 @@ const check = (name, detail = {}) => { report.checks.push({ name, ...detail }); 
  * visitor, `modal = false` on a closed modal throws, and the choice goes through `setAll`.
  * A choice is remembered with a cookie so a reload behaves like a decided visitor.
  */
-const zarazStub = ({ readyAfterMs = 300, modalAfterMs = 1500 } = {}) => `(() => {
+const zarazStub = ({ readyAfterMs = 300, modalAfterMs = 1500, openBeforeApp = false } = {}) => `(() => {
   const log = { setAll: [], sendQueuedEvents: 0, modalWrites: [], modalVisibleSamples: 0, modalOpenedAt: null, readyAt: null };
   let open = false, host = null;
   const render = () => {
@@ -53,6 +53,8 @@ const zarazStub = ({ readyAfterMs = 300, modalAfterMs = 1500 } = {}) => `(() => 
     const rect = dialog?.getBoundingClientRect();
     if (rect && rect.width > 0 && rect.height > 0 && getComputedStyle(host).display !== "none") log.modalVisibleSamples += 1;
   }, 50);
+  // A cold first load: the zone's modal can be on screen before any app script runs.
+  if (${openBeforeApp}) new MutationObserver((_, observer) => { if (document.body) { observer.disconnect(); open = true; render(); } }).observe(document, { childList: true, subtree: true });
   window.addEventListener("DOMContentLoaded", () => setTimeout(() => {
     consent.APIReady = true;
     log.readyAt = performance.now();
@@ -78,6 +80,14 @@ const takeover = (page) => page.evaluate(() => document.documentElement.hasAttri
 const headingTop = (page) => page.evaluate(() => document.getElementById("purpose-heading")?.getBoundingClientRect().top);
 const overflow = (page) => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
 const inViewport = (box, viewport) => box && box.x >= 0 && box.y >= 0 && box.x + box.width <= viewport.width + 0.5 && box.y + box.height <= viewport.height + 0.5;
+/** Scrolled to the very end, the footer's consent button sits above the fixed card and takes a real click. */
+async function footerClearOf(page, card) {
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await page.waitForTimeout(150);
+  const button = await footerReopen(page).boundingBox(), cardBox = await card.boundingBox();
+  assert.ok(button && cardBox && button.y + button.height <= cardBox.y, `footer button (bottom ${button && button.y + button.height}) must clear the card (top ${cardBox?.y})`);
+  return { button, card: cardBox };
+}
 
 async function expectNoOfferWhileAsking(page, ms = 1500) {
   await page.waitForTimeout(ms);
@@ -247,6 +257,26 @@ try {
     assert.ok(inViewport(offerBox, viewport));
     await page.screenshot({ path: join(output, "after-deny-offer-390.png") });
     check("phone: banner fits without overflow, the offer waits and follows", { banner: box, offer: offerBox });
+    // The fixed offer never hides the end of the page: the footer scrolls above it and its button takes the click.
+    const clear = await footerClearOf(page, offer(page));
+    await footerReopen(page).click({ timeout: 5000 });
+    await banner(page).waitFor({ state: "visible" });
+    await footerClearOf(page, banner(page));
+    await page.screenshot({ path: join(output, "footer-clear-390.png") });
+    check("phone: with the offer or the banner on screen the footer scrolls above it and stays usable", clear);
+    await context.close();
+  }
+
+  // 5. A cold first load: the zone's modal is opened before the app starts and must still never be visible.
+  {
+    const { context, page } = await fresh({ width: 1440, height: 900 }, zarazStub({ readyAfterMs: 600, modalAfterMs: 0, openBeforeApp: true }));
+    await page.goto(base, { waitUntil: "networkidle" });
+    await banner(page).waitFor({ state: "visible", timeout: 8000 });
+    const log = await zarazLog(page);
+    assert.ok(log.modalOpenedAt !== null, "the stand-in opened its modal before the app");
+    assert.equal(log.modalVisibleSamples, 0, "the served page hides the default modal from the first paint");
+    await expectNoOfferWhileAsking(page, 1000);
+    check("cold load: a default modal opened before the app starts is never visible; the banner asks", { modalOpenedAtMs: Math.round(log.modalOpenedAt) });
     await context.close();
   }
 

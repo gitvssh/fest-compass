@@ -7,9 +7,10 @@
 // - No cookies or browser storage: a visitor is known to be undecided when Zaraz tries to open
 //   its default modal (the `modal` flag turning true).
 // - The zone's default modal is hidden only while the site banner takes over
-//   (`<html data-consent-takeover>` plus a stylesheet rule). The flag is closed as well so a
-//   hidden modal never stays open, and the hide is lifted after the watch window when the
-//   visitor had already decided.
+//   (`<html data-consent-takeover>` plus a stylesheet rule). The page is served with the mark, so
+//   the modal cannot flash before the app starts; the app lifts it at once without the tag
+//   manager, and after the watch window when the visitor had already decided. The flag is closed
+//   as well so a hidden modal never stays open.
 // Reference: https://developers.cloudflare.com/zaraz/consent-management/api/
 import type { ZarazConsentApi } from "./transport";
 
@@ -37,6 +38,14 @@ export function getConsentApi(): ZarazConsentApi | undefined {
   if (typeof window === "undefined") return undefined;
   const api = window.zaraz?.consent;
   return api && typeof api.setAll === "function" ? api : undefined;
+}
+
+/**
+ * True when the tag manager is on the page. Its loader runs inline in `<head>`, before the app starts, so at the
+ * app's first effect an absent `window.zaraz` means there is nothing to take over.
+ */
+export function hasConsentManager(): boolean {
+  return typeof window !== "undefined" && window.zaraz !== undefined;
 }
 
 /** Marks `<html>` so the stylesheet hides the zone's default modal while the site banner asks. */
@@ -93,15 +102,16 @@ export function watchDefaultModal(
   { intervalMs = CONSENT_WATCH_INTERVAL_MS, limitMs = CONSENT_WATCH_LIMIT_MS }: ConsentWatchOptions = {},
 ): () => void {
   setConsentTakeover(true);
-  const startedAt = Date.now();
-  let tookOver = false;
+  // The window is counted in ticks, not wall-clock time: a clock adjustment must not cut it short.
+  const lastTick = Math.ceil(limitMs / intervalMs);
+  let ticks = 0, tookOver = false;
   const timer = window.setInterval(() => {
     if (api.modal === true) {
       closeDefaultModal(api);
       tookOver = true;
       onUndecided();
     }
-    if (Date.now() - startedAt < limitMs) return;
+    if (++ticks < lastTick) return;
     window.clearInterval(timer);
     if (!tookOver) setConsentTakeover(false);
   }, intervalMs);

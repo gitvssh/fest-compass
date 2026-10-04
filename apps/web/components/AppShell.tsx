@@ -32,6 +32,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </span>
         </div>
       </footer>
+      {/* Room for a fixed card at the bottom of the screen (useBottomDock), so the footer can scroll above it. */}
+      <div aria-hidden="true" className="no-print shrink-0" style={{ height: "var(--bottom-dock, 0px)" }} />
       <ConsentBanner />
     </div>
   );

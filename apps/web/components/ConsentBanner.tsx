@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   CONSENT_BANNER_ATTRIBUTE,
+  CONSENT_WATCH_LIMIT_MS,
   getConsentApi,
+  hasConsentManager,
   OPEN_CONSENT_EVENT,
   setConsentTakeover,
   submitConsentChoice,
@@ -12,6 +14,7 @@ import {
   whenConsentApiReady,
 } from "@/lib/analytics/consent";
 import { PRIVACY_LINK } from "@/lib/nav";
+import { useBottomDock } from "./useBottomDock";
 
 type ConsentView = "hidden" | "choose" | "unavailable";
 
@@ -28,9 +31,17 @@ export function ConsentBanner() {
   const regionRef = useRef<HTMLElement>(null);
   const stopWatchRef = useRef<() => void>(noop);
   const focusOnOpenRef = useRef(false);
+  useBottomDock(regionRef, view !== "hidden");
 
   useEffect(() => {
+    // The page arrives with the default modal hidden (layout), so it never shows before this runs. Without the tag
+    // manager nothing needs hiding; if its consent API never becomes ready, the hide ends with the watch window.
+    if (!hasConsentManager()) setConsentTakeover(false);
+    const unready = window.setTimeout(() => {
+      if (!getConsentApi()?.APIReady && !document.querySelector(`[${CONSENT_BANNER_ATTRIBUTE}]`)) setConsentTakeover(false);
+    }, CONSENT_WATCH_LIMIT_MS);
     const cancelReadyWait = whenConsentApiReady((api) => {
+      window.clearTimeout(unready);
       stopWatchRef.current = watchDefaultModal(api, () => setView("choose"));
     });
     const onOpenRequest = () => {
@@ -39,6 +50,7 @@ export function ConsentBanner() {
     };
     window.addEventListener(OPEN_CONSENT_EVENT, onOpenRequest);
     return () => {
+      window.clearTimeout(unready);
       cancelReadyWait();
       stopWatchRef.current();
       window.removeEventListener(OPEN_CONSENT_EVENT, onOpenRequest);
