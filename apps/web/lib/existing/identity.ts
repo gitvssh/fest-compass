@@ -40,6 +40,13 @@ export function parseFestivalId(id: string): { source: "archive"; festivalId: st
   const c = /^current:(\d{5,10}):(\d{1,20})$/.exec(id), region = c ? regionByCode(c[1]) : null;
   return c && region ? { source: "current", province: region.province, district: region.district, contentId: c[2] } : null;
 }
+/** The reviewed registration of an archive festival (exactly one link each way), or null. Never matched by name. */
+export function linkedCurrentId(archiveFestivalId: string, links: readonly IdentityLink[] = IDENTITY_LINKS): string | null {
+  const candidates = links.filter(l => l.archiveFestivalId === archiveFestivalId);
+  if (candidates.length !== 1) return null;
+  const [link] = candidates, region = regionByCode(link.region);
+  return region && links.filter(l => l.contentId === link.contentId && l.region === link.region).length === 1 ? currentId(region, link.contentId) : null;
+}
 export function linkedArchiveId(region: RegionRef, contentId: string, links: readonly IdentityLink[] = IDENTITY_LINKS): string | null {
   const candidates = links.filter(l => l.contentId === contentId && l.region === region.code);
   const link = candidates.length === 1 && links.filter(l => l.archiveFestivalId === candidates[0].archiveFestivalId).length === 1 ? candidates[0] : null;

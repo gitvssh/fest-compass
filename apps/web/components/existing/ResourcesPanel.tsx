@@ -1,4 +1,5 @@
 "use client";
+import { Flag } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } from "react";
@@ -7,10 +8,11 @@ import { ResourceDetails } from "@/components/resources/ResourceDetails";
 import { AnchorControls, AreaNote, CountLine, DetailFrame, Facts, focusAfterDetail, KindPicker, KindStatusList, ListMapGrid, ResourceRows, ViewToggle, WORKSPACE_ROOT } from "@/components/resources/ResourceWorkspace";
 import { useResourceLists } from "@/components/resources/useResourceLists";
 import { distanceKm, validPoint } from "@/lib/comparison/distance";
+import { linkedCurrentId } from "@/lib/existing/identity";
 import { RESOURCE_KINDS } from "@/lib/existing/request";
 import { resourceRows } from "@/lib/existing/resources";
 import { parseResourceTarget, readResourceTypes, RESOURCE_KIND_LABELS as LABEL, resourceTypesValue } from "@/lib/existing/types";
-import type { Point, RegionRef, ResourceItem, ResourceKind, ResourcesResponse, ResourceTypeBlock } from "@/lib/existing/types";
+import type { FestivalSearchResponse, Point, RegionRef, ResourceItem, ResourceKind, ResourcesResponse, ResourceTypeBlock } from "@/lib/existing/types";
 import { SOURCE } from "@/lib/region/model";
 import { rememberView, writeAddress } from "./address";
 import { isStale } from "./blocks";
@@ -20,6 +22,7 @@ import { festivalMemory, shared, type Anchor } from "./memory";
 import { one } from "./route-params";
 import { InfoDialog } from "./ui";
 import type { MapRow } from "./ResourceMap";
+import { useKeyedRequest } from "./useKeyedRequest";
 
 const ResourceMap = dynamic(() => import("./ResourceMap"), { ssr: false, loading: () => <p role="status" className="region-card text-sm">지도를 준비하고 있어요. 목록은 바로 볼 수 있어요.</p> });
 
@@ -64,6 +67,13 @@ export function ResourcesPanel() {
   useEffect(() => { rememberView(festival.id, "resources", typesAddress(types)); shared.types = typesAddress(types).get("types"); }, [festival.id, types]);
 
   const region = festival.region;
+  // The festival site is the registration's own location: this festival's registration, or the one reviewed registration
+  // of an archive festival (never matched by name). Without a located registration no site is shown.
+  const linkedId = festival.source === "archive" ? linkedCurrentId(festival.id.replace(/^archive:/, "")) : null;
+  const linked = useKeyedRequest<FestivalSearchResponse>(linkedId ? `/api/existing/festivals?${new URLSearchParams({ id: linkedId })}` : null);
+  const registration = festival.current ?? linked.data?.current.items.find(f => f.id === linkedId) ?? null;
+  const venue = registration?.point && validPoint(registration.point) && (!region || registration.region.code === region.code)
+    ? { point: registration.point, label: `축제장 · ${registration.address || registration.name}` } : null;
   // Each type is its own request so one type's failure or delay never holds back the others. A block is shown
   // only when the answer is for this festival's region (a matching key alone is not enough).
   const lists = useResourceLists(region, types);
@@ -165,6 +175,7 @@ export function ResourcesPanel() {
     requestAnimationFrame(() => focusAfterDetail(heading.current, id));
   }
   function setAnchorFrom(item: ResourceItem) { if (item.point) setAnchor({ point: item.point, label: item.title, source: "resource", resourceId: item.id }); }
+  function setFestivalAnchor() { if (venue) setAnchor({ point: venue.point, label: venue.label, source: "festival" }); }
   function setMapCenter(point: Point) { setAnchor({ point, label: `지도에서 고른 위치 (${point.latitude.toFixed(4)}, ${point.longitude.toFixed(4)})`, source: "map" }); }
 
   return <section aria-labelledby="resources-heading" className={WORKSPACE_ROOT}>
@@ -178,6 +189,10 @@ export function ResourcesPanel() {
         : region && <KindStatusList states={states} className="lg:order-2 lg:basis-full" />}
       {region && target && <p role="status" className="text-sm text-muted lg:order-2 lg:basis-full">{targetWaitsForRetry ? "목록을 다시 불러오면 고른 장소를 열어 드려요." : "고른 장소를 목록에서 찾고 있어요…"}</p>}
       {region && targetMissing && <p role="status" className="rounded-xl bg-paper px-3 py-2 text-sm lg:order-2 lg:basis-full">고른 장소를 지금 등록된 관광정보 목록에서 찾지 못했어요. 아래 목록에서 살펴봐 주세요.</p>}
+      {region && venue && anchor?.source !== "festival" && <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 text-sm lg:order-2 lg:basis-full">
+        <button type="button" className="region-button min-h-11" onClick={setFestivalAnchor}><Flag aria-hidden="true" size={16} className="text-[#c2410c]" />축제장을 기준점으로</button>
+        <span className="min-w-0 break-words text-muted">{venue.label.replace(/^축제장 · /, "")} · 한국관광공사 현재 등록 위치</span>
+      </div>}
       {anchor && <div className="min-w-0 lg:order-2 lg:basis-full"><AnchorControls anchor={anchor} radiusKm={radiusKm} sort={sort} onClear={() => { setAnchor(null); setRadiusKm(null); setSort("name"); }} onRadius={setRadiusKm} onSort={setSort} /></div>}
       {region && states.length > 0 && (allDone || items.length > 0) && <div className="min-w-0 lg:order-1 lg:ml-auto"><CountLine listed={numbered.length} mapped={mapRows.length}
         radius={anchor && radiusKm !== null && counts.withinRadius !== null ? { km: radiusKm, inside: counts.withinRadius, unknown: numbered.length - counts.withinRadius } : null} /></div>}
@@ -190,7 +205,7 @@ export function ResourcesPanel() {
           : allDone ? <AreaNote>선택한 유형에 조회된 자원이 없어요.</AreaNote> : null)
           : <ResourceRows rows={numbered} listRef={list} openId={selectedId} anchored={!!anchor} onOpen={item => choose(item.id)} />}
         map={mapFailed ? <AreaNote alert action={<button type="button" className="region-button min-h-11" onClick={() => { setMapFailed(false); setMapKey(k => k + 1); }}>지도 다시 열기</button>}>지도를 불러오지 못했어요. 목록은 계속 볼 수 있어요.</AreaNote>
-          : mapRows.length ? <ResourceMap key={mapKey} rows={mapRows} selectedId={selectedId} anchor={anchor?.point ?? null} radiusKm={anchor ? radiusKm : null} onSelect={choose} onCenter={setMapCenter} onFailure={() => setMapFailed(true)} />
+          : mapRows.length ? <ResourceMap key={mapKey} rows={mapRows} selectedId={selectedId} anchor={anchor?.point ?? null} radiusKm={anchor ? radiusKm : null} venue={venue?.point ?? null} onSelect={choose} onCenter={setMapCenter} onFailure={() => setMapFailed(true)} />
           : allDone || items.length > 0 ? <AreaNote muted>지도에 표시할 위치가 있는 자원이 없어요. 목록에서 확인해 주세요.</AreaNote> : null}
         detail={selected && <ResourceDetail region={region} item={selected} heading={detailHeading} distance={selectedDistance} anchored={!!anchor}
           hidden={hiddenByFilter} isAnchor={anchor?.resourceId === selected.id} onAnchor={() => setAnchorFrom(selected)} onClose={closeDetail} />} />}

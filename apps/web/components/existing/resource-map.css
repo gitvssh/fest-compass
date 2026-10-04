@@ -25,6 +25,8 @@
 .rmap-marker[aria-expanded="true"] { box-shadow: 0 0 0 3px #f8bc46; }
 .rmap-marker:focus-visible { outline: 3px solid #f8bc46; outline-offset: 2px; }
 
+.rmap-venue { display: inline-flex; align-items: center; justify-content: center; gap: 4px; width: 76px; height: 30px; border: 2px solid #fff; border-radius: 15px;
+  background: #c2410c; color: #fff; font-size: 13px; font-weight: 800; box-shadow: 0 1px 6px rgb(16 35 61 / 45%); }
 .rmap-anchor { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 28px; border: 2px solid #fff; border-radius: 8px;
   background: #071a33; color: #fff; font-size: 13px; font-weight: 800; box-shadow: 0 1px 5px rgb(16 35 61 / 40%); }
 

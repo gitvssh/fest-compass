@@ -64,8 +64,24 @@ try {
   await page.getByRole("group", { name: "그래프 보기 방식" }).getByRole("button", { name: "겹쳐 보기", exact: true }).click();
   check("visits overlay chart by default, line toggle and separate charts on request");
 
+  // Hover a day of the overlay: the card beside the pointer carries both editions' values.
+  const plot = await overlay.boundingBox(), column = await overlay.locator("text", { hasText: /^D\+2$/ }).boundingBox();
+  await page.mouse.move(column.x + column.width / 2, plot.y + 120);
+  const tip = page.locator("[data-chart-tooltip]");
+  await tip.waitFor();
+  const tipText = await tip.innerText();
+  for (const t of ["2025년 3.29(토)", "113,466.5명", "2024년 3.23(토)"]) assert.ok(tipText.includes(t), `tooltip ${t} in ${tipText}`);
+  check("overlay tooltip beside the pointer with both editions' values");
+
   await page.getByRole("navigation", { name: "다음 할 일" }).getByRole("link", { name: /이어서\s*연계 관광 찾기/ }).click();
   await page.waitForURL(u => u.pathname.endsWith("/resources"));
+  // The reviewed registration's current location is the festival site; it becomes the anchor only on request.
+  await page.locator(".rmap-venue").waitFor();
+  assert.match(await page.locator("main").innerText(), /충청남도 논산시 관촉동 · 한국관광공사 현재 등록 위치/);
+  await page.getByRole("button", { name: "축제장을 기준점으로", exact: true }).click();
+  await page.locator("p", { hasText: "기준점" }).filter({ hasText: "축제장 · 충청남도 논산시 관촉동" }).waitFor();
+  await page.screenshot({ path: join(output, "resources-site-1440.png") });
+  check("festival site marked from the reviewed registration and used as the anchor on request");
   await page.getByRole("navigation", { name: "축제 탐색 메뉴" }).getByRole("link", { name: /모아 보기/ }).click();
   await page.waitForURL(u => u.pathname.endsWith("/summary"));
   const sheet = page.locator("section.summary-sheet");

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useId, useRef, useState } from "react";
 import type { EditionHistory } from "@/lib/existing/types";
+import { ChartTooltip, CursorAnnouncement, useDayCursor } from "./ChartCursor";
 import { dayWithWeekday, editionLabel, rawNumber, WEEKDAY_SHORT } from "./format";
 
 /**
@@ -43,7 +44,8 @@ export type OverlaySeries = { edition: EditionHistory; look: EditionLook };
  * line and are never drawn as zero. Values per date stay in the table.
  */
 export function OverlayChart({ series, yMax, region }: { series: OverlaySeries[]; yMax: number; region: string }) {
-  const id = useId(), wrap = useRef<HTMLDivElement>(null);
+  const id = useId(), wrap = useRef<HTMLDivElement>(null), figure = useRef<HTMLElement>(null), svg = useRef<SVGSVGElement>(null);
+  const cur = useDayCursor();
   const [width, setWidth] = useState(0);
   useEffect(() => {
     const el = wrap.current;
@@ -69,10 +71,31 @@ export function OverlayChart({ series, yMax, region }: { series: OverlaySeries[]
     el.scrollLeft = Math.max(0, x(Math.max(first, -2)) - L - dayW / 2);
   });
   const missing = lined.some(s => s.points.some(p => p.value === null));
+  // Day under the pointer (or chosen by keyboard): index 0 is the first shown day, `first + index` its offset from D.
+  const indexAt = (clientX: number) => {
+    const box = svg.current?.getBoundingClientRect();
+    if (!box) return null;
+    const sx = clientX - box.left;
+    return sx < L || sx > W - R ? null : Math.min(slots - 1, Math.max(0, Math.floor((sx - L) / dayW)));
+  };
+  const anchor = (index: number) => {
+    const el = wrap.current, box = svg.current?.getBoundingClientRect(), frame = figure.current?.getBoundingClientRect();
+    if (!el || !box || !frame) return null;
+    const cx = x(first + index);
+    if (cx - dayW < el.scrollLeft) el.scrollLeft = cx - dayW; else if (cx + dayW > el.scrollLeft + el.clientWidth) el.scrollLeft = cx + dayW - el.clientWidth;
+    const after = svg.current!.getBoundingClientRect();
+    return { px: after.left - frame.left + cx, py: after.top - frame.top + T + 8 };
+  };
+  const day = cur.cursor ? first + cur.cursor.index : null;
+  const rows = day === null ? [] : lined.map(s => ({ s, p: s.points.find(p => p.offset === day) ?? null }));
+  const said = day === null ? "" : `${dLabel(day)}: ${rows.map(({ s, p }) => p ? `${s.edition.year}년 ${dayWithWeekday(p.date)} ${p.value === null ? "값 없음" : `${rawNumber(p.value)}명`}${p.inFestival ? " 개최기간" : ""}` : `${s.edition.year}년 표시 기간 밖`).join(", ")}`;
   const describe = lined.map(s => `${s.edition.year}년 ${s.edition.start ? dayWithWeekday(s.edition.start) : ""}~${s.edition.end ? dayWithWeekday(s.edition.end) : ""}`).join(", ");
-  return <figure className="min-w-0">
-    <div ref={wrap} role="region" aria-label="겹쳐 보기 그래프" tabIndex={0} style={{ minHeight: total }} className="overflow-x-auto rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue/40">
-      {width > 0 && <svg width={W} height={total} viewBox={`0 0 ${W} ${total}`} className="block" role="img" aria-labelledby={`${id}-t`} aria-describedby={`${id}-d`}>
+  return <figure ref={figure} className="relative min-w-0">
+    <div ref={wrap} role="region" aria-label="겹쳐 보기 그래프" aria-describedby={`${id}-k`} tabIndex={0} style={{ minHeight: total }}
+      onKeyDown={e => cur.key(e, slots, Math.min(slots - 1, Math.max(0, -first)), anchor)} onBlur={() => { if (cur.cursor?.via === "keyboard") cur.clear(); }}
+      className="overflow-x-auto rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-blue/40">
+      {width > 0 && <svg ref={svg} width={W} height={total} viewBox={`0 0 ${W} ${total}`} className="block touch-pan-x" role="img" aria-labelledby={`${id}-t`} aria-describedby={`${id}-d`}
+        onPointerMove={e => cur.point(e, indexAt(e.clientX), figure.current)} onPointerDown={e => cur.point(e, indexAt(e.clientX), figure.current)} onPointerLeave={cur.leave}>
         <title id={`${id}-t`}>{`${region} 외지인 방문 추이 · 회차 겹쳐 보기`}</title>
         <desc id={`${id}-d`}>{`개최 첫날(D)을 맞춰 ${describe}을 겹쳤어요. ${missing ? "값이 없는 날은 선을 끊었어요. " : ""}날짜별 값은 수치 표에서 볼 수 있어요.`}</desc>
         {band && <g>
@@ -94,12 +117,16 @@ export function OverlayChart({ series, yMax, region }: { series: OverlaySeries[]
           if (path) segments.push(path);
           return <g key={s.edition.editionId}>
             {segments.map((d, i) => <path key={i} d={d} fill="none" stroke={s.look.color} strokeWidth={2.5} strokeDasharray={s.look.dash} strokeLinejoin="round" />)}
-            {s.points.map(p => p.value !== null && <g key={p.date}>
-              <title>{`${s.edition.year}년 ${dLabel(p.offset)} · ${dayWithWeekday(p.date)} · ${rawNumber(p.value)}명`}</title>
-              <Marker look={s.look} x={x(p.offset)} y={y(p.value)} r={p.inFestival ? 4 : 3.2} hollow={!p.inFestival} />
-            </g>)}
+            {s.points.map(p => p.value !== null && <Marker key={p.date} look={s.look} x={x(p.offset)} y={y(p.value)} r={p.inFestival ? 4 : 3.2} hollow={!p.inFestival} />)}
           </g>;
         })}
+        {day !== null && <g aria-hidden="true">
+          <line x1={x(day)} x2={x(day)} y1={T} y2={T + PLOT_H} stroke="#10233d" strokeWidth={1} strokeDasharray="3 3" />
+          {rows.map(({ s, p }) => p && p.value !== null && <g key={`hot-${s.edition.editionId}`}>
+            <circle cx={x(day)} cy={y(p.value)} r={9} fill={s.look.color} opacity={0.16} />
+            <Marker look={s.look} x={x(day)} y={y(p.value)} r={5} />
+          </g>)}
+        </g>}
         {Array.from({ length: slots }, (_, i) => first + i).map(o => (o === 0 || (o - first) % labelEvery === 0) &&
           <text key={`x${o}`} x={x(o)} y={H - 10} fontSize={11} textAnchor="middle" fontWeight={o === 0 ? 800 : 400} fill={o === 0 ? "#10233d" : "#4b5b6d"}>{dLabel(o)}</text>)}
         {lined.map((s, i) => <g key={`wd-${s.edition.editionId}`}>
@@ -110,7 +137,19 @@ export function OverlayChart({ series, yMax, region }: { series: OverlaySeries[]
         </g>)}
       </svg>}
     </div>
-    <figcaption className="mt-1 text-xs text-muted">D = 개최 첫날 · 굵은 요일은 토·일{missing ? " · 선이 끊긴 날: 값 없음" : ""}</figcaption>
+    {cur.cursor && day !== null && <ChartTooltip cursor={cur.cursor} width={figure.current?.clientWidth ?? W}>
+      <p className="mb-1 text-xs font-extrabold text-ink">{dLabel(day)}{day === 0 ? " · 개최 첫날" : ""}</p>
+      <ul className="space-y-1">{rows.map(({ s, p }) => <li key={s.edition.editionId} className="flex items-center gap-2 whitespace-nowrap">
+        <LookSwatch look={s.look} />
+        {p ? <>
+          <span className="text-muted">{s.edition.year}년 {dayWithWeekday(p.date)}</span>
+          <span className="font-extrabold tabular-nums">{p.value === null ? "값 없음" : `${rawNumber(p.value)}명`}</span>
+          {p.inFestival && <span className="rounded-full bg-blue-soft px-1.5 text-[11px] font-bold text-[#164ea1]">개최기간</span>}
+        </> : <span className="text-muted">{s.edition.year}년 · 표시 기간 밖</span>}
+      </li>)}</ul>
+    </ChartTooltip>}
+    <CursorAnnouncement text={cur.cursor?.via === "keyboard" ? said : ""} />
+    <figcaption className="mt-1 text-xs text-muted">D = 개최 첫날 · 굵은 요일은 토·일{missing ? " · 선이 끊긴 날: 값 없음" : ""}<span id={`${id}-k`} className="sr-only"> · 그래프를 고른 뒤 ←·→ 키로 날짜별 값을 들을 수 있어요</span></figcaption>
   </figure>;
 }
 

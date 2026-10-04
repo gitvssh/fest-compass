@@ -36,7 +36,7 @@ const E2025 = { label: "2025년 · 3.27–3.30 · 목–일 4일", start: "2025-
 const E2024 = { label: "2024년 · 3.21–3.24 · 목–일 4일", start: "2024-03-21", end: "2024-03-24", rounded: "90,413" };
 for (const e of [E2025, E2024]) { e.before = sideMean(addDays(e.start, -7), 7); e.after = sideMean(addDays(e.end, 1), 7); }
 
-const NONSAN_ID = "archive:nonsan-strawberry", NONSAN_CODE = "44230";
+const NONSAN_ID = "archive:nonsan-strawberry", NONSAN_CODE = "44230", LINKED_ID = "current:44230:525292";
 const path = (id, view) => `/existing/${encodeURIComponent(id)}/${view}`;
 const CANDIDATE = { start: "2026-10-01", end: "2026-10-04" };
 
@@ -75,6 +75,17 @@ async function onApi(route) {
         body.summary.events = { status: "empty", count: 0, overlapping: 0, cancelled: 0, undated: 0 };
       }
       return await route.fulfill({ response, json: body });
+    }
+    if (name === "/api/existing/festivals" && p.get("id") === LINKED_ID) {
+      // 검증용: the reviewed registration of the Nonsan archive record, with a located site.
+      const region = regions.get(NONSAN_CODE), year = new Date(Date.now() + 9 * 3_600_000).getUTCFullYear();
+      const request = { q: "", province: null, district: null, start: `${year}-01-01`, end: `${year}-12-31`, page: 1, total: null, id: LINKED_ID };
+      const item = { id: LINKED_ID, source: "current", contentId: "525292", name: "논산딸기축제", region, start: null, end: null, datesVerified: false, address: "검증용 축제장 주소 (가상)",
+        point: { latitude: 36.19545, longitude: 127.105591 }, modifiedAt: null, linkedArchiveId: NONSAN_ID,
+        provenance: { title: "검증용 가상 등록 정보", url: "https://example.invalid/fixture", checkedAt: null, publishedAt: null, collectedAt: FIXTURE_AT } };
+      return await route.fulfill({ json: { key: JSON.stringify(["festivals", request.id, request.q, request.province, request.district, request.start, request.end, request.page, request.total]), request,
+        retrievedAt: new Date().toISOString(), archive: { status: "not-requested", error: null, collectedAt: null, items: [], freshness: null },
+        current: { status: "complete", error: null, collectedAt: FIXTURE_AT, mode: "lookup", range: null, page: 1, next: null, continuity: null, total: 1, omitted: 0, lookup: "verified", items: [item] } } });
     }
     if (name === "/api/existing/festivals") {
       const response = await route.fetch(), body = await response.json();
@@ -223,6 +234,13 @@ async function existingJourney() {
   await page.waitForURL(u => u.pathname === path(NONSAN_ID, "resources"));
   await waitFocusId(page, "resources-heading");
   await includes(page.getByRole("region", { name: "연계 관광 찾기 안내" }), "영업·예약 가능 여부 · 실제 이동 시간");
+  // The festival site (reviewed registration) is marked on the map and becomes the distance anchor on request.
+  await visible(page.locator(".rmap-venue"));
+  await page.getByRole("button", { name: "축제장을 기준점으로", exact: true }).click();
+  await visible(page.locator("p", { hasText: "기준점" }).filter({ hasText: "축제장 · 검증용 축제장 주소 (가상)" }));
+  assert.equal(await page.getByRole("button", { name: "축제장을 기준점으로", exact: true }).count(), 0, "the site is the anchor now");
+  await visible(page.getByText(/기준점에서 직선거리 약/).first());
+  check("festival-site-badge-and-anchor");
   await page.getByRole("list", { name: "관광자원 목록" }).getByRole("button", { name: /검증용 관광지 가 \(가상\)/ }).click();
   await visible(page.getByRole("heading", { name: "검증용 관광지 가 (가상)" }).first());
 

@@ -322,8 +322,31 @@ async function defaultVisits({ page }) {
   await includes(editionCard(page, E2024), "90,413명/일", "the hidden edition keeps its summary");
   await line2024.check();
   assert.match(await describe(), /2024년/);
+  // Hover the D+2 column: one card beside the pointer with both editions' day, value and festival mark.
+  const plot = await overlayChart.boundingBox(), column = await overlayChart.locator("text", { hasText: /^D\+2$/ }).boundingBox();
+  await page.mouse.move(column.x + column.width / 2, plot.y + 120);
+  const tip = page.locator("[data-chart-tooltip]");
+  await visible(tip);
+  for (const t of ["D+2", "2025년 3.29(토)", "113,466.5명", "2024년 3.23(토)", "126,164.5명", "개최기간"]) await includes(tip, t, "overlay tooltip");
+  await page.mouse.move(plot.x + plot.width / 2, plot.y - 60);
+  await tip.waitFor({ state: "detached" });
+  // Keyboard: the focused chart starts at D, moves day by day and reads the day out; Esc hides it.
+  await page.getByRole("region", { name: "겹쳐 보기 그래프" }).focus();
+  await page.keyboard.press("ArrowRight");
+  await page.waitForFunction(() => /^D: 2025년 3\.27\(목\) [\d,.]+명 개최기간, 2024년 3\.21\(목\)/.test(document.querySelector("figure p[aria-live]")?.textContent ?? ""));
+  await page.keyboard.press("ArrowRight");
+  await page.waitForFunction(() => /^D\+1: 2025년 3\.28\(금\)/.test(document.querySelector("figure p[aria-live]")?.textContent ?? ""));
+  await page.keyboard.press("Escape");
+  await tip.waitFor({ state: "detached" });
   await mode.getByRole("button", { name: "따로 보기", exact: true }).click();
   assert.equal(await page.getByRole("img", { name: /^\d{4}년 논산시 외지인 방문 추이, / }).count(), 2, "separate charts on request");
+  // Separate chart: the day under the pointer.
+  const chart2025 = page.getByRole("img", { name: /^2025년 논산시 외지인 방문 추이, / }), c2025 = await chart2025.boundingBox();
+  const tickX = async label => { const b = await chart2025.locator("text", { hasText: new RegExp(`^${label.replace(".", "\\.")}$`) }).boundingBox(); return b.x + b.width / 2; };
+  const start = await tickX("3.27"), end = await tickX("3.30"), dayPx = (end - start) / 3;
+  await page.mouse.move(end - dayPx, c2025.y + c2025.height * 0.4); // 3.29, one day before the last festival day
+  await visible(tip);
+  await includes(tip, "2025년 3.29(토)", "separate tooltip"); await includes(tip, "113,466.5명", "separate tooltip");
   await mode.getByRole("button", { name: "겹쳐 보기", exact: true }).click();
   await visible(overlayChart);
   passed.push("visits-overlay-first-lines-toggle-separate-on-request");

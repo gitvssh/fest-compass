@@ -9,7 +9,7 @@ import calendar from "../../data/nonsan-calendar.json";
 import { REGIONS, type Dataset } from "../region/model";
 import type { Edition } from "../comparison/types";
 import type { Query, ResourceResult } from "../region/types";
-import { archiveCatalogue, currentFestival, currentId, IDENTITY_LINKS, mergeCurrentItems, parseFestivalId, regionByCode, regionRef, searchArchive, verifiedLdongRegion } from "./identity";
+import { archiveCatalogue, currentFestival, currentId, IDENTITY_LINKS, linkedCurrentId, mergeCurrentItems, parseFestivalId, regionByCode, regionRef, searchArchive, verifiedLdongRegion } from "./identity";
 import { defaultYear, editionHistory, monthlyMeans, periodSummary, yearCoverage, type EditionInput } from "./history";
 import { resourceRows } from "./resources";
 import { holidaySummary, overlapDays, scheduleEvents, summarizeSchedule, type HolidayCalendar } from "./schedule";
@@ -446,3 +446,14 @@ test("a failing visitor-profile resolver omits only its block and logs a fixed c
   } finally { console.error = original; }
   assert.deepEqual(logged, [["datalab-visitor-profile: resolver-failed"]]);
 });
+
+test("an archive festival reaches its registration only through one reviewed link", () => {
+  assert.equal(linkedCurrentId("nonsan-strawberry"), "current:44230:525292");
+  assert.equal(linkedCurrentId("unknown-festival"), null);
+  const link = { archiveFestivalId: "a", contentId: "1", region: "44230", evidence: "", verifiedAt: "", version: "" };
+  assert.equal(linkedCurrentId("a", [link]), "current:44230:1");
+  assert.equal(linkedCurrentId("a", [link, { ...link, contentId: "2" }]), null, "two registrations for one archive festival");
+  assert.equal(linkedCurrentId("a", [link, { ...link, archiveFestivalId: "b" }]), null, "one registration claimed by two archive festivals");
+  assert.equal(linkedCurrentId("a", [{ ...link, region: "99999" }]), null, "unknown region");
+});
+

@@ -13,6 +13,8 @@ export type ResourceMapProps = {
   /** Optional extra marking (e.g. resources chosen for side-by-side reading); detail selection stays `selectedId`. */
   highlightedIds?: readonly string[];
   highlightLabel?: string;
+  /** The festival's registered location (verified registration only); shown as its own badge and kept in view. */
+  venue?: Point | null;
 };
 type Engine = { L: typeof Leaflet; map: Leaflet.Map };
 type Cluster = MarkerCluster<MapRow>;
@@ -22,15 +24,15 @@ const PANE = "resourceMarkers";
 const count = (n: number) => n.toLocaleString("ko-KR");
 
 /**
- * Street map of the listed resources only. The view is fitted to the actual resource coordinates; no
- * venue or district centre is assumed. Moving the map never changes the query; the centre becomes a
+ * Street map of the listed resources. The view is fitted to the actual resource coordinates and, when the festival's
+ * registration has a location, to that festival site (its own badge); no district centre is assumed. Moving the map never changes the query; the centre becomes a
  * distance anchor only through the explicit button.
  *
  * Nearby resources share one marker ("N곳") whose button opens a list of every member, so resources at
  * the same coordinate stay selectable. Grouping is recomputed only for new zoom levels or resource
  * data; panning and resizing only add or remove markers entering or leaving the view.
  */
-export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSelect, onCenter, onFailure, highlightedIds, highlightLabel }: ResourceMapProps) {
+export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSelect, onCenter, onFailure, highlightedIds, highlightLabel, venue = null }: ResourceMapProps) {
   const element = useRef<HTMLDivElement>(null), latest = useRef({ onSelect, onFailure });
   latest.current = { onSelect, onFailure };
   const [engine, setEngine] = useState<Engine | null>(null), [zoom, setZoom] = useState<number | null>(null);
@@ -108,14 +110,14 @@ export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSele
     // re-numbering, selection or comparison updates.
     if (!engine || !stableRows.length) return;
     let south = Infinity, west = Infinity, north = -Infinity, east = -Infinity;
-    for (const { point } of stableRows) {
+    for (const { point } of venue ? [...stableRows, { point: venue }] : stableRows) {
       south = Math.min(south, point.latitude); north = Math.max(north, point.latitude);
       west = Math.min(west, point.longitude); east = Math.max(east, point.longitude);
     }
     const pad = 0.01;
     pending.current.bounds = [[south - pad, west - pad], [north + pad, east + pad]];
     settle.current();
-  }, [engine, geometry]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [engine, geometry, venue?.latitude, venue?.longitude]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!engine) return;
@@ -209,13 +211,24 @@ export default function ResourceMap({ rows, selectedId, anchor, radiusKm, onSele
   }
 
   useEffect(() => {
+    // The registered festival site: a fixed badge under the resource markers (they stay clickable), never a query input.
+    if (!engine || !venue) return;
+    const { L, map } = engine, mark = document.createElement("span");
+    mark.className = "rmap-venue";
+    mark.innerHTML = '<svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>축제장';
+    const marker = L.marker([venue.latitude, venue.longitude], { icon: L.divIcon({ html: mark, className: "rmap-slot", iconSize: [76, 30], iconAnchor: [38, 15] }), keyboard: false, interactive: false }).addTo(map);
+    return () => { marker.remove(); };
+  }, [engine, venue?.latitude, venue?.longitude]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
     if (!engine || !anchor) return;
     const { L, map } = engine, layer = L.layerGroup().addTo(map), mark = document.createElement("span");
     mark.className = "rmap-anchor"; mark.textContent = "기준";
-    L.marker([anchor.latitude, anchor.longitude], { icon: L.divIcon({ html: mark, className: "rmap-slot", iconSize: [44, 28], iconAnchor: [22, 14] }), keyboard: false, interactive: false }).addTo(layer);
+    // The festival site badge already marks an anchor placed on it.
+    const onVenue = !!venue && venue.latitude === anchor.latitude && venue.longitude === anchor.longitude;
+    if (!onVenue) L.marker([anchor.latitude, anchor.longitude], { icon: L.divIcon({ html: mark, className: "rmap-slot", iconSize: [44, 28], iconAnchor: [22, 14] }), keyboard: false, interactive: false }).addTo(layer);
     if (radiusKm) L.circle([anchor.latitude, anchor.longitude], { radius: radiusKm * 1000, color: "#071a33", weight: 2, dashArray: "6 5", fillOpacity: 0.03, interactive: false }).addTo(layer);
     return () => { layer.remove(); };
-  }, [engine, anchor?.latitude, anchor?.longitude, radiusKm]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [engine, anchor?.latitude, anchor?.longitude, radiusKm, venue?.latitude, venue?.longitude]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     const row = stableRows.find(r => r.id === selectedId);
     if (!engine || !row) return;

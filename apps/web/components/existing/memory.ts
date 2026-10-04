@@ -5,7 +5,7 @@ import { DEFAULT_RESOURCE_KINDS, readResourceTypes, RESOURCE_KINDS, resourceType
 // lives in the loaded client module, and it disappears on a reload, which then restores only the address.
 // Nothing here is written to storage or sent to the server.
 export type View = "visits" | "resources" | "timing" | "summary";
-export type Anchor = { point: Point; label: string; source: "resource" | "map"; resourceId?: string };
+export type Anchor = { point: Point; label: string; source: "resource" | "map" | "festival"; resourceId?: string };
 export type Candidate = { id: string; start: string; end: string };
 
 export type FestivalMemory = {
