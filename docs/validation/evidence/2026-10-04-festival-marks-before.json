@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-04T07:04:50.015786+00:00",
+  "deploymentUid": "0b216035-cb40-4afc-85d1-655f5089742e",
+  "pvcUid": "522b5a04-02b5-44cf-b5cb-9fec534f219b",
+  "generation": 42,
+  "observedGeneration": 42,
+  "ready": 1,
+  "images": {
+    "migrate": "<내부 레지스트리>/fest-compass/web@sha256:72c7ace28b1c7933e8a3a51c26499468221e0a7e9754f3988e1f028958fe2a04",
+    "festival-source-worker": "<내부 레지스트리>/fest-compass/web@sha256:72c7ace28b1c7933e8a3a51c26499468221e0a7e9754f3988e1f028958fe2a04",
+    "forecast-worker": "<내부 레지스트리>/fest-compass/web@sha256:72c7ace28b1c7933e8a3a51c26499468221e0a7e9754f3988e1f028958fe2a04",
+    "web": "<내부 레지스트리>/fest-compass/web@sha256:72c7ace28b1c7933e8a3a51c26499468221e0a7e9754f3988e1f028958fe2a04"
+  },
+  "revision": "c91d5af1a05bd62917f57cccc3716b48cf23f423",
+  "sync": "Synced",
+  "health": "Healthy",
+  "operation": "Succeeded",
+  "business": {
+    "festival": {
+      "count": 1,
+      "sha256": "a0e3862d1e92df924fc242eba6c76fd2fa5d983c74f714d635cbb35b53435ed9"
+    },
+    "evidenceSnapshot": {
+      "count": 6,
+      "sha256": "cc6395dab7890e3e9bdcb54bd22e0a31918aba2c7165b3491edec8695c42d180"
+    },
+    "assumption": {
+      "count": 4,
+      "sha256": "fe036e355494fe912d11b857040f48261317f3673fdea07a6acf8756992e715f"
+    },
+    "capacityRule": {
+      "count": 1,
+      "sha256": "6ece799c3ce9985966883c93bfb3d88cd5207ddfbfdadbdb500df7b664c4ba15"
+    },
+    "scenario": {
+      "count": 3,
+      "sha256": "acddfa0153ad35d6ddbc077a8f5c0d7906dff04ded7925fe8039ba330f345318"
+    },
+    "decision": {
+      "count": 1,
+      "sha256": "f760deec921c813b42d8b40ef945585f0bc88e30afb3a5c126f9fdc0eb82a38f"
+    },
+    "operationTrigger": {
+      "count": 1,
+      "sha256": "7ac7bdb905abf6210b6cc1e87a7884e14c203b206ba3fc299e973e0fa6237d57"
+    },
+    "fieldAction": {
+      "count": 1,
+      "sha256": "e361cc94ea383e966afe861b3379e859c0b652cf07d3659c89c474168cc30396"
+    },
+    "outcome": {
+      "count": 2,
+      "sha256": "ea4665c592172a173833d11785d3754c74e1b4a5129a95cfbe1feb780ae20e3f"
+    }
+  }
+}
