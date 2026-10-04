@@ -1312,3 +1312,34 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - 데이터랩 자료의 공개 재이용 허락·일괄 제공을 한국관광공사에 문의할까요? 문의 글 초안은 제가 준비할 수 있고 보내는 것은 사용자 몫입니다.
 - Handoff: Human
+
+## T-061 · Human · chair
+
+- Position: 2026-10-04 결정: 공모전 시간이 촉박하니 데이터랩은 쓰지 않는다. 화면이 배포됐다면 제거한다.
+- Evidence:
+  - 2026-10-04 Claude Code 세션에서 사용자가 직접 결정했다(“공모전 시간이 촉박하니 데이터랩은 안쓰는걸로 할게. 만약 화면 배포되었다면 제거하는걸로 진행해줘”). 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 결정 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-062 · Claude · implementer
+
+- Position: ADR-0003에 따라 데이터랩 웹사이트 내려받기 자료를 쓰던 공개 화면을 모두 뺐다: /compare/annual·/compare/scale(308로 /compare 이동), 기존 축제 방문 흐름의 개최지 방문 구성·임실 방문자 특성(성·연령·목적지·두 회차 비교), 새 축제 방문 흐름의 지역 연간 추세, 그 연결·가공 자료·스크립트·시험. 공공데이터포털 DataLabService API와 TourAPI 기반 기능은 그대로다.
+- Evidence:
+  - docs/decisions/0003-no-datalab-website-downloads.md
+  - docs/validation/47-festival-discovery.md '방문 규모 화면 제거'(발행 37198955311 → sha256:0535ad3c…, 배포 선언 ac101ec, 공개 확인)
+- Changes:
+  - apps/web: lib/datalab·화면 구성 요소 7개·app/compare/annual·scale 삭제, 가공 자료 8개·스크립트 8개·화면 시험 4개 삭제, 서버·응답 칸 정리, next.config 이동, 홈·축제 비교·축제 검색·사이트맵 연결 제거, ADR 정적 검사·축제 찾기 시험 갱신
+  - docs: ADR-0003, functional-spec v13, screens·ia·data-visualization·flows·design-system·srs·UC·TS(TS-FC-012~014 폐기, 022 S1~S6 폐기)·자료 목록·설계25 v3·검수37~39·47
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 375 통과(ADR 정적 검사 포함)
+  - headless: 길잡이 시험 16항목(새 서버)·이후 20개 시험 통과, 앞부분은 묶음 실행에서 통과
+  - 공개: Synced·Healthy, livez·readyz 200, 업무 자료 해시 일치, 옛 주소 308·사이트맵 부재·임실 화면에 제거 영역 없음, 축제 찾기 공개 검사 통과
+- Questions:
+  - 공개 저장소에 남은 데이터랩 원본 파일 337개를 현재 판에서 지울까요?
+- Handoff: Human
