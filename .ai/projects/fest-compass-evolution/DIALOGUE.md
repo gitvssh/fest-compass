@@ -1477,3 +1477,36 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Human
+
+## T-071 · Human · chair
+
+- Position: 2026-10-05 요청: 지역 카드 자료(논산·공주·원주·대구 달서구)를 reference 폴더에 받아 두었으니 반영하라('래퍼런스에 지역카드 추가해놨어 반영해줘'). 운영사무국 메일 답은 휴일이라 나중에 온다.
+- Evidence:
+  - 2026-10-05 Claude Code 세션에서 사용자가 직접 요청했다. 이 턴은 Claude가 사용자 발언을 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 요청 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-072 · Claude · implementer
+
+- Position: 지역 4곳을 공개했다. 공식 ZIP 9개를 바이트 그대로 보관·검증하고, 해마다 관광소비(내국인=현지인+외지인, 업종 대분류, 2020~2025)와 외지인 방문(연인원, 2019~2025)으로 줄인 지역 카드를 만들었다. 외지인 방문은 일별 외지인 합계와 같은 지표라 새 축제 연도별 방문 합계에 외지인만 넣었다. 축제 연결은 목적지 순위로 정한 지역이 같을 때만(강경젓갈·논산딸기·석장리·원주 2곳·대구치맥). 순위·읍면동·거주지는 이 자료에 없어 그리지 않는다.
+- Evidence:
+  - docs/validation/52-datalab-region-trends.md(발행 37254732318 → sha256:29969b09…, 배포 선언 3b0a011, 공개 확인)
+  - docs/design/30-datalab-region-trends.md
+  - docs/research/imported/datalab-regions-2026-10/README.md
+- Changes:
+  - docs/research/imported/datalab-regions-2026-10(ZIP 9·CSV 20·목록, original/** -text)
+  - apps/web: datalab-owner-regions·build-datalab-region-trends·region-trends 읽기·RegionTrend 카드, 축제 묶음 hostTrend, 새 축제 regionTrend·연도별 합계 외지인만
+  - docs: 설계30, 검수52, TS-FC-027, 자료 목록·screens·data-visualization·설계 색인
+  - infra/k8s/fest-compass/overlays/prod: 검증 이미지 고정
+- Validation:
+  - npm test 502 통과, 타입 검사·보안 점검·전체 빌드·인프라 시험 41·등록 검사 통과
+  - headless 32종 통과(최종 빌드·새 시험용 DB)
+  - 공개: Synced·Healthy 세대 51, 업무 9테이블 20행 해시 일치, 공개 화면 5항목 통과
+- Questions:
+  - No open question
+- Handoff: Human

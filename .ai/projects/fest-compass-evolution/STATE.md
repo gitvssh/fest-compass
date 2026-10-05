@@ -1,19 +1,19 @@
 ---
 schema_version: 1
 project_id: fest-compass-evolution
-revision: 70
+revision: 72
 status: waiting-human
 next_actor: human
 last_actor: claude
 current_question: "No open question"
-updated_at: "2026-10-04T18:43:50.877Z"
+updated_at: "2026-10-05T02:24:25.737Z"
 ---
 
 # Current state
 
 ## Summary
 
-기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(축제별 방문 자료 — 개최연도별 방문·축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위·개최지 관광 소비와 외지인 방문객, 새 축제 방문 흐름의 지역 연간 합계 24곳·지역 카드 26곳, 개최지 방문 구성·임실 방문자 특성)을 공개 중이다(이미지 beed519c). 받아 둔 데이터랩 CSV 304개를 모두 쓴다. 모든 화면 하단에 ⓒ한국관광공사 출처를 표기한다. 관광자원 화면에 공사 OpenAPI 두 종(앞으로 30일 관광지 붐빔 예측·함께 찾는 곳)을 연결했다. 소유자가 받은 데이터랩 문화관광축제 92곳(공식 ZIP 92·CSV 367)을 보관·검증하고 축제별 방문 자료·방문 규모(지역 표시, 고른 축제만 받기, 상위 20곳·시도별 순위)와 기존 축제 화면의 논산딸기축제 2024·2025 개최지 방문 구성까지 공개했다.
+기존·새 축제와 관광지도의 공통 자료, 축제 기획 길잡이, 목적별 축제 찾기(유형 칩·문화관광축제 방문 규모·소개 글 표시와 거르기·전국 모든 축제), 분석 동의 배너, 데이터랩 자료 화면(축제별 방문 자료 — 개최연도별 방문·축제 기간과 평소 비교·방문객 성·연령·목적지 검색순위·개최지 관광 소비와 외지인 방문객, 새 축제 방문 흐름의 지역 연간 합계 24곳·지역 카드 26곳, 개최지 방문 구성·임실 방문자 특성)을 공개 중이다(이미지 29969b09). 받아 둔 데이터랩 CSV 304개를 모두 쓴다. 모든 화면 하단에 ⓒ한국관광공사 출처를 표기한다. 관광자원 화면에 공사 OpenAPI 두 종(앞으로 30일 관광지 붐빔 예측·함께 찾는 곳)을 연결했다. 소유자가 받은 데이터랩 문화관광축제 92곳(공식 ZIP 92·CSV 367)을 보관·검증하고 축제별 방문 자료·방문 규모(지역 표시, 고른 축제만 받기, 상위 20곳·시도별 순위)와 기존 축제 화면의 논산딸기축제 2024·2025 개최지 방문 구성까지 공개했다. 소유자가 받은 지역 4곳(논산·공주·원주·대구 달서구)의 해마다 관광소비·외지인 방문을 개최지 카드 6곳과 새 축제 연도별 방문 합계에 이었다.
 
 ## Accepted decisions
 
@@ -85,6 +85,7 @@ updated_at: "2026-10-04T18:43:50.877Z"
 - 2026-10-04 사용자 결정: 한국관광공사 공모전 목적에 맞춰 데이터랩 자료 화면을 유지한다(ADR-0004가 ADR-0003 대체, docs/decisions/0004-use-kto-datalab-data.md). 자동 내려받기는 하지 않는다.
 - 2026-10-04 사용자 결정: 데이터랩 자료를 적극 쓰고 이미 받아 둔 표를 화면에 잇는다(1차 축제 표와 모든 화면 하단 ⓒ한국관광공사 출처 표기, 2차 개최지·지역 표). TourAPI 응답의 서버 보관 허용 여부는 사용자가 공모전 운영사무국에 문의한다(docs/design/27-datalab-festival-profile.md).
 - 2026-10-05 사용자 결정: 데이터랩 파일은 사용자가 공식 단추로 직접 받고(문화관광축제 92곳 받음), 공사 OpenAPI 두 종(관광지 집중률 방문자 추이 예측·관광지별 연관 관광지)을 연결한다(docs/design/28-kto-spot-signals.md).
+- 2026-10-05 사용자 결정: 소유자가 받은 데이터랩 지역 4곳(논산·공주·원주·대구 달서구) 자료를 지역 카드에 반영한다(docs/design/30-datalab-region-trends.md). TourAPI 보관 문의 답은 휴일이라 나중에 온다.
 
 ## Open questions
 
@@ -244,3 +245,9 @@ updated_at: "2026-10-04T18:43:50.877Z"
 - docs/research/imported/datalab-festivals-2026-10/README.md
 - apps/web/scripts/datalab-owner-import.mjs
 - docs/validation/evidence/2026-10-05-datalab-92-after.json
+- docs/design/30-datalab-region-trends.md
+- docs/validation/52-datalab-region-trends.md
+- docs/sdlc/3-testing/scenarios/TS-FC-027.md
+- docs/research/imported/datalab-regions-2026-10/README.md
+- apps/web/scripts/build-datalab-region-trends.mjs
+- docs/validation/evidence/2026-10-05-region-trends-after.json
