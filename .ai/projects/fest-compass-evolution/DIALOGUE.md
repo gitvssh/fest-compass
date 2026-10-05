@@ -1510,3 +1510,32 @@ The state revision is the number of the last `T-NNN` entry below.
 - Questions:
   - No open question
 - Handoff: Human
+
+## T-073 · Human · chair
+
+- Position: 2026-10-05 요청: 세션 종료 전 소스 정리. 자료는 삭제하고 pickDday를 메인 소스 구조로, 양쪽 저장소(gitvssh/fest-compass, travel-resolver/pick-d-day)를 똑같이 맞춘다. 다른 개발자 코드는 아이디어를 참고해 반영했다고 본다.
+- Evidence:
+  - 2026-10-05 Claude Code 세션에서 사용자가 직접 요청·선택했다(메인 소스: 최신 pickDday, 자료 삭제: 공고문·조사 자료만). 이 턴은 Claude가 요약해 대신 기록했다.
+- Changes:
+  - No changes
+- Validation:
+  - Not run — 사람 요청 기록
+- Questions:
+  - No open question
+- Handoff: Claude
+
+## T-074 · Claude · implementer
+
+- Position: 소스를 정리했다. 이 저장소에서는 루트의 서울 관광 API 조사 엑셀을 지우고 루트 PDF·엑셀을 무시하도록 했다. 팀 저장소 main은 developer/ 세 폴더와 docs/ 자료를 지우고 이 저장소와 같은 트리(3c273fe)로 바꿨다. 바꾸기 전 main은 태그로 남기고 팀원 브랜치는 그대로 두었다. 받은 원본 폴더(reference)는 파일 492개가 모두 데이터랩 원본 보관과 바이트까지 같아 로컬에서 지웠다.
+- Evidence:
+  - docs/ops/repository-consolidation.md '2026-10-05 팀 저장소를 같은 파일로 맞춤'
+  - gitvssh/fest-compass a71db44, travel-resolver/pick-d-day cc021e3: main 트리 해시 같음
+- Changes:
+  - fest-compass: 조사 엑셀 삭제, .gitignore, README·AGENTS·통합 보고, tools/sync-team-repo.sh
+  - pick-d-day: main을 pickDday 트리로 교체, 태그 archive/team-workspace-2026-10-05
+- Validation:
+  - 두 저장소 main 트리 해시 일치
+  - 인프라 시험 41·등록 검사 통과(앱 코드 변경 없음)
+- Questions:
+  - No open question
+- Handoff: Human
