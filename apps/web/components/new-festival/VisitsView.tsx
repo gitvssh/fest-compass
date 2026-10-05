@@ -5,6 +5,7 @@ import { dateOnly, timeLabel } from "@/components/existing/format";
 import { MonthChart, MonthTable } from "@/components/existing/ObservedMonths";
 import { Disclosure, FreshnessNote, InfoDialog, LoadState } from "@/components/existing/ui";
 import { RegionProfileCards } from "@/components/RegionProfile";
+import { RegionTrendCards } from "@/components/RegionTrend";
 import { useKeyedRequest } from "@/components/existing/useKeyedRequest";
 import { newVisitsKey, parseNewVisits } from "@/lib/new-festival/request";
 import type { NewVisitsResponse } from "@/lib/new-festival/types";
@@ -86,6 +87,7 @@ export function VisitsView() {
   const regionAnswer = data ?? (kept && kept.region.code === region.code ? kept : null);
   const annual = regionAnswer?.annual && regionAnswer.annual.regionCode === region.code ? regionAnswer.annual : null;
   const regionProfile = regionAnswer?.regionProfile && regionAnswer.regionProfile.profile.code === region.code ? regionAnswer.regionProfile : null;
+  const regionTrend = regionAnswer?.regionTrend && regionAnswer.regionTrend.trend.code === region.code ? regionAnswer.regionTrend : null;
   // An annual year button applies that year; focus moves to the monthly heading once that year's answer is shown.
   const [focusYear, setFocusYear] = useState<{ code: string; year: number } | null>(null);
   useEffect(() => {
@@ -169,6 +171,8 @@ export function VisitsView() {
       monthlyYears={(regionAnswer?.years ?? []).filter(y => y.complete).map(y => y.year)} onYear={chooseAnnualYear}
       tableOpen={!!open["annual-table"]} onTable={v => setOpen(o => ({ ...o, "annual-table": v }))} />}
     {regionProfile && <RegionProfileCards profile={regionProfile.profile} officialUrl={regionProfile.officialUrl} />}
+    {/* The yearly outside visitors of these districts are already in the annual block above. */}
+    {regionTrend && <RegionTrendCards trend={regionTrend.trend} officialUrl={regionTrend.officialUrl} visitors={false} />}
     {data && <FreshnessNote freshness={data.freshness} retrievedAt={data.retrievedAt} onRetry={result.retry} />}
   </section>;
 }

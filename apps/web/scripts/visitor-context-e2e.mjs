@@ -29,6 +29,12 @@ function originalCsv(suffix) {
   return readFileSync(join(originals, String(found[0])), "utf8").replace(/^﻿/, "").trim().split(/\r?\n/).map(l => l.split(","));
 }
 const sourceNumber = s => { assert.match(s, /^(0|[1-9]\d*)(\.\d+)?(E[+-]?\d+)?$/, `oracle number ${s}`); return Number(s); };
+// The owner's 2026-10 region download: 논산 outside visitors per year (연인원), comparison year 2019 plus 2020-2025.
+const regionOriginals = fileURLToPath(new URL("../../../docs/research/imported/datalab-regions-2026-10/original/data/", import.meta.url));
+const NONSAN_OUTSIDE = Object.fromEntries(readdirSync(regionOriginals, { recursive: true }).filter(p => String(p).normalize("NFC").includes("_논산시_") && String(p).normalize("NFC").endsWith("_방문자 수(연인원) 추이.csv"))
+  .flatMap(p => readFileSync(join(regionOriginals, String(p)), "utf8").replace(/^\uFEFF/, "").trim().split(/\r?\n/).slice(1).map(l => l.split(",")))
+  .map(c => [Number(c[0]), sourceNumber(c[1])]));
+assert.deepEqual(Object.keys(NONSAN_OUTSIDE).map(Number), [2019, 2020, 2021, 2022, 2023, 2024, 2025], "oracle: 논산 yearly outside visitors");
 // The owner's 2026-10 download (extracted from the official ZIPs, byte for byte).
 const ownerOriginals = fileURLToPath(new URL("../../../docs/research/imported/datalab-festivals-2026-10/original/data/", import.meta.url));
 const NONSAN_ROWS = Object.fromEntries(readdirSync(ownerOriginals, { recursive: true }).filter(p => String(p).normalize("NFC").endsWith("_논산딸기축제_연도별 방문자 추이.csv"))
@@ -375,15 +381,20 @@ async function newFestival({ page }) {
   await change.getByRole("combobox", { name: /^시군구/ }).selectOption({ label: "논산시" });
   await change.getByRole("button", { name: "이 지역 보기", exact: true }).click();
   const nonsan = await body;
-  assert.equal(nonsan.annual, null, "Nonsan has no yearly totals");
+  assert.deepEqual(nonsan.annual?.years.map(y => [y.year, y.outside, y.local, y.total]), Object.entries(NONSAN_OUTSIDE).map(([y, v]) => [Number(y), v, null, null]), "논산: its own outside-only yearly totals");
   await visible(monthly(page, 2023));
   await late.release();
   await flush(page);
   assert.equal(new URL(page.url()).pathname, "/new/44230/visits");
-  assert.equal(await anyAnnual(page).count(), 0, "no 임실 totals under 논산");
+  assert.equal(await annualSection(page).count(), 0, "no 임실 totals under 논산");
+  const nonsanAnnual = page.getByRole("region", { name: "논산시 연도별 방문 합계", exact: true });
+  await visible(nonsanAnnual);
+  await nonsanAnnual.getByRole("button", { name: "연도별 수치 표 보기", exact: true }).click();
+  assert.deepEqual(await nonsanAnnual.getByRole("table").locator("thead th").allInnerTexts(), ["연도", "외지인"], "outside-only district: no local or domestic columns");
   assert.notEqual(await focusedId(page), "new-monthly-heading", "late answer does not move focus");
-  assert.match(await page.getByText(/^충청남도 논산시 전체 외지인 방문 · /).innerText(), /일평균 명\/일/, "unchanged intro without totals");
-  passed.push("region-change-and-late-year-answer-isolated", "unsupported-region-no-annual");
+  // With yearly totals on the page the intro names no single unit, as for 임실 (each block states its own).
+  assert.equal(await page.getByText(/^충청남도 논산시 전체 외지인 방문 · /).innerText(), "충청남도 논산시 전체 외지인 방문 · 통신 기반 추정 · 지난 관측값");
+  passed.push("region-change-and-late-year-answer-isolated", "nonsan-outside-only-annual");
   return annual;
 }
 

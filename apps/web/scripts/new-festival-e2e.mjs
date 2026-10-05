@@ -889,14 +889,22 @@ async function zeroVersusMissing() {
   await visible(page.getByText("선이 끊긴 날: 값 없음", { exact: true }));
   await go(page, "지역 관광자원", "new-resources-heading");
   await visible(rowButton(page, RESOURCES["52750"]["12"][0]));
-  // A district without a DataLab download (Nonsan) shows no region cards.
+  // A district downloaded with yearly totals only (Nonsan): the spending card, its yearly outside visitors in the annual block.
   await page.goto(`${base}/new/44230/visits`);
   await visible(page.getByRole("heading", { level: 2, name: "논산시 방문 흐름", exact: true }));
+  await visible(page.getByRole("heading", { level: 3, name: "논산시 관광 소비", exact: true }));
+  await visible(page.getByText("2020~2025년 합계 중 외지인 98.5% · 현지인 1.5%", { exact: true }));
+  await visible(page.getByRole("heading", { level: 3, name: "논산시 연도별 방문 합계", exact: true }));
+  assert.equal(await page.getByRole("heading", { level: 3, name: "논산시 외지인 방문객" }).count(), 0, "yearly visitors are not drawn twice");
+  assert.equal(await page.getByText(/같은 시도 목록/).count(), 0, "no province rank in this download");
+  // A district without any DataLab download shows no region cards.
+  await page.goto(`${base}/new/11110/visits`);
+  await visible(page.getByRole("heading", { level: 2, name: /방문 흐름$/ }));
   await page.waitForLoadState("networkidle");
-  assert.equal(await page.locator("#region-spending").count(), 0, "no DataLab region cards for Nonsan");
+  assert.equal(await page.locator("#region-spending").count(), 0, "no DataLab region cards for Jongno");
   await context.close();
   passed.push("AC5-zero-kept-missing-dash-and-no-mean(검증용 Imsil 2023 variant)");
-  passed.push("datalab-region-cards-imsil-and-none-for-nonsan");
+  passed.push("datalab-region-cards-imsil-trend-nonsan-none-jongno");
 }
 
 async function regionChange() {
@@ -921,7 +929,8 @@ async function regionChange() {
   await changeRegion(page, GONGJU);
   await newer.arrived;
   await newer.release();
-  await visible(page.getByText("2026년 공주시 방문 자료가 없어요.", { exact: true }));
+  // 공주 has yearly totals (DataLab, 2019-2025), so only the 2026 monthly and weekday data is said to be missing.
+  await visible(page.getByText("2026년 월·요일별 방문 자료가 없어요.", { exact: true }));
   await waitFocusText(page, GONGJU.name);
   await older.release();
   await flush(page);

@@ -1,0 +1,803 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "id": "datalab-regions-2026-10",
+    "repository": "https://github.com/gitvssh/fest-compass",
+    "ref": "main",
+    "officialUrl": "https://datalab.visitkorea.or.kr/datalab/portal/loc/getAreaDataForm.do",
+    "downloadedBy": "프로젝트 소유자(로그인 회원, 공식 내려받기 단추)",
+    "downloadedAt": "2026-10-05(한국시간, 내려받은 사람의 기록)",
+    "importedTo": "docs/research/imported/datalab-regions-2026-10/original",
+    "list": "다운로드목록.csv",
+    "note": "읽어주세요.txt",
+    "downloadTimeNote": "파일·폴더명 앞 14자리는 내려받은 시각 표기로 보이나 시간대가 기록되지 않았다. 관측 기간이 아니다."
+  },
+  "counts": {
+    "zip": 9,
+    "csv": 20,
+    "doc": 2,
+    "consumed": 16
+  },
+  "files": [
+    {
+      "path": "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_방문자.csv",
+      "bytes": 131,
+      "sha256": "17499b875935d0006da4b86a8223268b437b3ccdaa7b33f86c3d42a6340e3b39",
+      "gitBlob": "f5ff0bb0d60451a0cd5080aaaf0694f10982a9ce",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "종합분석_참고",
+      "table": "AI 관광 분석_방문자",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "광역지자체명",
+        "광역지자체 증감률",
+        "기초지자체명",
+        "기초지자체 증감률"
+      ],
+      "rowCount": 1,
+      "zip": {
+        "path": "zip/20261005094822_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005094822_AI 관광 분석_방문자.csv",
+        "crc32": 3497578401
+      },
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005094822_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005094822_AI%20%EA%B4%80%EA%B4%91%20%EB%B6%84%EC%84%9D_%EB%B0%A9%EB%AC%B8%EC%9E%90.csv"
+    },
+    {
+      "path": "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_숙박_체류시간.csv",
+      "bytes": 106,
+      "sha256": "615a96935d70e3de61ef8a1c31719f7754400b826b23e4bde16a26df9ce9e19b",
+      "gitBlob": "61f9a85ccddd160fad260ebeb38044290440a97b",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "종합분석_참고",
+      "table": "AI 관광 분석_숙박_체류시간",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기초지자체명",
+        "숙박방문자 증감률",
+        "체류시간 증감률"
+      ],
+      "rowCount": 1,
+      "zip": {
+        "path": "zip/20261005094822_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005094822_AI 관광 분석_숙박_체류시간.csv",
+        "crc32": 1894497895
+      },
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005094822_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005094822_AI%20%EA%B4%80%EA%B4%91%20%EB%B6%84%EC%84%9D_%EC%88%99%EB%B0%95_%EC%B2%B4%EB%A5%98%EC%8B%9C%EA%B0%84.csv"
+    },
+    {
+      "path": "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_연관지역.csv",
+      "bytes": 2444,
+      "sha256": "fc81e1b55d39d231fe85e8f16f4196334a707a59ae4896fb0b76abbbeb8f73a5",
+      "gitBlob": "ebf55e8b05b66064c0ad41410107db9e511406ab",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "종합분석_참고",
+      "table": "AI 관광 분석_연관지역",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "유입지역명",
+        "유출지역명",
+        "유입유출 비율",
+        "유입/유출 구분 코드 (1:유입 / 2:유출)"
+      ],
+      "rowCount": 40,
+      "zip": {
+        "path": "zip/20261005094822_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005094822_AI 관광 분석_연관지역.csv",
+        "crc32": 2989966731
+      },
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005094822_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005094822_AI%20%EA%B4%80%EA%B4%91%20%EB%B6%84%EC%84%9D_%EC%97%B0%EA%B4%80%EC%A7%80%EC%97%AD.csv"
+    },
+    {
+      "path": "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_유사지역.csv",
+      "bytes": 188,
+      "sha256": "adb7d7cd975a04892970ddf6af4b12725f9da93138862c8dc10d4e0454a84092",
+      "gitBlob": "54bea3e4beefa5ab6eb13f1dc19c6ccab00a40ff",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "종합분석_참고",
+      "table": "AI 관광 분석_유사지역",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "유사지역명",
+        "기준지역명"
+      ],
+      "rowCount": 3,
+      "zip": {
+        "path": "zip/20261005094822_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005094822_AI 관광 분석_유사지역.csv",
+        "crc32": 1232366753
+      },
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005094822_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005094822_AI%20%EA%B4%80%EA%B4%91%20%EB%B6%84%EC%84%9D_%EC%9C%A0%EC%82%AC%EC%A7%80%EC%97%AD.csv"
+    },
+    {
+      "path": "data/20261005094930_논산시_2020-2025_데이터랩_다운로드/20261005094930_방문자 수(연인원) 추이.csv",
+      "bytes": 277,
+      "sha256": "546f0f52bd835da66208b0c763da06e01ebc0d405d1b69930d6a71a18cb7a524",
+      "gitBlob": "eb6f6950637deb5827b36346596876d3515c657b",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "방문자",
+      "table": "방문자 수(연인원) 추이",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준년월",
+        "방문자수",
+        "전년동월방문자수",
+        "방문자수증감률"
+      ],
+      "rowCount": 7,
+      "zip": {
+        "path": "zip/20261005094930_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005094930_방문자 수(연인원) 추이.csv",
+        "crc32": 1555801594
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005094930_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005094930_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv"
+    },
+    {
+      "path": "data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_내국인.csv",
+      "bytes": 1370,
+      "sha256": "0c3fd19f32514c4ef136b06c33243ca0150da15c57539ccde100fa38ba53336a",
+      "gitBlob": "e638c5244c252fff145334df3de7ee508365de4a",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_내국인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 46,
+      "zip": {
+        "path": "zip/20261005095006_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095006_관광소비 추이_내국인.csv",
+        "crc32": 1555517946
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095006_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_외지인.csv",
+      "bytes": 1364,
+      "sha256": "3519c25aa17695e0977c718fed393fd04176c0ea44ce938c58d92400cee0d77b",
+      "gitBlob": "f5a51be1f11fdd681a539de474e39f82e10c4b45",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_외지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 46,
+      "zip": {
+        "path": "zip/20261005095006_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095006_관광소비 추이_외지인.csv",
+        "crc32": 2101768568
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095006_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_현지인.csv",
+      "bytes": 886,
+      "sha256": "808d917251b1833eb46c1c1fd582923821b76bee86097034a52bf8739db5b193",
+      "gitBlob": "28acb4b7f5f7e2e1e87d226899ea98954d96c4f7",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "논산시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_현지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 33,
+      "zip": {
+        "path": "zip/20261005095006_논산시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095006_관광소비 추이_현지인.csv",
+        "crc32": 2039129739
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095006_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_내국인.csv",
+      "bytes": 1395,
+      "sha256": "7df5ecf32277e3b5ccd0c9455a9a6c8bd6ee3273d8af2ce6001959b6f249c63e",
+      "gitBlob": "fd294cbe05ac64bb6b01782eddcaaf08494d6f48",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "공주시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_내국인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 47,
+      "zip": {
+        "path": "zip/20261005095036_공주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095036_관광소비 추이_내국인.csv",
+        "crc32": 183752430
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095036_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_외지인.csv",
+      "bytes": 1391,
+      "sha256": "68766fb2268fa120fe87071bb2f9b95e353ebce72f44c142d8f6a5da2cef6212",
+      "gitBlob": "0ff7a00f13055e5f1158b3e0d7875bd0642bc7c7",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "공주시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_외지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 47,
+      "zip": {
+        "path": "zip/20261005095036_공주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095036_관광소비 추이_외지인.csv",
+        "crc32": 3661171317
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095036_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_현지인.csv",
+      "bytes": 1096,
+      "sha256": "e480eae8591f5ede0a2215a78ebfeb9f6f3bb7124d661b95737102993f83e587",
+      "gitBlob": "bc6f438be108b4e08dd05b74e113a5a2256d3eda",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "공주시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_현지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 40,
+      "zip": {
+        "path": "zip/20261005095036_공주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095036_관광소비 추이_현지인.csv",
+        "crc32": 2473476429
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095036_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095054_공주시_2020-2025_데이터랩_다운로드/20261005095054_방문자 수(연인원) 추이.csv",
+      "bytes": 282,
+      "sha256": "3f70fedb1cb676ad3c27fe9c02b84bda4836447e5b0b0847e932a62182d3b6cd",
+      "gitBlob": "d0fc40ca5aded93e1e43032365c715f92c6c4431",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "공주시",
+      "kind": "방문자",
+      "table": "방문자 수(연인원) 추이",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준년월",
+        "방문자수",
+        "전년동월방문자수",
+        "방문자수증감률"
+      ],
+      "rowCount": 7,
+      "zip": {
+        "path": "zip/20261005095054_공주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095054_방문자 수(연인원) 추이.csv",
+        "crc32": 1638430768
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095054_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095054_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv"
+    },
+    {
+      "path": "data/20261005095112_원주시_2020-2025_데이터랩_다운로드/20261005095112_방문자 수(연인원) 추이.csv",
+      "bytes": 281,
+      "sha256": "a0a0bdd34fe6747765ad5ea20fd09176bbd71aa3814cc7a0f00cffaf1a5f68ba",
+      "gitBlob": "ca0cb06bc7af6fcbd8d561ecd6d86341150c8404",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "원주시",
+      "kind": "방문자",
+      "table": "방문자 수(연인원) 추이",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준년월",
+        "방문자수",
+        "전년동월방문자수",
+        "방문자수증감률"
+      ],
+      "rowCount": 7,
+      "zip": {
+        "path": "zip/20261005095112_원주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095112_방문자 수(연인원) 추이.csv",
+        "crc32": 4082034789
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095112_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095112_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv"
+    },
+    {
+      "path": "data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_내국인.csv",
+      "bytes": 1451,
+      "sha256": "4a1799a3c1010e2e3605b131fdf99e733ff63019ff28e14d48a3d118d96a38c6",
+      "gitBlob": "28079c99f953a622494e1d528138ec9c5ba70fbf",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "원주시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_내국인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 48,
+      "zip": {
+        "path": "zip/20261005095125_원주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095125_관광소비 추이_내국인.csv",
+        "crc32": 2938310002
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095125_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_외지인.csv",
+      "bytes": 1447,
+      "sha256": "0750d209d666e3590281f87815855d60940c0a30017b9dfa2aa0973707c668e3",
+      "gitBlob": "fba3d9f0e2cab59e6132be3bf4f9d13decf5fab6",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "원주시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_외지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 48,
+      "zip": {
+        "path": "zip/20261005095125_원주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095125_관광소비 추이_외지인.csv",
+        "crc32": 619067291
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095125_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_현지인.csv",
+      "bytes": 1201,
+      "sha256": "063fc214a6a09275028c58fae0112e3363b756316839493e2e6cd30b7a700b78",
+      "gitBlob": "89a2b7739d832afbf38d438ce3f2cea8a5d7bcf6",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "원주시",
+      "kind": "관광소비",
+      "table": "관광소비 추이_현지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 42,
+      "zip": {
+        "path": "zip/20261005095125_원주시_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095125_관광소비 추이_현지인.csv",
+        "crc32": 2057297712
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095125_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_내국인.csv",
+      "bytes": 1445,
+      "sha256": "01b79ca4d584709966668ab0b7cbf19727eb372ecd65c55dcaebb4a5c40ac68d",
+      "gitBlob": "8c059c9a551ba1c3063b1ef5433b75cdc63a5bfa",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "달서구",
+      "kind": "관광소비",
+      "table": "관광소비 추이_내국인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 48,
+      "zip": {
+        "path": "zip/20261005095148_달서구_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095148_관광소비 추이_내국인.csv",
+        "crc32": 161015575
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095148_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_외지인.csv",
+      "bytes": 1445,
+      "sha256": "88ba57e59e4ffaabe71c58b544b765f99ad6a17621384a57e20c3dcd2faa3345",
+      "gitBlob": "a561b5e8c3f2ab85609e3eeef4c7c1c14f0f4fcc",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "달서구",
+      "kind": "관광소비",
+      "table": "관광소비 추이_외지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 48,
+      "zip": {
+        "path": "zip/20261005095148_달서구_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095148_관광소비 추이_외지인.csv",
+        "crc32": 1842008541
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095148_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_현지인.csv",
+      "bytes": 1188,
+      "sha256": "d14e1df3d9107bc3de287f7afca418338c8fc35e9273f2af0287f606bf05a61c",
+      "gitBlob": "215a522cc7e22880c6d2f8ed9ee989422e30ef44",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "달서구",
+      "kind": "관광소비",
+      "table": "관광소비 추이_현지인",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준연월",
+        "업종대분류명",
+        "소비액(천원)"
+      ],
+      "rowCount": 42,
+      "zip": {
+        "path": "zip/20261005095148_달서구_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095148_관광소비 추이_현지인.csv",
+        "crc32": 1219300847
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095148_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv"
+    },
+    {
+      "path": "data/20261005095203_달서구_2020-2025_데이터랩_다운로드/20261005095203_방문자 수(연인원) 추이.csv",
+      "bytes": 279,
+      "sha256": "a1daba2f63bed5035f99d61f39c61e823036c0a7460fb7c70c69ac042723e127",
+      "gitBlob": "3206081e22b15b20090da19e90e1c71774b9a4a1",
+      "encoding": "utf-8-bom",
+      "lineEnding": "LF",
+      "group": "table",
+      "region": "달서구",
+      "kind": "방문자",
+      "table": "방문자 수(연인원) 추이",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "header": [
+        "기준년월",
+        "방문자수",
+        "전년동월방문자수",
+        "방문자수증감률"
+      ],
+      "rowCount": 7,
+      "zip": {
+        "path": "zip/20261005095203_달서구_2020-2025_데이터랩_다운로드.zip",
+        "entry": "20261005095203_방문자 수(연인원) 추이.csv",
+        "crc32": 481017475
+      },
+      "use": "consumed",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095203_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095203_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv"
+    },
+    {
+      "path": "zip/20261005094822_논산시_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 1591,
+      "sha256": "9478ff55ffdd5f18be644d800dffb0087876945491ba49d3cc0e18da7c889ace",
+      "gitBlob": "b24f01f4e969a909b5f961217da0592a561e9323",
+      "group": "zip",
+      "region": "논산시",
+      "kind": "종합분석_참고",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_방문자.csv",
+        "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_숙박_체류시간.csv",
+        "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_연관지역.csv",
+        "data/20261005094822_논산시_2020-2025_데이터랩_다운로드/20261005094822_AI 관광 분석_유사지역.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005094822_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005094930_논산시_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 374,
+      "sha256": "df7477d00dc9b43d50951368db5702863e7fb1117f1cd7a3df928a66a7396317",
+      "gitBlob": "db20ecc5a5b71605793cf8deaf4983b7ec968fec",
+      "group": "zip",
+      "region": "논산시",
+      "kind": "방문자",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005094930_논산시_2020-2025_데이터랩_다운로드/20261005094930_방문자 수(연인원) 추이.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005094930_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005095006_논산시_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 1975,
+      "sha256": "fb43badc7ee7d9ce0ece28ef59748e12021deb5f231fefddaa8f703b9a3c9d20",
+      "gitBlob": "7f3b88ff278a5ac260175e1831b486b66b0d8765",
+      "group": "zip",
+      "region": "논산시",
+      "kind": "관광소비",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_내국인.csv",
+        "data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_현지인.csv",
+        "data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_외지인.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005095006_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005095036_공주시_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 2029,
+      "sha256": "32f3226e2d173accbd281a28d30880dc49035349b6de6e14332120406c760c81",
+      "gitBlob": "4ba2ec4da1e133a53fd39dbc35f958c495f31729",
+      "group": "zip",
+      "region": "공주시",
+      "kind": "관광소비",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_내국인.csv",
+        "data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_현지인.csv",
+        "data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_외지인.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005095036_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005095054_공주시_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 380,
+      "sha256": "000ea44bace16d266a80caaadaeca19d248bb0ed1b6988468f646c1805e1b8cc",
+      "gitBlob": "3b4246ef344abba7954976787bc0313bb2b775a2",
+      "group": "zip",
+      "region": "공주시",
+      "kind": "방문자",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005095054_공주시_2020-2025_데이터랩_다운로드/20261005095054_방문자 수(연인원) 추이.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005095054_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005095112_원주시_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 377,
+      "sha256": "43e433f2c32cb1e082cc95a99d39f68104f9c3d6d9f8c6b374ab9022cece0572",
+      "gitBlob": "cf491a98eef52c0e31393732002fde9529b18911",
+      "group": "zip",
+      "region": "원주시",
+      "kind": "방문자",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005095112_원주시_2020-2025_데이터랩_다운로드/20261005095112_방문자 수(연인원) 추이.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005095112_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005095125_원주시_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 2126,
+      "sha256": "597ba54b047c590032e4489b220ed3b1c665accaebda9b24f9962e0237c35aa8",
+      "gitBlob": "ecd7ebb55ef7732429286eb673a898ab005d9a1c",
+      "group": "zip",
+      "region": "원주시",
+      "kind": "관광소비",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_내국인.csv",
+        "data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_현지인.csv",
+        "data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_외지인.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005095125_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005095148_달서구_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 2123,
+      "sha256": "db46dd0a3159110a5176e97ac9decab21ac3bae0d141b90cc1fe40fead6d95d7",
+      "gitBlob": "154efedc97d1e784e7b94f0dcc08f2e8037e08fe",
+      "group": "zip",
+      "region": "달서구",
+      "kind": "관광소비",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_내국인.csv",
+        "data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_현지인.csv",
+        "data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_외지인.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005095148_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "zip/20261005095203_달서구_2020-2025_데이터랩_다운로드.zip",
+      "bytes": 380,
+      "sha256": "e55db632a95ea4ddec13ddad6c3f3cde4d0d9fc699ef4182c8f416c3755cf350",
+      "gitBlob": "df7d8fc5f8846973d60eccec42b041fef99a52a9",
+      "group": "zip",
+      "region": "달서구",
+      "kind": "방문자",
+      "range": {
+        "from": 2020,
+        "to": 2025
+      },
+      "entries": [
+        "data/20261005095203_달서구_2020-2025_데이터랩_다운로드/20261005095203_방문자 수(연인원) 추이.csv"
+      ],
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/zip/20261005095203_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.zip"
+    },
+    {
+      "path": "다운로드목록.csv",
+      "bytes": 6052,
+      "sha256": "aa99f2d4ad707336a8f6956a4f95607378af36351d81bcf4b478b4e520c08e54",
+      "gitBlob": "f8ec363886b9f0d29634fc4eceeb0d78fdb981e8",
+      "encoding": "utf-8",
+      "lineEnding": "CRLF",
+      "group": "doc",
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C%EB%AA%A9%EB%A1%9D.csv"
+    },
+    {
+      "path": "읽어주세요.txt",
+      "bytes": 1265,
+      "sha256": "bf649c703fd078e96d7f56bf03c567730312e24a4f856d74a59a347a5b467313",
+      "gitBlob": "d03ce6792dbbc2a17dcf00e911ef88c6de43b03f",
+      "encoding": "utf-8",
+      "lineEnding": "mixed",
+      "group": "doc",
+      "use": "preserved-only",
+      "url": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/%EC%9D%BD%EC%96%B4%EC%A3%BC%EC%84%B8%EC%9A%94.txt"
+    }
+  ]
+}

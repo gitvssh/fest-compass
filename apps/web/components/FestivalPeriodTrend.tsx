@@ -8,6 +8,7 @@ import { consecutiveRuns, formatCount, formatMetric, METRICS, metricValue, niceM
 import type { FestivalPeriodDataset, FestivalPeriodYear, FestivalSummary, FestivalTrendView, PeriodMetric } from "@/lib/datalab/types";
 import { FestivalProfile, PROFILE_SECTIONS } from "./FestivalProfile";
 import { REGION_SECTION_ID, RegionProfileCards } from "./RegionProfile";
+import { RegionTrendCards } from "./RegionTrend";
 
 const W = 720, H = 290, L = 76, R = 700, T = 24, B = 236;
 
@@ -41,7 +42,7 @@ export function FestivalPeriodTrend({ data, initial, initialMetric, missingReque
     focusPending.current = true; setId(next);
   }
   function chooseMetric(next: PeriodMetric) { setMetric(next); sync(id, next); }
-  const host = bundle?.host ?? null;
+  const host = bundle?.host ?? null, hostTrend = bundle?.hostTrend ?? null, hostName = host?.name ?? hostTrend?.name ?? null;
   return <div className="space-y-6">
     <header className="space-y-3"><p className="text-xs font-extrabold text-blue">한국관광 데이터랩 · 문화관광축제 {data.festivals.length}곳</p><h1 className="text-3xl font-extrabold">축제별 방문 자료</h1><p className="max-w-3xl text-sm leading-7 text-muted">축제를 골라 해마다 방문, 축제 기간과 평소의 차이, 방문객 성·연령, 많이 찾은 곳을 봐요.</p><Link href="/compare/scale" className="region-button">{data.festivals.length}곳 방문 규모 한눈에 보기</Link></header>
     <div className="grid gap-4 lg:grid-cols-[18rem_minmax(0,1fr)]">
@@ -57,11 +58,15 @@ export function FestivalPeriodTrend({ data, initial, initialMetric, missingReque
         {missing && !id && <p role="status" className="rounded-xl bg-paper p-4 text-sm font-bold">요청한 축제의 자료가 없습니다. 목록에서 골라 주세요.</p>}
         {bundle ? <>
           <TrendPanel key={bundle.trend.id} data={data} festival={bundle.trend} metric={metric} onMetric={chooseMetric} heading={heading}
-            sections={[...(bundle.profile ? PROFILE_SECTIONS : []), ...(host ? [{ id: REGION_SECTION_ID, label: `개최지 ${host.name}` }] : [])]} />
+            sections={[...(bundle.profile ? PROFILE_SECTIONS : []), ...(hostName ? [{ id: REGION_SECTION_ID, label: `개최지 ${hostName}` }] : [])]} />
           {bundle.profile && <FestivalProfile key={`profile-${bundle.profile.id}`} profile={bundle.profile} officialUrl={data.source.officialUrl} />}
           {host && data.regionOfficialUrl && <div key={`host-${host.code}`} className="space-y-3">
             <p className="text-sm font-bold">개최지 {host.name} 전체 자료 <span className="font-normal text-muted">· 축제 기간만이 아닌 {host.range.from}~{host.range.to}년 지역 전체</span></p>
             <RegionProfileCards profile={host} officialUrl={data.regionOfficialUrl} />
+          </div>}
+          {hostTrend && data.regionOfficialUrl && <div key={`host-trend-${hostTrend.code}`} className="space-y-3">
+            <p className="text-sm font-bold">개최지 {hostTrend.name} 전체 자료 <span className="font-normal text-muted">· 축제 기간만이 아닌 지역 전체의 해마다 값</span></p>
+            <RegionTrendCards trend={hostTrend} officialUrl={data.regionOfficialUrl} />
           </div>}
         </> : id ? <section className="region-card space-y-3" aria-labelledby="period-trend-loading" aria-busy={remote.loading}>
           {/* Not a heading: the festival heading appears with its values, and focus moves there. */}

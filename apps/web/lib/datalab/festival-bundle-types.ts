@@ -3,6 +3,7 @@
 import { InvalidRequest } from "../existing/request";
 import type { FestivalProfile } from "./festival-profile-types";
 import type { RegionProfile } from "./region-profile-types";
+import type { RegionTrend } from "./region-trend-types";
 import type { FestivalTrendView } from "./types";
 
 export type FestivalBundle = {
@@ -12,6 +13,8 @@ export type FestivalBundle = {
   profile: FestivalProfile | null;
   /** The host region's profile when the festival is linked to a downloaded region, otherwise null. */
   host: RegionProfile | null;
+  /** The host region's yearly trend when its download holds only yearly totals; never set together with host. */
+  hostTrend: RegionTrend | null;
 };
 export type FestivalBundleRequest = { festival: string };
 

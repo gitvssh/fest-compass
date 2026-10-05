@@ -4,6 +4,7 @@ import { festivalBundleKey, type FestivalBundle } from "./festival-bundle-types"
 import { defaultFestivalProfiles } from "./festival-profiles";
 import { parseFestivalPeriodDataset } from "./model";
 import { defaultRegionProfiles, regionProfileFor } from "./region-profiles";
+import { defaultRegionTrends, regionTrendFor } from "./region-trends";
 import type { FestivalPeriodDataset, FestivalPeriodTrend, FestivalSummary, FestivalTrendView } from "./types";
 
 // Server view of the DataLab festival files: a light index for pickers and one festival's bundle on request.
@@ -20,6 +21,8 @@ const view = (f: FestivalPeriodTrend): FestivalTrendView => ({ id: f.id, name: f
 export function festivalBundle(id: string): FestivalBundle | null {
   const f = festivalTrend.festivals.find(x => x.id === id);
   if (!f) return null;
-  const code = defaultRegionProfiles?.festivalRegions[id];
-  return { key: festivalBundleKey(id), trend: view(f), profile: defaultFestivalProfiles?.festivals.find(p => p.id === id) ?? null, host: code ? regionProfileFor(defaultRegionProfiles, code) : null };
+  const code = defaultRegionProfiles?.festivalRegions[id], trendCode = defaultRegionTrends?.festivalRegions[id];
+  const host = code ? regionProfileFor(defaultRegionProfiles, code) : null;
+  return { key: festivalBundleKey(id), trend: view(f), profile: defaultFestivalProfiles?.festivals.find(p => p.id === id) ?? null, host,
+    hostTrend: !host && trendCode ? regionTrendFor(defaultRegionTrends, trendCode) : null };
 }

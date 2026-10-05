@@ -1,0 +1,632 @@
+{
+  "kind": "datalab-region-trends",
+  "schemaVersion": 1,
+  "scope": {
+    "spending": "시군구 전체 관광소비(천원), 데이터랩 지역 화면의 관광소비 추이. 내국인 = 현지인 + 외지인(연도·업종마다 대조). 업종은 대분류만 있고 비율은 범위 합계 기준. 축제 소비가 아니다.",
+    "visitors": "시군구를 찾은 외지인 방문자 수(연인원, 이동통신 기반 추정). 내려받기 범위 앞의 한 해(2019)는 사이트가 함께 준 비교 연도. 한국관광공사 일별 외지인 방문자 수의 연간 합계와 같은 지표.",
+    "notIncluded": "읍면동 비율·같은 시도 순위·거주지·업종 세부는 이 내려받기에 없다."
+  },
+  "source": {
+    "title": "한국관광 데이터랩 · 지역 관광소비·외지인 방문자 추이",
+    "officialUrl": "https://datalab.visitkorea.or.kr/datalab/portal/loc/getAreaDataForm.do",
+    "definitionReviewedAt": "2026-10-05",
+    "import": {
+      "id": "datalab-regions-2026-10",
+      "manifestPath": "docs/research/imported/datalab-regions-2026-10/manifest.json",
+      "manifestSha256": "52fc2b191da54098255ce949c23c5118164887b0f2256588458d0c1a60e16b94"
+    },
+    "downloadTimezone": null
+  },
+  "regions": [
+    {
+      "code": "44230",
+      "name": "논산시",
+      "province": "충청남도",
+      "festivalIds": [
+        "ganggyeong-jeotgal",
+        "nonsan-strawberry"
+      ],
+      "spending": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2020,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2020,
+            "total": 220333977,
+            "local": 3678222,
+            "outside": 216655756
+          },
+          {
+            "year": 2021,
+            "total": 245395769,
+            "local": 3969879,
+            "outside": 241425890
+          },
+          {
+            "year": 2022,
+            "total": 280858186,
+            "local": 4222815,
+            "outside": 276635371
+          },
+          {
+            "year": 2023,
+            "total": 286035363,
+            "local": 4015130,
+            "outside": 282020233
+          },
+          {
+            "year": 2024,
+            "total": 275337245,
+            "local": 3804338,
+            "outside": 271532907
+          },
+          {
+            "year": 2025,
+            "total": 269996522,
+            "local": 3430311,
+            "outside": 266566211
+          }
+        ],
+        "industries": [
+          {
+            "name": "쇼핑업",
+            "total": 434671546
+          },
+          {
+            "name": "숙박업",
+            "total": 13918543
+          },
+          {
+            "name": "식음료업",
+            "total": 362160843
+          },
+          {
+            "name": "여가서비스업",
+            "total": 76634760
+          },
+          {
+            "name": "여행업",
+            "total": 99266
+          },
+          {
+            "name": "운송업",
+            "total": 678165473
+          },
+          {
+            "name": "의료웰니스업",
+            "total": 12306631
+          }
+        ],
+        "sources": {
+          "domestic": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_내국인.csv",
+            "originalPath": "20261005095006_논산시_2020-2025_데이터랩_다운로드.zip/20261005095006_관광소비 추이_내국인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095006_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv",
+            "bytes": 1370,
+            "sha256": "0c3fd19f32514c4ef136b06c33243ca0150da15c57539ccde100fa38ba53336a"
+          },
+          "local": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_현지인.csv",
+            "originalPath": "20261005095006_논산시_2020-2025_데이터랩_다운로드.zip/20261005095006_관광소비 추이_현지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095006_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 886,
+            "sha256": "808d917251b1833eb46c1c1fd582923821b76bee86097034a52bf8739db5b193"
+          },
+          "outside": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_논산시_2020-2025_데이터랩_다운로드/20261005095006_관광소비 추이_외지인.csv",
+            "originalPath": "20261005095006_논산시_2020-2025_데이터랩_다운로드.zip/20261005095006_관광소비 추이_외지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095006_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095006_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 1364,
+            "sha256": "3519c25aa17695e0977c718fed393fd04176c0ea44ce938c58d92400cee0d77b"
+          }
+        }
+      },
+      "visitors": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2019,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2019,
+            "outside": 15101695
+          },
+          {
+            "year": 2020,
+            "outside": 14007360
+          },
+          {
+            "year": 2021,
+            "outside": 14692181
+          },
+          {
+            "year": 2022,
+            "outside": 16260534
+          },
+          {
+            "year": 2023,
+            "outside": 16571947
+          },
+          {
+            "year": 2024,
+            "outside": 16952096
+          },
+          {
+            "year": 2025,
+            "outside": 17451010
+          }
+        ],
+        "sources": {
+          "trend": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005094930_논산시_2020-2025_데이터랩_다운로드/20261005094930_방문자 수(연인원) 추이.csv",
+            "originalPath": "20261005094930_논산시_2020-2025_데이터랩_다운로드.zip/20261005094930_방문자 수(연인원) 추이.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005094930_%EB%85%BC%EC%82%B0%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005094930_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv",
+            "bytes": 277,
+            "sha256": "546f0f52bd835da66208b0c763da06e01ebc0d405d1b69930d6a71a18cb7a524"
+          }
+        }
+      }
+    },
+    {
+      "code": "44150",
+      "name": "공주시",
+      "province": "충청남도",
+      "festivalIds": [
+        "seokjangni-paleolithic"
+      ],
+      "spending": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2020,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2020,
+            "total": 317463898,
+            "local": 2757705,
+            "outside": 314706193
+          },
+          {
+            "year": 2021,
+            "total": 358340213,
+            "local": 2662148,
+            "outside": 355678066
+          },
+          {
+            "year": 2022,
+            "total": 433067771,
+            "local": 2832499,
+            "outside": 430235272
+          },
+          {
+            "year": 2023,
+            "total": 392531061,
+            "local": 2802014,
+            "outside": 389729047
+          },
+          {
+            "year": 2024,
+            "total": 427886144,
+            "local": 2461516,
+            "outside": 425424628
+          },
+          {
+            "year": 2025,
+            "total": 444865473,
+            "local": 2362771,
+            "outside": 442502702
+          }
+        ],
+        "industries": [
+          {
+            "name": "쇼핑업",
+            "total": 382836637
+          },
+          {
+            "name": "숙박업",
+            "total": 22930100
+          },
+          {
+            "name": "식음료업",
+            "total": 685555028
+          },
+          {
+            "name": "여가서비스업",
+            "total": 78436277
+          },
+          {
+            "name": "여행업",
+            "total": 104715
+          },
+          {
+            "name": "운송업",
+            "total": 1192067026
+          },
+          {
+            "name": "의료웰니스업",
+            "total": 12224776
+          }
+        ],
+        "sources": {
+          "domestic": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_내국인.csv",
+            "originalPath": "20261005095036_공주시_2020-2025_데이터랩_다운로드.zip/20261005095036_관광소비 추이_내국인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095036_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv",
+            "bytes": 1395,
+            "sha256": "7df5ecf32277e3b5ccd0c9455a9a6c8bd6ee3273d8af2ce6001959b6f249c63e"
+          },
+          "local": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_현지인.csv",
+            "originalPath": "20261005095036_공주시_2020-2025_데이터랩_다운로드.zip/20261005095036_관광소비 추이_현지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095036_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 1096,
+            "sha256": "e480eae8591f5ede0a2215a78ebfeb9f6f3bb7124d661b95737102993f83e587"
+          },
+          "outside": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_공주시_2020-2025_데이터랩_다운로드/20261005095036_관광소비 추이_외지인.csv",
+            "originalPath": "20261005095036_공주시_2020-2025_데이터랩_다운로드.zip/20261005095036_관광소비 추이_외지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095036_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095036_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 1391,
+            "sha256": "68766fb2268fa120fe87071bb2f9b95e353ebce72f44c142d8f6a5da2cef6212"
+          }
+        }
+      },
+      "visitors": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2019,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2019,
+            "outside": 26713526
+          },
+          {
+            "year": 2020,
+            "outside": 22781356
+          },
+          {
+            "year": 2021,
+            "outside": 24026292
+          },
+          {
+            "year": 2022,
+            "outside": 27082615
+          },
+          {
+            "year": 2023,
+            "outside": 26014156
+          },
+          {
+            "year": 2024,
+            "outside": 24197768
+          },
+          {
+            "year": 2025,
+            "outside": 25786708
+          }
+        ],
+        "sources": {
+          "trend": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095054_공주시_2020-2025_데이터랩_다운로드/20261005095054_방문자 수(연인원) 추이.csv",
+            "originalPath": "20261005095054_공주시_2020-2025_데이터랩_다운로드.zip/20261005095054_방문자 수(연인원) 추이.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095054_%EA%B3%B5%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095054_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv",
+            "bytes": 282,
+            "sha256": "3f70fedb1cb676ad3c27fe9c02b84bda4836447e5b0b0847e932a62182d3b6cd"
+          }
+        }
+      }
+    },
+    {
+      "code": "51130",
+      "name": "원주시",
+      "province": "강원특별자치도",
+      "festivalIds": [
+        "wonju-dancing-carnival",
+        "wonju-hanji"
+      ],
+      "spending": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2020,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2020,
+            "total": 616465184,
+            "local": 105271963,
+            "outside": 511193221
+          },
+          {
+            "year": 2021,
+            "total": 722808396,
+            "local": 113556331,
+            "outside": 609252064
+          },
+          {
+            "year": 2022,
+            "total": 819329490,
+            "local": 124183710,
+            "outside": 695145780
+          },
+          {
+            "year": 2023,
+            "total": 796127581,
+            "local": 108425083,
+            "outside": 687702498
+          },
+          {
+            "year": 2024,
+            "total": 789986881,
+            "local": 112368829,
+            "outside": 677618052
+          },
+          {
+            "year": 2025,
+            "total": 791108834,
+            "local": 107016576,
+            "outside": 684092258
+          }
+        ],
+        "industries": [
+          {
+            "name": "쇼핑업",
+            "total": 1779400132
+          },
+          {
+            "name": "숙박업",
+            "total": 261836335
+          },
+          {
+            "name": "식음료업",
+            "total": 1141389263
+          },
+          {
+            "name": "여가서비스업",
+            "total": 308269654
+          },
+          {
+            "name": "여행업",
+            "total": 1136436
+          },
+          {
+            "name": "운송업",
+            "total": 973995321
+          },
+          {
+            "name": "의료웰니스업",
+            "total": 69799226
+          }
+        ],
+        "sources": {
+          "domestic": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_내국인.csv",
+            "originalPath": "20261005095125_원주시_2020-2025_데이터랩_다운로드.zip/20261005095125_관광소비 추이_내국인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095125_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv",
+            "bytes": 1451,
+            "sha256": "4a1799a3c1010e2e3605b131fdf99e733ff63019ff28e14d48a3d118d96a38c6"
+          },
+          "local": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_현지인.csv",
+            "originalPath": "20261005095125_원주시_2020-2025_데이터랩_다운로드.zip/20261005095125_관광소비 추이_현지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095125_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 1201,
+            "sha256": "063fc214a6a09275028c58fae0112e3363b756316839493e2e6cd30b7a700b78"
+          },
+          "outside": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_원주시_2020-2025_데이터랩_다운로드/20261005095125_관광소비 추이_외지인.csv",
+            "originalPath": "20261005095125_원주시_2020-2025_데이터랩_다운로드.zip/20261005095125_관광소비 추이_외지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095125_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095125_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 1447,
+            "sha256": "0750d209d666e3590281f87815855d60940c0a30017b9dfa2aa0973707c668e3"
+          }
+        }
+      },
+      "visitors": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2019,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2019,
+            "outside": 30466306
+          },
+          {
+            "year": 2020,
+            "outside": 27360834
+          },
+          {
+            "year": 2021,
+            "outside": 27171554
+          },
+          {
+            "year": 2022,
+            "outside": 31587332
+          },
+          {
+            "year": 2023,
+            "outside": 33205522
+          },
+          {
+            "year": 2024,
+            "outside": 33771454
+          },
+          {
+            "year": 2025,
+            "outside": 34872719
+          }
+        ],
+        "sources": {
+          "trend": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095112_원주시_2020-2025_데이터랩_다운로드/20261005095112_방문자 수(연인원) 추이.csv",
+            "originalPath": "20261005095112_원주시_2020-2025_데이터랩_다운로드.zip/20261005095112_방문자 수(연인원) 추이.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095112_%EC%9B%90%EC%A3%BC%EC%8B%9C_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095112_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv",
+            "bytes": 281,
+            "sha256": "a0a0bdd34fe6747765ad5ea20fd09176bbd71aa3814cc7a0f00cffaf1a5f68ba"
+          }
+        }
+      }
+    },
+    {
+      "code": "27290",
+      "name": "달서구",
+      "province": "대구광역시",
+      "festivalIds": [
+        "daegu-chimac"
+      ],
+      "spending": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2020,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2020,
+            "total": 599396459,
+            "local": 34177495,
+            "outside": 565218964
+          },
+          {
+            "year": 2021,
+            "total": 609477771,
+            "local": 34787740,
+            "outside": 574690031
+          },
+          {
+            "year": 2022,
+            "total": 687550963,
+            "local": 37170817,
+            "outside": 650380146
+          },
+          {
+            "year": 2023,
+            "total": 734030978,
+            "local": 36367844,
+            "outside": 697663134
+          },
+          {
+            "year": 2024,
+            "total": 726541800,
+            "local": 34317263,
+            "outside": 692224537
+          },
+          {
+            "year": 2025,
+            "total": 711662664,
+            "local": 31509160,
+            "outside": 680153504
+          }
+        ],
+        "industries": [
+          {
+            "name": "쇼핑업",
+            "total": 1853106581
+          },
+          {
+            "name": "숙박업",
+            "total": 45397472
+          },
+          {
+            "name": "식음료업",
+            "total": 1258538474
+          },
+          {
+            "name": "여가서비스업",
+            "total": 180367247
+          },
+          {
+            "name": "여행업",
+            "total": 3015920
+          },
+          {
+            "name": "운송업",
+            "total": 634072804
+          },
+          {
+            "name": "의료웰니스업",
+            "total": 94162136
+          }
+        ],
+        "sources": {
+          "domestic": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_내국인.csv",
+            "originalPath": "20261005095148_달서구_2020-2025_데이터랩_다운로드.zip/20261005095148_관광소비 추이_내국인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095148_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EB%82%B4%EA%B5%AD%EC%9D%B8.csv",
+            "bytes": 1445,
+            "sha256": "01b79ca4d584709966668ab0b7cbf19727eb372ecd65c55dcaebb4a5c40ac68d"
+          },
+          "local": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_현지인.csv",
+            "originalPath": "20261005095148_달서구_2020-2025_데이터랩_다운로드.zip/20261005095148_관광소비 추이_현지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095148_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%ED%98%84%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 1188,
+            "sha256": "d14e1df3d9107bc3de287f7afca418338c8fc35e9273f2af0287f606bf05a61c"
+          },
+          "outside": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_달서구_2020-2025_데이터랩_다운로드/20261005095148_관광소비 추이_외지인.csv",
+            "originalPath": "20261005095148_달서구_2020-2025_데이터랩_다운로드.zip/20261005095148_관광소비 추이_외지인.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095148_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095148_%EA%B4%80%EA%B4%91%EC%86%8C%EB%B9%84%20%EC%B6%94%EC%9D%B4_%EC%99%B8%EC%A7%80%EC%9D%B8.csv",
+            "bytes": 1445,
+            "sha256": "88ba57e59e4ffaabe71c58b544b765f99ad6a17621384a57e20c3dcd2faa3345"
+          }
+        }
+      },
+      "visitors": {
+        "downloadDate": "2026-10-05",
+        "range": {
+          "from": 2019,
+          "to": 2025
+        },
+        "years": [
+          {
+            "year": 2019,
+            "outside": 57525730
+          },
+          {
+            "year": 2020,
+            "outside": 48267709
+          },
+          {
+            "year": 2021,
+            "outside": 47658006
+          },
+          {
+            "year": 2022,
+            "outside": 52198192
+          },
+          {
+            "year": 2023,
+            "outside": 54538603
+          },
+          {
+            "year": 2024,
+            "outside": 55152086
+          },
+          {
+            "year": 2025,
+            "outside": 57097467
+          }
+        ],
+        "sources": {
+          "trend": {
+            "path": "docs/research/imported/datalab-regions-2026-10/original/data/20261005095203_달서구_2020-2025_데이터랩_다운로드/20261005095203_방문자 수(연인원) 추이.csv",
+            "originalPath": "20261005095203_달서구_2020-2025_데이터랩_다운로드.zip/20261005095203_방문자 수(연인원) 추이.csv",
+            "originalUrl": "https://github.com/gitvssh/fest-compass/blob/main/docs/research/imported/datalab-regions-2026-10/original/data/20261005095203_%EB%8B%AC%EC%84%9C%EA%B5%AC_2020-2025_%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%9E%A9_%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/20261005095203_%EB%B0%A9%EB%AC%B8%EC%9E%90%20%EC%88%98(%EC%97%B0%EC%9D%B8%EC%9B%90)%20%EC%B6%94%EC%9D%B4.csv",
+            "bytes": 279,
+            "sha256": "a1daba2f63bed5035f99d61f39c61e823036c0a7460fb7c70c69ac042723e127"
+          }
+        }
+      }
+    }
+  ]
+}

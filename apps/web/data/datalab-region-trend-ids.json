@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-10-05",
+  "note": "2026-10-05 소유자가 데이터랩 지역 화면에서 받은 4곳(관광소비 추이·외지인 방문자 수 추이)의 검토표. 코드는 현재 관광조회 지역 목록의 같은 시도·이름으로 정한다. 축제는 목적지 검색순위 도로명주소로 정한 축제 지역이 addressPrefix와 같을 때만 잇는다(읍면동 목록이 없는 내려받기라 처음 26곳의 읍면동 규칙 대신 쓴다). spendingZip·visitorZip은 공식 ZIP 이름이다. 논산시의 종합분석 ZIP은 보관만 한다.",
+  "regions": [
+    {
+      "code": "44230",
+      "name": "논산시",
+      "province": "충청남도",
+      "addressPrefix": "충남 논산시",
+      "festivalIds": [
+        "ganggyeong-jeotgal",
+        "nonsan-strawberry"
+      ],
+      "spendingZip": "20261005095006_논산시_2020-2025_데이터랩_다운로드.zip",
+      "visitorZip": "20261005094930_논산시_2020-2025_데이터랩_다운로드.zip"
+    },
+    {
+      "code": "44150",
+      "name": "공주시",
+      "province": "충청남도",
+      "addressPrefix": "충남 공주시",
+      "festivalIds": [
+        "seokjangni-paleolithic"
+      ],
+      "spendingZip": "20261005095036_공주시_2020-2025_데이터랩_다운로드.zip",
+      "visitorZip": "20261005095054_공주시_2020-2025_데이터랩_다운로드.zip"
+    },
+    {
+      "code": "51130",
+      "name": "원주시",
+      "province": "강원특별자치도",
+      "addressPrefix": "강원 원주시",
+      "festivalIds": [
+        "wonju-dancing-carnival",
+        "wonju-hanji"
+      ],
+      "spendingZip": "20261005095125_원주시_2020-2025_데이터랩_다운로드.zip",
+      "visitorZip": "20261005095112_원주시_2020-2025_데이터랩_다운로드.zip"
+    },
+    {
+      "code": "27290",
+      "name": "달서구",
+      "province": "대구광역시",
+      "addressPrefix": "대구 달서구",
+      "festivalIds": [
+        "daegu-chimac"
+      ],
+      "spendingZip": "20261005095148_달서구_2020-2025_데이터랩_다운로드.zip",
+      "visitorZip": "20261005095203_달서구_2020-2025_데이터랩_다운로드.zip"
+    }
+  ]
+}

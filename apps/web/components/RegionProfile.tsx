@@ -6,9 +6,9 @@ import { IconBadge } from "@/components/guide/icons";
 import type { RegionProfile as Profile, RegionShare } from "@/lib/datalab/region-profile-types";
 
 const TOP = 5;
-const pct = (v: number) => `${v.toFixed(1)}%`;
+export const pct = (v: number) => `${v.toFixed(1)}%`;
 /** Thousand won -> 억 원: whole 억 from 100억, one decimal below. */
-const eok = (thousandWon: number) => { const v = thousandWon / 1e5; return `${v.toLocaleString("ko-KR", { maximumFractionDigits: v >= 100 ? 0 : 1 })}억 원`; };
+export const eok = (thousandWon: number) => { const v = thousandWon / 1e5; return `${v.toLocaleString("ko-KR", { maximumFractionDigits: v >= 100 ? 0 : 1 })}억 원`; };
 const rangeText = (p: Profile) => `${p.range.from}~${p.range.to}년`;
 export const REGION_SECTION_ID = "region-spending";
 
@@ -24,7 +24,7 @@ export function RegionProfileCards({ profile, officialUrl }: { profile: Profile;
   </div>;
 }
 
-function Heading({ id, icon, title, note, tone }: { id: string; icon: LucideIcon; title: string; note: string; tone: "blue" | "amber" }) {
+export function Heading({ id, icon, title, note, tone }: { id: string; icon: LucideIcon; title: string; note: string; tone: "blue" | "amber" }) {
   return <div className="flex min-w-0 items-start gap-3">
     <IconBadge icon={icon} tone={tone} />
     <div className="min-w-0">
@@ -34,12 +34,12 @@ function Heading({ id, icon, title, note, tone }: { id: string; icon: LucideIcon
   </div>;
 }
 
-function RankLine({ text }: { text: string }) {
+export function RankLine({ text }: { text: string }) {
   return <p className="w-fit rounded-full bg-paper px-3 py-1 text-xs font-bold">{text}</p>;
 }
 
 /** Labelled bars on one shared scale; the value next to each bar carries the same fact. */
-function ShareBars({ label, rows, color, columns = "grid-cols-[minmax(0,8.5rem)_minmax(0,1fr)_4.5rem]" }: { label: string; rows: { key: string; name: string; value: number; text: string }[]; color: string; columns?: string }) {
+export function ShareBars({ label, rows, color, columns = "grid-cols-[minmax(0,8.5rem)_minmax(0,1fr)_4.5rem]" }: { label: string; rows: { key: string; name: string; value: number; text: string }[]; color: string; columns?: string }) {
   const max = Math.max(...rows.map(r => r.value), 0) || 1;
   return <div role="img" aria-label={`${label}. ${rows.map(r => `${r.name} ${r.text}`).join(", ")}`} className="space-y-1.5">
     {rows.map(r => <div key={r.key} aria-hidden="true" className={`grid ${columns} items-center gap-2 text-sm`}>
