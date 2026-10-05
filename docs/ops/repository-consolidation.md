@@ -3,9 +3,9 @@ class: Current
 doc_class: current
 doc_kind: ops
 owner: fest-compass
-last_verified: 2026-09-23
+last_verified: 2026-10-05
 version: v1
-summary: "pick-d-day에 흩어져 있던 FEST Compass의 최신 문서·시안과 데이터랩 원자료를 gitvssh/fest-compass로 선별 통합한 범위와 경계입니다. 원본 삭제나 모노레포 전체 이전이 아니며, 연도별 방문·달력·CSV·메뉴 연결의 검증을 마치고 공개 운영에 반영했습니다."
+summary: "pick-d-day에 흩어져 있던 FEST Compass의 최신 문서·시안과 데이터랩 원자료를 gitvssh/fest-compass로 선별 통합한 범위와 경계입니다. 연도별 방문·달력·CSV·메뉴 연결의 검증을 마치고 공개 운영에 반영했습니다. 2026-10-05 팀 저장소를 이 저장소와 같은 파일로 맞췄습니다."
 ---
 
 # 저장소 통합 보고
@@ -143,6 +143,22 @@ Claude Opus 5.5에 조사·구현·문서 정리를 위임하고 통합 담당�
 ![공개 운영의 서산해미읍성축제 연도별 방문 화면](../validation/images/33-consolidation-annual-desktop.png)
 
 ![공개 운영의 모바일 수치 표와 원문 확인](../validation/images/33-consolidation-annual-mobile.png)
+
+## 2026-10-05 팀 저장소를 같은 파일로 맞춤
+
+사용자 요청(2026-10-05, "pickdday를 메인 src구조로 정리", "양쪽 repo는 똑같이맞추면돼")에 따라 `travel-resolver/pick-d-day`의 `main`을
+이 저장소와 같은 파일 구성으로 바꿨다. 정본·배포는 그대로 이 저장소다.
+
+- 바꾸기 직전 팀 저장소 `main`(`6288436`)에 태그 `archive/team-workspace-2026-10-05`를 붙였다. 지운 폴더는 그 태그와 기록에서 언제든 꺼낼 수 있고,
+  팀원의 원격 브랜치(`feat/contest-focus`, `feat/kfestival-navigator`, `feature/jibyun-fest-compass`, `chore/windows-safe-filenames`)는 지우지 않았다.
+- 팀 저장소에서 지운 것: `developer/shlee`(2026-09-23 시점 이 제품의 참고 사본, 이후 정본에서 계속 개발), `developer/jibyun`(K-Festival Navigator 앱·발표자료,
+  디자인 시험 사본 `fest-compass-test`), `developer/hkjin`(기획 plan-01~05·문서·디자인 시안·데이터랩 CSV), 루트 `docs/`(공모전 공고문·지정과제 PDF, 서울 관광 API 조사 엑셀, 이전 안내).
+- 이 제품에 들어온 것: hkjin 데이터랩 CSV 304개(위 `데이터랩 원자료`, 원본 바이트 보관)와 plan-04 담당자 조사 질문. Navigator의 TourAPI 행사 조회·달력·공백기
+  계산은 [자료 현황](../research/2026-09-data-inventory.md)에서 분석했고, 관광지도 행사 달력과 일정 겹침 확인이 같은 문제를 다룬다. 나머지 기획 아이디어는
+  이후 두 목적 흐름 설계에 참고해 반영했다는 것이 사용자 판단이다. `feat/contest-focus`(2026-09-14~17, 결정 네 가지로 홈 재구성·담당 공무원 화면·시군구 단위 교정)는 병합되지 않은 채 브랜치로 남는다.
+- 이 저장소에서도 루트의 서울 관광 API 조사 엑셀을 지우고, 공고문 PDF·조사 엑셀 같은 참고 자료를 루트에 두지 않도록 `.gitignore`를 넓혔다.
+  앱 검증에 쓰는 데이터랩 원본 보관(`docs/research/imported/`)은 그대로 둔다.
+- 앞으로 두 저장소는 `tools/sync-team-repo.sh`로 맞춘다. 이 저장소에 게시한 뒤 팀 저장소의 전용 브랜치에서 실행해 바뀐 파일을 확인하고 올린다.
 
 ## 다음 작업
 

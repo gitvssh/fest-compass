@@ -15,6 +15,7 @@ This repository contains the pickDday product and its app-owned deployment decla
 - Visible product name: `pickDday` (exact case) in UI, metadata, user-facing download names, and current documents. The npm package name is lowercase `pickdday`.
 - Project/infrastructure slug: `fest-compass`. Repository, deployment, Vault/registry, database, browser storage keys, and saved-file format identifiers keep this value unless a separate rename decision is recorded.
 - Canonical checkout: WSL `~/dev/side/fest-compass` (GitHub `gitvssh/fest-compass`). Make changes on a dedicated branch in `~/dev/worktrees/fest-compass-<topic>`; see `docs/ops/wsl-development.md`.
+- Team mirror: `travel-resolver/pick-d-day` `main` holds the same tree. Sync it with `tools/sync-team-repo.sh` after publishing here; never develop there.
 - Public hostname: `pickday.damecasol.com`.
 - Public production mode is `APP_MODE=public-readonly`; local development defaults to editor mode.
 - Never commit `.env`, API keys, SQLite files, Kubernetes Secret values, or rendered secret data.

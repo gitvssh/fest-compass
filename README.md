@@ -6,6 +6,14 @@ The visible product name is exactly `pickDday`. Internal identifiers keep their 
 
 The web application lives in `apps/web`. Start with [the design index](docs/design/00_INDEX.md) for product behavior and [the documentation map](docs/README.md) for repository authority.
 
+## Repositories
+
+- `gitvssh/fest-compass` (this repository, public) is canonical: development, release images and deployment start here.
+- The team repository `travel-resolver/pick-d-day` (private) holds the same files on `main`. After a change is published here, run
+  `tools/sync-team-repo.sh <pick-d-day checkout>` on a dedicated branch there, review the staged tree and push it. Do not develop there.
+- The earlier team workspaces (`developer/hkjin`, `developer/jibyun` and the 2026-09-23 reference copy under `developer/shlee`) stay in that
+  repository's history and tag `archive/team-workspace-2026-10-05`; what this product took from them is in [the consolidation report](docs/ops/repository-consolidation.md).
+
 For the 2026-09-22 review, read the [current feature and flow baseline](docs/review/2026-09-current-state.md)
 and [data inventory](docs/research/2026-09-data-inventory.md). They separate implemented behavior,
 stored data awaiting integration, and future redesign under the [agreed planning principles](docs/product/planning-principles.md).
@@ -13,7 +21,7 @@ The home page separates the two purposes. The existing-festival journey starts a
 
 Related-material search uses the selected festival, confirmed edition year, region or resource to prepare an editable DuckDuckGo query. Search opens in a new tab and preserves the current exploration. See [the design, actual checks and release state](docs/validation/36-related-material-search.md); article retrieval, AI summaries and automatic metric extraction are outside this feature.
 
-The [repository consolidation report](docs/ops/repository-consolidation.md) tracks the return to `gitvssh/fest-compass`, selected imports, and verification. The annual view at `/compare/annual` connects 26 festivals and 147 festival-year observations from preserved Korea Tourism Data Lab CSVs. The region explorer also provides a monthly event calendar with shared map/list selection and event CSV export; current festival comparison exports the filtered list. These additions are available at [the public app](https://pickday.damecasol.com/compare/annual). These are festival-period visitors to the hosting administrative area. The original 304 CSV files and their provenance remain in [the research import](docs/research/imported/hkjin-plan-03/README.md).
+The [repository consolidation report](docs/ops/repository-consolidation.md) tracks the return to `gitvssh/fest-compass`, selected imports, and verification. The annual view at `/compare/annual` connects 92 culture-tourism festivals and 447 festival-year observations from preserved Korea Tourism Data Lab downloads (26 from the first team import, 66 from the owner's official download on 2026-10-05), with host-region cards for 33 festivals. The region explorer also provides a monthly event calendar with shared map/list selection and event CSV export; current festival comparison exports the filtered list. These additions are available at [the public app](https://pickday.damecasol.com/compare/annual). These are festival-period visitors to the hosting administrative area. The original 304 CSV files and their provenance remain in [the research import](docs/research/imported/hkjin-plan-03/README.md).
 
 The Nonsan sample includes a historical model comparison at `/forecast` and preserved prospective regional forecasts at `/forecast/records`.
 See [collection, issuance, and outcome checks](docs/validation/10-prospective-records.md) for reproducible commands and current limitations.
